@@ -1,6 +1,2 @@
 language: objective-c
 script: xctool -workspace Demo/NSManagedObject-ANDYNetworking.xcworkspace -scheme NSManagedObject-ANDYNetworking -sdk iphonesimulator build test
-before_install:
-  - brew update
-  - brew unlink xctool
-  - brew install xctool
