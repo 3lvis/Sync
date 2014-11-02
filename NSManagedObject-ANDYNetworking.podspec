@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
 s.name             = "NSManagedObject-ANDYNetworking"
 s.version          = "0.5"
-s.summary          = "A cape, a sword and networking superpowers for your NSManagedObject!"
+s.summary          = "A cape, a sword and networking superpowers for your Core Data models"
 s.description      = <<-DESC
-This is a category that eases your everyday job of parsing an API and getting it into CoreData.
+This is a category that eases your every day job of parsing an API and getting it into CoreData.
 
 * Handles operations in safe background threats.
 * Thread safe saving (if you're saving in the wrong thread, we'll tell you).
