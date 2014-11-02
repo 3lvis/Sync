@@ -22,7 +22,7 @@
 
 #pragma mark - Set up
 
-+ (void)setUp
+- (void)setUp
 {
     [super setUp];
 
@@ -31,6 +31,13 @@
     [ANDYDataManager setModelBundle:[NSBundle bundleForClass:[self class]]];
 
     [ANDYDataManager setUpStackWithInMemoryStore];
+}
+
+- (void)tearDown
+{
+    [[ANDYDataManager sharedManager] destroy];
+
+    [super tearDown];
 }
 
 #pragma mark - Tests
