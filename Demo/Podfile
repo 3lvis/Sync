@@ -1,11 +1,9 @@
 platform :ios, '7.0'
 
-pod 'ANDYDataManager', :git => 'https://github.com/NSElvis/ANDYDataManager.git'
-pod 'ANDYFetchedResultsTableDataSource', :git => 'https://github.com/NSElvis/ANDYFetchedResultsTableDataSource.git'
-pod 'AFNetworking'
-pod 'SVProgressHUD'
+pod 'ANDYDataManager'
+pod 'ANDYFetchedResultsTableDataSource'
 
 # Categories
-pod 'NSJSONSerialization-ANDYJSONFile', :git => 'https://github.com/NSElvis/NSJSONSerialization-ANDYJSONFile.git'
+pod 'NSJSONSerialization-ANDYJSONFile'
 pod 'NSManagedObject-HYPPropertyMapper', :git => 'https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git'
-pod 'NSManagedObject-ANDYMapChanges', :git => 'https://github.com/NSElvis/NSManagedObject-ANDYMapChanges.git'
+pod 'NSManagedObject-ANDYMapChanges'

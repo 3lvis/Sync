@@ -6,48 +6,6 @@
 // project.
 
 
-// AFNetworking
-#define COCOAPODS_POD_AVAILABLE_AFNetworking
-#define COCOAPODS_VERSION_MAJOR_AFNetworking 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking 4
-#define COCOAPODS_VERSION_PATCH_AFNetworking 1
-
-// AFNetworking/NSURLConnection
-#define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLConnection
-#define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLConnection 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 4
-#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 1
-
-// AFNetworking/NSURLSession
-#define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLSession
-#define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLSession 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLSession 4
-#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLSession 1
-
-// AFNetworking/Reachability
-#define COCOAPODS_POD_AVAILABLE_AFNetworking_Reachability
-#define COCOAPODS_VERSION_MAJOR_AFNetworking_Reachability 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 4
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 1
-
-// AFNetworking/Security
-#define COCOAPODS_POD_AVAILABLE_AFNetworking_Security
-#define COCOAPODS_VERSION_MAJOR_AFNetworking_Security 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Security 4
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Security 1
-
-// AFNetworking/Serialization
-#define COCOAPODS_POD_AVAILABLE_AFNetworking_Serialization
-#define COCOAPODS_VERSION_MAJOR_AFNetworking_Serialization 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 4
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 1
-
-// AFNetworking/UIKit
-#define COCOAPODS_POD_AVAILABLE_AFNetworking_UIKit
-#define COCOAPODS_VERSION_MAJOR_AFNetworking_UIKit 2
-#define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 4
-#define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
-
 // ANDYDataManager
 #define COCOAPODS_POD_AVAILABLE_ANDYDataManager
 #define COCOAPODS_VERSION_MAJOR_ANDYDataManager 1
@@ -56,8 +14,8 @@
 
 // ANDYFetchedResultsTableDataSource
 #define COCOAPODS_POD_AVAILABLE_ANDYFetchedResultsTableDataSource
-#define COCOAPODS_VERSION_MAJOR_ANDYFetchedResultsTableDataSource 0
-#define COCOAPODS_VERSION_MINOR_ANDYFetchedResultsTableDataSource 1
+#define COCOAPODS_VERSION_MAJOR_ANDYFetchedResultsTableDataSource 1
+#define COCOAPODS_VERSION_MINOR_ANDYFetchedResultsTableDataSource 0
 #define COCOAPODS_VERSION_PATCH_ANDYFetchedResultsTableDataSource 0
 
 // NSJSONSerialization-ANDYJSONFile
@@ -69,7 +27,7 @@
 // NSManagedObject-ANDYMapChanges
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_ANDYMapChanges
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_ANDYMapChanges 0
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYMapChanges 3
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYMapChanges 2
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_ANDYMapChanges 0
 
 // NSManagedObject-HYPPropertyMapper
@@ -77,10 +35,4 @@
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_HYPPropertyMapper 1
 #define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 7
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_HYPPropertyMapper 0
-
-// SVProgressHUD
-#define COCOAPODS_POD_AVAILABLE_SVProgressHUD
-#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
-#define COCOAPODS_VERSION_MINOR_SVProgressHUD 0
-#define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
 
