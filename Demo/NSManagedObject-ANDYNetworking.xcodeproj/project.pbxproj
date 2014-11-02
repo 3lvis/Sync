@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1409F01F1A063221007E0AB4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1409F01D1A063221007E0AB4 /* Model.xcdatamodeld */; };
+		143FB6211A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */; };
 		148D14031A06283300C77DAA /* NSManagedObject+ANDYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */; };
 		14A183851A0633D700BE8106 /* first.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183831A0633D700BE8106 /* first.json */; };
 		14A183861A0633D700BE8106 /* second.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183841A0633D700BE8106 /* second.json */; };
@@ -15,7 +16,6 @@
 		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
 		14C4183C1A019A1500636FD6 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418381A019A1500636FD6 /* CONTRIBUTING.md */; };
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
-		14C4183E1A019A1500636FD6 /* PODNAME.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* PODNAME.podspec */; };
 		14C4183F1A019A1500636FD6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183B1A019A1500636FD6 /* README.md */; };
 		9F16646232C444BB92855655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 233D77625AC7BD94ED7CD47D /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -23,6 +23,7 @@
 /* Begin PBXFileReference section */
 		0E4C535CA0E774F987856EFA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1409F01E1A063221007E0AB4 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "NSManagedObject-ANDYNetworking.podspec"; path = "../NSManagedObject-ANDYNetworking.podspec"; sourceTree = "<group>"; };
 		148D14011A06283300C77DAA /* NSManagedObject+ANDYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ANDYNetworking.h"; sourceTree = "<group>"; };
 		148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ANDYNetworking.m"; sourceTree = "<group>"; };
 		14A183831A0633D700BE8106 /* first.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = first.json; sourceTree = "<group>"; };
@@ -33,7 +34,6 @@
 		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		14C418381A019A1500636FD6 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C418391A019A1500636FD6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
-		14C4183A1A019A1500636FD6 /* PODNAME.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PODNAME.podspec; path = ../PODNAME.podspec; sourceTree = "<group>"; };
 		14C4183B1A019A1500636FD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		233D77625AC7BD94ED7CD47D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BB79AA3F9D07463DE2BDAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,8 +107,8 @@
 				14BE72321A062F3900AB5C22 /* .travis.yml */,
 				14C418381A019A1500636FD6 /* CONTRIBUTING.md */,
 				14C418391A019A1500636FD6 /* LICENSE.md */,
-				14C4183A1A019A1500636FD6 /* PODNAME.podspec */,
 				14C4183B1A019A1500636FD6 /* README.md */,
+				143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -193,8 +193,8 @@
 				14C4183C1A019A1500636FD6 /* CONTRIBUTING.md in Resources */,
 				14BE72331A062F3900AB5C22 /* .travis.yml in Resources */,
 				14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */,
+				143FB6211A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec in Resources */,
 				14A183861A0633D700BE8106 /* second.json in Resources */,
-				14C4183E1A019A1500636FD6 /* PODNAME.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
