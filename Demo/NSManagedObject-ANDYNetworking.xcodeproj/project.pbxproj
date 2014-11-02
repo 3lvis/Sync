@@ -345,6 +345,12 @@
 				);
 				INFOPLIST_FILE = DemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
 			};
 			name = Debug;
@@ -359,6 +365,12 @@
 				);
 				INFOPLIST_FILE = DemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
 			};
 			name = Release;
