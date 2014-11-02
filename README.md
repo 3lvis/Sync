@@ -1,6 +1,6 @@
 # NSManagedObject-ANDYNetworking
 
-[![CI Status](http://img.shields.io/travis/nselvis/NSManagedObject-ANDYNetworking.svg?style=flat)](https://travis-ci.org/nselvis/NSManagedObject-ANDYNetworking)
+[![CI Status](http://img.shields.io/travis/nselvis/NSManagedObject-ANDYNetworking.svg?style=flat)](https://travis-ci.org/NSElvis/NSManagedObject-ANDYNetworking)
 [![Version](https://img.shields.io/cocoapods/v/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
 [![License](https://img.shields.io/cocoapods/l/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
 [![Platform](https://img.shields.io/cocoapods/p/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
