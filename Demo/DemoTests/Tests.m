@@ -22,7 +22,7 @@
 
 #pragma mark - Set up
 
-- (void)setUp
++ (void)setUp
 {
     [super setUp];
 
@@ -33,22 +33,19 @@
     [ANDYDataManager setUpStackWithInMemoryStore];
 }
 
-- (void)tearDown
-{
-    [[ANDYDataManager sharedManager] destroy];
-
-    [super tearDown];
-}
-
 #pragma mark - Tests
 
-- (void)testLoadFirstUsers
+- (void)testLoadAndUpdateUsers
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"first.json" inBundle:bundle];
+
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+
+    NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
 
     [NSManagedObject andy_processChanges:objects
                          usingEntityName:@"User"
@@ -58,15 +55,54 @@
                               completion:^{
 
                                   NSError *error = nil;
-                                  NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-                                  NSInteger count = [[[ANDYDataManager sharedManager] mainContext] countForFetchRequest:request error:&error];
+                                  NSInteger count = [mainContext countForFetchRequest:request error:&error];
 
-                                  XCTAssertEqual(count, 13);
+                                  XCTAssertEqual(count, 8);
 
                                   [expectation fulfill];
                               }];
 
-    [self waitForExpectationsWithTimeout:5.0f handler:nil];
+    [self waitForExpectationsWithTimeout:5.0f handler:^(NSError *error) {
+
+        if (error) {
+            NSLog(@"error loading users: %@", error);
+            return;
+        }
+
+        XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+
+        NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"second.json" inBundle:bundle];
+
+        [NSManagedObject andy_processChanges:objects
+                             usingEntityName:@"User"
+                                    localKey:@"id"
+                                   remoteKey:@"id"
+                                   predicate:nil
+                                  completion:^{
+
+                                      NSError *error = nil;
+                                      NSInteger count = [mainContext countForFetchRequest:request error:&error];
+
+                                      XCTAssertEqual(count, 6);
+
+                                      [expectation fulfill];
+                                  }];
+
+        [self waitForExpectationsWithTimeout:5.0f handler:^(NSError *error) {
+
+            if (error) {
+                NSLog(@"error loading users: %@", error);
+                return;
+            }
+
+            request.predicate = [NSPredicate predicateWithFormat:@"id == %@", @7];
+            NSArray *results = [mainContext executeFetchRequest:request error:nil];
+            XCTAssertEqualObjects([[results firstObject] valueForKey:@"email"], @"secondupdated@ovium.com");
+        }];
+
+    }];
 }
 
 @end

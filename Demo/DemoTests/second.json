@@ -1,57 +1,32 @@
 [
   {
-  "id": 10,
-  "name": "Hale Slater",
-  "email": "haleslater@ovium.com"
+  "id": 6,
+  "name": "Shawn Merrill",
+  "email": "firstupdate@ovium.com"
   },
   {
-  "id": 11,
-  "name": "Hartman Willis",
-  "email": "hartmanwillis@ovium.com"
+  "id": 7,
+  "name": "Bradford Duke",
+  "email": "secondupdated@ovium.com"
   },
   {
-  "id": 12,
+  "id": 8,
   "name": "Dodson Vaughan",
   "email": "dodsonvaughan@ovium.com"
   },
   {
-  "id": 13,
+  "id": 9,
   "name": "Alexis Richmond",
   "email": "alexisrichmond@ovium.com"
   },
   {
-  "id": 14,
+  "id": 10,
   "name": "Flores Daniel",
   "email": "floresdaniel@ovium.com"
   },
   {
-  "id": 15,
+  "id": 11,
   "name": "Odessa Turner",
   "email": "odessaturner@ovium.com"
-  },
-  {
-  "id": 16,
-  "name": "Genevieve Farmer",
-  "email": "genevievefarmer@ovium.com"
-  },
-  {
-  "id": 17,
-  "name": "Matilda Weaver",
-  "email": "matildaweaver@ovium.com"
-  },
-  {
-  "id": 18,
-  "name": "Tina Hendrix",
-  "email": "tinahendrix@ovium.com"
-  },
-  {
-  "id": 19,
-  "name": "Kathrine Rios",
-  "email": "kathrinerios@ovium.com"
-  },
-  {
-  "id": 20,
-  "name": "Wise Hinton",
-  "email": "wisehinton@ovium.com"
   }
 ]
