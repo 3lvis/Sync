@@ -174,8 +174,6 @@
     NSURL *modelURL = [bundle URLForResource:self.modelName withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
-    _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
-
     return _managedObjectModel;
 }
 

@@ -1,5 +1,5 @@
 PODS:
-  - ANDYDataManager (1.2)
+  - ANDYDataManager (1.2.1)
   - ANDYFetchedResultsTableDataSource (1.0)
   - NSJSONSerialization-ANDYJSONFile (1.1)
   - NSManagedObject-ANDYMapChanges (0.2)
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
 
 SPEC CHECKSUMS:
-  ANDYDataManager: 53d13e18da482f589e9ecefdd5a4959990f04fcd
+  ANDYDataManager: fc5dab4ab5e221131547bc144516c0223eaa463b
   ANDYFetchedResultsTableDataSource: cfb47ba62539ec20437cc9844f4d0dd0ac90ef4e
   NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
   NSManagedObject-ANDYMapChanges: 7a697ae222c38317fd93b7b8b89a588dca90e488

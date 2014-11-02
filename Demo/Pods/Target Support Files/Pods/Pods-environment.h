@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_ANDYDataManager
 #define COCOAPODS_VERSION_MAJOR_ANDYDataManager 1
 #define COCOAPODS_VERSION_MINOR_ANDYDataManager 2
-#define COCOAPODS_VERSION_PATCH_ANDYDataManager 0
+#define COCOAPODS_VERSION_PATCH_ANDYDataManager 1
 
 // ANDYFetchedResultsTableDataSource
 #define COCOAPODS_POD_AVAILABLE_ANDYFetchedResultsTableDataSource
