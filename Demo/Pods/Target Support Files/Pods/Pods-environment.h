@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_ANDYFetchedResultsTableDataSource 0
 #define COCOAPODS_VERSION_PATCH_ANDYFetchedResultsTableDataSource 0
 
+// NSDictionary-ANDYSafeValue
+#define COCOAPODS_POD_AVAILABLE_NSDictionary_ANDYSafeValue
+#define COCOAPODS_VERSION_MAJOR_NSDictionary_ANDYSafeValue 0
+#define COCOAPODS_VERSION_MINOR_NSDictionary_ANDYSafeValue 1
+#define COCOAPODS_VERSION_PATCH_NSDictionary_ANDYSafeValue 0
+
 // NSJSONSerialization-ANDYJSONFile
 #define COCOAPODS_POD_AVAILABLE_NSJSONSerialization_ANDYJSONFile
 #define COCOAPODS_VERSION_MAJOR_NSJSONSerialization_ANDYJSONFile 1
