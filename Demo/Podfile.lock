@@ -1,0 +1,58 @@
+PODS:
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - ANDYDataManager (0.5.0)
+  - ANDYFetchedResultsTableDataSource (0.1.0)
+  - NSJSONSerialization-ANDYJSONFile (1.0)
+  - NSManagedObject-ANDYMapChanges (0.3)
+  - NSManagedObject-HYPPropertyMapper (1.7)
+  - SVProgressHUD (1.0)
+
+DEPENDENCIES:
+  - AFNetworking
+  - ANDYDataManager
+  - ANDYFetchedResultsTableDataSource (from `https://github.com/NSElvis/ANDYFetchedResultsTableDataSource.git`)
+  - NSJSONSerialization-ANDYJSONFile (from `https://github.com/NSElvis/NSJSONSerialization-ANDYJSONFile.git`)
+  - NSManagedObject-ANDYMapChanges (from `https://github.com/NSElvis/NSManagedObject-ANDYMapChanges.git`)
+  - NSManagedObject-HYPPropertyMapper (from `https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git`)
+  - SVProgressHUD
+
+EXTERNAL SOURCES:
+  ANDYFetchedResultsTableDataSource:
+    :git: https://github.com/NSElvis/ANDYFetchedResultsTableDataSource.git
+  NSJSONSerialization-ANDYJSONFile:
+    :git: https://github.com/NSElvis/NSJSONSerialization-ANDYJSONFile.git
+  NSManagedObject-ANDYMapChanges:
+    :git: https://github.com/NSElvis/NSManagedObject-ANDYMapChanges.git
+  NSManagedObject-HYPPropertyMapper:
+    :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  ANDYDataManager: 97265ee0bd73764f1f67eab36902c00d8106b9de
+  ANDYFetchedResultsTableDataSource: 531c484696918c908d25d5d4f0d67438bab94a73
+  NSJSONSerialization-ANDYJSONFile: bef2d0b85112963675504d9543a8e5c6e6830fce
+  NSManagedObject-ANDYMapChanges: 73d3c0e3519ad9d6aa3c61ded557ac2e21e1a53a
+  NSManagedObject-HYPPropertyMapper: e606acbfadd0f9b55617efe51bafec845fe4de4a
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
+
+COCOAPODS: 0.34.4

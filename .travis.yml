@@ -1,0 +1,10 @@
+language: objective-c
+xcode_project: Demo/Demo.xcodeproj
+matrix:
+  include:
+    - xcode_sdk: iphonesimulator
+      xcode_scheme: Demo
+before_install:
+  - brew update
+  - brew unlink xctool
+  - brew install xctool
