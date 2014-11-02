@@ -44,6 +44,8 @@
 
 - (void)testLoadFirstUsers
 {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"first.json" inBundle:bundle];
@@ -59,23 +61,12 @@
                                   NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
                                   NSInteger count = [[[ANDYDataManager sharedManager] mainContext] countForFetchRequest:request error:&error];
 
-                                  XCTAssertEqual(count, 5);
+                                  XCTAssertEqual(count, 13);
 
+                                  [expectation fulfill];
                               }];
-}
 
-- (void)testLoadSecondUsers
-{
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"second.json"];
-
-    [NSManagedObject andy_processChanges:objects
-                         usingEntityName:@"User"
-                                localKey:@"id"
-                               remoteKey:@"id"
-                               predicate:nil
-                              completion:^{
-                                  NSLog(@"finished import objects");
-                              }];
+    [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
 @end
