@@ -10,54 +10,70 @@
 
 @import CoreData;
 
-@interface DemoTests : XCTestCase
+#import "NSManagedObject+ANDYNetworking.h"
+#import "NSJSONSerialization+ANDYJSONFile.h"
+#import "ANDYDataManager.h"
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
+@interface Tests : XCTestCase
 
 @end
 
-@implementation DemoTests
+@implementation Tests
 
 #pragma mark - Set up
-
-- (NSManagedObjectContext *)context
-{
-    if (_context) return _context;
-
-    NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
-    NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType
-                                                 configuration:nil
-                                                           URL:nil
-                                                       options:nil
-                                                         error:nil];
-    NSAssert(store, @"Should have a store by now");
-
-    _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _context.persistentStoreCoordinator = psc;
-
-    return _context;
-}
 
 - (void)setUp
 {
     [super setUp];
 
-    [self.context save:nil];
+    [ANDYDataManager setModelName:@"Model"];
+
+    [ANDYDataManager setUpStackWithInMemoryStore];
 }
 
 - (void)tearDown
 {
-    [self.context rollback];
+    [[ANDYDataManager sharedManager] destroy];
 
     [super tearDown];
 }
 
 #pragma mark - Tests
 
-- (void)testSample
+- (void)testLoadFirstUsers
 {
-    XCTAssert(@"YES!");
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"first.json" inBundle:bundle];
+
+    [NSManagedObject andy_processChanges:objects
+                         usingEntityName:@"User"
+                                localKey:@"id"
+                               remoteKey:@"id"
+                               predicate:nil
+                              completion:^{
+
+                                  NSError *error = nil;
+                                  NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                                  NSInteger count = [[[ANDYDataManager sharedManager] mainContext] countForFetchRequest:request error:&error];
+
+                                  XCTAssertEqual(count, 5);
+
+                              }];
+}
+
+- (void)testLoadSecondUsers
+{
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"second.json"];
+
+    [NSManagedObject andy_processChanges:objects
+                         usingEntityName:@"User"
+                                localKey:@"id"
+                               remoteKey:@"id"
+                               predicate:nil
+                              completion:^{
+                                  NSLog(@"finished import objects");
+                              }];
 }
 
 @end

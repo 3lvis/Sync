@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1409F01F1A063221007E0AB4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1409F01D1A063221007E0AB4 /* Model.xcdatamodeld */; };
 		148D14031A06283300C77DAA /* NSManagedObject+ANDYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */; };
+		14A183851A0633D700BE8106 /* first.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183831A0633D700BE8106 /* first.json */; };
+		14A183861A0633D700BE8106 /* second.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183841A0633D700BE8106 /* second.json */; };
 		14BE72331A062F3900AB5C22 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 14BE72321A062F3900AB5C22 /* .travis.yml */; };
 		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
 		14C4183C1A019A1500636FD6 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418381A019A1500636FD6 /* CONTRIBUTING.md */; };
@@ -19,10 +22,13 @@
 
 /* Begin PBXFileReference section */
 		0E4C535CA0E774F987856EFA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		1409F01E1A063221007E0AB4 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		148D14011A06283300C77DAA /* NSManagedObject+ANDYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ANDYNetworking.h"; sourceTree = "<group>"; };
 		148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ANDYNetworking.m"; sourceTree = "<group>"; };
+		14A183831A0633D700BE8106 /* first.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = first.json; sourceTree = "<group>"; };
+		14A183841A0633D700BE8106 /* second.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = second.json; sourceTree = "<group>"; };
 		14BE72321A062F3900AB5C22 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
-		14C418261A01919C00636FD6 /* DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C418261A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSManagedObject-ANDYNetworkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4182C1A01919C00636FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		14C418381A019A1500636FD6 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -60,7 +66,7 @@
 		14C4181C1A01919C00636FD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14C418261A01919C00636FD6 /* DemoTests.xctest */,
+				14C418261A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,6 +74,9 @@
 		14C4182A1A01919C00636FD6 /* DemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				1409F01D1A063221007E0AB4 /* Model.xcdatamodeld */,
+				14A183831A0633D700BE8106 /* first.json */,
+				14A183841A0633D700BE8106 /* second.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
@@ -124,9 +133,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		14C418251A01919C00636FD6 /* DemoTests */ = {
+		14C418251A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "DemoTests" */;
+			buildConfigurationList = 14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "NSManagedObject-ANDYNetworkingTests" */;
 			buildPhases = (
 				73EF2D3C5306FFDD30E10AE3 /* Check Pods Manifest.lock */,
 				14C418221A01919C00636FD6 /* Sources */,
@@ -138,9 +147,9 @@
 			);
 			dependencies = (
 			);
-			name = DemoTests;
+			name = "NSManagedObject-ANDYNetworkingTests";
 			productName = DemoTests;
-			productReference = 14C418261A01919C00636FD6 /* DemoTests.xctest */;
+			productReference = 14C418261A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -157,7 +166,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 14C418151A01919C00636FD6 /* Build configuration list for PBXProject "Demo" */;
+			buildConfigurationList = 14C418151A01919C00636FD6 /* Build configuration list for PBXProject "NSManagedObject-ANDYNetworking" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -169,7 +178,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				14C418251A01919C00636FD6 /* DemoTests */,
+				14C418251A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -179,10 +188,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14A183851A0633D700BE8106 /* first.json in Resources */,
 				14C4183F1A019A1500636FD6 /* README.md in Resources */,
 				14C4183C1A019A1500636FD6 /* CONTRIBUTING.md in Resources */,
 				14BE72331A062F3900AB5C22 /* .travis.yml in Resources */,
 				14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */,
+				14A183861A0633D700BE8106 /* second.json in Resources */,
 				14C4183E1A019A1500636FD6 /* PODNAME.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +240,7 @@
 			files = (
 				148D14031A06283300C77DAA /* NSManagedObject+ANDYNetworking.m in Sources */,
 				14C4182E1A01919C00636FD6 /* Tests.m in Sources */,
+				1409F01F1A063221007E0AB4 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +345,7 @@
 				);
 				INFOPLIST_FILE = DemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
 			};
 			name = Debug;
 		};
@@ -347,14 +359,14 @@
 				);
 				INFOPLIST_FILE = DemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14C418151A01919C00636FD6 /* Build configuration list for PBXProject "Demo" */ = {
+		14C418151A01919C00636FD6 /* Build configuration list for PBXProject "NSManagedObject-ANDYNetworking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14C4182F1A01919C00636FD6 /* Debug */,
@@ -363,7 +375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "DemoTests" */ = {
+		14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "NSManagedObject-ANDYNetworkingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14C418351A01919C00636FD6 /* Debug */,
@@ -373,6 +385,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1409F01D1A063221007E0AB4 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1409F01E1A063221007E0AB4 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 1409F01E1A063221007E0AB4 /* Demo.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 14C418121A01919C00636FD6 /* Project object */;
 }
