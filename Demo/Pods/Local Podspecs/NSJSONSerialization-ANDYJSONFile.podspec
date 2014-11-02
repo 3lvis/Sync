@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "NSJSONSerialization-ANDYJSONFile"
-  s.version = "1.0"
+  s.version = "1.1"
   s.summary = "Get an array or dictionary from a .json file"
   s.description = <<-DESC
                    * Get an array or dictionary from a .json file

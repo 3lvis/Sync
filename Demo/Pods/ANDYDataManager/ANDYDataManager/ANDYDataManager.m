@@ -7,14 +7,20 @@
 //
 
 #import "ANDYDataManager.h"
+
 @import UIKit;
 
 @interface ANDYDataManager ()
+
 @property (strong, nonatomic, readwrite) NSManagedObjectContext *mainContext;
 @property (strong, nonatomic) NSManagedObjectContext *writerContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @property (nonatomic) BOOL inMemoryStore;
+@property (nonatomic, copy) NSString *modelName;
+@property (nonatomic, strong) NSBundle *modelBundle;
+
 @end
 
 @implementation ANDYDataManager
@@ -24,6 +30,16 @@
     [[self sharedManager] setInMemoryStore:YES];
 }
 
++ (void)setModelName:(NSString *)modelName
+{
+    [[self sharedManager] setModelName:modelName];
+}
+
++ (void)setModelBundle:(NSBundle *)modelBundle
+{
+    [[self sharedManager] setModelBundle:modelBundle];
+}
+
 + (ANDYDataManager *)sharedManager
 {
     static ANDYDataManager *__sharedInstance;
@@ -31,8 +47,20 @@
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[ANDYDataManager alloc] init];
     });
-    
+
     return __sharedInstance;
+}
+
+- (NSString *)modelName
+{
+    if (_modelName) return _modelName;
+
+    NSBundle *bundle = (self.modelBundle) ?: [NSBundle mainBundle];
+
+    NSString *string = [[bundle infoDictionary] objectForKey:@"CFBundleName"];
+    _modelName = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    return _modelName;
 }
 
 - (void)setUpSaveNotificationForContext:(NSManagedObjectContext *)context
@@ -72,11 +100,10 @@
 {
     NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
     NSManagedObjectContext *managedObjectContext = self.mainContext;
-    
+
     [managedObjectContext performBlock:^{
         NSError *error = nil;
         if ([managedObjectContext save:&error]) {
-            
             [writerManagedObjectContext performBlock:^{
                 NSError *parentError = nil;
                 if (![writerManagedObjectContext save:&parentError]) {
@@ -95,7 +122,7 @@
 {
     NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
     NSManagedObjectContext *managedObjectContext = self.mainContext;
-    
+
     [managedObjectContext performBlock:^{
         [managedObjectContext reset];
         [writerManagedObjectContext performBlock:^{
@@ -115,62 +142,65 @@
 
 - (NSManagedObjectContext *)mainContext
 {
-    if (_mainContext) {
-        return _mainContext;
-    }
+    if (_mainContext) return _mainContext;
 
     _mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     _mainContext.undoManager = nil;
     _mainContext.parentContext = self.writerContext;
+    _mainContext.mergePolicy = NSOverwriteMergePolicy;
+
     [self setUpSaveNotificationForContext:_mainContext];
+
     return _mainContext;
 }
 
 - (NSManagedObjectContext *)writerContext
 {
-    if (_writerContext) {
-        return _writerContext;
-    }
+    if (_writerContext) return _writerContext;
 
     _writerContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     _writerContext.undoManager = nil;
-    [_writerContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    _writerContext.mergePolicy = NSOverwriteMergePolicy;
+    _writerContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
+
     return _writerContext;
 }
 
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:[self appName] withExtension:@"momd"];
+    if (_managedObjectModel) return _managedObjectModel;
+
+    NSBundle *bundle = (self.modelBundle) ?: [NSBundle mainBundle];
+    NSURL *modelURL = [bundle URLForResource:self.modelName withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+
+    _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
+
     return _managedObjectModel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
-    
+    if (_persistentStoreCoordinator) return _persistentStoreCoordinator;
+
     NSURL *storeURL = nil;
-    
-    NSString *filePath = [NSString stringWithFormat:@"%@.sqlite", [self appName]];
+
+    NSString *filePath = [NSString stringWithFormat:@"%@.sqlite", self.modelName];
     storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:filePath];
-    
+
     NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES, NSInferMappingModelAutomaticallyOption: @YES};
-    
+
     NSString *storeType = (self.inMemoryStore) ? NSInMemoryStoreType : NSSQLiteStoreType;
     NSError *error = nil;
+
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+
     if (![_persistentStoreCoordinator addPersistentStoreWithType:storeType
                                                    configuration:nil
                                                              URL:storeURL
                                                          options:options
                                                            error:&error]) {
-        
+
         [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:nil];
         if (![_persistentStoreCoordinator addPersistentStoreWithType:storeType
                                                        configuration:nil
@@ -188,11 +218,11 @@
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
     }
-    
+
 #if !TARGET_IPHONE_SIMULATOR
     [self addSkipBackupAttributeToItemAtURL:storeURL];
 #endif
-    
+
     return _persistentStoreCoordinator;
 }
 
@@ -202,13 +232,6 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                    inDomains:NSUserDomainMask] lastObject];
-}
-
-- (NSString *)appName
-{
-    NSString *string = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
-    NSString *trimmedString = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    return trimmedString;
 }
 
 #pragma mark - Class methods
@@ -228,6 +251,8 @@
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = [[self sharedManager] persistentStoreCoordinator];
     context.undoManager = nil;
+    context.mergePolicy = NSOverwriteMergePolicy;
+
     [[NSNotificationCenter defaultCenter] addObserver:[self sharedManager]
                                              selector:@selector(backgroundThreadDidSave:)
                                                  name:NSManagedObjectContextDidSaveNotification
@@ -250,7 +275,7 @@
 
 #pragma mark - Test
 
-- (void)reset
+- (void)destroy
 {
     NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores lastObject];
     NSURL *storeURL = store.URL;

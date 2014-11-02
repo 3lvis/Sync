@@ -42,13 +42,23 @@
 + (void)setUpStackWithInMemoryStore;
 
 /*!
+ * Sets the model name in case it's different from the bundle name
+ */
++ (void)setModelName:(NSString *)modelName;
+
+/*!
+ * Sets the model bundle in case it's different from the main bundle
+ */
++ (void)setModelBundle:(NSBundle *)modelBundle;
+
+/*!
  * Saves current state of mainContext into the database.
  */
 - (void)persistContext;
 
 /*!
- * Resets state of ANDYDataManager.
+ * Destroys state of ANDYDataManager.
  */
-- (void)reset;
+- (void)destroy;
 
 @end

@@ -9,10 +9,17 @@
 
 @implementation NSJSONSerialization (ANDYJSONFile)
 
-+ (id)JSONObjectWithContentsOfFile:(NSString*)fileName
++ (id)JSONObjectWithContentsOfFile:(NSString *)fileName
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:[fileName stringByDeletingPathExtension]
-                                                         ofType:[fileName pathExtension]];
+    return [self JSONObjectWithContentsOfFile:fileName inBundle:[NSBundle mainBundle]];
+}
+
++ (id)JSONObjectWithContentsOfFile:(NSString *)fileName inBundle:(NSBundle *)bundle
+{
+    NSString *filePath = [bundle pathForResource:[fileName stringByDeletingPathExtension]
+                                          ofType:[fileName pathExtension]];
+
+    NSAssert(filePath, @"ANDYJSONFile: File not found");
 
     NSData *data = [NSData dataWithContentsOfFile:filePath];
 
@@ -21,8 +28,12 @@
     id result = [NSJSONSerialization JSONObjectWithData:data
                                                 options:NSJSONReadingMutableContainers
                                                   error:&error];
-    if (error != nil) return nil;
 
+    if (error) {
+        NSLog(@"ANDYJSONFile error: %@", error);
+        return nil;
+    }
+    
     return result;
 }
 

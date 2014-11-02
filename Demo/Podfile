@@ -1,6 +1,6 @@
 platform :ios, '7.0'
 
-pod 'ANDYDataManager'
+pod 'ANDYDataManager', :git => 'https://github.com/NSElvis/ANDYDataManager.git'
 pod 'ANDYFetchedResultsTableDataSource', :git => 'https://github.com/NSElvis/ANDYFetchedResultsTableDataSource.git'
 pod 'AFNetworking'
 pod 'SVProgressHUD'
