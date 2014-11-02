@@ -15,10 +15,10 @@ To run the example project, clone the repo, and open the `.xcodeproj` from the D
 
 ## Installation
 
-NSManagedObject-ANDYNetworking is available through [CocoaPods](http://cocoapods.org). To install
+**NSManagedObject-ANDYNetworking** is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-pod "NSManagedObject-ANDYNetworking"
+`pod "NSManagedObject-ANDYNetworking"`
 
 ## Author
 
@@ -26,5 +26,5 @@ Elvis Nuñez, elvisnunez@me.com
 
 ## License
 
-NSManagedObject-ANDYNetworking is available under the MIT license. See the LICENSE file for more info.
+**NSManagedObject-ANDYNetworking** is available under the MIT license. See the LICENSE file for more info.
 
