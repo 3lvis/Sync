@@ -28,6 +28,8 @@
 
     [ANDYDataManager setModelName:@"Model"];
 
+    [ANDYDataManager setModelBundle:[NSBundle bundleForClass:[self class]]];
+
     [ANDYDataManager setUpStackWithInMemoryStore];
 }
 
