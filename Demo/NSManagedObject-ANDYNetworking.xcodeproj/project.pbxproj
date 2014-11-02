@@ -10,8 +10,8 @@
 		1409F01F1A063221007E0AB4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1409F01D1A063221007E0AB4 /* Model.xcdatamodeld */; };
 		143FB6211A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */; };
 		148D14031A06283300C77DAA /* NSManagedObject+ANDYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */; };
-		14A183851A0633D700BE8106 /* first.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183831A0633D700BE8106 /* first.json */; };
-		14A183861A0633D700BE8106 /* second.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183841A0633D700BE8106 /* second.json */; };
+		14A183851A0633D700BE8106 /* users_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183831A0633D700BE8106 /* users_a.json */; };
+		14A183861A0633D700BE8106 /* users_b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183841A0633D700BE8106 /* users_b.json */; };
 		14BE72331A062F3900AB5C22 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 14BE72321A062F3900AB5C22 /* .travis.yml */; };
 		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
 		14C4183C1A019A1500636FD6 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418381A019A1500636FD6 /* CONTRIBUTING.md */; };
@@ -26,8 +26,8 @@
 		143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "NSManagedObject-ANDYNetworking.podspec"; path = "../NSManagedObject-ANDYNetworking.podspec"; sourceTree = "<group>"; };
 		148D14011A06283300C77DAA /* NSManagedObject+ANDYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ANDYNetworking.h"; sourceTree = "<group>"; };
 		148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ANDYNetworking.m"; sourceTree = "<group>"; };
-		14A183831A0633D700BE8106 /* first.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = first.json; sourceTree = "<group>"; };
-		14A183841A0633D700BE8106 /* second.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = second.json; sourceTree = "<group>"; };
+		14A183831A0633D700BE8106 /* users_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_a.json; sourceTree = "<group>"; };
+		14A183841A0633D700BE8106 /* users_b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_b.json; sourceTree = "<group>"; };
 		14BE72321A062F3900AB5C22 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		14C418261A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSManagedObject-ANDYNetworkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4182C1A01919C00636FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,8 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				1409F01D1A063221007E0AB4 /* Model.xcdatamodeld */,
-				14A183831A0633D700BE8106 /* first.json */,
-				14A183841A0633D700BE8106 /* second.json */,
+				14A183831A0633D700BE8106 /* users_a.json */,
+				14A183841A0633D700BE8106 /* users_b.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
@@ -188,13 +188,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A183851A0633D700BE8106 /* first.json in Resources */,
+				14A183851A0633D700BE8106 /* users_a.json in Resources */,
 				14C4183F1A019A1500636FD6 /* README.md in Resources */,
 				14C4183C1A019A1500636FD6 /* CONTRIBUTING.md in Resources */,
 				14BE72331A062F3900AB5C22 /* .travis.yml in Resources */,
 				14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */,
 				143FB6211A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec in Resources */,
-				14A183861A0633D700BE8106 /* second.json in Resources */,
+				14A183861A0633D700BE8106 /* users_b.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

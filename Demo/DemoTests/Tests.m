@@ -41,7 +41,7 @@
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"first.json" inBundle:bundle];
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_a.json" inBundle:bundle];
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
 
@@ -73,7 +73,7 @@
 
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
-        NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"second.json" inBundle:bundle];
+        NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_b.json" inBundle:bundle];
 
         [NSManagedObject andy_processChanges:objects
                              usingEntityName:@"User"
