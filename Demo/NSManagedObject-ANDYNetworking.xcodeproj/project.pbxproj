@@ -350,7 +350,7 @@
 					"-framework",
 					XCTest,
 				);
-				OTHER_LIBTOOLFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "$(inherited) -framework XCTest";
 				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
 			};
 			name = Debug;
@@ -370,7 +370,7 @@
 					"-framework",
 					XCTest,
 				);
-				OTHER_LIBTOOLFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "$(inherited) -framework XCTest";
 				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
 			};
 			name = Release;

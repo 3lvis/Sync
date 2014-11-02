@@ -10,17 +10,13 @@ DEPENDENCIES:
   - ANDYFetchedResultsTableDataSource
   - NSJSONSerialization-ANDYJSONFile
   - NSManagedObject-ANDYMapChanges
-  - NSManagedObject-HYPPropertyMapper (from `https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git`)
-
-EXTERNAL SOURCES:
-  NSManagedObject-HYPPropertyMapper:
-    :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
+  - NSManagedObject-HYPPropertyMapper
 
 SPEC CHECKSUMS:
   ANDYDataManager: fc5dab4ab5e221131547bc144516c0223eaa463b
   ANDYFetchedResultsTableDataSource: cfb47ba62539ec20437cc9844f4d0dd0ac90ef4e
   NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
   NSManagedObject-ANDYMapChanges: 7a697ae222c38317fd93b7b8b89a588dca90e488
-  NSManagedObject-HYPPropertyMapper: e606acbfadd0f9b55617efe51bafec845fe4de4a
+  NSManagedObject-HYPPropertyMapper: 03dd86a9161830cbeaa2439e344f9b71baecfd66
 
 COCOAPODS: 0.34.4
