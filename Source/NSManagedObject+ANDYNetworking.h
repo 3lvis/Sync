@@ -20,6 +20,7 @@
                    localKey:(NSString *)localKey
                   remoteKey:(NSString *)remoteKey
                   predicate:(NSPredicate *)predicate
+                     parent:(NSManagedObject *)parent
                   inContext:(NSManagedObjectContext *)context
                  completion:(void (^)())completion;
 

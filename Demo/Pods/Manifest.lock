@@ -1,6 +1,7 @@
 PODS:
   - ANDYDataManager (1.2.1)
   - ANDYFetchedResultsTableDataSource (1.0)
+  - NSDictionary-ANDYSafeValue (0.1)
   - NSJSONSerialization-ANDYJSONFile (1.1)
   - NSManagedObject-ANDYMapChanges (0.2)
   - NSManagedObject-HYPPropertyMapper (1.7)
@@ -8,6 +9,7 @@ PODS:
 DEPENDENCIES:
   - ANDYDataManager
   - ANDYFetchedResultsTableDataSource
+  - NSDictionary-ANDYSafeValue
   - NSJSONSerialization-ANDYJSONFile
   - NSManagedObject-ANDYMapChanges
   - NSManagedObject-HYPPropertyMapper
@@ -15,6 +17,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ANDYDataManager: fc5dab4ab5e221131547bc144516c0223eaa463b
   ANDYFetchedResultsTableDataSource: cfb47ba62539ec20437cc9844f4d0dd0ac90ef4e
+  NSDictionary-ANDYSafeValue: 5b7d0c0b1b7285191fb0f94e6dda13b86dec2dee
   NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
   NSManagedObject-ANDYMapChanges: 7a697ae222c38317fd93b7b8b89a588dca90e488
   NSManagedObject-HYPPropertyMapper: 03dd86a9161830cbeaa2439e344f9b71baecfd66
