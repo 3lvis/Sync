@@ -60,35 +60,7 @@
                                                                                       inManagedObjectContext:context];
                              [created hyp_fillWithDictionary:objectDict];
 
-                             NSMutableArray *relationships = [NSMutableArray array];
-
-                             for (id propertyDescription in [created.entity properties]) {
-
-                                 if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-                                     [relationships addObject:propertyDescription];
-                                 }
-                             }
-
-                             for (NSRelationshipDescription *relationship in relationships) {
-                                 if (relationship.isToMany) {
-                                     NSArray *childs = [objectDict andy_valueForKey:relationship.name];
-                                     if (!childs) continue;
-
-                                     NSString *childEntityName = relationship.destinationEntity.name;
-                                     NSString *inverseEntityName = relationship.inverseRelationship.name;
-                                     NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%@ = %@", inverseEntityName, created];
-                                     [[self class] processChanges:childs
-                                                  usingEntityName:childEntityName
-                                                         localKey:@"id"
-                                                        remoteKey:@"id"
-                                                        predicate:childPredicate
-                                                           parent:created
-                                                        inContext:context
-                                                       completion:nil];
-                                 } else if (parent) {
-                                     [created setValue:parent forKey:relationship.name];
-                                 }
-                             }
+                             [created processRelationshipsUsingDictionary:objectDict andParent:parent];
 
                          } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
 
@@ -99,6 +71,40 @@
     [context save:nil];
 
     if (completion) completion();
+}
+
+- (void)processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+                                  andParent:(NSManagedObject *)parent
+{
+    NSMutableArray *relationships = [NSMutableArray array];
+
+    for (id propertyDescription in [self.entity properties]) {
+
+        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+            [relationships addObject:propertyDescription];
+        }
+    }
+
+    for (NSRelationshipDescription *relationship in relationships) {
+        if (relationship.isToMany) {
+            NSArray *childs = [objectDict andy_valueForKey:relationship.name];
+            if (!childs) continue;
+
+            NSString *childEntityName = relationship.destinationEntity.name;
+            NSString *inverseEntityName = relationship.inverseRelationship.name;
+            NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%@ = %@", inverseEntityName, self];
+            [[self class] processChanges:childs
+                         usingEntityName:childEntityName
+                                localKey:@"id"
+                               remoteKey:@"id"
+                               predicate:childPredicate
+                                  parent:self
+                               inContext:self.managedObjectContext
+                              completion:nil];
+        } else if (parent) {
+            [self setValue:parent forKey:relationship.name];
+        }
+    }
 }
 
 @end
