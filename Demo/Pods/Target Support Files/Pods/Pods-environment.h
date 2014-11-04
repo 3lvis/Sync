@@ -38,7 +38,7 @@
 
 // NSManagedObject-HYPPropertyMapper
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_HYPPropertyMapper
-#define COCOAPODS_VERSION_MAJOR_NSManagedObject_HYPPropertyMapper 1
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 7
+#define COCOAPODS_VERSION_MAJOR_NSManagedObject_HYPPropertyMapper 2
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 0
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_HYPPropertyMapper 0
 

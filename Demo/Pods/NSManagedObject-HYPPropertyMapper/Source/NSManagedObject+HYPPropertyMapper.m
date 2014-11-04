@@ -142,11 +142,16 @@
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary
 {
-    for (NSString *remoteKey in dictionary) {
+    for (__strong NSString *remoteKey in dictionary) {
 
         id value = [dictionary objectForKey:remoteKey];
-        id propertyDescription = [self propertyDescriptionForKey:remoteKey];
 
+        BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);
+        if (isReservedKey) {
+            remoteKey = [self prefixedAttribute:remoteKey];
+        }
+
+        id propertyDescription = [self propertyDescriptionForKey:remoteKey];
         if (!propertyDescription) continue;
 
         NSString *localKey = [propertyDescription name];
@@ -218,18 +223,52 @@
     for (id propertyDescription in [self.entity properties]) {
 
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            NSString *key = [[propertyDescription name] remoteString];
-
             id value = [self valueForKey:[attributeDescription name]];
-
             if (!value || [value isKindOfClass:[NSNull class]]) continue;
+
+            NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
+            BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+            if (isReservedKey) {
+                [key replaceOccurrencesOfString:[self remotePrefix]
+                                     withString:@""
+                                        options:NSCaseInsensitiveSearch
+                                          range:NSMakeRange(0, key.length)];
+            }
 
             mutableDictionary[key] = value;
         }
     }
 
     return [mutableDictionary copy];
+}
+
+- (NSString *)remotePrefix
+{
+    return [NSString stringWithFormat:@"%@_", [self.entity.name lowercaseString]];
+}
+
+- (NSString *)prefixedAttribute:(NSString *)attribute
+{
+    return [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
+}
+
+- (NSArray *)reservedKeys
+{
+    NSMutableArray *keys = [NSMutableArray array];
+    NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
+
+    for (NSString *attribute in reservedAttributes) {
+        [keys addObject:[self prefixedAttribute:attribute]];
+    }
+
+    return keys;
+}
+
++ (NSArray *)reservedAttributes
+{
+    return @[@"id", @"type", @"description", @"signed"];
 }
 
 @end
