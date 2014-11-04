@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
 [![Platform](https://img.shields.io/cocoapods/p/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
 
-This is a category that eases your every day job of parsing an API and getting it into CoreData.
+This is a category that eases your every day job of parsing a `JSON` response and getting it into CoreData.
 
 * Handles operations in safe background threats
 * Thread safe saving (if you're saving in the wrong thread, we'll tell you) [Soon]
@@ -25,15 +25,11 @@ This is a category that eases your every day job of parsing an API and getting i
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
 
-*Take a look at the wiki for additional configurations*
-
-## Usage
-
-To run the example project, clone the repo, and open the `.xcodeproj` from the Demo directory.
+*Take a look at the [wiki](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/wiki) for additional configurations and more info about the possibilities*
 
 ## Requirements
 
-`iOS 7`, `CoreData` 
+`iOS 7`, `CoreData`, *(optional)* [`ANDYDataManager`](https://github.com/NSElvis/ANDYDataManager) CoreData stack
 
 ## Installation
 
