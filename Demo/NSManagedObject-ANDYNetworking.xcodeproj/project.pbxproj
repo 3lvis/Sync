@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		0E4C535CA0E774F987856EFA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1409F01E1A063221007E0AB4 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
-		1427A2511A06DB7900312FFA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		1427A2511A06DB7900312FFA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "NSManagedObject-ANDYNetworking.podspec"; path = "../NSManagedObject-ANDYNetworking.podspec"; sourceTree = "<group>"; };
 		148D14011A06283300C77DAA /* NSManagedObject+ANDYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ANDYNetworking.h"; sourceTree = "<group>"; };
 		148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ANDYNetworking.m"; sourceTree = "<group>"; };

@@ -7,6 +7,6 @@ pod 'ANDYFetchedResultsTableDataSource'
 
 # Categories
 pod 'NSJSONSerialization-ANDYJSONFile'
-pod 'NSManagedObject-HYPPropertyMapper'
+pod 'NSManagedObject-HYPPropertyMapper', :git => "https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git", :branch => "feature/reserved-words"
 pod 'NSManagedObject-ANDYMapChanges'
 pod 'NSDictionary-ANDYSafeValue'
