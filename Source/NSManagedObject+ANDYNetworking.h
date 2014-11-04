@@ -10,14 +10,18 @@
 
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
+                 completion:(void (^)(NSError *error))completion;
+
++ (void)andy_processChanges:(NSArray *)changes
+            usingEntityName:(NSString *)entityName
                   predicate:(NSPredicate *)predicate
-                 completion:(void (^)())completion;
+                 completion:(void (^)(NSError *error))completion;
 
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
                   predicate:(NSPredicate *)predicate
                      parent:(NSManagedObject *)parent
                   inContext:(NSManagedObjectContext *)context
-                 completion:(void (^)())completion;
+                 completion:(void (^)(NSError *error))completion;
 
 @end

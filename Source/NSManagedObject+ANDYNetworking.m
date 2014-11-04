@@ -15,8 +15,18 @@
 
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
+                 completion:(void (^)(NSError *error))completion
+{
+    [self andy_processChanges:changes
+              usingEntityName:entityName
+                    predicate:nil
+                   completion:completion];
+}
+
++ (void)andy_processChanges:(NSArray *)changes
+            usingEntityName:(NSString *)entityName
                   predicate:(NSPredicate *)predicate
-                 completion:(void (^)())completion
+                 completion:(void (^)(NSError *error))completion
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
         [self processChanges:changes
@@ -33,7 +43,7 @@
                   predicate:(NSPredicate *)predicate
                      parent:(NSManagedObject *)parent
                   inContext:(NSManagedObjectContext *)context
-                 completion:(void (^)())completion;
+                 completion:(void (^)(NSError *error))completion;
 {
     [self processChanges:changes
          usingEntityName:entityName
@@ -48,7 +58,7 @@
              predicate:(NSPredicate *)predicate
                 parent:(NSManagedObject *)parent
              inContext:(NSManagedObjectContext *)context
-            completion:(void (^)())completion
+            completion:(void (^)(NSError *error))completion
 {
     [[self class] andy_mapChanges:changes
                    usingPredicate:predicate
@@ -73,7 +83,7 @@
     if (error) NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) completion();
+        if (completion) completion(error);
     });
 }
 
