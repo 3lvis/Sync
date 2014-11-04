@@ -33,7 +33,7 @@
 // NSManagedObject-ANDYMapChanges
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_ANDYMapChanges
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_ANDYMapChanges 0
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYMapChanges 2
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYMapChanges 3
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_ANDYMapChanges 0
 
 // NSManagedObject-HYPPropertyMapper

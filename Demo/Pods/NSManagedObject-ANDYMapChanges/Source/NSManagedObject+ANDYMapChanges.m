@@ -64,9 +64,24 @@
                 updated:(void (^)(NSDictionary *objectDict, NSManagedObject *object))updated
 {
     [self andy_mapChanges:changes
-                 localKey:@"id"
-                remoteKey:@"id"
            usingPredicate:nil
+                inContext:context
+            forEntityName:entityName
+                 inserted:inserted
+                  updated:updated];
+}
+
++ (void)andy_mapChanges:(NSArray *)changes
+         usingPredicate:(NSPredicate *)predicate
+              inContext:(NSManagedObjectContext *)context
+          forEntityName:(NSString *)entityName
+               inserted:(void (^)(NSDictionary *objectDict))inserted
+                updated:(void (^)(NSDictionary *objectDict, NSManagedObject *object))updated
+{
+    [self andy_mapChanges:changes
+                 localKey:[NSString stringWithFormat:@"%@ID", [entityName lowercaseString]]
+                remoteKey:@"id"
+           usingPredicate:predicate
                 inContext:context
             forEntityName:entityName
                  inserted:inserted
