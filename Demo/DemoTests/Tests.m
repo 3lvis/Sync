@@ -57,9 +57,10 @@
     [NSManagedObject andy_processChanges:objects
                          usingEntityName:@"User"
                                predicate:nil
-                              completion:^{
-                                  NSError *error = nil;
-                                  NSInteger count = [mainContext countForFetchRequest:request error:&error];
+                              completion:^(NSError *error) {
+                                  NSError *countError = nil;
+                                  NSInteger count = [mainContext countForFetchRequest:request error:&countError];
+                                  if (countError) NSLog(@"countError: %@", [countError description]);
                                   XCTAssertEqual(count, 8);
 
                                   [expectation fulfill];
@@ -81,9 +82,10 @@
         [NSManagedObject andy_processChanges:objects
                              usingEntityName:@"User"
                                    predicate:nil
-                                  completion:^{
-                                      NSError *error = nil;
-                                      NSInteger count = [mainContext countForFetchRequest:request error:&error];
+                                  completion:^(NSError *error) {
+                                      NSError *countError = nil;
+                                      NSInteger count = [mainContext countForFetchRequest:request error:&countError];
+                                      if (countError) NSLog(@"countError: %@", [countError description]);
                                       XCTAssertEqual(count, 6);
 
                                       [expectation fulfill];
@@ -117,7 +119,7 @@
     [NSManagedObject andy_processChanges:objects
                          usingEntityName:@"User"
                                predicate:nil
-                              completion:^{
+                              completion:^(NSError *error) {
                                   NSError *userError = nil;
                                   NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
                                   NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
