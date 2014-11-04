@@ -29,11 +29,11 @@ This is a category that eases your every day job of parsing a `JSON` response an
 
 ## Real World Example
 
-### Model
+#### Model
 
 ![Model](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/blob/master/Images/model.png)
 
-### JSON
+#### JSON
 
 ```json
 [
@@ -51,7 +51,7 @@ This is a category that eases your every day job of parsing a `JSON` response an
 ]
 ```
 
-### NSManagedObject-ANDYNetworking
+#### NSManagedObject-ANDYNetworking
 
 ```objc
 [NSManagedObject andy_processChanges:JSON
