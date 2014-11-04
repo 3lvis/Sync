@@ -72,7 +72,9 @@
     [context save:&error];
     if (error) NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
 
-    if (completion) completion();
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (completion) completion();
+    });
 }
 
 - (void)processRelationshipsUsingDictionary:(NSDictionary *)objectDict
