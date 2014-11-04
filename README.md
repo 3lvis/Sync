@@ -40,7 +40,7 @@ To run the example project, clone the repo, and open the `.xcodeproj` from the D
 **NSManagedObject-ANDYNetworking** is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-`pod "NSManagedObject-ANDYNetworking"`
+`pod 'NSManagedObject-ANDYNetworking'`
 
 ## Components
 
