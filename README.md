@@ -29,7 +29,7 @@ This is a category that eases your every day job of parsing a `JSON` response an
 
 ## Requirements
 
-`iOS 7`, `CoreData`, [`ANDYDataManager`](https://github.com/NSElvis/ANDYDataManager) CoreData stack *(optional)*
+`iOS 7`, `CoreData`, [`ANDYDataManager CoreData stack`](https://github.com/NSElvis/ANDYDataManager) *(optional)*
 
 ## Installation
 
