@@ -68,7 +68,9 @@
 
                          }];
 
-    [context save:nil];
+    NSError *error = nil;
+    [context save:&error];
+    if (error) NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
 
     if (completion) completion();
 }
