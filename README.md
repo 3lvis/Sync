@@ -27,6 +27,41 @@ This is a category that eases your every day job of parsing a `JSON` response an
 
 *Take a look at the [wiki](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/wiki) for additional configurations and more info about the possibilities*
 
+## Real World Example
+
+### Model
+
+![Model](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/blob/master/Images/model.png)
+
+### JSON
+
+```json
+[
+  {
+    "id": 6,
+    "name": "Shawn Merrill",
+    "email": "shawn@ovium.com",
+    "notes": [
+      {
+        "id": 0,
+        "text": "Shawn Merril's diary, episode 1"
+      }
+    ]
+  }
+]
+```
+
+### NSManagedObject-ANDYNetworking
+
+```objc
+[NSManagedObject andy_processChanges:JSON
+                     usingEntityName:@"User"
+                          completion:^{
+                              // stop progress hud?
+                          }];
+```
+**PROFIT!**
+
 ## Requirements
 
 `iOS 7`, `CoreData`, [`ANDYDataManager CoreData stack`](https://github.com/NSElvis/ANDYDataManager) *(optional)*
