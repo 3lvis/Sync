@@ -15,42 +15,34 @@
 
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
-                   localKey:(NSString *)localKey
-                  remoteKey:(NSString *)remoteKey
                   predicate:(NSPredicate *)predicate
                  completion:(void (^)())completion
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
-        [self processChanges:changes usingEntityName:entityName localKey:localKey remoteKey:remoteKey
+        [self processChanges:changes usingEntityName:entityName
                    predicate:predicate parent:nil inContext:context completion:completion];
     }];
 }
 
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
-                   localKey:(NSString *)localKey
-                  remoteKey:(NSString *)remoteKey
                   predicate:(NSPredicate *)predicate
                      parent:(NSManagedObject *)parent
                   inContext:(NSManagedObjectContext *)context
                  completion:(void (^)())completion;
 {
-    [self processChanges:changes usingEntityName:entityName localKey:localKey remoteKey:remoteKey
+    [self processChanges:changes usingEntityName:entityName
                predicate:predicate parent:parent inContext:context completion:completion];
 }
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
-              localKey:(NSString *)localKey
-             remoteKey:(NSString *)remoteKey
              predicate:(NSPredicate *)predicate
                 parent:(NSManagedObject *)parent
              inContext:(NSManagedObjectContext *)context
             completion:(void (^)())completion
 {
     [[self class] andy_mapChanges:changes
-                         localKey:localKey
-                        remoteKey:remoteKey
                    usingPredicate:predicate
                         inContext:context
                     forEntityName:entityName
@@ -95,8 +87,6 @@
             NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%@ = %@", inverseEntityName, self];
             [[self class] processChanges:childs
                          usingEntityName:childEntityName
-                                localKey:@"id"
-                               remoteKey:@"id"
                                predicate:childPredicate
                                   parent:self
                                inContext:self.managedObjectContext

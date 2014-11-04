@@ -56,8 +56,6 @@
 
     [NSManagedObject andy_processChanges:objects
                          usingEntityName:@"User"
-                                localKey:@"id"
-                               remoteKey:@"id"
                                predicate:nil
                               completion:^{
                                   NSError *error = nil;
@@ -82,8 +80,6 @@
 
         [NSManagedObject andy_processChanges:objects
                              usingEntityName:@"User"
-                                    localKey:@"id"
-                                   remoteKey:@"id"
                                    predicate:nil
                                   completion:^{
                                       NSError *error = nil;
@@ -100,7 +96,7 @@
                 return;
             }
 
-            request.predicate = [NSPredicate predicateWithFormat:@"id == %@", @7];
+            request.predicate = [NSPredicate predicateWithFormat:@"userID == %@", @7];
             NSArray *results = [mainContext executeFetchRequest:request error:nil];
             XCTAssertEqualObjects([[results firstObject] valueForKey:@"email"], @"secondupdated@ovium.com");
         }];
@@ -120,8 +116,6 @@
 
     [NSManagedObject andy_processChanges:objects
                          usingEntityName:@"User"
-                                localKey:@"id"
-                               remoteKey:@"id"
                                predicate:nil
                               completion:^{
                                   NSError *userError = nil;
@@ -131,7 +125,7 @@
                                   XCTAssertEqual(usersCount, 4);
 
                                   NSError *userFetchError = nil;
-                                  userRequest.predicate = [NSPredicate predicateWithFormat:@"id = %@", @6];
+                                  userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
                                   NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
                                   if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
                                   NSManagedObject *user = [users firstObject];
