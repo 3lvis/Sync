@@ -19,7 +19,7 @@ This is a category that eases your every day job of parsing an API and getting i
 ```objc
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
-                 completion:(void (^)())completion;
+                 completion:(void (^)())completion
 ```
 
 * `changes`: JSON response
