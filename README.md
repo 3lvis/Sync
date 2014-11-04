@@ -52,5 +52,5 @@ Elvis Nuñez, [hello@nselvis.com](mailto:hello@nselvis.com)
 
 ## License
 
-**NSManagedObject-ANDYNetworking** is available under the MIT license. See the LICENSE file for more info.
+**NSManagedObject-ANDYNetworking** is available under the MIT license. See the [LICENSE](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/blob/master/LICENSE.md) file for more info.
 
