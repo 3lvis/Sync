@@ -5,6 +5,28 @@
 [![License](https://img.shields.io/cocoapods/l/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
 [![Platform](https://img.shields.io/cocoapods/p/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
 
+This is a category that eases your every day job of parsing an API and getting it into CoreData.
+
+* Handles operations in safe background threats
+* Thread safe saving (if you're saving in the wrong thread, we'll tell you) [Soon]
+* Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
+* Auto-mapping of relationships (one-to-one and one-to-many)
+* Completion block returns in the main thread, in case you want to update your UI [Soon]
+* Smart-updates, only updates your NSManagedObjects if the server values are different (useful when using NSFetchedResultsController delegates)
+
+## Interface
+
+```objc
++ (void)andy_processChanges:(NSArray *)changes
+            usingEntityName:(NSString *)entityName
+                 completion:(void (^)())completion;
+```
+
+* `changes`: JSON response
+* `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
+
+*Take a look at the wiki for additional configurations*
+
 ## Usage
 
 To run the example project, clone the repo, and open the `.xcodeproj` from the Demo directory.
@@ -20,9 +42,17 @@ it, simply add the following line to your Podfile:
 
 `pod "NSManagedObject-ANDYNetworking"`
 
+## Components
+
+**NSManagedObject-ANDYNetworking** wouldn't be possible without the help of this *fully tested* components:
+
+* [ANDYDataManager](https://github.com/NSElvis/ANDYDataManager)
+* [NSManagedObject+ANDYMapChanges](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges)
+* [NSManagedObject+HYPPropertyMapper](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper)
+
 ## Author
 
-Elvis Nuñez, elvisnunez@me.com
+Elvis Nuñez, [hello@nselvis.com](mailto:hello@nselvis.com)
 
 ## License
 
