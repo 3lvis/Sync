@@ -19,8 +19,12 @@
                  completion:(void (^)())completion
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
-        [self processChanges:changes usingEntityName:entityName
-                   predicate:predicate parent:nil inContext:context completion:completion];
+        [self processChanges:changes
+             usingEntityName:entityName
+                   predicate:predicate
+                      parent:nil
+                   inContext:context
+                  completion:completion];
     }];
 }
 
@@ -31,8 +35,12 @@
                   inContext:(NSManagedObjectContext *)context
                  completion:(void (^)())completion;
 {
-    [self processChanges:changes usingEntityName:entityName
-               predicate:predicate parent:parent inContext:context completion:completion];
+    [self processChanges:changes
+         usingEntityName:entityName
+               predicate:predicate
+                  parent:parent
+               inContext:context
+              completion:completion];
 }
 
 + (void)processChanges:(NSArray *)changes
@@ -85,6 +93,7 @@
             NSString *childEntityName = relationship.destinationEntity.name;
             NSString *inverseEntityName = relationship.inverseRelationship.name;
             NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%@ = %@", inverseEntityName, self];
+
             [[self class] processChanges:childs
                          usingEntityName:childEntityName
                                predicate:childPredicate
