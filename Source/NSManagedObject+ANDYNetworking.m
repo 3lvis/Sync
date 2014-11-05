@@ -45,17 +45,8 @@
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
 
-        NSError *parentError = nil;
-        NSString *parentEntityName = parent.entity.name;
-        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:parentEntityName];
-        NSString *localKey = [NSString stringWithFormat:@"%@ID", [parentEntityName lowercaseString]];
-        request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [parent valueForKey:localKey]];
-        NSArray *safeParents = [context executeFetchRequest:request error:&parentError];
-        if (parentError) NSLog(@"parentError: %@", parentError);
-        if (safeParents.count != 1) abort();
-
-        NSManagedObject *safeParent = [safeParents firstObject];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parentEntityName, safeParent];
+        NSManagedObject *safeParent = [parent safeObjectInContext:context];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self processChanges:changes
              usingEntityName:entityName
@@ -132,7 +123,7 @@
 
             NSString *childEntityName = relationship.destinationEntity.name;
             NSString *inverseEntityName = relationship.inverseRelationship.name;
-            NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%@ = %@", inverseEntityName, self];
+            NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
 
             [[self class] processChanges:childs
                          usingEntityName:childEntityName
@@ -144,6 +135,21 @@
             [self setValue:parent forKey:relationship.name];
         }
     }
+}
+
+#pragma mark - Private Methods
+
+- (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context
+{
+    NSError *error = nil;
+    NSString *entityName = self.entity.name;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    NSString *localKey = [NSString stringWithFormat:@"%@ID", [entityName lowercaseString]];
+    request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [self valueForKey:localKey]];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"parentError: %@", error);
+    if (objects.count != 1) abort();
+    return [objects firstObject];
 }
 
 @end
