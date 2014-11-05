@@ -19,6 +19,11 @@
 
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
+                     parent:(NSManagedObject *)parent
+                 completion:(void (^)(NSError *error))completion;
+
++ (void)andy_processChanges:(NSArray *)changes
+            usingEntityName:(NSString *)entityName
                   predicate:(NSPredicate *)predicate
                      parent:(NSManagedObject *)parent
                   inContext:(NSManagedObjectContext *)context

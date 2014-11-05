@@ -40,6 +40,34 @@
 
 + (void)andy_processChanges:(NSArray *)changes
             usingEntityName:(NSString *)entityName
+                     parent:(NSManagedObject *)parent
+                 completion:(void (^)(NSError *error))completion
+{
+    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+
+        NSError *parentError = nil;
+        NSString *parentEntityName = parent.entity.name;
+        NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:parentEntityName];
+        NSString *localKey = [NSString stringWithFormat:@"%@ID", [parentEntityName lowercaseString]];
+        userRequest.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [parent valueForKey:localKey]];
+        NSArray *safeParents = [context executeFetchRequest:userRequest error:&parentError];
+        if (parentError) NSLog(@"userFetchError: %@", parentError);
+        if (safeParents.count != 1) abort();
+
+        NSManagedObject *safeParent = [safeParents firstObject];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", parentEntityName, safeParent];
+
+        [self processChanges:changes
+             usingEntityName:entityName
+                   predicate:predicate
+                      parent:safeParent
+                   inContext:context
+                  completion:completion];
+    }];
+}
+
++ (void)andy_processChanges:(NSArray *)changes
+            usingEntityName:(NSString *)entityName
                   predicate:(NSPredicate *)predicate
                      parent:(NSManagedObject *)parent
                   inContext:(NSManagedObjectContext *)context
@@ -82,9 +110,7 @@
     [context save:&error];
     if (error) NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) completion(error);
-    });
+    if (completion) completion(error);
 }
 
 - (void)processRelationshipsUsingDictionary:(NSDictionary *)objectDict

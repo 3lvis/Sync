@@ -114,12 +114,12 @@
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_notes.json" inBundle:bundle];
 
-    NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
-
     [NSManagedObject andy_processChanges:objects
                          usingEntityName:@"User"
                                predicate:nil
                               completion:^(NSError *error) {
+                                  NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+
                                   NSError *userError = nil;
                                   NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
                                   NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
@@ -142,6 +142,68 @@
 
                                   [expectation fulfill];
                               }];
+
+    [self waitForExpectationsWithTimeout:5.0f handler:nil];
+}
+
+- (void)testObjectsForParent
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"notes_for_user_a.json" inBundle:bundle];
+
+    NSManagedObjectContext *background = [ANDYDataManager backgroundContext];
+    [background performBlock:^{
+
+        // Create new user in the background
+        NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                              inManagedObjectContext:background];
+
+        [user setValue:@6 forKey:@"userID"];
+        [user setValue:@"Shawn Merrill" forKey:@"name"];
+        [user setValue:@"firstupdate@ovium.com" forKey:@"email"];
+
+        NSError *userError = nil;
+        [background save:&userError];
+        if (userError) NSLog(@"userError: %@", userError);
+
+        NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+        [mainContext performBlockAndWait:^{
+            [[ANDYDataManager sharedManager] persistContext];
+
+            // Retreive created user for another request
+            NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+            userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
+            NSArray *users = [mainContext executeFetchRequest:userRequest error:nil];
+            if (users.count != 1) abort();
+
+            [NSManagedObject andy_processChanges:objects
+                                 usingEntityName:@"Note"
+                                          parent:[users firstObject]
+                                      completion:^(NSError *error) {
+                                          NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+
+                                          NSError *userFetchError = nil;
+                                          NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                                          userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
+                                          NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
+                                          if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+                                          NSManagedObject *user = [users firstObject];
+                                          XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+
+                                          NSError *notesError = nil;
+                                          NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                                          noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+                                          NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
+                                          if (notesError) NSLog(@"notesError: %@", notesError);
+                                          XCTAssertEqual(notesCount, 5);
+
+                                          [expectation fulfill];
+                                      }];
+        }];
+    }];
 
     [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
