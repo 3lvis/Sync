@@ -47,15 +47,15 @@
 
         NSError *parentError = nil;
         NSString *parentEntityName = parent.entity.name;
-        NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:parentEntityName];
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:parentEntityName];
         NSString *localKey = [NSString stringWithFormat:@"%@ID", [parentEntityName lowercaseString]];
-        userRequest.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [parent valueForKey:localKey]];
-        NSArray *safeParents = [context executeFetchRequest:userRequest error:&parentError];
-        if (parentError) NSLog(@"userFetchError: %@", parentError);
+        request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [parent valueForKey:localKey]];
+        NSArray *safeParents = [context executeFetchRequest:request error:&parentError];
+        if (parentError) NSLog(@"parentError: %@", parentError);
         if (safeParents.count != 1) abort();
 
         NSManagedObject *safeParent = [safeParents firstObject];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", parentEntityName, safeParent];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parentEntityName, safeParent];
 
         [self processChanges:changes
              usingEntityName:entityName
