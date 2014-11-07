@@ -11,7 +11,6 @@ This is a category that eases your every day job of parsing a `JSON` response an
 * Thread safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
-* Completion block returns in the main thread, in case you want to update your UI
 * Smart-updates, only updates your NSManagedObjects if the server values are different (useful when using NSFetchedResultsController delegates)
 
 ## Interface
