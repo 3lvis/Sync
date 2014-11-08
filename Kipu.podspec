@@ -21,7 +21,8 @@ s.requires_arc = true
 s.source_files = 'Source/**/*'
 
 s.frameworks = 'Foundation', 'CoreData'
-s.dependency 'NSManagedObject+HYPPropertyMapper'
-s.dependency 'NSManagedObject+ANDYMapChanges'
+
+s.dependency 'NSManagedObject-HYPPropertyMapper'
+s.dependency 'NSManagedObject-ANDYMapChanges'
 s.dependency 'ANDYDataManager'
 end
