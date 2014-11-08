@@ -1,11 +1,11 @@
-# NSManagedObject-ANDYNetworking
+# Kipu
 
-[![CI Status](http://img.shields.io/travis/NSElvis/NSManagedObject-ANDYNetworking.svg?style=flat)](https://travis-ci.org/NSElvis/NSManagedObject-ANDYNetworking)
-[![Version](https://img.shields.io/cocoapods/v/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
-[![License](https://img.shields.io/cocoapods/l/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
-[![Platform](https://img.shields.io/cocoapods/p/NSManagedObject-ANDYNetworking.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYNetworking)
+[![CI Status](http://img.shields.io/travis/NSElvis/Kipu.svg?style=flat)](https://travis-ci.org/NSElvis/Kipu)
+[![Version](https://img.shields.io/cocoapods/v/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
+[![License](https://img.shields.io/cocoapods/l/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
+[![Platform](https://img.shields.io/cocoapods/p/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
 
-This is a category that eases your every day job of parsing a `JSON` response and getting it into CoreData.
+Kipu eases your every day job of parsing a `JSON` response and getting it into CoreData.
 
 * Handles operations in safe background threats
 * Thread safe saving, we handle retrieving and storing objects in the right threads
@@ -16,21 +16,21 @@ This is a category that eases your every day job of parsing a `JSON` response an
 ## Interface
 
 ```objc
-+ (void)andy_processChanges:(NSArray *)changes
-            usingEntityName:(NSString *)entityName
-                 completion:(void (^)(NSError *error))completion
++ (void)processChanges:(NSArray *)changes
+       usingEntityName:(NSString *)entityName
+            completion:(void (^)(NSError *error))completion
 ```
 
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
 
-*Take a look at the [wiki](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/wiki) for additional configurations and more info about the possibilities*
+*Take a look at the [wiki](https://github.com/NSElvis/Kipu/wiki) for additional configurations and more info about the possibilities*
 
 ## Real World Example
 
 #### Model
 
-![Model](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/blob/master/Images/model.png)
+![Model](https://github.com/NSElvis/Kipu/blob/master/Images/model.png)
 
 #### JSON
 
@@ -50,14 +50,14 @@ This is a category that eases your every day job of parsing a `JSON` response an
 ]
 ```
 
-#### NSManagedObject-ANDYNetworking
+#### Kipu
 
 ```objc
-[NSManagedObject andy_processChanges:JSON
-                     usingEntityName:@"User"
-                          completion:^{
-                              // stop progress hud?
-                          }];
+[Kipu processChanges:JSON
+      usingEntityName:@"User"
+           completion:^{
+               // stop progress hud?
+            }];
 ```
 **PROFIT!**
 
@@ -67,14 +67,13 @@ This is a category that eases your every day job of parsing a `JSON` response an
 
 ## Installation
 
-**NSManagedObject-ANDYNetworking** is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+**Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
-`pod 'NSManagedObject-ANDYNetworking'`
+`pod 'Kipu'`
 
 ## Components
 
-**NSManagedObject-ANDYNetworking** wouldn't be possible without the help of this *fully tested* components:
+**Kipu** wouldn't be possible without the help of this *fully tested* components:
 
 * [ANDYDataManager](https://github.com/NSElvis/ANDYDataManager)
 * [NSManagedObject+ANDYMapChanges](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges)
@@ -86,5 +85,4 @@ Elvis Nuñez, [hello@nselvis.com](mailto:hello@nselvis.com)
 
 ## License
 
-**NSManagedObject-ANDYNetworking** is available under the MIT license. See the [LICENSE](https://github.com/NSElvis/NSManagedObject-ANDYNetworking/blob/master/LICENSE.md) file for more info.
-
+**Kipu** is available under the MIT license. See the [LICENSE](https://github.com/NSElvis/Kipu/blob/master/LICENSE.md) file for more info.

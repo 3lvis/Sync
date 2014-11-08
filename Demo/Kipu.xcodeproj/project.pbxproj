@@ -10,8 +10,8 @@
 		1409F01F1A063221007E0AB4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1409F01D1A063221007E0AB4 /* Model.xcdatamodeld */; };
 		141FBFD61A099C5100DD6A5C /* notes_for_user_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 141FBFD51A099C5100DD6A5C /* notes_for_user_a.json */; };
 		1427A2521A06DB7900312FFA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1427A2511A06DB7900312FFA /* Podfile */; };
-		143FB6211A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */; };
-		148D14031A06283300C77DAA /* NSManagedObject+ANDYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */; };
+		143FB6211A064F6C000EEA94 /* Kipu.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 143FB6201A064F6C000EEA94 /* Kipu.podspec */; };
+		148D14031A06283300C77DAA /* Kipu.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D14021A06283300C77DAA /* Kipu.m */; };
 		14A183851A0633D700BE8106 /* users_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183831A0633D700BE8106 /* users_a.json */; };
 		14A183861A0633D700BE8106 /* users_b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183841A0633D700BE8106 /* users_b.json */; };
 		14A4C9991A067E8F0030951B /* users_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4C9981A067E8F0030951B /* users_notes.json */; };
@@ -28,14 +28,14 @@
 		1409F01E1A063221007E0AB4 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		141FBFD51A099C5100DD6A5C /* notes_for_user_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_for_user_a.json; sourceTree = "<group>"; };
 		1427A2511A06DB7900312FFA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "NSManagedObject-ANDYNetworking.podspec"; path = "../NSManagedObject-ANDYNetworking.podspec"; sourceTree = "<group>"; };
-		148D14011A06283300C77DAA /* NSManagedObject+ANDYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ANDYNetworking.h"; sourceTree = "<group>"; };
-		148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ANDYNetworking.m"; sourceTree = "<group>"; };
+		143FB6201A064F6C000EEA94 /* Kipu.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Kipu.podspec; path = ../Kipu.podspec; sourceTree = "<group>"; };
+		148D14011A06283300C77DAA /* Kipu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kipu.h; sourceTree = "<group>"; };
+		148D14021A06283300C77DAA /* Kipu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kipu.m; sourceTree = "<group>"; };
 		14A183831A0633D700BE8106 /* users_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_a.json; sourceTree = "<group>"; };
 		14A183841A0633D700BE8106 /* users_b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_b.json; sourceTree = "<group>"; };
 		14A4C9981A067E8F0030951B /* users_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_notes.json; sourceTree = "<group>"; };
 		14BE72321A062F3900AB5C22 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
-		14C418261A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSManagedObject-ANDYNetworkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C418261A01919C00636FD6 /* KipuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KipuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4182C1A01919C00636FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		14C418381A019A1500636FD6 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		14C4181C1A01919C00636FD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14C418261A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests.xctest */,
+				14C418261A01919C00636FD6 /* KipuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,8 +103,8 @@
 		14C418371A01974300636FD6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				148D14011A06283300C77DAA /* NSManagedObject+ANDYNetworking.h */,
-				148D14021A06283300C77DAA /* NSManagedObject+ANDYNetworking.m */,
+				148D14011A06283300C77DAA /* Kipu.h */,
+				148D14021A06283300C77DAA /* Kipu.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -117,7 +117,7 @@
 				14C418381A019A1500636FD6 /* CONTRIBUTING.md */,
 				14C418391A019A1500636FD6 /* LICENSE.md */,
 				14C4183B1A019A1500636FD6 /* README.md */,
-				143FB6201A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec */,
+				143FB6201A064F6C000EEA94 /* Kipu.podspec */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -142,9 +142,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		14C418251A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests */ = {
+		14C418251A01919C00636FD6 /* KipuTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "NSManagedObject-ANDYNetworkingTests" */;
+			buildConfigurationList = 14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "KipuTests" */;
 			buildPhases = (
 				73EF2D3C5306FFDD30E10AE3 /* Check Pods Manifest.lock */,
 				14C418221A01919C00636FD6 /* Sources */,
@@ -156,9 +156,9 @@
 			);
 			dependencies = (
 			);
-			name = "NSManagedObject-ANDYNetworkingTests";
+			name = KipuTests;
 			productName = DemoTests;
-			productReference = 14C418261A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests.xctest */;
+			productReference = 14C418261A01919C00636FD6 /* KipuTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -175,7 +175,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 14C418151A01919C00636FD6 /* Build configuration list for PBXProject "NSManagedObject-ANDYNetworking" */;
+			buildConfigurationList = 14C418151A01919C00636FD6 /* Build configuration list for PBXProject "Kipu" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -187,7 +187,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				14C418251A01919C00636FD6 /* NSManagedObject-ANDYNetworkingTests */,
+				14C418251A01919C00636FD6 /* KipuTests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,7 +205,7 @@
 				14BE72331A062F3900AB5C22 /* .travis.yml in Resources */,
 				14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */,
 				1427A2521A06DB7900312FFA /* Podfile in Resources */,
-				143FB6211A064F6C000EEA94 /* NSManagedObject-ANDYNetworking.podspec in Resources */,
+				143FB6211A064F6C000EEA94 /* Kipu.podspec in Resources */,
 				14A183861A0633D700BE8106 /* users_b.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				148D14031A06283300C77DAA /* NSManagedObject+ANDYNetworking.m in Sources */,
+				148D14031A06283300C77DAA /* Kipu.m in Sources */,
 				14C4182E1A01919C00636FD6 /* Tests.m in Sources */,
 				1409F01F1A063221007E0AB4 /* Model.xcdatamodeld in Sources */,
 			);
@@ -363,7 +363,7 @@
 					XCTest,
 				);
 				OTHER_LIBTOOLFLAGS = "$(inherited) -framework XCTest";
-				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
+				PRODUCT_NAME = KipuTests;
 			};
 			name = Debug;
 		};
@@ -383,14 +383,14 @@
 					XCTest,
 				);
 				OTHER_LIBTOOLFLAGS = "$(inherited) -framework XCTest";
-				PRODUCT_NAME = "NSManagedObject-ANDYNetworkingTests";
+				PRODUCT_NAME = KipuTests;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14C418151A01919C00636FD6 /* Build configuration list for PBXProject "NSManagedObject-ANDYNetworking" */ = {
+		14C418151A01919C00636FD6 /* Build configuration list for PBXProject "Kipu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14C4182F1A01919C00636FD6 /* Debug */,
@@ -399,7 +399,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "NSManagedObject-ANDYNetworkingTests" */ = {
+		14C418341A01919C00636FD6 /* Build configuration list for PBXNativeTarget "KipuTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14C418351A01919C00636FD6 /* Debug */,
