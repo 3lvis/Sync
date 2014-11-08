@@ -19,8 +19,6 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
 
-*Take a look at the [wiki](https://github.com/NSElvis/Kipu/wiki) for additional configurations and more info about the possibilities*
-
 ## Real World Example
 
 #### Model
