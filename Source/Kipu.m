@@ -1,32 +1,41 @@
 //
-//  NSManagedObject+ANDYNetworking.m
+//  Kipu.m
 //
 //  Copyright (c) 2014 Elvis Nuñez. All rights reserved.
 //
 
-#import "NSManagedObject+ANDYNetworking.h"
+#import "Kipu.h"
 
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+ANDYMapChanges.h"
 #import "ANDYDataManager.h"
 
-@implementation NSManagedObject (ANDYNetworking)
+@interface NSManagedObject (Kipu)
 
-+ (void)andy_processChanges:(NSArray *)changes
-            usingEntityName:(NSString *)entityName
-                 completion:(void (^)(NSError *error))completion
+- (void)processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+                                  andParent:(NSManagedObject *)parent;
+
+- (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context;
+
+@end
+
+@implementation Kipu
+
++ (void)processChanges:(NSArray *)changes
+       usingEntityName:(NSString *)entityName
+            completion:(void (^)(NSError *error))completion
 {
-    [self andy_processChanges:changes
-              usingEntityName:entityName
-                    predicate:nil
-                   completion:completion];
+    [self processChanges:changes
+         usingEntityName:entityName
+               predicate:nil
+              completion:completion];
 }
 
-+ (void)andy_processChanges:(NSArray *)changes
-            usingEntityName:(NSString *)entityName
-                  predicate:(NSPredicate *)predicate
-                 completion:(void (^)(NSError *error))completion
++ (void)processChanges:(NSArray *)changes
+       usingEntityName:(NSString *)entityName
+             predicate:(NSPredicate *)predicate
+            completion:(void (^)(NSError *error))completion
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
         [self processChanges:changes
@@ -38,10 +47,10 @@
     }];
 }
 
-+ (void)andy_processChanges:(NSArray *)changes
-            usingEntityName:(NSString *)entityName
-                     parent:(NSManagedObject *)parent
-                 completion:(void (^)(NSError *error))completion
++ (void)processChanges:(NSArray *)changes
+       usingEntityName:(NSString *)entityName
+                parent:(NSManagedObject *)parent
+            completion:(void (^)(NSError *error))completion
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
 
@@ -57,21 +66,6 @@
     }];
 }
 
-+ (void)andy_processChanges:(NSArray *)changes
-            usingEntityName:(NSString *)entityName
-                  predicate:(NSPredicate *)predicate
-                     parent:(NSManagedObject *)parent
-                  inContext:(NSManagedObjectContext *)context
-                 completion:(void (^)(NSError *error))completion;
-{
-    [self processChanges:changes
-         usingEntityName:entityName
-               predicate:predicate
-                  parent:parent
-               inContext:context
-              completion:completion];
-}
-
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
              predicate:(NSPredicate *)predicate
@@ -79,23 +73,23 @@
              inContext:(NSManagedObjectContext *)context
             completion:(void (^)(NSError *error))completion
 {
-    [[self class] andy_mapChanges:changes
-                   usingPredicate:predicate
-                        inContext:context
-                    forEntityName:entityName
-                         inserted:^(NSDictionary *objectDict) {
+    [NSManagedObject andy_mapChanges:changes
+                      usingPredicate:predicate
+                           inContext:context
+                       forEntityName:entityName
+                            inserted:^(NSDictionary *objectDict) {
 
-                             NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                                                                      inManagedObjectContext:context];
-                             [created hyp_fillWithDictionary:objectDict];
+                                NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                                                                         inManagedObjectContext:context];
+                                [created hyp_fillWithDictionary:objectDict];
 
-                             [created processRelationshipsUsingDictionary:objectDict andParent:parent];
+                                [created processRelationshipsUsingDictionary:objectDict andParent:parent];
 
-                         } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
+                            } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
 
-                             [object hyp_fillWithDictionary:objectDict];
+                                [object hyp_fillWithDictionary:objectDict];
 
-                         }];
+                            }];
 
     NSError *error = nil;
     [context save:&error];
@@ -103,6 +97,10 @@
 
     if (completion) completion(error);
 }
+
+@end
+
+@implementation NSManagedObject (Kipu)
 
 - (void)processRelationshipsUsingDictionary:(NSDictionary *)objectDict
                                   andParent:(NSManagedObject *)parent
@@ -125,19 +123,17 @@
             NSString *inverseEntityName = relationship.inverseRelationship.name;
             NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
 
-            [[self class] processChanges:childs
-                         usingEntityName:childEntityName
-                               predicate:childPredicate
-                                  parent:self
-                               inContext:self.managedObjectContext
-                              completion:nil];
+            [Kipu processChanges:childs
+                 usingEntityName:childEntityName
+                       predicate:childPredicate
+                          parent:self
+                       inContext:self.managedObjectContext
+                      completion:nil];
         } else if (parent) {
             [self setValue:parent forKey:relationship.name];
         }
     }
 }
-
-#pragma mark - Private Methods
 
 - (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context
 {

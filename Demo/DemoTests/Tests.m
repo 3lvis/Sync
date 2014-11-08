@@ -10,7 +10,7 @@
 
 @import CoreData;
 
-#import "NSManagedObject+ANDYNetworking.h"
+#import "Kipu.h"
 #import "NSJSONSerialization+ANDYJSONFile.h"
 #import "ANDYDataManager.h"
 
@@ -54,17 +54,17 @@
 
     NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
 
-    [NSManagedObject andy_processChanges:objects
-                         usingEntityName:@"User"
-                               predicate:nil
-                              completion:^(NSError *error) {
-                                  NSError *countError = nil;
-                                  NSInteger count = [mainContext countForFetchRequest:request error:&countError];
-                                  if (countError) NSLog(@"countError: %@", [countError description]);
-                                  XCTAssertEqual(count, 8);
+    [Kipu processChanges:objects
+         usingEntityName:@"User"
+               predicate:nil
+              completion:^(NSError *error) {
+                  NSError *countError = nil;
+                  NSInteger count = [mainContext countForFetchRequest:request error:&countError];
+                  if (countError) NSLog(@"countError: %@", [countError description]);
+                  XCTAssertEqual(count, 8);
 
-                                  [expectation fulfill];
-                              }];
+                  [expectation fulfill];
+              }];
 
     [self waitForExpectationsWithTimeout:5.0f handler:^(NSError *error) {
 
@@ -79,17 +79,17 @@
 
         NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_b.json" inBundle:bundle];
 
-        [NSManagedObject andy_processChanges:objects
-                             usingEntityName:@"User"
-                                   predicate:nil
-                                  completion:^(NSError *error) {
-                                      NSError *countError = nil;
-                                      NSInteger count = [mainContext countForFetchRequest:request error:&countError];
-                                      if (countError) NSLog(@"countError: %@", [countError description]);
-                                      XCTAssertEqual(count, 6);
+        [Kipu processChanges:objects
+             usingEntityName:@"User"
+                   predicate:nil
+                  completion:^(NSError *error) {
+                      NSError *countError = nil;
+                      NSInteger count = [mainContext countForFetchRequest:request error:&countError];
+                      if (countError) NSLog(@"countError: %@", [countError description]);
+                      XCTAssertEqual(count, 6);
 
-                                      [expectation fulfill];
-                                  }];
+                      [expectation fulfill];
+                  }];
 
         [self waitForExpectationsWithTimeout:5.0f handler:^(NSError *error) {
 
@@ -114,34 +114,34 @@
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_notes.json" inBundle:bundle];
 
-    [NSManagedObject andy_processChanges:objects
-                         usingEntityName:@"User"
-                               predicate:nil
-                              completion:^(NSError *error) {
-                                  NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+    [Kipu processChanges:objects
+         usingEntityName:@"User"
+               predicate:nil
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
 
-                                  NSError *userError = nil;
-                                  NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-                                  NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
-                                  if (userError) NSLog(@"userError: %@", userError);
-                                  XCTAssertEqual(usersCount, 4);
+                  NSError *userError = nil;
+                  NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                  NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
+                  if (userError) NSLog(@"userError: %@", userError);
+                  XCTAssertEqual(usersCount, 4);
 
-                                  NSError *userFetchError = nil;
-                                  userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
-                                  NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
-                                  if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
-                                  NSManagedObject *user = [users firstObject];
-                                  XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+                  NSError *userFetchError = nil;
+                  userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
+                  NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
+                  if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+                  NSManagedObject *user = [users firstObject];
+                  XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-                                  NSError *notesError = nil;
-                                  NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                                  noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-                                  NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
-                                  if (notesError) NSLog(@"notesError: %@", notesError);
-                                  XCTAssertEqual(notesCount, 5);
+                  NSError *notesError = nil;
+                  NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                  noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+                  NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
+                  if (notesError) NSLog(@"notesError: %@", notesError);
+                  XCTAssertEqual(notesCount, 5);
 
-                                  [expectation fulfill];
-                              }];
+                  [expectation fulfill];
+              }];
 
     [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
@@ -179,29 +179,29 @@
             NSArray *users = [mainContext executeFetchRequest:userRequest error:nil];
             if (users.count != 1) abort();
 
-            [NSManagedObject andy_processChanges:objects
-                                 usingEntityName:@"Note"
-                                          parent:[users firstObject]
-                                      completion:^(NSError *error) {
-                                          NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+            [Kipu processChanges:objects
+                 usingEntityName:@"Note"
+                          parent:[users firstObject]
+                      completion:^(NSError *error) {
+                          NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
 
-                                          NSError *userFetchError = nil;
-                                          NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-                                          userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
-                                          NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
-                                          if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
-                                          NSManagedObject *user = [users firstObject];
-                                          XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+                          NSError *userFetchError = nil;
+                          NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                          userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
+                          NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
+                          if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+                          NSManagedObject *user = [users firstObject];
+                          XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-                                          NSError *notesError = nil;
-                                          NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                                          noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-                                          NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
-                                          if (notesError) NSLog(@"notesError: %@", notesError);
-                                          XCTAssertEqual(notesCount, 5);
+                          NSError *notesError = nil;
+                          NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                          noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+                          NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
+                          if (notesError) NSLog(@"notesError: %@", notesError);
+                          XCTAssertEqual(notesCount, 5);
 
-                                          [expectation fulfill];
-                                      }];
+                          [expectation fulfill];
+                      }];
         }];
     }];
 

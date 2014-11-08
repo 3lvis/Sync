@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "14C418251A01919C00636FD6"
-               BuildableName = "NSManagedObject-ANDYNetworkingTests.xctest"
-               BlueprintName = "NSManagedObject-ANDYNetworkingTests"
-               ReferencedContainer = "container:NSManagedObject-ANDYNetworking.xcodeproj">
+               BuildableName = "KipuTests.xctest"
+               BlueprintName = "KipuTests"
+               ReferencedContainer = "container:Kipu.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "14C418251A01919C00636FD6"
-               BuildableName = "NSManagedObject-ANDYNetworkingTests.xctest"
-               BlueprintName = "NSManagedObject-ANDYNetworkingTests"
-               ReferencedContainer = "container:NSManagedObject-ANDYNetworking.xcodeproj">
+               BuildableName = "KipuTests.xctest"
+               BlueprintName = "KipuTests"
+               ReferencedContainer = "container:Kipu.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C418251A01919C00636FD6"
-            BuildableName = "NSManagedObject-ANDYNetworkingTests.xctest"
-            BlueprintName = "NSManagedObject-ANDYNetworkingTests"
-            ReferencedContainer = "container:NSManagedObject-ANDYNetworking.xcodeproj">
+            BuildableName = "KipuTests.xctest"
+            BlueprintName = "KipuTests"
+            ReferencedContainer = "container:Kipu.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C418251A01919C00636FD6"
-            BuildableName = "NSManagedObject-ANDYNetworkingTests.xctest"
-            BlueprintName = "NSManagedObject-ANDYNetworkingTests"
-            ReferencedContainer = "container:NSManagedObject-ANDYNetworking.xcodeproj">
+            BuildableName = "KipuTests.xctest"
+            BlueprintName = "KipuTests"
+            ReferencedContainer = "container:Kipu.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C418251A01919C00636FD6"
-            BuildableName = "NSManagedObject-ANDYNetworkingTests.xctest"
-            BlueprintName = "NSManagedObject-ANDYNetworkingTests"
-            ReferencedContainer = "container:NSManagedObject-ANDYNetworking.xcodeproj">
+            BuildableName = "KipuTests.xctest"
+            BlueprintName = "KipuTests"
+            ReferencedContainer = "container:Kipu.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
