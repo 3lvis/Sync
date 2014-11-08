@@ -49,10 +49,10 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 ```objc
 [Kipu processChanges:JSON
-      usingEntityName:@"User"
-           completion:^{
-               // stop progress hud?
-            }];
+     usingEntityName:@"User"
+          completion:^{
+              // stop progress hud?
+           }];
 ```
 **PROFIT!**
 
