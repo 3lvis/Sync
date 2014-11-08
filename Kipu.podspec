@@ -13,7 +13,7 @@ s.homepage         = "https://github.com/nselvis/Kipu"
 s.license          = 'MIT'
 s.author           = { "Elvis Nuñez" => "elvisnunez@me.com" }
 s.source           = { :git => "https://github.com/nselvis/Kipu.git", :tag => s.version.to_s }
-s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+s.social_media_url = 'https://twitter.com/nselvis'
 
 s.platform     = :ios, '7.0'
 s.requires_arc = true
