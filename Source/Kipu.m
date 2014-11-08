@@ -112,15 +112,19 @@
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
             NSArray *childs = [objectDict andy_valueForKey:relationship.name];
-            if (!childs) continue;
+            if (!childs) {
+                if (relationship.inverseRelationship.isToMany) {
+                    //[self setValue:parent forKey:relationship.name];
+                }
+
+                continue;
+            }
 
             NSString *childEntityName = relationship.destinationEntity.name;
             NSString *inverseEntityName = relationship.inverseRelationship.name;
             NSPredicate *childPredicate;
 
-            if (relationship.inverseRelationship.isToMany) {
-
-            } else {
+            if (!relationship.inverseRelationship.isToMany) {
                 childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
             }
 
