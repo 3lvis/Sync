@@ -56,7 +56,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 [Kipu processChanges:JSON
      usingEntityName:@"User"
           completion:^{
-              // stop progress hud?
+              // Objects saved in CoreData, do something
            }];
 ```
 **PROFIT!**
