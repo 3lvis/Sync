@@ -25,4 +25,5 @@ s.frameworks = 'Foundation', 'CoreData'
 s.dependency 'NSManagedObject-HYPPropertyMapper'
 s.dependency 'NSManagedObject-ANDYMapChanges'
 s.dependency 'ANDYDataManager'
+s.dependency 'NSDictionary-ANDYSafeValue'
 end
