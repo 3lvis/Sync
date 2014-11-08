@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
 [![Platform](https://img.shields.io/cocoapods/p/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
 
-This is a category that eases your every day job of parsing a `JSON` response and getting it into CoreData.
+Kipu eases your every day job of parsing a `JSON` response and getting it into CoreData.
 
 * Handles operations in safe background threats
 * Thread safe saving, we handle retrieving and storing objects in the right threads
@@ -16,9 +16,9 @@ This is a category that eases your every day job of parsing a `JSON` response an
 ## Interface
 
 ```objc
-+ (void)andy_processChanges:(NSArray *)changes
-            usingEntityName:(NSString *)entityName
-                 completion:(void (^)(NSError *error))completion
++ (void)processChanges:(NSArray *)changes
+       usingEntityName:(NSString *)entityName
+            completion:(void (^)(NSError *error))completion
 ```
 
 * `changes`: JSON response
@@ -53,11 +53,11 @@ This is a category that eases your every day job of parsing a `JSON` response an
 #### Kipu
 
 ```objc
-[NSManagedObject andy_processChanges:JSON
-                     usingEntityName:@"User"
-                          completion:^{
-                              // stop progress hud?
-                          }];
+[Kipu processChanges:JSON
+      usingEntityName:@"User"
+           completion:^{
+               // stop progress hud?
+            }];
 ```
 **PROFIT!**
 
@@ -67,8 +67,7 @@ This is a category that eases your every day job of parsing a `JSON` response an
 
 ## Installation
 
-**Kipu** is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+**Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 `pod 'Kipu'`
 
