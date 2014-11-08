@@ -1,4 +1,4 @@
-# Kipu
+![Kipu](https://github.com/NSElvis/Kipu/blob/test-logo/Images/logo.png)
 
 [![CI Status](http://img.shields.io/travis/NSElvis/Kipu.svg?style=flat)](https://travis-ci.org/NSElvis/Kipu)
 [![Version](https://img.shields.io/cocoapods/v/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
