@@ -1,6 +1,6 @@
 # Kipu
 
-Kipu eases your every day job of parsing a `JSON` response and getting it into CoreData.
+Kipu eases your every day job of parsing a `JSON` response and getting it into CoreData. It uses a convention over configuration paradigm to facilitate your workflow.
 
 * Handles operations in safe background threats
 * Thread safe saving, we handle retrieving and storing objects in the right threads
