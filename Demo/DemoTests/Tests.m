@@ -208,4 +208,50 @@
     [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
+- (void)testTaggedNotesForUser
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"tagged_notes.json" inBundle:bundle];
+
+    [Kipu processChanges:objects
+         usingEntityName:@"Note"
+               predicate:nil
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+
+                  NSError *notesError = nil;
+                  NSFetchRequest *notesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                  NSInteger notesCount = [mainContext countForFetchRequest:notesRequest error:&notesError];
+                  if (notesError) NSLog(@"notesError: %@", notesError);
+                  XCTAssertEqual(notesCount, 5);
+
+                  NSError *notesFetchError = nil;
+                  notesRequest.predicate = [NSPredicate predicateWithFormat:@"noteID = %@", @0];
+                  NSArray *notes = [mainContext executeFetchRequest:notesRequest error:&notesFetchError];
+                  if (notesFetchError) NSLog(@"notesFetchError: %@", notesFetchError);
+                  NSManagedObject *note = [notes firstObject];
+                  XCTAssertEqual([[note valueForKey:@"tags"] count], 2);
+
+                  // Tag diary has 4 notes
+
+                  // Tag neverforget has 1 note
+
+
+//                  NSError *notesError = nil;
+//                  NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+//                  noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+//                  NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
+//                  if (notesError) NSLog(@"notesError: %@", notesError);
+//                  XCTAssertEqual(notesCount, 5);
+
+                  [expectation fulfill];
+              }];
+
+    [self waitForExpectationsWithTimeout:5.0f handler:nil];
+
+}
+
 @end
