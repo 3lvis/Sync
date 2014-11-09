@@ -17,11 +17,14 @@
 @interface NSManagedObject (Kipu)
 
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
-                                  andParent:(NSManagedObject *)parent;
+                                       andParent:(NSManagedObject *)parent;
 
 - (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context;
 
 - (NSArray *)kipu_relationships;
+
+- (void)kipu_addObjectToParent:(NSManagedObject *)parent
+             usingRelationship:(NSRelationshipDescription *)relationship;
 
 @end
 
@@ -126,7 +129,7 @@
 @implementation NSManagedObject (Kipu)
 
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
-                                  andParent:(NSManagedObject *)parent
+                                       andParent:(NSManagedObject *)parent
 {
     NSArray *relationships = [self kipu_relationships];
 
@@ -146,14 +149,14 @@
 }
 
 - (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
-            usingDictionary:(NSDictionary *)objectDict
-                  andParent:(NSManagedObject *)parent
+                 usingDictionary:(NSDictionary *)objectDict
+                       andParent:(NSManagedObject *)parent
 {
     NSArray *childs = [objectDict andy_valueForKey:relationship.name];
     if (!childs) {
         if (parent && relationship.inverseRelationship.isToMany) {
             if ([parent.entity.name isEqualToString:relationship.destinationEntity.name]) {
-                [self addObjectToParent:parent usingRelationship:relationship];
+                [self kipu_addObjectToParent:parent usingRelationship:relationship];
             }
         }
         return;
@@ -188,8 +191,8 @@
               }];
 }
 
-- (void)addObjectToParent:(NSManagedObject *)parent
-        usingRelationship:(NSRelationshipDescription *)relationship
+- (void)kipu_addObjectToParent:(NSManagedObject *)parent
+             usingRelationship:(NSRelationshipDescription *)relationship
 {
     KIPU_NSLog(@">> Setting up to-many relationships...");
 
@@ -210,16 +213,6 @@
 
     KIPU_NSLog(@">> Finished Setting up to-many relationships...");
     KIPU_NSLog(@" ");
-}
-
-- (NSString *)kipu_localKey
-{
-    return [NSString stringWithFormat:@"%@ID", [self.entity.name lowercaseString]];
-}
-
-- (id)kipu_localKeyValue
-{
-    return [self valueForKey:[self kipu_localKey]];
 }
 
 - (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
