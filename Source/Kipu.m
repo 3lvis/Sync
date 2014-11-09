@@ -75,6 +75,10 @@
              inContext:(NSManagedObjectContext *)context
             completion:(void (^)(NSError *error))completion
 {
+    NSLog(@" ");
+    NSLog(@"==================================");
+    NSLog(@"processing changes: %@ for %@ with predicate: %@ parent: %@", changes, entityName, predicate, parent);
+
     [NSManagedObject andy_mapChanges:changes
                       usingPredicate:predicate
                            inContext:context
@@ -83,7 +87,12 @@
 
                                 NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                                          inManagedObjectContext:context];
+
                                 [created hyp_fillWithDictionary:objectDict];
+
+                                NSLog(@" ");
+                                NSLog(@"created (%@): %@", entityName, objectDict);
+                                NSLog(@" ");
 
                                 [created kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
 
@@ -91,7 +100,16 @@
 
                                 [object hyp_fillWithDictionary:objectDict];
 
+                                NSLog(@" ");
+                                NSLog(@"updated (%@): %@", entityName, object);
+                                NSLog(@" ");
+
+                                [object kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
                             }];
+
+    NSLog(@"finished changes for %@", entityName);
+    NSLog(@"==================================");
+    NSLog(@"  ");
 
     NSError *error = nil;
     [context save:&error];
@@ -111,33 +129,93 @@
 
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
-            NSArray *childs = [objectDict andy_valueForKey:relationship.name];
-            if (!childs) {
-                if (relationship.inverseRelationship.isToMany) {
-                    //[self setValue:parent forKey:relationship.name];
-                }
 
-                continue;
-            }
+            [self kipu_processRelationship:relationship usingDictionary:objectDict andParent:parent];
 
-            NSString *childEntityName = relationship.destinationEntity.name;
-            NSString *inverseEntityName = relationship.inverseRelationship.name;
-            NSPredicate *childPredicate;
-
-            if (!relationship.inverseRelationship.isToMany) {
-                childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
-            }
-
-            [Kipu processChanges:childs
-                 usingEntityName:childEntityName
-                       predicate:childPredicate
-                          parent:self
-                       inContext:self.managedObjectContext
-                      completion:nil];
         } else if (parent) {
+            NSLog(@"> Processing to-one relationships...");
+
             [self setValue:parent forKey:relationship.name];
+
+            NSLog(@"> Finished to-one relationships...");
+            NSLog(@" ");
         }
     }
+}
+
+- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
+            usingDictionary:(NSDictionary *)objectDict
+                  andParent:(NSManagedObject *)parent
+{
+    NSArray *childs = [objectDict andy_valueForKey:relationship.name];
+    if (!childs) {
+        if (parent && relationship.inverseRelationship.isToMany) {
+            [self addObjectToParent:parent usingRelationship:relationship];
+        }
+        return;
+    }
+
+    NSLog(@">> Processing to-many relationships...");
+
+    NSString *childEntityName = relationship.destinationEntity.name;
+    NSString *inverseEntityName = relationship.inverseRelationship.name;
+    NSPredicate *childPredicate;
+
+    if (relationship.inverseRelationship.isToMany) {
+        NSArray *childIDs = [childs valueForKey:@"id"];
+        NSString *destinationKey = [NSString stringWithFormat:@"%@ID", [childEntityName lowercaseString]];
+        if (childIDs.count == 1) {
+            childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationKey, [[childs valueForKey:@"id"] firstObject]];
+        } else {
+            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationship.name, destinationKey, [childs valueForKey:@"id"]];
+        }
+    } else {
+        childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
+    }
+
+    [Kipu processChanges:childs
+         usingEntityName:childEntityName
+               predicate:childPredicate
+                  parent:self
+               inContext:self.managedObjectContext
+              completion:^(NSError *error) {
+                  NSLog(@">> Finished to-many relationships...");
+                  NSLog(@" ");
+              }];
+}
+
+- (void)addObjectToParent:(NSManagedObject *)parent
+        usingRelationship:(NSRelationshipDescription *)relationship
+{
+    NSLog(@">> Setting up to-many relationships...");
+
+    [self willAccessValueForKey:relationship.name];
+    NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
+    [self didAccessValueForKey:relationship.name];
+    [relatedObjects addObject:parent];
+
+    [self willChangeValueForKey:relationship.name
+                withSetMutation:NSKeyValueSetSetMutation
+                   usingObjects:relatedObjects];
+    [self setValue:relatedObjects forKey:relationship.name];
+    [self didChangeValueForKey:relationship.name
+               withSetMutation:NSKeyValueSetSetMutation
+                  usingObjects:relatedObjects];
+
+    NSLog(@"%@", [self valueForKey:relationship.name]);
+
+    NSLog(@">> Finished Setting up to-many relationships...");
+    NSLog(@" ");
+}
+
+- (NSString *)kipu_localKey
+{
+    return [NSString stringWithFormat:@"%@ID", [self.entity.name lowercaseString]];
+}
+
+- (id)kipu_localKeyValue
+{
+    return [self valueForKey:[self kipu_localKey]];
 }
 
 - (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context

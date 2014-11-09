@@ -157,10 +157,8 @@
     NSManagedObjectContext *background = [ANDYDataManager backgroundContext];
     [background performBlock:^{
 
-        // Create new user in the background
         NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                               inManagedObjectContext:background];
-
         [user setValue:@6 forKey:@"userID"];
         [user setValue:@"Shawn Merrill" forKey:@"name"];
         [user setValue:@"firstupdate@ovium.com" forKey:@"email"];
@@ -173,7 +171,6 @@
         [mainContext performBlockAndWait:^{
             [[ANDYDataManager sharedManager] persistContext];
 
-            // Retreive created user for another request
             NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
             userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
             NSArray *users = [mainContext executeFetchRequest:userRequest error:nil];
@@ -224,28 +221,31 @@
 
                   NSError *notesError = nil;
                   NSFetchRequest *notesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                  NSInteger notesCount = [mainContext countForFetchRequest:notesRequest error:&notesError];
+                  NSInteger numberOfNotes = [mainContext countForFetchRequest:notesRequest error:&notesError];
                   if (notesError) NSLog(@"notesError: %@", notesError);
-                  XCTAssertEqual(notesCount, 5);
+                  XCTAssertEqual(numberOfNotes, 5);
 
                   NSError *notesFetchError = nil;
                   notesRequest.predicate = [NSPredicate predicateWithFormat:@"noteID = %@", @0];
                   NSArray *notes = [mainContext executeFetchRequest:notesRequest error:&notesFetchError];
                   if (notesFetchError) NSLog(@"notesFetchError: %@", notesFetchError);
                   NSManagedObject *note = [notes firstObject];
-                  XCTAssertEqual([[note valueForKey:@"tags"] count], 2);
+                  XCTAssertEqual([[[note valueForKey:@"tags"] allObjects] count], 2,
+                                 @"Note with ID 0 should have 2 tags");
 
-                  // Tag diary has 4 notes
+                  NSError *tagsError = nil;
+                  NSFetchRequest *tagsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Tag"];
+                  NSInteger numberOfTags = [mainContext countForFetchRequest:tagsRequest error:&tagsError];
+                  if (tagsError) NSLog(@"tagsError: %@", tagsError);
+                  XCTAssertEqual(numberOfTags, 2);
 
-                  // Tag neverforget has 1 note
-
-
-//                  NSError *notesError = nil;
-//                  NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-//                  noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-//                  NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
-//                  if (notesError) NSLog(@"notesError: %@", notesError);
-//                  XCTAssertEqual(notesCount, 5);
+                  NSError *tagsFetchError = nil;
+                  tagsRequest.predicate = [NSPredicate predicateWithFormat:@"tagID = %@", @1];
+                  NSArray *tags = [mainContext executeFetchRequest:tagsRequest error:&tagsFetchError];
+                  if (tagsFetchError) NSLog(@"tagsFetchError: %@", tagsFetchError);
+                  NSManagedObject *tag = [tags firstObject];
+                  XCTAssertEqual([[[tag valueForKey:@"notes"] allObjects] count], 4,
+                                 @"Tag with ID 1 should have 4 notes");
 
                   [expectation fulfill];
               }];

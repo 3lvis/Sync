@@ -127,6 +127,7 @@
         NSManagedObjectID *objectID = [dictionaryIDAndObjectID objectForKey:fetchedID];
         if (objectID) {
             NSManagedObject *object = [context objectWithID:objectID];
+            NSLog(@"deleting...........: %@", object);
             if (object) {
                 [context deleteObject:object];
             }
