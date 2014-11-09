@@ -13,12 +13,16 @@
 
 @interface NSManagedObject (Kipu)
 
-- (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
-                                       andParent:(NSManagedObject *)parent;
-
 - (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context;
 
 - (NSArray *)kipu_relationships;
+
+- (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+                                       andParent:(NSManagedObject *)parent;
+
+- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
+                 usingDictionary:(NSDictionary *)objectDict
+                       andParent:(NSManagedObject *)parent;
 
 - (void)kipu_addObjectToParent:(NSManagedObject *)parent
              usingRelationship:(NSRelationshipDescription *)relationship;
@@ -108,6 +112,33 @@
 
 @implementation NSManagedObject (Kipu)
 
+- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
+{
+    NSError *error = nil;
+    NSString *entityName = self.entity.name;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    NSString *localKey = [NSString stringWithFormat:@"%@ID", [entityName lowercaseString]];
+    request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [self valueForKey:localKey]];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"parentError: %@", error);
+    if (objects.count != 1) abort();
+    return [objects firstObject];
+}
+
+- (NSArray *)kipu_relationships
+{
+    NSMutableArray *relationships = [NSMutableArray array];
+
+    for (id propertyDescription in [self.entity properties]) {
+
+        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+            [relationships addObject:propertyDescription];
+        }
+    }
+
+    return relationships;
+}
+
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
                                        andParent:(NSManagedObject *)parent
 {
@@ -179,33 +210,6 @@
     [self didChangeValueForKey:relationship.name
                withSetMutation:NSKeyValueSetSetMutation
                   usingObjects:relatedObjects];
-}
-
-- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
-{
-    NSError *error = nil;
-    NSString *entityName = self.entity.name;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
-    NSString *localKey = [NSString stringWithFormat:@"%@ID", [entityName lowercaseString]];
-    request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [self valueForKey:localKey]];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) NSLog(@"parentError: %@", error);
-    if (objects.count != 1) abort();
-    return [objects firstObject];
-}
-
-- (NSArray *)kipu_relationships
-{
-    NSMutableArray *relationships = [NSMutableArray array];
-
-    for (id propertyDescription in [self.entity properties]) {
-
-        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-            [relationships addObject:propertyDescription];
-        }
-    }
-
-    return relationships;
 }
 
 @end
