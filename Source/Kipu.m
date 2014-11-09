@@ -11,9 +11,6 @@
 #import "NSManagedObject+ANDYMapChanges.h"
 #import "ANDYDataManager.h"
 
-#define KIPU_DEBUGGING NO
-#define KIPU_NSLog if(KIPU_DEBUGGING)NSLog
-
 @interface NSManagedObject (Kipu)
 
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
@@ -81,10 +78,6 @@
              inContext:(NSManagedObjectContext *)context
             completion:(void (^)(NSError *error))completion
 {
-    KIPU_NSLog(@" ");
-    KIPU_NSLog(@"==================================");
-    KIPU_NSLog(@"processing changes: %@ for %@ with predicate: %@ parent: %@", changes, entityName, predicate, parent);
-
     [NSManagedObject andy_mapChanges:changes
                       usingPredicate:predicate
                            inContext:context
@@ -93,33 +86,20 @@
 
                                 NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                                          inManagedObjectContext:context];
-
                                 [created hyp_fillWithDictionary:objectDict];
-
-                                KIPU_NSLog(@" ");
-                                KIPU_NSLog(@"created (%@): %@", entityName, objectDict);
-                                KIPU_NSLog(@" ");
-
                                 [created kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
 
                             } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
 
                                 [object hyp_fillWithDictionary:objectDict];
-
-                                KIPU_NSLog(@" ");
-                                KIPU_NSLog(@"updated (%@): %@", entityName, object);
-                                KIPU_NSLog(@" ");
-
                                 [object kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
+
                             }];
 
-    KIPU_NSLog(@"finished changes for %@", entityName);
-    KIPU_NSLog(@"==================================");
-    KIPU_NSLog(@"  ");
 
     NSError *error = nil;
     [context save:&error];
-    if (error) KIPU_NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
+    if (error) NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
 
     if (completion) completion(error);
 }
@@ -139,11 +119,7 @@
             [self kipu_processRelationship:relationship usingDictionary:objectDict andParent:parent];
 
         } else if (parent) {
-            KIPU_NSLog(@"> Setting to-one relationship... (%@)", relationship.name);
-
             [self setValue:parent forKey:relationship.name];
-
-            KIPU_NSLog(@" ");
         }
     }
 }
@@ -154,15 +130,15 @@
 {
     NSArray *childs = [objectDict andy_valueForKey:relationship.name];
     if (!childs) {
-        if (parent && relationship.inverseRelationship.isToMany) {
-            if ([parent.entity.name isEqualToString:relationship.destinationEntity.name]) {
-                [self kipu_addObjectToParent:parent usingRelationship:relationship];
-            }
+        BOOL hasValidManyToManyRelationship = (parent &&
+                                               relationship.inverseRelationship.isToMany &&
+                                               [parent.entity.name isEqualToString:relationship.destinationEntity.name]);
+        if (hasValidManyToManyRelationship) {
+            [self kipu_addObjectToParent:parent usingRelationship:relationship];
         }
+
         return;
     }
-
-    KIPU_NSLog(@">> Processing to-many relationships...");
 
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *inverseEntityName = relationship.inverseRelationship.name;
@@ -185,17 +161,12 @@
                predicate:childPredicate
                   parent:self
                inContext:self.managedObjectContext
-              completion:^(NSError *error) {
-                  KIPU_NSLog(@">> Finished to-many relationships...");
-                  KIPU_NSLog(@" ");
-              }];
+              completion:nil];
 }
 
 - (void)kipu_addObjectToParent:(NSManagedObject *)parent
              usingRelationship:(NSRelationshipDescription *)relationship
 {
-    KIPU_NSLog(@">> Setting up to-many relationships...");
-
     [self willAccessValueForKey:relationship.name];
     NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
     [self didAccessValueForKey:relationship.name];
@@ -208,11 +179,6 @@
     [self didChangeValueForKey:relationship.name
                withSetMutation:NSKeyValueSetSetMutation
                   usingObjects:relatedObjects];
-
-    KIPU_NSLog(@"%@", [self valueForKey:relationship.name]);
-
-    KIPU_NSLog(@">> Finished Setting up to-many relationships...");
-    KIPU_NSLog(@" ");
 }
 
 - (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
@@ -223,7 +189,7 @@
     NSString *localKey = [NSString stringWithFormat:@"%@ID", [entityName lowercaseString]];
     request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [self valueForKey:localKey]];
     NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) KIPU_NSLog(@"parentError: %@", error);
+    if (error) NSLog(@"parentError: %@", error);
     if (objects.count != 1) abort();
     return [objects firstObject];
 }
