@@ -43,6 +43,7 @@
             completion:(void (^)(NSError *error))completion
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+
         [self processChanges:changes
              usingEntityName:entityName
                    predicate:predicate
@@ -95,7 +96,6 @@
                                 [object kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
 
                             }];
-
 
     NSError *error = nil;
     [context save:&error];

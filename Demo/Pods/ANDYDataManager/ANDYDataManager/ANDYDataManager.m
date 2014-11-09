@@ -3,7 +3,7 @@
 //  Andy
 //
 //  Created by Elvis Nunez on 10/29/13.
-//  Copyright (c) 2013 Andy. All rights reserved.
+//  Copyright (c) 2014 Andy. All rights reserved.
 //
 
 #import "ANDYDataManager.h"
@@ -147,7 +147,7 @@
     _mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     _mainContext.undoManager = nil;
     _mainContext.parentContext = self.writerContext;
-    _mainContext.mergePolicy = NSOverwriteMergePolicy;
+    _mainContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
     [self setUpSaveNotificationForContext:_mainContext];
 
@@ -160,7 +160,7 @@
 
     _writerContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     _writerContext.undoManager = nil;
-    _writerContext.mergePolicy = NSOverwriteMergePolicy;
+    _writerContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
     _writerContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
 
     return _writerContext;
@@ -249,7 +249,7 @@
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = [[self sharedManager] persistentStoreCoordinator];
     context.undoManager = nil;
-    context.mergePolicy = NSOverwriteMergePolicy;
+    context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
     [[NSNotificationCenter defaultCenter] addObserver:[self sharedManager]
                                              selector:@selector(backgroundThreadDidSave:)

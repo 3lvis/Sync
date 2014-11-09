@@ -1,5 +1,5 @@
 PODS:
-  - ANDYDataManager (1.2.1)
+  - ANDYDataManager (1.2.2)
   - ANDYFetchedResultsTableDataSource (1.0)
   - NSDictionary-ANDYSafeValue (0.1)
   - NSJSONSerialization-ANDYJSONFile (1.1)
@@ -12,19 +12,14 @@ DEPENDENCIES:
   - NSDictionary-ANDYSafeValue
   - NSJSONSerialization-ANDYJSONFile
   - NSManagedObject-ANDYMapChanges
-  - NSManagedObject-HYPPropertyMapper (from `https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git`, branch `feature/reserved-words`)
-
-EXTERNAL SOURCES:
-  NSManagedObject-HYPPropertyMapper:
-    :branch: feature/reserved-words
-    :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
+  - NSManagedObject-HYPPropertyMapper
 
 SPEC CHECKSUMS:
-  ANDYDataManager: fc5dab4ab5e221131547bc144516c0223eaa463b
+  ANDYDataManager: 90841504e0456c952629b41fe7d4d018e38337f8
   ANDYFetchedResultsTableDataSource: cfb47ba62539ec20437cc9844f4d0dd0ac90ef4e
   NSDictionary-ANDYSafeValue: 5b7d0c0b1b7285191fb0f94e6dda13b86dec2dee
   NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
   NSManagedObject-ANDYMapChanges: 601d09f7ca0c85767579197fa83bb7ab1f5ebb36
-  NSManagedObject-HYPPropertyMapper: 1dab52c7cd5d200995dfff14933d411aab32084b
+  NSManagedObject-HYPPropertyMapper: 50972a6b468069bf05f4875b85f097316d17d8c0
 
 COCOAPODS: 0.34.4
