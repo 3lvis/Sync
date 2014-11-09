@@ -164,9 +164,7 @@
         BOOL hasValidManyToManyRelationship = (parent &&
                                                relationship.inverseRelationship.isToMany &&
                                                [parent.entity.name isEqualToString:relationship.destinationEntity.name]);
-        if (hasValidManyToManyRelationship) {
-            [self kipu_addObjectToParent:parent usingRelationship:relationship];
-        }
+        if (hasValidManyToManyRelationship) [self kipu_addObjectToParent:parent usingRelationship:relationship];
 
         return;
     }
@@ -198,18 +196,9 @@
 - (void)kipu_addObjectToParent:(NSManagedObject *)parent
              usingRelationship:(NSRelationshipDescription *)relationship
 {
-    [self willAccessValueForKey:relationship.name];
     NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
-    [self didAccessValueForKey:relationship.name];
     [relatedObjects addObject:parent];
-
-    [self willChangeValueForKey:relationship.name
-                withSetMutation:NSKeyValueSetSetMutation
-                   usingObjects:relatedObjects];
     [self setValue:relatedObjects forKey:relationship.name];
-    [self didChangeValueForKey:relationship.name
-               withSetMutation:NSKeyValueSetSetMutation
-                  usingObjects:relatedObjects];
 }
 
 @end
