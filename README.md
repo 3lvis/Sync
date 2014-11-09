@@ -12,7 +12,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 * Handles operations in safe background threats
 * Thread safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
-* Auto-mapping of relationships (one-to-one and one-to-many)
+* Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
 * Smart-updates, only updates your NSManagedObjects if the server values are different (useful when using NSFetchedResultsController delegates)
 
 ## Interface
