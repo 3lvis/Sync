@@ -12,6 +12,7 @@
 		1427A2521A06DB7900312FFA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1427A2511A06DB7900312FFA /* Podfile */; };
 		143FB6211A064F6C000EEA94 /* Kipu.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 143FB6201A064F6C000EEA94 /* Kipu.podspec */; };
 		148D14031A06283300C77DAA /* Kipu.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D14021A06283300C77DAA /* Kipu.m */; };
+		1493CD291A0ECCF00020E447 /* tagged_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1493CD281A0ECCF00020E447 /* tagged_notes.json */; };
 		14A183851A0633D700BE8106 /* users_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183831A0633D700BE8106 /* users_a.json */; };
 		14A183861A0633D700BE8106 /* users_b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A183841A0633D700BE8106 /* users_b.json */; };
 		14A4C9991A067E8F0030951B /* users_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4C9981A067E8F0030951B /* users_notes.json */; };
@@ -31,6 +32,7 @@
 		143FB6201A064F6C000EEA94 /* Kipu.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Kipu.podspec; path = ../Kipu.podspec; sourceTree = "<group>"; };
 		148D14011A06283300C77DAA /* Kipu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kipu.h; sourceTree = "<group>"; };
 		148D14021A06283300C77DAA /* Kipu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kipu.m; sourceTree = "<group>"; };
+		1493CD281A0ECCF00020E447 /* tagged_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tagged_notes.json; sourceTree = "<group>"; };
 		14A183831A0633D700BE8106 /* users_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_a.json; sourceTree = "<group>"; };
 		14A183841A0633D700BE8106 /* users_b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_b.json; sourceTree = "<group>"; };
 		14A4C9981A067E8F0030951B /* users_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_notes.json; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				14A183841A0633D700BE8106 /* users_b.json */,
 				14A4C9981A067E8F0030951B /* users_notes.json */,
 				141FBFD51A099C5100DD6A5C /* notes_for_user_a.json */,
+				1493CD281A0ECCF00020E447 /* tagged_notes.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				141FBFD61A099C5100DD6A5C /* notes_for_user_a.json in Resources */,
+				1493CD291A0ECCF00020E447 /* tagged_notes.json in Resources */,
 				14A183851A0633D700BE8106 /* users_a.json in Resources */,
 				14C4183F1A019A1500636FD6 /* README.md in Resources */,
 				14A4C9991A067E8F0030951B /* users_notes.json in Resources */,

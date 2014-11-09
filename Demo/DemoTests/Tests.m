@@ -157,10 +157,8 @@
     NSManagedObjectContext *background = [ANDYDataManager backgroundContext];
     [background performBlock:^{
 
-        // Create new user in the background
         NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                               inManagedObjectContext:background];
-
         [user setValue:@6 forKey:@"userID"];
         [user setValue:@"Shawn Merrill" forKey:@"name"];
         [user setValue:@"firstupdate@ovium.com" forKey:@"email"];
@@ -173,7 +171,6 @@
         [mainContext performBlockAndWait:^{
             [[ANDYDataManager sharedManager] persistContext];
 
-            // Retreive created user for another request
             NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
             userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
             NSArray *users = [mainContext executeFetchRequest:userRequest error:nil];
@@ -206,6 +203,55 @@
     }];
 
     [self waitForExpectationsWithTimeout:5.0f handler:nil];
+}
+
+- (void)testTaggedNotesForUser
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"tagged_notes.json" inBundle:bundle];
+
+    [Kipu processChanges:objects
+         usingEntityName:@"Note"
+               predicate:nil
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+
+                  NSError *notesError = nil;
+                  NSFetchRequest *notesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                  NSInteger numberOfNotes = [mainContext countForFetchRequest:notesRequest error:&notesError];
+                  if (notesError) NSLog(@"notesError: %@", notesError);
+                  XCTAssertEqual(numberOfNotes, 5);
+
+                  NSError *notesFetchError = nil;
+                  notesRequest.predicate = [NSPredicate predicateWithFormat:@"noteID = %@", @0];
+                  NSArray *notes = [mainContext executeFetchRequest:notesRequest error:&notesFetchError];
+                  if (notesFetchError) NSLog(@"notesFetchError: %@", notesFetchError);
+                  NSManagedObject *note = [notes firstObject];
+                  XCTAssertEqual([[[note valueForKey:@"tags"] allObjects] count], 2,
+                                 @"Note with ID 0 should have 2 tags");
+
+                  NSError *tagsError = nil;
+                  NSFetchRequest *tagsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Tag"];
+                  NSInteger numberOfTags = [mainContext countForFetchRequest:tagsRequest error:&tagsError];
+                  if (tagsError) NSLog(@"tagsError: %@", tagsError);
+                  XCTAssertEqual(numberOfTags, 2);
+
+                  NSError *tagsFetchError = nil;
+                  tagsRequest.predicate = [NSPredicate predicateWithFormat:@"tagID = %@", @1];
+                  NSArray *tags = [mainContext executeFetchRequest:tagsRequest error:&tagsFetchError];
+                  if (tagsFetchError) NSLog(@"tagsFetchError: %@", tagsFetchError);
+                  NSManagedObject *tag = [tags firstObject];
+                  XCTAssertEqual([[[tag valueForKey:@"notes"] allObjects] count], 4,
+                                 @"Tag with ID 1 should have 4 notes");
+
+                  [expectation fulfill];
+              }];
+
+    [self waitForExpectationsWithTimeout:5.0f handler:nil];
+
 }
 
 @end

@@ -13,10 +13,19 @@
 
 @interface NSManagedObject (Kipu)
 
-- (void)processRelationshipsUsingDictionary:(NSDictionary *)objectDict
-                                  andParent:(NSManagedObject *)parent;
+- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context;
 
-- (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context;
+- (NSArray *)kipu_relationships;
+
+- (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+                                       andParent:(NSManagedObject *)parent;
+
+- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
+                 usingDictionary:(NSDictionary *)objectDict
+                       andParent:(NSManagedObject *)parent;
+
+- (void)kipu_addObjectToParent:(NSManagedObject *)parent
+             usingRelationship:(NSRelationshipDescription *)relationship;
 
 @end
 
@@ -54,7 +63,7 @@
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
 
-        NSManagedObject *safeParent = [parent safeObjectInContext:context];
+        NSManagedObject *safeParent = [parent kipu_safeObjectInContext:context];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self processChanges:changes
@@ -82,14 +91,15 @@
                                 NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                                          inManagedObjectContext:context];
                                 [created hyp_fillWithDictionary:objectDict];
-
-                                [created processRelationshipsUsingDictionary:objectDict andParent:parent];
+                                [created kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
 
                             } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
 
                                 [object hyp_fillWithDictionary:objectDict];
+                                [object kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
 
                             }];
+
 
     NSError *error = nil;
     [context save:&error];
@@ -102,40 +112,7 @@
 
 @implementation NSManagedObject (Kipu)
 
-- (void)processRelationshipsUsingDictionary:(NSDictionary *)objectDict
-                                  andParent:(NSManagedObject *)parent
-{
-    NSMutableArray *relationships = [NSMutableArray array];
-
-    for (id propertyDescription in [self.entity properties]) {
-
-        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-            [relationships addObject:propertyDescription];
-        }
-    }
-
-    for (NSRelationshipDescription *relationship in relationships) {
-        if (relationship.isToMany) {
-            NSArray *childs = [objectDict andy_valueForKey:relationship.name];
-            if (!childs) continue;
-
-            NSString *childEntityName = relationship.destinationEntity.name;
-            NSString *inverseEntityName = relationship.inverseRelationship.name;
-            NSPredicate *childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
-
-            [Kipu processChanges:childs
-                 usingEntityName:childEntityName
-                       predicate:childPredicate
-                          parent:self
-                       inContext:self.managedObjectContext
-                      completion:nil];
-        } else if (parent) {
-            [self setValue:parent forKey:relationship.name];
-        }
-    }
-}
-
-- (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context
+- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
 {
     NSError *error = nil;
     NSString *entityName = self.entity.name;
@@ -146,6 +123,93 @@
     if (error) NSLog(@"parentError: %@", error);
     if (objects.count != 1) abort();
     return [objects firstObject];
+}
+
+- (NSArray *)kipu_relationships
+{
+    NSMutableArray *relationships = [NSMutableArray array];
+
+    for (id propertyDescription in [self.entity properties]) {
+
+        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+            [relationships addObject:propertyDescription];
+        }
+    }
+
+    return relationships;
+}
+
+- (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+                                       andParent:(NSManagedObject *)parent
+{
+    NSArray *relationships = [self kipu_relationships];
+
+    for (NSRelationshipDescription *relationship in relationships) {
+        if (relationship.isToMany) {
+
+            [self kipu_processRelationship:relationship usingDictionary:objectDict andParent:parent];
+
+        } else if (parent) {
+            [self setValue:parent forKey:relationship.name];
+        }
+    }
+}
+
+- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
+                 usingDictionary:(NSDictionary *)objectDict
+                       andParent:(NSManagedObject *)parent
+{
+    NSArray *childs = [objectDict andy_valueForKey:relationship.name];
+    if (!childs) {
+        BOOL hasValidManyToManyRelationship = (parent &&
+                                               relationship.inverseRelationship.isToMany &&
+                                               [parent.entity.name isEqualToString:relationship.destinationEntity.name]);
+        if (hasValidManyToManyRelationship) {
+            [self kipu_addObjectToParent:parent usingRelationship:relationship];
+        }
+
+        return;
+    }
+
+    NSString *childEntityName = relationship.destinationEntity.name;
+    NSString *inverseEntityName = relationship.inverseRelationship.name;
+    NSPredicate *childPredicate;
+
+    if (relationship.inverseRelationship.isToMany) {
+        NSArray *childIDs = [childs valueForKey:@"id"];
+        NSString *destinationKey = [NSString stringWithFormat:@"%@ID", [childEntityName lowercaseString]];
+        if (childIDs.count == 1) {
+            childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationKey, [[childs valueForKey:@"id"] firstObject]];
+        } else {
+            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationship.name, destinationKey, [childs valueForKey:@"id"]];
+        }
+    } else {
+        childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
+    }
+
+    [Kipu processChanges:childs
+         usingEntityName:childEntityName
+               predicate:childPredicate
+                  parent:self
+               inContext:self.managedObjectContext
+              completion:nil];
+}
+
+- (void)kipu_addObjectToParent:(NSManagedObject *)parent
+             usingRelationship:(NSRelationshipDescription *)relationship
+{
+    [self willAccessValueForKey:relationship.name];
+    NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
+    [self didAccessValueForKey:relationship.name];
+    [relatedObjects addObject:parent];
+
+    [self willChangeValueForKey:relationship.name
+                withSetMutation:NSKeyValueSetSetMutation
+                   usingObjects:relatedObjects];
+    [self setValue:relatedObjects forKey:relationship.name];
+    [self didChangeValueForKey:relationship.name
+               withSetMutation:NSKeyValueSetSetMutation
+                  usingObjects:relatedObjects];
 }
 
 @end
