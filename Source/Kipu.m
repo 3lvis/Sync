@@ -23,10 +23,6 @@
 - (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
                  usingDictionary:(NSDictionary *)objectDict
                        andParent:(NSManagedObject *)parent;
-
-- (void)kipu_addObjectToParent:(NSManagedObject *)parent
-             usingRelationship:(NSRelationshipDescription *)relationship;
-
 @end
 
 @implementation Kipu
@@ -164,7 +160,11 @@
         BOOL hasValidManyToManyRelationship = (parent &&
                                                relationship.inverseRelationship.isToMany &&
                                                [parent.entity.name isEqualToString:relationship.destinationEntity.name]);
-        if (hasValidManyToManyRelationship) [self kipu_addObjectToParent:parent usingRelationship:relationship];
+        if (hasValidManyToManyRelationship) {
+            NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
+            [relatedObjects addObject:parent];
+            [self setValue:relatedObjects forKey:relationship.name];
+        }
 
         return;
     }
@@ -191,14 +191,6 @@
                   parent:self
                inContext:self.managedObjectContext
               completion:nil];
-}
-
-- (void)kipu_addObjectToParent:(NSManagedObject *)parent
-             usingRelationship:(NSRelationshipDescription *)relationship
-{
-    NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
-    [relatedObjects addObject:parent];
-    [self setValue:relatedObjects forKey:relationship.name];
 }
 
 @end
