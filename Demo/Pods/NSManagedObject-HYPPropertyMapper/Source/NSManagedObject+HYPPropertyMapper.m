@@ -13,16 +13,49 @@
 
 - (NSString *)remoteString
 {
-    return [[self replacementIdentifier:@"_"] lowerCaseFirstLetter];
+    NSString *processedString = [self replacementIdentifier:@"_"];
+
+    if ([processedString containsWord:@"date"]) {
+        NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date"
+                                                                              withString:@"_at"];
+        if ([[NSString dateAttributes] containsObject:replacedString]) {
+            processedString = replacedString;
+        }
+    }
+
+    return [processedString lowerCaseFirstLetter];
 }
 
 - (NSString *)localString
 {
-    NSString *processedString = [self replacementIdentifier:@""];
+    NSString *processedString = self;
+
+    if ([self containsWord:@"at"]) {
+        processedString = [self stringByReplacingOccurrencesOfString:@"_at"
+                                                          withString:@"_date"];
+    }
+
+    processedString = [processedString replacementIdentifier:@""];
 
     BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
 
     return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString lowerCaseFirstLetter];
+}
+
+- (BOOL)containsWord:(NSString *)word
+{
+    BOOL found = NO;
+
+    NSArray *components = [self componentsSeparatedByString:@"_"];
+
+    for (NSString *component in components) {
+        if ([component isEqualToString:word]) {
+            found = YES;
+            break;
+        }
+    }
+
+    return found;
 }
 
 - (NSString *)lowerCaseFirstLetter
@@ -82,6 +115,11 @@
 + (NSArray *)acronyms
 {
     return @[@"id", @"pdf", @"url", @"png", @"jpg"];
+}
+
++ (NSArray *)dateAttributes
+{
+    return @[@"created_at", @"updated_at"];
 }
 
 @end

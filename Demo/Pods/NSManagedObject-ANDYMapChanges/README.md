@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/NSManagedObject-ANDYMapChanges.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYMapChanges)
 [![Platform](https://img.shields.io/cocoapods/p/NSManagedObject-ANDYMapChanges.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYMapChanges)
 
-This is a category on NSManagedObject that helps you to evaluate insertions, deletions and updates by comparing your JSON dictionary with your CoreData local objects.
+This is a category on NSManagedObject that helps you to evaluate insertions, deletions, updates and uniquing by comparing your JSON dictionary with your CoreData local objects.
 
 ## The magic
 

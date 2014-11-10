@@ -44,10 +44,16 @@
         for (NSDictionary *object in objects) {
 
             NSNumber *fetchedID = [object valueForKeyPath:localKey];
+            if (!fetchedID) continue;
 
-            if (fetchedID) [dictionary setObject:[object valueForKeyPath:@"objectID"] forKey:fetchedID];
+            NSManagedObjectID *objectID = [object valueForKeyPath:@"objectID"];
+
+            if ([dictionary objectForKey:fetchedID]) {
+                [context deleteObject:[context objectWithID:objectID]];
+            } else {
+                [dictionary setObject:objectID forKey:fetchedID];
+            }
         }
-
     }];
 
     return dictionary;

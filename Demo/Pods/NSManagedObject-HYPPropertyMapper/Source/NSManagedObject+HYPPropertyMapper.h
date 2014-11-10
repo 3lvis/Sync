@@ -13,6 +13,7 @@
 - (NSString *)localString;
 - (NSString *)replacementIdentifier:(NSString *)replacementString;
 - (NSString *)lowerCaseFirstLetter;
+- (BOOL)containsWord:(NSString *)word;
 
 @end
 
