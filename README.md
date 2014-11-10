@@ -30,7 +30,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 #### Model
 
-![Model](https://github.com/NSElvis/Kipu/blob/master/Images/model.png)
+![Model](https://github.com/NSElvis/Kipu/blob/master/Images/coredata-model.png)
 
 #### JSON
 
