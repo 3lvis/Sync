@@ -100,7 +100,18 @@
 
             request.predicate = [NSPredicate predicateWithFormat:@"userID == %@", @7];
             NSArray *results = [mainContext executeFetchRequest:request error:nil];
-            XCTAssertEqualObjects([[results firstObject] valueForKey:@"email"], @"secondupdated@ovium.com");
+            NSManagedObject *result = [results firstObject];
+            XCTAssertEqualObjects([result valueForKey:@"email"], @"secondupdated@ovium.com");
+
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            dateFormat.dateFormat = @"yyyy-MM-dd";
+            dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+
+            NSDate *createdDate = [dateFormat dateFromString:@"2014-02-14"];
+            XCTAssertEqualObjects([result valueForKey:@"createdDate"], createdDate);
+
+            NSDate *updatedDate = [dateFormat dateFromString:@"2014-02-17"];
+            XCTAssertEqualObjects([result valueForKey:@"updatedDate"], updatedDate);
         }];
 
     }];
