@@ -40,10 +40,14 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
     "id": 6,
     "name": "Shawn Merrill",
     "email": "shawn@ovium.com",
+    "created_at": "2014-02-14T04:30:10+00:00",
+    "updated_at": "2014-02-17T10:01:12+00:00",
     "notes": [
       {
         "id": 0,
-        "text": "Shawn Merril's diary, episode 1"
+        "text": "Shawn Merril's diary, episode 1",
+        "created_at": "2014-03-11T19:11:00+00:00",
+        "updated_at": "2014-04-18T22:01:00+00:00"
       }
     ]
   }
