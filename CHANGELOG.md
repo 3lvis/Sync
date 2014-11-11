@@ -5,4 +5,4 @@ Changelog
 First release
 
 ## 0.2
-*Added many-to-many support
+* Added many-to-many support
