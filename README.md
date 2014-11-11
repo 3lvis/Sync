@@ -70,12 +70,6 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 `iOS 7`, `CoreData`, [`ANDYDataManager CoreData stack`](https://github.com/NSElvis/ANDYDataManager)
 
-## Installation
-
-**Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
-
-`pod 'Kipu'`
-
 ## Components
 
 **Kipu** wouldn't be possible without the help of this *fully tested* components:
@@ -87,6 +81,12 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their CoreData counterparts, it does most of it's job using the paradigm "_convention over configuration_"
 
 ## Getting Started
+
+### Installation
+
+**Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+
+`pod 'Kipu'`
 
 ### ANDYDataManager
 
