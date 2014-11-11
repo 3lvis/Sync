@@ -14,6 +14,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
 * Smart-updates, only updates your NSManagedObjects if the server values are different (useful when using NSFetchedResultsController delegates)
+* Uniquing, CoreData does this based on `objectID`s, we use your remote key (such as `id`) for this
 
 ## Interface
 
