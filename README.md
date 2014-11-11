@@ -86,6 +86,42 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their CoreData counterparts, it does most of it's job using the paradigm "_convention over configuration_"
 
+## Getting Started
+
+### ANDYDataManager
+
+Replace your CoreData Stack with this:
+
+```objc
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    [[ANDYDataManager sharedManager] persistContext];
+}
+```
+Replace any call to your `managedObjectContext` used in the main thread with this:
+
+```objc
+[[ANDYDataManager sharedManager] mainContext];
+```
+
+### NSManagedObject-HYPPropertyMapper
+
+Your CoreData models should match your backend entities, your classes can have a different name.
+Your fields should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
+
+There are only two exceptions to this rule:
+
+* `id`s should match `entityNameID`, for example for an entity user the `id` should match `userID`
+* `created_at` and `updated_at` should match `createdDate` and `updatedDate`
+
+### Networking
+
+You are free to use any networking library or NSURLConnection.
+
+### Finally
+
+You are ready to go, check the [Real World Example](https://github.com/NSElvis/Kipu#real-world-example) for how to use Kipu.
+
 ## Author
 
 Elvis Nuñez, [hello@nselvis.com](mailto:hello@nselvis.com)
