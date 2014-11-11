@@ -80,8 +80,6 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 **Kipu** wouldn't be possible without the help of this *fully tested* components:
 
-Kipu is just the tip of a collection of very task focused components:
-
 * [**ANDYDataManager**](https://github.com/NSElvis/ANDYDataManager): CoreData stack and Thread safe saving
 
 * [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing CoreData does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
