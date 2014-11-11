@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-//#import "ANDYDataManager.h"
+#import "ANDYDataManager.h"
 #import "ViewController.h"
 
 @implementation AppDelegate
@@ -23,9 +23,9 @@
     return YES;
 }
 
-//- (void)applicationWillTerminate:(UIApplication *)application
-//{
-//    [[ANDYDataManager sharedManager] persistContext];
-//}
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    [[ANDYDataManager sharedManager] persistContext];
+}
 
 @end
