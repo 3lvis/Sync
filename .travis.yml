@@ -1,5 +1,5 @@
 language: objective-c
-script: xctool -workspace Demo/Kipu.xcworkspace -scheme Kipu -sdk iphonesimulator build test
+script: xctool -workspace Tests/Kipu.xcworkspace -scheme Kipu -sdk iphonesimulator build test
 before_install:
   - brew update
   - brew unlink xctool
