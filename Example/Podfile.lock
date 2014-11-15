@@ -12,12 +12,16 @@ PODS:
 
 DEPENDENCIES:
   - ANDYFetchedResultsTableDataSource
-  - Kipu
+  - Kipu (from `https://github.com/NSElvis/Kipu.git`)
+
+EXTERNAL SOURCES:
+  Kipu:
+    :git: https://github.com/NSElvis/Kipu.git
 
 SPEC CHECKSUMS:
   ANDYDataManager: 90841504e0456c952629b41fe7d4d018e38337f8
   ANDYFetchedResultsTableDataSource: cfb47ba62539ec20437cc9844f4d0dd0ac90ef4e
-  Kipu: 96a9915123888e7dbbd47126de7d9ae7a50dc785
+  Kipu: e9e633a6995f52dadd1985e31451355b0b1c3fbf
   NSDictionary-ANDYSafeValue: 5b7d0c0b1b7285191fb0f94e6dda13b86dec2dee
   NSManagedObject-ANDYMapChanges: 5cbaddf02aa4c92c3216eb623270a45ca29e811c
   NSManagedObject-HYPPropertyMapper: f2ccd91a6ced72e749f9609171bf9d64e15151c2

@@ -63,12 +63,20 @@
     [super viewDidLoad];
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    self.tableView.dataSource = self.dataSource;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
+    [self fetchData];
+}
+
+#pragma mark -
+
+- (void)fetchData
+{
     NSURL *url = [NSURL URLWithString:@"https://api.app.net/posts/stream/global"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSOperationQueue *queue = [NSOperationQueue new];
