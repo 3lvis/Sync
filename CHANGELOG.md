@@ -6,4 +6,7 @@ First release
 
 ## 0.2
 * Added many-to-many support
-Vhh yuhfor rjr
+
+## 0.3
+* Added many-to-one support
+* Added Example with APP.NET API
