@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "Kipu"
-s.version          = "0.2"
+s.version          = "0.3"
 s.summary          = "A cape, a sword and networking superpowers for your Core Data models"
 s.description      = <<-DESC
 This is a category that eases your every day job of parsing an API and getting it into CoreData.
