@@ -13,7 +13,7 @@
 
 @interface NSManagedObject (Kipu)
 
-- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context;
+- (NSManagedObject *)kipu_copyInContext:(NSManagedObjectContext *)context;
 
 - (NSArray *)kipu_relationships;
 
@@ -64,7 +64,7 @@
 {
     [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
 
-        NSManagedObject *safeParent = [parent kipu_safeObjectInContext:context];
+        NSManagedObject *safeParent = [parent kipu_copyInContext:context];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self processChanges:changes
@@ -126,7 +126,7 @@
 
 @implementation NSManagedObject (Kipu)
 
-- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
+- (NSManagedObject *)kipu_copyInContext:(NSManagedObjectContext *)context
 {
     NSString *localKey = [NSString stringWithFormat:@"%@ID", [self.entity.name lowercaseString]];
     NSString *remoteID = [self valueForKey:localKey];
