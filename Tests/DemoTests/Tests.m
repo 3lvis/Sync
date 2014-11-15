@@ -262,7 +262,52 @@
               }];
 
     [self waitForExpectationsWithTimeout:5.0f handler:nil];
+}
 
+- (void)testUsersAndCompanies
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_company.json" inBundle:bundle];
+
+    [Kipu processChanges:objects
+         usingEntityName:@"User"
+               predicate:nil
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [[ANDYDataManager sharedManager] mainContext];
+
+                  NSError *usersError = nil;
+                  NSFetchRequest *usersRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                  NSInteger numberOfUsers = [mainContext countForFetchRequest:usersRequest error:&usersError];
+                  if (usersError) NSLog(@"usersError: %@", usersError);
+                  XCTAssertEqual(numberOfUsers, 5);
+
+                  NSError *usersFetchError = nil;
+                  usersRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @0];
+                  NSArray *users = [mainContext executeFetchRequest:usersRequest error:&usersFetchError];
+                  if (usersFetchError) NSLog(@"usersFetchError: %@", usersFetchError);
+                  NSManagedObject *user = [users firstObject];
+                  XCTAssertEqualObjects([[user valueForKey:@"company"] valueForKey:@"name"], @"Apple");
+
+                  NSError *companiesError = nil;
+                  NSFetchRequest *companiesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Company"];
+                  NSInteger numberOfCompanies = [mainContext countForFetchRequest:companiesRequest error:&companiesError];
+                  if (companiesError) NSLog(@"companiesError: %@", companiesError);
+                  XCTAssertEqual(numberOfCompanies, 2);
+
+                  NSError *companiesFetchError = nil;
+                  companiesRequest.predicate = [NSPredicate predicateWithFormat:@"companyID = %@", @1];
+                  NSArray *companies = [mainContext executeFetchRequest:companiesRequest error:&companiesFetchError];
+                  if (companiesFetchError) NSLog(@"companiesFetchError: %@", companiesFetchError);
+                  NSManagedObject *company = [companies firstObject];
+                  XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
+
+                  [expectation fulfill];
+              }];
+
+    [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
 @end

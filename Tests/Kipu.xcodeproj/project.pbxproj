@@ -21,6 +21,7 @@
 		14C4183C1A019A1500636FD6 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418381A019A1500636FD6 /* CONTRIBUTING.md */; };
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
 		14C4183F1A019A1500636FD6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183B1A019A1500636FD6 /* README.md */; };
+		14C712AC1A13493000147789 /* users_company.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C712AB1A13493000147789 /* users_company.json */; };
 		9F16646232C444BB92855655 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 233D77625AC7BD94ED7CD47D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		14C418381A019A1500636FD6 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C418391A019A1500636FD6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C4183B1A019A1500636FD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		14C712AB1A13493000147789 /* users_company.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_company.json; sourceTree = "<group>"; };
 		233D77625AC7BD94ED7CD47D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BB79AA3F9D07463DE2BDAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +91,7 @@
 				14A4C9981A067E8F0030951B /* users_notes.json */,
 				141FBFD51A099C5100DD6A5C /* notes_for_user_a.json */,
 				1493CD281A0ECCF00020E447 /* tagged_notes.json */,
+				14C712AB1A13493000147789 /* users_company.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
@@ -202,6 +205,7 @@
 			files = (
 				141FBFD61A099C5100DD6A5C /* notes_for_user_a.json in Resources */,
 				1493CD291A0ECCF00020E447 /* tagged_notes.json in Resources */,
+				14C712AC1A13493000147789 /* users_company.json in Resources */,
 				14A183851A0633D700BE8106 /* users_a.json in Resources */,
 				14C4183F1A019A1500636FD6 /* README.md in Resources */,
 				14A4C9991A067E8F0030951B /* users_notes.json in Resources */,
