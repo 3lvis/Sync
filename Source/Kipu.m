@@ -170,16 +170,16 @@
                        usingDictionary:(NSDictionary *)objectDict
                              andParent:(NSManagedObject *)parent
 {
-    NSString *childEntityName   = relationship.destinationEntity.name;
-    NSString *parentEntityName  = parent.entity.name;
+    NSString *childEntityName = relationship.destinationEntity.name;
+    NSString *parentEntityName = parent.entity.name;
     NSString *inverseEntityName = relationship.inverseRelationship.name;
     NSString *relationshipName = relationship.name;
-    BOOL isToMany = relationship.inverseRelationship.isToMany;
+    BOOL inverseIsToMany = relationship.inverseRelationship.isToMany;
     NSArray *childs = [objectDict andy_valueForKey:relationshipName];
 
     if (!childs) {
         BOOL hasValidManyToManyRelationship = (parent &&
-                                               isToMany &&
+                                               inverseIsToMany &&
                                                [parentEntityName isEqualToString:childEntityName]);
         if (hasValidManyToManyRelationship) {
             NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationshipName];
@@ -192,7 +192,7 @@
 
     NSPredicate *childPredicate;
 
-    if (isToMany) {
+    if (inverseIsToMany) {
         NSArray *childIDs = [childs valueForKey:@"id"];
         NSString *destinationKey = [NSString stringWithFormat:@"%@ID", [childEntityName lowercaseString]];
         if (childIDs.count == 1) {
