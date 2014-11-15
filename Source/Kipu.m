@@ -170,31 +170,35 @@
                        usingDictionary:(NSDictionary *)objectDict
                              andParent:(NSManagedObject *)parent
 {
-    NSArray *childs = [objectDict andy_valueForKey:relationship.name];
+    NSString *childEntityName   = relationship.destinationEntity.name;
+    NSString *parentEntityName  = parent.entity.name;
+    NSString *inverseEntityName = relationship.inverseRelationship.name;
+    NSString *relationshipName = relationship.name;
+    BOOL isToMany = relationship.inverseRelationship.isToMany;
+    NSArray *childs = [objectDict andy_valueForKey:relationshipName];
+
     if (!childs) {
         BOOL hasValidManyToManyRelationship = (parent &&
-                                               relationship.inverseRelationship.isToMany &&
-                                               [parent.entity.name isEqualToString:relationship.destinationEntity.name]);
+                                               isToMany &&
+                                               [parentEntityName isEqualToString:childEntityName]);
         if (hasValidManyToManyRelationship) {
-            NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
+            NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationshipName];
             [relatedObjects addObject:parent];
-            [self setValue:relatedObjects forKey:relationship.name];
+            [self setValue:relatedObjects forKey:relationshipName];
         }
 
         return;
     }
 
-    NSString *childEntityName = relationship.destinationEntity.name;
-    NSString *inverseEntityName = relationship.inverseRelationship.name;
     NSPredicate *childPredicate;
 
-    if (relationship.inverseRelationship.isToMany) {
+    if (isToMany) {
         NSArray *childIDs = [childs valueForKey:@"id"];
         NSString *destinationKey = [NSString stringWithFormat:@"%@ID", [childEntityName lowercaseString]];
         if (childIDs.count == 1) {
             childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationKey, [[childs valueForKey:@"id"] firstObject]];
         } else {
-            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationship.name, destinationKey, [childs valueForKey:@"id"]];
+            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationshipName, destinationKey, [childs valueForKey:@"id"]];
         }
     } else {
         childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
