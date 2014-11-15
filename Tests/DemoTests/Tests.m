@@ -285,11 +285,11 @@
                   XCTAssertEqual(numberOfUsers, 5);
 
                   NSError *usersFetchError = nil;
-                  usersRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @1];
+                  usersRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @0];
                   NSArray *users = [mainContext executeFetchRequest:usersRequest error:&usersFetchError];
                   if (usersFetchError) NSLog(@"usersFetchError: %@", usersFetchError);
                   NSManagedObject *user = [users firstObject];
-                  XCTAssertEqual([[user valueForKey:@"company"] valueForKey:@"name"], @"Apple");
+                  XCTAssertEqualObjects([[user valueForKey:@"company"] valueForKey:@"name"], @"Apple");
 
                   NSError *companiesError = nil;
                   NSFetchRequest *companiesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Company"];
@@ -302,7 +302,7 @@
                   NSArray *companies = [mainContext executeFetchRequest:companiesRequest error:&companiesFetchError];
                   if (companiesFetchError) NSLog(@"companiesFetchError: %@", companiesFetchError);
                   NSManagedObject *company = [companies firstObject];
-                  XCTAssertEqual([company valueForKey:@"name"], @"Facebook");
+                  XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
 
                   [expectation fulfill];
               }];

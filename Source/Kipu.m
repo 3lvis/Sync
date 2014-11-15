@@ -104,21 +104,30 @@
     if (completion) completion(error);
 }
 
++ (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context
+                              entityName:(NSString *)entityName
+                                remoteID:(id)remoteID
+{
+    NSError *error = nil;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    NSString *localKey = [NSString stringWithFormat:@"%@ID", [entityName lowercaseString]];
+    request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
+
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"parentError: %@", error);
+    return [objects firstObject];
+}
+
 @end
 
 @implementation NSManagedObject (Kipu)
 
 - (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
 {
-    NSError *error = nil;
-    NSString *entityName = self.entity.name;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
-    NSString *localKey = [NSString stringWithFormat:@"%@ID", [entityName lowercaseString]];
-    request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, [self valueForKey:localKey]];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) NSLog(@"parentError: %@", error);
-    if (objects.count != 1) abort();
-    return [objects firstObject];
+    NSString *localKey = [NSString stringWithFormat:@"%@ID", [self.entity.name lowercaseString]];
+    NSString *remoteID = [self valueForKey:localKey];
+
+    return [Kipu safeObjectInContext:context entityName:self.entity.name remoteID:remoteID];
 }
 
 - (NSArray *)kipu_relationships
@@ -145,8 +154,27 @@
 
             [self kipu_processRelationship:relationship usingDictionary:objectDict andParent:parent];
 
-        } else if (parent) {
-            [self setValue:parent forKey:relationship.name];
+        } else {
+            if (parent) {
+                [self setValue:parent forKey:relationship.name];
+            } else {
+                NSString *entityName = [relationship.name capitalizedString];
+                NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
+                if (!filteredObjectDict) continue;
+
+                NSManagedObject *object = [Kipu safeObjectInContext:self.managedObjectContext
+                                                         entityName:entityName
+                                                           remoteID:[filteredObjectDict andy_valueForKey:@"id"]];
+                if (object) {
+                    [object hyp_fillWithDictionary:filteredObjectDict];
+                } else {
+                    object = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                                           inManagedObjectContext:self.managedObjectContext];
+                    [object hyp_fillWithDictionary:filteredObjectDict];
+                }
+
+                [self setValue:object forKey:relationship.name];
+            }
         }
     }
 }
