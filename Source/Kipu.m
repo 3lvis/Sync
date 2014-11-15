@@ -103,7 +103,7 @@
 
     NSError *error = nil;
     [context save:&error];
-    if (error) NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
+    if (error) NSLog(@"Kipu (error while saving %@): %@", entityName, [error description]);
 
     if (completion) completion(error);
 }
