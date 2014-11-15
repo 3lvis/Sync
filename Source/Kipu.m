@@ -20,9 +20,13 @@
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
                                        andParent:(NSManagedObject *)parent;
 
-- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
-                 usingDictionary:(NSDictionary *)objectDict
-                       andParent:(NSManagedObject *)parent;
+- (void)kipu_processToManyRelationship:(NSRelationshipDescription *)relationship
+                       usingDictionary:(NSDictionary *)objectDict
+                             andParent:(NSManagedObject *)parent;
+
+- (void)kipu_processToOneRelationship:(NSRelationshipDescription *)relationship
+                      usingDictionary:(NSDictionary *)objectDict;
+
 @end
 
 @implementation Kipu
@@ -151,37 +155,20 @@
 
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
-
-            [self kipu_processRelationship:relationship usingDictionary:objectDict andParent:parent];
-
+            [self kipu_processToManyRelationship:relationship usingDictionary:objectDict andParent:parent];
         } else {
             if (parent) {
                 [self setValue:parent forKey:relationship.name];
             } else {
-                NSString *entityName = [relationship.name capitalizedString];
-                NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
-                if (!filteredObjectDict) continue;
-
-                NSManagedObject *object = [Kipu safeObjectInContext:self.managedObjectContext
-                                                         entityName:entityName
-                                                           remoteID:[filteredObjectDict andy_valueForKey:@"id"]];
-                if (object) {
-                    [object hyp_fillWithDictionary:filteredObjectDict];
-                } else {
-                    object = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                                           inManagedObjectContext:self.managedObjectContext];
-                    [object hyp_fillWithDictionary:filteredObjectDict];
-                }
-
-                [self setValue:object forKey:relationship.name];
+                [self kipu_processToOneRelationship:relationship usingDictionary:objectDict];
             }
         }
     }
 }
 
-- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
-                 usingDictionary:(NSDictionary *)objectDict
-                       andParent:(NSManagedObject *)parent
+- (void)kipu_processToManyRelationship:(NSRelationshipDescription *)relationship
+                       usingDictionary:(NSDictionary *)objectDict
+                             andParent:(NSManagedObject *)parent
 {
     NSArray *childs = [objectDict andy_valueForKey:relationship.name];
     if (!childs) {
@@ -219,6 +206,27 @@
                   parent:self
                inContext:self.managedObjectContext
               completion:nil];
+}
+
+- (void)kipu_processToOneRelationship:(NSRelationshipDescription *)relationship
+                      usingDictionary:(NSDictionary *)objectDict
+{
+    NSString *entityName = [relationship.name capitalizedString];
+    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
+    if (!filteredObjectDict) return;
+
+    NSManagedObject *object = [Kipu safeObjectInContext:self.managedObjectContext
+                                             entityName:entityName
+                                               remoteID:[filteredObjectDict andy_valueForKey:@"id"]];
+    if (object) {
+        [object hyp_fillWithDictionary:filteredObjectDict];
+    } else {
+        object = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                               inManagedObjectContext:self.managedObjectContext];
+        [object hyp_fillWithDictionary:filteredObjectDict];
+    }
+
+    [self setValue:object forKey:relationship.name];
 }
 
 @end
