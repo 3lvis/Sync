@@ -120,7 +120,7 @@ You are free to use any networking library or NSURLConnection.
 
 ### Finally
 
-You are ready to go, check the [Real World Example](https://github.com/NSElvis/Kipu#real-world-example) for how to use Kipu.
+You are ready to go, check the [Simplify Example](https://github.com/NSElvis/Kipu#real-world-example) or the [Example Project](https://github.com/NSElvis/Kipu/tree/master/Example) for how to use Kipu.
 
 ## Author
 
