@@ -264,18 +264,23 @@
 
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             id value = [self valueForKey:[attributeDescription name]];
-            if (!value || [value isKindOfClass:[NSNull class]]) continue;
-
             NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
-            BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
-            if (isReservedKey) {
-                [key replaceOccurrencesOfString:[self remotePrefix]
-                                     withString:@""
-                                        options:NSCaseInsensitiveSearch
-                                          range:NSMakeRange(0, key.length)];
-            }
 
-            mutableDictionary[key] = value;
+            BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
+            if (nilOrNullValue) {
+                mutableDictionary[key] = [NSNull null];
+            } else {
+                NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
+                BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+                if (isReservedKey) {
+                    [key replaceOccurrencesOfString:[self remotePrefix]
+                                         withString:@""
+                                            options:NSCaseInsensitiveSearch
+                                              range:NSMakeRange(0, key.length)];
+                }
+
+                mutableDictionary[key] = value;
+            }
         }
     }
 

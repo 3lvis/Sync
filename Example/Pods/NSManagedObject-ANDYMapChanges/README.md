@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/NSManagedObject-ANDYMapChanges.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYMapChanges)
 [![Platform](https://img.shields.io/cocoapods/p/NSManagedObject-ANDYMapChanges.svg?style=flat)](http://cocoadocs.org/docsets/NSManagedObject-ANDYMapChanges)
 
-This is a category on NSManagedObject that helps you to evaluate insertions, deletions, updates and uniquing by comparing your JSON dictionary with your CoreData local objects.
+This is a category on NSManagedObject that helps you to evaluate insertions, deletions and updates by comparing your JSON dictionary with your CoreData local objects. It also provides uniquing for you locally stored objects.
 
 ## The magic
 
@@ -20,7 +20,7 @@ This is a category on NSManagedObject that helps you to evaluate insertions, del
 ## How to use
 
 ```objc
-- (void)importObjects:(NSArray *)objects usingContext:(NSManagedObjectContext *)context
+- (void)importObjects:(NSArray *)objects usingContext:(NSManagedObjectContext *)context error:(NSError *)error
 {
     [NSManagedObject andy_mapChanges:JSON
                            inContext:context
@@ -33,7 +33,7 @@ This is a category on NSManagedObject that helps you to evaluate insertions, del
                                 [user fillObjectWithAttributes:objectDict];
                             }];
 
-    [context save:nil];
+    [context save:&error];
 }
 ```
 
@@ -54,7 +54,7 @@ NSPredicate *predicate = [NSString stringWithFormat:@"inactive = YES"];
 
 ***
 
-*As a side note, you could use a [fancier property mapper](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/README.md) that does the `fillObjectWithAttributes` part for you.*
+*As a side note, you should use a [fancier property mapper](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/README.md) that does the `fillObjectWithAttributes` part for you.*
 
 ## Usage
 
