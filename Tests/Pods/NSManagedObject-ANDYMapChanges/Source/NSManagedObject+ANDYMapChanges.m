@@ -44,11 +44,10 @@
         for (NSDictionary *object in objects) {
 
             NSNumber *fetchedID = [object valueForKeyPath:localKey];
-            if (!fetchedID) continue;
 
             NSManagedObjectID *objectID = [object valueForKeyPath:@"objectID"];
 
-            if ([dictionary objectForKey:fetchedID]) {
+            if ([dictionary objectForKey:fetchedID] || !fetchedID) {
                 [context deleteObject:[context objectWithID:objectID]];
             } else {
                 [dictionary setObject:objectID forKey:fetchedID];
@@ -117,7 +116,8 @@
     }
 
     NSArray *fetchedObjectIDs = [dictionaryIDAndObjectID allKeys];
-    NSArray *remoteObjectIDs = [changes valueForKey:remoteKey];
+    NSMutableArray *remoteObjectIDs = [[changes valueForKey:remoteKey] mutableCopy];
+    [remoteObjectIDs removeObject:[NSNull null]];
 
     NSMutableSet *intersection = [NSMutableSet setWithArray:remoteObjectIDs];
     [intersection intersectSet:[NSSet setWithArray:fetchedObjectIDs]];

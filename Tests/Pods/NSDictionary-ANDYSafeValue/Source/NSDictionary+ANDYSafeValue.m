@@ -1,10 +1,3 @@
-//
-//  NSDictionary+ANDYSafeValue.m
-//
-//  Created by Elvis Nunez on 02/11/14.
-//  Copyright (c) 2014 Elvis Nuñez. All rights reserved.
-//
-
 #import "NSDictionary+ANDYSafeValue.h"
 
 @implementation NSDictionary (ANDYSafeValue)
@@ -13,7 +6,14 @@
 {
     if (!key) return nil;
 
-    id value = [self valueForKeyPath:key];
+    id value = nil;
+
+    @try {
+        value = [self valueForKeyPath:key];
+    }
+    @catch (NSException *exception) {
+        if (exception) return nil;
+    }
 
     if (!value) return nil;
 

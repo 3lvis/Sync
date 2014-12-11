@@ -19,6 +19,8 @@ typedef void (^ANDYConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
 
 @property (nonatomic, weak) id <ANDYFetchedResultsTableDataSourceDelegate> delegate;
 
+@property (nonatomic) BOOL controllerIsHidden;
+
 /*!
  * Used to configure UITableView's cell.
  */
@@ -56,5 +58,9 @@ typedef void (^ANDYConfigureBlock)(id cell, id item, NSIndexPath *indexPath);
 - (void)dataSource:(ANDYFetchedResultsTableDataSource *)dataSource
    didDeleteObject:(NSManagedObject *)object
      withIndexPath:(NSIndexPath *)indexPath;
+
+- (void)dataSource:(ANDYFetchedResultsTableDataSource *)dataSource
+     didMoveObject:(NSManagedObject *)object
+     withIndexPath:(NSIndexPath *)indexPath newIndexPath:(NSIndexPath *)newIndexPath;
 
 @end

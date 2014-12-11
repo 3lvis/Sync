@@ -79,3 +79,11 @@ Be Awesome
 ==========
 
 If something looks stupid, please create a friendly and constructive issue, getting your feedback would be awesome. Have a great day.
+
+## Author
+
+Elvis Nuñez, hello@nselvis.com
+
+## License
+
+**ANDYFetchedResultsTableDataSource** is available under the MIT license. See the LICENSE file for more info.

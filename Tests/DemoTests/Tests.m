@@ -1,11 +1,3 @@
-//
-//  DemoTests.m
-//  DemoTests
-//
-//  Created by Elvis Nunez on 5/16/14.
-//  Copyright (c) 2014 Andy. All rights reserved.
-//
-
 @import XCTest;
 
 @import CoreData;

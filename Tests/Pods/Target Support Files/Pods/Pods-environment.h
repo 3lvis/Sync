@@ -15,13 +15,13 @@
 // ANDYFetchedResultsTableDataSource
 #define COCOAPODS_POD_AVAILABLE_ANDYFetchedResultsTableDataSource
 #define COCOAPODS_VERSION_MAJOR_ANDYFetchedResultsTableDataSource 1
-#define COCOAPODS_VERSION_MINOR_ANDYFetchedResultsTableDataSource 0
+#define COCOAPODS_VERSION_MINOR_ANDYFetchedResultsTableDataSource 1
 #define COCOAPODS_VERSION_PATCH_ANDYFetchedResultsTableDataSource 0
 
 // NSDictionary-ANDYSafeValue
 #define COCOAPODS_POD_AVAILABLE_NSDictionary_ANDYSafeValue
 #define COCOAPODS_VERSION_MAJOR_NSDictionary_ANDYSafeValue 0
-#define COCOAPODS_VERSION_MINOR_NSDictionary_ANDYSafeValue 1
+#define COCOAPODS_VERSION_MINOR_NSDictionary_ANDYSafeValue 3
 #define COCOAPODS_VERSION_PATCH_NSDictionary_ANDYSafeValue 0
 
 // NSJSONSerialization-ANDYJSONFile
@@ -33,12 +33,12 @@
 // NSManagedObject-ANDYMapChanges
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_ANDYMapChanges
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_ANDYMapChanges 0
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYMapChanges 4
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYMapChanges 5
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_ANDYMapChanges 0
 
 // NSManagedObject-HYPPropertyMapper
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_HYPPropertyMapper
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_HYPPropertyMapper 2
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 1
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 2
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_HYPPropertyMapper 0
 
