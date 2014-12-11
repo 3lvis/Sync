@@ -1,9 +1,3 @@
-//
-//  Kipu.m
-//
-//  Copyright (c) 2014 Elvis Nuñez. All rights reserved.
-//
-
 #import "Kipu.h"
 
 #import "NSDictionary+ANDYSafeValue.h"
