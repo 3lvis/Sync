@@ -12,12 +12,6 @@
 #define COCOAPODS_VERSION_MINOR_ANDYDataManager 2
 #define COCOAPODS_VERSION_PATCH_ANDYDataManager 2
 
-// ANDYFetchedResultsTableDataSource
-#define COCOAPODS_POD_AVAILABLE_ANDYFetchedResultsTableDataSource
-#define COCOAPODS_VERSION_MAJOR_ANDYFetchedResultsTableDataSource 1
-#define COCOAPODS_VERSION_MINOR_ANDYFetchedResultsTableDataSource 1
-#define COCOAPODS_VERSION_PATCH_ANDYFetchedResultsTableDataSource 0
-
 // NSDictionary-ANDYSafeValue
 #define COCOAPODS_POD_AVAILABLE_NSDictionary_ANDYSafeValue
 #define COCOAPODS_VERSION_MAJOR_NSDictionary_ANDYSafeValue 0
