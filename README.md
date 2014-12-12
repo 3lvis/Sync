@@ -64,6 +64,9 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
               // Objects saved in CoreData, do something
            }];
 ```
+
+[(You can see another example here).](https://github.com/NSElvis/Kipu/blob/master/Example/Example/ViewController.m#L78)
+
 **PROFIT!**
 
 ## Requirements
