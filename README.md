@@ -9,7 +9,7 @@
 
 Kipu eases your every day job of parsing a `JSON` response and getting it into CoreData. It uses a convention over configuration paradigm to facilitate your workflow.
 
-* Handles operations in safe background threats
+* Handles operations in safe background threads
 * Thread safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
