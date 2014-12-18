@@ -2,8 +2,12 @@ PODS:
   - ANDYDataManager (1.2.2)
   - NSDictionary-ANDYSafeValue (0.3)
   - NSJSONSerialization-ANDYJSONFile (1.1)
-  - NSManagedObject-ANDYMapChanges (0.5)
-  - NSManagedObject-HYPPropertyMapper (2.2)
+  - NSManagedObject-ANDYMapChanges (0.5.1):
+    - NSManagedObject-ANDYObjectIDs
+  - NSManagedObject-ANDYObjectIDs (0.1)
+  - NSManagedObject-HYPPropertyMapper (2.4.3):
+    - NSString-HYPNetworking
+  - NSString-HYPNetworking (0.1)
 
 DEPENDENCIES:
   - ANDYDataManager
@@ -16,7 +20,9 @@ SPEC CHECKSUMS:
   ANDYDataManager: 90841504e0456c952629b41fe7d4d018e38337f8
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
   NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
-  NSManagedObject-ANDYMapChanges: 709eb89670110d1a6a7dcf909b2281099fd7b697
-  NSManagedObject-HYPPropertyMapper: a2053bc89032548dd558ccf43b2a40f8f2087c02
+  NSManagedObject-ANDYMapChanges: 224cd299f56bbcb8466f495a22666aac877a4301
+  NSManagedObject-ANDYObjectIDs: d27bb3014026506848a8d164f3019ecaa2a4baca
+  NSManagedObject-HYPPropertyMapper: a00890021a6c2d95e4a40fc0d79b3b9aa392375b
+  NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
 
 COCOAPODS: 0.35.0

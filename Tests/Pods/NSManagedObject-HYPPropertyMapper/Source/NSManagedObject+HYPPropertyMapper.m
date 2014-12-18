@@ -1,128 +1,6 @@
-//
-//  NSManagedObject+HYPPropertyMapper.m
-//
-//  Created by Christoffer Winterkvist on 7/2/14.
-//  Copyright (c) 2014 Hyper. All rights reserved.
-//
-
 #import "NSManagedObject+HYPPropertyMapper.h"
 
-@implementation NSString (PrivateInflections)
-
-#pragma mark - Private methods
-
-- (NSString *)remoteString
-{
-    NSString *processedString = [self replacementIdentifier:@"_"];
-
-    if ([processedString containsWord:@"date"]) {
-        NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date"
-                                                                              withString:@"_at"];
-        if ([[NSString dateAttributes] containsObject:replacedString]) {
-            processedString = replacedString;
-        }
-    }
-
-    return [processedString lowerCaseFirstLetter];
-}
-
-- (NSString *)localString
-{
-    NSString *processedString = self;
-
-    if ([self containsWord:@"at"]) {
-        processedString = [self stringByReplacingOccurrencesOfString:@"_at"
-                                                          withString:@"_date"];
-    }
-
-    processedString = [processedString replacementIdentifier:@""];
-
-    BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
-
-    return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString lowerCaseFirstLetter];
-}
-
-- (BOOL)containsWord:(NSString *)word
-{
-    BOOL found = NO;
-
-    NSArray *components = [self componentsSeparatedByString:@"_"];
-
-    for (NSString *component in components) {
-        if ([component isEqualToString:word]) {
-            found = YES;
-            break;
-        }
-    }
-
-    return found;
-}
-
-- (NSString *)lowerCaseFirstLetter
-{
-    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:self];
-    NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
-    [mutableString replaceCharactersInRange:NSMakeRange(0,1)
-                                 withString:firstLetter];
-
-    return [mutableString copy];
-}
-
-- (NSString *)replacementIdentifier:(NSString *)replacementString
-{
-    NSScanner *scanner = [NSScanner scannerWithString:self];
-    scanner.caseSensitive = YES;
-
-    NSCharacterSet *identifierSet   = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
-    NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
-    NSCharacterSet *uppercaseSet    = [NSCharacterSet uppercaseLetterCharacterSet];
-    NSCharacterSet *lowercaseSet    = [NSCharacterSet lowercaseLetterCharacterSet];
-
-    NSString *buffer;
-    NSMutableString *output = [NSMutableString string];
-
-    while (!scanner.isAtEnd) {
-        if ([scanner scanCharactersFromSet:identifierSet intoString:&buffer]) {
-            continue;
-        }
-
-        if (replacementString.length > 0) {
-            if ([scanner scanCharactersFromSet:uppercaseSet intoString:&buffer]) {
-
-                if (output.length > 0) {
-                    [output appendString:replacementString];
-                }
-
-                [output appendString:[buffer lowercaseString]];
-            }
-            if ([scanner scanCharactersFromSet:lowercaseSet intoString:&buffer]) {
-                [output appendString:[buffer lowercaseString]];
-            }
-        } else {
-            if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
-                if ([[NSString acronyms] containsObject:buffer]) {
-                    [output appendString:[buffer uppercaseString]];
-                } else {
-                    [output appendString:[buffer capitalizedString]];
-                }
-            }
-        }
-    }
-
-    return [output copy];
-}
-
-+ (NSArray *)acronyms
-{
-    return @[@"id", @"pdf", @"url", @"png", @"jpg"];
-}
-
-+ (NSArray *)dateAttributes
-{
-    return @[@"created_at", @"updated_at"];
-}
-
-@end
+#import "NSString+HYPNetworking.h"
 
 @implementation NSDate (ISO8601)
 
@@ -218,7 +96,7 @@
 
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
 
-        if ([[propertyDescription name] isEqualToString:[key localString]]) {
+        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
             return propertyDescription;
         }
     }
@@ -256,21 +134,30 @@
 
 - (NSDictionary *)hyp_dictionary
 {
-    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    return [self hyp_dictionaryFlatten:NO];
+}
+
+- (NSDictionary *)hyp_flatDictionary
+{
+    return [self hyp_dictionaryFlatten:YES];
+}
+
+- (NSDictionary *)hyp_dictionaryFlatten:(BOOL)flatten
+{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary new];
 
     for (id propertyDescription in [self.entity properties]) {
 
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             id value = [self valueForKey:[attributeDescription name]];
-            NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
+            NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
 
             BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
                 mutableDictionary[key] = [NSNull null];
             } else {
-                NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
+                NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
                 BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
                 if (isReservedKey) {
                     [key replaceOccurrencesOfString:[self remotePrefix]
@@ -278,13 +165,61 @@
                                             options:NSCaseInsensitiveSearch
                                               range:NSMakeRange(0, key.length)];
                 }
-
                 mutableDictionary[key] = value;
+            }
+
+        } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+
+            NSString *relationshipName = [propertyDescription name];
+            NSString *localKey = [NSString stringWithFormat:@"%@ID", [[[propertyDescription destinationEntity] name] lowercaseString]];
+
+            id relationshipValue = [self valueForKey:relationshipName];
+            BOOL isToOneRelationship = (![relationshipValue isKindOfClass:[NSSet class]]);
+            if (isToOneRelationship) continue;
+
+            NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:localKey ascending:YES];
+            NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:@[sortDescriptor]];
+
+            NSMutableDictionary *relations = [NSMutableDictionary new];
+
+            NSUInteger relationIndex = 0;
+
+            for (NSManagedObject *relation in relationships) {
+                for (id propertyDescription in [relation.entity properties]) {
+                    if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+                        NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                        id value = [relation valueForKey:[attributeDescription name]];
+
+                        NSString *attribute = [propertyDescription name];
+                        NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
+                        BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
+                        NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
+
+                        if (flatten) {
+                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", [relationshipName hyp_remoteString], (unsigned long)relationIndex, key];
+                            if (value) mutableDictionary[flattenKey] = value;
+                        } else {
+                            NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
+
+                            NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
+
+                            if (value) dictionary[key] = value;
+
+                            relations[relationIndexString] = dictionary;
+                        }
+                    }
+                }
+                relationIndex++;
+            }
+            if (!flatten) {
+                NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_attributes", [relationshipName hyp_remoteString]];
+                [mutableDictionary setValue:relations forKey:nestedAttributesPrefix];
             }
         }
     }
 
-    return [mutableDictionary copy];
+    return mutableDictionary;
 }
 
 - (NSString *)remotePrefix
@@ -299,7 +234,7 @@
 
 - (NSArray *)reservedKeys
 {
-    NSMutableArray *keys = [NSMutableArray array];
+    NSMutableArray *keys = [NSMutableArray new];
     NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
 
     for (NSString *attribute in reservedAttributes) {
