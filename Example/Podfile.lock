@@ -7,8 +7,12 @@ PODS:
     - NSManagedObject-ANDYMapChanges
     - NSManagedObject-HYPPropertyMapper
   - NSDictionary-ANDYSafeValue (0.3)
-  - NSManagedObject-ANDYMapChanges (0.5)
-  - NSManagedObject-HYPPropertyMapper (2.2)
+  - NSManagedObject-ANDYMapChanges (0.5.1):
+    - NSManagedObject-ANDYObjectIDs
+  - NSManagedObject-ANDYObjectIDs (0.1)
+  - NSManagedObject-HYPPropertyMapper (2.4.3):
+    - NSString-HYPNetworking
+  - NSString-HYPNetworking (0.1)
 
 DEPENDENCIES:
   - ANDYFetchedResultsTableDataSource
@@ -19,7 +23,9 @@ SPEC CHECKSUMS:
   ANDYFetchedResultsTableDataSource: d93c8c3eeb029a55dd2268c41f46a2d8be1457f8
   Kipu: 22321066c39a672f9c48e0d74a694dd002ac0f5a
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
-  NSManagedObject-ANDYMapChanges: 709eb89670110d1a6a7dcf909b2281099fd7b697
-  NSManagedObject-HYPPropertyMapper: a2053bc89032548dd558ccf43b2a40f8f2087c02
+  NSManagedObject-ANDYMapChanges: 224cd299f56bbcb8466f495a22666aac877a4301
+  NSManagedObject-ANDYObjectIDs: d27bb3014026506848a8d164f3019ecaa2a4baca
+  NSManagedObject-HYPPropertyMapper: a00890021a6c2d95e4a40fc0d79b3b9aa392375b
+  NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
 
 COCOAPODS: 0.35.0
