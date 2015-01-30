@@ -21,11 +21,13 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 ```objc
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 ```
 
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
+* `dataStack`: Your [ANDYDataStack](https://github.com/NSElvis/ANDYDataStack) instance, usually in from your AppDelegate
 
 ## Real World Example
 
@@ -60,6 +62,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 ```objc
 [Kipu processChanges:JSON
      usingEntityName:@"User"
+           dataStack:appDelegate.dataStack
           completion:^{
               // Objects saved in CoreData, do something
            }];
@@ -100,13 +103,13 @@ Replace your CoreData Stack with this:
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[ANDYDataStack sharedManager] persistContext];
+    [self.dataStack persistContext];
 }
 ```
 Replace any call to your `managedObjectContext` used in the main thread with this:
 
 ```objc
-[[ANDYDataStack sharedManager] mainContext];
+[self.dataTask mainThreadContext];
 ```
 
 ### NSManagedObject-HYPPropertyMapper
