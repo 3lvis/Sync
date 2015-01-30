@@ -27,7 +27,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [ANDYDataStack](https://github.com/NSElvis/ANDYDataStack) instance, usually in from your AppDelegate
+* `dataStack`: Your [ANDYDataStack](https://github.com/NSElvis/ANDYDataStack) instance, usually from your AppDelegate
 
 ## Real World Example
 
