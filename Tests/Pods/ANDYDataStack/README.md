@@ -1,12 +1,12 @@
-ANDYDataManager
+ANDYDataStack
 ===================
 
-This is class that helps you to aliviate the Core Data boilerplate. Now you can go to your AppDelegate remove all the Core Data related code and replace it with:
+This is class that helps you to aliviate the Core Data boilerplate. Now you can go to your AppDelegate remove all the Core Data related code and replace it [with an instance of ANDYDataStack](https://github.com/NSElvis/ANDYDataStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L38).
 
 ``` objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[ANDYDataManager sharedManager] persistContext];
+    [self.dataStack persistContext];
 }
 ```
 
@@ -17,7 +17,7 @@ Then in your NSFetchedResultsController backed app (attached to your main contex
 
 - (void)createTask
 {
-    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+    [self.dataStack performInBackgroundContext:^(NSManagedObjectContext *context) {
         Task *task = [Task insertInManagedObjectContext:context];
         task.title = @"Hello!";
         task.date = [NSDate date];

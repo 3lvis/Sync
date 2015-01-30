@@ -6,11 +6,11 @@
 // project.
 
 
-// ANDYDataManager
-#define COCOAPODS_POD_AVAILABLE_ANDYDataManager
-#define COCOAPODS_VERSION_MAJOR_ANDYDataManager 1
-#define COCOAPODS_VERSION_MINOR_ANDYDataManager 2
-#define COCOAPODS_VERSION_PATCH_ANDYDataManager 2
+// ANDYDataStack
+#define COCOAPODS_POD_AVAILABLE_ANDYDataStack
+#define COCOAPODS_VERSION_MAJOR_ANDYDataStack 2
+#define COCOAPODS_VERSION_MINOR_ANDYDataStack 0
+#define COCOAPODS_VERSION_PATCH_ANDYDataStack 2
 
 // NSDictionary-ANDYSafeValue
 #define COCOAPODS_POD_AVAILABLE_NSDictionary_ANDYSafeValue
@@ -39,8 +39,8 @@
 // NSManagedObject-HYPPropertyMapper
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_HYPPropertyMapper
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_HYPPropertyMapper 2
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 4
-#define COCOAPODS_VERSION_PATCH_NSManagedObject_HYPPropertyMapper 3
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 8
+#define COCOAPODS_VERSION_PATCH_NSManagedObject_HYPPropertyMapper 0
 
 // NSString-HYPNetworking
 #define COCOAPODS_POD_AVAILABLE_NSString_HYPNetworking
