@@ -1,67 +1,54 @@
-//
-//  ANDYDataManager.m
-//  Andy
-//
-//  Created by Elvis Nunez on 10/29/13.
-//  Copyright (c) 2014 Andy. All rights reserved.
-//
-
-#import "ANDYDataManager.h"
+#import "ANDYDataStack.h"
 
 @import UIKit;
 
-@interface ANDYDataManager ()
+@interface ANDYDataStack ()
 
-@property (strong, nonatomic, readwrite) NSManagedObjectContext *mainContext;
+@property (strong, nonatomic, readwrite) NSManagedObjectContext *mainThreadContext;
 @property (strong, nonatomic) NSManagedObjectContext *writerContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic) BOOL inMemoryStore;
+@property (nonatomic) ANDYDataStoreType storeType;
 @property (nonatomic, copy) NSString *modelName;
 @property (nonatomic, strong) NSBundle *modelBundle;
 
 @end
 
-@implementation ANDYDataManager
+@implementation ANDYDataStack
 
-+ (void)setUpStackWithInMemoryStore
+- (instancetype)init
 {
-    [[self sharedManager] setInMemoryStore:YES];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *bundleName = [[bundle infoDictionary] objectForKey:@"CFBundleName"];
+
+    return [self initWithModelName:bundleName];
 }
 
-+ (void)setModelName:(NSString *)modelName
+- (instancetype)initWithModelName:(NSString *)modelName
 {
-    [[self sharedManager] setModelName:modelName];
+    NSBundle *bundle = [NSBundle mainBundle];
+
+    return [self initWithModelName:modelName
+                            bundle:bundle
+                         storeType:ANDYDataSQLiteStoreType];
 }
 
-+ (void)setModelBundle:(NSBundle *)modelBundle
+- (instancetype)initWithModelName:(NSString *)modelName
+                           bundle:(NSBundle *)bundle
+                        storeType:(ANDYDataStoreType)storeType
 {
-    [[self sharedManager] setModelBundle:modelBundle];
+    self = [super init];
+    if (!self) return nil;
+
+    _modelName = modelName;
+    _modelBundle = bundle;
+    _storeType = storeType;
+
+    return self;
 }
 
-+ (ANDYDataManager *)sharedManager
-{
-    static ANDYDataManager *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[ANDYDataManager alloc] init];
-    });
-
-    return __sharedInstance;
-}
-
-- (NSString *)modelName
-{
-    if (_modelName) return _modelName;
-
-    NSBundle *bundle = (self.modelBundle) ?: [NSBundle mainBundle];
-
-    NSString *string = [[bundle infoDictionary] objectForKey:@"CFBundleName"];
-    _modelName = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
-    return _modelName;
-}
+#pragma mark - Private methods
 
 - (void)setUpSaveNotificationForContext:(NSManagedObjectContext *)context
 {
@@ -84,7 +71,7 @@
 
 - (void)saveContext
 {
-    NSManagedObjectContext *managedObjectContext = self.mainContext;
+    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
     [managedObjectContext performBlock:^{
         if (managedObjectContext != nil) {
             NSError *error = nil;
@@ -99,7 +86,7 @@
 - (void)persistContext
 {
     NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
-    NSManagedObjectContext *managedObjectContext = self.mainContext;
+    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
 
     [managedObjectContext performBlock:^{
         NSError *error = nil;
@@ -121,7 +108,7 @@
 - (void)resetContext
 {
     NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
-    NSManagedObjectContext *managedObjectContext = self.mainContext;
+    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
 
     [managedObjectContext performBlock:^{
         [managedObjectContext reset];
@@ -140,18 +127,18 @@
 
 #pragma mark - Core Data stack
 
-- (NSManagedObjectContext *)mainContext
+- (NSManagedObjectContext *)mainThreadContext
 {
-    if (_mainContext) return _mainContext;
+    if (_mainThreadContext) return _mainThreadContext;
 
-    _mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _mainContext.undoManager = nil;
-    _mainContext.parentContext = self.writerContext;
-    _mainContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
+    _mainThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    _mainThreadContext.undoManager = nil;
+    _mainThreadContext.parentContext = self.writerContext;
+    _mainThreadContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
-    [self setUpSaveNotificationForContext:_mainContext];
+    [self setUpSaveNotificationForContext:_mainThreadContext];
 
-    return _mainContext;
+    return _mainThreadContext;
 }
 
 - (NSManagedObjectContext *)writerContext
@@ -188,7 +175,17 @@
 
     NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES, NSInferMappingModelAutomaticallyOption: @YES};
 
-    NSString *storeType = (self.inMemoryStore) ? NSInMemoryStoreType : NSSQLiteStoreType;
+    NSString *storeType;
+
+    switch (self.storeType) {
+        case ANDYDataInMemoryStoreType:
+            storeType = NSInMemoryStoreType;
+            break;
+        case ANDYDataSQLiteStoreType:
+            storeType = NSSQLiteStoreType;
+            break;
+    }
+
     NSError *error = nil;
 
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -232,11 +229,11 @@
                                                    inDomains:NSUserDomainMask] lastObject];
 }
 
-#pragma mark - Class methods
+#pragma mark - Public methods
 
-+ (void)performInBackgroundContext:(void (^)(NSManagedObjectContext *context))operation
+- (void)performInBackgroundThreadContext:(void (^)(NSManagedObjectContext *context))operation
 {
-    NSManagedObjectContext *context = [self backgroundContext];
+    NSManagedObjectContext *context = [self backgroundThreadContext];
     [context performBlock:^{
         if (operation) {
             operation(context);
@@ -244,19 +241,21 @@
     }];
 }
 
-+ (NSManagedObjectContext *)backgroundContext
+- (NSManagedObjectContext *)backgroundThreadContext
 {
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    context.persistentStoreCoordinator = [[self sharedManager] persistentStoreCoordinator];
+    context.persistentStoreCoordinator = self.persistentStoreCoordinator;
     context.undoManager = nil;
     context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
-    [[NSNotificationCenter defaultCenter] addObserver:[self sharedManager]
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(backgroundThreadDidSave:)
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:context];
     return context;
 }
+
+#pragma mark - Observers
 
 - (void)backgroundThreadDidSave:(NSNotification *)notification
 {
@@ -265,8 +264,8 @@
                     format:@"Background context saved in the main thread. Use context's `performBlock`"];
     } else {
         // sync changes made on the background thread's context to the main thread's context
-        [self.mainContext performBlock:^(){
-            [self.mainContext mergeChangesFromContextDidSaveNotification:notification];
+        [self.mainThreadContext performBlock:^(){
+            [self.mainThreadContext mergeChangesFromContextDidSaveNotification:notification];
         }];
     }
 }
@@ -279,15 +278,15 @@
     NSURL *storeURL = store.URL;
 
     self.writerContext = nil;
-    self.mainContext = nil;
+    self.mainThreadContext = nil;
     self.managedObjectModel = nil;
     self.persistentStoreCoordinator = nil;
-    self.inMemoryStore = NO;
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
+
     NSError *error = nil;
-    if ([fileManager fileExistsAtPath:storeURL.path])
-        [fileManager removeItemAtURL:storeURL error:&error];
+    if ([fileManager fileExistsAtPath:storeURL.path]) [fileManager removeItemAtURL:storeURL error:&error];
+
     if (error) {
         NSLog(@"error deleting sqlite file");
         abort();
