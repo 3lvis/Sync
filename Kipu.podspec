@@ -3,7 +3,7 @@ s.name             = "Kipu"
 s.version          = "0.3"
 s.summary          = "A cape, a sword and networking superpowers for your Core Data models"
 s.description      = <<-DESC
-This is a category that eases your every day job of parsing an API and getting it into CoreData.
+This is a category that eases your every day job of parsing an API and getting it into Core Data.
 
 * Handles operations in safe background threats.
 * Thread safe saving (if you're saving in the wrong thread, we'll tell you).
@@ -24,6 +24,6 @@ s.frameworks = 'Foundation', 'CoreData'
 
 s.dependency 'NSManagedObject-HYPPropertyMapper'
 s.dependency 'NSManagedObject-ANDYMapChanges'
-s.dependency 'ANDYDataManager'
+s.dependency 'ANDYDataStack'
 s.dependency 'NSDictionary-ANDYSafeValue'
 end
