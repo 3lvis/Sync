@@ -98,7 +98,7 @@ pod 'Kipu'
 
 ### ANDYDataStack
 
-Replace your CoreData Stack with this:
+Replace your Core Data Stack with [an instance of ANDYDataStack](https://github.com/NSElvis/ANDYDataStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L27):
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
