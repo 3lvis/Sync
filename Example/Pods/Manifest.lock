@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Kipu:
-    :commit: 451a0fd036a82f6326638d33e4f20ea4737a4af9
+    :commit: 76a7c90550efc800d72ac7b9a4304fc1a8355611
     :git: https://github.com/NSElvis/Kipu.git
 
 SPEC CHECKSUMS:
