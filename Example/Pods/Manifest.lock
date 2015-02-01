@@ -16,16 +16,15 @@ PODS:
 
 DEPENDENCIES:
   - ANDYFetchedResultsTableDataSource
-  - Kipu (from `https://github.com/NSElvis/Kipu.git`, branch `migrate/ANDYDataStack`)
+  - Kipu (from `https://github.com/NSElvis/Kipu.git`)
 
 EXTERNAL SOURCES:
   Kipu:
-    :branch: migrate/ANDYDataStack
     :git: https://github.com/NSElvis/Kipu.git
 
 CHECKOUT OPTIONS:
   Kipu:
-    :commit: 76a7c90550efc800d72ac7b9a4304fc1a8355611
+    :commit: 660bed10f7ae53d076091e3f5c31805531f6f83f
     :git: https://github.com/NSElvis/Kipu.git
 
 SPEC CHECKSUMS:

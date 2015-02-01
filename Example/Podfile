@@ -2,5 +2,5 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
 
-pod 'Kipu', git: 'https://github.com/NSElvis/Kipu.git', branch: 'migrate/ANDYDataStack'
+pod 'Kipu', git: 'https://github.com/NSElvis/Kipu.git'
 pod 'ANDYFetchedResultsTableDataSource'
