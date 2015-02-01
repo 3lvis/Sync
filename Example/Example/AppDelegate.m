@@ -1,16 +1,37 @@
-//
-//  AppDelegate.m
-//  Example
-//
-//  Created by Elvis Nuñez on 11/11/14.
-//  Copyright (c) 2014 KIPU. All rights reserved.
-//
-
 #import "AppDelegate.h"
-#import "ANDYDataManager.h"
+#import "ANDYDataStack.h"
 #import "ViewController.h"
 
+AppDelegate *appDelegate;
+
+@interface AppDelegate ()
+
+@property (nonatomic, strong, readwrite) ANDYDataStack *dataStack;
+
+@end
+
 @implementation AppDelegate
+
+- (instancetype)init
+{
+    self = [super init];
+    if (!self) return nil;
+
+    appDelegate = self;
+
+    return self;
+}
+
+#pragma mark - Getters
+
+- (ANDYDataStack *)dataStack
+{
+    if (_dataStack) return _dataStack;
+
+    _dataStack = [[ANDYDataStack alloc] initWithModelName:@"Example"];
+
+    return _dataStack;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -25,7 +46,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[ANDYDataManager sharedManager] persistContext];
+    [self.dataStack persistContext];
 }
 
 @end

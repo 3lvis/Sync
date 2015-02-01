@@ -21,11 +21,13 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 ```objc
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 ```
 
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
+* `dataStack`: Your [ANDYDataStack](https://github.com/NSElvis/ANDYDataStack) instance, usually from your AppDelegate
 
 ## Real World Example
 
@@ -60,6 +62,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 ```objc
 [Kipu processChanges:JSON
      usingEntityName:@"User"
+           dataStack:appDelegate.dataStack
           completion:^{
               // Objects saved in CoreData, do something
            }];
@@ -71,13 +74,13 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 ## Requirements
 
-`iOS 7 or above`, `CoreData`, [`ANDYDataManager CoreData stack`](https://github.com/NSElvis/ANDYDataManager)
+`iOS 7 or above`, `CoreData`, [`ANDYDataStack CoreData stack`](https://github.com/NSElvis/ANDYDataStack)
 
 ## Components
 
 **Kipu** wouldn't be possible without the help of this *fully tested* components:
 
-* [**ANDYDataManager**](https://github.com/NSElvis/ANDYDataManager): CoreData stack and thread safe saving
+* [**ANDYDataStack**](https://github.com/NSElvis/ANDYDataStack): CoreData stack and thread safe saving
 
 * [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing CoreData does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
 
@@ -90,23 +93,23 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 **Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Kipu', '~> 0.3'
+pod 'Kipu', '~> 0.4'
 ```
 
-### ANDYDataManager
+### ANDYDataStack
 
-Replace your CoreData Stack with this:
+Replace your Core Data Stack with [an instance of ANDYDataStack](https://github.com/NSElvis/ANDYDataStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L27):
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[ANDYDataManager sharedManager] persistContext];
+    [self.dataStack persistContext];
 }
 ```
 Replace any call to your `managedObjectContext` used in the main thread with this:
 
 ```objc
-[[ANDYDataManager sharedManager] mainContext];
+[self.dataTask mainThreadContext];
 ```
 
 ### NSManagedObject-HYPPropertyMapper

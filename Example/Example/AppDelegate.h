@@ -1,17 +1,16 @@
-//
-//  AppDelegate.h
-//  Example
-//
-//  Created by Elvis Nuñez on 11/11/14.
-//  Copyright (c) 2014 KIPU. All rights reserved.
-//
-
 @import UIKit;
 @import CoreData;
+
+@class ANDYDataStack;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, strong, readonly) ANDYDataStack *dataStack;
+
 @end
+
+extern AppDelegate *appDelegate;
+
 

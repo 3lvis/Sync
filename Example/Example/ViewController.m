@@ -1,19 +1,12 @@
-//
-//  ViewController.m
-//  Example
-//
-//  Created by Elvis Nuñez on 11/11/14.
-//  Copyright (c) 2014 KIPU. All rights reserved.
-//
-
 #import "ViewController.h"
 
 #import "User.h"
 #import "Data.h"
 
 #import "ANDYFetchedResultsTableDataSource.h"
-#import "ANDYDataManager.h"
+#import "ANDYDataStack.h"
 #import "Kipu.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -34,7 +27,7 @@
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:YES]];
 
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                    managedObjectContext:[[ANDYDataManager sharedManager] mainContext]
+                                                                    managedObjectContext:[appDelegate.dataStack mainThreadContext]
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
 
@@ -93,6 +86,7 @@
 
                                    [Kipu processChanges:[JSON valueForKey:@"data"]
                                         usingEntityName:@"Data"
+                                              dataStack:appDelegate.dataStack
                                              completion:nil];
                                }
                            }];

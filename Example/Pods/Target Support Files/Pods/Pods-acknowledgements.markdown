@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## ANDYDataManager
+## ANDYDataStack
 
 The MIT License (MIT)
 
@@ -53,7 +53,7 @@ SOFTWARE.
 
 Licensed under the **MIT** license
 
-> Copyright (c) 2014 Elvis Nuñez
+> Copyright (c) 2015 Elvis Nuñez
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the

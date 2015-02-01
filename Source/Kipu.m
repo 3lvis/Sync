@@ -3,7 +3,7 @@
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+ANDYMapChanges.h"
-#import "ANDYDataManager.h"
+#import "ANDYDataStack.h"
 
 @interface NSManagedObject (Kipu)
 
@@ -27,20 +27,23 @@
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
     [self processChanges:changes
          usingEntityName:entityName
                predicate:nil
+               dataStack:dataStack
               completion:completion];
 }
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
              predicate:(NSPredicate *)predicate
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+    [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {
 
         [self processChanges:changes
              usingEntityName:entityName
@@ -54,9 +57,10 @@
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
                 parent:(NSManagedObject *)parent
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+    [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {
 
         NSManagedObject *safeParent = [parent kipu_copyInContext:context];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];

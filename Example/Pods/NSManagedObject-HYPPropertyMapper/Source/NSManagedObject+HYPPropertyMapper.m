@@ -74,18 +74,14 @@
 
         if (value && ![value isKindOfClass:[NSNull class]]) {
 
-            id procesedValue = [self valueForPropertyDescription:propertyDescription
-                                                usingRemoteValue:value];
+            id processedValue = [self valueForPropertyDescription:propertyDescription
+                                                 usingRemoteValue:value];
 
-
-            if (![[self valueForKey:localKey] isEqual:procesedValue]) {
-                [self setValue:procesedValue forKey:localKey];
-            }
+            BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
+            if (valueHasChanged) [self setValue:processedValue forKey:localKey];
 
         } else {
-            if ([self valueForKey:localKey]) {
-                [self setValue:nil forKey:localKey];
-            }
+            if ([self valueForKey:localKey]) [self setValue:nil forKey:localKey];
         }
     }
 }
@@ -93,12 +89,9 @@
 - (id)propertyDescriptionForKey:(NSString *)key
 {
     for (id propertyDescription in [self.entity properties]) {
-
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
 
-        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
-            return propertyDescription;
-        }
+        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) return propertyDescription;
     }
 
     return nil;
@@ -122,6 +115,7 @@
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
+        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
         return [formatter numberFromString:value];
     } else if (numberValueAndStringAttribute) {
         return [NSString stringWithFormat:@"%@", value];
@@ -134,20 +128,9 @@
 
 - (NSDictionary *)hyp_dictionary
 {
-    return [self hyp_dictionaryFlatten:NO];
-}
-
-- (NSDictionary *)hyp_flatDictionary
-{
-    return [self hyp_dictionaryFlatten:YES];
-}
-
-- (NSDictionary *)hyp_dictionaryFlatten:(BOOL)flatten
-{
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary new];
 
     for (id propertyDescription in [self.entity properties]) {
-
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             id value = [self valueForKey:[attributeDescription name]];
@@ -169,53 +152,57 @@
             }
 
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-
             NSString *relationshipName = [propertyDescription name];
-            NSString *localKey = [NSString stringWithFormat:@"%@ID", [[[propertyDescription destinationEntity] name] lowercaseString]];
 
-            id relationshipValue = [self valueForKey:relationshipName];
-            BOOL isToOneRelationship = (![relationshipValue isKindOfClass:[NSSet class]]);
+            id relationships = [self valueForKey:relationshipName];
+            BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
             if (isToOneRelationship) continue;
-
-            NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
-            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:localKey ascending:YES];
-            NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:@[sortDescriptor]];
 
             NSMutableDictionary *relations = [NSMutableDictionary new];
 
             NSUInteger relationIndex = 0;
 
             for (NSManagedObject *relation in relationships) {
-                for (id propertyDescription in [relation.entity properties]) {
+                BOOL hasValues = NO;
+
+                for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
                     if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
                         NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
                         id value = [relation valueForKey:[attributeDescription name]];
+                        if (value) {
+                            hasValues = YES;
+                        } else {
+                            continue;
+                        }
 
                         NSString *attribute = [propertyDescription name];
                         NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
-                        NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
 
-                        if (flatten) {
-                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", [relationshipName hyp_remoteString], (unsigned long)relationIndex, key];
-                            if (value) mutableDictionary[flattenKey] = value;
+                        NSString *key;
+                        if (attributeIsKey) {
+                            key = @"id";
+                        } else if ([attribute isEqualToString:@"destroy"]) {
+                            key = @"_destroy";
                         } else {
-                            NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
+                            key = [attribute hyp_remoteString];
+                        }
 
+                        if (value) {
+                            NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                             NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
 
-                            if (value) dictionary[key] = value;
-
+                            dictionary[key] = value;
                             relations[relationIndexString] = dictionary;
                         }
                     }
                 }
-                relationIndex++;
+
+                if (hasValues) relationIndex++;
             }
-            if (!flatten) {
-                NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_attributes", [relationshipName hyp_remoteString]];
-                [mutableDictionary setValue:relations forKey:nestedAttributesPrefix];
-            }
+
+            NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_attributes", [relationshipName hyp_remoteString]];
+            [mutableDictionary setValue:relations forKey:nestedAttributesPrefix];
         }
     }
 

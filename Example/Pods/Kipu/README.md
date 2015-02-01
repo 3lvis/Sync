@@ -9,7 +9,7 @@
 
 Kipu eases your every day job of parsing a `JSON` response and getting it into CoreData. It uses a convention over configuration paradigm to facilitate your workflow.
 
-* Handles operations in safe background threats
+* Handles operations in safe background threads
 * Thread safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
@@ -64,17 +64,20 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
               // Objects saved in CoreData, do something
            }];
 ```
+
+[(You can see another example here).](https://github.com/NSElvis/Kipu/blob/master/Example/Example/ViewController.m#L94)
+
 **PROFIT!**
 
 ## Requirements
 
-`iOS 7`, `CoreData`, [`ANDYDataManager CoreData stack`](https://github.com/NSElvis/ANDYDataManager)
+`iOS 7 or above`, `CoreData`, [`ANDYDataStack CoreData stack`](https://github.com/NSElvis/ANDYDataStack)
 
 ## Components
 
 **Kipu** wouldn't be possible without the help of this *fully tested* components:
 
-* [**ANDYDataManager**](https://github.com/NSElvis/ANDYDataManager): CoreData stack and thread safe saving
+* [**ANDYDataStack**](https://github.com/NSElvis/ANDYDataStack): CoreData stack and thread safe saving
 
 * [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing CoreData does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
 
@@ -86,22 +89,24 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 **Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
-`pod 'Kipu'`
+```ruby
+pod 'Kipu'
+```
 
-### ANDYDataManager
+### ANDYDataStack
 
 Replace your CoreData Stack with this:
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[ANDYDataManager sharedManager] persistContext];
+    [[ANDYDataStack sharedManager] persistContext];
 }
 ```
 Replace any call to your `managedObjectContext` used in the main thread with this:
 
 ```objc
-[[ANDYDataManager sharedManager] mainContext];
+[[ANDYDataStack sharedManager] mainContext];
 ```
 
 ### NSManagedObject-HYPPropertyMapper
@@ -120,7 +125,7 @@ You are free to use any networking library or NSURLConnection.
 
 ### Finally
 
-You are ready to go, check the [Real World Example](https://github.com/NSElvis/Kipu#real-world-example) for how to use Kipu.
+You are ready to go, check the [example project that uses App.net](https://github.com/NSElvis/Kipu/tree/master/Example) for how to use Kipu.
 
 ## Author
 

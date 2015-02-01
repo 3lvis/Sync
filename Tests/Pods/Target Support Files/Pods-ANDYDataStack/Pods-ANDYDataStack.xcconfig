@@ -1,0 +1,1 @@
+PODS_ANDYDATASTACK_OTHER_LDFLAGS = -framework "CoreData" -framework "Foundation"

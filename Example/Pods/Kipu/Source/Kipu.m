@@ -1,48 +1,49 @@
-//
-//  Kipu.m
-//
-//  Copyright (c) 2014 Elvis Nuñez. All rights reserved.
-//
-
 #import "Kipu.h"
 
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+ANDYMapChanges.h"
-#import "ANDYDataManager.h"
+#import "ANDYDataStack.h"
 
 @interface NSManagedObject (Kipu)
 
-- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context;
+- (NSManagedObject *)kipu_copyInContext:(NSManagedObjectContext *)context;
 
 - (NSArray *)kipu_relationships;
 
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
                                        andParent:(NSManagedObject *)parent;
 
-- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
-                 usingDictionary:(NSDictionary *)objectDict
-                       andParent:(NSManagedObject *)parent;
+- (void)kipu_processToManyRelationship:(NSRelationshipDescription *)relationship
+                       usingDictionary:(NSDictionary *)objectDict
+                             andParent:(NSManagedObject *)parent;
+
+- (void)kipu_processToOneRelationship:(NSRelationshipDescription *)relationship
+                      usingDictionary:(NSDictionary *)objectDict;
+
 @end
 
 @implementation Kipu
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
     [self processChanges:changes
          usingEntityName:entityName
                predicate:nil
+               dataStack:dataStack
               completion:completion];
 }
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
              predicate:(NSPredicate *)predicate
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+    [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {
 
         [self processChanges:changes
              usingEntityName:entityName
@@ -56,11 +57,12 @@
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
                 parent:(NSManagedObject *)parent
+             dataStack:(ANDYDataStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [ANDYDataManager performInBackgroundContext:^(NSManagedObjectContext *context) {
+    [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {
 
-        NSManagedObject *safeParent = [parent kipu_safeObjectInContext:context];
+        NSManagedObject *safeParent = [parent kipu_copyInContext:context];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self processChanges:changes
@@ -99,7 +101,7 @@
 
     NSError *error = nil;
     [context save:&error];
-    if (error) NSLog(@"ANDYNetworking (error while saving %@): %@", entityName, [error description]);
+    if (error) NSLog(@"Kipu (error while saving %@): %@", entityName, [error description]);
 
     if (completion) completion(error);
 }
@@ -122,7 +124,7 @@
 
 @implementation NSManagedObject (Kipu)
 
-- (NSManagedObject *)kipu_safeObjectInContext:(NSManagedObjectContext *)context
+- (NSManagedObject *)kipu_copyInContext:(NSManagedObjectContext *)context
 {
     NSString *localKey = [NSString stringWithFormat:@"%@ID", [self.entity.name lowercaseString]];
     NSString *remoteID = [self valueForKey:localKey];
@@ -151,63 +153,50 @@
 
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
-
-            [self kipu_processRelationship:relationship usingDictionary:objectDict andParent:parent];
-
+            [self kipu_processToManyRelationship:relationship usingDictionary:objectDict andParent:parent];
         } else {
             if (parent) {
                 [self setValue:parent forKey:relationship.name];
             } else {
-                NSString *entityName = [relationship.name capitalizedString];
-                NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
-                if (!filteredObjectDict) continue;
-
-                NSManagedObject *object = [Kipu safeObjectInContext:self.managedObjectContext
-                                                         entityName:entityName
-                                                           remoteID:[filteredObjectDict andy_valueForKey:@"id"]];
-                if (object) {
-                    [object hyp_fillWithDictionary:filteredObjectDict];
-                } else {
-                    object = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                                           inManagedObjectContext:self.managedObjectContext];
-                    [object hyp_fillWithDictionary:filteredObjectDict];
-                }
-
-                [self setValue:object forKey:relationship.name];
+                [self kipu_processToOneRelationship:relationship usingDictionary:objectDict];
             }
         }
     }
 }
 
-- (void)kipu_processRelationship:(NSRelationshipDescription *)relationship
-                 usingDictionary:(NSDictionary *)objectDict
-                       andParent:(NSManagedObject *)parent
+- (void)kipu_processToManyRelationship:(NSRelationshipDescription *)relationship
+                       usingDictionary:(NSDictionary *)objectDict
+                             andParent:(NSManagedObject *)parent
 {
-    NSArray *childs = [objectDict andy_valueForKey:relationship.name];
+    NSString *childEntityName = relationship.destinationEntity.name;
+    NSString *parentEntityName = parent.entity.name;
+    NSString *inverseEntityName = relationship.inverseRelationship.name;
+    NSString *relationshipName = relationship.name;
+    BOOL inverseIsToMany = relationship.inverseRelationship.isToMany;
+    NSArray *childs = [objectDict andy_valueForKey:relationshipName];
+
     if (!childs) {
         BOOL hasValidManyToManyRelationship = (parent &&
-                                               relationship.inverseRelationship.isToMany &&
-                                               [parent.entity.name isEqualToString:relationship.destinationEntity.name]);
+                                               inverseIsToMany &&
+                                               [parentEntityName isEqualToString:childEntityName]);
         if (hasValidManyToManyRelationship) {
-            NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
+            NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationshipName];
             [relatedObjects addObject:parent];
-            [self setValue:relatedObjects forKey:relationship.name];
+            [self setValue:relatedObjects forKey:relationshipName];
         }
 
         return;
     }
 
-    NSString *childEntityName = relationship.destinationEntity.name;
-    NSString *inverseEntityName = relationship.inverseRelationship.name;
     NSPredicate *childPredicate;
 
-    if (relationship.inverseRelationship.isToMany) {
+    if (inverseIsToMany) {
         NSArray *childIDs = [childs valueForKey:@"id"];
         NSString *destinationKey = [NSString stringWithFormat:@"%@ID", [childEntityName lowercaseString]];
         if (childIDs.count == 1) {
             childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationKey, [[childs valueForKey:@"id"] firstObject]];
         } else {
-            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationship.name, destinationKey, [childs valueForKey:@"id"]];
+            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationshipName, destinationKey, [childs valueForKey:@"id"]];
         }
     } else {
         childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
@@ -219,6 +208,27 @@
                   parent:self
                inContext:self.managedObjectContext
               completion:nil];
+}
+
+- (void)kipu_processToOneRelationship:(NSRelationshipDescription *)relationship
+                      usingDictionary:(NSDictionary *)objectDict
+{
+    NSString *entityName = [relationship.name capitalizedString];
+    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
+    if (!filteredObjectDict) return;
+
+    NSManagedObject *object = [Kipu safeObjectInContext:self.managedObjectContext
+                                             entityName:entityName
+                                               remoteID:[filteredObjectDict andy_valueForKey:@"id"]];
+    if (object) {
+        [object hyp_fillWithDictionary:filteredObjectDict];
+    } else {
+        object = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                               inManagedObjectContext:self.managedObjectContext];
+        [object hyp_fillWithDictionary:filteredObjectDict];
+    }
+
+    [self setValue:object forKey:relationship.name];
 }
 
 @end
