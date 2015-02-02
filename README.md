@@ -7,14 +7,14 @@
 
 >**quipu [*kee-poo*, *kwip-oo*]**: Sometimes called talking knots, were recording devices historically used in the region of Andean South America. A system also used for collecting data and keeping records, ranging from monitoring tax obligations, properly collecting census records, calendrical information, and military organization.
 
-Kipu eases your every day job of parsing a `JSON` response and getting it into CoreData. It uses a convention over configuration paradigm to facilitate your workflow.
+Kipu eases your every day job of parsing a `JSON` response and getting it into Core Data. It uses a convention over configuration paradigm to facilitate your workflow.
 
 * Handles operations in safe background threads
 * Thread safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
 * Smart-updates, only updates your NSManagedObjects if the server values are different (useful when using NSFetchedResultsController delegates)
-* Uniquing, CoreData does this based on `objectID`s, we use your remote key (such as `id`) for this
+* Uniquing, Core Data does this based on `objectID`s, we use your remote key (such as `id`) for this
 
 ## Interface
 
@@ -64,7 +64,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
      usingEntityName:@"User"
            dataStack:appDelegate.dataStack
           completion:^{
-              // Objects saved in CoreData, do something
+              // Objects saved in Core Data, do something
            }];
 ```
 
@@ -74,17 +74,17 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 ## Requirements
 
-`iOS 7 or above`, `CoreData`, [`ANDYDataStack CoreData stack`](https://github.com/NSElvis/ANDYDataStack)
+`iOS 7 or above`, `Core Data`, [`ANDYDataStack Core Data stack`](https://github.com/NSElvis/ANDYDataStack)
 
 ## Components
 
 **Kipu** wouldn't be possible without the help of this *fully tested* components:
 
-* [**ANDYDataStack**](https://github.com/NSElvis/ANDYDataStack): CoreData stack and thread safe saving
+* [**ANDYDataStack**](https://github.com/NSElvis/ANDYDataStack): Core Data stack and thread safe saving
 
-* [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing CoreData does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
+* [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
 
-* [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their CoreData counterparts, it does most of it's job using the paradigm "_convention over configuration_"
+* [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it's job using the paradigm "_convention over configuration_"
 
 ## Getting Started
 
@@ -114,7 +114,7 @@ Replace any call to your `managedObjectContext` used in the main thread with thi
 
 ### NSManagedObject-HYPPropertyMapper
 
-Your CoreData models should match your backend entities, your classes can have a different name.
+Your Core Data models should match your backend entities, your classes can have a different name.
 Your fields should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
 
 There are only two exceptions to this rule:
