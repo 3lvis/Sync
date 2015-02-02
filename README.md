@@ -74,7 +74,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 ## Requirements
 
-`iOS 7 or above`, `Core Data`, [`ANDYDataStack Core Data stack`](https://github.com/NSElvis/ANDYDataStack)
+`iOS 7 or above`, [`ANDYDataStack Core Data stack`](https://github.com/NSElvis/ANDYDataStack)
 
 ## Components
 
