@@ -43,7 +43,7 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {
+    [dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
 
         [self processChanges:changes
              usingEntityName:entityName
@@ -60,7 +60,7 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {
+    [dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
 
         NSManagedObject *safeParent = [parent kipu_copyInContext:context];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
@@ -112,7 +112,7 @@
 {
     NSError *error = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
-    NSString *localKey = [NSString stringWithFormat:@"%@ID", [entityName lowercaseString]];
+    NSString *localKey = @"remoteID";
     request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
 
     NSArray *objects = [context executeFetchRequest:request error:&error];
@@ -126,7 +126,7 @@
 
 - (NSManagedObject *)kipu_copyInContext:(NSManagedObjectContext *)context
 {
-    NSString *localKey = [NSString stringWithFormat:@"%@ID", [self.entity.name lowercaseString]];
+    NSString *localKey = @"remoteID";
     NSString *remoteID = [self valueForKey:localKey];
 
     return [Kipu safeObjectInContext:context entityName:self.entity.name remoteID:remoteID];
@@ -192,7 +192,7 @@
 
     if (inverseIsToMany) {
         NSArray *childIDs = [childs valueForKey:@"id"];
-        NSString *destinationKey = [NSString stringWithFormat:@"%@ID", [childEntityName lowercaseString]];
+        NSString *destinationKey = @"remoteID";
         if (childIDs.count == 1) {
             childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationKey, [[childs valueForKey:@"id"] firstObject]];
         } else {

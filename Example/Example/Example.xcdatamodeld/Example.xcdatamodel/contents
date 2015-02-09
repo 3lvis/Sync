@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B17" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14D72i" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Data" representedClassName="Data" syncable="YES">
         <attribute name="canonicalURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="dataID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="paginationID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="threadID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="datas" inverseEntity="User" syncable="YES"/>
@@ -13,13 +13,13 @@
         <attribute name="canonicalURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="datas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Data" inverseName="user" inverseEntity="Data" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Data" positionX="-27" positionY="18" width="128" height="148"/>
-        <element name="User" positionX="54" positionY="90" width="128" height="148"/>
+        <element name="Data" positionX="-27" positionY="18" width="128" height="150"/>
+        <element name="User" positionX="54" positionY="90" width="128" height="150"/>
     </elements>
 </model>

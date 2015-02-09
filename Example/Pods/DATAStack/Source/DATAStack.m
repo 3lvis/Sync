@@ -6,16 +6,17 @@
 
 @property (strong, nonatomic, readwrite) NSManagedObjectContext *mainThreadContext;
 @property (strong, nonatomic) NSManagedObjectContext *writerContext;
-@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic) ANDYDataStoreType storeType;
+@property (nonatomic) DATAStackStoreType storeType;
 @property (nonatomic, copy) NSString *modelName;
 @property (nonatomic, strong) NSBundle *modelBundle;
 
 @end
 
 @implementation DATAStack
+
+#pragma mark - Initializers
 
 - (instancetype)init
 {
@@ -31,12 +32,12 @@
 
     return [self initWithModelName:modelName
                             bundle:bundle
-                         storeType:ANDYDataSQLiteStoreType];
+                         storeType:DATAStackSQLiteStoreType];
 }
 
 - (instancetype)initWithModelName:(NSString *)modelName
                            bundle:(NSBundle *)bundle
-                        storeType:(ANDYDataStoreType)storeType
+                        storeType:(DATAStackStoreType)storeType
 {
     self = [super init];
     if (!self) return nil;
@@ -45,87 +46,12 @@
     _modelBundle = bundle;
     _storeType = storeType;
 
+    if (!self.persistentStoreCoordinator) NSLog(@"Error setting up data stack");
+
     return self;
 }
 
-#pragma mark - Private methods
-
-- (void)setUpSaveNotificationForContext:(NSManagedObjectContext *)context
-{
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
-                                                      object:context
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *notification) {
-                                                      if (![NSThread isMainThread]) {
-                                                          [NSException raise:@"ANDY_MAIN_THREAD_CREATION_EXCEPTION"
-                                                                      format:@"Main context saved in background thread. Use context's `performBlock`"];
-                                                      } else {
-                                                          if (![notification.object isEqual:context]) {
-                                                              [context performBlock:^(){
-                                                                  [context mergeChangesFromContextDidSaveNotification:notification];
-                                                              }];
-                                                          }
-                                                      }
-                                                  }];
-}
-
-- (void)saveContext
-{
-    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
-    [managedObjectContext performBlock:^{
-        if (managedObjectContext != nil) {
-            NSError *error = nil;
-            if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-                abort();
-            }
-        }
-    }];
-}
-
-- (void)persistContext
-{
-    NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
-    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
-
-    [managedObjectContext performBlock:^{
-        NSError *error = nil;
-        if ([managedObjectContext save:&error]) {
-            [writerManagedObjectContext performBlock:^{
-                NSError *parentError = nil;
-                if (![writerManagedObjectContext save:&parentError]) {
-                    NSLog(@"Unresolved error saving parent managed object context %@, %@", error, [error userInfo]);
-                    abort();
-                }
-            }];
-        } else {
-            NSLog(@"Unresolved error saving managed object context %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }];
-}
-
-- (void)resetContext
-{
-    NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
-    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
-
-    [managedObjectContext performBlock:^{
-        [managedObjectContext reset];
-        [writerManagedObjectContext performBlock:^{
-            [writerManagedObjectContext reset];
-        }];
-    }];
-}
-
-#if !TARGET_IPHONE_SIMULATOR
-- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
-{
-    return [URL setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:nil];
-}
-#endif
-
-#pragma mark - Core Data stack
+#pragma mark - Getters
 
 - (NSManagedObjectContext *)mainThreadContext
 {
@@ -135,8 +61,6 @@
     _mainThreadContext.undoManager = nil;
     _mainThreadContext.parentContext = self.writerContext;
     _mainThreadContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
-
-    [self setUpSaveNotificationForContext:_mainThreadContext];
 
     return _mainThreadContext;
 }
@@ -153,17 +77,6 @@
     return _writerContext;
 }
 
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (_managedObjectModel) return _managedObjectModel;
-
-    NSBundle *bundle = (self.modelBundle) ?: [NSBundle mainBundle];
-    NSURL *modelURL = [bundle URLForResource:self.modelName withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-
-    return _managedObjectModel;
-}
-
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
     if (_persistentStoreCoordinator) return _persistentStoreCoordinator;
@@ -173,36 +86,45 @@
     NSString *filePath = [NSString stringWithFormat:@"%@.sqlite", self.modelName];
     storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:filePath];
 
-    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES, NSInferMappingModelAutomaticallyOption: @YES};
+    NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES,
+                               NSInferMappingModelAutomaticallyOption: @YES };
 
     NSString *storeType;
 
     switch (self.storeType) {
-        case ANDYDataInMemoryStoreType:
+        case DATAStackInMemoryStoreType:
             storeType = NSInMemoryStoreType;
             break;
-        case ANDYDataSQLiteStoreType:
+        case DATAStackSQLiteStoreType:
             storeType = NSSQLiteStoreType;
             break;
     }
 
-    NSError *error = nil;
+    NSBundle *bundle = (self.modelBundle) ?: [NSBundle mainBundle];
+    NSURL *modelURL = [bundle URLForResource:self.modelName withExtension:@"momd"];
+    if (!modelURL) {
+        NSLog(@"Model with model name {%@} not found in bundle {%@}", self.modelName, bundle);
+        abort();
+    }
 
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+
+    NSError *addPersistentStoreError = nil;
     if (![_persistentStoreCoordinator addPersistentStoreWithType:storeType
                                                    configuration:nil
                                                              URL:storeURL
                                                          options:options
-                                                           error:&error]) {
+                                                           error:&addPersistentStoreError]) {
 
         [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:nil];
         if (![_persistentStoreCoordinator addPersistentStoreWithType:storeType
                                                        configuration:nil
                                                                  URL:storeURL
                                                              options:options
-                                                               error:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                                                               error:&addPersistentStoreError]) {
+            NSLog(@"Unresolved error %@, %@", addPersistentStoreError, [addPersistentStoreError userInfo]);
             abort();
         }
 
@@ -215,10 +137,43 @@
     }
 
 #if !TARGET_IPHONE_SIMULATOR
-    [self addSkipBackupAttributeToItemAtURL:storeURL];
+    NSError *excludeSQLiteFileFromBackupsError = nil;
+    if (![storeURL setResourceValue:@YES
+                             forKey:NSURLIsExcludedFromBackupKey
+                              error:&excludeSQLiteFileFromBackupsError]) {
+        NSLog(@"Excluding SQLite file from backup caused an error: %@", [excludeSQLiteFileFromBackupsError description]);
+    };
 #endif
 
     return _persistentStoreCoordinator;
+}
+
+#pragma mark - Private methods
+
+- (void)persistWithCompletion:(void (^)())completion
+{
+    NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
+    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
+
+    [managedObjectContext performBlock:^{
+        NSError *error = nil;
+        if ([managedObjectContext save:&error]) {
+            [writerManagedObjectContext performBlock:^{
+                NSError *parentError = nil;
+                if ([writerManagedObjectContext save:&parentError]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (completion) completion();
+                    });
+                } else {
+                    NSLog(@"Unresolved error saving parent managed object context %@, %@", error, [error userInfo]);
+                    abort();
+                }
+            }];
+        } else {
+            NSLog(@"Unresolved error saving managed object context %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }];
 }
 
 #pragma mark - Application's Documents directory
@@ -231,17 +186,15 @@
 
 #pragma mark - Public methods
 
-- (void)performInBackgroundThreadContext:(void (^)(NSManagedObjectContext *context))operation
+- (void)performInNewBackgroundThreadContext:(void (^)(NSManagedObjectContext *context))operation
 {
-    NSManagedObjectContext *context = [self backgroundThreadContext];
+    NSManagedObjectContext *context = [self newBackgroundThreadContext];
     [context performBlock:^{
-        if (operation) {
-            operation(context);
-        }
+        if (operation) operation(context);
     }];
 }
 
-- (NSManagedObjectContext *)backgroundThreadContext
+- (NSManagedObjectContext *)newBackgroundThreadContext
 {
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = self.persistentStoreCoordinator;
@@ -252,34 +205,33 @@
                                              selector:@selector(backgroundThreadDidSave:)
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:context];
+
     return context;
 }
 
 #pragma mark - Observers
 
-- (void)backgroundThreadDidSave:(NSNotification *)notification
+- (void)backgroundThreadDidSave:(NSNotification *)backgroundThreadNotification
 {
     if ([NSThread isMainThread]) {
-        [NSException raise:@"ANDY_BACKGROUND_THREAD_CREATION_EXCEPTION"
+        [NSException raise:@"DATASTACK_BACKGROUND_THREAD_CREATION_EXCEPTION"
                     format:@"Background context saved in the main thread. Use context's `performBlock`"];
     } else {
-        // sync changes made on the background thread's context to the main thread's context
-        [self.mainThreadContext performBlock:^(){
-            [self.mainThreadContext mergeChangesFromContextDidSaveNotification:notification];
+        [self.mainThreadContext performBlock:^{
+            [self.mainThreadContext mergeChangesFromContextDidSaveNotification:backgroundThreadNotification];
         }];
     }
 }
 
 #pragma mark - Test
 
-- (void)destroy
+- (void)drop
 {
     NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores lastObject];
     NSURL *storeURL = store.URL;
 
     self.writerContext = nil;
     self.mainThreadContext = nil;
-    self.managedObjectModel = nil;
     self.persistentStoreCoordinator = nil;
 
     NSFileManager *fileManager = [NSFileManager defaultManager];

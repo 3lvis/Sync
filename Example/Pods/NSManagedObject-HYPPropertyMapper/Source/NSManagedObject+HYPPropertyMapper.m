@@ -58,30 +58,27 @@
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary
 {
-    for (__strong NSString *remoteKey in dictionary) {
+    for (__strong NSString *key in dictionary) {
 
-        id value = [dictionary objectForKey:remoteKey];
+        id value = [dictionary objectForKey:key];
 
-        BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);
-        if (isReservedKey) {
-            remoteKey = [self prefixedAttribute:remoteKey];
-        }
+        BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:key]);
+        if (isReservedKey) key = [self prefixedAttribute:key];
 
-        id propertyDescription = [self propertyDescriptionForKey:remoteKey];
+        id propertyDescription = [self propertyDescriptionForKey:key];
         if (!propertyDescription) continue;
 
         NSString *localKey = [propertyDescription name];
 
-        if (value && ![value isKindOfClass:[NSNull class]]) {
-
+        BOOL valueExists = (value && ![value isKindOfClass:[NSNull class]]);
+        if (valueExists) {
             id processedValue = [self valueForPropertyDescription:propertyDescription
                                                  usingRemoteValue:value];
 
             BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
             if (valueHasChanged) [self setValue:processedValue forKey:localKey];
-
-        } else {
-            if ([self valueForKey:localKey]) [self setValue:nil forKey:localKey];
+        } else if ([self valueForKey:localKey]) {
+            [self setValue:nil forKey:localKey];
         }
     }
 }
@@ -140,13 +137,16 @@
             if (nilOrNullValue) {
                 mutableDictionary[key] = [NSNull null];
             } else {
-                NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
                 BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
                 if (isReservedKey) {
-                    [key replaceOccurrencesOfString:[self remotePrefix]
-                                         withString:@""
-                                            options:NSCaseInsensitiveSearch
-                                              range:NSMakeRange(0, key.length)];
+                    if ([key isEqualToString:@"remote_id"]) {
+                        key = [@"id" mutableCopy];
+                    } else {
+                        [key replaceOccurrencesOfString:[self remotePrefix]
+                                             withString:@""
+                                                options:NSCaseInsensitiveSearch
+                                                  range:NSMakeRange(0, key.length)];
+                    }
                 }
                 mutableDictionary[key] = value;
             }
@@ -176,7 +176,7 @@
                         }
 
                         NSString *attribute = [propertyDescription name];
-                        NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
+                        NSString *localKey = @"remoteID";
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
                         NSString *key;
@@ -216,7 +216,15 @@
 
 - (NSString *)prefixedAttribute:(NSString *)attribute
 {
-    return [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
+    NSString *prefixedAttribute;
+
+    if ([attribute isEqualToString:@"id"]) {
+        prefixedAttribute = @"remote_id";
+    } else {
+        prefixedAttribute = [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
+    }
+
+    return prefixedAttribute;
 }
 
 - (NSArray *)reservedKeys
@@ -227,6 +235,8 @@
     for (NSString *attribute in reservedAttributes) {
         [keys addObject:[self prefixedAttribute:attribute]];
     }
+
+    [keys addObject:@"remote_id"];
 
     return keys;
 }
