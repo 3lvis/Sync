@@ -103,7 +103,7 @@ Replace your Core Data Stack with [an instance of DATAStack](https://github.com/
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [self.dataStack persistContext];
+    [self.dataStack persistWithCompletion:nil];
 }
 ```
 Replace any call to your `managedObjectContext` used in the main thread with this:
