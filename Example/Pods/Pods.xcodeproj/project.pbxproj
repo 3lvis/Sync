@@ -125,7 +125,7 @@
 			<key>remoteGlobalIDString</key>
 			<string>47B29EC3D1BC7E0F879BFA56</string>
 			<key>remoteInfo</key>
-			<string>Pods-ANDYDataStack</string>
+			<string>Pods-DATAStack</string>
 		</dict>
 		<key>0C19674BC93C34320106B604</key>
 		<dict>
@@ -162,7 +162,7 @@
 			<key>remoteGlobalIDString</key>
 			<string>47B29EC3D1BC7E0F879BFA56</string>
 			<key>remoteInfo</key>
-			<string>Pods-ANDYDataStack</string>
+			<string>Pods-DATAStack</string>
 		</dict>
 		<key>1141EF6DBC9DB15E75FE1B3A</key>
 		<dict>
@@ -804,7 +804,7 @@
 			<key>isa</key>
 			<string>PBXTargetDependency</string>
 			<key>name</key>
-			<string>Pods-ANDYDataStack</string>
+			<string>Pods-DATAStack</string>
 			<key>target</key>
 			<string>47B29EC3D1BC7E0F879BFA56</string>
 			<key>targetProxy</key>
@@ -972,9 +972,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>ANDYDataStack.h</string>
+			<string>DATAStack.h</string>
 			<key>path</key>
-			<string>ANDYDataStack/ANDYDataStack.h</string>
+			<string>DATAStack/DATAStack.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1008,9 +1008,9 @@
 			<key>isa</key>
 			<string>PBXNativeTarget</string>
 			<key>name</key>
-			<string>Pods-ANDYDataStack</string>
+			<string>Pods-DATAStack</string>
 			<key>productName</key>
-			<string>Pods-ANDYDataStack</string>
+			<string>Pods-DATAStack</string>
 			<key>productReference</key>
 			<string>F5CAFE15C3A3189F7ADAD4C5</string>
 			<key>productType</key>
@@ -1155,7 +1155,7 @@
 			<key>isa</key>
 			<string>PBXTargetDependency</string>
 			<key>name</key>
-			<string>Pods-ANDYDataStack</string>
+			<string>Pods-DATAStack</string>
 			<key>target</key>
 			<string>47B29EC3D1BC7E0F879BFA56</string>
 			<key>targetProxy</key>
@@ -1320,7 +1320,7 @@
 				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
 				<string>YES</string>
 				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/Pods-ANDYDataStack/Pods-ANDYDataStack-prefix.pch</string>
+				<string>Target Support Files/Pods-DATAStack/Pods-DATAStack-prefix.pch</string>
 				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
 				<array>
 					<string>DEBUG=1</string>
@@ -1365,7 +1365,7 @@
 				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
 				<string>YES</string>
 				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/Pods-ANDYDataStack/Pods-ANDYDataStack-prefix.pch</string>
+				<string>Target Support Files/Pods-DATAStack/Pods-DATAStack-prefix.pch</string>
 				<key>INSTALL_PATH</key>
 				<string>$(BUILT_PRODUCTS_DIR)</string>
 				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
@@ -1653,9 +1653,9 @@
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>ANDYDataStack</string>
+			<string>DATAStack</string>
 			<key>path</key>
-			<string>ANDYDataStack</string>
+			<string>DATAStack</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1765,7 +1765,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>Pods-ANDYDataStack-dummy.m</string>
+			<string>Pods-DATAStack-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2440,7 +2440,7 @@
 			<key>lastKnownFileType</key>
 			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>Pods-ANDYDataStack.xcconfig</string>
+			<string>Pods-DATAStack.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2594,9 +2594,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>ANDYDataStack.m</string>
+			<string>DATAStack.m</string>
 			<key>path</key>
-			<string>ANDYDataStack/ANDYDataStack.m</string>
+			<string>DATAStack/DATAStack.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2653,7 +2653,7 @@
 			<key>name</key>
 			<string>Support Files</string>
 			<key>path</key>
-			<string>../Target Support Files/Pods-ANDYDataStack</string>
+			<string>../Target Support Files/Pods-DATAStack</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2863,7 +2863,7 @@
 			<key>lastKnownFileType</key>
 			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>Pods-ANDYDataStack-Private.xcconfig</string>
+			<string>Pods-DATAStack-Private.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2913,7 +2913,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>Pods-ANDYDataStack-prefix.pch</string>
+			<string>Pods-DATAStack-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3579,7 +3579,7 @@
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>libPods-ANDYDataStack.a</string>
+			<string>libPods-DATAStack.a</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>

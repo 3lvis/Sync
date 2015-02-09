@@ -1,24 +1,24 @@
 @import CoreData;
 
-@class ANDYDataStack;
+@class DATAStack;
 
 @interface Kipu : NSObject
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
-             dataStack:(ANDYDataStack *)dataStack
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion;
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
              predicate:(NSPredicate *)predicate
-             dataStack:(ANDYDataStack *)dataStack
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion;
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
                 parent:(NSManagedObject *)parent
-             dataStack:(ANDYDataStack *)dataStack
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion;
 
 + (void)processChanges:(NSArray *)changes

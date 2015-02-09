@@ -3,7 +3,7 @@
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+ANDYMapChanges.h"
-#import "ANDYDataStack.h"
+#import "DATAStack.h"
 
 @interface NSManagedObject (Kipu)
 
@@ -27,7 +27,7 @@
 
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
-             dataStack:(ANDYDataStack *)dataStack
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
     [self processChanges:changes
@@ -40,7 +40,7 @@
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
              predicate:(NSPredicate *)predicate
-             dataStack:(ANDYDataStack *)dataStack
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
     [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {
@@ -57,7 +57,7 @@
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
                 parent:(NSManagedObject *)parent
-             dataStack:(ANDYDataStack *)dataStack
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
     [dataStack performInBackgroundThreadContext:^(NSManagedObjectContext *context) {

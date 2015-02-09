@@ -1,12 +1,12 @@
 #import "AppDelegate.h"
-#import "ANDYDataStack.h"
+#import "DATAStack.h"
 #import "ViewController.h"
 
 AppDelegate *appDelegate;
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong, readwrite) ANDYDataStack *dataStack;
+@property (nonatomic, strong, readwrite) DATAStack *dataStack;
 
 @end
 
@@ -24,11 +24,11 @@ AppDelegate *appDelegate;
 
 #pragma mark - Getters
 
-- (ANDYDataStack *)dataStack
+- (DATAStack *)dataStack
 {
     if (_dataStack) return _dataStack;
 
-    _dataStack = [[ANDYDataStack alloc] initWithModelName:@"Example"];
+    _dataStack = [[DATAStack alloc] initWithModelName:@"Example"];
 
     return _dataStack;
 }

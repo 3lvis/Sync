@@ -26,7 +26,7 @@
                 updated:(void (^)(NSDictionary *objectDict, NSManagedObject *object))updated
 {
     [self andy_mapChanges:changes
-                 localKey:[NSString stringWithFormat:@"%@ID", [entityName lowercaseString]]
+                 localKey:@"remoteID"
                 remoteKey:@"id"
            usingPredicate:predicate
                 inContext:context

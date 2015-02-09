@@ -2,9 +2,9 @@
 @import CoreData;
 
 
-typedef NS_ENUM(NSInteger, ANDYDataStoreType) {
-    ANDYDataInMemoryStoreType = 0,
-    ANDYDataSQLiteStoreType
+typedef NS_ENUM(NSInteger, DATAStackStoreType) {
+    DATAStackInMemoryStoreType = 0,
+    DATAStackSQLiteStoreType
 };
 
 @interface DATAStack : NSObject
@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, ANDYDataStoreType) {
  */
 - (instancetype)initWithModelName:(NSString *)modelName
                            bundle:(NSBundle *)bundle
-                        storeType:(ANDYDataStoreType)storeType NS_DESIGNATED_INITIALIZER;
+                        storeType:(DATAStackStoreType)storeType NS_DESIGNATED_INITIALIZER;
 
 /*!
  * Provides a NSManagedObjectContext appropriate for use on the main
@@ -43,23 +43,23 @@ typedef NS_ENUM(NSInteger, ANDYDataStoreType) {
  * Provides a safe way to perform an operation in a background
  * operation by using a context.
  */
-- (void)performInBackgroundThreadContext:(void (^)(NSManagedObjectContext *context))operation;
+- (void)performInNewBackgroundThreadContext:(void (^)(NSManagedObjectContext *context))operation;
 
 /*!
  * Provides a new private context bound to the mainThreadContext for a
  * performant background operation.
  * \returns A background NSManagedObjectContext.
  */
-- (NSManagedObjectContext *)backgroundThreadContext;
+- (NSManagedObjectContext *)newBackgroundThreadContext;
 
 /*!
- * Saves current state of mainContext into the database.
+ * Persists the current in-memory state into the database.
  */
-- (void)persistContext;
+- (void)persistWithCompletion:(void (^)())completion;
 
 /*!
- * Destroys state of DATAStack.
+ * Destroys state of DATAStack and deletes the SQLite file.
  */
-- (void)destroy;
+- (void)drop;
 
 @end

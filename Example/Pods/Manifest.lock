@@ -1,8 +1,8 @@
 PODS:
-  - ANDYDataStack (2.0.2)
+  - DATAStack (2.0.2)
   - ANDYFetchedResultsTableDataSource (1.1)
   - Kipu (0.4):
-    - ANDYDataStack
+    - DATAStack
     - NSDictionary-ANDYSafeValue
     - NSManagedObject-ANDYMapChanges
     - NSManagedObject-HYPPropertyMapper
@@ -28,7 +28,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/NSElvis/Kipu.git
 
 SPEC CHECKSUMS:
-  ANDYDataStack: 381f77da0875647cdc64d53c17dd01291ea00e02
+  DATAStack: 381f77da0875647cdc64d53c17dd01291ea00e02
   ANDYFetchedResultsTableDataSource: d93c8c3eeb029a55dd2268c41f46a2d8be1457f8
   Kipu: c23dbc1e872e7085a9085c886a69c2ec8231ff92
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6

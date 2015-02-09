@@ -4,23 +4,23 @@
 
 #import "Kipu.h"
 #import "NSJSONSerialization+ANDYJSONFile.h"
-#import "ANDYDataStack.h"
+#import "DATAStack.h"
 
 @interface Tests : XCTestCase
 
-@property (nonatomic, strong) ANDYDataStack *dataStack;
+@property (nonatomic, strong) DATAStack *dataStack;
 
 @end
 
 @implementation Tests
 
-- (ANDYDataStack *)dataStack
+- (DATAStack *)dataStack
 {
     if (_dataStack) return _dataStack;
 
-    _dataStack = [[ANDYDataStack alloc] initWithModelName:@"Model"
-                                                   bundle:[NSBundle bundleForClass:[self class]]
-                                                storeType:ANDYDataInMemoryStoreType];
+    _dataStack = [[DATAStack alloc] initWithModelName:@"Model"
+                                               bundle:[NSBundle bundleForClass:[self class]]
+                                            storeType:DATAStackInMemoryStoreType];
 
     return _dataStack;
 }
@@ -29,7 +29,7 @@
 
 - (void)tearDown
 {
-    [self.dataStack destroy];
+    [self.dataStack drop];
     self.dataStack = nil;
 
     [super tearDown];
@@ -95,7 +95,7 @@
                 return;
             }
 
-            request.predicate = [NSPredicate predicateWithFormat:@"userID == %@", @7];
+            request.predicate = [NSPredicate predicateWithFormat:@"remoteID == %@", @7];
             NSArray *results = [mainContext executeFetchRequest:request error:nil];
             NSManagedObject *result = [results firstObject];
             XCTAssertEqualObjects([result valueForKey:@"email"], @"secondupdated@ovium.com");
@@ -136,7 +136,7 @@
                   XCTAssertEqual(usersCount, 4);
 
                   NSError *userFetchError = nil;
-                  userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
+                  userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
                   NSArray *users = [mainThreadContext executeFetchRequest:userRequest error:&userFetchError];
                   if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
                   NSManagedObject *user = [users firstObject];
@@ -163,12 +163,12 @@
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"notes_for_user_a.json" inBundle:bundle];
 
-    NSManagedObjectContext *background = [self.dataStack backgroundThreadContext];
+    NSManagedObjectContext *background = [self.dataStack newBackgroundThreadContext];
     [background performBlock:^{
 
         NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                               inManagedObjectContext:background];
-        [user setValue:@6 forKey:@"userID"];
+        [user setValue:@6 forKey:@"remoteID"];
         [user setValue:@"Shawn Merrill" forKey:@"name"];
         [user setValue:@"firstupdate@ovium.com" forKey:@"email"];
 
@@ -178,37 +178,37 @@
 
         NSManagedObjectContext *mainThreadContext = [self.dataStack mainThreadContext];
         [mainThreadContext performBlockAndWait:^{
-            [self.dataStack persistContext];
+            [self.dataStack persistWithCompletion:^{
+                NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+                NSArray *users = [mainThreadContext executeFetchRequest:userRequest error:nil];
+                if (users.count != 1) abort();
 
-            NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-            userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
-            NSArray *users = [mainThreadContext executeFetchRequest:userRequest error:nil];
-            if (users.count != 1) abort();
+                [Kipu processChanges:objects
+                     usingEntityName:@"Note"
+                              parent:[users firstObject]
+                           dataStack:self.dataStack
+                          completion:^(NSError *error) {
+                              NSManagedObjectContext *mainThreadContext = [self.dataStack mainThreadContext];
 
-            [Kipu processChanges:objects
-                 usingEntityName:@"Note"
-                          parent:[users firstObject]
-                       dataStack:self.dataStack
-                      completion:^(NSError *error) {
-                          NSManagedObjectContext *mainThreadContext = [self.dataStack mainThreadContext];
+                              NSError *userFetchError = nil;
+                              NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                              userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+                              NSArray *users = [mainThreadContext executeFetchRequest:userRequest error:&userFetchError];
+                              if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+                              NSManagedObject *user = [users firstObject];
+                              XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-                          NSError *userFetchError = nil;
-                          NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-                          userRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @6];
-                          NSArray *users = [mainThreadContext executeFetchRequest:userRequest error:&userFetchError];
-                          if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
-                          NSManagedObject *user = [users firstObject];
-                          XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+                              NSError *notesError = nil;
+                              NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                              noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+                              NSInteger notesCount = [mainThreadContext countForFetchRequest:noteRequest error:&notesError];
+                              if (notesError) NSLog(@"notesError: %@", notesError);
+                              XCTAssertEqual(notesCount, 5);
 
-                          NSError *notesError = nil;
-                          NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                          noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-                          NSInteger notesCount = [mainThreadContext countForFetchRequest:noteRequest error:&notesError];
-                          if (notesError) NSLog(@"notesError: %@", notesError);
-                          XCTAssertEqual(notesCount, 5);
-
-                          [expectation fulfill];
-                      }];
+                              [expectation fulfill];
+                          }];
+            }];
         }];
     }];
 
@@ -237,7 +237,7 @@
                   XCTAssertEqual(numberOfNotes, 5);
 
                   NSError *notesFetchError = nil;
-                  notesRequest.predicate = [NSPredicate predicateWithFormat:@"noteID = %@", @0];
+                  notesRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @0];
                   NSArray *notes = [mainThreadContext executeFetchRequest:notesRequest error:&notesFetchError];
                   if (notesFetchError) NSLog(@"notesFetchError: %@", notesFetchError);
                   NSManagedObject *note = [notes firstObject];
@@ -251,7 +251,7 @@
                   XCTAssertEqual(numberOfTags, 2);
 
                   NSError *tagsFetchError = nil;
-                  tagsRequest.predicate = [NSPredicate predicateWithFormat:@"tagID = %@", @1];
+                  tagsRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @1];
                   NSArray *tags = [mainThreadContext executeFetchRequest:tagsRequest error:&tagsFetchError];
                   if (tagsFetchError) NSLog(@"tagsFetchError: %@", tagsFetchError);
                   NSManagedObject *tag = [tags firstObject];
@@ -286,7 +286,7 @@
                   XCTAssertEqual(numberOfUsers, 5);
 
                   NSError *usersFetchError = nil;
-                  usersRequest.predicate = [NSPredicate predicateWithFormat:@"userID = %@", @0];
+                  usersRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @0];
                   NSArray *users = [mainThreadContext executeFetchRequest:usersRequest error:&usersFetchError];
                   if (usersFetchError) NSLog(@"usersFetchError: %@", usersFetchError);
                   NSManagedObject *user = [users firstObject];
@@ -299,7 +299,7 @@
                   XCTAssertEqual(numberOfCompanies, 2);
 
                   NSError *companiesFetchError = nil;
-                  companiesRequest.predicate = [NSPredicate predicateWithFormat:@"companyID = %@", @1];
+                  companiesRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @1];
                   NSArray *companies = [mainThreadContext executeFetchRequest:companiesRequest error:&companiesFetchError];
                   if (companiesFetchError) NSLog(@"companiesFetchError: %@", companiesFetchError);
                   NSManagedObject *company = [companies firstObject];

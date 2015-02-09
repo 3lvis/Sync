@@ -39,10 +39,10 @@ This is a category on NSManagedObject that helps you to evaluate insertions, del
 
 ## Local and Remote keys
 
-`localKey` is the name of the local primaryKey, if it's a user it could be `userID`.
+`localKey` is the name of the local primaryKey, if it's a user it could be `remoteID`.
 `remoteKey` is the name of the key from JSON, if it's a user it could be just `id`.
 
-The convenience method that doesn't contain this attributes, fallsback to `modelNameID`(`userID`) for the `localKey` and `id` for the `remoteKey`.
+The convenience method that doesn't contain this attributes, fallsback to `remoteID` for the `localKey` and `id` for the `remoteKey`.
 
 ## Predicate
 
@@ -69,7 +69,9 @@ To run the example project, clone the repo, and open the `.xcodeproj` from the D
 **NSManagedObject-ANDYMapChanges** is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-`pod 'NSManagedObject-ANDYMapChanges'`
+```ruby
+pod 'NSManagedObject-ANDYMapChanges'
+```
 
 ## Author
 

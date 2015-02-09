@@ -1,13 +1,13 @@
 @import UIKit;
 @import CoreData;
 
-@class ANDYDataStack;
+@class DATAStack;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, strong, readonly) ANDYDataStack *dataStack;
+@property (nonatomic, strong, readonly) DATAStack *dataStack;
 
 @end
 
