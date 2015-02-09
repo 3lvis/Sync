@@ -36,7 +36,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</string>
 			<key>Title</key>
-			<string>ANDYDataStack</string>
+			<string>ANDYFetchedResultsTableDataSource</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -64,7 +64,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</string>
 			<key>Title</key>
-			<string>ANDYFetchedResultsTableDataSource</string>
+			<string>DATAStack</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

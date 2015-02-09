@@ -15,7 +15,7 @@
 @dynamic username;
 @dynamic createdDate;
 @dynamic canonicalURL;
-@dynamic userID;
+@dynamic remoteID;
 @dynamic userType;
 @dynamic name;
 @dynamic datas;

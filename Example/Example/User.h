@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * canonicalURL;
-@property (nonatomic, retain) NSString * userID;
+@property (nonatomic, retain) NSString * remoteID;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *datas;

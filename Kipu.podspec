@@ -22,6 +22,7 @@ s.source_files = 'Source/**/*'
 
 s.frameworks = 'Foundation', 'CoreData'
 
+s.dependency 'DATAStack'
 s.dependency 'NSManagedObject-HYPPropertyMapper'
 s.dependency 'NSManagedObject-ANDYMapChanges'
 s.dependency 'DATAStack'

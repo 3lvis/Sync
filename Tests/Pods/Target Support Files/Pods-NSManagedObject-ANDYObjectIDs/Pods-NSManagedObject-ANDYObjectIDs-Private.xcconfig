@@ -1,5 +1,5 @@
 #include "Pods-NSManagedObject-ANDYObjectIDs.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/NSManagedObject-ANDYObjectIDs" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ANDYDataStack" "${PODS_ROOT}/Headers/Public/NSDictionary-ANDYSafeValue" "${PODS_ROOT}/Headers/Public/NSJSONSerialization-ANDYJSONFile" "${PODS_ROOT}/Headers/Public/NSManagedObject-ANDYMapChanges" "${PODS_ROOT}/Headers/Public/NSManagedObject-ANDYObjectIDs" "${PODS_ROOT}/Headers/Public/NSManagedObject-HYPPropertyMapper" "${PODS_ROOT}/Headers/Public/NSString-HYPNetworking"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/NSManagedObject-ANDYObjectIDs" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/DATAStack" "${PODS_ROOT}/Headers/Public/NSDictionary-ANDYSafeValue" "${PODS_ROOT}/Headers/Public/NSJSONSerialization-ANDYJSONFile" "${PODS_ROOT}/Headers/Public/NSManagedObject-ANDYMapChanges" "${PODS_ROOT}/Headers/Public/NSManagedObject-ANDYObjectIDs" "${PODS_ROOT}/Headers/Public/NSManagedObject-HYPPropertyMapper" "${PODS_ROOT}/Headers/Public/NSString-HYPNetworking"
 OTHER_LDFLAGS = ${PODS_NSMANAGEDOBJECT_ANDYOBJECTIDS_OTHER_LDFLAGS} -ObjC
 PODS_ROOT = ${SRCROOT}

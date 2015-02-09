@@ -21,13 +21,13 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 ```objc
 + (void)processChanges:(NSArray *)changes
        usingEntityName:(NSString *)entityName
-             dataStack:(ANDYDataStack *)dataStack
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 ```
 
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [ANDYDataStack](https://github.com/NSElvis/ANDYDataStack) instance, usually from your `AppDelegate`
+* `dataStack`: Your [DATAStack](https://github.com/NSElvis/DATAStack) instance, usually from your AppDelegate
 
 ## Real World Example
 
@@ -80,7 +80,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 **Kipu** wouldn't be possible without the help of this *fully tested* components:
 
-* [**ANDYDataStack**](https://github.com/NSElvis/ANDYDataStack): Core Data stack and thread safe saving
+* [**DATAStack**](https://github.com/NSElvis/DATAStack): CoreData stack and thread safe saving
 
 * [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
 
@@ -96,9 +96,9 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 pod 'Kipu', '~> 0.4'
 ```
 
-### ANDYDataStack
+### DATAStack
 
-Replace your Core Data Stack with [an instance of ANDYDataStack](https://github.com/NSElvis/ANDYDataStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L27):
+Replace your Core Data Stack with [an instance of DATAStack](https://github.com/NSElvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L27):
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -119,7 +119,7 @@ Your fields should match their JSON counterparts. For example `first_name` maps 
 
 There are only two exceptions to this rule:
 
-* `id`s should match `entityNameID`, for example for an entity user the `id` should match `userID`
+* `id`s should match `entityNameID`, for example for an entity user the `id` should match `remoteID`
 * `created_at` and `updated_at` should match `createdDate` and `updatedDate`
 
 ### Networking

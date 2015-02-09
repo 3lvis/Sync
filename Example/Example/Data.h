@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) NSString * dataID;
+@property (nonatomic, retain) NSString * remoteID;
 @property (nonatomic, retain) NSString * canonicalURL;
 @property (nonatomic, retain) NSString * threadID;
 @property (nonatomic, retain) NSString * paginationID;

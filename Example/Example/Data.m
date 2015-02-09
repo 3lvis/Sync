@@ -14,7 +14,7 @@
 
 @dynamic createdDate;
 @dynamic text;
-@dynamic dataID;
+@dynamic remoteID;
 @dynamic canonicalURL;
 @dynamic threadID;
 @dynamic paginationID;

@@ -1,40 +1,41 @@
 PODS:
-  - ANDYDataStack (2.0.2)
   - ANDYFetchedResultsTableDataSource (1.1)
+  - DATAStack (2.2.3)
   - Kipu (0.4):
-    - ANDYDataStack
+    - DATAStack
     - NSDictionary-ANDYSafeValue
     - NSManagedObject-ANDYMapChanges
     - NSManagedObject-HYPPropertyMapper
   - NSDictionary-ANDYSafeValue (0.3)
-  - NSManagedObject-ANDYMapChanges (0.5.1):
+  - NSManagedObject-ANDYMapChanges (0.6):
     - NSManagedObject-ANDYObjectIDs
   - NSManagedObject-ANDYObjectIDs (0.1)
-  - NSManagedObject-HYPPropertyMapper (2.8):
+  - NSManagedObject-HYPPropertyMapper (2.8.1):
     - NSString-HYPNetworking
   - NSString-HYPNetworking (0.1)
 
 DEPENDENCIES:
   - ANDYFetchedResultsTableDataSource
-  - Kipu (from `https://github.com/NSElvis/Kipu.git`)
+  - Kipu (from `https://github.com/NSElvis/Kipu.git`, branch `migration/datastack`)
 
 EXTERNAL SOURCES:
   Kipu:
+    :branch: migration/datastack
     :git: https://github.com/NSElvis/Kipu.git
 
 CHECKOUT OPTIONS:
   Kipu:
-    :commit: 660bed10f7ae53d076091e3f5c31805531f6f83f
+    :commit: fc37b89a53d533c0009488eda97f5b26593b9f56
     :git: https://github.com/NSElvis/Kipu.git
 
 SPEC CHECKSUMS:
-  ANDYDataStack: 381f77da0875647cdc64d53c17dd01291ea00e02
   ANDYFetchedResultsTableDataSource: d93c8c3eeb029a55dd2268c41f46a2d8be1457f8
-  Kipu: c23dbc1e872e7085a9085c886a69c2ec8231ff92
+  DATAStack: 0dc349315b3416d1347f6b45dd571d812c8dff6c
+  Kipu: c9811d8f56864b8c1f5e72784521cb94f9764623
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
-  NSManagedObject-ANDYMapChanges: 224cd299f56bbcb8466f495a22666aac877a4301
+  NSManagedObject-ANDYMapChanges: f5d20e903eafecb844adfa1a7e355a1f8cf083a8
   NSManagedObject-ANDYObjectIDs: d27bb3014026506848a8d164f3019ecaa2a4baca
-  NSManagedObject-HYPPropertyMapper: 1ad1837dc3e6e7e8a046010adacfd3fad8f084cd
+  NSManagedObject-HYPPropertyMapper: 13abcf971f00cf098ed5e148b1aa7fa2801f9e6a
   NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
 
 COCOAPODS: 0.35.0
