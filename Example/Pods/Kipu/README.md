@@ -119,7 +119,7 @@ Your fields should match their JSON counterparts. For example `first_name` maps 
 
 There are only two exceptions to this rule:
 
-* `id`s should match `entityNameID`, for example for an entity user the `id` should match `userID`
+* `id`s should match `remoteID`
 * `created_at` and `updated_at` should match `createdDate` and `updatedDate`
 
 ### Networking
