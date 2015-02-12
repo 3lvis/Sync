@@ -43,13 +43,13 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
+    [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
         [self processChanges:changes
              usingEntityName:entityName
                    predicate:predicate
                       parent:nil
-                   inContext:context
+                   inContext:backgroundContext
                   completion:completion];
     }];
 }
@@ -60,16 +60,16 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
+    [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
-        NSManagedObject *safeParent = [parent kipu_copyInContext:context];
+        NSManagedObject *safeParent = [parent kipu_copyInContext:backgroundContext];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self processChanges:changes
              usingEntityName:entityName
                    predicate:predicate
                       parent:safeParent
-                   inContext:context
+                   inContext:backgroundContext
                   completion:completion];
     }];
 }
