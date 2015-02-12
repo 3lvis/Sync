@@ -74,7 +74,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 ## Requirements
 
-`iOS 7 or above`, [`ANDYDataStack Core Data stack`](https://github.com/NSElvis/ANDYDataStack)
+`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/NSElvis/DATAStack)
 
 ## Components
 
@@ -103,7 +103,7 @@ Replace your Core Data Stack with [an instance of DATAStack](https://github.com/
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [self.dataStack persistContext];
+    [self.dataStack persistWithCompletion:nil];
 }
 ```
 Replace any call to your `managedObjectContext` used in the main thread with this:
@@ -119,7 +119,7 @@ Your fields should match their JSON counterparts. For example `first_name` maps 
 
 There are only two exceptions to this rule:
 
-* `id`s should match `entityNameID`, for example for an entity user the `id` should match `remoteID`
+* `id`s should match `remoteID`
 * `created_at` and `updated_at` should match `createdDate` and `updatedDate`
 
 ### Networking

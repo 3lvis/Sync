@@ -3,44 +3,44 @@
 #import "User.h"
 #import "Data.h"
 
-#import "ANDYFetchedResultsTableDataSource.h"
+#import "DATASource.h"
 #import "DATAStack.h"
 #import "Kipu.h"
 #import "AppDelegate.h"
 
 @interface ViewController ()
 
-@property (nonatomic, strong) ANDYFetchedResultsTableDataSource *dataSource;
+@property (nonatomic, strong) DATASource *dataSource;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) DATAStack *dataStack;
 
 @end
 
 @implementation ViewController
 
+- (instancetype)initWithDataStack:(DATAStack *)dataStack
+{
+    self = [super init];
+    if (!self) return nil;
+
+    _dataStack = dataStack;
+
+    return self;
+}
+
 #pragma mark - Getters
 
-- (NSFetchedResultsController *)fetchedResultsController
+- (DATASource *)dataSource
 {
-    if (_fetchedResultsController) return _fetchedResultsController;
+    if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Data"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:YES]];
 
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                    managedObjectContext:[appDelegate.dataStack mainThreadContext]
-                                                                      sectionNameKeyPath:nil
-                                                                               cacheName:nil];
-
-    return _fetchedResultsController;
-}
-
-- (ANDYFetchedResultsTableDataSource *)dataSource
-{
-    if (_dataSource) return _dataSource;
-
-    _dataSource = [[ANDYFetchedResultsTableDataSource alloc] initWithTableView:self.tableView
-                                                      fetchedResultsController:self.fetchedResultsController
-                                                                cellIdentifier:@"Cell"];
+    _dataSource = [[DATASource alloc] initWithTableView:self.tableView
+                                           fetchRequest:request
+                                         cellIdentifier:@"Cell"
+                                            mainContext:self.dataStack.mainContext];
 
     _dataSource.configureCellBlock = ^(UITableViewCell *cell, Data *item, NSIndexPath *indexPath) {
         cell.textLabel.text = item.text;
@@ -86,7 +86,7 @@
 
                                    [Kipu processChanges:[JSON valueForKey:@"data"]
                                         usingEntityName:@"Data"
-                                              dataStack:appDelegate.dataStack
+                                              dataStack:self.dataStack
                                              completion:nil];
                                }
                            }];

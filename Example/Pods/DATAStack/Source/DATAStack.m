@@ -4,7 +4,7 @@
 
 @interface DATAStack ()
 
-@property (strong, nonatomic, readwrite) NSManagedObjectContext *mainThreadContext;
+@property (strong, nonatomic, readwrite) NSManagedObjectContext *mainContext;
 @property (strong, nonatomic) NSManagedObjectContext *writerContext;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
@@ -53,16 +53,16 @@
 
 #pragma mark - Getters
 
-- (NSManagedObjectContext *)mainThreadContext
+- (NSManagedObjectContext *)mainContext
 {
-    if (_mainThreadContext) return _mainThreadContext;
+    if (_mainContext) return _mainContext;
 
-    _mainThreadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _mainThreadContext.undoManager = nil;
-    _mainThreadContext.parentContext = self.writerContext;
-    _mainThreadContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
+    _mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    _mainContext.undoManager = nil;
+    _mainContext.parentContext = self.writerContext;
+    _mainContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
-    return _mainThreadContext;
+    return _mainContext;
 }
 
 - (NSManagedObjectContext *)writerContext
@@ -153,7 +153,7 @@
 - (void)persistWithCompletion:(void (^)())completion
 {
     NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
-    NSManagedObjectContext *managedObjectContext = self.mainThreadContext;
+    NSManagedObjectContext *managedObjectContext = self.mainContext;
 
     [managedObjectContext performBlock:^{
         NSError *error = nil;
@@ -186,15 +186,15 @@
 
 #pragma mark - Public methods
 
-- (void)performInNewBackgroundThreadContext:(void (^)(NSManagedObjectContext *context))operation
+- (void)performInNewBackgroundContext:(void (^)(NSManagedObjectContext *backgroundContext))operation
 {
-    NSManagedObjectContext *context = [self newBackgroundThreadContext];
+    NSManagedObjectContext *context = [self newBackgroundContext];
     [context performBlock:^{
         if (operation) operation(context);
     }];
 }
 
-- (NSManagedObjectContext *)newBackgroundThreadContext
+- (NSManagedObjectContext *)newBackgroundContext
 {
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = self.persistentStoreCoordinator;
@@ -202,7 +202,7 @@
     context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(backgroundThreadDidSave:)
+                                             selector:@selector(backgroundContextDidSave:)
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:context];
 
@@ -211,14 +211,14 @@
 
 #pragma mark - Observers
 
-- (void)backgroundThreadDidSave:(NSNotification *)backgroundThreadNotification
+- (void)backgroundContextDidSave:(NSNotification *)backgroundContextNotification
 {
     if ([NSThread isMainThread]) {
-        [NSException raise:@"DATASTACK_BACKGROUND_THREAD_CREATION_EXCEPTION"
+        [NSException raise:@"DATASTACK_BACKGROUND_CONTEXT_CREATION_EXCEPTION"
                     format:@"Background context saved in the main thread. Use context's `performBlock`"];
     } else {
-        [self.mainThreadContext performBlock:^{
-            [self.mainThreadContext mergeChangesFromContextDidSaveNotification:backgroundThreadNotification];
+        [self.mainContext performBlock:^{
+            [self.mainContext mergeChangesFromContextDidSaveNotification:backgroundContextNotification];
         }];
     }
 }
@@ -231,7 +231,7 @@
     NSURL *storeURL = store.URL;
 
     self.writerContext = nil;
-    self.mainThreadContext = nil;
+    self.mainContext = nil;
     self.persistentStoreCoordinator = nil;
 
     NSFileManager *fileManager = [NSFileManager defaultManager];

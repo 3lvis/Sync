@@ -2,8 +2,6 @@
 #import "DATAStack.h"
 #import "ViewController.h"
 
-AppDelegate *appDelegate;
-
 @interface AppDelegate ()
 
 @property (nonatomic, strong, readwrite) DATAStack *dataStack;
@@ -11,16 +9,6 @@ AppDelegate *appDelegate;
 @end
 
 @implementation AppDelegate
-
-- (instancetype)init
-{
-    self = [super init];
-    if (!self) return nil;
-
-    appDelegate = self;
-
-    return self;
-}
 
 #pragma mark - Getters
 
@@ -37,7 +25,7 @@ AppDelegate *appDelegate;
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    ViewController *mainController = [[ViewController alloc] init];
+    ViewController *mainController = [[ViewController alloc] initWithDataStack:self.dataStack];
     self.window.rootViewController = mainController;
 
     [self.window makeKeyAndVisible];
