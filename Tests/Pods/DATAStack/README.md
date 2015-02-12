@@ -16,8 +16,8 @@ Then in your NSFetchedResultsController backed app (attached to your main contex
 
 - (void)createTask
 {
-    [self.dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
-        Task *task = [Task insertInManagedObjectContext:context];
+    [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
+        Task *task = [Task insertInManagedObjectContext:backgroundContext];
         task.title = @"Hello!";
         task.date = [NSDate date];
         [context save:nil];

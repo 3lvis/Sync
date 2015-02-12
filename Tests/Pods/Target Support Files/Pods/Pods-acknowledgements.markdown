@@ -29,7 +29,7 @@ SOFTWARE.
 
 Licensed under the **MIT** license
 
-> Copyright (c) 2015 Elvis Nuñez
+> Copyright (c) 2014 Elvis Nuñez
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
@@ -55,7 +55,7 @@ Licensed under the **MIT** license
 
 Licensed under the **MIT** license
 
-> Copyright (c) 2015 Elvis Nuñez
+> Copyright (c) 2014 Elvis Nuñez
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
@@ -81,7 +81,7 @@ Licensed under the **MIT** license
 
 Licensed under the **MIT** license
 
-> Copyright (c) 2015 Elvis Nuñez
+> Copyright (c) 2014 Elvis Nuñez
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
@@ -107,7 +107,7 @@ Licensed under the **MIT** license
 
 Licensed under the **MIT** license
 
-> Copyright (c) 2015 Elvis Nuñez
+> Copyright (c) 2014 Elvis Nuñez
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
@@ -133,7 +133,7 @@ Licensed under the **MIT** license
 
 Licensed under the **MIT** license
 
-> Copyright (c) 2015 Hyper Interaktiv AS
+> Copyright (c) 2014 Hyper Interaktiv AS
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
@@ -159,7 +159,7 @@ Licensed under the **MIT** license
 
 Licensed under the **MIT** license
 
-> Copyright (c) 2015 Hyper AS
+> Copyright (c) 2014 Hyper AS
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the

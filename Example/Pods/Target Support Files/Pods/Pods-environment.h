@@ -6,17 +6,17 @@
 // project.
 
 
-// ANDYFetchedResultsTableDataSource
-#define COCOAPODS_POD_AVAILABLE_ANDYFetchedResultsTableDataSource
-#define COCOAPODS_VERSION_MAJOR_ANDYFetchedResultsTableDataSource 1
-#define COCOAPODS_VERSION_MINOR_ANDYFetchedResultsTableDataSource 1
-#define COCOAPODS_VERSION_PATCH_ANDYFetchedResultsTableDataSource 0
+// DATASource
+#define COCOAPODS_POD_AVAILABLE_DATASource
+#define COCOAPODS_VERSION_MAJOR_DATASource 2
+#define COCOAPODS_VERSION_MINOR_DATASource 1
+#define COCOAPODS_VERSION_PATCH_DATASource 0
 
 // DATAStack
 #define COCOAPODS_POD_AVAILABLE_DATAStack
 #define COCOAPODS_VERSION_MAJOR_DATAStack 2
-#define COCOAPODS_VERSION_MINOR_DATAStack 2
-#define COCOAPODS_VERSION_PATCH_DATAStack 3
+#define COCOAPODS_VERSION_MINOR_DATAStack 3
+#define COCOAPODS_VERSION_PATCH_DATAStack 0
 
 // Kipu
 #define COCOAPODS_POD_AVAILABLE_Kipu
@@ -39,7 +39,7 @@
 // NSManagedObject-ANDYObjectIDs
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_ANDYObjectIDs
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_ANDYObjectIDs 0
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYObjectIDs 1
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYObjectIDs 2
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_ANDYObjectIDs 0
 
 // NSManagedObject-HYPPropertyMapper

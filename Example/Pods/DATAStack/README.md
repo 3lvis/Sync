@@ -16,8 +16,8 @@ Then in your NSFetchedResultsController backed app (attached to your main contex
 
 - (void)createTask
 {
-    [self.dataStack performInNewBackgroundThreadContext:^(NSManagedObjectContext *context) {
-        Task *task = [Task insertInManagedObjectContext:context];
+    [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
+        Task *task = [Task insertInManagedObjectContext:backgroundContext];
         task.title = @"Hello!";
         task.date = [NSDate date];
         [context save:nil];
@@ -27,7 +27,7 @@ Then in your NSFetchedResultsController backed app (attached to your main contex
 
 **BOOM, it just works.**
 
-(Hint: Maybe you haven't found the best way to use NSFetchedResultsController, well [here it is](https://github.com/NSElvis/ANDYFetchedResultsTableDataSource).)
+(Hint: Maybe you haven't found the best way to use NSFetchedResultsController, well [here it is](https://github.com/NSElvis/DATASource).)
 
 Be Awesome
 ==========
