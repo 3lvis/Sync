@@ -1,7 +1,7 @@
 PODS:
   - DATASource (2.1)
   - DATAStack (2.3)
-  - Kipu (0.4):
+  - Kipu (0.4.1):
     - DATAStack
     - NSDictionary-ANDYSafeValue
     - NSManagedObject-ANDYMapChanges
@@ -16,22 +16,12 @@ PODS:
 
 DEPENDENCIES:
   - DATASource
-  - Kipu (from `https://github.com/NSElvis/Kipu.git`, branch `migrate/datastack-datasource`)
-
-EXTERNAL SOURCES:
-  Kipu:
-    :branch: migrate/datastack-datasource
-    :git: https://github.com/NSElvis/Kipu.git
-
-CHECKOUT OPTIONS:
-  Kipu:
-    :commit: 1cb5054232bcc599797410d89bbd2655c12768a0
-    :git: https://github.com/NSElvis/Kipu.git
+  - Kipu
 
 SPEC CHECKSUMS:
   DATASource: 72d31d5ca99837258c0f419af4c20cddea93853c
   DATAStack: 82ab490d245462e1b24ff4e828de0bec86c38e9c
-  Kipu: b965f5a245b4bebcbdd7374c32f8785743e4b165
+  Kipu: 882b6bc7d8aa0ac1b3d6e78e6ecf188a9f6b054c
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
   NSManagedObject-ANDYMapChanges: f5d20e903eafecb844adfa1a7e355a1f8cf083a8
   NSManagedObject-ANDYObjectIDs: 7148a374e2d163392b0442dce51e7cc2bf94b356
