@@ -27,7 +27,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [DATAStack](https://github.com/NSElvis/DATAStack) instance, usually from your AppDelegate
+* `dataStack`: Your [DATAStack](https://github.com/NSElvis/DATAStack)
 
 ## Real World Example
 
@@ -62,7 +62,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 ```objc
 [Kipu processChanges:JSON
      usingEntityName:@"User"
-           dataStack:appDelegate.dataStack
+           dataStack:dataStack
           completion:^{
               // Objects saved in Core Data, do something
            }];
@@ -80,7 +80,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 **Kipu** wouldn't be possible without the help of this *fully tested* components:
 
-* [**DATAStack**](https://github.com/NSElvis/DATAStack): CoreData stack and thread safe saving
+* [**DATAStack**](https://github.com/NSElvis/DATAStack): Core Data stack and thread safe saving
 
 * [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
 
@@ -98,18 +98,13 @@ pod 'Kipu', '~> 0.4'
 
 ### DATAStack
 
-Replace your Core Data Stack with [an instance of DATAStack](https://github.com/NSElvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L27):
+Replace your Core Data stack with [an instance of DATAStack](https://github.com/NSElvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19):
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [self.dataStack persistWithCompletion:nil];
 }
-```
-Replace any call to your `managedObjectContext` used in the main thread with this:
-
-```objc
-[self.dataTask mainThreadContext];
 ```
 
 ### NSManagedObject-HYPPropertyMapper
