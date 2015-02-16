@@ -1,5 +1,5 @@
 PODS:
-  - DATAStack (2.3)
+  - DATAStack (2.6)
   - NSDictionary-ANDYSafeValue (0.3)
   - NSJSONSerialization-ANDYJSONFile (1.1)
   - NSManagedObject-ANDYMapChanges (0.6):
@@ -17,7 +17,7 @@ DEPENDENCIES:
   - NSManagedObject-HYPPropertyMapper
 
 SPEC CHECKSUMS:
-  DATAStack: 82ab490d245462e1b24ff4e828de0bec86c38e9c
+  DATAStack: 72663bf12db9427b535d5eaa761ebf18ab60c38f
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
   NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
   NSManagedObject-ANDYMapChanges: f5d20e903eafecb844adfa1a7e355a1f8cf083a8

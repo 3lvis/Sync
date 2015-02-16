@@ -5,8 +5,10 @@
 @interface DATAStack ()
 
 @property (strong, nonatomic, readwrite) NSManagedObjectContext *mainContext;
+@property (strong, nonatomic, readwrite) NSManagedObjectContext *disposableMainContext;
 @property (strong, nonatomic) NSManagedObjectContext *writerContext;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *disposablePersistentStoreCoordinator;
 
 @property (nonatomic) DATAStackStoreType storeType;
 @property (nonatomic, copy) NSString *modelName;
@@ -51,6 +53,13 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSManagedObjectContextDidSaveNotification
+                                                  object:nil];
+}
+
 #pragma mark - Getters
 
 - (NSManagedObjectContext *)mainContext
@@ -81,10 +90,8 @@
 {
     if (_persistentStoreCoordinator) return _persistentStoreCoordinator;
 
-    NSURL *storeURL = nil;
-
     NSString *filePath = [NSString stringWithFormat:@"%@.sqlite", self.modelName];
-    storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:filePath];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:filePath];
 
     NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES,
                                NSInferMappingModelAutomaticallyOption: @YES };
@@ -92,9 +99,11 @@
     NSString *storeType;
 
     switch (self.storeType) {
-        case DATAStackInMemoryStoreType:
+        case DATAStackInMemoryStoreType: {
             storeType = NSInMemoryStoreType;
-            break;
+            storeURL = nil;
+            options = nil;
+        } break;
         case DATAStackSQLiteStoreType:
             storeType = NSSQLiteStoreType;
             break;
@@ -108,7 +117,6 @@
     }
 
     NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
 
     NSError *addPersistentStoreError = nil;
@@ -146,6 +154,23 @@
 #endif
 
     return _persistentStoreCoordinator;
+}
+
+- (NSPersistentStoreCoordinator *)disposablePersistentStoreCoordinator
+{
+    if (_disposablePersistentStoreCoordinator) return _disposablePersistentStoreCoordinator;
+
+    NSBundle *bundle = (self.modelBundle) ?: [NSBundle mainBundle];
+    NSURL *modelURL = [bundle URLForResource:self.modelName withExtension:@"momd"];
+    if (!modelURL) {
+        NSLog(@"Model with model name {%@} not found in bundle {%@}", self.modelName, bundle);
+        abort();
+    }
+
+    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    _disposablePersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+
+    return _disposablePersistentStoreCoordinator;
 }
 
 #pragma mark - Private methods
@@ -188,14 +213,6 @@
 
 - (void)performInNewBackgroundContext:(void (^)(NSManagedObjectContext *backgroundContext))operation
 {
-    NSManagedObjectContext *context = [self newBackgroundContext];
-    [context performBlock:^{
-        if (operation) operation(context);
-    }];
-}
-
-- (NSManagedObjectContext *)newBackgroundContext
-{
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     context.persistentStoreCoordinator = self.persistentStoreCoordinator;
     context.undoManager = nil;
@@ -206,7 +223,19 @@
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:context];
 
-    return context;
+    [context performBlock:^{
+        if (operation) operation(context);
+    }];
+}
+
+- (NSManagedObjectContext *)disposableMainContext
+{
+    if (_disposableMainContext) return _disposableMainContext;
+
+    _disposableMainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    _disposableMainContext.persistentStoreCoordinator = self.disposablePersistentStoreCoordinator;
+
+    return _disposableMainContext;
 }
 
 #pragma mark - Observers
