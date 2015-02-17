@@ -12,11 +12,13 @@
 - (NSArray *)kipu_relationships;
 
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
-                                       andParent:(NSManagedObject *)parent;
+                                       andParent:(NSManagedObject *)parent
+                                       dataStack:(DATAStack *)dataStack;
 
 - (void)kipu_processToManyRelationship:(NSRelationshipDescription *)relationship
                        usingDictionary:(NSDictionary *)objectDict
-                             andParent:(NSManagedObject *)parent;
+                             andParent:(NSManagedObject *)parent
+                             dataStack:(DATAStack *)dataStack;
 
 - (void)kipu_processToOneRelationship:(NSRelationshipDescription *)relationship
                       usingDictionary:(NSDictionary *)objectDict;
@@ -50,6 +52,7 @@
                    predicate:predicate
                       parent:nil
                    inContext:backgroundContext
+                   dataStack:dataStack
                   completion:completion];
     }];
 }
@@ -70,6 +73,7 @@
                    predicate:predicate
                       parent:safeParent
                    inContext:backgroundContext
+                   dataStack:dataStack
                   completion:completion];
     }];
 }
@@ -79,6 +83,7 @@
              predicate:(NSPredicate *)predicate
                 parent:(NSManagedObject *)parent
              inContext:(NSManagedObjectContext *)context
+             dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
     [NSManagedObject andy_mapChanges:changes
@@ -90,12 +95,12 @@
                                 NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                                          inManagedObjectContext:context];
                                 [created hyp_fillWithDictionary:objectDict];
-                                [created kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
+                                [created kipu_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
 
                             } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
 
                                 [object hyp_fillWithDictionary:objectDict];
-                                [object kipu_processRelationshipsUsingDictionary:objectDict andParent:parent];
+                                [object kipu_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
 
                             }];
 
@@ -103,7 +108,9 @@
     [context save:&error];
     if (error) NSLog(@"Kipu (error while saving %@): %@", entityName, [error description]);
 
-    if (completion) completion(error);
+    [dataStack persistWithCompletion:^{
+        if (completion) completion(error);
+    }];
 }
 
 + (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context
@@ -148,12 +155,13 @@
 
 - (void)kipu_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
                                        andParent:(NSManagedObject *)parent
+                                       dataStack:(DATAStack *)dataStack
 {
     NSArray *relationships = [self kipu_relationships];
 
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
-            [self kipu_processToManyRelationship:relationship usingDictionary:objectDict andParent:parent];
+            [self kipu_processToManyRelationship:relationship usingDictionary:objectDict andParent:parent dataStack:dataStack];
         } else {
             if (parent) {
                 [self setValue:parent forKey:relationship.name];
@@ -167,6 +175,7 @@
 - (void)kipu_processToManyRelationship:(NSRelationshipDescription *)relationship
                        usingDictionary:(NSDictionary *)objectDict
                              andParent:(NSManagedObject *)parent
+                             dataStack:(DATAStack *)dataStack
 {
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *parentEntityName = parent.entity.name;
@@ -207,6 +216,7 @@
                predicate:childPredicate
                   parent:self
                inContext:self.managedObjectContext
+               dataStack:dataStack
               completion:nil];
 }
 
