@@ -93,7 +93,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 **Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Kipu', '~> 0.4.2'
+pod 'Kipu'
 ```
 
 ### DATAStack
