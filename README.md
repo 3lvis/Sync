@@ -95,8 +95,7 @@ Replace your Core Data stack with [an instance of DATAStack](https://github.com/
 
 ### NSManagedObject-HYPPropertyMapper
 
-Your Core Data models should match your backend entities, your classes can have a different name.
-Your fields should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
+Your Core Data entities should match your backend models. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
 
 There are only two exceptions to this rule:
 
