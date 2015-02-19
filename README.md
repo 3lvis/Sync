@@ -72,20 +72,6 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 **PROFIT!**
 
-## Requirements
-
-`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/NSElvis/DATAStack)
-
-## Components
-
-**Kipu** wouldn't be possible without the help of this *fully tested* components:
-
-* [**DATAStack**](https://github.com/NSElvis/DATAStack): Core Data stack and thread safe saving
-
-* [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
-
-* [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it's job using the paradigm "_convention over configuration_"
-
 ## Getting Started
 
 ### Installation
@@ -124,6 +110,20 @@ You are free to use any networking library or NSURLConnection.
 ### Finally
 
 You are ready to go, check the [example project that uses App.net](https://github.com/NSElvis/Kipu/tree/master/Example) for how to use Kipu.
+
+## Requirements
+
+`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/NSElvis/DATAStack)
+
+## Components
+
+**Kipu** wouldn't be possible without the help of this *fully tested* components:
+
+* [**DATAStack**](https://github.com/NSElvis/DATAStack): Core Data stack and thread safe saving
+
+* [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
+
+* [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it's job using the paradigm "_convention over configuration_"
 
 ## Author
 
