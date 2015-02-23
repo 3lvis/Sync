@@ -142,7 +142,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = KIPU;
+				ORGANIZATIONNAME = Sync;
 				TargetAttributes = {
 					143D19811A12B8FD006A8595 = {
 						CreatedOnToolsVersion = 6.1;

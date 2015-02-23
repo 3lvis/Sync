@@ -1,11 +1,9 @@
-[![CI Status](http://img.shields.io/travis/NSElvis/Kipu.svg?style=flat)](https://travis-ci.org/NSElvis/Kipu)
-[![Version](https://img.shields.io/cocoapods/v/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
-[![License](https://img.shields.io/cocoapods/l/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
-[![Platform](https://img.shields.io/cocoapods/p/Kipu.svg?style=flat)](http://cocoadocs.org/docsets/Kipu)
+[![CI Status](http://img.shields.io/travis/hyperoslo/Sync.svg?style=flat)](https://travis-ci.org/hyperoslo/Sync)
+[![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
+[![License](https://img.shields.io/cocoapods/l/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
+[![Platform](https://img.shields.io/cocoapods/p/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
 
->**quipu [*kee-poo*, *kwip-oo*]**: Sometimes called talking knots, were recording devices historically used in the region of Andean South America. A system also used for collecting data and keeping records, ranging from monitoring tax obligations, properly collecting census records, calendrical information, and military organization.
-
-Kipu eases your every day job of parsing a `JSON` response and getting it into Core Data. It uses a convention over configuration paradigm to facilitate your workflow.
+Sync eases your every day job of parsing a `JSON` response and getting it into Core Data. It uses a convention over configuration paradigm to facilitate your workflow.
 
 * Handles operations in safe background threads
 * Thread safe saving, we handle retrieving and storing objects in the right threads
@@ -31,7 +29,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 #### Model
 
-![Model](https://github.com/NSElvis/Kipu/blob/master/Images/coredata-model.png)
+![Model](https://github.com/hyperoslo/Sync/blob/master/Images/coredata-model.png)
 
 #### JSON
 
@@ -55,10 +53,10 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 ]
 ```
 
-#### Kipu
+#### Sync
 
 ```objc
-[Kipu processChanges:JSON
+[Sync processChanges:JSON
      usingEntityName:@"User"
            dataStack:dataStack
           completion:^{
@@ -66,7 +64,7 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
            }];
 ```
 
-[(You can see another example here).](https://github.com/NSElvis/Kipu/blob/master/Example/Example/ViewController.m#L94)
+[(You can see another example here).](https://github.com/hyperoslo/Sync/blob/master/Example/Example/ViewController.m#L94)
 
 **PROFIT!**
 
@@ -74,10 +72,10 @@ Kipu eases your every day job of parsing a `JSON` response and getting it into C
 
 ### Installation
 
-**Kipu** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+**Sync** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Kipu'
+pod 'Sync'
 ```
 
 ### DATAStack
@@ -106,7 +104,7 @@ You are free to use any networking library or NSURLConnection.
 
 ### Finally
 
-You are ready to go, check the [example project that uses App.net](https://github.com/NSElvis/Kipu/tree/master/Example) for how to use Kipu.
+You are ready to go, check the [example project that uses App.net](https://github.com/hyperoslo/Sync/tree/master/Example) for how to use Sync.
 
 ## Requirements
 
@@ -114,7 +112,7 @@ You are ready to go, check the [example project that uses App.net](https://githu
 
 ## Components
 
-**Kipu** wouldn't be possible without the help of this *fully tested* components:
+**Sync** wouldn't be possible without the help of this *fully tested* components:
 
 * [**DATAStack**](https://github.com/NSElvis/DATAStack): Core Data stack and thread safe saving
 
@@ -124,8 +122,8 @@ You are ready to go, check the [example project that uses App.net](https://githu
 
 ## Author
 
-Elvis Nuñez, [hello@nselvis.com](mailto:hello@nselvis.com)
+Hyper AS, [iOS@hyper.no](mailto:iOS@hyper.no)
 
 ## License
 
-**Kipu** is available under the MIT license. See the [LICENSE](https://github.com/NSElvis/Kipu/blob/master/LICENSE.md) file for more info.
+**Sync** is available under the MIT license. See the [LICENSE](https://github.com/hyperoslo/Sync/blob/master/LICENSE.md) file for more info.

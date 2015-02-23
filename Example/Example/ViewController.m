@@ -5,7 +5,7 @@
 
 #import "DATASource.h"
 #import "DATAStack.h"
-#import "Kipu.h"
+#import "Sync.h"
 #import "AppDelegate.h"
 
 @interface ViewController ()
@@ -84,7 +84,7 @@
                                    NSJSONSerialization *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&JSONSerializationError];
                                    if (JSONSerializationError) NSLog(@"JSONSerializationError: %@", JSONSerializationError);
 
-                                   [Kipu processChanges:[JSON valueForKey:@"data"]
+                                   [Sync processChanges:[JSON valueForKey:@"data"]
                                         usingEntityName:@"Data"
                                               dataStack:self.dataStack
                                              completion:nil];

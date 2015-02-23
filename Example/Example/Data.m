@@ -3,7 +3,7 @@
 //  Example
 //
 //  Created by Elvis Nuñez on 11/12/14.
-//  Copyright (c) 2014 KIPU. All rights reserved.
+//  Copyright (c) 2014 Sync. All rights reserved.
 //
 
 #import "Data.h"
