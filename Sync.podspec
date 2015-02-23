@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "Sync"
-s.version          = "0.4.2"
+s.version          = "0.5"
 s.summary          = "JSON synchronization to Core Data, The Right Way™"
 s.description      = <<-DESC
 This is a category that eases your every day job of parsing an API and getting it into Core Data.
@@ -11,7 +11,7 @@ This is a category that eases your every day job of parsing an API and getting i
 DESC
 s.homepage         = "https://github.com/hyperoslo/Sync"
 s.license          = 'MIT'
-s.author           = { "Elvis Nuñez" => "elvisnunez@me.com" }
+s.author           = { "Hyper AS" => "iOS@hyper.no" }
 s.source           = { :git => "https://github.com/hyperoslo/Sync.git", :tag => s.version.to_s }
 s.social_media_url = 'https://twitter.com/hyperoslo'
 
