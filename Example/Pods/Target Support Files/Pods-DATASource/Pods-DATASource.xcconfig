@@ -1,0 +1,1 @@
+PODS_DATASOURCE_OTHER_LDFLAGS = -framework "CoreData" -framework "Foundation" -framework "UIKit"

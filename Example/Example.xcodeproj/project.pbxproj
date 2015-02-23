@@ -13,6 +13,7 @@
 		143D19911A12B8FD006A8595 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143D19901A12B8FD006A8595 /* ViewController.m */; };
 		143D19961A12B8FD006A8595 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 143D19951A12B8FD006A8595 /* Images.xcassets */; };
 		143D19991A12B8FD006A8595 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143D19971A12B8FD006A8595 /* LaunchScreen.xib */; };
+		1481FDBF1A9BDD7E00432A10 /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481FDBE1A9BDD7E00432A10 /* Networking.m */; };
 		14F613111A12E2620006E90E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F613101A12E2620006E90E /* User.m */; };
 		14F613141A12E2630006E90E /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F613131A12E2630006E90E /* Data.m */; };
 		1661609C44D9BC0004D18DCE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0102781B09F178769C477B8 /* libPods.a */; };
@@ -29,6 +30,8 @@
 		143D19901A12B8FD006A8595 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		143D19951A12B8FD006A8595 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		143D19981A12B8FD006A8595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		1481FDBD1A9BDD7E00432A10 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
+		1481FDBE1A9BDD7E00432A10 /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
 		14F6130F1A12E2620006E90E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		14F613101A12E2620006E90E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		14F613121A12E2630006E90E /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
@@ -75,6 +78,8 @@
 				143D198A1A12B8FD006A8595 /* AppDelegate.m */,
 				143D198F1A12B8FD006A8595 /* ViewController.h */,
 				143D19901A12B8FD006A8595 /* ViewController.m */,
+				1481FDBD1A9BDD7E00432A10 /* Networking.h */,
+				1481FDBE1A9BDD7E00432A10 /* Networking.m */,
 				143D19951A12B8FD006A8595 /* Images.xcassets */,
 				143D19971A12B8FD006A8595 /* LaunchScreen.xib */,
 				143D198C1A12B8FD006A8595 /* Example.xcdatamodeld */,
@@ -220,6 +225,7 @@
 				14F613111A12E2620006E90E /* User.m in Sources */,
 				143D198B1A12B8FD006A8595 /* AppDelegate.m in Sources */,
 				143D198E1A12B8FD006A8595 /* Example.xcdatamodeld in Sources */,
+				1481FDBF1A9BDD7E00432A10 /* Networking.m in Sources */,
 				143D19911A12B8FD006A8595 /* ViewController.m in Sources */,
 				143D19881A12B8FD006A8595 /* main.m in Sources */,
 				14F613141A12E2630006E90E /* Data.m in Sources */,

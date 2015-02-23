@@ -5,8 +5,10 @@
 
 #import "DATASource.h"
 #import "DATAStack.h"
-#import "Sync.h"
 #import "AppDelegate.h"
+#import "Networking.h"
+
+static NSString * const CellIdentifier = @"Cell";
 
 @interface ViewController ()
 
@@ -25,6 +27,8 @@
 
     _dataStack = dataStack;
 
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+
     return self;
 }
 
@@ -39,7 +43,7 @@
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
-                                         cellIdentifier:@"Cell"
+                                         cellIdentifier:CellIdentifier
                                             mainContext:self.dataStack.mainContext];
 
     _dataSource.configureCellBlock = ^(UITableViewCell *cell, Data *item, NSIndexPath *indexPath) {
@@ -55,7 +59,6 @@
 {
     [super viewDidLoad];
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.tableView.dataSource = self.dataSource;
 }
 
@@ -66,30 +69,12 @@
     [self fetchData];
 }
 
-#pragma mark -
+#pragma mark - Sync
 
 - (void)fetchData
 {
-    NSURL *url = [NSURL URLWithString:@"https://api.app.net/posts/stream/global"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSOperationQueue *queue = [NSOperationQueue new];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:queue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-
-                               if (connectionError) NSLog(@"connectionError: %@", connectionError);
-
-                               if (data) {
-                                   NSError *JSONSerializationError = nil;
-                                   NSJSONSerialization *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&JSONSerializationError];
-                                   if (JSONSerializationError) NSLog(@"JSONSerializationError: %@", JSONSerializationError);
-
-                                   [Sync processChanges:[JSON valueForKey:@"data"]
-                                        usingEntityName:@"Data"
-                                              dataStack:self.dataStack
-                                             completion:nil];
-                               }
-                           }];
+    Networking *networking = [[Networking alloc] initWithDataStack:self.dataStack];
+    [networking fetchPosts];
 }
 
 @end

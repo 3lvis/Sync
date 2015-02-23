@@ -1,0 +1,5 @@
+#include "Pods-DATASource.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/DATASource" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/DATASource" "${PODS_ROOT}/Headers/Public/DATAStack" "${PODS_ROOT}/Headers/Public/NSDictionary-ANDYSafeValue" "${PODS_ROOT}/Headers/Public/NSManagedObject-ANDYMapChanges" "${PODS_ROOT}/Headers/Public/NSManagedObject-ANDYObjectIDs" "${PODS_ROOT}/Headers/Public/NSManagedObject-HYPPropertyMapper" "${PODS_ROOT}/Headers/Public/NSString-HYPNetworking" "${PODS_ROOT}/Headers/Public/Sync"
+OTHER_LDFLAGS = ${PODS_DATASOURCE_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}
