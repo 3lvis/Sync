@@ -66,7 +66,7 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
            }];
 ```
 
-[(You can see another example here).](https://github.com/hyperoslo/Sync/blob/master/Example/Example/ViewController.m#L94)
+[(You can see another example here).](https://github.com/hyperoslo/Sync/blob/master/Example/Example/Networking.m#L41)
 
 **PROFIT!**
 
