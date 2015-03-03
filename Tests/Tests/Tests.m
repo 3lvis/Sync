@@ -309,4 +309,35 @@
     [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
+/**
+ * How to test numbers:
+ * - Because of to-one collection relatshionship, sync is failing when parsing children objects
+ */
+- (void)testNumbersWithEmptyRelationship
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"numbers.json" inBundle:bundle];
+    [Sync processChanges:objects
+         usingEntityName:@"Number"
+               predicate:nil
+               dataStack:self.dataStack
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+
+                  NSInteger numberCount =[self countAllEntities:@"Number" inContext:mainContext];
+                  XCTAssertEqual(numberCount, 6);
+                  [expectation fulfill];
+
+              }];
+    [self waitForExpectationsWithTimeout:55.0f handler:nil];
+}
+
+- (NSInteger)countAllEntities:(NSString *)entity inContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:entity];
+    return [context countForFetchRequest:fetch error:nil];
+}
+
 @end
