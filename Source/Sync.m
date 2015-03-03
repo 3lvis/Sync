@@ -163,7 +163,7 @@
         if (relationship.isToMany) {
             [self sync_processToManyRelationship:relationship usingDictionary:objectDict andParent:parent dataStack:dataStack];
         } else {
-            if (parent && [relationship.destinationEntity.name isEqualToString: parent.entity.name]) {
+            if (parent && [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
                 [self setValue:parent forKey:relationship.name];
             } else {
                 [self sync_processToOneRelationship:relationship usingDictionary:objectDict];
