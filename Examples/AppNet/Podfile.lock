@@ -5,10 +5,10 @@ PODS:
   - NSManagedObject-ANDYMapChanges (0.6):
     - NSManagedObject-ANDYObjectIDs
   - NSManagedObject-ANDYObjectIDs (0.2)
-  - NSManagedObject-HYPPropertyMapper (2.8.1):
+  - NSManagedObject-HYPPropertyMapper (2.9):
     - NSString-HYPNetworking
   - NSString-HYPNetworking (0.1)
-  - Sync (0.5):
+  - Sync (0.5.1):
     - DATAStack
     - NSDictionary-ANDYSafeValue
     - NSManagedObject-ANDYMapChanges
@@ -16,7 +16,11 @@ PODS:
 
 DEPENDENCIES:
   - DATASource
-  - Sync
+  - Sync (from `../../`)
+
+EXTERNAL SOURCES:
+  Sync:
+    :path: ../../
 
 SPEC CHECKSUMS:
   DATASource: 72d31d5ca99837258c0f419af4c20cddea93853c
@@ -24,8 +28,8 @@ SPEC CHECKSUMS:
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
   NSManagedObject-ANDYMapChanges: f5d20e903eafecb844adfa1a7e355a1f8cf083a8
   NSManagedObject-ANDYObjectIDs: 7148a374e2d163392b0442dce51e7cc2bf94b356
-  NSManagedObject-HYPPropertyMapper: 13abcf971f00cf098ed5e148b1aa7fa2801f9e6a
+  NSManagedObject-HYPPropertyMapper: b59f7b4906250e9f24fa53899123c1b8d7f2f711
   NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
-  Sync: 360d4774e552595f94a2d71c2133dbfafe237695
+  Sync: 5adaabc03ebb9df7f270f39ad92963585b7d2cf7
 
 COCOAPODS: 0.35.0

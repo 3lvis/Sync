@@ -2,6 +2,8 @@
 
 #import "NSString+HYPNetworking.h"
 
+static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
+
 @implementation NSDate (ISO8601)
 
 + (NSDate *)__dateFromISO8601String:(NSString *)iso8601
@@ -66,6 +68,16 @@
         if (isReservedKey) key = [self prefixedAttribute:key];
 
         id propertyDescription = [self propertyDescriptionForKey:key];
+
+        for (NSString *dictionaryKey in self.entity.propertiesByName) {
+            if ([[self.entity.propertiesByName[dictionaryKey] userInfo] objectForKey:HYPPropertyMapperRemoteKey] &&
+                ![[[self.entity.propertiesByName[dictionaryKey] userInfo] objectForKey:HYPPropertyMapperRemoteKey] isEqualToString:@"value"] &&
+                [[[self.entity.propertiesByName[dictionaryKey] userInfo] objectForKey:HYPPropertyMapperRemoteKey] isEqualToString:key]) {
+                propertyDescription = [self propertyDescriptionForKey:dictionaryKey];
+                break;
+            }
+        }
+
         if (!propertyDescription) continue;
 
         NSString *localKey = [propertyDescription name];
@@ -129,28 +141,52 @@
 
     for (id propertyDescription in [self.entity properties]) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            id value = [self valueForKey:[attributeDescription name]];
-            NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
+            if ([[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] &&
+                ![[[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] isEqualToString:@"value"]) {
+                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                id value = [self valueForKey:[attributeDescription name]];
+                NSMutableString *key = [[[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] mutableCopy];
 
-            BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
-            if (nilOrNullValue) {
-                mutableDictionary[key] = [NSNull null];
-            } else {
-                BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
-                if (isReservedKey) {
-                    if ([key isEqualToString:@"remote_id"]) {
-                        key = [@"id" mutableCopy];
-                    } else {
-                        [key replaceOccurrencesOfString:[self remotePrefix]
-                                             withString:@""
-                                                options:NSCaseInsensitiveSearch
-                                                  range:NSMakeRange(0, key.length)];
+                BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
+                if (nilOrNullValue) {
+                    mutableDictionary[key] = [NSNull null];
+                } else {
+                    BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+                    if (isReservedKey) {
+                        if ([key isEqualToString:@"remote_id"]) {
+                            key = [@"id" mutableCopy];
+                        } else {
+                            [key replaceOccurrencesOfString:[self remotePrefix]
+                                                 withString:@""
+                                                    options:NSCaseInsensitiveSearch
+                                                      range:NSMakeRange(0, key.length)];
+                        }
                     }
+                    mutableDictionary[key] = value;
                 }
-                mutableDictionary[key] = value;
-            }
+            } else {
+                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                id value = [self valueForKey:[attributeDescription name]];
+                NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
 
+                BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
+                if (nilOrNullValue) {
+                    mutableDictionary[key] = [NSNull null];
+                } else {
+                    BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+                    if (isReservedKey) {
+                        if ([key isEqualToString:@"remote_id"]) {
+                            key = [@"id" mutableCopy];
+                        } else {
+                            [key replaceOccurrencesOfString:[self remotePrefix]
+                                                 withString:@""
+                                                    options:NSCaseInsensitiveSearch
+                                                      range:NSMakeRange(0, key.length)];
+                        }
+                    }
+                    mutableDictionary[key] = value;
+                }
+            }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
 
@@ -231,13 +267,13 @@
 {
     NSMutableArray *keys = [NSMutableArray new];
     NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
-
+    
     for (NSString *attribute in reservedAttributes) {
         [keys addObject:[self prefixedAttribute:attribute]];
     }
-
+    
     [keys addObject:@"remote_id"];
-
+    
     return keys;
 }
 
