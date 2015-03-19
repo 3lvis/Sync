@@ -3,7 +3,7 @@ PODS:
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
   - NSJSONSerialization-ANDYJSONFile (1.1)
-  - NSManagedObject-ANDYMapChanges (0.6):
+  - NSManagedObject-ANDYMapChanges (0.7):
     - NSManagedObject-ANDYObjectIDs
   - NSManagedObject-ANDYObjectIDs (0.3)
   - NSManagedObject-HYPPropertyMapper (2.11):
@@ -22,7 +22,7 @@ SPEC CHECKSUMS:
   DATAStack: 6e3a1100630f1180ab0b61f649622a879a93c085
   NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
   NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
-  NSManagedObject-ANDYMapChanges: f5d20e903eafecb844adfa1a7e355a1f8cf083a8
+  NSManagedObject-ANDYMapChanges: f0c6279bbe3e66acfb7192f2d0b5435fab3c082a
   NSManagedObject-ANDYObjectIDs: 14ba8dc807d69702ed1a1307c0e8c6c55f0acd78
   NSManagedObject-HYPPropertyMapper: 8d9a5c7921d13bf9203e59bf4a34639eeda4e8af
   NSObject-HYPTesting: f54d8bf73f75e2f2f4e49f4baa985df6fa699c2a
