@@ -316,7 +316,7 @@
 - (void)testNumbersWithEmptyRelationship
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"numbers.json" inBundle:bundle];
     [Sync processChanges:objects
@@ -338,6 +338,31 @@
 {
     NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:entity];
     return [context countForFetchRequest:fetch error:nil];
+}
+
+- (void)testRelationshipName
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"numbers_in_collection.json" inBundle:bundle];
+    [Sync processChanges:objects
+         usingEntityName:@"Number"
+               dataStack:self.dataStack
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+
+                  NSInteger collectioCount =[self countAllEntities:@"Collection" inContext:mainContext];
+                  XCTAssertEqual(collectioCount, 1);
+
+                  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Number"];
+                  NSManagedObject *number = [[mainContext executeFetchRequest:request error:nil] firstObject];
+                  XCTAssertNotNil([number valueForKey:@"parent"]);
+                  XCTAssertEqualObjects([[number valueForKey:@"parent"]  valueForKey:@"name"], @"Collection 1");
+
+                  [expectation fulfill];
+              }];
+    [self waitForExpectationsWithTimeout:55.0f handler:nil];
 }
 
 @end
