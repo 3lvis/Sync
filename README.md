@@ -98,7 +98,6 @@ Your Core Data entities should match your backend models. Your attributes should
 There are only two exceptions to this rule:
 
 * `id`s should match `remoteID`
-* `created_at` and `updated_at` should match `createdDate` and `updatedDate`
 
 ### Networking
 
