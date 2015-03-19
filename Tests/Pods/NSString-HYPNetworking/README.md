@@ -37,28 +37,14 @@ It supports `id`, `pdf`, `url`, `png`, `jpg`.
 // => userID
 ```
 
-### Dates
-
-It supports `created_at`, `updated_at`.
-
-```objc
-[@"createdDate" hyp_remoteString];
-
-// => created_at
-```
-
-```objc
-[@"created_at" hyp_localString];
-
-// => createdDate
-```
-
 ## Installation
 
 **NSString-HYPNetworking** is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-`pod 'NSString-HYPNetworking'`
+```ruby
+pod 'NSString-HYPNetworking'
+```
 
 ## Author
 

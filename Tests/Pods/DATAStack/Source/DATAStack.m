@@ -1,5 +1,7 @@
 #import "DATAStack.h"
 
+#import "NSObject+HYPTesting.h"
+
 @import UIKit;
 
 @interface DATAStack ()
@@ -78,7 +80,7 @@
 {
     if (_writerContext) return _writerContext;
 
-    _writerContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    _writerContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:[self backgroundConcurrencyType]];
     _writerContext.undoManager = nil;
     _writerContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
     _writerContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
@@ -177,28 +179,35 @@
 
 - (void)persistWithCompletion:(void (^)())completion
 {
-    NSManagedObjectContext *writerManagedObjectContext = self.writerContext;
-    NSManagedObjectContext *managedObjectContext = self.mainContext;
+    void (^writerContextBlock)() = ^() {
+        NSError *parentError = nil;
+        if ([self.writerContext save:&parentError]) {
+            if (completion) completion();
+        } else {
+            NSLog(@"Unresolved error saving parent managed object context %@, %@", parentError, [parentError userInfo]);
+            abort();
+        }
+    };
 
-    [managedObjectContext performBlock:^{
+    void (^mainContextBlock)() = ^() {
         NSError *error = nil;
-        if ([managedObjectContext save:&error]) {
-            [writerManagedObjectContext performBlock:^{
-                NSError *parentError = nil;
-                if ([writerManagedObjectContext save:&parentError]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if (completion) completion();
-                    });
-                } else {
-                    NSLog(@"Unresolved error saving parent managed object context %@, %@", error, [error userInfo]);
-                    abort();
-                }
-            }];
+        if ([self.mainContext save:&error]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [self.writerContext performSelector:[self performSelectorForBackgroundContext]
+                                     withObject:writerContextBlock];
+#pragma clang diagnostic pop
         } else {
             NSLog(@"Unresolved error saving managed object context %@, %@", error, [error userInfo]);
             abort();
         }
-    }];
+    };
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [self.mainContext performSelector:[self performSelectorForBackgroundContext]
+                           withObject:mainContextBlock];
+#pragma clang diagnostic pop
 }
 
 #pragma mark - Application's Documents directory
@@ -213,7 +222,7 @@
 
 - (void)performInNewBackgroundContext:(void (^)(NSManagedObjectContext *backgroundContext))operation
 {
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:[self backgroundConcurrencyType]];
     context.persistentStoreCoordinator = self.persistentStoreCoordinator;
     context.undoManager = nil;
     context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
@@ -223,9 +232,15 @@
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:context];
 
-    [context performBlock:^{
+    void (^contextBlock)() = ^() {
         if (operation) operation(context);
-    }];
+    };
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [context performSelector:[self performSelectorForBackgroundContext]
+                  withObject:contextBlock];
+#pragma clang diagnostic pop
 }
 
 - (NSManagedObjectContext *)disposableMainContext
@@ -242,13 +257,19 @@
 
 - (void)backgroundContextDidSave:(NSNotification *)backgroundContextNotification
 {
-    if ([NSThread isMainThread]) {
+    void (^contextBlock)() = ^() {
+        [self.mainContext mergeChangesFromContextDidSaveNotification:backgroundContextNotification];
+    };
+
+    if ([NSThread isMainThread] && ![NSObject isUnitTesting]) {
         [NSException raise:@"DATASTACK_BACKGROUND_CONTEXT_CREATION_EXCEPTION"
                     format:@"Background context saved in the main thread. Use context's `performBlock`"];
     } else {
-        [self.mainContext performBlock:^{
-            [self.mainContext mergeChangesFromContextDidSaveNotification:backgroundContextNotification];
-        }];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [self.mainContext performSelector:[self performSelectorForBackgroundContext]
+                               withObject:contextBlock];
+#pragma clang diagnostic pop
     }
 }
 
@@ -257,7 +278,6 @@
 - (void)drop
 {
     NSPersistentStore *store = [self.persistentStoreCoordinator.persistentStores lastObject];
-    NSURL *storeURL = store.URL;
 
     self.writerContext = nil;
     self.mainContext = nil;
@@ -266,12 +286,22 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
 
     NSError *error = nil;
-    if ([fileManager fileExistsAtPath:storeURL.path]) [fileManager removeItemAtURL:storeURL error:&error];
+    if ([fileManager fileExistsAtPath:store.URL.path]) [fileManager removeItemAtURL:store.URL error:&error];
 
     if (error) {
         NSLog(@"error deleting sqlite file");
         abort();
     }
+}
+
+- (NSManagedObjectContextConcurrencyType)backgroundConcurrencyType
+{
+    return ([NSObject isUnitTesting]) ? NSMainQueueConcurrencyType : NSPrivateQueueConcurrencyType;
+}
+
+- (SEL)performSelectorForBackgroundContext
+{
+    return ([NSObject isUnitTesting]) ? NSSelectorFromString(@"performBlockAndWait:") : NSSelectorFromString(@"performBlock:");
 }
 
 @end

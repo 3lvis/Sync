@@ -65,15 +65,19 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
         id value = [dictionary objectForKey:key];
 
         BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:key]);
-        if (isReservedKey) key = [self prefixedAttribute:key];
+        if (isReservedKey) {
+            key = [self prefixedAttribute:key];
+        }
 
         id propertyDescription = [self propertyDescriptionForKey:key];
 
         for (NSString *dictionaryKey in self.entity.propertiesByName) {
-            if ([[self.entity.propertiesByName[dictionaryKey] userInfo] objectForKey:HYPPropertyMapperRemoteKey] &&
-                ![[[self.entity.propertiesByName[dictionaryKey] userInfo] objectForKey:HYPPropertyMapperRemoteKey] isEqualToString:@"value"] &&
-                [[[self.entity.propertiesByName[dictionaryKey] userInfo] objectForKey:HYPPropertyMapperRemoteKey] isEqualToString:key]) {
-                propertyDescription = [self propertyDescriptionForKey:dictionaryKey];
+            NSString *remoteKeyValue = [[self.entity.propertiesByName[dictionaryKey] userInfo]objectForKey:HYPPropertyMapperRemoteKey];
+            BOOL hasCustomKeyMapper = (remoteKeyValue &&
+                                       ![remoteKeyValue isEqualToString:@"value"] &&
+                                       [remoteKeyValue isEqualToString:key]);
+            if(hasCustomKeyMapper) {
+                propertyDescription = self.entity.propertiesByName[dictionaryKey];
                 break;
             }
         }
@@ -267,13 +271,13 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
 {
     NSMutableArray *keys = [NSMutableArray new];
     NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
-    
+
     for (NSString *attribute in reservedAttributes) {
         [keys addObject:[self prefixedAttribute:attribute]];
     }
-    
+
     [keys addObject:@"remote_id"];
-    
+
     return keys;
 }
 

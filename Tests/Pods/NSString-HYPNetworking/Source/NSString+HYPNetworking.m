@@ -16,25 +16,12 @@
 {
     NSString *processedString = [self hyp_replaceIdentifierWithString:@"_"];
 
-    if ([processedString hyp_containsWord:@"date"]) {
-        NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date"
-                                                                              withString:@"_at"];
-        if ([[NSString dateAttributes] containsObject:replacedString]) {
-            processedString = replacedString;
-        }
-    }
-
     return [processedString hyp_lowerCaseFirstLetter];
 }
 
 - (NSString *)hyp_localString
 {
     NSString *processedString = self;
-
-    if ([self hyp_containsWord:@"at"]) {
-        processedString = [self stringByReplacingOccurrencesOfString:@"_at"
-                                                          withString:@"_date"];
-    }
 
     processedString = [processedString hyp_replaceIdentifierWithString:@""];
 
@@ -117,11 +104,6 @@
 + (NSArray *)acronyms
 {
     return @[@"id", @"pdf", @"url", @"png", @"jpg"];
-}
-
-+ (NSArray *)dateAttributes
-{
-    return @[@"created_at", @"updated_at"];
 }
 
 @end

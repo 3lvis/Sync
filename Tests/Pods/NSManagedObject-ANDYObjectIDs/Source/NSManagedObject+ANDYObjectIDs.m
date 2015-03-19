@@ -20,7 +20,6 @@
     __block NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
     [context performBlockAndWait:^{
-
         NSExpressionDescription *expression = [[NSExpressionDescription alloc] init];
         expression.name = @"objectID";
         expression.expression = [NSExpression expressionForEvaluatedObject];
@@ -37,7 +36,7 @@
 
         for (NSDictionary *object in objects) {
 
-            NSNumber *fetchedID = [object valueForKeyPath:localKey];
+            id fetchedID = [object valueForKeyPath:localKey];
 
             NSManagedObjectID *objectID = [object valueForKeyPath:@"objectID"];
 

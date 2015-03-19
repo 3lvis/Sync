@@ -8,8 +8,8 @@
 
 // DATAStack
 #define COCOAPODS_POD_AVAILABLE_DATAStack
-#define COCOAPODS_VERSION_MAJOR_DATAStack 2
-#define COCOAPODS_VERSION_MINOR_DATAStack 6
+#define COCOAPODS_VERSION_MAJOR_DATAStack 3
+#define COCOAPODS_VERSION_MINOR_DATAStack 0
 #define COCOAPODS_VERSION_PATCH_DATAStack 0
 
 // NSDictionary-ANDYSafeValue
@@ -33,18 +33,24 @@
 // NSManagedObject-ANDYObjectIDs
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_ANDYObjectIDs
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_ANDYObjectIDs 0
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYObjectIDs 2
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_ANDYObjectIDs 3
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_ANDYObjectIDs 0
 
 // NSManagedObject-HYPPropertyMapper
 #define COCOAPODS_POD_AVAILABLE_NSManagedObject_HYPPropertyMapper
 #define COCOAPODS_VERSION_MAJOR_NSManagedObject_HYPPropertyMapper 2
-#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 9
+#define COCOAPODS_VERSION_MINOR_NSManagedObject_HYPPropertyMapper 11
 #define COCOAPODS_VERSION_PATCH_NSManagedObject_HYPPropertyMapper 0
+
+// NSObject-HYPTesting
+#define COCOAPODS_POD_AVAILABLE_NSObject_HYPTesting
+#define COCOAPODS_VERSION_MAJOR_NSObject_HYPTesting 1
+#define COCOAPODS_VERSION_MINOR_NSObject_HYPTesting 2
+#define COCOAPODS_VERSION_PATCH_NSObject_HYPTesting 0
 
 // NSString-HYPNetworking
 #define COCOAPODS_POD_AVAILABLE_NSString_HYPNetworking
 #define COCOAPODS_VERSION_MAJOR_NSString_HYPNetworking 0
-#define COCOAPODS_VERSION_MINOR_NSString_HYPNetworking 1
+#define COCOAPODS_VERSION_MINOR_NSString_HYPNetworking 2
 #define COCOAPODS_VERSION_PATCH_NSString_HYPNetworking 0
 

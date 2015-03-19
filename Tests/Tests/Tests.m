@@ -39,17 +39,15 @@
 
 - (void)testLoadAndUpdateUsers
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_a.json" inBundle:bundle];
+    NSArray *objectsA = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_a.json" inBundle:bundle];
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
 
     NSManagedObjectContext *mainContext = [self.dataStack mainContext];
 
-    [Sync processChanges:objects
+    [Sync processChanges:objectsA
          usingEntityName:@"User"
                predicate:nil
                dataStack:self.dataStack
@@ -58,66 +56,39 @@
                   NSInteger count = [mainContext countForFetchRequest:request error:&countError];
                   if (countError) NSLog(@"countError: %@", [countError description]);
                   XCTAssertEqual(count, 8);
-
-                  [expectation fulfill];
               }];
 
-    [self waitForExpectationsWithTimeout:5.0f handler:^(NSError *error) {
+    NSArray *objectsB = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_b.json" inBundle:bundle];
 
-        if (error) {
-            NSLog(@"error loading users: %@", error);
-            return;
-        }
+    [Sync processChanges:objectsB
+         usingEntityName:@"User"
+               predicate:nil
+               dataStack:self.dataStack
+              completion:^(NSError *error) {
+                  NSError *countError = nil;
+                  NSInteger count = [mainContext countForFetchRequest:request error:&countError];
+                  if (countError) NSLog(@"countError: %@", [countError description]);
+                  XCTAssertEqual(count, 6);
+              }];
 
-        XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
+    request.predicate = [NSPredicate predicateWithFormat:@"remoteID == %@", @7];
+    NSArray *results = [mainContext executeFetchRequest:request error:nil];
+    NSManagedObject *result = [results firstObject];
+    XCTAssertEqualObjects([result valueForKey:@"email"], @"secondupdated@ovium.com");
 
-        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 
-        NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_b.json" inBundle:bundle];
+    NSDate *createdDate = [dateFormat dateFromString:@"2014-02-14"];
+    XCTAssertEqualObjects([result valueForKey:@"createdAt"], createdDate);
 
-        [Sync processChanges:objects
-             usingEntityName:@"User"
-                   predicate:nil
-                   dataStack:self.dataStack
-                  completion:^(NSError *error) {
-                      NSError *countError = nil;
-                      NSInteger count = [mainContext countForFetchRequest:request error:&countError];
-                      if (countError) NSLog(@"countError: %@", [countError description]);
-                      XCTAssertEqual(count, 6);
-
-                      [expectation fulfill];
-                  }];
-
-        [self waitForExpectationsWithTimeout:5.0f handler:^(NSError *error) {
-
-            if (error) {
-                NSLog(@"error loading users: %@", error);
-                return;
-            }
-
-            request.predicate = [NSPredicate predicateWithFormat:@"remoteID == %@", @7];
-            NSArray *results = [mainContext executeFetchRequest:request error:nil];
-            NSManagedObject *result = [results firstObject];
-            XCTAssertEqualObjects([result valueForKey:@"email"], @"secondupdated@ovium.com");
-
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            dateFormat.dateFormat = @"yyyy-MM-dd";
-            dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-
-            NSDate *createdDate = [dateFormat dateFromString:@"2014-02-14"];
-            XCTAssertEqualObjects([result valueForKey:@"createdDate"], createdDate);
-
-            NSDate *updatedDate = [dateFormat dateFromString:@"2014-02-17"];
-            XCTAssertEqualObjects([result valueForKey:@"updatedDate"], updatedDate);
-        }];
-
-    }];
+    NSDate *updatedDate = [dateFormat dateFromString:@"2014-02-17"];
+    XCTAssertEqualObjects([result valueForKey:@"updatedAt"], updatedDate);
 }
 
 - (void)testRelationships
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_notes.json" inBundle:bundle];
@@ -148,17 +119,11 @@
                   NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
                   if (notesError) NSLog(@"notesError: %@", notesError);
                   XCTAssertEqual(notesCount, 5);
-
-                  [expectation fulfill];
               }];
-
-    [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
 - (void)testObjectsForParent
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"notes_for_user_a.json" inBundle:bundle];
@@ -203,20 +168,14 @@
                               NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
                               if (notesError) NSLog(@"notesError: %@", notesError);
                               XCTAssertEqual(notesCount, 5);
-
-                              [expectation fulfill];
                           }];
             }];
         }];
     }];
-
-    [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
 - (void)testTaggedNotesForUser
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"tagged_notes.json" inBundle:bundle];
@@ -255,17 +214,11 @@
                   NSManagedObject *tag = [tags firstObject];
                   XCTAssertEqual([[[tag valueForKey:@"notes"] allObjects] count], 4,
                                  @"Tag with ID 1 should have 4 notes");
-
-                  [expectation fulfill];
               }];
-
-    [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
 - (void)testUsersAndCompanies
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_company.json" inBundle:bundle];
@@ -302,21 +255,15 @@
                   if (companiesFetchError) NSLog(@"companiesFetchError: %@", companiesFetchError);
                   NSManagedObject *company = [companies firstObject];
                   XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
-
-                  [expectation fulfill];
               }];
-
-    [self waitForExpectationsWithTimeout:5.0f handler:nil];
 }
 
 /**
  * How to test numbers:
- * - Because of to-one collection relatshionship, sync is failing when parsing children objects
+ * - Because of to-one collection relationship, sync is failing when parsing children objects
  */
 - (void)testNumbersWithEmptyRelationship
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"numbers.json" inBundle:bundle];
     [Sync processChanges:objects
@@ -328,10 +275,7 @@
 
                   NSInteger numberCount =[self countAllEntities:@"Number" inContext:mainContext];
                   XCTAssertEqual(numberCount, 6);
-                  [expectation fulfill];
-
               }];
-    [self waitForExpectationsWithTimeout:55.0f handler:nil];
 }
 
 - (NSInteger)countAllEntities:(NSString *)entity inContext:(NSManagedObjectContext *)context
@@ -342,8 +286,6 @@
 
 - (void)testRelationshipName
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Saving expectations"];
-
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"numbers_in_collection.json" inBundle:bundle];
     [Sync processChanges:objects
@@ -359,10 +301,7 @@
                   NSManagedObject *number = [[mainContext executeFetchRequest:request error:nil] firstObject];
                   XCTAssertNotNil([number valueForKey:@"parent"]);
                   XCTAssertEqualObjects([[number valueForKey:@"parent"]  valueForKey:@"name"], @"Collection 1");
-
-                  [expectation fulfill];
               }];
-    [self waitForExpectationsWithTimeout:55.0f handler:nil];
 }
 
 @end
