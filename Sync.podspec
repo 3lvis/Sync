@@ -22,8 +22,8 @@ s.source_files = 'Source/**/*'
 
 s.frameworks = 'Foundation', 'CoreData'
 
-s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 2.10'
-s.dependency 'NSManagedObject-ANDYMapChanges', '~> 0.6'
-s.dependency 'DATAStack', '~> 2.6'
+s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 2.11'
+s.dependency 'NSManagedObject-ANDYMapChanges', '~> 0.7'
+s.dependency 'DATAStack', '~> 3.0'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3'
 end
