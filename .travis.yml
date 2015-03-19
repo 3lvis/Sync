@@ -1,2 +1,8 @@
 language: objective-c
+podfile: Tests/Podfile
+cache:
+- bundler
+- cocoapods
+before_install:
+- pod install --project-directory=Tests
 script: xctool -workspace Tests/Tests.xcworkspace -scheme Tests -sdk iphonesimulator build test
