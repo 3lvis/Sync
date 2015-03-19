@@ -223,7 +223,7 @@
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
                       usingDictionary:(NSDictionary *)objectDict
 {
-    NSString *entityName = [relationship.name capitalizedString];
+    NSString *entityName = relationship.destinationEntity.name;
     NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
     if (!filteredObjectDict) return;
 
