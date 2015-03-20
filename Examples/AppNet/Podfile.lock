@@ -1,35 +1,35 @@
 PODS:
-  - DATASource (2.1)
-  - DATAStack (2.6)
-  - NSDictionary-ANDYSafeValue (0.3)
-  - NSManagedObject-ANDYMapChanges (0.6):
-    - NSManagedObject-ANDYObjectIDs
-  - NSManagedObject-ANDYObjectIDs (0.2)
-  - NSManagedObject-HYPPropertyMapper (2.9):
-    - NSString-HYPNetworking
-  - NSString-HYPNetworking (0.1)
-  - Sync (0.5.1):
-    - DATAStack
-    - NSDictionary-ANDYSafeValue
-    - NSManagedObject-ANDYMapChanges
-    - NSManagedObject-HYPPropertyMapper
+- DATASource (2.1)
+- DATAStack (3.0)
+- NSDictionary-ANDYSafeValue (0.3)
+- NSManagedObject-ANDYMapChanges (0.7):
+- NSManagedObject-ANDYObjectIDs
+- NSManagedObject-ANDYObjectIDs (0.2)
+- NSManagedObject-HYPPropertyMapper (2.11):
+- NSString-HYPNetworking
+- NSString-HYPNetworking (0.1)
+- Sync (0.6):
+- DATAStack
+- NSDictionary-ANDYSafeValue
+- NSManagedObject-ANDYMapChanges
+- NSManagedObject-HYPPropertyMapper
 
 DEPENDENCIES:
-  - DATASource
-  - Sync (from `../../`)
+- DATASource
+- Sync (from `../../`)
 
 EXTERNAL SOURCES:
-  Sync:
-    :path: ../../
+Sync:
+:path: ../../
 
 SPEC CHECKSUMS:
-  DATASource: 72d31d5ca99837258c0f419af4c20cddea93853c
-  DATAStack: 72663bf12db9427b535d5eaa761ebf18ab60c38f
-  NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
-  NSManagedObject-ANDYMapChanges: f5d20e903eafecb844adfa1a7e355a1f8cf083a8
-  NSManagedObject-ANDYObjectIDs: 7148a374e2d163392b0442dce51e7cc2bf94b356
-  NSManagedObject-HYPPropertyMapper: b59f7b4906250e9f24fa53899123c1b8d7f2f711
-  NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
-  Sync: 5adaabc03ebb9df7f270f39ad92963585b7d2cf7
+DATASource: 72d31d5ca99837258c0f419af4c20cddea93853c
+DATAStack: 72663bf12db9427b535d5eaa761ebf18ab60c38f
+NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
+NSManagedObject-ANDYMapChanges: f5d20e903eafecb844adfa1a7e355a1f8cf083a8
+NSManagedObject-ANDYObjectIDs: 7148a374e2d163392b0442dce51e7cc2bf94b356
+NSManagedObject-HYPPropertyMapper: b59f7b4906250e9f24fa53899123c1b8d7f2f711
+NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
+Sync: 5adaabc03ebb9df7f270f39ad92963585b7d2cf7
 
 COCOAPODS: 0.35.0
