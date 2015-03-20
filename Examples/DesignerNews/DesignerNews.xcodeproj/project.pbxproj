@@ -16,6 +16,7 @@
 		F6ACF0151ABCA539001E5652 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6ACF0131ABCA539001E5652 /* LaunchScreen.xib */; };
 		F6ACF0211ABCA539001E5652 /* DesignerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF0201ABCA539001E5652 /* DesignerNewsTests.m */; };
 		F6ACF02B1ABCAA6A001E5652 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6ACF02A1ABCAA6A001E5652 /* Main.storyboard */; };
+		F6ACF02E1ABCB157001E5652 /* DesignerNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		F6ACF01F1ABCA539001E5652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6ACF0201ABCA539001E5652 /* DesignerNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DesignerNewsTests.m; sourceTree = "<group>"; };
 		F6ACF02A1ABCAA6A001E5652 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F6ACF02C1ABCB157001E5652 /* DesignerNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerNewsTableViewCell.h; sourceTree = "<group>"; };
+		F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerNewsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 				F6ACF02A1ABCAA6A001E5652 /* Main.storyboard */,
 				F6ACF00B1ABCA539001E5652 /* ViewController.h */,
 				F6ACF00C1ABCA539001E5652 /* ViewController.m */,
+				F6ACF02C1ABCB157001E5652 /* DesignerNewsTableViewCell.h */,
+				F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */,
 				F6ACF0111ABCA539001E5652 /* Images.xcassets */,
 				F6ACF0131ABCA539001E5652 /* LaunchScreen.xib */,
 				F6ACF0081ABCA539001E5652 /* DesignerNews.xcdatamodeld */,
@@ -282,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6ACF0071ABCA539001E5652 /* AppDelegate.m in Sources */,
+				F6ACF02E1ABCB157001E5652 /* DesignerNewsTableViewCell.m in Sources */,
 				F6ACF00A1ABCA539001E5652 /* DesignerNews.xcdatamodeld in Sources */,
 				F6ACF00D1ABCA539001E5652 /* ViewController.m in Sources */,
 				F6ACF0041ABCA539001E5652 /* main.m in Sources */,

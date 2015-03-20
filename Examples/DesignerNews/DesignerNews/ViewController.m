@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import "DesignerNewsTableViewCell.h"
 
 static NSString * const CellIdentifier = @"Cell";
 
@@ -23,7 +24,7 @@ static NSString * const CellIdentifier = @"Cell";
 
     [self setAllViewsInPlace];
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.delegate = self;
 
     [self.view addSubview:self.tableView];
@@ -38,7 +39,7 @@ static NSString * const CellIdentifier = @"Cell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DesignerNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     return cell;
 }
