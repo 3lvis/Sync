@@ -1,11 +1,3 @@
-//
-//  ViewController.m
-//  DesignerNews
-//
-//  Created by Ramon Gilabert Llop on 3/20/15.
-//  Copyright (c) 2015 Ramon Gilabert. All rights reserved.
-//
-
 #import "ViewController.h"
 
 @interface ViewController ()
