@@ -1,0 +1,38 @@
+PODS:
+  - DATASource (2.1)
+  - DATAStack (3.0.0):
+    - NSObject-HYPTesting (~> 1.2)
+  - NSDictionary-ANDYSafeValue (0.3)
+  - NSManagedObject-ANDYMapChanges (0.7):
+    - NSManagedObject-ANDYObjectIDs
+  - NSManagedObject-ANDYObjectIDs (0.2)
+  - NSManagedObject-HYPPropertyMapper (2.11):
+    - NSString-HYPNetworking (~> 0.1)
+  - NSObject-HYPTesting (1.2)
+  - NSString-HYPNetworking (0.1)
+  - Sync (0.6):
+    - DATAStack (~> 3.0)
+    - NSDictionary-ANDYSafeValue (~> 0.3)
+    - NSManagedObject-ANDYMapChanges (~> 0.7)
+    - NSManagedObject-HYPPropertyMapper (~> 2.11)
+
+DEPENDENCIES:
+  - DATASource
+  - Sync (from `../../`)
+
+EXTERNAL SOURCES:
+  Sync:
+    :path: ../../
+
+SPEC CHECKSUMS:
+  DATASource: 72d31d5ca99837258c0f419af4c20cddea93853c
+  DATAStack: 6e3a1100630f1180ab0b61f649622a879a93c085
+  NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
+  NSManagedObject-ANDYMapChanges: f0c6279bbe3e66acfb7192f2d0b5435fab3c082a
+  NSManagedObject-ANDYObjectIDs: 7148a374e2d163392b0442dce51e7cc2bf94b356
+  NSManagedObject-HYPPropertyMapper: 8d9a5c7921d13bf9203e59bf4a34639eeda4e8af
+  NSObject-HYPTesting: f54d8bf73f75e2f2f4e49f4baa985df6fa699c2a
+  NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
+  Sync: 04cf9d75c0e882abc27aa40d6bd45a8cc758d5ff
+
+COCOAPODS: 0.35.0
