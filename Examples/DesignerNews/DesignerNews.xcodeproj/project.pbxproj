@@ -118,18 +118,11 @@
 			children = (
 				F6ACF0051ABCA539001E5652 /* AppDelegate.h */,
 				F6ACF0061ABCA539001E5652 /* AppDelegate.m */,
-				F6ACF02A1ABCAA6A001E5652 /* Main.storyboard */,
 				F6ACF00B1ABCA539001E5652 /* ViewController.h */,
 				F6ACF00C1ABCA539001E5652 /* ViewController.m */,
-				F6ACF02C1ABCB157001E5652 /* DesignerNewsTableViewCell.h */,
-				F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */,
-				F6ACF0111ABCA539001E5652 /* Images.xcassets */,
-				F6ACF0131ABCA539001E5652 /* LaunchScreen.xib */,
-				F6ACF0081ABCA539001E5652 /* DesignerNews.xcdatamodeld */,
 				F6C3EAED1ABDF0AE0049325B /* DataManager.h */,
 				F6C3EAEE1ABDF0AE0049325B /* DataManager.m */,
-				F6C3EB341ABE13FC0049325B /* Stories.h */,
-				F6C3EB351ABE13FC0049325B /* Stories.m */,
+				F6C3EB371ABE16250049325B /* Model */,
 				F6ACF0011ABCA539001E5652 /* Supporting Files */,
 			);
 			path = DesignerNews;
@@ -138,6 +131,11 @@
 		F6ACF0011ABCA539001E5652 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F6ACF02A1ABCAA6A001E5652 /* Main.storyboard */,
+				F6ACF02C1ABCB157001E5652 /* DesignerNewsTableViewCell.h */,
+				F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */,
+				F6ACF0111ABCA539001E5652 /* Images.xcassets */,
+				F6ACF0131ABCA539001E5652 /* LaunchScreen.xib */,
 				F6ACF0021ABCA539001E5652 /* Info.plist */,
 				F6ACF0031ABCA539001E5652 /* main.m */,
 			);
@@ -159,6 +157,16 @@
 				F6ACF01F1ABCA539001E5652 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6C3EB371ABE16250049325B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F6ACF0081ABCA539001E5652 /* DesignerNews.xcdatamodeld */,
+				F6C3EB341ABE13FC0049325B /* Stories.h */,
+				F6C3EB351ABE13FC0049325B /* Stories.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
