@@ -1,11 +1,15 @@
 #import "ViewController.h"
 #import "DesignerNewsTableViewCell.h"
+#import "DATAStack.h"
+#import "DataManager.h"
 
 static NSString * const CellIdentifier = @"Cell";
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) DATAStack *dataStack;
+@property (strong, nonatomic) NSArray *arrayWithStories;
 @property CGFloat deviceWidth;
 @property CGFloat deviceHeight;
 
@@ -22,7 +26,18 @@ static NSString * const CellIdentifier = @"Cell";
     self.deviceWidth = [UIScreen mainScreen].bounds.size.width;
     self.deviceHeight = [UIScreen mainScreen].bounds.size.height;
 
+    self.arrayWithStories = [NSArray new];
+
     [self setAllViewsInPlace];
+
+     self.dataStack = [[DATAStack alloc] initWithModelName:@"DesignerNews"];
+
+    DataManager *dataManager = [DataManager new];
+    [dataManager compareAndChangeStoriesWithDataStack:self.dataStack];
+
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
+    //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"updated_at" ascending:YES]];
+    self.arrayWithStories = [self.dataStack.mainContext executeFetchRequest:request error:nil];
 
     [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.delegate = self;
@@ -60,6 +75,8 @@ static NSString * const CellIdentifier = @"Cell";
     [headerView addSubview:labelTitle];
 
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 90, self.deviceWidth, self.deviceHeight - 90) style:UITableViewStylePlain];
+    self.tableView.rowHeight = 100;
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 #pragma mark - UIStatusBar methods
