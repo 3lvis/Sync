@@ -12,7 +12,6 @@ static NSString * const CellIdentifier = @"Cell";
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) DATAStack *dataStack;
 @property (strong, nonatomic) DATASource *dataSource;
-@property (strong, nonatomic) NSMutableArray *arrayWithStories;
 @property CGFloat deviceWidth;
 @property CGFloat deviceHeight;
 
@@ -28,8 +27,6 @@ static NSString * const CellIdentifier = @"Cell";
 
     self.deviceWidth = [UIScreen mainScreen].bounds.size.width;
     self.deviceHeight = [UIScreen mainScreen].bounds.size.height;
-
-    self.arrayWithStories = [NSMutableArray new];
 
     [self setAllViewsInPlace];
 
@@ -51,9 +48,7 @@ static NSString * const CellIdentifier = @"Cell";
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:YES]];
-    self.arrayWithStories = [NSMutableArray arrayWithArray:[self.dataStack.mainContext executeFetchRequest:request error:nil]];
-    [self.tableView reloadData];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO]];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
@@ -67,6 +62,9 @@ static NSString * const CellIdentifier = @"Cell";
             [cell.labelUpdated removeFromSuperview];
         }
 
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"dd-MMM-yyyy";
+
         cell.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - cell.frame.size.height/2.5)];
         cell.labelTitle.numberOfLines = 10;
         cell.labelTitle.adjustsFontSizeToFitWidth = YES;
@@ -75,16 +73,16 @@ static NSString * const CellIdentifier = @"Cell";
 
         cell.labelComments = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - 100)];
         cell.labelComments.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
-        //cell.labelComments.text = [NSString stringWithFormat:@"%.0f comments", story.comment_count];
+        cell.labelComments.text = [NSString stringWithFormat:@"%d comments", story.commentCount.intValue];
         [cell.labelComments sizeToFit];
-        cell.labelComments.frame = CGRectMake(cell.frame.size.width - cell.labelComments.frame.size.width - 15, cell.frame.size.height - cell.labelComments.frame.size.height - 7.5, cell.labelComments.frame.size.width, cell.labelComments.frame.size.height);
+        cell.labelComments.frame = CGRectMake(cell.frame.size.width - cell.labelComments.frame.size.width - 20, cell.frame.size.height - cell.labelComments.frame.size.height - 7.5, cell.labelComments.frame.size.width, cell.labelComments.frame.size.height);
 
         cell.labelUpdated = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - 50)];
         cell.labelUpdated.numberOfLines = 10;
         cell.labelUpdated.adjustsFontSizeToFitWidth = YES;
         cell.labelUpdated.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
-        //cell.labelUpdated.text = story.created_at;
-        //[cell.labelUpdated sizeToFit];
+        cell.labelUpdated.text = [dateFormatter stringFromDate:story.createdDate];
+        [cell.labelUpdated sizeToFit];
         cell.labelUpdated.frame = CGRectMake(25, cell.frame.size.height - cell.labelUpdated.frame.size.height - 10, cell.labelUpdated.frame.size.width, cell.labelUpdated.frame.size.height);
         
         [cell addSubview:cell.labelTitle];
