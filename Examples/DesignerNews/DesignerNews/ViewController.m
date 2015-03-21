@@ -7,7 +7,7 @@
 
 static NSString * const CellIdentifier = @"Cell";
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) DATAStack *dataStack;
@@ -40,7 +40,6 @@ static NSString * const CellIdentifier = @"Cell";
 
     [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.dataSource = self.dataSource;
-    self.tableView.delegate = self;
 
     [self.view addSubview:self.tableView];
 }
@@ -64,42 +63,36 @@ static NSString * const CellIdentifier = @"Cell";
     _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
         if (cell.labelTitle) {
             [cell.labelTitle removeFromSuperview];
+            [cell.labelComments removeFromSuperview];
+            [cell.labelUpdated removeFromSuperview];
         }
-        cell.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - 20)];
+
+        cell.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - cell.frame.size.height/2.5)];
         cell.labelTitle.numberOfLines = 10;
         cell.labelTitle.adjustsFontSizeToFitWidth = YES;
-        cell.labelTitle.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+        cell.labelTitle.font = [UIFont fontWithName:@"Avenir-Medium" size:18];
         cell.labelTitle.text = story.title;
-        [cell.labelTitle sizeToFit];
-        cell.labelTitle.frame = CGRectMake(25, 15, cell.labelTitle.frame.size.width, cell.labelTitle.frame.size.height);
 
+        cell.labelComments = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - 100)];
+        cell.labelComments.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
+        //cell.labelComments.text = [NSString stringWithFormat:@"%.0f comments", story.comment_count];
+        [cell.labelComments sizeToFit];
+        cell.labelComments.frame = CGRectMake(cell.frame.size.width - cell.labelComments.frame.size.width - 15, cell.frame.size.height - cell.labelComments.frame.size.height - 7.5, cell.labelComments.frame.size.width, cell.labelComments.frame.size.height);
+
+        cell.labelUpdated = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - 50)];
+        cell.labelUpdated.numberOfLines = 10;
+        cell.labelUpdated.adjustsFontSizeToFitWidth = YES;
+        cell.labelUpdated.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
+        //cell.labelUpdated.text = story.created_at;
+        //[cell.labelUpdated sizeToFit];
+        cell.labelUpdated.frame = CGRectMake(25, cell.frame.size.height - cell.labelUpdated.frame.size.height - 10, cell.labelUpdated.frame.size.width, cell.labelUpdated.frame.size.height);
+        
         [cell addSubview:cell.labelTitle];
+        [cell addSubview:cell.labelComments];
+        [cell addSubview:cell.labelUpdated];
     };
 
     return _dataSource;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.arrayWithStories.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DesignerNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    Stories *story = self.arrayWithStories[indexPath.row];
-
-    cell.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, cell.frame.size.width - 50, cell.frame.size.height - 20)];
-    cell.labelTitle.numberOfLines = 10;
-    cell.labelTitle.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-    cell.labelTitle.text = story.title;
-    [cell.labelTitle sizeToFit];
-    cell.labelTitle.frame = CGRectMake(25, 15, cell.labelTitle.frame.size.width, cell.labelTitle.frame.size.height);
-
-    [cell addSubview:cell.labelTitle];
-
-    return cell;
 }
 
 #pragma mark - Helper methods
