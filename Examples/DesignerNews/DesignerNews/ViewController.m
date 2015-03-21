@@ -53,14 +53,27 @@ static NSString * const CellIdentifier = @"Cell";
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:YES]];
+    self.arrayWithStories = [NSMutableArray arrayWithArray:[self.dataStack.mainContext executeFetchRequest:request error:nil]];
+    [self.tableView reloadData];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
                                          cellIdentifier:CellIdentifier
                                             mainContext:self.dataStack.mainContext];
 
-    _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *item, NSIndexPath *indexPath) {
-        [_arrayWithStories addObject:item];
+    _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
+        if (cell.labelTitle) {
+            [cell.labelTitle removeFromSuperview];
+        }
+        cell.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, cell.frame.size.width - 50, cell.frame.size.height - 20)];
+        cell.labelTitle.numberOfLines = 10;
+        cell.labelTitle.adjustsFontSizeToFitWidth = YES;
+        cell.labelTitle.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+        cell.labelTitle.text = story.title;
+        [cell.labelTitle sizeToFit];
+        cell.labelTitle.frame = CGRectMake(25, 15, cell.labelTitle.frame.size.width, cell.labelTitle.frame.size.height);
+
+        [cell addSubview:cell.labelTitle];
     };
 
     return _dataSource;
@@ -75,12 +88,16 @@ static NSString * const CellIdentifier = @"Cell";
 {
     DesignerNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
+    Stories *story = self.arrayWithStories[indexPath.row];
+
     cell.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, cell.frame.size.width - 50, cell.frame.size.height - 20)];
     cell.labelTitle.numberOfLines = 10;
     cell.labelTitle.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-    cell.labelTitle.text = item.title;
+    cell.labelTitle.text = story.title;
     [cell.labelTitle sizeToFit];
     cell.labelTitle.frame = CGRectMake(25, 15, cell.labelTitle.frame.size.width, cell.labelTitle.frame.size.height);
+
+    [cell addSubview:cell.labelTitle];
 
     return cell;
 }
