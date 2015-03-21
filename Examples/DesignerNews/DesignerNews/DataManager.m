@@ -20,9 +20,7 @@ static NSString * const URLToManage = @"https://api-news.layervault.com/api/v2/s
             NSLog(@"There was an error: %@", [[[connectionError userInfo] objectForKey:@"error"] capitalizedString]);
         } else {
             NSJSONSerialization *JSONFile = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            [Sync processChanges:[JSONFile valueForKey:@"titleStories"] usingEntityName:@"Stories" dataStack:self.dataStack completion:nil];
-            [Sync processChanges:[JSONFile valueForKey:@"updated_at"] usingEntityName:@"Stories" dataStack:self.dataStack completion:nil];
-            [Sync processChanges:[JSONFile valueForKey:@"numberComments"] usingEntityName:@"Stories" dataStack:self.dataStack completion:nil];
+            [Sync processChanges:[JSONFile valueForKey:@"stories"] usingEntityName:@"Stories" dataStack:dataStack completion:nil];
         }
     }];
 }

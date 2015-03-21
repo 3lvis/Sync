@@ -2,6 +2,8 @@
 #import "DesignerNewsTableViewCell.h"
 #import "DATAStack.h"
 #import "DataManager.h"
+#import "DATASource.h"
+#import "Stories.h"
 
 static NSString * const CellIdentifier = @"Cell";
 
@@ -9,7 +11,8 @@ static NSString * const CellIdentifier = @"Cell";
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) DATAStack *dataStack;
-@property (strong, nonatomic) NSArray *arrayWithStories;
+@property (strong, nonatomic) DATASource *dataSource;
+@property (strong, nonatomic) NSMutableArray *arrayWithStories;
 @property CGFloat deviceWidth;
 @property CGFloat deviceHeight;
 
@@ -26,35 +29,58 @@ static NSString * const CellIdentifier = @"Cell";
     self.deviceWidth = [UIScreen mainScreen].bounds.size.width;
     self.deviceHeight = [UIScreen mainScreen].bounds.size.height;
 
-    self.arrayWithStories = [NSArray new];
+    self.arrayWithStories = [NSMutableArray new];
 
     [self setAllViewsInPlace];
 
-     self.dataStack = [[DATAStack alloc] initWithModelName:@"DesignerNews"];
+    self.dataStack = [[DATAStack alloc] initWithModelName:@"DesignerNews"];
 
     DataManager *dataManager = [DataManager new];
     [dataManager compareAndChangeStoriesWithDataStack:self.dataStack];
 
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
-    //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"updated_at" ascending:YES]];
-    self.arrayWithStories = [self.dataStack.mainContext executeFetchRequest:request error:nil];
-
     [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    self.tableView.dataSource = self.dataSource;
     self.tableView.delegate = self;
 
     [self.view addSubview:self.tableView];
 }
 
-#pragma mark - UITableView delegate methods
+#pragma mark - DataSource
+
+- (DATASource *)dataSource
+{
+    if (_dataSource) return _dataSource;
+
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:YES]];
+
+    _dataSource = [[DATASource alloc] initWithTableView:self.tableView
+                                           fetchRequest:request
+                                         cellIdentifier:CellIdentifier
+                                            mainContext:self.dataStack.mainContext];
+
+    _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *item, NSIndexPath *indexPath) {
+        [_arrayWithStories addObject:item];
+    };
+
+    return _dataSource;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.arrayWithStories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DesignerNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    cell.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, cell.frame.size.width - 50, cell.frame.size.height - 20)];
+    cell.labelTitle.numberOfLines = 10;
+    cell.labelTitle.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
+    cell.labelTitle.text = item.title;
+    [cell.labelTitle sizeToFit];
+    cell.labelTitle.frame = CGRectMake(25, 15, cell.labelTitle.frame.size.width, cell.labelTitle.frame.size.height);
 
     return cell;
 }
