@@ -27,8 +27,8 @@
 
     ViewController *mainController = [[ViewController alloc] initWithDataStack:self.dataStack];
     self.window.rootViewController = mainController;
-
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 

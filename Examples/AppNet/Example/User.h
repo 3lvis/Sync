@@ -14,7 +14,7 @@
 @interface User : NSManagedObject
 
 @property (nonatomic, retain) NSString * username;
-@property (nonatomic, retain) NSDate * createdDate;
+@property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSString * canonicalURL;
 @property (nonatomic, retain) NSString * remoteID;
 @property (nonatomic, retain) NSString * userType;

@@ -13,7 +13,7 @@
 @implementation User
 
 @dynamic username;
-@dynamic createdDate;
+@dynamic createdAt;
 @dynamic canonicalURL;
 @dynamic remoteID;
 @dynamic userType;

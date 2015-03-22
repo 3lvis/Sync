@@ -39,7 +39,7 @@ static NSString * const CellIdentifier = @"Cell";
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Data"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request

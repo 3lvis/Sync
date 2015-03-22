@@ -1,24 +1,16 @@
-//
-//  Data.h
-//  Example
-//
-//  Created by Elvis Nuñez on 11/12/14.
-//  Copyright (c) 2014 Sync. All rights reserved.
-//
-
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+@import Foundation;
+@import CoreData;
 
 @class User;
 
 @interface Data : NSManagedObject
 
-@property (nonatomic, retain) NSDate * createdDate;
-@property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) NSString * remoteID;
-@property (nonatomic, retain) NSString * canonicalURL;
-@property (nonatomic, retain) NSString * threadID;
-@property (nonatomic, retain) NSString * paginationID;
-@property (nonatomic, retain) User *user;
+@property (nonatomic) NSDate * createdAt;
+@property (nonatomic) NSString * text;
+@property (nonatomic) NSString * remoteID;
+@property (nonatomic) NSString * canonicalURL;
+@property (nonatomic) NSString * threadID;
+@property (nonatomic) NSString * paginationID;
+@property (nonatomic) User *user;
 
 @end
