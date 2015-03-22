@@ -1,5 +1,5 @@
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+@import UIKit;
+@import CoreData;
 
 @interface ViewController : UIViewController <NSFetchedResultsControllerDelegate>
 

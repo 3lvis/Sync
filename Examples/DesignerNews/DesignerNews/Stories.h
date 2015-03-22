@@ -1,11 +1,3 @@
-//
-//  Stories.h
-//  
-//
-//  Created by Ramon Gilabert Llop on 3/21/15.
-//
-//
-
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 

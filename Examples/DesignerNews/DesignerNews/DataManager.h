@@ -3,6 +3,6 @@
 
 @interface DataManager : NSObject
 
-- (void)compareAndChangeStoriesWithDataStack:(DATAStack *)dataStack;
+- (void)fetchStoriesUsingDataStack:(DATAStack *)dataStack;
 
 @end

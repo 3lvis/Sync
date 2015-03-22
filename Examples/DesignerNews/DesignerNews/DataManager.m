@@ -11,7 +11,7 @@ static NSString * const URLToManage = @"https://api-news.layervault.com/api/v2/s
 
 @implementation DataManager
 
-- (void)compareAndChangeStoriesWithDataStack:(DATAStack *)dataStack
+- (void)fetchStoriesUsingDataStack:(DATAStack *)dataStack
 {
     NSURL *urlFromString = [NSURL URLWithString:URLToManage];
     NSURLRequest *requestFromURL = [NSURLRequest requestWithURL:urlFromString];
