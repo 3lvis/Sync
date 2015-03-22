@@ -33,7 +33,7 @@ static NSString * const CellIdentifier = @"Cell";
     self.dataStack = [[DATAStack alloc] initWithModelName:@"DesignerNews"];
 
     DataManager *dataManager = [DataManager new];
-    [dataManager compareAndChangeStoriesWithDataStack:self.dataStack];
+    [dataManager fetchStoriesUsingDataStack:self.dataStack];
 
     [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.dataSource = self.dataSource;

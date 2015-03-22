@@ -1,5 +1,5 @@
-@import UIKit
-@import CoreData
+@import UIKit;
+@import CoreData;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
