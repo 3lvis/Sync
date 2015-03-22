@@ -12,9 +12,9 @@ static NSString * const CellIdentifier = @"Cell";
 
 @interface ViewController ()
 
-@property (nonatomic, strong) DATASource *dataSource;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) DATAStack *dataStack;
+@property (nonatomic) DATASource *dataSource;
+@property (nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) DATAStack *dataStack;
 
 @end
 
