@@ -1,7 +1,7 @@
 @import Foundation;
 #import "DATAStack.h"
 
-@interface DataManager : NSObject
+@interface APIClient : NSObject
 
 - (void)fetchStoriesUsingDataStack:(DATAStack *)dataStack;
 

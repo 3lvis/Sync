@@ -5,7 +5,7 @@
 
 @dynamic title;
 @dynamic commentCount;
-@dynamic createdDate;
+@dynamic createdAt;
 @dynamic remoteID;
 
 @end

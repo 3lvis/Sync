@@ -1,11 +1,10 @@
 @import UIKit;
-#import "Stories.h"
+
+@class Stories;
+
+static NSString * const CellIdentifier = @"Cell";
 
 @interface DesignerNewsTableViewCell : UITableViewCell
-
-@property (nonatomic) UILabel *labelTitle;
-@property (nonatomic) UILabel *labelUpdated;
-@property (nonatomic) UILabel *labelComments;
 
 - (void)updateWithStory:(Stories *)story;
 

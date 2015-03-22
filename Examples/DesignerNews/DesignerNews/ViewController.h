@@ -1,7 +1,11 @@
 @import UIKit;
 @import CoreData;
 
-@interface ViewController : UIViewController <NSFetchedResultsControllerDelegate>
+@class DATAStack;
+
+@interface ViewController : UITableViewController
+
+- (instancetype)initWithDataStack:(DATAStack *)dataStack;
 
 @end
 
