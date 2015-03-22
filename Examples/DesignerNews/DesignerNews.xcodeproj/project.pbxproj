@@ -18,7 +18,6 @@
 		F6ACF02E1ABCB157001E5652 /* DesignerNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */; };
 		F6C3EAEF1ABDF0AE0049325B /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3EAEE1ABDF0AE0049325B /* DataManager.m */; };
 		F6C3EB361ABE13FC0049325B /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3EB351ABE13FC0049325B /* Stories.m */; };
-		F6E808B21ABF523600957B1A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6E808B11ABF523600957B1A /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +41,6 @@
 		F6C3EAEE1ABDF0AE0049325B /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		F6C3EB341ABE13FC0049325B /* Stories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stories.h; sourceTree = "<group>"; };
 		F6C3EB351ABE13FC0049325B /* Stories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stories.m; sourceTree = "<group>"; };
-		F6E808B11ABF523600957B1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				F6ACF0001ABCA539001E5652 /* DesignerNews */,
-				F6E808B01ABF523600957B1A /* DesignerNewsTests */,
 				F6ACEFFF1ABCA539001E5652 /* Products */,
 				709250F94E876559886BDDD8 /* Pods */,
 				DD317DD9308A61D7089EE31B /* Frameworks */,
@@ -130,15 +127,6 @@
 				F6C3EB351ABE13FC0049325B /* Stories.m */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		F6E808B01ABF523600957B1A /* DesignerNewsTests */ = {
-			isa = PBXGroup;
-			children = (
-				F6E808B11ABF523600957B1A /* Info.plist */,
-			);
-			name = DesignerNewsTests;
-			path = DesignerNews/DesignerNewsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +188,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6E808B21ABF523600957B1A /* Info.plist in Resources */,
 				F6ACF0151ABCA539001E5652 /* LaunchScreen.xib in Resources */,
 				F6ACF0121ABCA539001E5652 /* Images.xcassets in Resources */,
 				F6ACF02B1ABCAA6A001E5652 /* Main.storyboard in Resources */,
