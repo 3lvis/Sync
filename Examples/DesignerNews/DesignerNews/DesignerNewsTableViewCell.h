@@ -2,8 +2,8 @@
 
 @interface DesignerNewsTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) UILabel *labelTitle;
-@property (strong, nonatomic) UILabel *labelUpdated;
-@property (strong, nonatomic) UILabel *labelComments;
+@property (nonatomic) UILabel *labelTitle;
+@property (nonatomic) UILabel *labelUpdated;
+@property (nonatomic) UILabel *labelComments;
 
 @end

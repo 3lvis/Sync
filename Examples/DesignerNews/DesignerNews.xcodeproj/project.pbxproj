@@ -14,22 +14,12 @@
 		F6ACF00D1ABCA539001E5652 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF00C1ABCA539001E5652 /* ViewController.m */; };
 		F6ACF0121ABCA539001E5652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6ACF0111ABCA539001E5652 /* Images.xcassets */; };
 		F6ACF0151ABCA539001E5652 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6ACF0131ABCA539001E5652 /* LaunchScreen.xib */; };
-		F6ACF0211ABCA539001E5652 /* DesignerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF0201ABCA539001E5652 /* DesignerNewsTests.m */; };
 		F6ACF02B1ABCAA6A001E5652 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6ACF02A1ABCAA6A001E5652 /* Main.storyboard */; };
 		F6ACF02E1ABCB157001E5652 /* DesignerNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */; };
 		F6C3EAEF1ABDF0AE0049325B /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3EAEE1ABDF0AE0049325B /* DataManager.m */; };
 		F6C3EB361ABE13FC0049325B /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3EB351ABE13FC0049325B /* Stories.m */; };
+		F6E808B21ABF523600957B1A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6E808B11ABF523600957B1A /* Info.plist */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F6ACF01B1ABCA539001E5652 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F6ACEFF61ABCA539001E5652 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F6ACEFFD1ABCA539001E5652;
-			remoteInfo = DesignerNews;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		581617F06614B282BA55A2A2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,9 +35,6 @@
 		F6ACF00C1ABCA539001E5652 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F6ACF0111ABCA539001E5652 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F6ACF0141ABCA539001E5652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		F6ACF01A1ABCA539001E5652 /* DesignerNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DesignerNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6ACF01F1ABCA539001E5652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6ACF0201ABCA539001E5652 /* DesignerNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DesignerNewsTests.m; sourceTree = "<group>"; };
 		F6ACF02A1ABCAA6A001E5652 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F6ACF02C1ABCB157001E5652 /* DesignerNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesignerNewsTableViewCell.h; sourceTree = "<group>"; };
 		F6ACF02D1ABCB157001E5652 /* DesignerNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesignerNewsTableViewCell.m; sourceTree = "<group>"; };
@@ -55,6 +42,7 @@
 		F6C3EAEE1ABDF0AE0049325B /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		F6C3EB341ABE13FC0049325B /* Stories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stories.h; sourceTree = "<group>"; };
 		F6C3EB351ABE13FC0049325B /* Stories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stories.m; sourceTree = "<group>"; };
+		F6E808B11ABF523600957B1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,13 +51,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25F967187DC17C9C2D150F6 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6ACF0171ABCA539001E5652 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				F6ACF0001ABCA539001E5652 /* DesignerNews */,
-				F6ACF01D1ABCA539001E5652 /* DesignerNewsTests */,
+				F6E808B01ABF523600957B1A /* DesignerNewsTests */,
 				F6ACEFFF1ABCA539001E5652 /* Products */,
 				709250F94E876559886BDDD8 /* Pods */,
 				DD317DD9308A61D7089EE31B /* Frameworks */,
@@ -108,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				F6ACEFFE1ABCA539001E5652 /* DesignerNews.app */,
-				F6ACF01A1ABCA539001E5652 /* DesignerNewsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,23 +122,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F6ACF01D1ABCA539001E5652 /* DesignerNewsTests */ = {
-			isa = PBXGroup;
-			children = (
-				F6ACF0201ABCA539001E5652 /* DesignerNewsTests.m */,
-				F6ACF01E1ABCA539001E5652 /* Supporting Files */,
-			);
-			path = DesignerNewsTests;
-			sourceTree = "<group>";
-		};
-		F6ACF01E1ABCA539001E5652 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F6ACF01F1ABCA539001E5652 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		F6C3EB371ABE16250049325B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +130,15 @@
 				F6C3EB351ABE13FC0049325B /* Stories.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		F6E808B01ABF523600957B1A /* DesignerNewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				F6E808B11ABF523600957B1A /* Info.plist */,
+			);
+			name = DesignerNewsTests;
+			path = DesignerNews/DesignerNewsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,24 +163,6 @@
 			productReference = F6ACEFFE1ABCA539001E5652 /* DesignerNews.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F6ACF0191ABCA539001E5652 /* DesignerNewsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F6ACF0271ABCA539001E5652 /* Build configuration list for PBXNativeTarget "DesignerNewsTests" */;
-			buildPhases = (
-				F6ACF0161ABCA539001E5652 /* Sources */,
-				F6ACF0171ABCA539001E5652 /* Frameworks */,
-				F6ACF0181ABCA539001E5652 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F6ACF01C1ABCA539001E5652 /* PBXTargetDependency */,
-			);
-			name = DesignerNewsTests;
-			productName = DesignerNewsTests;
-			productReference = F6ACF01A1ABCA539001E5652 /* DesignerNewsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,10 +174,6 @@
 				TargetAttributes = {
 					F6ACEFFD1ABCA539001E5652 = {
 						CreatedOnToolsVersion = 6.2;
-					};
-					F6ACF0191ABCA539001E5652 = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = F6ACEFFD1ABCA539001E5652;
 					};
 				};
 			};
@@ -241,7 +191,6 @@
 			projectRoot = "";
 			targets = (
 				F6ACEFFD1ABCA539001E5652 /* DesignerNews */,
-				F6ACF0191ABCA539001E5652 /* DesignerNewsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -251,16 +200,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E808B21ABF523600957B1A /* Info.plist in Resources */,
 				F6ACF0151ABCA539001E5652 /* LaunchScreen.xib in Resources */,
 				F6ACF0121ABCA539001E5652 /* Images.xcassets in Resources */,
 				F6ACF02B1ABCAA6A001E5652 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6ACF0181ABCA539001E5652 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,23 +257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F6ACF0161ABCA539001E5652 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F6ACF0211ABCA539001E5652 /* DesignerNewsTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F6ACF01C1ABCA539001E5652 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F6ACEFFD1ABCA539001E5652 /* DesignerNews */;
-			targetProxy = F6ACF01B1ABCA539001E5652 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F6ACF0131ABCA539001E5652 /* LaunchScreen.xib */ = {
@@ -442,40 +369,6 @@
 			};
 			name = Release;
 		};
-		F6ACF0281ABCA539001E5652 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DesignerNewsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DesignerNews.app/DesignerNews";
-			};
-			name = Debug;
-		};
-		F6ACF0291ABCA539001E5652 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DesignerNewsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DesignerNews.app/DesignerNews";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -493,15 +386,6 @@
 			buildConfigurations = (
 				F6ACF0251ABCA539001E5652 /* Debug */,
 				F6ACF0261ABCA539001E5652 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F6ACF0271ABCA539001E5652 /* Build configuration list for PBXNativeTarget "DesignerNewsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F6ACF0281ABCA539001E5652 /* Debug */,
-				F6ACF0291ABCA539001E5652 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

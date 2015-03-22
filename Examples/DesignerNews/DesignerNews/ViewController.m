@@ -9,9 +9,9 @@ static NSString * const CellIdentifier = @"Cell";
 
 @interface ViewController ()
 
-@property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) DATAStack *dataStack;
-@property (strong, nonatomic) DATASource *dataSource;
+@property (nonatomic) UITableView *tableView;
+@property (nonatomic) DATAStack *dataStack;
+@property (nonatomic) DATASource *dataSource;
 @property CGFloat deviceWidth;
 @property CGFloat deviceHeight;
 
