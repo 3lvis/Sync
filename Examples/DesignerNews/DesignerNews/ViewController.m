@@ -53,8 +53,6 @@
 {
     [super viewDidLoad];
 
-    [self preferredStatusBarStyle];
-
     self.title = @"Designer News";
 
     APIClient *client = [APIClient new];
