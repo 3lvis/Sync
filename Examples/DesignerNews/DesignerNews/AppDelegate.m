@@ -1,6 +1,9 @@
 #import "AppDelegate.h"
+
 #import "ViewController.h"
 #import "DATAStack.h"
+
+#import "UIFont+DNStyle.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +26,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.2 green:0.46 blue:0.84 alpha:1];
+
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                         NSFontAttributeName            : [UIFont appTitleFont]
+                                                         };
+
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
     ViewController *mainController = [[ViewController alloc] initWithDataStack:self.dataStack];

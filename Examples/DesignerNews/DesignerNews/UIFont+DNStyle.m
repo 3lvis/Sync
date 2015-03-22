@@ -2,6 +2,11 @@
 
 @implementation UIFont (DNStyle)
 
++ (UIFont *)appTitleFont
+{
+    return [UIFont fontWithName:@"Avenir-Black" size:16.0f];;
+}
+
 + (UIFont *)headerFont
 {
     return [UIFont fontWithName:@"Avenir-Medium" size:16.0f];;
