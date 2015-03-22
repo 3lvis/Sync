@@ -1,41 +1,129 @@
 #import "DesignerNewsTableViewCell.h"
 
+#import "Stories.h"
+
+#import "UIFont+DNStyle.h"
+
+static const CGFloat HYPTitleLabelMargin = 10.0;
+static const CGFloat HYPTitleLabelHeight = 30.0;
+
+static const CGFloat HYPUpdatedLabelHeight = 30.0;
+static const CGFloat HYPUpdatedLabelWidth = 90.0;
+static const CGFloat HYPUpdatedLabelTopMargin = 10.0;
+
+static const CGFloat HYPCommentsCountMargin = 10.0;
+static const CGFloat HYPCommentsCountHeight = 20.0;
+
+@interface DesignerNewsTableViewCell ()
+
+@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UILabel *updatedLabel;
+@property (nonatomic) UILabel *commentCountLabel;
+
+@end
+
 @implementation DesignerNewsTableViewCell
+
+#pragma mark - Initializers
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (!self) return nil;
+
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.updatedLabel];
+    [self.contentView addSubview:self.commentCountLabel];
+
+    return self;
+}
+
+#pragma mark - Getters
+
+- (UILabel *)titleLabel
+{
+    if (_titleLabel) return _titleLabel;
+
+    _titleLabel = [UILabel new];
+    _titleLabel.font = [UIFont headerFont];
+
+    return _titleLabel;
+}
+
+- (UILabel *)updatedLabel
+{
+    if (_updatedLabel) return _updatedLabel;
+
+    _updatedLabel = [UILabel new];
+    _updatedLabel.font = [UIFont asideFont];
+    _updatedLabel.textAlignment = NSTextAlignmentCenter;
+
+    return _updatedLabel;
+}
+
+- (UILabel *)commentCountLabel
+{
+    if (_commentCountLabel) return _commentCountLabel;
+
+    _commentCountLabel = [UILabel new];
+    _commentCountLabel.font = [UIFont subtitleFont];
+
+    return _commentCountLabel;
+}
+
+#pragma mark - Public methods
 
 - (void)updateWithStory:(Stories *)story
 {
-    if (self.labelTitle) {
-        [self.labelTitle removeFromSuperview];
-        [self.labelComments removeFromSuperview];
-        [self.labelUpdated removeFromSuperview];
-    }
+    static dispatch_once_t onceToken;
+    static NSDateFormatter *formatter = nil;
+    dispatch_once(&onceToken, ^{
+        formatter = [NSDateFormatter new];
+        formatter.dateStyle = NSDateFormatterLongStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+    });
 
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"dd-MMM-yyyy";
+    self.titleLabel.text = story.title;
+    self.commentCountLabel.text = [NSString stringWithFormat:@"%@ comments", story.commentCount];
+    self.updatedLabel.text = [formatter stringFromDate:story.createdAt];
+}
 
-    self.labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, self.frame.size.width - 50, self.frame.size.height - self.frame.size.height/2.5)];
-    self.labelTitle.numberOfLines = 10;
-    self.labelTitle.adjustsFontSizeToFitWidth = YES;
-    self.labelTitle.font = [UIFont fontWithName:@"Avenir-Medium" size:18];
-    self.labelTitle.text = story.title;
+#pragma mark - Layout
 
-    self.labelComments = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, self.frame.size.width - 50, self.frame.size.height - 100)];
-    self.labelComments.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
-    self.labelComments.text = [NSString stringWithFormat:@"%d comments", story.commentCount.intValue];
-    [self.labelComments sizeToFit];
-    self.labelComments.frame = CGRectMake(self.frame.size.width - self.labelComments.frame.size.width - 20, self.frame.size.height - self.labelComments.frame.size.height - 7.5, self.labelComments.frame.size.width, self.labelComments.frame.size.height);
+- (CGRect)titleLabelFrame
+{
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    return CGRectMake(HYPTitleLabelMargin,
+                      HYPTitleLabelMargin,
+                      CGRectGetWidth(screenFrame) - HYPUpdatedLabelWidth - HYPTitleLabelMargin,
+                      HYPTitleLabelHeight);
+}
 
-    self.labelUpdated = [[UILabel alloc] initWithFrame:CGRectMake(25, 10, self.frame.size.width - 50, self.frame.size.height - 50)];
-    self.labelUpdated.numberOfLines = 10;
-    self.labelUpdated.adjustsFontSizeToFitWidth = YES;
-    self.labelUpdated.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
-    self.labelUpdated.text = [dateFormatter stringFromDate:story.createdDate];
-    [self.labelUpdated sizeToFit];
-    self.labelUpdated.frame = CGRectMake(25, self.frame.size.height - self.labelUpdated.frame.size.height - 10, self.labelUpdated.frame.size.width, self.labelUpdated.frame.size.height);
+- (CGRect)updatedLabelFrame
+{
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    return CGRectMake(CGRectGetWidth(screenFrame) - HYPUpdatedLabelWidth,
+                      HYPUpdatedLabelTopMargin,
+                      HYPUpdatedLabelWidth,
+                      HYPUpdatedLabelHeight);
+}
 
-    [self addSubview:self.labelTitle];
-    [self addSubview:self.labelComments];
-    [self addSubview:self.labelUpdated];
+- (CGRect)commentCountLabelFrame
+{
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    return CGRectMake(HYPCommentsCountMargin,
+                      CGRectGetMaxY(self.updatedLabel.frame),
+                      CGRectGetWidth(screenFrame) - HYPCommentsCountMargin * 2.0f,
+                      HYPCommentsCountHeight);
+}
+
+- (void)setNeedsLayout
+{
+    [super setNeedsLayout];
+
+    self.titleLabel.frame = [self titleLabelFrame];
+    self.updatedLabel.frame = [self updatedLabelFrame];
+    self.commentCountLabel.frame = [self commentCountLabelFrame];
 }
 
 @end

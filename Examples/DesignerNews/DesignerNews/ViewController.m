@@ -1,54 +1,39 @@
 #import "ViewController.h"
 #import "DesignerNewsTableViewCell.h"
 #import "DATAStack.h"
-#import "DataManager.h"
+#import "APIClient.h"
 #import "DATASource.h"
 #import "Stories.h"
 
-static NSString * const CellIdentifier = @"Cell";
+@interface ViewController () <NSFetchedResultsControllerDelegate>
 
-@interface ViewController ()
-
-@property (nonatomic) UITableView *tableView;
 @property (nonatomic) DATAStack *dataStack;
 @property (nonatomic) DATASource *dataSource;
-@property CGFloat deviceWidth;
-@property CGFloat deviceHeight;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad
+#pragma mark - Initializers
+
+- (instancetype)initWithDataStack:(DATAStack *)dataStack
 {
-    [super viewDidLoad];
+    self = [super initWithStyle:UITableViewStylePlain];
+    if (!self) return nil;
 
-    [self preferredStatusBarStyle];
+    _dataStack = dataStack;
 
-    self.deviceWidth = [UIScreen mainScreen].bounds.size.width;
-    self.deviceHeight = [UIScreen mainScreen].bounds.size.height;
-
-    [self setAllViewsInPlace];
-
-    self.dataStack = [[DATAStack alloc] initWithModelName:@"DesignerNews"];
-
-    DataManager *dataManager = [DataManager new];
-    [dataManager fetchStoriesUsingDataStack:self.dataStack];
-
-    [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
-    self.tableView.dataSource = self.dataSource;
-
-    [self.view addSubview:self.tableView];
+    return self;
 }
 
-#pragma mark - DataSource
+#pragma mark - Getters
 
 - (DATASource *)dataSource
 {
     if (_dataSource) return _dataSource;
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdDate" ascending:NO]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
@@ -62,27 +47,23 @@ static NSString * const CellIdentifier = @"Cell";
     return _dataSource;
 }
 
-#pragma mark - Helper methods
+#pragma mark - View lifecycle
 
-- (void)setAllViewsInPlace
+- (void)viewDidLoad
 {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.deviceWidth, 90)];
-    headerView.backgroundColor = [UIColor colorWithRed:0.2 green:0.46 blue:0.84 alpha:1];
-    [self.view addSubview:headerView];
+    [super viewDidLoad];
 
-    UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, self.deviceWidth, headerView.frame.size.height - 15)];
-    labelTitle.text = @"Designer News";
-    labelTitle.font = [UIFont fontWithName:@"AvenirNextCondensed-Medium" size:34];
-    labelTitle.textColor = [UIColor whiteColor];
-    labelTitle.textAlignment = NSTextAlignmentCenter;
-    [headerView addSubview:labelTitle];
+    self.title = @"Designer News";
 
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 90, self.deviceWidth, self.deviceHeight - 90) style:UITableViewStylePlain];
-    self.tableView.rowHeight = 100;
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    APIClient *client = [APIClient new];
+    [client fetchStoriesUsingDataStack:self.dataStack];
+
+    [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    self.tableView.dataSource = self.dataSource;
+    self.tableView.rowHeight = 65.0f;
 }
 
-#pragma mark - UIStatusBar methods
+#pragma mark - UIViewController
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
