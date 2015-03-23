@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import "CommentsViewController.h"
 #import "DesignerNewsTableViewCell.h"
 #import "DATAStack.h"
 #import "APIClient.h"
@@ -54,7 +55,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Stories *storySelected = self.arrayWithStories[indexPath.row];
-
+    CommentsViewController *viewController = [CommentsViewController new];
+    viewController.story = storySelected;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - View lifecycle
