@@ -9,6 +9,7 @@
 
 @property (nonatomic) DATAStack *dataStack;
 @property (nonatomic) DATASource *dataSource;
+@property (nonatomic) NSMutableArray *arrayWithStories;
 
 @end
 
@@ -34,6 +35,7 @@
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    self.arrayWithStories = [NSMutableArray arrayWithArray:[self.dataStack.mainContext executeFetchRequest:request error:nil]];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
@@ -45,6 +47,14 @@
     };
 
     return _dataSource;
+}
+
+#pragma mark - TableView methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Stories *storySelected = self.arrayWithStories[indexPath.row];
+
 }
 
 #pragma mark - View lifecycle
