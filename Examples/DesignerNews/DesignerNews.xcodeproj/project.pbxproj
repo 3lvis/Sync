@@ -18,6 +18,7 @@
 		F6C3EAEF1ABDF0AE0049325B /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3EAEE1ABDF0AE0049325B /* APIClient.m */; };
 		F6C3EB361ABE13FC0049325B /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3EB351ABE13FC0049325B /* Stories.m */; };
 		F6CFE2651AC0A01A009218AE /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CFE2641AC0A01A009218AE /* CommentsViewController.m */; };
+		F6CFE2681AC0A9AD009218AE /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CFE2671AC0A9AD009218AE /* Comments.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		F6C3EB351ABE13FC0049325B /* Stories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stories.m; sourceTree = "<group>"; };
 		F6CFE2631AC0A01A009218AE /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
 		F6CFE2641AC0A01A009218AE /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		F6CFE2661AC0A9AD009218AE /* Comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
+		F6CFE2671AC0A9AD009218AE /* Comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				F6ACF0081ABCA539001E5652 /* DesignerNews.xcdatamodeld */,
+				F6CFE2661AC0A9AD009218AE /* Comments.h */,
+				F6CFE2671AC0A9AD009218AE /* Comments.m */,
 				F6C3EB341ABE13FC0049325B /* Stories.h */,
 				F6C3EB351ABE13FC0049325B /* Stories.m */,
 			);
@@ -239,6 +244,7 @@
 				F6C3EB361ABE13FC0049325B /* Stories.m in Sources */,
 				F6ACF0071ABCA539001E5652 /* AppDelegate.m in Sources */,
 				F6ACF02E1ABCB157001E5652 /* DesignerNewsTableViewCell.m in Sources */,
+				F6CFE2681AC0A9AD009218AE /* Comments.m in Sources */,
 				F6C3EAEF1ABDF0AE0049325B /* APIClient.m in Sources */,
 				F6ACF00A1ABCA539001E5652 /* DesignerNews.xcdatamodeld in Sources */,
 				F6CFE2651AC0A01A009218AE /* CommentsViewController.m in Sources */,

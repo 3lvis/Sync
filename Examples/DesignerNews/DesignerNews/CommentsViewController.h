@@ -1,7 +1,7 @@
 @import UIKit;
 #import "Stories.h"
 
-@interface CommentsViewController : UIViewController
+@interface CommentsViewController : UITableViewController
 
 @property (nonatomic) Stories *story;
 
