@@ -66,7 +66,7 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
            }];
 ```
 
-[(You can see another example here).](https://github.com/hyperoslo/Sync/blob/master/Example/Example/Networking.m#L41)
+[(You can see another example here).](https://github.com/hyperoslo/Sync/blob/2a78536a563c54aa480a9f9324fee1985248a1ac/Examples/AppNet/Example/Networking.m#L41)
 
 **PROFIT!**
 
@@ -82,7 +82,7 @@ pod 'Sync'
 
 ### DATAStack
 
-Replace your Core Data stack with [an instance of DATAStack](https://github.com/NSElvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19):
+Replace your Core Data stack with [an instance of DATAStack](https://github.com/hyperoslo/Sync/blob/2a78536a563c54aa480a9f9324fee1985248a1ac/Examples/AppNet/Example/AppDelegate.m#L19):
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
