@@ -1,7 +1,7 @@
 #import "APIClient.h"
 #import "Sync.h"
 
-static NSString * const HYPBaseURL = @"https://api-news.layervault.com/api/v2/stories";
+static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json";
 
 @interface APIClient ()
 

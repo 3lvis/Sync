@@ -1,4 +1,5 @@
 #import "CommentsViewController.h"
+#import "CommentsTableViewCell.h"
 #import "DATAStack.h"
 #import "DATASource.h"
 
@@ -20,6 +21,15 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Comments"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
 
+    _dataSource = [[DATASource alloc] initWithTableView:self.tableView
+                                           fetchRequest:request
+                                         cellIdentifier:CellIdentifier
+                                            mainContext:self.dataStack.mainContext];
+
+    _dataSource.configureCellBlock = ^(CommentsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
+        [cell updateWithComment:story];
+    };
+
     return _dataSource;
 }
 
@@ -29,7 +39,9 @@
 {
     [super viewDidLoad];
 
+    [self.tableView registerClass:[CommentsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.dataSource = self.dataSource;
+    self.tableView.rowHeight = 65.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated
