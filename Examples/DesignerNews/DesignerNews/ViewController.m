@@ -44,7 +44,7 @@
                                             mainContext:self.dataStack.mainContext];
 
     _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
-        NSLog(@"%@", story.commentHtml);
+        NSLog(@"%@", story.comments);
         [cell updateWithStory:story];
     };
 

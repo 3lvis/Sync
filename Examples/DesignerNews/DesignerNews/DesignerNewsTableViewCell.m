@@ -84,7 +84,7 @@ static const CGFloat HYPCommentsCountHeight = 20.0;
     });
 
     self.titleLabel.text = story.title;
-    self.commentCountLabel.text = [NSString stringWithFormat:@"%@ comments", story.commentCount];
+    self.commentCountLabel.text = [NSString stringWithFormat:@"%@ comments", story.numComments];
     self.updatedLabel.text = [formatter stringFromDate:story.createdAt];
 }
 
