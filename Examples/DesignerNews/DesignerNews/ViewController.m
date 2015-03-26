@@ -44,7 +44,6 @@
                                             mainContext:self.dataStack.mainContext];
 
     _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
-        NSLog(@"%@", story.comments);
         [cell updateWithStory:story];
     };
 
@@ -58,6 +57,7 @@
     Stories *storySelected = self.arrayWithStories[indexPath.row];
     CommentsViewController *viewController = [CommentsViewController new];
     viewController.story = storySelected;
+    viewController.dataStack = self.dataStack;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

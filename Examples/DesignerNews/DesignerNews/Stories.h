@@ -1,13 +1,13 @@
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+@import Foundation;
+@import CoreData;
 
 
 @interface Stories : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * numComments;
 @property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSNumber * numComments;
 @property (nonatomic, retain) NSString * remoteID;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSArray * comments;
+@property (nonatomic, retain) NSData * comments;
 
 @end

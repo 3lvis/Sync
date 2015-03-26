@@ -1,36 +1,32 @@
 #import "CommentsViewController.h"
 #import "CommentsTableViewCell.h"
-#import "DATAStack.h"
-#import "DATASource.h"
 
-@interface CommentsViewController ()
+@interface CommentsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic) DATAStack *dataStack;
-@property (nonatomic) DATASource *dataSource;
+@property (nonatomic) NSMutableArray *arrayWithComments;
+@property (nonatomic) NSMutableArray *arrayWithSubcommentPositions;
 
 @end
 
 @implementation CommentsViewController
 
-#pragma mark - Getters
+#pragma mark - UITableViewMethods
 
-- (DATASource *)dataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_dataSource) return _dataSource;
+    return self.arrayWithComments.count;
+}
 
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Comments"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CommentsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    [cell updateWithComment:self.arrayWithComments[indexPath.row]];
+    return cell;
+}
 
-    _dataSource = [[DATASource alloc] initWithTableView:self.tableView
-                                           fetchRequest:request
-                                         cellIdentifier:CellIdentifier
-                                            mainContext:self.dataStack.mainContext];
-
-    _dataSource.configureCellBlock = ^(CommentsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
-        [cell updateWithComment:story];
-    };
-
-    return _dataSource;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 0;
 }
 
 #pragma mark - View lifecycle
@@ -40,13 +36,27 @@
     [super viewDidLoad];
 
     [self.tableView registerClass:[CommentsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
-    self.tableView.dataSource = self.dataSource;
-    self.tableView.rowHeight = 65.0f;
+    self.tableView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.title = self.story.title;
+    self.arrayWithComments = [NSMutableArray new];
+    self.arrayWithSubcommentPositions = [NSMutableArray new];
+
+    for (NSDictionary *dictionary in [NSKeyedUnarchiver unarchiveObjectWithData:self.story.comments]) {
+        [self.arrayWithComments addObject:[dictionary objectForKey:@"body"]];
+
+        for (NSDictionary *subDictionary in [dictionary objectForKey:@"comments"]) {
+            [self.arrayWithComments addObject:[subDictionary objectForKey:@"body"]];
+            [self.arrayWithSubcommentPositions addObject:@1];
+        }
+
+        [self.arrayWithSubcommentPositions addObject:@0];
+    }
+
+    [self.tableView reloadData];
 }
 
 @end

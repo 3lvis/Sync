@@ -3,8 +3,8 @@
 
 @implementation Stories
 
-@dynamic numComments;
 @dynamic createdAt;
+@dynamic numComments;
 @dynamic remoteID;
 @dynamic title;
 @dynamic comments;
