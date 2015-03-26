@@ -1,5 +1,6 @@
 #import "CommentsViewController.h"
 #import "CommentsTableViewCell.h"
+#import "UIFont+DNStyle.h"
 
 static const CGFloat HYPDistanceFromSides = 15.0;
 
@@ -28,11 +29,12 @@ static const CGFloat HYPDistanceFromSides = 15.0;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(HYPDistanceFromSides, HYPDistanceFromSides, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0)];;
-    label.text = self.arrayWithComments[indexPath.row];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0)];
     label.numberOfLines = 1000;
+    label.font = [UIFont commentFont];
+    label.text = self.arrayWithComments[indexPath.row];
     [label sizeToFit];
-    return label.frame.size.height + HYPDistanceFromSides*2;
+    return (label.frame.size.height + HYPDistanceFromSides*2);
 }
 
 #pragma mark - View lifecycle
