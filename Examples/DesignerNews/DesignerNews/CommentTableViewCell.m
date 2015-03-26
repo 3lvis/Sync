@@ -1,11 +1,11 @@
-#import "CommentsTableViewCell.h"
+#import "CommentTableViewCell.h"
 #import "UIFont+DNStyle.h"
 
 static const CGFloat HYPDistanceFromSides = 15.0;
 
 static const CGFloat HYPWidthSubcommentView = 7.5;
 
-@implementation CommentsTableViewCell
+@implementation CommentTableViewCell
 
 #pragma mark - Initializers
 

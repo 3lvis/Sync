@@ -1,6 +1,6 @@
-#import "DesignerNewsTableViewCell.h"
+#import "StoryTableViewCell.h"
 
-#import "Stories.h"
+#import "DNStory.h"
 
 #import "UIFont+DNStyle.h"
 
@@ -14,7 +14,7 @@ static const CGFloat HYPUpdatedLabelTopMargin = 10.0;
 static const CGFloat HYPCommentsCountMargin = 10.0;
 static const CGFloat HYPCommentsCountHeight = 20.0;
 
-@interface DesignerNewsTableViewCell ()
+@interface StoryTableViewCell ()
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *updatedLabel;
@@ -22,7 +22,7 @@ static const CGFloat HYPCommentsCountHeight = 20.0;
 
 @end
 
-@implementation DesignerNewsTableViewCell
+@implementation StoryTableViewCell
 
 #pragma mark - Initializers
 
@@ -73,7 +73,7 @@ static const CGFloat HYPCommentsCountHeight = 20.0;
 
 #pragma mark - Public methods
 
-- (void)updateWithStory:(Stories *)story
+- (void)updateWithStory:(DNStory *)story
 {
     static dispatch_once_t onceToken;
     static NSDateFormatter *formatter = nil;
@@ -84,7 +84,7 @@ static const CGFloat HYPCommentsCountHeight = 20.0;
     });
 
     self.titleLabel.text = story.title;
-    self.commentCountLabel.text = [NSString stringWithFormat:@"%@ comments", story.numComments];
+    self.commentCountLabel.text = [NSString stringWithFormat:@"%@ comments", story.commentsCount];
     self.updatedLabel.text = [formatter stringFromDate:story.createdAt];
 }
 

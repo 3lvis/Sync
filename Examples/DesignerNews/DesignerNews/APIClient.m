@@ -11,7 +11,7 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
 
 @implementation APIClient
 
-- (void)fetchStoriesUsingDataStack:(DATAStack *)dataStack
+- (void)fetchStoryUsingDataStack:(DATAStack *)dataStack
 {
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:HYPBaseURL]];
     NSOperationQueue *queue = [NSOperationQueue new];
@@ -29,7 +29,10 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
                                    if (serializationError) {
                                        NSLog(@"Error serializing JSON: %@", serializationError);
                                    } else {
-                                       [Sync processChanges:[JSON valueForKey:@"stories"] usingEntityName:@"Stories" dataStack:dataStack completion:nil];
+                                       [Sync processChanges:[JSON valueForKey:@"stories"]
+                                            usingEntityName:@"Story"
+                                                  dataStack:dataStack
+                                                 completion:nil];
                                    }
                                }
                            }];

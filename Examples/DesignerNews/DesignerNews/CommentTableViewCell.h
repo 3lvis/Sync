@@ -1,8 +1,8 @@
 @import UIKit;
 
-static NSString * const CellIdentifier = @"Cell";
+static NSString * const CommentTableViewCellIdentifier = @"CommentTableViewCellIdentifier";
 
-@interface CommentsTableViewCell : UITableViewCell
+@interface CommentTableViewCell : UITableViewCell
 
 @property (nonatomic) UILabel *labelWithComment;
 @property (nonatomic) UIView *subcommentView;
