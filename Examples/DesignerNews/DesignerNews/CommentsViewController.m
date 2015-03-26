@@ -23,13 +23,19 @@ static const CGFloat HYPDistanceFromSides = 15.0;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CommentsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    [cell updateWithComment:self.arrayWithComments[indexPath.row]];
+    [cell updateWithComment:self.arrayWithComments[indexPath.row] andSubcommentView:[self.arrayWithSubcommentPositions[indexPath.row] boolValue]];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0)];
+    UILabel *label = [UILabel new];
+    if ([self.arrayWithSubcommentPositions[indexPath.row] boolValue]) {
+        label.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*3, 0);
+    } else {
+        label.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0);
+    }
+
     label.numberOfLines = 1000;
     label.font = [UIFont commentFont];
     label.text = self.arrayWithComments[indexPath.row];
@@ -52,18 +58,19 @@ static const CGFloat HYPDistanceFromSides = 15.0;
     [super viewWillAppear:animated];
 
     self.title = self.story.title;
+    
     self.arrayWithComments = [NSMutableArray new];
     self.arrayWithSubcommentPositions = [NSMutableArray new];
 
     for (NSDictionary *dictionary in [NSKeyedUnarchiver unarchiveObjectWithData:self.story.comments]) {
         [self.arrayWithComments addObject:[dictionary objectForKey:@"body"]];
 
+        [self.arrayWithSubcommentPositions addObject:@0];
+
         for (NSDictionary *subDictionary in [dictionary objectForKey:@"comments"]) {
             [self.arrayWithComments addObject:[subDictionary objectForKey:@"body"]];
             [self.arrayWithSubcommentPositions addObject:@1];
         }
-
-        [self.arrayWithSubcommentPositions addObject:@0];
     }
 
     [self.tableView reloadData];

@@ -7,6 +7,6 @@ static NSString * const CellIdentifier = @"Cell";
 @property (nonatomic) UILabel *labelWithComment;
 @property (nonatomic) UIView *subcommentView;
 
-- (void)updateWithComment:(NSString *)string;
+- (void)updateWithComment:(NSString *)string andSubcommentView:(BOOL)subcomment;
 
 @end

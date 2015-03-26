@@ -68,8 +68,6 @@
 {
     [super viewDidLoad];
 
-    self.title = @"Designer News";
-
     APIClient *client = [APIClient new];
     [client fetchStoriesUsingDataStack:self.dataStack];
 
@@ -79,6 +77,8 @@
 
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.topItem.title = @"";
+
+    self.title = @"Designer News";
 }
 
 #pragma mark - UIViewController

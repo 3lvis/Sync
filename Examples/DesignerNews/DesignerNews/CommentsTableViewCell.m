@@ -3,6 +3,8 @@
 
 static const CGFloat HYPDistanceFromSides = 15.0;
 
+static const CGFloat HYPWidthSubcommentView = 7.5;
+
 @implementation CommentsTableViewCell
 
 #pragma mark - Initializers
@@ -44,12 +46,21 @@ static const CGFloat HYPDistanceFromSides = 15.0;
 
 #pragma mark - Implementations
 
-- (void)updateWithComment:(NSString *)string
+- (void)updateWithComment:(NSString *)string andSubcommentView:(BOOL)subcomment
 {
-    self.labelWithComment.frame = CGRectMake(HYPDistanceFromSides, HYPDistanceFromSides, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0);
+    if (subcomment) {
+        self.labelWithComment.frame = CGRectMake(HYPDistanceFromSides*2, HYPDistanceFromSides, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*3, 0);
+    } else {
+        self.labelWithComment.frame = CGRectMake(HYPDistanceFromSides, HYPDistanceFromSides, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0);
+    }
+
     self.labelWithComment.numberOfLines = 1000;
     self.labelWithComment.text = string;
     [self.labelWithComment sizeToFit];
+
+    if (subcomment) {
+        self.subcommentView.frame = CGRectMake(0, 0, HYPWidthSubcommentView, self.labelWithComment.frame.size.height + HYPDistanceFromSides*2);
+    }
 }
 
 @end
