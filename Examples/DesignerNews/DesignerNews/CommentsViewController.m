@@ -1,6 +1,8 @@
 #import "CommentsViewController.h"
 #import "CommentsTableViewCell.h"
 
+static const CGFloat HYPDistanceFromSides = 15.0;
+
 @interface CommentsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSMutableArray *arrayWithComments;
@@ -26,7 +28,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(HYPDistanceFromSides, HYPDistanceFromSides, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0)];;
+    label.text = self.arrayWithComments[indexPath.row];
+    label.numberOfLines = 1000;
+    [label sizeToFit];
+    return label.frame.size.height + HYPDistanceFromSides*2;
 }
 
 #pragma mark - View lifecycle
@@ -41,6 +47,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+
     self.title = self.story.title;
     self.arrayWithComments = [NSMutableArray new];
     self.arrayWithSubcommentPositions = [NSMutableArray new];

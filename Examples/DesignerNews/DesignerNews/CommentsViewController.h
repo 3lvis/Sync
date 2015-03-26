@@ -1,7 +1,7 @@
 @import UIKit;
+@class DATAStack;
+@class DATASource;
 #import "Stories.h"
-#import "DATAStack.h"
-#import "DATASource.h"
 
 @interface CommentsViewController : UITableViewController
 

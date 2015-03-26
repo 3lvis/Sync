@@ -1,11 +1,7 @@
 #import "CommentsTableViewCell.h"
+#import "UIFont+DNStyle.h"
 
-@interface CommentsTableViewCell()
-
-@property (nonatomic) UILabel *labelWithComment;
-@property (nonatomic) UIView *subcommentView;
-
-@end
+static const CGFloat HYPDistanceFromSides = 15.0;
 
 @implementation CommentsTableViewCell
 
@@ -39,16 +35,21 @@
     if (_labelWithComment) return _labelWithComment;
 
     _labelWithComment = [UILabel new];
-    _labelWithComment = [UIFont font]
+    _labelWithComment.font = [UIFont commentFont];
 
     return _labelWithComment;
 }
+
+#pragma mark - Layout
 
 #pragma mark - Implementations
 
 - (void)updateWithComment:(NSString *)string
 {
-
+    self.labelWithComment.frame = CGRectMake(HYPDistanceFromSides, HYPDistanceFromSides, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0);
+    self.labelWithComment.text = string;
+    self.labelWithComment.numberOfLines = 1000;
+    [self.labelWithComment sizeToFit];
 }
 
 @end
