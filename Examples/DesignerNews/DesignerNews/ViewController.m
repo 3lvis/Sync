@@ -36,14 +36,16 @@
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Stories"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
-    self.arrayWithStories = [NSMutableArray arrayWithArray:[self.dataStack.mainContext executeFetchRequest:request error:nil]];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
                                          cellIdentifier:CellIdentifier
                                             mainContext:self.dataStack.mainContext];
 
+    __weak __typeof__(self) weakSelf = self;
+
     _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
+        weakSelf.arrayWithStories = [NSMutableArray arrayWithArray:[weakSelf.dataStack.mainContext executeFetchRequest:request error:nil]];
         [cell updateWithStory:story];
     };
 
@@ -56,9 +58,8 @@
 {
     Stories *storySelected = self.arrayWithStories[indexPath.row];
     CommentsViewController *viewController = [CommentsViewController new];
-    viewController.story = storySelected;
-    viewController.dataStack = self.dataStack;
     [self.navigationController pushViewController:viewController animated:YES];
+    viewController.story = storySelected;
 }
 
 #pragma mark - View lifecycle

@@ -6,6 +6,5 @@
 @interface CommentsViewController : UITableViewController
 
 @property (nonatomic) Stories *story;
-@property (nonatomic) DATAStack *dataStack;
 
 @end

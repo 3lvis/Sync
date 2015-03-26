@@ -47,8 +47,8 @@ static const CGFloat HYPDistanceFromSides = 15.0;
 - (void)updateWithComment:(NSString *)string
 {
     self.labelWithComment.frame = CGRectMake(HYPDistanceFromSides, HYPDistanceFromSides, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0);
-    self.labelWithComment.text = string;
     self.labelWithComment.numberOfLines = 1000;
+    self.labelWithComment.text = string;
     [self.labelWithComment sizeToFit];
 }
 
