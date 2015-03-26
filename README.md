@@ -66,7 +66,7 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
            }];
 ```
 
-[(You can see another example here).](https://github.com/hyperoslo/Sync/blob/master/Example/Example/Networking.m#L41)
+[See another example here](https://github.com/hyperoslo/Sync/blob/master/Examples/AppNet/Example/Networking.m#L41).
 
 **PROFIT!**
 
@@ -105,7 +105,7 @@ You are free to use any networking library or NSURLConnection.
 
 ### Finally
 
-You are ready to go, check the [example project that uses App.net](https://github.com/hyperoslo/Sync/tree/master/Example) for how to use Sync.
+You are ready to go, check the [example project that uses App.net](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet) for how to use Sync.
 
 ## Requirements
 
