@@ -59,7 +59,10 @@ static const CGFloat HYPWidthSubcommentView = 7.5;
     [self.labelWithComment sizeToFit];
 
     if (subcomment) {
+        self.subcommentView.alpha = 1;
         self.subcommentView.frame = CGRectMake(0, 0, HYPWidthSubcommentView, self.labelWithComment.frame.size.height + HYPDistanceFromSides*2);
+    } else {
+        self.subcommentView.alpha = 0;
     }
 }
 
