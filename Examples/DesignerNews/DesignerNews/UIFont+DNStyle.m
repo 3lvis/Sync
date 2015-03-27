@@ -7,6 +7,11 @@
     return [UIFont fontWithName:@"Avenir-Black" size:16.0f];;
 }
 
++ (UIFont *)commentFont
+{
+    return [UIFont fontWithName:@"Avenir-Medium" size:17.0f];;
+}
+
 + (UIFont *)headerFont
 {
     return [UIFont fontWithName:@"Avenir-Medium" size:16.0f];;

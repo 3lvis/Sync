@@ -1,4 +1,5 @@
 #import "ViewController.h"
+#import "CommentsViewController.h"
 #import "DesignerNewsTableViewCell.h"
 #import "DATAStack.h"
 #import "APIClient.h"
@@ -47,13 +48,22 @@
     return _dataSource;
 }
 
+#pragma mark - TableView methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DesignerNewsTableViewCell *cell = (DesignerNewsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    Stories *storySelected = cell.story;
+    CommentsViewController *viewController = [CommentsViewController new];
+    [self.navigationController pushViewController:viewController animated:YES];
+    viewController.story = storySelected;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.title = @"Designer News";
 
     APIClient *client = [APIClient new];
     [client fetchStoriesUsingDataStack:self.dataStack];
@@ -61,6 +71,11 @@
     [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.dataSource = self.dataSource;
     self.tableView.rowHeight = 65.0f;
+
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.topItem.title = @"";
+
+    self.title = @"Designer News";
 }
 
 #pragma mark - UIViewController

@@ -4,9 +4,10 @@
 
 @interface Stories : NSManagedObject
 
-@property (nonatomic) NSString *title;
-@property (nonatomic) NSNumber *commentCount;
-@property (nonatomic) NSDate *createdAt;
-@property (nonatomic) NSString *remoteID;
+@property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSNumber * numComments;
+@property (nonatomic, retain) NSString * remoteID;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSData * comments;
 
 @end
