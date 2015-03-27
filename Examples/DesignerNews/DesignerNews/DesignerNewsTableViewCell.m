@@ -83,6 +83,7 @@ static const CGFloat HYPCommentsCountHeight = 20.0;
         formatter.timeStyle = NSDateFormatterNoStyle;
     });
 
+    self.story = story;
     self.titleLabel.text = story.title;
     self.commentCountLabel.text = [NSString stringWithFormat:@"%@ comments", story.numComments];
     self.updatedLabel.text = [formatter stringFromDate:story.createdAt];

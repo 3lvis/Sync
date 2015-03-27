@@ -10,7 +10,6 @@
 
 @property (nonatomic) DATAStack *dataStack;
 @property (nonatomic) DATASource *dataSource;
-@property (nonatomic) NSMutableArray *arrayWithStories;
 
 @end
 
@@ -42,10 +41,7 @@
                                          cellIdentifier:CellIdentifier
                                             mainContext:self.dataStack.mainContext];
 
-    __weak __typeof__(self) weakSelf = self;
-
     _dataSource.configureCellBlock = ^(DesignerNewsTableViewCell *cell, Stories *story, NSIndexPath *indexPath) {
-        weakSelf.arrayWithStories = [NSMutableArray arrayWithArray:[weakSelf.dataStack.mainContext executeFetchRequest:request error:nil]];
         [cell updateWithStory:story];
     };
 
@@ -56,7 +52,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Stories *storySelected = self.arrayWithStories[indexPath.row];
+    DesignerNewsTableViewCell *cell = (DesignerNewsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    Stories *storySelected = cell.story;
     CommentsViewController *viewController = [CommentsViewController new];
     [self.navigationController pushViewController:viewController animated:YES];
     viewController.story = storySelected;
