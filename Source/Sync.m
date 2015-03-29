@@ -90,18 +90,17 @@
 {
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
 
-    __block NSString *remoteKey;
     __block NSString *localKey;
-    for (NSString *dictionaryKey in entity.propertiesByName) {
-        NSString *remoteKeyValue = [[entity.propertiesByName[dictionaryKey] userInfo]objectForKey:SyncCustomPrimaryKey];
-        BOOL hasCustomKeyMapper = (remoteKeyValue &&
-                                   ![remoteKeyValue isEqualToString:@"value"] &&
-                                   [remoteKeyValue isEqualToString:@"YES"]);
-        if(hasCustomKeyMapper) {
-            localKey = dictionaryKey;
+    __block NSString *remoteKey;
+    [entity.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSAttributeDescription *attributeDescription, BOOL *stop) {
+        NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
+        BOOL hasCustomPrimaryKey = (isPrimaryKey &&
+                                   [isPrimaryKey isEqualToString:@"YES"]);
+        if (hasCustomPrimaryKey) {
+            localKey = key;
             remoteKey = [localKey hyp_remoteString];
         }
-    }
+    }];
 
     if (!localKey) {
         localKey = @"remoteID";
