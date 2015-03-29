@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14668E251AC8A7E9007D8B09 /* comments-no-id.json */; };
 		14B39D851A9BCC9500D3D01B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */; };
 		14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */; };
 		14B39D871A9BCC9500D3D01B /* tagged_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D801A9BCC9500D3D01B /* tagged_notes.json */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14668E251AC8A7E9007D8B09 /* comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "comments-no-id.json"; sourceTree = "<group>"; };
 		14B39D7E1A9BCC9500D3D01B /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_for_user_a.json; sourceTree = "<group>"; };
 		14B39D801A9BCC9500D3D01B /* tagged_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tagged_notes.json; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */,
+				14668E251AC8A7E9007D8B09 /* comments-no-id.json */,
 				14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */,
 				14B39D801A9BCC9500D3D01B /* tagged_notes.json */,
 				14B39D811A9BCC9500D3D01B /* users_a.json */,
@@ -209,6 +212,7 @@
 				14B39D8A1A9BCC9500D3D01B /* users_company.json in Resources */,
 				14B39D8B1A9BCC9500D3D01B /* users_notes.json in Resources */,
 				14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */,
+				14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */,
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,
 				B55077B61ABAFD8800A02AD2 /* numbers_in_collection.json in Resources */,
 				14B39D891A9BCC9500D3D01B /* users_b.json in Resources */,
