@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		147133C51ABF700100D4503D /* UIFont+DNStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 147133C41ABF700100D4503D /* UIFont+DNStyle.m */; };
 		D25F967187DC17C9C2D150F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 581617F06614B282BA55A2A2 /* libPods.a */; };
-		F6004C1C1AC4700F00FF0373 /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = F6004C1B1AC4700F00FF0373 /* Stories.m */; };
+		F600DE8D1AC88F5700F946CF /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = F600DE8A1AC88F5700F946CF /* Comments.m */; };
+		F600DE8E1AC88F5700F946CF /* Stories.m in Sources */ = {isa = PBXBuildFile; fileRef = F600DE8C1AC88F5700F946CF /* Stories.m */; };
 		F6ACF0041ABCA539001E5652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF0031ABCA539001E5652 /* main.m */; };
 		F6ACF0071ABCA539001E5652 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF0061ABCA539001E5652 /* AppDelegate.m */; };
 		F6ACF00A1ABCA539001E5652 /* DesignerNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF0081ABCA539001E5652 /* DesignerNews.xcdatamodeld */; };
@@ -27,8 +28,10 @@
 		581617F06614B282BA55A2A2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CC52748EF0117319DEF380 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EAA395298F667B5F57922875 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F6004C1A1AC4700F00FF0373 /* Stories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stories.h; sourceTree = "<group>"; };
-		F6004C1B1AC4700F00FF0373 /* Stories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stories.m; sourceTree = "<group>"; };
+		F600DE891AC88F5700F946CF /* Comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
+		F600DE8A1AC88F5700F946CF /* Comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
+		F600DE8B1AC88F5700F946CF /* Stories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stories.h; sourceTree = "<group>"; };
+		F600DE8C1AC88F5700F946CF /* Stories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stories.m; sourceTree = "<group>"; };
 		F6ACEFFE1ABCA539001E5652 /* DesignerNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignerNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6ACF0021ABCA539001E5652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6ACF0031ABCA539001E5652 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,8 +134,10 @@
 		F6C3EB371ABE16250049325B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F6004C1A1AC4700F00FF0373 /* Stories.h */,
-				F6004C1B1AC4700F00FF0373 /* Stories.m */,
+				F600DE891AC88F5700F946CF /* Comments.h */,
+				F600DE8A1AC88F5700F946CF /* Comments.m */,
+				F600DE8B1AC88F5700F946CF /* Stories.h */,
+				F600DE8C1AC88F5700F946CF /* Stories.m */,
 				F6ACF0081ABCA539001E5652 /* DesignerNews.xcdatamodeld */,
 			);
 			name = Model;
@@ -242,9 +247,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6ACF0071ABCA539001E5652 /* AppDelegate.m in Sources */,
-				F6004C1C1AC4700F00FF0373 /* Stories.m in Sources */,
 				F6ACF02E1ABCB157001E5652 /* DesignerNewsTableViewCell.m in Sources */,
 				F6C3EAEF1ABDF0AE0049325B /* APIClient.m in Sources */,
+				F600DE8D1AC88F5700F946CF /* Comments.m in Sources */,
+				F600DE8E1AC88F5700F946CF /* Stories.m in Sources */,
 				F6F228DE1AC1E45D008052A8 /* CommentsTableViewCell.m in Sources */,
 				F6ACF00A1ABCA539001E5652 /* DesignerNews.xcdatamodeld in Sources */,
 				F6CFE2651AC0A01A009218AE /* CommentsViewController.m in Sources */,
