@@ -304,4 +304,19 @@
               }];
 }
 
+- (void)testCustomPrimaryKey
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"comments-no-id.json"
+                                                                inBundle:bundle];
+    [Sync processChanges:objects
+         usingEntityName:@"Comment"
+               dataStack:self.dataStack
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+                  NSInteger commentsCount = [self countAllEntities:@"Comment" inContext:mainContext];
+                  XCTAssertEqual(commentsCount, 3);
+              }];
+}
+
 @end

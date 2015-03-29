@@ -1,9 +1,11 @@
 #import "Sync.h"
 
+#import "DATAStack.h"
+
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+ANDYMapChanges.h"
-#import "DATAStack.h"
+#import "NSString+HYPNetworking.h"
 
 @interface NSManagedObject (Sync)
 
@@ -86,22 +88,39 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+
+    __block NSString *localKey;
+    __block NSString *remoteKey;
+    [entity.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSAttributeDescription *attributeDescription, BOOL *stop) {
+        NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
+        BOOL hasCustomPrimaryKey = (isPrimaryKey &&
+                                   [isPrimaryKey isEqualToString:@"YES"]);
+        if (hasCustomPrimaryKey) {
+            localKey = key;
+            remoteKey = [localKey hyp_remoteString];
+        }
+    }];
+
+    if (!localKey) {
+        localKey = @"remoteID";
+        remoteKey = @"id";
+    }
+
     [NSManagedObject andy_mapChanges:changes
+                            localKey:localKey
+                           remoteKey:remoteKey
                       usingPredicate:predicate
                            inContext:context
                        forEntityName:entityName
                             inserted:^(NSDictionary *objectDict) {
-
                                 NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                                          inManagedObjectContext:context];
                                 [created hyp_fillWithDictionary:objectDict];
                                 [created sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-
                             } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
-
                                 [object hyp_fillWithDictionary:objectDict];
                                 [object sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-
                             }];
 
     NSError *error = nil;
