@@ -104,7 +104,7 @@
     }
 
     if (!localKey) {
-        localKey = @"remoteID"; // we need to get the "custom primary key" and replace this
+        localKey = @"remoteID";
         remoteKey = @"id";
     }
 
