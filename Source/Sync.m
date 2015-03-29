@@ -1,9 +1,11 @@
 #import "Sync.h"
 
+#import "DATAStack.h"
+
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+ANDYMapChanges.h"
-#import "DATAStack.h"
+#import "NSString+HYPNetworking.h"
 
 @interface NSManagedObject (Sync)
 
@@ -86,8 +88,25 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    NSString *localKey = @"remoteID"; // we need to get the "custom primary key" and replace this
-    NSString *remoteKey = @"id";
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+
+    __block NSString *remoteKey;
+    __block NSString *localKey;
+    for (NSString *dictionaryKey in entity.propertiesByName) {
+        NSString *remoteKeyValue = [[entity.propertiesByName[dictionaryKey] userInfo]objectForKey:SyncCustomPrimaryKey];
+        BOOL hasCustomKeyMapper = (remoteKeyValue &&
+                                   ![remoteKeyValue isEqualToString:@"value"] &&
+                                   [remoteKeyValue isEqualToString:@"YES"]);
+        if(hasCustomKeyMapper) {
+            localKey = dictionaryKey;
+            remoteKey = [localKey hyp_remoteString];
+        }
+    }
+
+    if (!localKey) {
+        localKey = @"remoteID"; // we need to get the "custom primary key" and replace this
+        remoteKey = @"id";
+    }
 
     [NSManagedObject andy_mapChanges:changes
                             localKey:localKey
