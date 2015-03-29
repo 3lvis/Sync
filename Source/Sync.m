@@ -86,9 +86,12 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
+    NSString *localKey = @"remoteID"; // we need to get the "custom primary key" and replace this
+    NSString *remoteKey = @"id";
+
     [NSManagedObject andy_mapChanges:changes
-                            localKey:@"remoteID"
-                           remoteKey:@"id"
+                            localKey:localKey
+                           remoteKey:remoteKey
                       usingPredicate:predicate
                            inContext:context
                        forEntityName:entityName
