@@ -87,21 +87,19 @@
             completion:(void (^)(NSError *error))completion
 {
     [NSManagedObject andy_mapChanges:changes
+                            localKey:@"remoteID"
+                           remoteKey:@"id"
                       usingPredicate:predicate
                            inContext:context
                        forEntityName:entityName
                             inserted:^(NSDictionary *objectDict) {
-
                                 NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                                          inManagedObjectContext:context];
                                 [created hyp_fillWithDictionary:objectDict];
                                 [created sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-
                             } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
-
                                 [object hyp_fillWithDictionary:objectDict];
                                 [object sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-
                             }];
 
     NSError *error = nil;
