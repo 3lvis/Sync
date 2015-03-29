@@ -319,4 +319,43 @@
               }];
 }
 
+- (void)testCustomPrimaryKeyInsideToManyRelationship
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"stories-comments-no-ids.json"
+                                                                inBundle:bundle];
+    [Sync processChanges:objects
+         usingEntityName:@"Story"
+               dataStack:self.dataStack
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+
+                  NSError *storiesError = nil;
+                  NSFetchRequest *storiesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
+                  NSInteger numberOfStories = [mainContext countForFetchRequest:storiesRequest error:&storiesError];
+                  if (storiesError) NSLog(@"storiesError: %@", storiesError);
+                  XCTAssertEqual(numberOfStories, 3);
+
+                  NSError *storiesFetchError = nil;
+                  storiesRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @0];
+                  NSArray *stories = [mainContext executeFetchRequest:storiesRequest error:&storiesFetchError];
+                  if (storiesFetchError) NSLog(@"storiesFetchError: %@", storiesFetchError);
+                  NSManagedObject *story = [stories firstObject];
+                  XCTAssertEqual([[story valueForKey:@"comments"] count], 3);
+
+                  NSError *commentsError = nil;
+                  NSFetchRequest *commentsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Comment"];
+                  NSInteger numberOfComments = [mainContext countForFetchRequest:commentsRequest error:&commentsError];
+                  if (commentsError) NSLog(@"commentsError: %@", commentsError);
+                  XCTAssertEqual(numberOfComments, 9);
+
+                  NSError *commentsFetchError = nil;
+                  commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
+                  NSArray *comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
+                  if (commentsFetchError) NSLog(@"commentsFetchError: %@", commentsFetchError);
+                  NSManagedObject *comment = [comments firstObject];
+                  XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+              }];
+}
+
 @end
