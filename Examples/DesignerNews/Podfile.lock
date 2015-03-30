@@ -9,6 +9,7 @@ PODS:
   - NSManagedObject-HYPPropertyMapper (2.11):
     - NSString-HYPNetworking (~> 0.1)
   - NSObject-HYPTesting (1.2)
+  - NSString-ANDYSizes (2.0)
   - NSString-HYPNetworking (0.2)
   - Sync (0.6):
     - DATAStack (~> 3.0.2)
@@ -18,6 +19,7 @@ PODS:
 
 DEPENDENCIES:
   - DATASource
+  - NSString-ANDYSizes
   - Sync (from `../../`)
 
 EXTERNAL SOURCES:
@@ -32,6 +34,7 @@ SPEC CHECKSUMS:
   NSManagedObject-ANDYObjectIDs: 4c7ef6e26eb927e291360ebd12d95b812f746304
   NSManagedObject-HYPPropertyMapper: 8d9a5c7921d13bf9203e59bf4a34639eeda4e8af
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
+  NSString-ANDYSizes: 40605b9c6542cd9b8e186fd3f9081b3645848603
   NSString-HYPNetworking: db2792b0333bc385fd999acaf59737a2b56bcedc
   Sync: e8d8ddc4e548169e7951eaa4db8d032a0dc4208c
 

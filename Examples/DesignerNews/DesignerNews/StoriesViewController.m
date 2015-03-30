@@ -66,7 +66,6 @@
     self.tableView.rowHeight = StoryTableViewCellHeight;
 
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.topItem.title = @"";
 
     self.title = @"Designer News";
 }

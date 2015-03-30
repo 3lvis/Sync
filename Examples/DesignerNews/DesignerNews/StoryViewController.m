@@ -5,7 +5,10 @@
 #import "DATAStack.h"
 #import "DATASource.h"
 
+#import "NSString+ANDYSizes.h"
+
 static NSString * const CommentTableViewCellIdentifier = @"CommentTableViewCellIdentifier";
+static const CGFloat CommentTableViewCellHeight = 70.0;
 
 @interface StoryViewController ()
 
@@ -53,6 +56,8 @@ static NSString * const CommentTableViewCellIdentifier = @"CommentTableViewCellI
                                        DNComment *comment,
                                        NSIndexPath *indexPath) {
         cell.textLabel.text = comment.body;
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        cell.textLabel.numberOfLines = 0;
     };
 
     return _dataSource;
@@ -66,7 +71,15 @@ static NSString * const CommentTableViewCellIdentifier = @"CommentTableViewCellI
 
     self.title = self.story.title;
     self.tableView.dataSource = self.dataSource;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CommentTableViewCellIdentifier];
+    self.tableView.rowHeight = CommentTableViewCellHeight;
+    [self.tableView registerClass:[UITableViewCell class]
+           forCellReuseIdentifier:CommentTableViewCellIdentifier];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DNComment *comment = [self.dataSource.fetchedResultsController objectAtIndexPath:indexPath];
+    return [comment.body heightUsingFont:[UIFont systemFontOfSize:14.0f] andWidth:[[UIScreen mainScreen] bounds].size.width] + 20.0f;
 }
 
 @end
