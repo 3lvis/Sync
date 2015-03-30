@@ -41,6 +41,7 @@
                                                               ascending:NO],
                                 [NSSortDescriptor sortDescriptorWithKey:@"body"
                                                               ascending:NO]];
+    request.predicate = [NSPredicate predicateWithFormat:@"story = %@", self.story];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
