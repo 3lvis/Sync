@@ -19,7 +19,6 @@
 		F6ACF02E1ABCB157001E5652 /* StoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF02D1ABCB157001E5652 /* StoryTableViewCell.m */; };
 		F6C3EAEF1ABDF0AE0049325B /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3EAEE1ABDF0AE0049325B /* APIClient.m */; };
 		F6CFE2651AC0A01A009218AE /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CFE2641AC0A01A009218AE /* StoryViewController.m */; };
-		F6F228DE1AC1E45D008052A8 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F228DD1AC1E45D008052A8 /* CommentTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +46,6 @@
 		F6C3EAEE1ABDF0AE0049325B /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		F6CFE2631AC0A01A009218AE /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		F6CFE2641AC0A01A009218AE /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
-		F6F228DC1AC1E45D008052A8 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
-		F6F228DD1AC1E45D008052A8 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +104,6 @@
 				F6ACF00C1ABCA539001E5652 /* StoriesViewController.m */,
 				F6CFE2631AC0A01A009218AE /* StoryViewController.h */,
 				F6CFE2641AC0A01A009218AE /* StoryViewController.m */,
-				F6F228DC1AC1E45D008052A8 /* CommentTableViewCell.h */,
-				F6F228DD1AC1E45D008052A8 /* CommentTableViewCell.m */,
 				F6ACF02C1ABCB157001E5652 /* StoryTableViewCell.h */,
 				F6ACF02D1ABCB157001E5652 /* StoryTableViewCell.m */,
 				F6C3EAED1ABDF0AE0049325B /* APIClient.h */,
@@ -251,7 +246,6 @@
 				F6C3EAEF1ABDF0AE0049325B /* APIClient.m in Sources */,
 				14116B061AC4AEEB0076F5A1 /* DNComment.m in Sources */,
 				14116B091AC4AEEC0076F5A1 /* DNStory.m in Sources */,
-				F6F228DE1AC1E45D008052A8 /* CommentTableViewCell.m in Sources */,
 				F6ACF00A1ABCA539001E5652 /* DesignerNews.xcdatamodeld in Sources */,
 				F6CFE2651AC0A01A009218AE /* StoryViewController.m in Sources */,
 				F6ACF00D1ABCA539001E5652 /* StoriesViewController.m in Sources */,

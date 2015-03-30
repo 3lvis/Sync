@@ -4,7 +4,8 @@
 #import "DNComment.h"
 #import "DATAStack.h"
 #import "DATASource.h"
-#import "CommentTableViewCell.h"
+
+static NSString * const CommentTableViewCellIdentifier = @"CommentTableViewCellIdentifier";
 
 @interface StoryViewController ()
 
@@ -48,7 +49,7 @@
                                          cellIdentifier:CommentTableViewCellIdentifier
                                             mainContext:self.dataStack.mainContext];
 
-    _dataSource.configureCellBlock = ^(CommentTableViewCell *cell,
+    _dataSource.configureCellBlock = ^(UITableViewCell *cell,
                                        DNComment *comment,
                                        NSIndexPath *indexPath) {
         cell.textLabel.text = comment.body;
@@ -65,7 +66,7 @@
 
     self.title = self.story.title;
     self.tableView.dataSource = self.dataSource;
-    [self.tableView registerClass:[CommentTableViewCell class] forCellReuseIdentifier:CommentTableViewCellIdentifier];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CommentTableViewCellIdentifier];
 }
 
 @end
