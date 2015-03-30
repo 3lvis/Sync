@@ -1,9 +1,18 @@
 #import "Sync.h"
 
+#import "DATAStack.h"
+
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+ANDYMapChanges.h"
-#import "DATAStack.h"
+#import "NSString+HYPNetworking.h"
+
+@interface NSEntityDescription (Sync)
+
+- (NSString *)sync_remoteKey;
+- (NSString *)sync_localKey;
+
+@end
 
 @interface NSManagedObject (Sync)
 
@@ -86,22 +95,22 @@
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+
     [NSManagedObject andy_mapChanges:changes
+                            localKey:[entity sync_localKey]
+                           remoteKey:[entity sync_remoteKey]
                       usingPredicate:predicate
                            inContext:context
                        forEntityName:entityName
                             inserted:^(NSDictionary *objectDict) {
-
                                 NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                                          inManagedObjectContext:context];
                                 [created hyp_fillWithDictionary:objectDict];
                                 [created sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-
                             } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
-
                                 [object hyp_fillWithDictionary:objectDict];
                                 [object sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-
                             }];
 
     NSError *error = nil;
@@ -117,9 +126,10 @@
                               entityName:(NSString *)entityName
                                 remoteID:(id)remoteID
 {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     NSError *error = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
-    NSString *localKey = @"remoteID";
+    NSString *localKey = [entity sync_localKey];
     request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
 
     NSArray *objects = [context executeFetchRequest:request error:&error];
@@ -133,7 +143,8 @@
 
 - (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
 {
-    NSString *localKey = @"remoteID";
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name inManagedObjectContext:context];
+    NSString *localKey = [entity sync_localKey];
     NSString *remoteID = [self valueForKey:localKey];
 
     return [Sync safeObjectInContext:context entityName:self.entity.name remoteID:remoteID];
@@ -198,14 +209,16 @@
     }
 
     NSPredicate *childPredicate;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:childEntityName inManagedObjectContext:self.managedObjectContext];
 
     if (inverseIsToMany) {
-        NSArray *childIDs = [childs valueForKey:@"id"];
-        NSString *destinationKey = @"remoteID";
+        NSString *destinationRemoteKey = [entity sync_remoteKey];
+        NSArray *childIDs = [childs valueForKey:destinationRemoteKey];
+        NSString *destinationLocalKey = [entity sync_localKey];
         if (childIDs.count == 1) {
-            childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationKey, [[childs valueForKey:@"id"] firstObject]];
+            childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationLocalKey, [[childs valueForKey:destinationRemoteKey] firstObject]];
         } else {
-            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationshipName, destinationKey, [childs valueForKey:@"id"]];
+            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationshipName, destinationLocalKey, [childs valueForKey:destinationRemoteKey]];
         }
     } else {
         childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
@@ -224,12 +237,14 @@
                       usingDictionary:(NSDictionary *)objectDict
 {
     NSString *entityName = relationship.destinationEntity.name;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
     NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
     if (!filteredObjectDict) return;
 
+    NSString *remoteKey = [entity sync_remoteKey];
     NSManagedObject *object = [Sync safeObjectInContext:self.managedObjectContext
                                              entityName:entityName
-                                               remoteID:[filteredObjectDict andy_valueForKey:@"id"]];
+                                               remoteID:[filteredObjectDict andy_valueForKey:remoteKey]];
     if (object) {
         [object hyp_fillWithDictionary:filteredObjectDict];
     } else {
@@ -239,6 +254,42 @@
     }
 
     [self setValue:object forKey:relationship.name];
+}
+
+@end
+
+@implementation NSEntityDescription (Sync)
+
+- (NSString *)sync_localKey
+{
+    __block NSString *localKey;
+    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSAttributeDescription *attributeDescription, BOOL *stop) {
+        NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
+        BOOL hasCustomPrimaryKey = (isPrimaryKey &&
+                                    [isPrimaryKey isEqualToString:@"YES"]);
+        if (hasCustomPrimaryKey) {
+            localKey = key;
+        }
+    }];
+
+    if (!localKey) {
+        localKey = @"remoteID";
+    }
+
+    return localKey;
+}
+
+- (NSString *)sync_remoteKey
+{
+    NSString *remoteKey;
+    NSString *localKey = [self sync_localKey];
+    if ([localKey isEqualToString:@"remoteID"]) {
+        remoteKey = @"id";
+    } else {
+        remoteKey = [localKey hyp_remoteString];
+    }
+
+    return remoteKey;
 }
 
 @end
