@@ -1,8 +1,8 @@
 #import "CommentsViewController.h"
 #import "UIFont+DNStyle.h"
 
-static const int HYPIndentationWidthSubcomment = 20.0;
-static const int HYPIndentationWidthComment = 0.0;
+static const CGFloat HYPIndentationWidthSubcomment = 20.0f;
+static const CGFloat HYPIndentationWidthComment = 0.0f;
 
 static NSString * const CellIdentifier = @"Cell";
 

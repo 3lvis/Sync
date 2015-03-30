@@ -4,7 +4,7 @@
 
 + (UIFont *)appTitleFont
 {
-    return [UIFont fontWithName:@"Avenir-Black" size:16.0f];;
+    return [UIFont fontWithName:@"Avenir-Medium" size:20.0f];;
 }
 
 + (UIFont *)commentFont
