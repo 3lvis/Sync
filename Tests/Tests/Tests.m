@@ -314,8 +314,19 @@
                dataStack:self.dataStack
               completion:^(NSError *error) {
                   NSManagedObjectContext *mainContext = [self.dataStack mainContext];
-                  NSInteger commentsCount = [self countAllEntities:@"Comment" inContext:mainContext];
-                  XCTAssertEqual(commentsCount, 3);
+
+                  NSError *commentsError = nil;
+                  NSFetchRequest *commentsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Comment"];
+                  NSInteger numberOfComments = [mainContext countForFetchRequest:commentsRequest error:&commentsError];
+                  if (commentsError) NSLog(@"commentsError: %@", commentsError);
+                  XCTAssertEqual(numberOfComments, 8);
+
+                  NSError *commentsFetchError = nil;
+                  commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
+                  NSArray *comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
+                  if (commentsFetchError) NSLog(@"commentsFetchError: %@", commentsFetchError);
+                  NSManagedObject *comment = [comments firstObject];
+                  XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
               }];
 }
 
