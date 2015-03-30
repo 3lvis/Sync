@@ -39,7 +39,7 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Comment"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"upvotesCount"
                                                               ascending:NO],
-                                [NSSortDescriptor sortDescriptorWithKey:@"remoteID"
+                                [NSSortDescriptor sortDescriptorWithKey:@"body"
                                                               ascending:NO]];
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
