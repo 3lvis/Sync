@@ -22,7 +22,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Sync:
-    :path: ../../
+    :path: "../../"
 
 SPEC CHECKSUMS:
   DATASource: 013d7a7d4c378b5a67b880de7b7f2a29f701eeab
@@ -35,4 +35,4 @@ SPEC CHECKSUMS:
   NSString-HYPNetworking: db2792b0333bc385fd999acaf59737a2b56bcedc
   Sync: e8d8ddc4e548169e7951eaa4db8d032a0dc4208c
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.1
