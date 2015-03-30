@@ -63,6 +63,7 @@
     [self.tableView registerClass:[StoryTableViewCell class]
            forCellReuseIdentifier:StoryTableViewCellIdentifier];
     self.tableView.dataSource = self.dataSource;
+    self.tableView.rowHeight = StoryTableViewCellHeight;
 
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.topItem.title = @"";
