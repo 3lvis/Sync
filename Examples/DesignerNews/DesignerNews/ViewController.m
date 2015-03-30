@@ -6,6 +6,8 @@
 #import "DATASource.h"
 #import "Stories.h"
 
+static const CGFloat HYPRowHeight = 65.0f;
+
 @interface ViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic) DATAStack *dataStack;
@@ -70,19 +72,12 @@
 
     [self.tableView registerClass:[DesignerNewsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.dataSource = self.dataSource;
-    self.tableView.rowHeight = 65.0f;
+    self.tableView.rowHeight = HYPRowHeight;
 
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.topItem.title = @"";
 
     self.title = @"Designer News";
-}
-
-#pragma mark - UIViewController
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 @end

@@ -1,8 +1,10 @@
 #import "CommentsViewController.h"
-#import "CommentsTableViewCell.h"
 #import "UIFont+DNStyle.h"
 
-static const CGFloat HYPDistanceFromSides = 15.0;
+static const CGFloat HYPIndentationWidthSubcomment = 20.0f;
+static const CGFloat HYPIndentationWidthComment = 0.0f;
+
+static NSString * const CellIdentifier = @"Cell";
 
 @interface CommentsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,25 +24,21 @@ static const CGFloat HYPDistanceFromSides = 15.0;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CommentsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    [cell updateWithComment:self.arrayWithComments[indexPath.row] andSubcommentView:[self.arrayWithSubcommentPositions[indexPath.row] boolValue]];
-    return cell;
-}
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UILabel *label = [UILabel new];
+    cell.indentationLevel = 1;
+
     if ([self.arrayWithSubcommentPositions[indexPath.row] boolValue]) {
-        label.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*3, 0);
+        cell.indentationWidth = HYPIndentationWidthSubcomment;
     } else {
-        label.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width - HYPDistanceFromSides*2, 0);
+        cell.indentationWidth = HYPIndentationWidthComment;
     }
 
-    label.numberOfLines = 1000;
-    label.font = [UIFont commentFont];
-    label.text = self.arrayWithComments[indexPath.row];
-    [label sizeToFit];
-    return (label.frame.size.height + HYPDistanceFromSides*2);
+    cell.textLabel.text = self.arrayWithComments[indexPath.row];
+    cell.textLabel.numberOfLines = 1000;
+    cell.textLabel.font = [UIFont commentFont];
+
+    return cell;
 }
 
 #pragma mark - View lifecycle
@@ -49,8 +47,9 @@ static const CGFloat HYPDistanceFromSides = 15.0;
 {
     [super viewDidLoad];
 
-    [self.tableView registerClass:[CommentsTableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.delegate = self;
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -63,12 +62,12 @@ static const CGFloat HYPDistanceFromSides = 15.0;
     self.arrayWithSubcommentPositions = [NSMutableArray new];
 
     for (NSDictionary *dictionary in [NSKeyedUnarchiver unarchiveObjectWithData:self.story.comments]) {
-        [self.arrayWithComments addObject:[dictionary objectForKey:@"body"]];
+        [self.arrayWithComments addObject:dictionary[@"body"]];
 
         [self.arrayWithSubcommentPositions addObject:@0];
 
-        for (NSDictionary *subDictionary in [dictionary objectForKey:@"comments"]) {
-            [self.arrayWithComments addObject:[subDictionary objectForKey:@"body"]];
+        for (NSDictionary *subDictionary in dictionary[@"comments"]) {
+            [self.arrayWithComments addObject:subDictionary[@"body"]];
             [self.arrayWithSubcommentPositions addObject:@1];
         }
     }
