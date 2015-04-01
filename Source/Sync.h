@@ -3,6 +3,7 @@
 @class DATAStack;
 
 static NSString * const SyncCustomPrimaryKey = @"sync.primary_key";
+static NSString * const SyncCustomRemoteKey = @"sync.custom.key";
 
 @interface Sync : NSObject
 

@@ -372,14 +372,19 @@
 - (void)testCustomKeysInRelationships
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"stories-comments-no-ids.json"
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"custom_relationship_key_JSON.json"
                                                                 inBundle:bundle];
 
     [Sync processChanges:objects
          usingEntityName:@"User"
                dataStack:self.dataStack
               completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [self.dataStack mainContext];
 
+                  NSError *noteError = nil;
+                  NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                  NSArray *array = [mainContext executeFetchRequest:noteRequest error:&noteError];
+                  
     }];
 }
 

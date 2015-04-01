@@ -188,10 +188,19 @@
                              andParent:(NSManagedObject *)parent
                              dataStack:(DATAStack *)dataStack
 {
+    BOOL hasCustomMapper = ([[relationship userInfo] valueForKey:SyncCustomRemoteKey]);
+
+    NSString *relationshipName;
+
+    if (hasCustomMapper) {
+        relationshipName = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+    } else {
+        relationshipName = relationship.name;
+    }
+
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *parentEntityName = parent.entity.name;
     NSString *inverseEntityName = relationship.inverseRelationship.name;
-    NSString *relationshipName = relationship.name;
     BOOL inverseIsToMany = relationship.inverseRelationship.isToMany;
     NSArray *childs = [objectDict andy_valueForKey:relationshipName];
 
