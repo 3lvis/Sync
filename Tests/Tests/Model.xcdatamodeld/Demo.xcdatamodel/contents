@@ -23,9 +23,6 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="notes" inverseEntity="Tag" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notes" inverseEntity="User" syncable="YES"/>
-        <userInfo>
-            <entry key="sync.remote.key" value="annotations"/>
-        </userInfo>
     </entity>
     <entity name="Number" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -51,16 +48,20 @@
         <attribute name="remoteID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="users" inverseEntity="Company" syncable="YES"/>
-        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="user" inverseEntity="Note" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="user" inverseEntity="Note" syncable="YES">
+            <userInfo>
+                <entry key="sync.remote.key" value="annotations"/>
+            </userInfo>
+        </relationship>
     </entity>
     <elements>
         <element name="Collection" positionX="-252" positionY="360" width="128" height="73"/>
         <element name="Comment" positionX="-180" positionY="135" width="128" height="88"/>
         <element name="Company" positionX="-389" positionY="27" width="128" height="88"/>
-        <element name="Note" positionX="-20" positionY="18" width="128" height="105"/>
+        <element name="Note" positionX="-20" positionY="18" width="128" height="103"/>
         <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
         <element name="Story" positionX="-180" positionY="135" width="128" height="88"/>
         <element name="Tag" positionX="160" positionY="0" width="128" height="90"/>
-        <element name="User" positionX="-207" positionY="-15" width="128" height="150"/>
+        <element name="User" positionX="-207" positionY="-15" width="128" height="148"/>
     </elements>
 </model>
