@@ -381,9 +381,11 @@
               completion:^(NSError *error) {
                   NSManagedObjectContext *mainContext = [self.dataStack mainContext];
 
-                  NSError *noteError = nil;
-                  NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                  NSArray *array = [mainContext executeFetchRequest:noteRequest error:&noteError];
+                  NSError *userError = nil;
+                  NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                  NSArray *array = [mainContext executeFetchRequest:userRequest error:&userError];
+                  NSManagedObject *user = [array firstObject];
+                  XCTAssertEqual([[user valueForKey:@"notes"] count], 3);
                   
     }];
 }
