@@ -24,6 +24,6 @@ s.frameworks = 'Foundation', 'CoreData'
 
 s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 2.11'
 s.dependency 'NSManagedObject-ANDYMapChanges', '~> 0.7'
-s.dependency 'DATAStack', '~> 3.0.2'
+s.dependency 'DATAStack', '~> 3.0.3'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3'
 end
