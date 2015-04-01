@@ -3,7 +3,7 @@
     "id": 6,
     "name": "Shawn Merrill",
     "email": "firstupdate@ovium.com",
-    "notes": [
+    "annotations": [
       {
         "id": 0,
         "text": "Shawn Merril's diary, episode 1"
@@ -30,7 +30,7 @@
     "id": 7,
     "name": "Bradford Duke",
     "email": "secondupdated@ovium.com",
-    "notes": [
+    "annotations": [
       {
         "id": 1,
         "text": "Bradford Duke's diary, episode 1"
@@ -57,7 +57,7 @@
     "id": 8,
     "name": "Dodson Vaughan",
     "email": "dodsonvaughan@ovium.com",
-    "notes": [
+    "annotations": [
       {
         "id": 10,
         "text": "Bradford Duke's diary, episode 1"

@@ -374,7 +374,6 @@
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"custom_relationship_key_JSON.json"
                                                                 inBundle:bundle];
-
     [Sync processChanges:objects
          usingEntityName:@"User"
                dataStack:self.dataStack
@@ -386,7 +385,6 @@
                   NSArray *array = [mainContext executeFetchRequest:userRequest error:&userError];
                   NSManagedObject *user = [array firstObject];
                   XCTAssertEqual([[user valueForKey:@"notes"] count], 3);
-                  
     }];
 }
 

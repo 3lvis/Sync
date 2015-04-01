@@ -188,12 +188,14 @@
                              andParent:(NSManagedObject *)parent
                              dataStack:(DATAStack *)dataStack
 {
-    BOOL hasCustomMapper = ([[relationship userInfo] valueForKey:SyncCustomRemoteKey]);
+    NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+
+    BOOL hasCustomMapper = (relationshipKey);
 
     NSString *relationshipName;
 
     if (hasCustomMapper) {
-        relationshipName = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+        relationshipName = relationshipKey;
     } else {
         relationshipName = relationship.name;
     }
