@@ -369,4 +369,18 @@
               }];
 }
 
+- (void)testCustomKeysInRelationships
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"stories-comments-no-ids.json"
+                                                                inBundle:bundle];
+
+    [Sync processChanges:objects
+         usingEntityName:@"User"
+               dataStack:self.dataStack
+              completion:^(NSError *error) {
+
+    }];
+}
+
 @end

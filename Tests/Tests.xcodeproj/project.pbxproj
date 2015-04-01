@@ -24,6 +24,7 @@
 		4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEFB3E45BB7A8C5238E2880 /* libPods.a */; };
 		B55077B61ABAFD8800A02AD2 /* numbers_in_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */; };
 		B58D5ACA1AA5C88300DFC880 /* numbers.json in Resources */ = {isa = PBXBuildFile; fileRef = B58D5AC91AA5C88300DFC880 /* numbers.json */; };
+		F602C3391ACC63E50060C080 /* custom_relationship_key_JSON.json in Resources */ = {isa = PBXBuildFile; fileRef = F602C3381ACC63E50060C080 /* custom_relationship_key_JSON.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = numbers_in_collection.json; sourceTree = "<group>"; };
 		B58D5AC91AA5C88300DFC880 /* numbers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = numbers.json; sourceTree = "<group>"; };
 		DCEFB3E45BB7A8C5238E2880 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F602C3381ACC63E50060C080 /* custom_relationship_key_JSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_JSON.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				14B39D841A9BCC9500D3D01B /* users_notes.json */,
 				B58D5AC91AA5C88300DFC880 /* numbers.json */,
 				B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */,
+				F602C3381ACC63E50060C080 /* custom_relationship_key_JSON.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
@@ -216,6 +219,7 @@
 				14B39D8B1A9BCC9500D3D01B /* users_notes.json in Resources */,
 				14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */,
 				14667ECE1AC8B8DC0038EEB1 /* stories-comments-no-ids.json in Resources */,
+				F602C3391ACC63E50060C080 /* custom_relationship_key_JSON.json in Resources */,
 				14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */,
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,
 				B55077B61ABAFD8800A02AD2 /* numbers_in_collection.json in Resources */,

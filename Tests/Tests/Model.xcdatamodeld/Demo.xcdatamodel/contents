@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D113c" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D105g" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Collection" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="numbers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Number" inverseName="parent" inverseEntity="Number" syncable="YES"/>
@@ -23,6 +23,9 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="notes" inverseEntity="Tag" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notes" inverseEntity="User" syncable="YES"/>
+        <userInfo>
+            <entry key="sync.remote.key" value="annotations"/>
+        </userInfo>
     </entity>
     <entity name="Number" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -56,8 +59,8 @@
         <element name="Company" positionX="-389" positionY="27" width="128" height="88"/>
         <element name="Note" positionX="-20" positionY="18" width="128" height="105"/>
         <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
+        <element name="Story" positionX="-180" positionY="135" width="128" height="88"/>
         <element name="Tag" positionX="160" positionY="0" width="128" height="90"/>
         <element name="User" positionX="-207" positionY="-15" width="128" height="150"/>
-        <element name="Story" positionX="-180" positionY="135" width="128" height="88"/>
     </elements>
 </model>
