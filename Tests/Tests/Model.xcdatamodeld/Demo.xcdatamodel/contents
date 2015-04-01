@@ -50,7 +50,7 @@
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="users" inverseEntity="Company" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="user" inverseEntity="Note" syncable="YES">
             <userInfo>
-                <entry key="sync.remote.key" value="annotations"/>
+                <entry key="hyper.remote.key" value="annotations"/>
             </userInfo>
         </relationship>
     </entity>
@@ -62,6 +62,6 @@
         <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
         <element name="Story" positionX="-180" positionY="135" width="128" height="88"/>
         <element name="Tag" positionX="160" positionY="0" width="128" height="90"/>
-        <element name="User" positionX="-207" positionY="-15" width="128" height="148"/>
+        <element name="User" positionX="-207" positionY="-15" width="128" height="150"/>
     </elements>
 </model>
