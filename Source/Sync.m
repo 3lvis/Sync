@@ -189,16 +189,8 @@
                              dataStack:(DATAStack *)dataStack
 {
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
-
-    BOOL hasCustomMapper = (relationshipKey);
-
-    NSString *relationshipName;
-
-    if (hasCustomMapper) {
-        relationshipName = relationshipKey;
-    } else {
-        relationshipName = relationship.name;
-    }
+    
+    NSString *relationshipName = (relationshipKey) ?: relationship.name;
 
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *parentEntityName = parent.entity.name;
