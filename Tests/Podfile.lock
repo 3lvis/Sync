@@ -20,12 +20,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DATAStack: daa0fe4ca1c2f41fc8f44c7ddca13a6b9d49b5b2
-  NSDictionary-ANDYSafeValue: ddd983e316a52201a40c70f4ab9ead8a63c569b6
-  NSJSONSerialization-ANDYJSONFile: 238ae79c050f8ed5a735448db8b0e1c9e9b0f587
+  NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
+  NSJSONSerialization-ANDYJSONFile: 4a92ca174d5ccde13015e853e9eb62440459b478
   NSManagedObject-ANDYMapChanges: f0c6279bbe3e66acfb7192f2d0b5435fab3c082a
   NSManagedObject-ANDYObjectIDs: 4c7ef6e26eb927e291360ebd12d95b812f746304
   NSManagedObject-HYPPropertyMapper: 8d9a5c7921d13bf9203e59bf4a34639eeda4e8af
-  NSObject-HYPTesting: f54d8bf73f75e2f2f4e49f4baa985df6fa699c2a
-  NSString-HYPNetworking: d0f69219a05bcdb0d6f523c4356223a4e024b635
+  NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
+  NSString-HYPNetworking: db2792b0333bc385fd999acaf59737a2b56bcedc
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.3
