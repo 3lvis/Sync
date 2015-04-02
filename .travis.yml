@@ -4,6 +4,6 @@ cache:
 - bundler
 - cocoapods
 before_install:
-- gem install cocoapods -v '0.36'
+- gem install cocoapods
 - pod install --project-directory=Tests
 script: xctool -workspace Tests/Tests.xcworkspace -scheme Tests -sdk iphonesimulator build test
