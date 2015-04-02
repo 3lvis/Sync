@@ -2,8 +2,8 @@
 
 @class DATAStack;
 
-static NSString * const SyncCustomPrimaryKey = @"sync.primary_key";
-static NSString * const SyncCustomRemoteKey = @"hyper.remote.key";
+static NSString * const SyncCustomPrimaryKey = @"hyper.isPrimaryKey";
+static NSString * const SyncCustomRemoteKey = @"hyper.remoteKey";
 
 @interface Sync : NSObject
 
