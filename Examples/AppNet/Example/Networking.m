@@ -37,10 +37,11 @@ static NSString * const NetworkingURL = @"https://api.app.net/posts/stream/globa
                                    NSError *JSONSerializationError = nil;
                                    NSJSONSerialization *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&JSONSerializationError];
                                    if (JSONSerializationError) NSLog(@"JSONSerializationError: %@", JSONSerializationError);
-                                   [Sync changes:[JSON valueForKey:@"data"]
-                                    inEntityName:@"Data"
-                                       dataStack:self.dataStack
-                                      completion:nil];
+
+                                   [Sync processChanges:[JSON valueForKey:@"data"]
+                                        usingEntityName:@"Data"
+                                              dataStack:self.dataStack
+                                             completion:nil];
                                }
                            }];
 }
