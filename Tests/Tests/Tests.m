@@ -369,4 +369,23 @@
               }];
 }
 
+- (void)testCustomKeysInRelationships
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"custom_relationship_key_JSON.json"
+                                                                inBundle:bundle];
+    [Sync processChanges:objects
+         usingEntityName:@"User"
+               dataStack:self.dataStack
+              completion:^(NSError *error) {
+                  NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+
+                  NSError *userError = nil;
+                  NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                  NSArray *array = [mainContext executeFetchRequest:userRequest error:&userError];
+                  NSManagedObject *user = [array firstObject];
+                  XCTAssertEqual([[user valueForKey:@"notes"] count], 3);
+    }];
+}
+
 @end
