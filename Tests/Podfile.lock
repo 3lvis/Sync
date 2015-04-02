@@ -6,8 +6,8 @@ PODS:
   - NSManagedObject-ANDYMapChanges (0.7):
     - NSManagedObject-ANDYObjectIDs
   - NSManagedObject-ANDYObjectIDs (0.4)
-  - NSManagedObject-HYPPropertyMapper (2.11):
-    - NSString-HYPNetworking (~> 0.1)
+  - NSManagedObject-HYPPropertyMapper (2.12):
+    - NSString-HYPNetworking (~> 0.2)
   - NSObject-HYPTesting (1.2)
   - NSString-HYPNetworking (0.2)
 
@@ -16,7 +16,18 @@ DEPENDENCIES:
   - NSDictionary-ANDYSafeValue
   - NSJSONSerialization-ANDYJSONFile
   - NSManagedObject-ANDYMapChanges
-  - NSManagedObject-HYPPropertyMapper
+  - NSManagedObject-HYPPropertyMapper (from `https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git`,
+    branch `improve/user-info-key-naming`)
+
+EXTERNAL SOURCES:
+  NSManagedObject-HYPPropertyMapper:
+    :branch: improve/user-info-key-naming
+    :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
+
+CHECKOUT OPTIONS:
+  NSManagedObject-HYPPropertyMapper:
+    :commit: a730a82b065d69d5a35be668bc1bc4577f8fc84d
+    :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
 
 SPEC CHECKSUMS:
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
@@ -24,7 +35,7 @@ SPEC CHECKSUMS:
   NSJSONSerialization-ANDYJSONFile: 4a92ca174d5ccde13015e853e9eb62440459b478
   NSManagedObject-ANDYMapChanges: f0c6279bbe3e66acfb7192f2d0b5435fab3c082a
   NSManagedObject-ANDYObjectIDs: 4c7ef6e26eb927e291360ebd12d95b812f746304
-  NSManagedObject-HYPPropertyMapper: 8d9a5c7921d13bf9203e59bf4a34639eeda4e8af
+  NSManagedObject-HYPPropertyMapper: 00d28b4615fa32a9c27b76fc8677a2641f095c81
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-HYPNetworking: db2792b0333bc385fd999acaf59737a2b56bcedc
 

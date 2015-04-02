@@ -6,6 +6,6 @@ pod 'DATAStack'
 
 # Categories
 pod 'NSJSONSerialization-ANDYJSONFile'
-pod 'NSManagedObject-HYPPropertyMapper'
+pod 'NSManagedObject-HYPPropertyMapper', git: 'https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git', branch: 'improve/user-info-key-naming'
 pod 'NSManagedObject-ANDYMapChanges'
 pod 'NSDictionary-ANDYSafeValue'
