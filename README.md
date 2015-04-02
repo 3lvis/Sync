@@ -17,14 +17,14 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 ## Interface
 
 ```objc
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+  inEntityNamed:(NSString *)entityName
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 ```
 
 * `changes`: JSON response
-* `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
+* `entityNamed`: Core Data's Model Entity Name (such as User, Note, Task)
 * `dataStack`: Your [DATAStack](https://github.com/NSElvis/DATAStack)
 
 ## Real World Example
@@ -58,12 +58,12 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 #### Sync
 
 ```objc
-[Sync processChanges:JSON
-     usingEntityName:@"User"
-           dataStack:dataStack
-          completion:^{
-              // Objects saved in Core Data, do something
-           }];
+[Sync changes:JSON
+inEntityNamed:@"User"
+    dataStack:dataStack
+   completion:^{
+       // Objects saved in Core Data, do something
+    }];
 ```
 
 [See another example here](https://github.com/hyperoslo/Sync/blob/master/Examples/AppNet/Example/Networking.m#L41).

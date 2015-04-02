@@ -29,7 +29,10 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
                                    if (serializationError) {
                                        NSLog(@"Error serializing JSON: %@", serializationError);
                                    } else {
-                                       [Sync processChanges:[JSON valueForKey:@"stories"] usingEntityName:@"Stories" dataStack:dataStack completion:nil];
+                                       [Sync changes:[JSON valueForKey:@"stories"]
+                                       inEntityNamed:@"Stories"
+                                           dataStack:dataStack
+                                          completion:nil];
                                    }
                                }
                            }];
