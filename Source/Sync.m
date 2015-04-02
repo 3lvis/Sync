@@ -36,64 +36,64 @@
 
 @implementation Sync
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
++ (void)changes:(NSArray *)changes
+       inEntityName:(NSString *)entityName
              dataStack:(DATAStack *)dataStack
             completion:(void (^)(NSError *error))completion
 {
-    [self processChanges:changes
-         usingEntityName:entityName
+    [self changes:changes
+         inEntityName:entityName
                predicate:nil
                dataStack:dataStack
               completion:completion];
 }
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-             predicate:(NSPredicate *)predicate
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+   inEntityName:(NSString *)entityName
+      predicate:(NSPredicate *)predicate
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
-        [self processChanges:changes
-             usingEntityName:entityName
-                   predicate:predicate
-                      parent:nil
-                   inContext:backgroundContext
-                   dataStack:dataStack
-                  completion:completion];
+        [self changes:changes
+         inEntityName:entityName
+            predicate:predicate
+               parent:nil
+            inContext:backgroundContext
+            dataStack:dataStack
+           completion:completion];
     }];
 }
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-                parent:(NSManagedObject *)parent
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+   inEntityName:(NSString *)entityName
+         parent:(NSManagedObject *)parent
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
         NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
-        [self processChanges:changes
-             usingEntityName:entityName
-                   predicate:predicate
-                      parent:safeParent
-                   inContext:backgroundContext
-                   dataStack:dataStack
-                  completion:completion];
+        [self changes:changes
+         inEntityName:entityName
+            predicate:predicate
+               parent:safeParent
+            inContext:backgroundContext
+            dataStack:dataStack
+           completion:completion];
     }];
 }
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-             predicate:(NSPredicate *)predicate
-                parent:(NSManagedObject *)parent
-             inContext:(NSManagedObjectContext *)context
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+   inEntityName:(NSString *)entityName
+      predicate:(NSPredicate *)predicate
+         parent:(NSManagedObject *)parent
+      inContext:(NSManagedObjectContext *)context
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
 
@@ -227,13 +227,13 @@
         childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
     }
 
-    [Sync processChanges:childs
-         usingEntityName:childEntityName
-               predicate:childPredicate
-                  parent:self
-               inContext:self.managedObjectContext
-               dataStack:dataStack
-              completion:nil];
+    [Sync changes:childs
+     inEntityName:childEntityName
+        predicate:childPredicate
+           parent:self
+        inContext:self.managedObjectContext
+        dataStack:dataStack
+       completion:nil];
 }
 
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
