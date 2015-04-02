@@ -1,5 +1,6 @@
 #import "APIClient.h"
 #import "Sync.h"
+@import UIKit;
 
 static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json";
 
@@ -13,6 +14,8 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
 
 - (void)fetchStoryUsingDataStack:(DATAStack *)dataStack
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:HYPBaseURL]];
     NSOperationQueue *queue = [NSOperationQueue new];
     [NSURLConnection sendAsynchronousRequest:urlRequest
@@ -32,7 +35,9 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
                                        [Sync processChanges:[JSON valueForKey:@"stories"]
                                             usingEntityName:@"Story"
                                                   dataStack:dataStack
-                                                 completion:nil];
+                                                 completion:^(NSError *error) {
+                                                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                 }];
                                    }
                                }
                            }];
