@@ -7,7 +7,7 @@
     <entity name="Comment" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="sync.primary_key" value="YES"/>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="comments" inverseEntity="Comment" syncable="YES"/>
@@ -50,7 +50,7 @@
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="users" inverseEntity="Company" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="user" inverseEntity="Note" syncable="YES">
             <userInfo>
-                <entry key="hyper.remote.key" value="annotations"/>
+                <entry key="hyper.remoteKey" value="annotations"/>
             </userInfo>
         </relationship>
     </entity>
