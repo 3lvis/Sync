@@ -37,19 +37,19 @@
 @implementation Sync
 
 + (void)changes:(NSArray *)changes
-       inEntityName:(NSString *)entityName
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
+  inEntityNamed:(NSString *)entityName
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
     [self changes:changes
-         inEntityName:entityName
-               predicate:nil
-               dataStack:dataStack
-              completion:completion];
+    inEntityNamed:entityName
+        predicate:nil
+        dataStack:dataStack
+       completion:completion];
 }
 
 + (void)changes:(NSArray *)changes
-   inEntityName:(NSString *)entityName
+  inEntityNamed:(NSString *)entityName
       predicate:(NSPredicate *)predicate
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion
@@ -57,7 +57,7 @@
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
         [self changes:changes
-         inEntityName:entityName
+        inEntityNamed:entityName
             predicate:predicate
                parent:nil
             inContext:backgroundContext
@@ -67,7 +67,7 @@
 }
 
 + (void)changes:(NSArray *)changes
-   inEntityName:(NSString *)entityName
+  inEntityNamed:(NSString *)entityName
          parent:(NSManagedObject *)parent
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion
@@ -78,7 +78,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self changes:changes
-         inEntityName:entityName
+        inEntityNamed:entityName
             predicate:predicate
                parent:safeParent
             inContext:backgroundContext
@@ -88,7 +88,7 @@
 }
 
 + (void)changes:(NSArray *)changes
-   inEntityName:(NSString *)entityName
+  inEntityNamed:(NSString *)entityName
       predicate:(NSPredicate *)predicate
          parent:(NSManagedObject *)parent
       inContext:(NSManagedObjectContext *)context
@@ -189,7 +189,7 @@
                              dataStack:(DATAStack *)dataStack
 {
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
-    
+
     NSString *relationshipName = (relationshipKey) ?: relationship.name;
 
     NSString *childEntityName = relationship.destinationEntity.name;
@@ -228,7 +228,7 @@
     }
 
     [Sync changes:childs
-     inEntityName:childEntityName
+    inEntityNamed:childEntityName
         predicate:childPredicate
            parent:self
         inContext:self.managedObjectContext

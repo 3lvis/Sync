@@ -8,18 +8,18 @@ static NSString * const SyncCustomRemoteKey = @"hyper.remoteKey";
 @interface Sync : NSObject
 
 + (void)changes:(NSArray *)changes
-   inEntityName:(NSString *)entityName
+  inEntityNamed:(NSString *)entityName
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion;
 
 + (void)changes:(NSArray *)changes
-   inEntityName:(NSString *)entityName
+  inEntityNamed:(NSString *)entityName
       predicate:(NSPredicate *)predicate
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion;
 
 + (void)changes:(NSArray *)changes
-   inEntityName:(NSString *)entityName
+  inEntityNamed:(NSString *)entityName
          parent:(NSManagedObject *)parent
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion;
