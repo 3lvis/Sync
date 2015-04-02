@@ -4,7 +4,7 @@
 
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
-#import "NSManagedObject+ANDYMapChanges.h"
+#import "DATAFilter.h"
 #import "NSString+HYPNetworking.h"
 
 @interface NSEntityDescription (Sync)
@@ -97,21 +97,25 @@
 {
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
 
-    [NSManagedObject andy_mapChanges:changes
-                            localKey:[entity sync_localKey]
-                           remoteKey:[entity sync_remoteKey]
-                      usingPredicate:predicate
-                           inContext:context
-                       forEntityName:entityName
-                            inserted:^(NSDictionary *objectDict) {
-                                NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                                                                         inManagedObjectContext:context];
-                                [created hyp_fillWithDictionary:objectDict];
-                                [created sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-                            } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
-                                [object hyp_fillWithDictionary:objectDict];
-                                [object sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-                            }];
+    [DATAFilter changes:changes
+          inEntityNamed:entityName
+               localKey:[entity sync_localKey]
+              remoteKey:[entity sync_remoteKey]
+                context:context
+              predicate:predicate
+               inserted:^(NSDictionary *objectJSON) {
+                   NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                                                            inManagedObjectContext:context];
+                   [created hyp_fillWithDictionary:objectJSON];
+                   [created sync_processRelationshipsUsingDictionary:objectJSON
+                                                           andParent:parent
+                                                           dataStack:dataStack];
+               } updated:^(NSDictionary *objectJSON, NSManagedObject *updatedObject) {
+                   [updatedObject hyp_fillWithDictionary:objectJSON];
+                   [updatedObject sync_processRelationshipsUsingDictionary:objectJSON
+                                                                 andParent:parent
+                                                                 dataStack:dataStack];
+               }];
 
     NSError *error = nil;
     [context save:&error];

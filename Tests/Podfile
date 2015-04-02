@@ -7,5 +7,5 @@ pod 'DATAStack'
 # Categories
 pod 'NSJSONSerialization-ANDYJSONFile'
 pod 'NSManagedObject-HYPPropertyMapper'
-pod 'NSManagedObject-ANDYMapChanges'
+pod 'DATAFilter'
 pod 'NSDictionary-ANDYSafeValue'
