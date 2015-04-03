@@ -82,7 +82,7 @@ pod 'Sync'
 
 ### DATAStack
 
-Replace your Core Data stack with [an instance of DATAStack](https://github.com/NSElvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19):
+Replace your Core Data stack with [an instance of DATAStack](https://github.com/3lvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19):
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -109,7 +109,7 @@ You are ready to go, check the [example project that uses App.net](https://githu
 
 ## Requirements
 
-`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/NSElvis/DATAStack)
+`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/3lvis/DATAStack)
 
 ## Components
 
