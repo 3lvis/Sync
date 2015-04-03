@@ -1,10 +1,9 @@
 [
- {
- "id":50,
- "title":"Fairy tale",
- "summarize_text":
-             {
-             "body":"Body of tale"
-             }
- },
+    {
+        "id":50,
+        "title":"Fairy tale",
+        "summarize_text":{
+            "body":"Body of tale"
+        }
+    }
 ]
