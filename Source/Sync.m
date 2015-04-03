@@ -245,9 +245,11 @@
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
                       usingDictionary:(NSDictionary *)objectDict
 {
+    NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+    NSString *relationshipName = (relationshipKey) ?: relationship.name;
     NSString *entityName = relationship.destinationEntity.name;
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
-    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
+    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationshipName];
     if (!filteredObjectDict) return;
 
     NSString *remoteKey = [entity sync_remoteKey];

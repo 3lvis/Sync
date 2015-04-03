@@ -25,6 +25,13 @@
     return _dataStack;
 }
 
+- (NSArray *)arrayWithObjectsFromJSON:(NSString *)stringJSON
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSArray *array = [NSJSONSerialization JSONObjectWithContentsOfFile:stringJSON inBundle:bundle];
+    return array;
+}
+
 #pragma mark - Set up
 
 - (void)tearDown
@@ -39,9 +46,7 @@
 
 - (void)testLoadAndUpdateUsers
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-
-    NSArray *objectsA = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_a.json" inBundle:bundle];
+    NSArray *objectsA = [self arrayWithObjectsFromJSON:@"users_a.json"];
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
 
@@ -58,7 +63,7 @@
            XCTAssertEqual(count, 8);
        }];
 
-    NSArray *objectsB = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_b.json" inBundle:bundle];
+    NSArray *objectsB = [self arrayWithObjectsFromJSON:@"users_b.json"];
 
     [Sync changes:objectsB
     inEntityNamed:@"User"
@@ -89,9 +94,7 @@
 
 - (void)testRelationships
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_notes.json" inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"users_notes.json"];
 
     [Sync changes:objects
     inEntityNamed:@"User"
@@ -124,9 +127,7 @@
 
 - (void)testObjectsForParent
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"notes_for_user_a.json" inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"notes_for_user_a.json"];
 
     [self.dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
         NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
@@ -176,9 +177,7 @@
 
 - (void)testTaggedNotesForUser
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"tagged_notes.json" inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"tagged_notes.json"];
 
     [Sync changes:objects
     inEntityNamed:@"Note"
@@ -219,9 +218,7 @@
 
 - (void)testUsersAndCompanies
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"users_company.json" inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"users_company.json"];
 
     [Sync changes:objects
     inEntityNamed:@"User"
@@ -264,8 +261,8 @@
  */
 - (void)testNumbersWithEmptyRelationship
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"numbers.json" inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"numbers.json"];
+
     [Sync changes:objects
     inEntityNamed:@"Number"
         predicate:nil
@@ -286,8 +283,8 @@
 
 - (void)testRelationshipName
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"numbers_in_collection.json" inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"numbers_in_collection.json"];
+
     [Sync changes:objects
     inEntityNamed:@"Number"
         dataStack:self.dataStack
@@ -306,9 +303,8 @@
 
 - (void)testCustomPrimaryKey
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"comments-no-id.json"
-                                                                inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"comments-no-id.json"];
+
     [Sync changes:objects
     inEntityNamed:@"Comment"
         dataStack:self.dataStack
@@ -332,9 +328,8 @@
 
 - (void)testCustomPrimaryKeyInsideToManyRelationship
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"stories-comments-no-ids.json"
-                                                                inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"stories-comments-no-ids.json"];
+
     [Sync changes:objects
     inEntityNamed:@"Story"
         dataStack:self.dataStack
@@ -371,9 +366,8 @@
 
 - (void)testCustomKeysInRelationshipsToMany
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"custom_relationship_key_JSON.json"
-                                                                inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON.json"];
+
     [Sync changes:objects
     inEntityNamed:@"User"
         dataStack:self.dataStack
@@ -390,20 +384,19 @@
 
 - (void)testCustomKeysInRelationshipsToOne
 {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *objects = [NSJSONSerialization JSONObjectWithContentsOfFile:@"custom_relationship_key_JSON_To_One.json"
-                                                                inBundle:bundle];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON_To_One.json"];
+
     [Sync changes:objects
     inEntityNamed:@"Story"
         dataStack:self.dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [self.dataStack mainContext];
 
-           NSError *userError = nil;
-           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
-           NSArray *array = [mainContext executeFetchRequest:userRequest error:&userError];
-           NSManagedObject *user = [array firstObject];
-           XCTAssertEqual([[user valueForKey:@"notes"] count], 3);
+           NSError *storyError = nil;
+           NSFetchRequest *storyRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
+           NSArray *array = [mainContext executeFetchRequest:storyRequest error:&storyError];
+           NSManagedObject *story = [array firstObject];
+           XCTAssertNotNil([story valueForKey:@"summarize"]);
        }];
 }
 
