@@ -11,7 +11,6 @@
 		F6691BAE1AD02AE7009D6BA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BAD1AD02AE7009D6BA5 /* AppDelegate.swift */; };
 		F6691BB11AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6691BAF1AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodeld */; };
 		F6691BB31AD02AE7009D6BA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BB21AD02AE7009D6BA5 /* ViewController.swift */; };
-		F6691BB61AD02AE7009D6BA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB41AD02AE7009D6BA5 /* Main.storyboard */; };
 		F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB71AD02AE7009D6BA5 /* Images.xcassets */; };
 		F6691BBB1AD02AE7009D6BA5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */; };
 		F6691BDD1AD032B9009D6BA5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BDC1AD032B9009D6BA5 /* Networking.swift */; };
@@ -28,7 +27,6 @@
 		F6691BAD1AD02AE7009D6BA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6691BB01AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppNet_Swift.xcdatamodel; sourceTree = "<group>"; };
 		F6691BB21AD02AE7009D6BA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F6691BB51AD02AE7009D6BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6691BB71AD02AE7009D6BA5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F6691BBA1AD02AE7009D6BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SYNCHeader-Bridge.h"; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				F6691BB21AD02AE7009D6BA5 /* ViewController.swift */,
 				F6691BDC1AD032B9009D6BA5 /* Networking.swift */,
 				F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */,
-				F6691BB41AD02AE7009D6BA5 /* Main.storyboard */,
 				F6691BB71AD02AE7009D6BA5 /* Images.xcassets */,
 				F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */,
 				F6691BD71AD03249009D6BA5 /* Model */,
@@ -177,7 +174,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6691BB61AD02AE7009D6BA5 /* Main.storyboard in Resources */,
 				F6691BBB1AD02AE7009D6BA5 /* LaunchScreen.xib in Resources */,
 				F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */,
 			);
@@ -235,14 +231,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F6691BB41AD02AE7009D6BA5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F6691BB51AD02AE7009D6BA5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
