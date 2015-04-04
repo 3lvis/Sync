@@ -74,7 +74,6 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
         self.fetchCurrentObjects()
 
-
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)
     }
