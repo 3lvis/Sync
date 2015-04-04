@@ -4,3 +4,4 @@ platform :ios, '7.0'
 
 pod 'Sync', path: "../../"
 pod 'DATASource'
+pod 'NSString-ANDYSizes'

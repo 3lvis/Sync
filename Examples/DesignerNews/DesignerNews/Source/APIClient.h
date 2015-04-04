@@ -3,6 +3,6 @@
 
 @interface APIClient : NSObject
 
-- (void)fetchStoriesUsingDataStack:(DATAStack *)dataStack;
+- (void)fetchStoryUsingDataStack:(DATAStack *)dataStack;
 
 @end

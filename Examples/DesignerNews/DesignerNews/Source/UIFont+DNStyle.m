@@ -9,7 +9,7 @@
 
 + (UIFont *)commentFont
 {
-    return [UIFont fontWithName:@"Avenir-Medium" size:17.0f];;
+    return [UIFont fontWithName:@"Avenir-Medium" size:14.0f];;
 }
 
 + (UIFont *)headerFont

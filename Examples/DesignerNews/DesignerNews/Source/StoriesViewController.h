@@ -3,7 +3,7 @@
 
 @class DATAStack;
 
-@interface ViewController : UITableViewController
+@interface StoriesViewController : UITableViewController
 
 - (instancetype)initWithDataStack:(DATAStack *)dataStack;
 
