@@ -135,10 +135,12 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     NSString *localKey = [entity sync_localKey];
     request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
-
     NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) NSLog(@"parentError: %@", error);
-    return [objects firstObject];
+    if (error) {
+        NSLog(@"parentError: %@", error);
+    }
+
+    return objects.firstObject;
 }
 
 @end
@@ -193,9 +195,7 @@
                              dataStack:(DATAStack *)dataStack
 {
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
-
     NSString *relationshipName = (relationshipKey) ?: relationship.name;
-
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *parentEntityName = parent.entity.name;
     NSString *inverseEntityName = relationship.inverseRelationship.name;
@@ -243,9 +243,11 @@
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
                       usingDictionary:(NSDictionary *)objectDict
 {
+    NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+    NSString *relationshipName = (relationshipKey) ?: relationship.name;
     NSString *entityName = relationship.destinationEntity.name;
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
-    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
+    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationshipName];
     if (!filteredObjectDict) return;
 
     NSString *remoteKey = [entity sync_remoteKey];
