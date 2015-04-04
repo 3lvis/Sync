@@ -26,11 +26,10 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell! = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        println(self.arrayWithData[indexPath.row])
         let data: Data = self.arrayWithData[indexPath.row] as Data
 
         cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
-
+        
         cell.textLabel!.text = data.text
         cell.textLabel!.numberOfLines = 1000
         cell.detailTextLabel!.text = data.user.username

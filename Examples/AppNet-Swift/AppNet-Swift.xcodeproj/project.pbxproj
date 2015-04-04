@@ -14,21 +14,10 @@
 		F6691BB61AD02AE7009D6BA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB41AD02AE7009D6BA5 /* Main.storyboard */; };
 		F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB71AD02AE7009D6BA5 /* Images.xcassets */; };
 		F6691BBB1AD02AE7009D6BA5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */; };
-		F6691BC71AD02AE7009D6BA5 /* AppNet_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BC61AD02AE7009D6BA5 /* AppNet_SwiftTests.swift */; };
 		F6691BDD1AD032B9009D6BA5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BDC1AD032B9009D6BA5 /* Networking.swift */; };
 		F6691BE01AD05AF7009D6BA5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BDE1AD05AF7009D6BA5 /* Data.swift */; };
 		F6691BE11AD05AF7009D6BA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BDF1AD05AF7009D6BA5 /* User.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F6691BC11AD02AE7009D6BA5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F6691BA01AD02AE7009D6BA5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F6691BA71AD02AE7009D6BA5;
-			remoteInfo = "AppNet-Swift";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		41C62317393CECFF3077F022 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -42,9 +31,6 @@
 		F6691BB51AD02AE7009D6BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6691BB71AD02AE7009D6BA5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F6691BBA1AD02AE7009D6BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		F6691BC01AD02AE7009D6BA5 /* AppNet-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppNet-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6691BC51AD02AE7009D6BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6691BC61AD02AE7009D6BA5 /* AppNet_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNet_SwiftTests.swift; sourceTree = "<group>"; };
 		F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SYNCHeader-Bridge.h"; sourceTree = "<group>"; };
 		F6691BDC1AD032B9009D6BA5 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F6691BDE1AD05AF7009D6BA5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -57,13 +43,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5830AEF1C3C6D2A809BEB139 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6691BBD1AD02AE7009D6BA5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				F6691BAA1AD02AE7009D6BA5 /* AppNet-Swift */,
-				F6691BC31AD02AE7009D6BA5 /* AppNet-SwiftTests */,
 				F6691BA91AD02AE7009D6BA5 /* Products */,
 				2E736F7ACD0D7553EFC8E21B /* Pods */,
 				341EE39E36E1C1AEE5C4EC61 /* Frameworks */,
@@ -102,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				F6691BA81AD02AE7009D6BA5 /* AppNet-Swift.app */,
-				F6691BC01AD02AE7009D6BA5 /* AppNet-SwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,23 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				F6691BAC1AD02AE7009D6BA5 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F6691BC31AD02AE7009D6BA5 /* AppNet-SwiftTests */ = {
-			isa = PBXGroup;
-			children = (
-				F6691BC61AD02AE7009D6BA5 /* AppNet_SwiftTests.swift */,
-				F6691BC41AD02AE7009D6BA5 /* Supporting Files */,
-			);
-			path = "AppNet-SwiftTests";
-			sourceTree = "<group>";
-		};
-		F6691BC41AD02AE7009D6BA5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F6691BC51AD02AE7009D6BA5 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,24 +140,6 @@
 			productReference = F6691BA81AD02AE7009D6BA5 /* AppNet-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F6691BBF1AD02AE7009D6BA5 /* AppNet-SwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F6691BCD1AD02AE7009D6BA5 /* Build configuration list for PBXNativeTarget "AppNet-SwiftTests" */;
-			buildPhases = (
-				F6691BBC1AD02AE7009D6BA5 /* Sources */,
-				F6691BBD1AD02AE7009D6BA5 /* Frameworks */,
-				F6691BBE1AD02AE7009D6BA5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F6691BC21AD02AE7009D6BA5 /* PBXTargetDependency */,
-			);
-			name = "AppNet-SwiftTests";
-			productName = "AppNet-SwiftTests";
-			productReference = F6691BC01AD02AE7009D6BA5 /* AppNet-SwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -209,10 +151,6 @@
 				TargetAttributes = {
 					F6691BA71AD02AE7009D6BA5 = {
 						CreatedOnToolsVersion = 6.2;
-					};
-					F6691BBF1AD02AE7009D6BA5 = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = F6691BA71AD02AE7009D6BA5;
 					};
 				};
 			};
@@ -230,7 +168,6 @@
 			projectRoot = "";
 			targets = (
 				F6691BA71AD02AE7009D6BA5 /* AppNet-Swift */,
-				F6691BBF1AD02AE7009D6BA5 /* AppNet-SwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -243,13 +180,6 @@
 				F6691BB61AD02AE7009D6BA5 /* Main.storyboard in Resources */,
 				F6691BBB1AD02AE7009D6BA5 /* LaunchScreen.xib in Resources */,
 				F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6691BBE1AD02AE7009D6BA5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,23 +232,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F6691BBC1AD02AE7009D6BA5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F6691BC71AD02AE7009D6BA5 /* AppNet_SwiftTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F6691BC21AD02AE7009D6BA5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F6691BA71AD02AE7009D6BA5 /* AppNet-Swift */;
-			targetProxy = F6691BC11AD02AE7009D6BA5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F6691BB41AD02AE7009D6BA5 /* Main.storyboard */ = {
@@ -441,40 +355,6 @@
 			};
 			name = Release;
 		};
-		F6691BCE1AD02AE7009D6BA5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "AppNet-SwiftTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppNet-Swift.app/AppNet-Swift";
-			};
-			name = Debug;
-		};
-		F6691BCF1AD02AE7009D6BA5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "AppNet-SwiftTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppNet-Swift.app/AppNet-Swift";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -492,15 +372,6 @@
 			buildConfigurations = (
 				F6691BCB1AD02AE7009D6BA5 /* Debug */,
 				F6691BCC1AD02AE7009D6BA5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F6691BCD1AD02AE7009D6BA5 /* Build configuration list for PBXNativeTarget "AppNet-SwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F6691BCE1AD02AE7009D6BA5 /* Debug */,
-				F6691BCF1AD02AE7009D6BA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
