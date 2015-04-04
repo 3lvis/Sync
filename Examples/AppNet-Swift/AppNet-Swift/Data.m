@@ -1,7 +1,6 @@
 #import "Data.h"
 #import "User.h"
 
-
 @implementation Data
 
 @dynamic text;
