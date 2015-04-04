@@ -3,11 +3,11 @@ import UIKit
 class ViewController: UITableViewController {
 
     var dataStack: DATAStack!
+    var dataSource: DATASource!
 
     // MARK: Initializers
 
-    required init(dataStack: DATAStack)
-    {
+    required init(dataStack: DATAStack) {
         super.init(nibName: nil, bundle: nil);
         self.dataStack = dataStack
     }
@@ -16,11 +16,12 @@ class ViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil);
     }
 
-    // MARK: Viewcycle
+    // MARK: View Lifecycle
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = "AppNet"
     }
 }
 

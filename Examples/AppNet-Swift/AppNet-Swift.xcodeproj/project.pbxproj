@@ -15,6 +15,8 @@
 		F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB71AD02AE7009D6BA5 /* Images.xcassets */; };
 		F6691BBB1AD02AE7009D6BA5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */; };
 		F6691BC71AD02AE7009D6BA5 /* AppNet_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BC61AD02AE7009D6BA5 /* AppNet_SwiftTests.swift */; };
+		F6691BD31AD03236009D6BA5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F6691BD21AD03236009D6BA5 /* User.m */; };
+		F6691BD61AD03237009D6BA5 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = F6691BD51AD03237009D6BA5 /* Data.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,10 @@
 		F6691BC51AD02AE7009D6BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6691BC61AD02AE7009D6BA5 /* AppNet_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNet_SwiftTests.swift; sourceTree = "<group>"; };
 		F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SYNCHeader-Bridge.h"; sourceTree = "<group>"; };
+		F6691BD11AD03236009D6BA5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F6691BD21AD03236009D6BA5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F6691BD41AD03237009D6BA5 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		F6691BD51AD03237009D6BA5 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +116,7 @@
 				F6691BB41AD02AE7009D6BA5 /* Main.storyboard */,
 				F6691BB71AD02AE7009D6BA5 /* Images.xcassets */,
 				F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */,
-				F6691BAF1AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodeld */,
+				F6691BD71AD03249009D6BA5 /* Model */,
 				F6691BAB1AD02AE7009D6BA5 /* Supporting Files */,
 			);
 			path = "AppNet-Swift";
@@ -139,6 +145,18 @@
 				F6691BC51AD02AE7009D6BA5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6691BD71AD03249009D6BA5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F6691BAF1AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodeld */,
+				F6691BD41AD03237009D6BA5 /* Data.h */,
+				F6691BD51AD03237009D6BA5 /* Data.m */,
+				F6691BD11AD03236009D6BA5 /* User.h */,
+				F6691BD21AD03236009D6BA5 /* User.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +294,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6691BD61AD03237009D6BA5 /* Data.m in Sources */,
+				F6691BD31AD03236009D6BA5 /* User.m in Sources */,
 				F6691BB31AD02AE7009D6BA5 /* ViewController.swift in Sources */,
 				F6691BAE1AD02AE7009D6BA5 /* AppDelegate.swift in Sources */,
 				F6691BB11AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodeld in Sources */,
