@@ -4,21 +4,21 @@ class Networking: NSObject {
     let SYNCAppNetURL = "https://api.app.net/posts/stream/global"
     let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
-    let dataStack: DATAStack!
+    let dataStack: DATAStack
 
     required init(dataStack: DATAStack) {
-        super.init()
         self.dataStack = dataStack
+        super.init()
     }
 
     func fetchNewContent() {
         let urlAppNet = NSURL(string: SYNCAppNetURL)
         let request = NSURLRequest(URL: urlAppNet!)
         let operationQueue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { (var response: NSURLResponse!, var data: NSData!, var error: NSError!) -> Void in
-            if ((error) != nil) {
-                let alertController = UIAlertController(title: "Ooops!", message: "There was a connection error. \(error)", preferredStyle: UIAlertControllerStyle.Alert)
-                let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+        NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { (_, data, error) in
+            if error != nil {
+                let alertController = UIAlertController(title: "Ooops!", message: "There was a connection error. \(error)", preferredStyle: .Alert)
+                let alertAction = UIAlertAction(title: "OK", style: .Default, handler: { action in
                     alertController.dismissViewControllerAnimated(true, completion: nil)
                 })
 
@@ -26,7 +26,7 @@ class Networking: NSObject {
             } else {
                 let serializationJSON: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
 
-                Sync.changes(serializationJSON.valueForKey("data") as NSArray, inEntityNamed: "Data", dataStack: self.dataStack, completion: { (NSError) -> Void in
+                Sync.changes(serializationJSON.valueForKey("data") as NSArray, inEntityNamed: "Data", dataStack: self.dataStack, completion: { [unowned self] error in
                     NSNotificationCenter.defaultCenter().postNotificationName(self.SYNCReloadTableNotification, object: nil)
                 })
             }
