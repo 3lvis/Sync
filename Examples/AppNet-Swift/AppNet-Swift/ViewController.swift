@@ -48,14 +48,14 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
         let data = self.arrayWithData[indexPath.row]
 
         cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
-        cell.textLabel!.text = data.text
-        cell.textLabel!.numberOfLines = 1000
-        cell.detailTextLabel!.text = data.user.username
+        cell.textLabel?.text = data.text
+        cell.textLabel?.numberOfLines = 1000
+        cell.detailTextLabel?.text = data.user.username
 
         return cell
     }
@@ -80,8 +80,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
         request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
         
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
-
 }
 
