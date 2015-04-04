@@ -29,6 +29,7 @@
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSArray *array = [NSJSONSerialization JSONObjectWithContentsOfFile:stringJSON inBundle:bundle];
+
     return array;
 }
 
