@@ -25,8 +25,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        println(self.arrayWithData[indexPath.row])
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
         let data = self.arrayWithData[indexPath.row]
 
         //cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
@@ -47,7 +46,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     // MARK: Networking methods
 
     func fetchNewData() {
-        let networking = Networking(dataStack: self.dataStack)
+        let networking = Networking(dataStack: dataStack)
         networking.fetchNewContent()
     }
 
@@ -78,7 +77,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     }
 
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         fetchNewData()
     }
 }
