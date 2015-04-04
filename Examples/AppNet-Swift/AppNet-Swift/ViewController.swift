@@ -5,7 +5,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
     let dataStack: DATAStack!
-    var arrayWithData: [NSManagedObject] = []
+    var arrayWithData = [Data]()
 
     // MARK: Initializers
 
@@ -25,15 +25,15 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell! = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
         println(self.arrayWithData[indexPath.row])
-        let data: Data = self.arrayWithData[indexPath.row] as Data
+        let data = self.arrayWithData[indexPath.row]
 
-        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
+        //cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
-        cell.textLabel!.text = data.text
-        cell.textLabel!.numberOfLines = 1000
-        cell.detailTextLabel!.text = data.user.username
+        cell.textLabel?.text = data.text
+        cell.textLabel?.numberOfLines = 1000
+        cell.detailTextLabel?.text = data.user.username
 
         return cell
     }
@@ -56,9 +56,9 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     func fetchCurrentObjects() {
         let request = NSFetchRequest(entityName: "Data")
         request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-        self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
+        arrayWithData = dataStack.mainContext.executeFetchRequest(request, error: nil) as [Data]
 
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 
     // MARK: View Lifecycle
@@ -66,12 +66,10 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.arrayWithData = Array()
+        title = "AppNet"
 
-        self.title = "AppNet"
-
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
-        self.tableView.allowsSelection = false
+        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
+        tableView.allowsSelection = false
 
         fetchCurrentObjects()
 
