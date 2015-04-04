@@ -135,9 +135,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     NSString *localKey = [entity sync_localKey];
     request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
-
     NSArray *objects = [context executeFetchRequest:request error:&error];
-
     if (error) {
         NSLog(@"parentError: %@", error);
     }
