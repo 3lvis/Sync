@@ -4,7 +4,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     let SYNCCellIdentifier = "CellID"
     let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
-    var dataStack: DATAStack!
+    let dataStack: DATAStack!
     var arrayWithData: NSArray!
 
     // MARK: Initializers
@@ -26,7 +26,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell! = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        var data: Data = self.arrayWithData[indexPath.row] as Data
+        let data: Data = self.arrayWithData[indexPath.row] as Data
 
         cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
@@ -53,7 +53,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     // MARK: Model methods
 
     func fetchCurrentObjects() {
-        var request = NSFetchRequest(entityName: "Data")
+        let request = NSFetchRequest(entityName: "Data")
         request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil)
 
