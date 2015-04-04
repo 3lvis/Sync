@@ -2,10 +2,12 @@ import UIKit
 
 class Networking: NSObject {
     let SYNCAppNetURL = "https://api.app.net/posts/stream/global"
+    let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
     var dataStack: DATAStack!
 
     required init(dataStack: DATAStack) {
+        super.init()
         self.dataStack = dataStack
     }
 
@@ -23,10 +25,10 @@ class Networking: NSObject {
             } else {
                 var serializationJSON = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSJSONSerialization
 
-                Sync.changes(serializationJSON.valueForKey("data") as NSArray, inEntityNamed: "Data", dataStack: self.dataStack, completion: nil)
-
+                Sync.changes(serializationJSON.valueForKey("data") as NSArray, inEntityNamed: "Data", dataStack: self.dataStack, completion: { (NSError) -> Void in
+                    NSNotificationCenter.defaultCenter().postNotificationName(self.SYNCReloadTableNotification, object: nil)
+                })
             }
         }
     }
-   
 }
