@@ -5,7 +5,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
     let dataStack: DATAStack!
-    var arrayWithData: [NSManagedObject] = []
+    var arrayWithData = [Data]()
 
     // MARK: Initializers
 
@@ -48,8 +48,8 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell! = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        let data: Data = self.arrayWithData[indexPath.row] as Data
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
+        let data = self.arrayWithData[indexPath.row]
 
         cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
@@ -69,7 +69,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     // MARK: Networking methods
 
     func fetchNewData() {
-        let networking = Networking(dataStack: self.dataStack)
+        let networking = Networking(dataStack: dataStack)
         networking.fetchNewContent()
     }
 
