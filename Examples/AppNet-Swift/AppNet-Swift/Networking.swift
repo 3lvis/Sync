@@ -23,7 +23,7 @@ class Networking: NSObject {
 
                 alertController.addAction(alertAction)
             } else {
-                var serializationJSON = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSJSONSerialization
+                var serializationJSON: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
 
                 Sync.changes(serializationJSON.valueForKey("data") as NSArray, inEntityNamed: "Data", dataStack: self.dataStack, completion: { (NSError) -> Void in
                     NSNotificationCenter.defaultCenter().postNotificationName(self.SYNCReloadTableNotification, object: nil)

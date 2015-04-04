@@ -26,15 +26,18 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        cell.textLabel!.text = self.arrayWithData[indexPath.row] as NSString
+        var data: Data = self.arrayWithData[indexPath.row] as Data
+
+        cell.textLabel!.text = data.text
+        cell.textLabel!.numberOfLines = 1000
+
         return cell
     }
 
     // MARK: Notification
 
     func finishedFetchingPosts() {
-
-        self.tableView.reloadData()
+        self.fetchCurrentObjects()
     }
 
     // MARK: Networking methods
@@ -62,6 +65,9 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
         self.arrayWithData = NSArray()
 
         self.title = "AppNet"
+
+        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
+        self.fetchCurrentObjects()
 
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)

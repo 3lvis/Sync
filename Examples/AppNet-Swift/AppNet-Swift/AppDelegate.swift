@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         UINavigationBar.appearance().barTintColor = UIColor(red:0.83, green:0.43, blue:0.36, alpha:1)
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : UIFont(name: "AvenirNext-DemiBold", size: 20)!, NSForegroundColorAttributeName : UIColor.whiteColor()]
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
