@@ -42,6 +42,7 @@
 		F6691BC01AD02AE7009D6BA5 /* AppNet-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppNet-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6691BC51AD02AE7009D6BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6691BC61AD02AE7009D6BA5 /* AppNet_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNet_SwiftTests.swift; sourceTree = "<group>"; };
+		F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SYNCHeader-Bridge.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 			children = (
 				F6691BAD1AD02AE7009D6BA5 /* AppDelegate.swift */,
 				F6691BB21AD02AE7009D6BA5 /* ViewController.swift */,
+				F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */,
 				F6691BB41AD02AE7009D6BA5 /* Main.storyboard */,
 				F6691BB71AD02AE7009D6BA5 /* Images.xcassets */,
 				F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */,
@@ -403,6 +405,7 @@
 				INFOPLIST_FILE = "AppNet-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppNet-Swift/SYNCHeader-Bridge.h";
 			};
 			name = Debug;
 		};
@@ -414,6 +417,7 @@
 				INFOPLIST_FILE = "AppNet-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppNet-Swift/SYNCHeader-Bridge.h";
 			};
 			name = Release;
 		};
