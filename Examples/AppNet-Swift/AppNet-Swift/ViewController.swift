@@ -40,7 +40,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     // MARK: Notification
 
     func finishedFetchingPosts() {
-        self.fetchCurrentObjects()
+        fetchCurrentObjects()
     }
 
     // MARK: Networking methods
