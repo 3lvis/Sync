@@ -1,42 +1,31 @@
 PODS:
+  - DATAFilter (0.8.0):
+    - DATAObjectIDs
+  - DATAObjectIDs (0.5.0)
   - DATAStack (3.0.4):
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
   - NSJSONSerialization-ANDYJSONFile (1.1)
-  - NSManagedObject-ANDYMapChanges (0.7):
-    - NSManagedObject-ANDYObjectIDs
-  - NSManagedObject-ANDYObjectIDs (0.4)
-  - NSManagedObject-HYPPropertyMapper (2.12):
-    - NSString-HYPNetworking (~> 0.2)
+  - NSManagedObject-HYPPropertyMapper (3.0.1):
+    - NSString-HYPNetworking (~> 0.3.0)
   - NSObject-HYPTesting (1.2)
-  - NSString-HYPNetworking (0.2)
+  - NSString-HYPNetworking (0.3.0)
 
 DEPENDENCIES:
+  - DATAFilter
   - DATAStack
   - NSDictionary-ANDYSafeValue
   - NSJSONSerialization-ANDYJSONFile
-  - NSManagedObject-ANDYMapChanges
-  - NSManagedObject-HYPPropertyMapper (from `https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git`,
-    branch `improve/user-info-key-naming`)
-
-EXTERNAL SOURCES:
-  NSManagedObject-HYPPropertyMapper:
-    :branch: improve/user-info-key-naming
-    :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
-
-CHECKOUT OPTIONS:
-  NSManagedObject-HYPPropertyMapper:
-    :commit: a730a82b065d69d5a35be668bc1bc4577f8fc84d
-    :git: https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git
+  - NSManagedObject-HYPPropertyMapper
 
 SPEC CHECKSUMS:
+  DATAFilter: aa7a6b0d1ee0841d9ae4402e0da7d9f6cd209e06
+  DATAObjectIDs: 472eae6d8d6b57109b973c837ec3dd5e78016ab6
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
   NSJSONSerialization-ANDYJSONFile: 4a92ca174d5ccde13015e853e9eb62440459b478
-  NSManagedObject-ANDYMapChanges: f0c6279bbe3e66acfb7192f2d0b5435fab3c082a
-  NSManagedObject-ANDYObjectIDs: 4c7ef6e26eb927e291360ebd12d95b812f746304
-  NSManagedObject-HYPPropertyMapper: 00d28b4615fa32a9c27b76fc8677a2641f095c81
+  NSManagedObject-HYPPropertyMapper: 8559d1ac8dd804ee2c29ae4c8fff0459b221657b
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
-  NSString-HYPNetworking: db2792b0333bc385fd999acaf59737a2b56bcedc
+  NSString-HYPNetworking: c8592ecb67780d42456e45962aa61f2bb43b5289
 
 COCOAPODS: 0.36.3

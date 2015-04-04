@@ -17,15 +17,15 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 ## Interface
 
 ```objc
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+  inEntityNamed:(NSString *)entityName
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 ```
 
 * `changes`: JSON response
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [DATAStack](https://github.com/NSElvis/DATAStack)
+* `dataStack`: Your [DATAStack](https://github.com/3lvis/DATAStack)
 
 ## Real World Example
 
@@ -58,12 +58,12 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 #### Sync
 
 ```objc
-[Sync processChanges:JSON
-     usingEntityName:@"User"
-           dataStack:dataStack
-          completion:^{
-              // Objects saved in Core Data, do something
-           }];
+[Sync changes:JSON
+inEntityNamed:@"User"
+    dataStack:dataStack
+   completion:^{
+       // Objects saved in Core Data, do something
+    }];
 ```
 
 [See another example here](https://github.com/hyperoslo/Sync/blob/master/Examples/AppNet/Example/Networking.m#L41).
@@ -82,7 +82,7 @@ pod 'Sync'
 
 ### DATAStack
 
-Replace your Core Data stack with [an instance of DATAStack](https://github.com/NSElvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19):
+Replace your Core Data stack with [an instance of DATAStack](https://github.com/3lvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19):
 
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -109,15 +109,15 @@ You are ready to go, check the [example project that uses App.net](https://githu
 
 ## Requirements
 
-`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/NSElvis/DATAStack)
+`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/3lvis/DATAStack)
 
 ## Components
 
 **Sync** wouldn't be possible without the help of this *fully tested* components:
 
-* [**DATAStack**](https://github.com/NSElvis/DATAStack): Core Data stack and thread safe saving
+* [**DATAStack**](https://github.com/3lvis/DATAStack): Core Data stack and thread safe saving
 
-* [**NSManagedObject-ANDYMapChanges**](https://github.com/NSElvis/NSManagedObject-ANDYMapChanges): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
+* [**DATAFilter**](https://github.com/3lvis/DATAFilter): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
 
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it's job using the paradigm "_convention over configuration_"
 

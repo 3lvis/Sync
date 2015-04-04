@@ -4,7 +4,7 @@
 
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
-#import "NSManagedObject+ANDYMapChanges.h"
+#import "DATAFilter.h"
 #import "NSString+HYPNetworking.h"
 
 @interface NSEntityDescription (Sync)
@@ -36,82 +36,86 @@
 
 @implementation Sync
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+  inEntityNamed:(NSString *)entityName
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
-    [self processChanges:changes
-         usingEntityName:entityName
-               predicate:nil
-               dataStack:dataStack
-              completion:completion];
+    [self changes:changes
+    inEntityNamed:entityName
+        predicate:nil
+        dataStack:dataStack
+       completion:completion];
 }
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-             predicate:(NSPredicate *)predicate
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+  inEntityNamed:(NSString *)entityName
+      predicate:(NSPredicate *)predicate
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
-        [self processChanges:changes
-             usingEntityName:entityName
-                   predicate:predicate
-                      parent:nil
-                   inContext:backgroundContext
-                   dataStack:dataStack
-                  completion:completion];
+        [self changes:changes
+        inEntityNamed:entityName
+            predicate:predicate
+               parent:nil
+            inContext:backgroundContext
+            dataStack:dataStack
+           completion:completion];
     }];
 }
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-                parent:(NSManagedObject *)parent
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+  inEntityNamed:(NSString *)entityName
+         parent:(NSManagedObject *)parent
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
         NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
-        [self processChanges:changes
-             usingEntityName:entityName
-                   predicate:predicate
-                      parent:safeParent
-                   inContext:backgroundContext
-                   dataStack:dataStack
-                  completion:completion];
+        [self changes:changes
+        inEntityNamed:entityName
+            predicate:predicate
+               parent:safeParent
+            inContext:backgroundContext
+            dataStack:dataStack
+           completion:completion];
     }];
 }
 
-+ (void)processChanges:(NSArray *)changes
-       usingEntityName:(NSString *)entityName
-             predicate:(NSPredicate *)predicate
-                parent:(NSManagedObject *)parent
-             inContext:(NSManagedObjectContext *)context
-             dataStack:(DATAStack *)dataStack
-            completion:(void (^)(NSError *error))completion
++ (void)changes:(NSArray *)changes
+  inEntityNamed:(NSString *)entityName
+      predicate:(NSPredicate *)predicate
+         parent:(NSManagedObject *)parent
+      inContext:(NSManagedObjectContext *)context
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion
 {
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
 
-    [NSManagedObject andy_mapChanges:changes
-                            localKey:[entity sync_localKey]
-                           remoteKey:[entity sync_remoteKey]
-                      usingPredicate:predicate
-                           inContext:context
-                       forEntityName:entityName
-                            inserted:^(NSDictionary *objectDict) {
-                                NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                                                                         inManagedObjectContext:context];
-                                [created hyp_fillWithDictionary:objectDict];
-                                [created sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-                            } updated:^(NSDictionary *objectDict, NSManagedObject *object) {
-                                [object hyp_fillWithDictionary:objectDict];
-                                [object sync_processRelationshipsUsingDictionary:objectDict andParent:parent dataStack:dataStack];
-                            }];
+    [DATAFilter changes:changes
+          inEntityNamed:entityName
+               localKey:[entity sync_localKey]
+              remoteKey:[entity sync_remoteKey]
+                context:context
+              predicate:predicate
+               inserted:^(NSDictionary *objectJSON) {
+                   NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                                                            inManagedObjectContext:context];
+                   [created hyp_fillWithDictionary:objectJSON];
+                   [created sync_processRelationshipsUsingDictionary:objectJSON
+                                                           andParent:parent
+                                                           dataStack:dataStack];
+               } updated:^(NSDictionary *objectJSON, NSManagedObject *updatedObject) {
+                   [updatedObject hyp_fillWithDictionary:objectJSON];
+                   [updatedObject sync_processRelationshipsUsingDictionary:objectJSON
+                                                                 andParent:parent
+                                                                 dataStack:dataStack];
+               }];
 
     NSError *error = nil;
     [context save:&error];
@@ -131,10 +135,12 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     NSString *localKey = [entity sync_localKey];
     request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
-
     NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) NSLog(@"parentError: %@", error);
-    return [objects firstObject];
+    if (error) {
+        NSLog(@"parentError: %@", error);
+    }
+
+    return objects.firstObject;
 }
 
 @end
@@ -189,9 +195,7 @@
                              dataStack:(DATAStack *)dataStack
 {
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
-    
     NSString *relationshipName = (relationshipKey) ?: relationship.name;
-
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *parentEntityName = parent.entity.name;
     NSString *inverseEntityName = relationship.inverseRelationship.name;
@@ -227,21 +231,23 @@
         childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
     }
 
-    [Sync processChanges:childs
-         usingEntityName:childEntityName
-               predicate:childPredicate
-                  parent:self
-               inContext:self.managedObjectContext
-               dataStack:dataStack
-              completion:nil];
+    [Sync changes:childs
+    inEntityNamed:childEntityName
+        predicate:childPredicate
+           parent:self
+        inContext:self.managedObjectContext
+        dataStack:dataStack
+       completion:nil];
 }
 
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
                       usingDictionary:(NSDictionary *)objectDict
 {
+    NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+    NSString *relationshipName = (relationshipKey) ?: relationship.name;
     NSString *entityName = relationship.destinationEntity.name;
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
-    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationship.name];
+    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationshipName];
     if (!filteredObjectDict) return;
 
     NSString *remoteKey = [entity sync_remoteKey];
