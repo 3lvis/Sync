@@ -5,7 +5,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var initialViewController: ViewController!
     var dataStack: DATAStack? {
         get {
             return DATAStack(modelName: "AppNet_Swift")
@@ -19,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
-        initialViewController = ViewController(dataStack: dataStack!)
-        var navigationController = UINavigationController(rootViewController: initialViewController)
+        let initialViewController = ViewController(dataStack: dataStack!)
+        let navigationController = UINavigationController(rootViewController: initialViewController)
 
         window!.rootViewController = navigationController
         window!.makeKeyAndVisible()

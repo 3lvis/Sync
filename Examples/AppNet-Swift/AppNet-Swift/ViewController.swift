@@ -5,7 +5,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
     let dataStack: DATAStack!
-    var arrayWithData: NSArray!
+    var arrayWithData: [Data] = []
 
     // MARK: Initializers
 
@@ -21,12 +21,12 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     // MARK: TableView methods
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrayWithData.count
+        return arrayWithData.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell! = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        let data: Data = self.arrayWithData[indexPath.row] as Data
+        let data: Data = self.arrayWithData[indexPath.row]
 
         cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
@@ -46,7 +46,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     // MARK: Networking methods
 
     func fetchNewData() {
-        var networking = Networking(dataStack: self.dataStack)
+        let networking = Networking(dataStack: self.dataStack)
         networking.fetchNewContent()
     }
 
@@ -55,7 +55,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     func fetchCurrentObjects() {
         let request = NSFetchRequest(entityName: "Data")
         request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-        self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil)
+        self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
 
         self.tableView.reloadData()
     }
@@ -65,14 +65,14 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.arrayWithData = NSArray()
+        self.arrayWithData = Array()
 
         self.title = "AppNet"
 
         self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
         self.tableView.allowsSelection = false
 
-        self.fetchCurrentObjects()
+        fetchCurrentObjects()
 
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)
@@ -80,7 +80,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        self.fetchNewData()
+        fetchNewData()
     }
 }
 
