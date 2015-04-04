@@ -5,7 +5,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
     let dataStack: DATAStack!
-    var arrayWithData: [Data] = []
+    var arrayWithData: [NSManagedObject] = []
 
     // MARK: Initializers
 
@@ -26,7 +26,8 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell! = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        let data: Data = self.arrayWithData[indexPath.row]
+        println(self.arrayWithData[indexPath.row])
+        let data: Data = self.arrayWithData[indexPath.row] as Data
 
         cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
