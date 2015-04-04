@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        dataStack!.persistWithCompletion(nil)
+        dataStack.persistWithCompletion(nil)
     }
 }
 
