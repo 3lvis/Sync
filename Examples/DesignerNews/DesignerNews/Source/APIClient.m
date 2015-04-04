@@ -1,5 +1,6 @@
 #import "APIClient.h"
 #import "Sync.h"
+@import UIKit;
 
 static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json";
 
@@ -11,8 +12,10 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
 
 @implementation APIClient
 
-- (void)fetchStoriesUsingDataStack:(DATAStack *)dataStack
+- (void)fetchStoryUsingDataStack:(DATAStack *)dataStack
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:HYPBaseURL]];
     NSOperationQueue *queue = [NSOperationQueue new];
     [NSURLConnection sendAsynchronousRequest:urlRequest
@@ -30,9 +33,11 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
                                        NSLog(@"Error serializing JSON: %@", serializationError);
                                    } else {
                                        [Sync changes:[JSON valueForKey:@"stories"]
-                                       inEntityNamed:@"Stories"
+                                       inEntityNamed:@"Story"
                                            dataStack:dataStack
-                                          completion:nil];
+                                          completion:^(NSError *error) {
+                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                          }];
                                    }
                                }
                            }];
