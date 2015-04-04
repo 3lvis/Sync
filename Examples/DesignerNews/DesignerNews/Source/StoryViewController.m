@@ -6,9 +6,11 @@
 #import "DATASource.h"
 
 #import "NSString+ANDYSizes.h"
+#import "UIFont+DNStyle.h"
 
 static NSString * const CommentTableViewCellIdentifier = @"CommentTableViewCellIdentifier";
 static const CGFloat CommentTableViewCellHeight = 70.0;
+static const CGFloat CommentTableViewCellOffset = 40.0;
 
 @interface StoryViewController ()
 
@@ -56,7 +58,7 @@ static const CGFloat CommentTableViewCellHeight = 70.0;
                                        DNComment *comment,
                                        NSIndexPath *indexPath) {
         cell.textLabel.text = comment.body;
-        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        cell.textLabel.font = [UIFont commentFont];
         cell.textLabel.numberOfLines = 0;
     };
 
@@ -79,7 +81,8 @@ static const CGFloat CommentTableViewCellHeight = 70.0;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DNComment *comment = [self.dataSource.fetchedResultsController objectAtIndexPath:indexPath];
-    return [comment.body heightUsingFont:[UIFont systemFontOfSize:14.0f] andWidth:[[UIScreen mainScreen] bounds].size.width] + 20.0f;
+    return [comment.body heightUsingFont:[UIFont commentFont]
+                                andWidth:[[UIScreen mainScreen] bounds].size.width] + CommentTableViewCellOffset;
 }
 
 @end
