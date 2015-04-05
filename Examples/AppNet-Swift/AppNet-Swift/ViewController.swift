@@ -29,12 +29,8 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
 
     self.items = Array()
+
     fetchCurrentObjects()
-  }
-
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(true)
-
     fetchNewData()
   }
 
