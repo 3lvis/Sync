@@ -6,12 +6,13 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
   let dataStack: DATAStack!
   var networking: Networking!
-  var arrayWithData = [Data]()
+  var items = [Data]()
 
   // MARK: Initializers
 
   required init(dataStack: DATAStack) {
     super.init(nibName: nil, bundle: nil);
+
     self.dataStack = dataStack
   }
 
@@ -24,30 +25,29 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.arrayWithData = Array()
-
     self.title = "AppNet"
-
     self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
     self.tableView.allowsSelection = false
 
+    self.items = Array()
     fetchCurrentObjects()
   }
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(true)
+
     fetchNewData()
   }
 
   // MARK: TableView methods
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return arrayWithData.count
+    return items.count
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     var cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-    let data = self.arrayWithData[indexPath.row]
+    let data = self.items[indexPath.row]
 
     cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
@@ -72,7 +72,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
   func fetchCurrentObjects() {
     let request = NSFetchRequest(entityName: "Data")
     request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-    self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
+    self.items = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
 
     tableView.reloadData()
   }
