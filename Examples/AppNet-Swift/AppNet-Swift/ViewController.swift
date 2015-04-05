@@ -61,8 +61,6 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     return cell
   }
 
-  // MARK: Notification
-
   // MARK: Networking methods
 
   func fetchNewData() {
