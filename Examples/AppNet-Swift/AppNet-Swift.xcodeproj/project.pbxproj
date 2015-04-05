@@ -141,7 +141,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
-				ORGANIZATIONNAME = "Ramon Gilabert";
+				ORGANIZATIONNAME = "Hyper Interaktiv AS";
 				TargetAttributes = {
 					F6691BA71AD02AE7009D6BA5 = {
 						CreatedOnToolsVersion = 6.2;
