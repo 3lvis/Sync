@@ -5,6 +5,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
   let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
   let dataStack: DATAStack!
+  var networking: Networking!
   var arrayWithData = [Data]()
 
   // MARK: Initializers
@@ -32,8 +33,8 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
       fetchCurrentObjects()
 
-      let notificationCenter = NSNotificationCenter.defaultCenter()
-      notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)
+      //let notificationCenter = NSNotificationCenter.defaultCenter()
+      //notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)
   }
 
   override func viewDidAppear(animated: Bool) {
@@ -69,8 +70,8 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
   // MARK: Networking methods
 
   func fetchNewData() {
-      let networking = Networking(dataStack: dataStack)
-      networking.fetchNewContent()
+      self.networking = Networking(dataStack: self.dataStack)
+      self.networking.fetchNewContent()
   }
 
   // MARK: Model methods

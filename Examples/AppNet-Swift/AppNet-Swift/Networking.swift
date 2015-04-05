@@ -27,7 +27,7 @@ class Networking: NSObject {
               let serializationJSON: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
 
               Sync.changes(serializationJSON.valueForKey("data") as NSArray, inEntityNamed: "Data", dataStack: self.dataStack, completion: { [unowned self] error in
-                  NSNotificationCenter.defaultCenter().postNotificationName(self.SYNCReloadTableNotification, object: nil)
+                  
               })
           }
       }
