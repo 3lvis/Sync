@@ -73,7 +73,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     let request = NSFetchRequest(entityName: "Data")
     request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
     self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
-      
+
     tableView.reloadData()
   }
 }
