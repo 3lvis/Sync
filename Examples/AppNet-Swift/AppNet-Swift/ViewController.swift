@@ -1,86 +1,85 @@
 import UIKit
 
 class ViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
-    let SYNCCellIdentifier = "CellID"
-    let SYNCReloadTableNotification = "SYNCReloadTableNotification"
+  let SYNCCellIdentifier = "CellID"
+  let SYNCReloadTableNotification = "SYNCReloadTableNotification"
 
-    let dataStack: DATAStack!
-    var arrayWithData = [Data]()
+  let dataStack: DATAStack!
+  var arrayWithData = [Data]()
 
-    // MARK: Initializers
+  // MARK: Initializers
 
-    required init(dataStack: DATAStack) {
-        super.init(nibName: nil, bundle: nil);
-        self.dataStack = dataStack
-    }
+  required init(dataStack: DATAStack) {
+      super.init(nibName: nil, bundle: nil);
+      self.dataStack = dataStack
+  }
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(nibName: nil, bundle: nil);
-    }
+  required init(coder aDecoder: NSCoder) {
+      super.init(nibName: nil, bundle: nil);
+  }
 
-    // MARK: View Lifecycle
+  // MARK: View Lifecycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+      super.viewDidLoad()
 
-        self.arrayWithData = Array()
+      self.arrayWithData = Array()
 
-        self.title = "AppNet"
+      self.title = "AppNet"
 
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
-        self.tableView.allowsSelection = false
+      self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
+      self.tableView.allowsSelection = false
 
-        fetchCurrentObjects()
+      fetchCurrentObjects()
 
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)
-    }
+      let notificationCenter = NSNotificationCenter.defaultCenter()
+      notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)
+  }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        fetchNewData()
-    }
+  override func viewDidAppear(animated: Bool) {
+      super.viewDidAppear(true)
+      fetchNewData()
+  }
 
-    // MARK: TableView methods
+  // MARK: TableView methods
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayWithData.count
-    }
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return arrayWithData.count
+  }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-        let data = self.arrayWithData[indexPath.row]
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      var cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
+      let data = self.arrayWithData[indexPath.row]
 
-        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
+      cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
-        cell.textLabel?.text = data.text
-        cell.textLabel?.numberOfLines = 1000
-        cell.detailTextLabel?.text = data.user.username
+      cell.textLabel?.text = data.text
+      cell.textLabel?.numberOfLines = 1000
+      cell.detailTextLabel?.text = data.user.username
 
-        return cell
-    }
+      return cell
+  }
 
-    // MARK: Notification
+  // MARK: Notification
 
-    func finishedFetchingPosts() {
-        fetchCurrentObjects()
-    }
+  func finishedFetchingPosts() {
+      fetchCurrentObjects()
+  }
 
-    // MARK: Networking methods
+  // MARK: Networking methods
 
-    func fetchNewData() {
-        let networking = Networking(dataStack: dataStack)
-        networking.fetchNewContent()
-    }
+  func fetchNewData() {
+      let networking = Networking(dataStack: dataStack)
+      networking.fetchNewContent()
+  }
 
-    // MARK: Model methods
+  // MARK: Model methods
 
-    func fetchCurrentObjects() {
-        let request = NSFetchRequest(entityName: "Data")
-        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-        self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
-        
-        tableView.reloadData()
-    }
+  func fetchCurrentObjects() {
+      let request = NSFetchRequest(entityName: "Data")
+      request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
+      self.arrayWithData = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
+      
+      tableView.reloadData()
+  }
 }
-
