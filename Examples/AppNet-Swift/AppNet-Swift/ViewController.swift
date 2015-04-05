@@ -32,9 +32,6 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     self.tableView.allowsSelection = false
 
     fetchCurrentObjects()
-
-    //let notificationCenter = NSNotificationCenter.defaultCenter()
-    //notificationCenter.addObserver(self, selector: "finishedFetchingPosts", name: SYNCReloadTableNotification, object: nil)
   }
 
   override func viewDidAppear(animated: Bool) {
