@@ -8,6 +8,7 @@ class Networking: NSObject {
 
   required init(dataStack: DATAStack) {
     self.dataStack = dataStack
+
     super.init()
   }
 
@@ -15,6 +16,7 @@ class Networking: NSObject {
     let urlAppNet = NSURL(string: SYNCAppNetURL)
     let request = NSURLRequest(URL: urlAppNet!)
     let operationQueue = NSOperationQueue()
+
     NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { (_, data, error) in
       if error != nil {
         let alertController = UIAlertController(title: "Ooops!", message: "There was a connection error. \(error)", preferredStyle: .Alert)
