@@ -52,7 +52,7 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
     cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
 
     cell.textLabel?.text = data.text
-    cell.textLabel?.numberOfLines = 1000
+    cell.textLabel?.numberOfLines = 0
     cell.detailTextLabel?.text = data.user.username
 
     return cell
