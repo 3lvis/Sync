@@ -27,7 +27,6 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
 
     self.title = "AppNet"
     self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
-    self.tableView.allowsSelection = false
 
     self.items = Array()
     fetchCurrentObjects()
