@@ -12,7 +12,6 @@
 		F6691BB11AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6691BAF1AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodeld */; };
 		F6691BB31AD02AE7009D6BA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BB21AD02AE7009D6BA5 /* ViewController.swift */; };
 		F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB71AD02AE7009D6BA5 /* Images.xcassets */; };
-		F6691BBB1AD02AE7009D6BA5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */; };
 		F6691BDD1AD032B9009D6BA5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BDC1AD032B9009D6BA5 /* Networking.swift */; };
 		F6691BE01AD05AF7009D6BA5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BDE1AD05AF7009D6BA5 /* Data.swift */; };
 		F6691BE11AD05AF7009D6BA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BDF1AD05AF7009D6BA5 /* User.swift */; };
@@ -28,7 +27,6 @@
 		F6691BB01AD02AE7009D6BA5 /* AppNet_Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppNet_Swift.xcdatamodel; sourceTree = "<group>"; };
 		F6691BB21AD02AE7009D6BA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F6691BB71AD02AE7009D6BA5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F6691BBA1AD02AE7009D6BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SYNCHeader-Bridge.h"; sourceTree = "<group>"; };
 		F6691BDC1AD032B9009D6BA5 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F6691BDE1AD05AF7009D6BA5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 				F6691BDC1AD032B9009D6BA5 /* Networking.swift */,
 				F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */,
 				F6691BB71AD02AE7009D6BA5 /* Images.xcassets */,
-				F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */,
 				F6691BD71AD03249009D6BA5 /* Model */,
 				F6691BAB1AD02AE7009D6BA5 /* Supporting Files */,
 			);
@@ -174,7 +171,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6691BBB1AD02AE7009D6BA5 /* LaunchScreen.xib in Resources */,
 				F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,17 +225,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F6691BB91AD02AE7009D6BA5 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F6691BBA1AD02AE7009D6BA5 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F6691BC81AD02AE7009D6BA5 /* Debug */ = {
@@ -324,6 +309,7 @@
 			baseConfigurationReference = 41C62317393CECFF3077F022 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "AppNet-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -336,6 +322,7 @@
 			baseConfigurationReference = CD24A4BBF7E79A92807B34F7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "AppNet-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
