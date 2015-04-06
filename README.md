@@ -1,4 +1,4 @@
-![Hyper Sync™](https://github.com/hyperoslo/Sync/blob/master/Images/logo-v2.png)
+![Hyper Sync™](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/logo-v2.png)
 
 [![CI Status](http://img.shields.io/travis/hyperoslo/Sync.svg?style=flat)](https://travis-ci.org/hyperoslo/Sync)
 [![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
@@ -70,8 +70,13 @@ inEntityNamed:@"User"
 
 ## More Examples
 
-* [App.Net client (Swift)](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet-Swift)
-* [Designer News client (Objective-C)](https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews)
+<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet-Swift">
+  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v2.png" />
+</a>
+
+<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews">
+  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v2.png" />
+</a>
 
 ## Getting Started
 
