@@ -31,7 +31,7 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 
 #### Model
 
-![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/coredata-model-v4.png)
+![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/coredata-model-v5.png)
 
 #### JSON
 
@@ -75,7 +75,7 @@ inEntityNamed:@"User"
 </a>
 
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews">
-  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v2.png" />
+  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v3.png" />
 </a>
 
 ## Getting Started
