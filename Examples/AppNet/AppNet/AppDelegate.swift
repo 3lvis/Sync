@@ -5,7 +5,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  lazy var dataStack: DATAStack = DATAStack(modelName: "AppNet_Swift")
+  lazy var dataStack: DATAStack = DATAStack()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
