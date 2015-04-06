@@ -90,7 +90,7 @@ pod 'Sync'
 
 ## Requisites
 
-### DATAStack
+### Core Data Stack
 
 Replace your Core Data stack with [an instance of DATAStack](https://github.com/3lvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19).
 
@@ -106,7 +106,13 @@ Then add this to your App Delegate so everything gets persisted when you quit th
 }
 ```
 
-### NSManagedObject-HYPPropertyMapper
+### Primary key
+
+By default Sync uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
+
+![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v2.png)
+
+### Attribute mapping
 
 Your Core Data entities should match your backend models but in `camelCase`. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
 
@@ -117,7 +123,7 @@ There are two exceptions to this rule:
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
-![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-remote-key-v2.png)
+![Custom remote key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-remote-key-v2.png)
 
 ### Networking
 
