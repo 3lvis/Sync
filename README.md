@@ -82,8 +82,13 @@ pod 'Sync'
 
 ### DATAStack
 
-Replace your Core Data stack with [an instance of DATAStack](https://github.com/3lvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19):
+Replace your Core Data stack with [an instance of DATAStack](https://github.com/3lvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19).
 
+```objc
+self.dataStack = [[DATAStack alloc] initWithModelName:@"Demo"];
+```
+
+Then add this to your App Delegate so everything gets persisted when you quit the app.
 ```objc
 - (void)applicationWillTerminate:(UIApplication *)application
 {
@@ -93,9 +98,9 @@ Replace your Core Data stack with [an instance of DATAStack](https://github.com/
 
 ### NSManagedObject-HYPPropertyMapper
 
-Your Core Data entities should match your backend models. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
+Your Core Data entities should match your backend models but in `camelCase`. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
 
-There's two exceptions to this rule:
+There are two exceptions to this rule:
 
 * `id`s should match `remoteID`
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
