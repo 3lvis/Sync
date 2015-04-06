@@ -117,7 +117,7 @@ There are two exceptions to this rule:
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
-![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
+![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-remote-key-v2.png)
 
 ### Networking
 
