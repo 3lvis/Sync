@@ -70,7 +70,7 @@ inEntityNamed:@"User"
 
 ## More Examples
 
-<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet-Swift">
+<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v2.png" />
 </a>
 
