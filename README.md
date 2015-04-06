@@ -31,7 +31,7 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 
 #### Model
 
-![Model](https://github.com/hyperoslo/Sync/blob/master/Images/coredata-model.png)
+![Model](https://github.com/hyperoslo/Sync/blob/master/Images/coredata-model-v2.png)
 
 #### JSON
 
