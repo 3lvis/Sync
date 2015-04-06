@@ -1,6 +1,6 @@
 ## JSON
 
-[JSON Source](https://api.app.net/posts/stream/global)
+[Source](https://api.app.net/posts/stream/global)
 
 ```json
 {
