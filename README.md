@@ -115,6 +115,10 @@ There are two exceptions to this rule:
 * `id`s should match `remoteID`
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
 
+If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
+
+![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
+
 ### Networking
 
 You are free to use any networking library.
