@@ -7,6 +7,9 @@
 #import "DATAFilter.h"
 #import "NSString+HYPNetworking.h"
 
+static NSString * const SyncDefaultLocalPrimaryKey = @"remoteID";
+static NSString * const SyncDefaultRemotePrimaryKey = @"id";
+
 @interface NSEntityDescription (Sync)
 
 - (NSString *)sync_remoteKey;
@@ -295,7 +298,7 @@
     }];
 
     if (!localKey) {
-        localKey = @"remoteID";
+        localKey = SyncDefaultLocalPrimaryKey;
     }
 
     return localKey;
@@ -305,8 +308,8 @@
 {
     NSString *remoteKey;
     NSString *localKey = [self sync_localKey];
-    if ([localKey isEqualToString:@"remoteID"]) {
-        remoteKey = @"id";
+    if ([localKey isEqualToString:SyncDefaultLocalPrimaryKey]) {
+        remoteKey = SyncDefaultRemotePrimaryKey;
     } else {
         remoteKey = [localKey hyp_remoteString];
     }
