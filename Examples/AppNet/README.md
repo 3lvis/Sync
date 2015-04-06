@@ -1,3 +1,16 @@
+## Sync
+
+```swift
+Sync.changes(
+    json["data"] as Array,
+    inEntityNamed: "Data",
+    dataStack: self.dataStack,
+    completion: { error in
+        completion()
+    }
+)
+```
+
 ## Model
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/appnet-model.png)
@@ -35,15 +48,3 @@
 }
 ```
 
-## Sync
-
-```swift
-Sync.changes(
-    json["data"] as Array,
-    inEntityNamed: "Data",
-    dataStack: self.dataStack,
-    completion: { error in
-        completion()
-    }
-)
-```
