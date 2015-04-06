@@ -1,4 +1,4 @@
-![Hyper Sync™](https://github.com/hyperoslo/Sync/blob/master/Images/logo.png)
+![Hyper Sync™](https://github.com/hyperoslo/Sync/blob/master/Images/logo-v2.png)
 
 [![CI Status](http://img.shields.io/travis/hyperoslo/Sync.svg?style=flat)](https://travis-ci.org/hyperoslo/Sync)
 [![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
