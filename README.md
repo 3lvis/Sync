@@ -70,7 +70,6 @@ inEntityNamed:@"User"
 
 ## More Examples
 
-* [App.Net client (Objective-C)](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet)
 * [App.Net client (Swift)](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet-Swift)
 * [Designer News client (Objective-C)](https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews)
 
