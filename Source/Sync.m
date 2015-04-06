@@ -95,7 +95,8 @@
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                              inManagedObjectContext:context];
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
@@ -119,6 +120,7 @@
 
     NSError *error = nil;
     [context save:&error];
+
     if (error) {
         NSLog(@"Sync (error while saving %@): %@", entityName, [error description]);
     }
@@ -134,7 +136,8 @@
                               entityName:(NSString *)entityName
                                 remoteID:(id)remoteID
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                              inManagedObjectContext:context];
     NSError *error = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     NSString *localKey = [entity sync_localKey];
@@ -153,11 +156,14 @@
 
 - (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name
+                                              inManagedObjectContext:context];
     NSString *localKey = [entity sync_localKey];
     NSString *remoteID = [self valueForKey:localKey];
 
-    return [Sync safeObjectInContext:context entityName:self.entity.name remoteID:remoteID];
+    return [Sync safeObjectInContext:context
+                          entityName:self.entity.name
+                            remoteID:remoteID];
 }
 
 - (NSArray *)sync_relationships
@@ -182,12 +188,16 @@
 
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
-            [self sync_processToManyRelationship:relationship usingDictionary:objectDict andParent:parent dataStack:dataStack];
+            [self sync_processToManyRelationship:relationship
+                                 usingDictionary:objectDict
+                                       andParent:parent dataStack:dataStack];
         } else {
             if (parent && [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
-                [self setValue:parent forKey:relationship.name];
+                [self setValue:parent
+                        forKey:relationship.name];
             } else {
-                [self sync_processToOneRelationship:relationship usingDictionary:objectDict];
+                [self sync_processToOneRelationship:relationship
+                                    usingDictionary:objectDict];
             }
         }
     }
@@ -204,9 +214,9 @@
     NSString *parentEntityName = parent.entity.name;
     NSString *inverseEntityName = relationship.inverseRelationship.name;
     BOOL inverseIsToMany = relationship.inverseRelationship.isToMany;
-    NSArray *childs = [objectDict andy_valueForKey:relationshipName];
+    NSArray *children = [objectDict andy_valueForKey:relationshipName];
 
-    if (!childs) {
+    if (!children) {
         BOOL hasValidManyToManyRelationship = (parent &&
                                                inverseIsToMany &&
                                                [parentEntityName isEqualToString:childEntityName]);
@@ -216,32 +226,32 @@
             [self setValue:relatedObjects forKey:relationshipName];
         }
 
-        return;
-    }
-
-    NSPredicate *childPredicate;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:childEntityName inManagedObjectContext:self.managedObjectContext];
-
-    if (inverseIsToMany) {
-        NSString *destinationRemoteKey = [entity sync_remoteKey];
-        NSArray *childIDs = [childs valueForKey:destinationRemoteKey];
-        NSString *destinationLocalKey = [entity sync_localKey];
-        if (childIDs.count == 1) {
-            childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationLocalKey, [[childs valueForKey:destinationRemoteKey] firstObject]];
-        } else {
-            childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationshipName, destinationLocalKey, [childs valueForKey:destinationRemoteKey]];
-        }
     } else {
-        childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
-    }
+        NSPredicate *childPredicate;
+        NSEntityDescription *entity = [NSEntityDescription entityForName:childEntityName
+                                                  inManagedObjectContext:self.managedObjectContext];
 
-    [Sync changes:childs
-    inEntityNamed:childEntityName
-        predicate:childPredicate
-           parent:self
-        inContext:self.managedObjectContext
-        dataStack:dataStack
-       completion:nil];
+        if (inverseIsToMany) {
+            NSString *destinationRemoteKey = [entity sync_remoteKey];
+            NSArray *childIDs = [children valueForKey:destinationRemoteKey];
+            NSString *destinationLocalKey = [entity sync_localKey];
+            if (childIDs.count == 1) {
+                childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationLocalKey, [[children valueForKey:destinationRemoteKey] firstObject]];
+            } else {
+                childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationshipName, destinationLocalKey, [children valueForKey:destinationRemoteKey]];
+            }
+        } else {
+            childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
+        }
+
+        [Sync changes:children
+        inEntityNamed:childEntityName
+            predicate:childPredicate
+               parent:self
+            inContext:self.managedObjectContext
+            dataStack:dataStack
+           completion:nil];
+    }
 }
 
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
@@ -250,23 +260,25 @@
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: relationship.name;
     NSString *entityName = relationship.destinationEntity.name;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                              inManagedObjectContext:self.managedObjectContext];
     NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationshipName];
-    if (!filteredObjectDict) return;
+    if (filteredObjectDict) {
+        NSString *remoteKey = [entity sync_remoteKey];
+        NSManagedObject *object = [Sync safeObjectInContext:self.managedObjectContext
+                                                 entityName:entityName
+                                                   remoteID:[filteredObjectDict andy_valueForKey:remoteKey]];
+        if (object) {
+            [object hyp_fillWithDictionary:filteredObjectDict];
+        } else {
+            object = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                                   inManagedObjectContext:self.managedObjectContext];
+            [object hyp_fillWithDictionary:filteredObjectDict];
+        }
 
-    NSString *remoteKey = [entity sync_remoteKey];
-    NSManagedObject *object = [Sync safeObjectInContext:self.managedObjectContext
-                                             entityName:entityName
-                                               remoteID:[filteredObjectDict andy_valueForKey:remoteKey]];
-    if (object) {
-        [object hyp_fillWithDictionary:filteredObjectDict];
-    } else {
-        object = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                               inManagedObjectContext:self.managedObjectContext];
-        [object hyp_fillWithDictionary:filteredObjectDict];
+        [self setValue:object
+                forKey:relationship.name];
     }
-
-    [self setValue:object forKey:relationship.name];
 }
 
 @end
