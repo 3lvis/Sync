@@ -1,3 +1,7 @@
+## App
+
+![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/DesignerNews/Images/app.png)
+
 ## JSON
 
 [Source](https://news.layervault.com/?format=json)
@@ -31,7 +35,7 @@
 
 ## Model
 
-![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/DesignerNews/Images/designer-news-model.png)
+![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/DesignerNews/Images/model.png)
 
 ## Sync
 
