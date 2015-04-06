@@ -119,10 +119,14 @@
 
     NSError *error = nil;
     [context save:&error];
-    if (error) NSLog(@"Sync (error while saving %@): %@", entityName, [error description]);
+    if (error) {
+        NSLog(@"Sync (error while saving %@): %@", entityName, [error description]);
+    }
 
     [dataStack persistWithCompletion:^{
-        if (completion) completion(error);
+        if (completion) {
+            completion(error);
+        }
     }];
 }
 
