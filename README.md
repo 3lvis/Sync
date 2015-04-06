@@ -62,7 +62,9 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 inEntityNamed:@"User"
     dataStack:dataStack
    completion:^{
-       // Objects saved in Core Data
+       // New objects have been inserted
+       // Existing objects have been updated
+       // And not found objects have been deleted
     }];
 ```
 
