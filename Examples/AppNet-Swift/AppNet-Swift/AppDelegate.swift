@@ -8,17 +8,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   lazy var dataStack: DATAStack = DATAStack(modelName: "AppNet_Swift")
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-    UINavigationBar.appearance().barTintColor = UIColor(red:0.83, green:0.43, blue:0.36, alpha:1)
-    UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : UIFont(name: "AvenirNext-DemiBold", size: 20)!, NSForegroundColorAttributeName : UIColor.whiteColor()]
+    application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
 
-    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    let appearance = UINavigationBar.appearance()
+    appearance.barTintColor = UIColor(red:0.83, green:0.43, blue:0.36, alpha:1)
+    appearance.titleTextAttributes = [NSFontAttributeName : UIFont(name: "AvenirNext-DemiBold", size: 20)!,
+                                      NSForegroundColorAttributeName : UIColor.whiteColor()]
+
+    window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
     let initialViewController = ViewController(dataStack: dataStack)
-    let navigationController = UINavigationController(rootViewController: initialViewController)
 
-    self.window?.rootViewController = navigationController
-    self.window?.makeKeyAndVisible()
+    window?.rootViewController = UINavigationController(rootViewController: initialViewController)
+    window?.makeKeyAndVisible()
 
     return true
   }

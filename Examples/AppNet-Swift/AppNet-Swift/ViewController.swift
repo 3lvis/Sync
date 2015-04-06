@@ -1,23 +1,24 @@
 import UIKit
 
-class ViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
-  let SYNCCellIdentifier = "CellID"
-  let SYNCReloadTableNotification = "SYNCReloadTableNotification"
+class ViewController: UITableViewController {
+    struct Constanst {
+      static let SYNCCellIdentifier = "CellID"
+      static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
+  }
 
-  let dataStack: DATAStack!
-  var networking: Networking!
+  let dataStack: DATAStack
+  lazy var networking: Networking = { [unowned self] in Networking(dataStack: self.dataStack) }()
   var items = [Data]()
 
   // MARK: Initializers
 
   required init(dataStack: DATAStack) {
-    super.init(nibName: nil, bundle: nil);
-
     self.dataStack = dataStack
+    super.init(nibName: nil, bundle: nil);
   }
 
   required init(coder aDecoder: NSCoder) {
-    super.init(nibName: nil, bundle: nil);
+    assertionFailure("Must use init(dataStack: DATAStack) ");
   }
 
   // MARK: View Lifecycle
@@ -25,39 +26,17 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.title = "AppNet"
-    self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: SYNCCellIdentifier)
-
-    self.items = Array()
+    title = "AppNet"
+    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: Constanst.SYNCCellIdentifier)
 
     fetchCurrentObjects()
     fetchNewData()
   }
 
-  // MARK: TableView methods
-
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return items.count
-  }
-
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = self.tableView.dequeueReusableCellWithIdentifier(SYNCCellIdentifier) as UITableViewCell
-    let data = self.items[indexPath.row]
-
-    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: SYNCCellIdentifier)
-
-    cell.textLabel?.text = data.text
-    cell.textLabel?.numberOfLines = 0
-    cell.detailTextLabel?.text = data.user.username
-
-    return cell
-  }
-
   // MARK: Networking methods
 
   func fetchNewData() {
-    self.networking = Networking(dataStack: self.dataStack)
-    self.networking.fetchNewContent { () -> Void in
+    networking.fetchNewContent { [unowned self] in
       self.fetchCurrentObjects()
     }
   }
@@ -67,8 +46,28 @@ class ViewController: UITableViewController, UITableViewDelegate, UITableViewDat
   func fetchCurrentObjects() {
     let request = NSFetchRequest(entityName: "Data")
     request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-    self.items = self.dataStack.mainContext.executeFetchRequest(request, error: nil) as Array
+    items = dataStack.mainContext.executeFetchRequest(request, error: nil) as [Data]
 
     tableView.reloadData()
+  }
+}
+
+extension ViewController: UITableViewDataSource {
+
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return items.count
+  }
+
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier) as UITableViewCell
+    let data = self.items[indexPath.row]
+
+    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constanst.SYNCCellIdentifier)
+
+    cell.textLabel?.text = data.text
+    cell.textLabel?.numberOfLines = 0
+    cell.detailTextLabel?.text = data.user.username
+
+    return cell
   }
 }
