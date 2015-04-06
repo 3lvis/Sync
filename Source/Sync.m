@@ -171,7 +171,6 @@
     NSMutableArray *relationships = [NSMutableArray array];
 
     for (id propertyDescription in [self.entity properties]) {
-
         if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             [relationships addObject:propertyDescription];
         }
@@ -191,14 +190,13 @@
             [self sync_processToManyRelationship:relationship
                                  usingDictionary:objectDict
                                        andParent:parent dataStack:dataStack];
+        } else if (parent &&
+                   [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
+            [self setValue:parent
+                    forKey:relationship.name];
         } else {
-            if (parent && [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
-                [self setValue:parent
-                        forKey:relationship.name];
-            } else {
-                [self sync_processToOneRelationship:relationship
-                                    usingDictionary:objectDict];
-            }
+            [self sync_processToOneRelationship:relationship
+                                usingDictionary:objectDict];
         }
     }
 }
@@ -208,25 +206,18 @@
                              andParent:(NSManagedObject *)parent
                              dataStack:(DATAStack *)dataStack
 {
-    NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+    NSString *relationshipKey = relationship.userInfo[SyncCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: relationship.name;
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *parentEntityName = parent.entity.name;
     NSString *inverseEntityName = relationship.inverseRelationship.name;
     BOOL inverseIsToMany = relationship.inverseRelationship.isToMany;
+    BOOL hasValidManyToManyRelationship = (parent &&
+                                           inverseIsToMany &&
+                                           [parentEntityName isEqualToString:childEntityName]);
     NSArray *children = [objectDict andy_valueForKey:relationshipName];
 
-    if (!children) {
-        BOOL hasValidManyToManyRelationship = (parent &&
-                                               inverseIsToMany &&
-                                               [parentEntityName isEqualToString:childEntityName]);
-        if (hasValidManyToManyRelationship) {
-            NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationshipName];
-            [relatedObjects addObject:parent];
-            [self setValue:relatedObjects forKey:relationshipName];
-        }
-
-    } else {
+    if (children) {
         NSPredicate *childPredicate;
         NSEntityDescription *entity = [NSEntityDescription entityForName:childEntityName
                                                   inManagedObjectContext:self.managedObjectContext];
@@ -251,6 +242,10 @@
             inContext:self.managedObjectContext
             dataStack:dataStack
            completion:nil];
+    } else if (hasValidManyToManyRelationship) {
+        NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationshipName];
+        [relatedObjects addObject:parent];
+        [self setValue:relatedObjects forKey:relationshipName];
     }
 }
 
@@ -288,7 +283,9 @@
 - (NSString *)sync_localKey
 {
     __block NSString *localKey;
-    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSAttributeDescription *attributeDescription, BOOL *stop) {
+    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key,
+                                                               NSAttributeDescription *attributeDescription,
+                                                               BOOL *stop) {
         NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
         BOOL hasCustomPrimaryKey = (isPrimaryKey &&
                                     [isPrimaryKey isEqualToString:@"YES"]);
