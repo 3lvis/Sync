@@ -13,19 +13,11 @@
       "created_at":"2015-04-06T15:07:06Z",
       "text":"Hello World!",
       "id":"57030547",
-      "canonical_url":"https://alpha.app.net/albarjeel1/post/57030547",
-      "machine_only":false,
       "user":{
         "username":"albarjeel1",
-        "locale":"en_US",
         "created_at":"2015-03-28T13:01:31Z",
-        "canonical_url":"https://alpha.app.net/albarjeel1",
-        "timezone":"Asia/Dubai",
-        "id":"347326",
-        "name":"albarjeel"
-      },
-      "thread_id":"57030547",
-      "pagination_id":"57030547"
+        "id":"347326"
+      }
     }
   ]
 }
