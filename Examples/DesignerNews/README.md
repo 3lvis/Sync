@@ -4,22 +4,26 @@
 
 ```json
 {
-  "meta":{
-    "min_id":"57030525",
-    "code":200,
-    "max_id":"57030547",
-    "more":true
-  },
-  "data":[
+  "stories":[
     {
-      "created_at":"2015-04-06T15:07:06Z",
-      "text":"Hello World!",
-      "id":"57030547",
-      "user":{
-        "username":"albarjeel1",
-        "created_at":"2015-03-28T13:01:31Z",
-        "id":"347326"
-      }
+      "id":47333,
+      "title":"Site Design: Aquest",
+      "vote_count":6,
+      "created_at":"2015-04-06T13:16:36Z",
+      "num_comments":6,
+      "submitter_display_name":"Chris A.",
+      "comments":[
+        {
+          "body":"Beautiful.",
+          "created_at":"2015-04-06T13:45:20Z",
+          "depth":0,
+          "user_display_name":"Sam M.",
+          "upvotes_count":0,
+          "comments":[
+
+          ]
+        }
+      ]
     }
   ]
 }
