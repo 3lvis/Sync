@@ -92,7 +92,7 @@ pod 'Sync'
 
 ### Core Data Stack
 
-Replace your Core Data stack with [an instance of DATAStack](https://github.com/3lvis/DATAStack/blob/master/Demo/Demo/AppDelegate/ANDYAppDelegate.m#L19).
+Replace your Core Data stack with an instance of [DATAStack](https://github.com/3lvis/DATAStack).
 
 ```objc
 self.dataStack = [[DATAStack alloc] initWithModelName:@"Demo"];
@@ -114,7 +114,7 @@ By default Sync uses `id` from the JSON and `remoteID` from Core Data as the pri
 
 ### Attribute mapping
 
-Your Core Data entities should match your backend models but in `camelCase`. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
+Your attributes should match their JSON counterparts in `camelCase` notation instead of `snake_case`. For example `first_name` in the JSON maps to `firstName` in Core Data and `address` in the JSON maps to `address` in Core Data.
 
 There are two exceptions to this rule:
 
