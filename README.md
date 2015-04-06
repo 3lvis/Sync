@@ -27,7 +27,7 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 * `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
 * `dataStack`: Your [DATAStack](https://github.com/3lvis/DATAStack)
 
-## Real World Example
+## Example
 
 #### Model
 
@@ -62,13 +62,9 @@ Sync eases your every day job of parsing a `JSON` response and getting it into C
 inEntityNamed:@"User"
     dataStack:dataStack
    completion:^{
-       // Objects saved in Core Data, do something
+       // Objects saved in Core Data
     }];
 ```
-
-[See another example here](https://github.com/hyperoslo/Sync/blob/master/Examples/AppNet/Example/Networking.m#L41).
-
-**PROFIT!**
 
 ## Getting Started
 
@@ -79,6 +75,8 @@ inEntityNamed:@"User"
 ```ruby
 pod 'Sync'
 ```
+
+## Requisites
 
 ### DATAStack
 
@@ -95,21 +93,18 @@ Replace your Core Data stack with [an instance of DATAStack](https://github.com/
 
 Your Core Data entities should match your backend models. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
 
-There are only two exceptions to this rule:
+There's two exceptions to this rule:
 
 * `id`s should match `remoteID`
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
 
 ### Networking
 
-You are free to use any networking library or NSURLConnection.
+You are free to use any networking library.
 
-### Finally
+### Supported iOS version
 
-You are ready to go, check the [example project that uses App.net](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet) for how to use Sync.
-
-## Requirements
-
-`iOS 7 or above`, [`DATAStack Core Data stack`](https://github.com/3lvis/DATAStack)
+`iOS 7 or above`
 
 ## Components
 
@@ -117,7 +112,7 @@ You are ready to go, check the [example project that uses App.net](https://githu
 
 * [**DATAStack**](https://github.com/3lvis/DATAStack): Core Data stack and thread safe saving
 
-* [**DATAFilter**](https://github.com/3lvis/DATAFilter): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, ANDYMapChanges uses your remote keys (such as id) for this
+* [**DATAFilter**](https://github.com/3lvis/DATAFilter): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
 
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it's job using the paradigm "_convention over configuration_"
 
