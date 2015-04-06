@@ -1,6 +1,8 @@
 ## JSON
 
 ```json
+// https://api.app.net/posts/stream/global
+
 {
   "meta":{
     "min_id":"57030525",
