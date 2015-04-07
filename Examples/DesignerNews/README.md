@@ -40,7 +40,7 @@
 ## Sync
 
 ```objc
-[Sync changes:[JSON valueForKey:@"stories"]
+[Sync changes:JSON[@"stories"]
 inEntityNamed:@"Story"
     dataStack:dataStack
    completion:^(NSError *error) {
