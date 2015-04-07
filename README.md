@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
 [![Platform](https://img.shields.io/cocoapods/p/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
 
-Sync eases your every day job of parsing a `JSON` response and getting it into Core Data. It uses a convention over configuration paradigm to facilitate your workflow.
+**Sync** eases your every day job of parsing a `JSON` response and getting it into Core Data. It uses a convention over configuration paradigm to facilitate your workflow.
 
 * Handles operations in safe background threads
 * Thread safe saving, we handle retrieving and storing objects in the right threads
@@ -107,7 +107,7 @@ Then add this to your App Delegate so everything gets persisted when you quit th
 
 ### Primary key
 
-By default Sync uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
+By default **Sync** uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
 
 ![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v2.png)
 
@@ -144,7 +144,7 @@ You are free to use any networking library.
 
 ## Author
 
-Hyper AS, [iOS@hyper.no](mailto:iOS@hyper.no)
+Hyper Interkativ AS, [iOS@hyper.no](mailto:iOS@hyper.no), [@hyperoslo](https://twitter.com/hyperoslo)
 
 ## License
 
