@@ -1,8 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-use_frameworks!
+platform :ios, '8.0'
 
-platform :ios, '7.0'
+use_frameworks!
 
 pod 'Sync', path: "../../"
 pod 'DATASource'

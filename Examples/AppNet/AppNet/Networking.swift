@@ -1,4 +1,6 @@
 import UIKit
+import DATAStack
+import Sync
 
 class Networking {
 
@@ -29,7 +31,7 @@ class Networking {
         alertController.addAction(alertAction)
       } else {
         if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? Dictionary<String, AnyObject> {
-          Sync.changes(json["data"] as Array, inEntityNamed: "Data", dataStack: self.dataStack, completion: { error in
+          Sync.changes(json["data"] as? Array, inEntityNamed: "Data", dataStack: self.dataStack, completion: { error in
             completion()
           })
         }
@@ -43,4 +45,5 @@ func must_unwrap <T>(x: T?) -> T  {
     return x
   }
   assertionFailure("Can't unwrap optional")
+  return x!
 }

@@ -27,7 +27,6 @@
 		F6691BB01AD02AE7009D6BA5 /* AppNet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppNet.xcdatamodel; sourceTree = "<group>"; };
 		F6691BB21AD02AE7009D6BA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F6691BB71AD02AE7009D6BA5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SYNCHeader-Bridge.h"; sourceTree = "<group>"; };
 		F6691BDC1AD032B9009D6BA5 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F6691BDE1AD05AF7009D6BA5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		F6691BDF1AD05AF7009D6BA5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -86,7 +85,6 @@
 				F6691BAD1AD02AE7009D6BA5 /* AppDelegate.swift */,
 				F6691BB21AD02AE7009D6BA5 /* ViewController.swift */,
 				F6691BDC1AD032B9009D6BA5 /* Networking.swift */,
-				F6691BD01AD02B91009D6BA5 /* SYNCHeader-Bridge.h */,
 				F6691BB71AD02AE7009D6BA5 /* Images.xcassets */,
 				F6691BD71AD03249009D6BA5 /* Model */,
 				F6691BAB1AD02AE7009D6BA5 /* Supporting Files */,
@@ -329,7 +327,8 @@
 				INFOPLIST_FILE = AppNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = AppNet;
-				SWIFT_OBJC_BRIDGING_HEADER = "AppNet/SYNCHeader-Bridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -342,7 +341,8 @@
 				INFOPLIST_FILE = AppNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = AppNet;
-				SWIFT_OBJC_BRIDGING_HEADER = "AppNet/SYNCHeader-Bridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
