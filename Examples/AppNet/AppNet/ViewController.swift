@@ -28,7 +28,7 @@ class ViewController: UITableViewController {
     super.viewDidLoad()
 
     title = "AppNet"
-    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: Constanst.SYNCCellIdentifier)
+    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: Constant.SYNCCellIdentifier)
 
     fetchCurrentObjects()
     fetchNewData()
@@ -60,13 +60,13 @@ extension ViewController: UITableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier) as! UITableViewCell
+    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constant.SYNCCellIdentifier) as! UITableViewCell
     let data = self.items[indexPath.row]
 
     cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constant.SYNCCellIdentifier)
 
     cell.textLabel?.text = data.text
-    cell.textLabel?.numberOfLines = 0
+    cell.textLabel?.numberOfLines = 1
     cell.detailTextLabel?.text = data.user.username
 
     return cell
