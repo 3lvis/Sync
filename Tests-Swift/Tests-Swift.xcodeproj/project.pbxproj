@@ -79,7 +79,9 @@
 				F75C3067637267D7812290AC /* Pods */,
 				FCFB55E50E9A032690667379 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		BDD5967A1AD5905C00AF168F /* Products */ = {
 			isa = PBXGroup;
