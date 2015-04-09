@@ -14,7 +14,7 @@ private extension NSEntityDescription {
 
     for (key, attributedDescription) in self.propertiesByName {
       if let userInfo: Dictionary = attributedDescription.userInfo {
-        if let customPrimaryKey = userInfo[SyncCustomPrimaryKey] as? String {
+        if let customPrimaryKey = userInfo[CustomPrimaryKey] as? String {
           if customPrimaryKey == "YES" {
               localKey = key as? String
           }
