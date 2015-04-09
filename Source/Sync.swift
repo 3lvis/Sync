@@ -3,14 +3,16 @@ import CoreData
 
 let CustomPrimaryKey = "hyper.isPrimaryKey"
 let CustomRemoteKey = "hyper.remoteKey"
+let DefaultLocalPrimaryKey = "remoteID"
+let DefaultRemotePrimaryKey = "id"
 
 private extension NSEntityDescription {
 
-  func sync_localKey() {
+  func sync_localKey() -> String {
     var localKey: String?
 
     for (key, attributedDescription) in self.propertiesByName {
-      if let userInfo = attributedDescription.userInfo {
+      if let userInfo: Dictionary = attributedDescription.userInfo {
         if let customPrimaryKey = userInfo[SyncCustomPrimaryKey] as? String {
           if customPrimaryKey == "YES" {
               localKey = key as? String
@@ -18,6 +20,12 @@ private extension NSEntityDescription {
         }
       }
     }
+
+    if !(localKey != nil) {
+      localKey = DefaultLocalPrimaryKey
+    }
+
+    return localKey!
   }
 }
 

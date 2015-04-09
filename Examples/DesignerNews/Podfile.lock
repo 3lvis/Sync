@@ -6,16 +6,16 @@ PODS:
   - DATAStack (3.0.4):
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
-  - NSManagedObject-HYPPropertyMapper (3.0.1):
-    - NSString-HYPNetworking (~> 0.3.0)
+  - NSManagedObject-HYPPropertyMapper (3.0.2):
+    - NSString-HYPNetworking (~> 0.3.1)
   - NSObject-HYPTesting (1.2)
   - NSString-ANDYSizes (2.0)
-  - NSString-HYPNetworking (0.3.0)
+  - NSString-HYPNetworking (0.3.1)
   - Sync (1.0.0):
     - DATAFilter (~> 0.8.0)
     - DATAStack (~> 3.0.4)
     - NSDictionary-ANDYSafeValue (~> 0.3)
-    - NSManagedObject-HYPPropertyMapper (~> 3.0.1)
+    - NSManagedObject-HYPPropertyMapper (~> 3.0.2)
 
 DEPENDENCIES:
   - DATASource
