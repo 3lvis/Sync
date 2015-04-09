@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import NSString_HYPNetworking
 
 let CustomPrimaryKey = "hyper.isPrimaryKey"
 let CustomRemoteKey = "hyper.remoteKey"
@@ -27,6 +28,20 @@ private extension NSEntityDescription {
 
     return localKey!
   }
+
+  func sync_remoteKey() -> String {
+    var remoteKey: String?
+    let localKey = sync_localKey()
+
+    if localKey == remoteKey {
+      remoteKey = DefaultRemotePrimaryKey
+    } else {
+      remoteKey = localKey.hyp_remoteString()
+    }
+
+    return remoteKey!
+  }
+
 }
 
 public extension NSManagedObject {
