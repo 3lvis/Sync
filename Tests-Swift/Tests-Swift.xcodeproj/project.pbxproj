@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17E1AACE55BDBA3CFBC257E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52698776D11D66279B9C020E /* libPods.a */; };
+		8584EE54E105025E26C89A30 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC1F87E70D8E356AABB3D7D /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BDD5967F1AD5905C00AF168F /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD5967E1AD5905C00AF168F /* SyncTests.swift */; };
 		BDD596861AD5906700AF168F /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = BDD596851AD5906700AF168F /* Sync.m */; };
 		BDD596881AD5907300AF168F /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD596871AD5907300AF168F /* Sync.swift */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		52698776D11D66279B9C020E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AC1F87E70D8E356AABB3D7D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		605A984CD97A128C1CDB7E3A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B5D437FFD8ABD40317A56FD8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BDD596791AD5905C00AF168F /* SyncTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SyncTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17E1AACE55BDBA3CFBC257E5 /* libPods.a in Frameworks */,
+				8584EE54E105025E26C89A30 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +159,7 @@
 		FCFB55E50E9A032690667379 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				52698776D11D66279B9C020E /* libPods.a */,
+				2AC1F87E70D8E356AABB3D7D /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,6 +176,7 @@
 				BDD596761AD5905C00AF168F /* Frameworks */,
 				BDD596771AD5905C00AF168F /* Resources */,
 				5F50A2F4942E4509B059750E /* Copy Pods Resources */,
+				54E972F9E99F0D25A54C7D0C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,7 +193,7 @@
 		BDD5966F1AD5903900AF168F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0630;
 				TargetAttributes = {
 					BDD596781AD5905C00AF168F = {
 						CreatedOnToolsVersion = 6.2;
@@ -255,6 +256,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		54E972F9E99F0D25A54C7D0C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5F50A2F4942E4509B059750E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -291,6 +307,7 @@
 		BDD596731AD5903900AF168F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/Bridging Header.h";
 			};
 			name = Debug;
