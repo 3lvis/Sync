@@ -1,8 +1,8 @@
 import UIKit
 import CoreData
 
-let SyncCustomPrimaryKey = "hyper.isPrimaryKey"
-let SyncCustomRemoteKey = "hyper.remoteKey"
+let CustomPrimaryKey = "hyper.isPrimaryKey"
+let CustomRemoteKey = "hyper.remoteKey"
 
 private extension NSEntityDescription {
 
@@ -10,7 +10,7 @@ private extension NSEntityDescription {
         var localKey: String?
 
         for (key, attributedDescription) in self.propertiesByName {
-            if let userInfo: Dictionary = attributedDescription.userInfo {
+            if let userInfo = attributedDescription.userInfo {
                 if let customPrimaryKey = userInfo[SyncCustomPrimaryKey] as? String {
                     if customPrimaryKey == "YES" {
                         localKey = key as? String
