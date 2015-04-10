@@ -144,8 +144,7 @@ You are free to use any networking library.
 
 ## Credits
 
-[Hyper](http://hyper.no) made this. We're a digital communications agency with a passion for good code,
-and if you're using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md).
+[Hyper](http://hyper.no) made this. We're a digital communications agency with a passion for good code and delightful user experiences. If you're using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md).
 
 ## License
 
