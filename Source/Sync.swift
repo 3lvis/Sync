@@ -53,9 +53,9 @@ public extension NSManagedObject {
       inManagedObjectContext: context)
 
     let localKey = entity!.sync_localKey()
-    //    let remoteID = self.valueForKey(localKey)
-    // TODO: Implement this
-    return nil
+    let remoteID = valueForKey(localKey) as! String
+
+    return Sync.safeObjectInContext(context, entityName: self.entity.name!, remoteID: remoteID)
   }
 
   private func sync_relationships() -> [NSRelationshipDescription] {
@@ -109,11 +109,14 @@ public extension NSManagedObject {
       let inverseIsToMany: Bool = relationship.inverseRelationship!.toMany
       let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
 
-      if let children = dictionary[relationshipName] as? [NSObject] {
+      if let children = dictionary[relationshipName] as? NSDictionary {
         let childPredicate: NSPredicate
         let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
 
         if inverseIsToMany {
+          let destinationRemoteKey = entity?.sync_remoteKey()
+          let childsIDs: AnyObject? = children[destinationRemoteKey!]
+
           //        if let destinationRemoteKey = entity?.sync_remoteKey() ,
           //          childrenIDs: AnyObject? = children[destinationRemoteKey],
           //          destinationLocalKey = entity?.sync_localKey() {
