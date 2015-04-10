@@ -120,7 +120,7 @@ public extension NSManagedObject {
 
 }
 
-struct Sync {
+class Sync {
 
   func process(#changes: [AnyObject],
     inEntityNamed entityName: String,
