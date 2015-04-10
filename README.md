@@ -142,9 +142,10 @@ You are free to use any networking library.
 
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it's job using the paradigm "_convention over configuration_"
 
-## Author
+## Credits
 
-Hyper Interkativ AS, [iOS@hyper.no](mailto:iOS@hyper.no), [@hyperoslo](https://twitter.com/hyperoslo)
+[Hyper](http://hyper.no) made this. We're a digital communications agency with a passion for good code,
+and if you're using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md).
 
 ## License
 
