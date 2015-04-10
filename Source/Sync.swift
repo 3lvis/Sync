@@ -50,11 +50,11 @@ public extension NSManagedObject {
 
   private func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject? {
     let entity = NSEntityDescription.entityForName(self.entity.name!,
-        inManagedObjectContext: context)
+      inManagedObjectContext: context)
 
     let localKey = entity!.sync_localKey()
-//    let remoteID = self.valueForKey(localKey)
-// TODO: Implement this
+    //    let remoteID = self.valueForKey(localKey)
+    // TODO: Implement this
     return nil
   }
 
@@ -70,101 +70,114 @@ public extension NSManagedObject {
     return relationships
   }
 
-  func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject], andParent parent: NSManagedObject?, dataStack: DATAStack!) {
-    let relationships = self.sync_relationships()
+  func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
+    andParent parent: NSManagedObject?,
+    dataStack: DATAStack!) {
+      let relationships = self.sync_relationships()
 
-    for relationship in relationships {
-      if relationship.toMany {
-        self.sync_processToManyRelationship(relationship,
-          usingDictionary: dictionary,
-          andParent: parent!,
-          datastack: dataStack)
-      } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
-        self.setValue(parent, forKey: relationship.name)
-      } else {
-        self.sync_processToOneRelationship(relationship, usingDictionary: dictionary)
+      for relationship in relationships {
+        if relationship.toMany {
+          self.sync_processToManyRelationship(relationship,
+            usingDictionary: dictionary,
+            andParent: parent!,
+            datastack: dataStack)
+        } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
+          self.setValue(parent, forKey: relationship.name)
+        } else {
+          self.sync_processToOneRelationship(relationship,
+            usingDictionary: dictionary)
+        }
       }
-    }
   }
 
-  private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary dictionary: [NSObject : AnyObject], andParent parent: NSManagedObject!, datastack: DATAStack) {
+  private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
+    dictionary: [NSObject : AnyObject],
+    andParent parent: NSManagedObject!,
+    datastack: DATAStack) {
 
-    let relationshipName: String
-    if let userInfo = relationship.userInfo,
-      relationshipKey = userInfo[CustomRemoteKey] as? String {
-        relationshipName = relationshipKey
-    } else {
-      relationshipName = relationship.name
-    }
-
-    let childEntityName: String = relationship.destinationEntity!.name!
-    let parentEntityName: String = parent.entity.name!
-    let inverseEntityName: String = relationship.inverseRelationship!.name
-    let inverseIsToMany: Bool = relationship.inverseRelationship!.toMany
-    let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
-
-    if let children = dictionary[relationshipName] as? [NSObject] {
-      let childPredicate: NSPredicate
-      let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
-
-      if inverseIsToMany {
-//        if let destinationRemoteKey = entity?.sync_remoteKey() ,
-//          childrenIDs: AnyObject? = children[destinationRemoteKey],
-//          destinationLocalKey = entity?.sync_localKey() {
-////            if childIDs.count == 1 {
-////            }
-//        }
+      let relationshipName: String
+      if let userInfo = relationship.userInfo,
+        relationshipKey = userInfo[CustomRemoteKey] as? String {
+          relationshipName = relationshipKey
       } else {
-        // TODO: Implement this
+        relationshipName = relationship.name
       }
 
-    }
+      let childEntityName: String = relationship.destinationEntity!.name!
+      let parentEntityName: String = parent.entity.name!
+      let inverseEntityName: String = relationship.inverseRelationship!.name
+      let inverseIsToMany: Bool = relationship.inverseRelationship!.toMany
+      let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
+
+      if let children = dictionary[relationshipName] as? [NSObject] {
+        let childPredicate: NSPredicate
+        let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
+
+        if inverseIsToMany {
+          //        if let destinationRemoteKey = entity?.sync_remoteKey() ,
+          //          childrenIDs: AnyObject? = children[destinationRemoteKey],
+          //          destinationLocalKey = entity?.sync_localKey() {
+          ////            if childIDs.count == 1 {
+          ////            }
+          //        }
+        } else {
+          // TODO: Implement this
+        }
+
+      }
   }
 
-  func sync_processToOneRelationship(relationship: NSRelationshipDescription, usingDictionary dictionary: [NSObject : AnyObject]) {
-    let relationshipName: String
-    if let userInfo: Dictionary = relationship.userInfo,
-      relationshipKey = userInfo[CustomRemoteKey] as? String {
-        relationshipName = relationshipKey
-    } else {
-      relationshipName = relationship.name
-    }
-
-    let entityName = relationship.destinationEntity?.name
-    let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
-    if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
-      if let remoteKey = entity?.sync_remoteKey(),
-        remoteID = dictionary[remoteKey] as? String{
-          if let object = Sync.safeObjectInContext(self.managedObjectContext!, entityName: entityName!, remoteID: remoteID) {
-            object.hyp_fillWithDictionary(filteredObjectDictionary)
-            self.setValue(object, forKey: relationship.name)
-          } else if let object = NSEntityDescription.insertNewObjectForEntityForName(entityName!, inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
-            object.hyp_fillWithDictionary(filteredObjectDictionary)
-            self.setValue(object, forKey: relationship.name)
-          }
+  func sync_processToOneRelationship(relationship: NSRelationshipDescription,
+    usingDictionary dictionary: [NSObject : AnyObject]) {
+      let relationshipName: String
+      if let userInfo: Dictionary = relationship.userInfo,
+        relationshipKey = userInfo[CustomRemoteKey] as? String {
+          relationshipName = relationshipKey
+      } else {
+        relationshipName = relationship.name
       }
-    }
+
+      let entityName = relationship.destinationEntity?.name
+      let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
+      if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
+        if let remoteKey = entity?.sync_remoteKey(),
+          remoteID = dictionary[remoteKey] as? String {
+            if let object = Sync.safeObjectInContext(self.managedObjectContext!,
+              entityName: entityName!,
+              remoteID: remoteID) {
+                object.hyp_fillWithDictionary(filteredObjectDictionary)
+                self.setValue(object, forKey: relationship.name)
+            } else if let object = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
+              inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
+                object.hyp_fillWithDictionary(filteredObjectDictionary)
+                self.setValue(object, forKey: relationship.name)
+            }
+        }
+      }
   }
 
 }
 
 @objc(HYP) public class Sync {
 
-  static func safeObjectInContext(context: NSManagedObjectContext, entityName: String, remoteID: String) -> NSManagedObject? {
-    var error: NSError?
-    let entity = NSEntityDescription .entityForName(entityName, inManagedObjectContext: context)
-    let request = NSFetchRequest(entityName: entityName)
-    let localKey = entity?.sync_localKey()
+  static func safeObjectInContext(context: NSManagedObjectContext,
+    entityName: String,
+    remoteID: String) -> NSManagedObject? {
+      var error: NSError?
+      let entity = NSEntityDescription .entityForName(entityName,
+        inManagedObjectContext: context)
+      let request = NSFetchRequest(entityName: entityName)
+      let localKey = entity?.sync_localKey()
 
-    request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID)
+      request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID)
 
-    let objects = context.executeFetchRequest(request, error: &error)
+      let objects = context.executeFetchRequest(request, error: &error)
 
-    if (error != nil) {
-      println("parentError: \(error)")
-    }
+      if (error != nil) {
+        println("parentError: \(error)")
+      }
 
-    return objects?.first as? NSManagedObject
+      return objects?.first as? NSManagedObject
   }
 
   public func process(#changes: [AnyObject],
@@ -224,7 +237,8 @@ public extension NSManagedObject {
     inContext context: NSManagedObjectContext,
     dataStack: DATAStack,
     completion: (error: NSError) -> Void) {
-      let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)
+      let entity = NSEntityDescription.entityForName(entityName,
+        inManagedObjectContext: context)
 
       DATAFilter.changes(changes,
         inEntityNamed: entityName,
@@ -234,13 +248,18 @@ public extension NSManagedObject {
         predicate: predicate,
         inserted: {
           (JSON: [NSObject : AnyObject]!) in
-          let created: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
+          let created: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName,
+            inManagedObjectContext: context)
           created.hyp_fillWithDictionary(JSON)
-          created.sync_processRelationshipsUsingDictionary(objectDictionary: JSON, andParent: parent, dataStack: dataStack)
+          created.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
+            andParent: parent,
+            dataStack: dataStack)
         }, updated: {
           (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
           updatedObject.hyp_fillWithDictionary(JSON)
-          updatedObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON, andParent: parent, dataStack: dataStack)
+          updatedObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
+            andParent: parent,
+            dataStack: dataStack)
       })
 
       var error: NSError?
