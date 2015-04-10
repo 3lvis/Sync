@@ -24,7 +24,7 @@ private extension NSEntityDescription {
       }
     }
 
-    if !(localKey != nil) {
+    if localKey == nil {
       localKey = DefaultLocalPrimaryKey
     }
 
@@ -59,11 +59,11 @@ public extension NSManagedObject {
   }
 
   private func sync_relationships() -> [NSRelationshipDescription] {
-    var relationships: [NSRelationshipDescription] = []
+    var relationships = [NSRelationshipDescription]()
 
     for property in self.entity.properties {
-      if property is NSRelationshipDescription {
-        relationships.append(property as! NSRelationshipDescription)
+      if let property = property as? NSRelationshipDescription {
+        relationships.append(property)
       }
     }
 
@@ -73,7 +73,7 @@ public extension NSManagedObject {
   func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject], andParent parent: NSManagedObject?, dataStack: DATAStack!) {
     let relationships = self.sync_relationships()
 
-    for relationship: NSRelationshipDescription in relationships {
+    for relationship in relationships {
       if relationship.toMany {
         self.sync_processToManyRelationship(relationship,
           usingDictionary: dictionary,
@@ -89,8 +89,8 @@ public extension NSManagedObject {
 
   private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary dictionary: [NSObject : AnyObject], andParent parent: NSManagedObject!, datastack: DATAStack) {
 
-    var relationshipName: String
-    if let userInfo: Dictionary = relationship.userInfo,
+    let relationshipName: String
+    if let userInfo = relationship.userInfo,
       relationshipKey = userInfo[CustomRemoteKey] as? String {
         relationshipName = relationshipKey
     } else {
@@ -104,7 +104,7 @@ public extension NSManagedObject {
     let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
 
     if let children = dictionary[relationshipName] as? [NSObject] {
-      var childPredicate: NSPredicate
+      let childPredicate: NSPredicate
       let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
 
       if inverseIsToMany {
@@ -122,7 +122,7 @@ public extension NSManagedObject {
   }
 
   func sync_processToOneRelationship(relationship: NSRelationshipDescription, usingDictionary dictionary: [NSObject : AnyObject]) {
-    var relationshipName: String
+    let relationshipName: String
     if let userInfo: Dictionary = relationship.userInfo,
       relationshipKey = userInfo[CustomRemoteKey] as? String {
         relationshipName = relationshipKey
@@ -164,12 +164,7 @@ public class Sync {
       println("parentError: \(error)")
     }
 
-    if let firstObject: AnyObject = objects?.first,
-      managedObject: NSManagedObject = firstObject as? NSManagedObject {
-      return managedObject
-    } else {
-      return nil
-    }
+    return objects?.first as? NSManagedObject
   }
 
   public func process(#changes: [AnyObject],
