@@ -114,19 +114,26 @@ public extension NSManagedObject {
         let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
 
         if inverseIsToMany {
-          let destinationRemoteKey = entity?.sync_remoteKey()
-          let childsIDs: AnyObject? = children[destinationRemoteKey!]
+          if let destinationRemoteKey = entity?.sync_remoteKey() {
+            let childsIDs: AnyObject? = children[destinationRemoteKey]
+            let destinationLocalKey = entity?.sync_localKey()
 
-          //        if let destinationRemoteKey = entity?.sync_remoteKey() ,
-          //          childrenIDs: AnyObject? = children[destinationRemoteKey],
-          //          destinationLocalKey = entity?.sync_localKey() {
-          ////            if childIDs.count == 1 {
-          ////            }
-          //        }
+            if childsIDs!.count == 1 {
+              childPredicate = NSPredicate(format: "%K = %@", destinationLocalKey!, (children.valueForKey(destinationRemoteKey)!.firstObject as? String)!)
+            } else {
+              childPredicate = NSPredicate(format: "ANY %K.%K = %@", relationshipName, destinationLocalKey!, (children.valueForKey(destinationRemoteKey) as? String)!)
+            }
+          }
         } else {
-          // TODO: Implement this
+          childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
         }
 
+        // TODO: IMPLEMENT THIS!
+
+      } else if hasValidManyToManyRelationship {
+        let relatedObjects = mutableSetValueForKey(relationshipName)
+        relatedObjects.addObject(parent)
+        self.setValue(relatedObjects, forKey: relationshipName)
       }
   }
 
