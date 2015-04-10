@@ -171,11 +171,11 @@ public class Sync {
     inEntityNamed entityName: String,
     dataStack: DATAStack,
     completion: (error: NSError) -> Void) {
-      [self.process(changes: changes,
+      self.process(changes: changes,
         inEntityNamed: entityName,
         predicate: nil,
         dataStack: dataStack,
-        completion: completion)]
+        completion: completion)
   }
 
   public func process(#changes: [AnyObject],
