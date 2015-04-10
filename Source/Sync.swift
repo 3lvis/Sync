@@ -18,7 +18,8 @@ private extension NSEntityDescription {
 
     for (key, attributedDescription) in self.propertiesByName {
       if let userInfo: Dictionary = attributedDescription.userInfo,
-        customPrimaryKey = userInfo[CustomPrimaryKey] as? String where customPrimaryKey == "YES" {
+        customPrimaryKey = userInfo[CustomPrimaryKey] as? String
+        where customPrimaryKey == "YES" {
           localKey = key as? String
       }
     }
@@ -69,21 +70,24 @@ public extension NSManagedObject {
     return relationships
   }
 
-  private func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject], andParent parent: NSManagedObject?, dataStack: DATAStack) {
+  func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject], andParent parent: NSManagedObject?, dataStack: DATAStack!) {
     let relationships = self.sync_relationships()
 
     for relationship: NSRelationshipDescription in relationships {
       if relationship.toMany {
-        // TODO : Implement this
+        self.sync_processToManyRelationship(relationship,
+          usingDictionary: dictionary,
+          andParent: parent!,
+          datastack: dataStack)
       } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
         self.setValue(parent, forKey: relationship.name)
       } else {
-        // TODO : Implement this
+        self.sync_processToOneRelationship(relationship, usingDictionary: dictionary)
       }
     }
   }
 
-  private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary dictionary: Dictionary<String, AnyObject>, andParent parent: NSManagedObject!, datastack: DATAStack) {
+  private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary dictionary: [NSObject : AnyObject], andParent parent: NSManagedObject!, datastack: DATAStack) {
 
     var relationshipName: String
     if let userInfo: Dictionary = relationship.userInfo,
@@ -99,17 +103,16 @@ public extension NSManagedObject {
     let inverseIsToMany: Bool = relationship.inverseRelationship!.toMany
     let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
 
-    if let children = dictionary[relationshipName] as? [AnyObject?] {
+    if let children = dictionary[relationshipName] as? [NSObject] {
       var childPredicate: NSPredicate
       let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
 
       if inverseIsToMany {
-      // TODO: Implement this
 //        if let destinationRemoteKey = entity?.sync_remoteKey() ,
-//          childIDs: [String] = children[destinationRemoteKey],
+//          childrenIDs: AnyObject? = children[destinationRemoteKey],
 //          destinationLocalKey = entity?.sync_localKey() {
-//            if childIDs.count == 1 {
-//            }
+////            if childIDs.count == 1 {
+////            }
 //        }
       } else {
         // TODO: Implement this
@@ -118,11 +121,58 @@ public extension NSManagedObject {
     }
   }
 
+  func sync_processToOneRelationship(relationship: NSRelationshipDescription, usingDictionary dictionary: [NSObject : AnyObject]) {
+    var relationshipName: String
+    if let userInfo: Dictionary = relationship.userInfo,
+      relationshipKey = userInfo[CustomRemoteKey] as? String {
+        relationshipName = relationshipKey
+    } else {
+      relationshipName = relationship.name
+    }
+
+    let entityName = relationship.destinationEntity?.name
+    let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
+    if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
+      if let remoteKey = entity?.sync_remoteKey(),
+        remoteID = dictionary[remoteKey] as? String{
+          if let object = Sync.safeObjectInContext(self.managedObjectContext!, entityName: entityName!, remoteID: remoteID) {
+            object.hyp_fillWithDictionary(filteredObjectDictionary)
+            self.setValue(object, forKey: relationship.name)
+          } else if let object = NSEntityDescription.insertNewObjectForEntityForName(entityName!, inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
+            object.hyp_fillWithDictionary(filteredObjectDictionary)
+            self.setValue(object, forKey: relationship.name)
+          }
+      }
+    }
+  }
+
 }
 
-class Sync {
+public class Sync {
 
-  func process(#changes: [AnyObject],
+  static func safeObjectInContext(context: NSManagedObjectContext, entityName: String, remoteID: String) -> NSManagedObject? {
+    var error: NSError?
+    let entity = NSEntityDescription .entityForName(entityName, inManagedObjectContext: context)
+    let request = NSFetchRequest(entityName: entityName)
+    let localKey = entity?.sync_localKey()
+
+    request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID)
+
+    let objects = context.executeFetchRequest(request, error: &error)
+
+    if (error != nil) {
+      println("parentError: \(error)")
+    }
+
+    if let firstObject: AnyObject = objects?.first,
+      managedObject: NSManagedObject = firstObject as? NSManagedObject {
+      return managedObject
+    } else {
+      return nil
+    }
+  }
+
+  public func process(#changes: [AnyObject],
     inEntityNamed entityName: String,
     dataStack: DATAStack,
     completion: (error: NSError) -> Void) {
@@ -133,7 +183,7 @@ class Sync {
         completion: completion)]
   }
 
-  func process(#changes: [AnyObject],
+  public func process(#changes: [AnyObject],
     inEntityNamed entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
@@ -150,7 +200,7 @@ class Sync {
       }
   }
 
-  func process(#changes: [AnyObject],
+  public func process(#changes: [AnyObject],
     inEntityNamed entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject,
@@ -162,17 +212,17 @@ class Sync {
         let safeParent = parent.sync_copyInContext(backgroundContext)
         let predicate = NSPredicate(format: "%K = %@", parent.entity.name!, safeParent!)
 
-        [self.process(changes: changes,
+        self.process(changes: changes,
           inEntityNamed: entityName,
           predicate: predicate,
           parent:parent,
           inContext: backgroundContext,
           dataStack: dataStack,
-          completion: completion)]
+          completion: completion)
       }
   }
 
-  func process(#changes: [AnyObject],
+  public func process(#changes: [AnyObject],
     inEntityNamed entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,
@@ -191,11 +241,23 @@ class Sync {
           (JSON: [NSObject : AnyObject]!) in
           let created: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
           created.hyp_fillWithDictionary(JSON)
-          // TODO: Implement this
+          created.sync_processRelationshipsUsingDictionary(objectDictionary: JSON, andParent: parent, dataStack: dataStack)
         }, updated: {
           (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
-          // TODO: Implement this
+          updatedObject.hyp_fillWithDictionary(JSON)
+          updatedObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON, andParent: parent, dataStack: dataStack)
       })
+
+      var error: NSError?
+      context.save(&error)
+
+      if error != nil {
+        println("Sync (error while saving \(entityName): \(error?.description)")
+      }
+
+      dataStack.persistWithCompletion {
+
+      }
   }
 
 }
