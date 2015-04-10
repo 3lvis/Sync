@@ -80,7 +80,7 @@ public extension NSManagedObject {
           self.sync_processToManyRelationship(relationship,
             usingDictionary: dictionary,
             andParent: parent!,
-            datastack: dataStack)
+            dataStack: dataStack)
         } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
           self.setValue(parent, forKey: relationship.name)
         } else {
@@ -93,7 +93,7 @@ public extension NSManagedObject {
   private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
     dictionary: [NSObject : AnyObject],
     andParent parent: NSManagedObject!,
-    datastack: DATAStack) {
+    dataStack: DATAStack) {
 
       let relationshipName: String
       if let userInfo = relationship.userInfo,
@@ -128,7 +128,14 @@ public extension NSManagedObject {
           childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
         }
 
-        // TODO: IMPLEMENT THIS!
+//        Sync.process(
+//          changes: children,
+//          inEntityNamed: childEntityName,
+//          predicate: childPredicate,
+//          parent: self,
+//          inContext: self.managedObjectContext,
+//          dataStack: dataStack,
+//          completion: nil)
 
       } else if hasValidManyToManyRelationship {
         let relatedObjects = mutableSetValueForKey(relationshipName)
@@ -170,6 +177,17 @@ public extension NSManagedObject {
 
 @objc(HYP) public class Sync {
 
+  public func process(#changes: [AnyObject],
+    inEntityNamed entityName: String,
+    dataStack: DATAStack,
+    completion: (error: NSError) -> Void) {
+      self.process(changes: changes,
+        inEntityNamed: entityName,
+        predicate: nil,
+        dataStack: dataStack,
+        completion: completion)
+  }
+
   static func safeObjectInContext(context: NSManagedObjectContext,
     entityName: String,
     remoteID: String) -> NSManagedObject? {
@@ -188,17 +206,6 @@ public extension NSManagedObject {
       }
 
       return objects?.first as? NSManagedObject
-  }
-
-  public func process(#changes: [AnyObject],
-    inEntityNamed entityName: String,
-    dataStack: DATAStack,
-    completion: (error: NSError) -> Void) {
-      self.process(changes: changes,
-        inEntityNamed: entityName,
-        predicate: nil,
-        dataStack: dataStack,
-        completion: completion)
   }
 
   public func process(#changes: [AnyObject],
