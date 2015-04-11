@@ -1,10 +1,12 @@
 ## App
 
+[Reference](https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews)
+
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/DesignerNews/Images/app.png)
 
 ## JSON
 
-[Source](https://news.layervault.com/?format=json)
+[Reference](https://news.layervault.com/?format=json)
 
 ```json
 {
@@ -38,6 +40,8 @@
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/DesignerNews/Images/model.png)
 
 ## Sync
+
+[Reference](https://github.com/hyperoslo/Sync/blob/master/Examples/DesignerNews/DesignerNews/Source/APIClient.m#L35-L40)
 
 ```objc
 [Sync changes:JSON[@"stories"]
