@@ -1,8 +1,12 @@
-## [App](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet)
+## App
+
+[Reference](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet)
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/app.png)
 
-## [JSON](https://api.app.net/posts/stream/global)
+## JSON
+
+[Reference](https://api.app.net/posts/stream/global)
 
 ```json
 {
@@ -31,7 +35,9 @@
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/model.png)
 
-## [Sync](https://github.com/hyperoslo/Sync/blob/master/Examples/AppNet/AppNet/Networking.swift#L32-L34)
+## Sync
+
+[Reference](https://github.com/hyperoslo/Sync/blob/master/Examples/AppNet/AppNet/Networking.swift#L32-L34)
 
 ```swift
 Sync.changes(
