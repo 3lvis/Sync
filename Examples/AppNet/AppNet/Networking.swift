@@ -1,10 +1,9 @@
 import UIKit
 import DATAStack
-import Sync
 
 class Networking {
 
-  struct Constanst {
+  struct Constants {
     static let SYNCAppNetURL = "https://api.app.net/posts/stream/global"
     static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
   }
@@ -16,8 +15,7 @@ class Networking {
   }
 
   func fetchNewContent(completion: () -> Void) {
-
-    let urlAppNet = must_unwrap(NSURL(string: Constanst.SYNCAppNetURL))
+    let urlAppNet = must_unwrap(NSURL(string: Constants.SYNCAppNetURL))
     let request = NSURLRequest(URL: urlAppNet)
     let operationQueue = NSOperationQueue()
 
@@ -31,9 +29,13 @@ class Networking {
         alertController.addAction(alertAction)
       } else {
         if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? Dictionary<String, AnyObject> {
-          Sync.changes(json["data"] as? Array, inEntityNamed: "Data", dataStack: self.dataStack, completion: { error in
-            completion()
-          })
+//          Sync.process(
+//            changes: json["data] as? Array,
+//            entityName: "Data",
+//            dataStack: self.dataStack,
+//            completion: { error in
+//              completion()
+//            })
         }
       }
     }
