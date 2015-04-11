@@ -69,11 +69,11 @@ inEntityNamed:@"User"
 
 ## More Examples
 
-<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet">
+<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v2.png" />
 </a>
 
-<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews">
+<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v3.png" />
 </a>
 
