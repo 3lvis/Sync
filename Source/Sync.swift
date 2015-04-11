@@ -130,10 +130,10 @@ public extension NSManagedObject {
 
 //        Sync.process(
 //          changes: children,
-//          inEntityNamed: childEntityName,
+//          entityName: childEntityName,
 //          predicate: childPredicate,
 //          parent: self,
-//          inContext: self.managedObjectContext,
+//          context: self.managedObjectContext,
 //          dataStack: dataStack,
 //          completion: nil)
 
@@ -178,11 +178,11 @@ public extension NSManagedObject {
 @objc(HYP) public class Sync {
 
   public func process(#changes: [AnyObject],
-    inEntityNamed entityName: String,
+    entityName: String,
     dataStack: DATAStack,
     completion: (error: NSError) -> Void) {
       self.process(changes: changes,
-        inEntityNamed: entityName,
+        entityName: entityName,
         predicate: nil,
         dataStack: dataStack,
         completion: completion)
@@ -209,24 +209,24 @@ public extension NSManagedObject {
   }
 
   public func process(#changes: [AnyObject],
-    inEntityNamed entityName: String,
+    entityName entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
     completion: (error: NSError) -> Void) {
       dataStack.performInNewBackgroundContext {
         (backgroundContext: NSManagedObjectContext!) in
         [self.process(changes: changes,
-          inEntityNamed: entityName,
+          entityName: entityName,
           predicate: nil,
           parent:nil,
-          inContext: backgroundContext,
+          context: backgroundContext,
           dataStack: dataStack,
           completion: completion)]
       }
   }
 
   public func process(#changes: [AnyObject],
-    inEntityNamed entityName: String,
+    entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject,
     dataStack: DATAStack,
@@ -238,20 +238,20 @@ public extension NSManagedObject {
         let predicate = NSPredicate(format: "%K = %@", parent.entity.name!, safeParent!)
 
         self.process(changes: changes,
-          inEntityNamed: entityName,
+          entityName: entityName,
           predicate: predicate,
           parent:parent,
-          inContext: backgroundContext,
+          context: backgroundContext,
           dataStack: dataStack,
           completion: completion)
       }
   }
 
   public func process(#changes: [AnyObject],
-    inEntityNamed entityName: String,
+    entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,
-    inContext context: NSManagedObjectContext,
+    context: NSManagedObjectContext,
     dataStack: DATAStack,
     completion: (error: NSError) -> Void) {
       let entity = NSEntityDescription.entityForName(entityName,
