@@ -14,22 +14,18 @@ let DefaultRemotePrimaryKey = "id"
 private extension NSEntityDescription {
 
   func sync_localKey() -> String {
-    var localKey: String?
+    var localKey = DefaultLocalPrimaryKey
 
     for (key, attributedDescription) in self.propertiesByName {
       if let
         userInfo: Dictionary = attributedDescription.userInfo,
         customPrimaryKey = userInfo[CustomPrimaryKey] as? String
         where customPrimaryKey == "YES" {
-          localKey = key as? String
+          localKey = key as! String
       }
     }
 
-    if localKey == nil {
-      localKey = DefaultLocalPrimaryKey
-    }
-
-    return localKey!
+    return localKey
   }
 
   func sync_remoteKey() -> String {
