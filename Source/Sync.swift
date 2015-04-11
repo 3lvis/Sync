@@ -130,14 +130,6 @@ public extension NSManagedObject {
           childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
         }
 
-//        Sync.process(
-//          changes: children,
-//          entityName: childEntityName,
-//          predicate: childPredicate,
-//          parent: self,
-//          context: self.managedObjectContext,
-//          dataStack: dataStack,
-//          completion: nil)
 
       } else if hasValidManyToManyRelationship {
         let relatedObjects = mutableSetValueForKey(relationshipName)
@@ -172,17 +164,6 @@ public extension NSManagedObject {
 
 @objc(HYP) public class Sync {
 
-  public func process(#changes: [AnyObject],
-    entityName: String,
-    dataStack: DATAStack,
-    completion: (error: NSError) -> Void) {
-      self.process(changes: changes,
-        entityName: entityName,
-        predicate: nil,
-        dataStack: dataStack,
-        completion: completion)
-  }
-
   static func safeObjectInContext(context: NSManagedObjectContext,
     entityName: String,
     remoteID: String) -> NSManagedObject? {
@@ -203,7 +184,18 @@ public extension NSManagedObject {
       return objects?.first as? NSManagedObject
   }
 
-  public func process(#changes: [AnyObject],
+  class func process(#changes: [AnyObject],
+    entityName: String,
+    dataStack: DATAStack,
+    completion: (error: NSError) -> Void) {
+      self.process(changes: changes,
+        entityName: entityName,
+        predicate: nil,
+        dataStack: dataStack,
+        completion: completion)
+  }
+
+  class func process(#changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
@@ -220,7 +212,7 @@ public extension NSManagedObject {
       }
   }
 
-  public func process(#changes: [AnyObject],
+  class func process(#changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject,
@@ -242,7 +234,7 @@ public extension NSManagedObject {
       }
   }
 
-  public func process(#changes: [AnyObject],
+  class func process(#changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,
