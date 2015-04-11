@@ -17,7 +17,8 @@ private extension NSEntityDescription {
     var localKey: String?
 
     for (key, attributedDescription) in self.propertiesByName {
-      if let userInfo: Dictionary = attributedDescription.userInfo,
+      if let
+        userInfo: Dictionary = attributedDescription.userInfo,
         customPrimaryKey = userInfo[CustomPrimaryKey] as? String
         where customPrimaryKey == "YES" {
           localKey = key as? String
