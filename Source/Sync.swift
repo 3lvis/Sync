@@ -43,6 +43,18 @@ private extension NSEntityDescription {
 
 public extension NSManagedObject {
 
+  private func relationshipName(relationship: NSRelationshipDescription) -> String {
+    var relationshipName = relationship.name
+
+    if let
+      userInfo = relationship.userInfo,
+      relationshipKey = userInfo[CustomRemoteKey] as? String {
+        relationshipName = relationshipKey
+    }
+
+    return relationshipName
+  }
+
   private func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject? {
     let entity = NSEntityDescription.entityForName(self.entity.name!,
       inManagedObjectContext: context)
@@ -50,7 +62,9 @@ public extension NSManagedObject {
     let localKey = entity!.sync_localKey()
     let remoteID = valueForKey(localKey) as! String
 
-    return Sync.safeObjectInContext(context, entityName: self.entity.name!, remoteID: remoteID)
+    return Sync.safeObjectInContext(context,
+      entityName: self.entity.name!,
+      remoteID: remoteID)
   }
 
   private func sync_relationships() -> [NSRelationshipDescription] {
@@ -90,14 +104,7 @@ public extension NSManagedObject {
     andParent parent: NSManagedObject!,
     dataStack: DATAStack) {
 
-      let relationshipName: String
-      if let userInfo = relationship.userInfo,
-        relationshipKey = userInfo[CustomRemoteKey] as? String {
-          relationshipName = relationshipKey
-      } else {
-        relationshipName = relationship.name
-      }
-
+      let relationshipName = self.relationshipName(relationship)
       let childEntityName: String = relationship.destinationEntity!.name!
       let parentEntityName: String = parent.entity.name!
       let inverseEntityName: String = relationship.inverseRelationship!.name
@@ -141,14 +148,7 @@ public extension NSManagedObject {
 
   func sync_processToOneRelationship(relationship: NSRelationshipDescription,
     usingDictionary dictionary: [NSObject : AnyObject]) {
-      let relationshipName: String
-      if let userInfo: Dictionary = relationship.userInfo,
-        relationshipKey = userInfo[CustomRemoteKey] as? String {
-          relationshipName = relationshipKey
-      } else {
-        relationshipName = relationship.name
-      }
-
+      let relationshipName = self.relationshipName(relationship)
       let entityName = relationship.destinationEntity?.name
       let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
       if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
