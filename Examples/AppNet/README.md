@@ -1,6 +1,6 @@
 ## App
 
-[Reference](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet)
+[Reference (Swift)](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet)
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/app.png)
 
