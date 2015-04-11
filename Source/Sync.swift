@@ -112,7 +112,7 @@ public extension NSManagedObject {
       let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
 
       if let children = dictionary[relationshipName] as? NSDictionary {
-        let childPredicate: NSPredicate
+        var childPredicate = NSPredicate()
         let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
 
         if inverseIsToMany {
@@ -130,6 +130,14 @@ public extension NSManagedObject {
           childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
         }
 
+        Sync.process(
+          changes: [children],
+          entityName: childEntityName,
+          predicate: childPredicate,
+          parent: self,
+          context: self.managedObjectContext!,
+          dataStack: dataStack,
+          completion: nil)
 
       } else if hasValidManyToManyRelationship {
         let relatedObjects = mutableSetValueForKey(relationshipName)
@@ -240,7 +248,7 @@ public extension NSManagedObject {
     parent: NSManagedObject?,
     context: NSManagedObjectContext,
     dataStack: DATAStack,
-    completion: (error: NSError) -> Void) {
+    completion: ((error: NSError) -> Void)?) {
       let entity = NSEntityDescription.entityForName(entityName,
         inManagedObjectContext: context)
 
