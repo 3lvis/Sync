@@ -1,8 +1,8 @@
-## App
+## [App](https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet)
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/app.png)
 
-## JSON
+## [JSON](https://news.layervault.com/?format=json)
 
 [Source](https://api.app.net/posts/stream/global)
 
@@ -33,7 +33,7 @@
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/model.png)
 
-## Sync
+## [Sync](https://github.com/hyperoslo/Sync/blob/master/Examples/DesignerNews/DesignerNews/Source/APIClient.m#L35-L40)
 
 ```swift
 Sync.changes(
