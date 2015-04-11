@@ -209,7 +209,7 @@ public extension NSManagedObject {
   }
 
   public func process(#changes: [AnyObject],
-    entityName entityName: String,
+    entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
     completion: (error: NSError) -> Void) {
