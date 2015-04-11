@@ -29,16 +29,14 @@ private extension NSEntityDescription {
   }
 
   func sync_remoteKey() -> String {
-    var remoteKey: String?
+    var remoteKey = DefaultRemotePrimaryKey
     let localKey = sync_localKey()
 
-    if localKey == remoteKey {
-      remoteKey = DefaultRemotePrimaryKey
-    } else {
+    if localKey == DefaultLocalPrimaryKey {
       remoteKey = localKey.hyp_remoteString()
     }
 
-    return remoteKey!
+    return remoteKey
   }
 
 }
