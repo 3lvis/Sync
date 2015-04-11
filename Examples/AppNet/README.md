@@ -31,7 +31,7 @@
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/model.png)
 
-## [Sync](https://github.com/hyperoslo/Sync/blob/master/Examples/DesignerNews/DesignerNews/Source/APIClient.m#L35-L40)
+## [Sync](https://github.com/hyperoslo/Sync/blob/master/Examples/AppNet/AppNet/Networking.swift#L32-L34)
 
 ```swift
 Sync.changes(
