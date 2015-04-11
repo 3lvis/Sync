@@ -2,9 +2,7 @@
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Examples/AppNet/Images/app.png)
 
-## [JSON](https://news.layervault.com/?format=json)
-
-[Source](https://api.app.net/posts/stream/global)
+## [JSON](https://api.app.net/posts/stream/global)
 
 ```json
 {
