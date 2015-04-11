@@ -195,7 +195,7 @@ public extension NSManagedObject {
   class func process(#changes: [AnyObject],
     entityName: String,
     dataStack: DATAStack,
-    completion: (error: NSError) -> Void) {
+    completion: ((error: NSError) -> Void)?) {
       self.process(changes: changes,
         entityName: entityName,
         predicate: nil,
@@ -207,7 +207,7 @@ public extension NSManagedObject {
     entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
-    completion: (error: NSError) -> Void) {
+    completion: ((error: NSError) -> Void)?) {
       dataStack.performInNewBackgroundContext {
         (backgroundContext: NSManagedObjectContext!) in
         [self.process(changes: changes,
@@ -225,7 +225,7 @@ public extension NSManagedObject {
     predicate: NSPredicate?,
     parent: NSManagedObject,
     dataStack: DATAStack,
-    completion: (error: NSError) -> Void) {
+    completion: ((error: NSError) -> Void)?) {
       dataStack.performInNewBackgroundContext {
         (backgroundContext: NSManagedObjectContext!) in
 
