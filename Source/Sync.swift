@@ -228,7 +228,7 @@ extension NSManagedObject {
         self.changes(changes,
           entityName: entityName,
           predicate: predicate,
-          parent:parent,
+          parent:safeParent,
           context: backgroundContext,
           dataStack: dataStack,
           completion: completion)
@@ -239,7 +239,7 @@ extension NSManagedObject {
     entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,
-    context: NSManagedObjectContext,
+    context: NSManagedObjectContext!,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
       let entity = NSEntityDescription.entityForName(entityName,
