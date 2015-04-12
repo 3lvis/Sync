@@ -206,7 +206,7 @@ public extension NSManagedObject {
         (backgroundContext: NSManagedObjectContext!) in
         [self.changes(changes,
           entityName: entityName,
-          predicate: nil,
+          predicate: predicate,
           parent:nil,
           context: backgroundContext,
           dataStack: dataStack,
