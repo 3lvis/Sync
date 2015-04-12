@@ -172,7 +172,7 @@ extension NSManagedObject {
 
 }
 
-public class Sync {
+@objc(HYP) public class Sync {
 
   static func safeObjectInContext(context: NSManagedObjectContext,
     entityName: String,
