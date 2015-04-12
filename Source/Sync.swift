@@ -8,7 +8,7 @@ let DefaultRemotePrimaryKey = "id"
 
 private extension NSEntityDescription {
 
-  func sync_localKey() -> String {
+  func localKey() -> String {
     var localKey = DefaultLocalPrimaryKey
 
     for (key, attributedDescription) in self.propertiesByName {
@@ -23,12 +23,12 @@ private extension NSEntityDescription {
     return localKey
   }
 
-  func sync_remoteKey() -> String {
+  func remoteKey() -> String {
     var remoteKey = DefaultRemotePrimaryKey
-    let localKey = sync_localKey()
+    let localKeyValue = localKey()
 
-    if localKey != DefaultLocalPrimaryKey {
-      remoteKey = localKey.hyp_remoteString()
+    if localKeyValue != DefaultLocalPrimaryKey {
+      remoteKey = localKeyValue.hyp_remoteString()
     }
 
     return remoteKey
@@ -38,21 +38,21 @@ private extension NSEntityDescription {
 
 extension NSManagedObject {
 
-  public func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
+  public func processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
     parent: NSManagedObject?,
     dataStack: DATAStack!) {
-      let relationships = self.sync_relationships()
+      let relationships = self.relationships()
 
       for relationship in relationships {
         if relationship.toMany {
-          self.sync_processToManyRelationship(relationship,
+          self.processToManyRelationship(relationship,
             usingDictionary: dictionary,
             parent: parent,
             dataStack: dataStack)
         } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
           self.setValue(parent!, forKey: relationship.name)
         } else {
-          self.sync_processToOneRelationship(relationship,
+          self.processToOneRelationship(relationship,
             usingDictionary: dictionary)
         }
       }
@@ -70,11 +70,11 @@ extension NSManagedObject {
     return relationshipName
   }
 
-  private func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject? {
+  private func copyInContext(context: NSManagedObjectContext) -> NSManagedObject? {
     let entity = NSEntityDescription.entityForName(self.entity.name!,
       inManagedObjectContext: context)
 
-    let localKey = entity!.sync_localKey()
+    let localKey = entity!.localKey()
     let remoteID: AnyObject? = valueForKey(localKey)
 
     return Sync.safeObjectInContext(context,
@@ -82,7 +82,7 @@ extension NSManagedObject {
       remoteID: remoteID!)
   }
 
-  private func sync_relationships() -> [NSRelationshipDescription] {
+  private func relationships() -> [NSRelationshipDescription] {
     var relationships = [NSRelationshipDescription]()
 
     for property in self.entity.properties {
@@ -94,7 +94,7 @@ extension NSManagedObject {
     return relationships
   }
 
-  private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
+  private func processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
     dictionary: [NSObject : AnyObject],
     parent: NSManagedObject?,
     dataStack: DATAStack) {
@@ -117,9 +117,9 @@ extension NSManagedObject {
         let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
 
         if inverseIsToMany {
-          if let destinationRemoteKey = entity?.sync_remoteKey() {
+          if let destinationRemoteKey = entity?.remoteKey() {
             let childsIDs: AnyObject? = children!.valueForKey(destinationRemoteKey)
-            let destinationLocalKey = entity?.sync_localKey()
+            let destinationLocalKey = entity?.localKey()
 
             if childsIDs!.count == 1 {
               let childKey: Int = children!.valueForKey(destinationRemoteKey)!.firstObject!!.integerValue
@@ -147,14 +147,14 @@ extension NSManagedObject {
       }
   }
 
-  private func sync_processToOneRelationship(relationship: NSRelationshipDescription,
+  private func processToOneRelationship(relationship: NSRelationshipDescription,
     usingDictionary dictionary: [NSObject : AnyObject]) {
       let relationshipName = self.relationshipName(relationship)
       let entityName = relationship.destinationEntity?.name
       let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
 
       if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
-        if let remoteKey: String = entity?.sync_remoteKey() {
+        if let remoteKey: String = entity?.remoteKey() {
           let remoteID: AnyObject? = filteredObjectDictionary[remoteKey]
             if let updatedObject = Sync.safeObjectInContext(self.managedObjectContext!,
               entityName: entityName!,
@@ -181,7 +181,7 @@ extension NSManagedObject {
       let entity = NSEntityDescription .entityForName(entityName,
         inManagedObjectContext: context)
       let request = NSFetchRequest(entityName: entityName)
-      let localKey = entity?.sync_localKey()
+      let localKey = entity?.localKey()
 
       request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID as! NSObject)
 
@@ -230,7 +230,7 @@ extension NSManagedObject {
       dataStack.performInNewBackgroundContext {
         (backgroundContext: NSManagedObjectContext!) in
 
-        let safeParent = parent.sync_copyInContext(backgroundContext)
+        let safeParent = parent.copyInContext(backgroundContext)
         let predicate = NSPredicate(format: "%K = %@", parent.entity.name!, safeParent!)
 
         self.changes(changes,
@@ -255,8 +255,8 @@ extension NSManagedObject {
 
       DATAFilter.changes(changes,
         inEntityNamed: entityName,
-        localKey: entity!.sync_localKey(),
-        remoteKey: entity!.sync_remoteKey(),
+        localKey: entity!.localKey(),
+        remoteKey: entity!.remoteKey(),
         context: context,
         predicate: predicate,
         inserted: {
@@ -264,13 +264,13 @@ extension NSManagedObject {
           let createdObject: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName,
             inManagedObjectContext: context)
           createdObject.hyp_fillWithDictionary(JSON)
-          createdObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
+          createdObject.processRelationshipsUsingDictionary(objectDictionary: JSON,
             parent: parent,
             dataStack: dataStack)
         }, updated: {
           (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
           updatedObject.hyp_fillWithDictionary(JSON)
-          updatedObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
+          updatedObject.processRelationshipsUsingDictionary(objectDictionary: JSON,
             parent:parent,
             dataStack: dataStack)
       })
