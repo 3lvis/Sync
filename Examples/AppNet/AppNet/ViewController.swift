@@ -17,8 +17,8 @@ class ViewController: UITableViewController {
     super.init(nibName: nil, bundle: nil);
   }
 
-  required init(coder aDecoder: NSCoder) {
-    assertionFailure("Must use init(dataStack: DATAStack) ");
+  required init!(coder aDecoder: NSCoder!) {
+      fatalError("init(coder:) has not been implemented")
   }
 
   // MARK: View Lifecycle
@@ -46,7 +46,7 @@ class ViewController: UITableViewController {
   func fetchCurrentObjects() {
     let request = NSFetchRequest(entityName: "Data")
     request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-    items = dataStack.mainContext.executeFetchRequest(request, error: nil) as [Data]
+    items = dataStack.mainContext.executeFetchRequest(request, error: nil) as! [Data]
 
     tableView.reloadData()
   }
@@ -59,13 +59,13 @@ extension ViewController: UITableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier) as UITableViewCell
+    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier)as! UITableViewCell
     let data = self.items[indexPath.row]
 
     cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constanst.SYNCCellIdentifier)
 
     cell.textLabel?.text = data.text
-    cell.textLabel?.numberOfLines = 0
+    cell.textLabel?.numberOfLines = 1
     cell.detailTextLabel?.text = data.user.username
 
     return cell

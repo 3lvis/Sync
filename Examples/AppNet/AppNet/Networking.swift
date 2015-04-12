@@ -15,8 +15,8 @@ class Networking {
 
   func fetchNewContent(completion: () -> Void) {
 
-    let urlAppNet = must_unwrap(NSURL(string: Constanst.SYNCAppNetURL))
-    let request = NSURLRequest(URL: urlAppNet)
+    let urlAppNet = NSURL(string: Constanst.SYNCAppNetURL)
+    let request = NSURLRequest(URL: urlAppNet!)
     let operationQueue = NSOperationQueue()
 
     NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { [unowned self] _, data, error in
@@ -29,18 +29,12 @@ class Networking {
         alertController.addAction(alertAction)
       } else {
         if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? Dictionary<String, AnyObject> {
-          Sync.changes(json["data"] as Array, inEntityNamed: "Data", dataStack: self.dataStack, completion: { error in
+
+          Sync.changes(json["data"] as! Array, inEntityNamed: "Data", dataStack: self.dataStack, completion: { error in
             completion()
           })
         }
       }
     }
   }
-}
-
-func must_unwrap <T>(x: T?) -> T  {
-  if let x = x {
-    return x
-  }
-  assertionFailure("Can't unwrap optional")
 }
