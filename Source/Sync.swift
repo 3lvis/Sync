@@ -27,7 +27,7 @@ private extension NSEntityDescription {
     var remoteKey = DefaultRemotePrimaryKey
     let localKey = sync_localKey()
 
-    if localKey == DefaultLocalPrimaryKey {
+    if localKey != DefaultLocalPrimaryKey {
       remoteKey = localKey.hyp_remoteString()
     }
 
@@ -135,7 +135,7 @@ extension NSManagedObject {
 
       } else if hasValidManyToManyRelationship {
         let relatedObjects = mutableSetValueForKey(relationshipName)
-        relatedObjects.addObject(parent)
+        relatedObjects.addObject(parent!)
         self.setValue(relatedObjects, forKey: relationshipName)
       }
   }
