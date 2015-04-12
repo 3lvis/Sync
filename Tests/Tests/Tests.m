@@ -2,7 +2,7 @@
 
 @import CoreData;
 
-#import "Sync.h"
+#import "Tests-Swift.h"
 #import "NSJSONSerialization+ANDYJSONFile.h"
 #import "DATAStack.h"
 
@@ -54,7 +54,7 @@
     NSManagedObjectContext *mainContext = [self.dataStack mainContext];
 
     [Sync changes:objectsA
-    inEntityNamed:@"User"
+       entityName:@"User"
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
@@ -67,7 +67,7 @@
     NSArray *objectsB = [self arrayWithObjectsFromJSON:@"users_b.json"];
 
     [Sync changes:objectsB
-    inEntityNamed:@"User"
+       entityName:@"User"
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
@@ -98,7 +98,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"users_notes.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"User"
+       entityName:@"User"
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
@@ -150,7 +150,7 @@
                 if (users.count != 1) abort();
 
                 [Sync changes:objects
-                inEntityNamed:@"Note"
+                   entityName:@"Note"
                        parent:[users firstObject]
                     dataStack:self.dataStack
                    completion:^(NSError *error) {
@@ -181,7 +181,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"tagged_notes.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"Note"
+       entityName:@"Note"
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
@@ -222,7 +222,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"users_company.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"User"
+       entityName:@"User"
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
@@ -265,7 +265,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"numbers.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"Number"
+       entityName:@"Number"
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
@@ -287,7 +287,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"numbers_in_collection.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"Number"
+       entityName:@"Number"
         dataStack:self.dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [self.dataStack mainContext];
@@ -307,7 +307,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"comments-no-id.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"Comment"
+       entityName:@"Comment"
         dataStack:self.dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [self.dataStack mainContext];
@@ -332,7 +332,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"stories-comments-no-ids.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"Story"
+       entityName:@"Story"
         dataStack:self.dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [self.dataStack mainContext];
@@ -370,7 +370,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"User"
+       entityName:@"User"
         dataStack:self.dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [self.dataStack mainContext];
@@ -388,7 +388,7 @@
     NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON_To_One.json"];
 
     [Sync changes:objects
-    inEntityNamed:@"Story"
+       entityName:@"Story"
         dataStack:self.dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [self.dataStack mainContext];

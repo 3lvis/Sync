@@ -1,10 +1,5 @@
 import UIKit
 import CoreData
-import NSString_HYPNetworking
-import DATAStack
-import DATAFilter
-import NSManagedObject_HYPPropertyMapper
-import NSDictionary_ANDYSafeValue
 
 let CustomPrimaryKey = "hyper.isPrimaryKey"
 let CustomRemoteKey = "hyper.remoteKey"
@@ -60,11 +55,11 @@ public extension NSManagedObject {
       inManagedObjectContext: context)
 
     let localKey = entity!.sync_localKey()
-    let remoteID = valueForKey(localKey) as! String
+    let remoteID: AnyObject? = valueForKey(localKey)
 
     return Sync.safeObjectInContext(context,
       entityName: self.entity.name!,
-      remoteID: remoteID)
+      remoteID: remoteID!)
   }
 
   private func sync_relationships() -> [NSRelationshipDescription] {
@@ -130,8 +125,7 @@ public extension NSManagedObject {
           childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
         }
 
-        Sync.process(
-          changes: [children],
+        Sync.changes([children],
           entityName: childEntityName,
           predicate: childPredicate,
           parent: self,
@@ -174,14 +168,14 @@ public extension NSManagedObject {
 
   static func safeObjectInContext(context: NSManagedObjectContext,
     entityName: String,
-    remoteID: String) -> NSManagedObject? {
+    remoteID: AnyObject) -> NSManagedObject? {
       var error: NSError?
       let entity = NSEntityDescription .entityForName(entityName,
         inManagedObjectContext: context)
       let request = NSFetchRequest(entityName: entityName)
       let localKey = entity?.sync_localKey()
 
-      request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID)
+      request.predicate = NSPredicate(format: "%K = \(remoteID)", localKey!)
 
       let objects = context.executeFetchRequest(request, error: &error)
 
@@ -192,25 +186,25 @@ public extension NSManagedObject {
       return objects?.first as? NSManagedObject
   }
 
-  class func process(#changes: [AnyObject],
+  class func changes(changes: [AnyObject],
     entityName: String,
     dataStack: DATAStack,
     completion: ((error: NSError) -> Void)?) {
-      self.process(changes: changes,
+      self.changes(changes,
         entityName: entityName,
         predicate: nil,
         dataStack: dataStack,
         completion: completion)
   }
 
-  class func process(#changes: [AnyObject],
+  class func changes(changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
     completion: ((error: NSError) -> Void)?) {
       dataStack.performInNewBackgroundContext {
         (backgroundContext: NSManagedObjectContext!) in
-        [self.process(changes: changes,
+        [self.changes(changes,
           entityName: entityName,
           predicate: nil,
           parent:nil,
@@ -220,9 +214,8 @@ public extension NSManagedObject {
       }
   }
 
-  class func process(#changes: [AnyObject],
+  class func changes(changes: [AnyObject],
     entityName: String,
-    predicate: NSPredicate?,
     parent: NSManagedObject,
     dataStack: DATAStack,
     completion: ((error: NSError) -> Void)?) {
@@ -232,7 +225,7 @@ public extension NSManagedObject {
         let safeParent = parent.sync_copyInContext(backgroundContext)
         let predicate = NSPredicate(format: "%K = %@", parent.entity.name!, safeParent!)
 
-        self.process(changes: changes,
+        self.changes(changes,
           entityName: entityName,
           predicate: predicate,
           parent:parent,
@@ -242,7 +235,7 @@ public extension NSManagedObject {
       }
   }
 
-  class func process(#changes: [AnyObject],
+  class func changes(changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,

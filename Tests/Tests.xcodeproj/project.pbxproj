@@ -21,9 +21,10 @@
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
 		14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* Sync.podspec */; };
 		14DC935D1ADA3DFD00B0477A /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC935C1ADA3DFD00B0477A /* Sync.swift */; };
-		4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEFB3E45BB7A8C5238E2880 /* libPods.a */; };
+		7C20689848C76D31B9980BCA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7E7DC0DFD240A693DE10D2 /* libPods.a */; };
 		B55077B61ABAFD8800A02AD2 /* numbers_in_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */; };
 		B58D5ACA1AA5C88300DFC880 /* numbers.json in Resources */ = {isa = PBXBuildFile; fileRef = B58D5AC91AA5C88300DFC880 /* numbers.json */; };
+		BDF45D271ADA459F00D040B3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF45D261ADA459F00D040B3 /* Pods.framework */; };
 		F602C3391ACC63E50060C080 /* custom_relationship_key_JSON.json in Resources */ = {isa = PBXBuildFile; fileRef = F602C3381ACC63E50060C080 /* custom_relationship_key_JSON.json */; };
 		F6C1C9641ACEEED500339BAA /* custom_relationship_key_JSON_To_One.json in Resources */ = {isa = PBXBuildFile; fileRef = F6C1C9631ACEEED400339BAA /* custom_relationship_key_JSON_To_One.json */; };
 /* End PBXBuildFile section */
@@ -41,7 +42,7 @@
 		14B564721A06D87B00342CDA /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		14C418261A01919C00636FD6 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4182C1A01919C00636FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; tabWidth = 4; };
 		14C418381A019A1500636FD6 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C418391A019A1500636FD6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C4183A1A019A1500636FD6 /* Sync.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Sync.podspec; path = ../Sync.podspec; sourceTree = "<group>"; };
@@ -50,9 +51,18 @@
 		14DC935C1ADA3DFD00B0477A /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
 		7C067778DC962B70CDF74EA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9E7E7DC0DFD240A693DE10D2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = numbers_in_collection.json; sourceTree = "<group>"; };
 		B58D5AC91AA5C88300DFC880 /* numbers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = numbers.json; sourceTree = "<group>"; };
-		DCEFB3E45BB7A8C5238E2880 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDF45D161ADA458F00D040B3 /* DATAFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAFilter.framework; path = "Pods/../build/Debug-iphoneos/Pods/DATAFilter.framework"; sourceTree = "<group>"; };
+		BDF45D171ADA458F00D040B3 /* DATAObjectIDs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAObjectIDs.framework; path = "Pods/../build/Debug-iphoneos/Pods/DATAObjectIDs.framework"; sourceTree = "<group>"; };
+		BDF45D181ADA458F00D040B3 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = "Pods/../build/Debug-iphoneos/Pods/DATAStack.framework"; sourceTree = "<group>"; };
+		BDF45D191ADA458F00D040B3 /* NSDictionary_ANDYSafeValue.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSDictionary_ANDYSafeValue.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSDictionary_ANDYSafeValue.framework"; sourceTree = "<group>"; };
+		BDF45D1A1ADA458F00D040B3 /* NSJSONSerialization_ANDYJSONFile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSJSONSerialization_ANDYJSONFile.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSJSONSerialization_ANDYJSONFile.framework"; sourceTree = "<group>"; };
+		BDF45D1B1ADA458F00D040B3 /* NSManagedObject_HYPPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSManagedObject_HYPPropertyMapper.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSManagedObject_HYPPropertyMapper.framework"; sourceTree = "<group>"; };
+		BDF45D1C1ADA458F00D040B3 /* NSObject_HYPTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSObject_HYPTesting.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSObject_HYPTesting.framework"; sourceTree = "<group>"; };
+		BDF45D1D1ADA458F00D040B3 /* NSString_HYPNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSString_HYPNetworking.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSString_HYPNetworking.framework"; sourceTree = "<group>"; };
+		BDF45D261ADA459F00D040B3 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		F602C3381ACC63E50060C080 /* custom_relationship_key_JSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_JSON.json; sourceTree = "<group>"; };
 		F6C1C9631ACEEED400339BAA /* custom_relationship_key_JSON_To_One.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_JSON_To_One.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,7 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */,
+				BDF45D271ADA459F00D040B3 /* Pods.framework in Frameworks */,
+				7C20689848C76D31B9980BCA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +99,9 @@
 				1083371E17615964016F8C80 /* Pods */,
 				8D108A3917155A7C32CD56A4 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		14C4181C1A01919C00636FD6 /* Products */ = {
 			isa = PBXGroup;
@@ -153,7 +166,16 @@
 		8D108A3917155A7C32CD56A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DCEFB3E45BB7A8C5238E2880 /* libPods.a */,
+				BDF45D261ADA459F00D040B3 /* Pods.framework */,
+				BDF45D161ADA458F00D040B3 /* DATAFilter.framework */,
+				BDF45D171ADA458F00D040B3 /* DATAObjectIDs.framework */,
+				BDF45D181ADA458F00D040B3 /* DATAStack.framework */,
+				BDF45D191ADA458F00D040B3 /* NSDictionary_ANDYSafeValue.framework */,
+				BDF45D1A1ADA458F00D040B3 /* NSJSONSerialization_ANDYJSONFile.framework */,
+				BDF45D1B1ADA458F00D040B3 /* NSManagedObject_HYPPropertyMapper.framework */,
+				BDF45D1C1ADA458F00D040B3 /* NSObject_HYPTesting.framework */,
+				BDF45D1D1ADA458F00D040B3 /* NSString_HYPNetworking.framework */,
+				9E7E7DC0DFD240A693DE10D2 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -375,6 +397,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -396,6 +420,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
