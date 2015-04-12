@@ -162,10 +162,8 @@ extension NSManagedObject {
                 self.setValue(updatedObject, forKey: relationship.name)
             } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
               inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
-
                 newObject.hyp_fillWithDictionary(filteredObjectDictionary)
                 self.setValue(newObject, forKey: relationship.name)
-
             }
         }
       }
