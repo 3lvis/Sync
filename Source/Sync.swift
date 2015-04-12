@@ -39,7 +39,7 @@ private extension NSEntityDescription {
 extension NSManagedObject {
 
   public func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
-    andParent parent: NSManagedObject?,
+    parent: NSManagedObject?,
     dataStack: DATAStack!) {
       let relationships = self.sync_relationships()
 
@@ -47,7 +47,7 @@ extension NSManagedObject {
         if relationship.toMany {
           self.sync_processToManyRelationship(relationship,
             usingDictionary: dictionary,
-            andParent: parent,
+            parent: parent,
             dataStack: dataStack)
         } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
           self.setValue(parent!, forKey: relationship.name)
@@ -96,7 +96,7 @@ extension NSManagedObject {
 
   private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
     dictionary: [NSObject : AnyObject],
-    andParent parent: NSManagedObject?,
+    parent: NSManagedObject?,
     dataStack: DATAStack) {
 
       let relationshipName = self.relationshipName(relationship)
@@ -257,13 +257,13 @@ extension NSManagedObject {
             inManagedObjectContext: context)
           createdObject.hyp_fillWithDictionary(JSON)
           createdObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
-            andParent: parent,
+            parent: parent,
             dataStack: dataStack)
         }, updated: {
           (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
           updatedObject.hyp_fillWithDictionary(JSON)
           updatedObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
-            andParent: parent,
+            parent:parent,
             dataStack: dataStack)
       })
 
