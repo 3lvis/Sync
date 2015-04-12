@@ -9,7 +9,7 @@ let DefaultRemotePrimaryKey = "id"
 private extension NSEntityDescription {
 
   func localKey() -> String {
-    var localKey = DefaultLocalPrimaryKey
+    var local = DefaultLocalPrimaryKey
 
     for (key, attributedDescription) in self.propertiesByName {
       if let
@@ -24,11 +24,11 @@ private extension NSEntityDescription {
   }
 
   func remoteKey() -> String {
-    var remoteKey = DefaultRemotePrimaryKey
-    let localKeyValue = localKey()
+    var remote = DefaultRemotePrimaryKey
+    let local = localKey()
 
-    if localKeyValue != DefaultLocalPrimaryKey {
-      remoteKey = localKeyValue.hyp_remoteString()
+    if local != DefaultLocalPrimaryKey {
+      remote = local.hyp_remoteString()
     }
 
     return remote
