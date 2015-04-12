@@ -16,11 +16,11 @@ private extension NSEntityDescription {
         userInfo: Dictionary = attributedDescription.userInfo,
         customPrimaryKey = userInfo[CustomPrimaryKey] as? String
         where customPrimaryKey == "YES" {
-          localKey = key as! String
+          local = key as! String
       }
     }
 
-    return localKey
+    return local
   }
 
   func remoteKey() -> String {
@@ -31,7 +31,7 @@ private extension NSEntityDescription {
       remoteKey = localKeyValue.hyp_remoteString()
     }
 
-    return remoteKey
+    return remote
   }
 
 }
@@ -156,23 +156,23 @@ extension NSManagedObject {
       if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
         if let remoteKey: String = entity?.remoteKey() {
           let remoteID: AnyObject? = filteredObjectDictionary[remoteKey]
-            if let updatedObject = Sync.safeObjectInContext(self.managedObjectContext!,
-              entityName: entityName!,
-              remoteID: remoteID!) {
-                updatedObject.hyp_fillWithDictionary(filteredObjectDictionary)
-                self.setValue(updatedObject, forKey: relationship.name)
-            } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
-              inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
-                newObject.hyp_fillWithDictionary(filteredObjectDictionary)
-                self.setValue(newObject, forKey: relationship.name)
-            }
+          if let updatedObject = Sync.safeObjectInContext(self.managedObjectContext!,
+            entityName: entityName!,
+            remoteID: remoteID!) {
+              updatedObject.hyp_fillWithDictionary(filteredObjectDictionary)
+              self.setValue(updatedObject, forKey: relationship.name)
+          } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
+            inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
+              newObject.hyp_fillWithDictionary(filteredObjectDictionary)
+              self.setValue(newObject, forKey: relationship.name)
+          }
         }
       }
   }
 
 }
 
-@objc(HYP) public class Sync {
+public class Sync {
 
   static func safeObjectInContext(context: NSManagedObjectContext,
     entityName: String,
