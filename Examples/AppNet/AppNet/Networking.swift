@@ -30,14 +30,13 @@ class Networking {
         alertController.addAction(alertAction)
       } else {
         if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? Dictionary<String, AnyObject> {
-
-//          Sync.process(
-//            changes: json["data] as? Array,
-//            entityName: "Data",
-//            dataStack: self.dataStack,
-//            completion: { error in
-//              completion()
-//          })
+          Sync.changes(
+            (json["data"] as? Array)!,
+            entityName: "Data",
+            dataStack: self.dataStack,
+            completion: { (error) -> Void in
+            completion()
+          })
         }
       }
     }
