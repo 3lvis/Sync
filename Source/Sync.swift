@@ -154,17 +154,13 @@ extension NSManagedObject {
       let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
 
       if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
-
         if let remoteKey: String = entity?.sync_remoteKey() {
-
           let remoteID: AnyObject? = filteredObjectDictionary[remoteKey]
-
             if let updatedObject = Sync.safeObjectInContext(self.managedObjectContext!,
               entityName: entityName!,
               remoteID: remoteID!) {
                 updatedObject.hyp_fillWithDictionary(filteredObjectDictionary)
                 self.setValue(updatedObject, forKey: relationship.name)
-
             } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
               inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
                 newObject.hyp_fillWithDictionary(filteredObjectDictionary)
