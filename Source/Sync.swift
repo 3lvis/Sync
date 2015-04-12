@@ -253,10 +253,10 @@ extension NSManagedObject {
         predicate: predicate,
         inserted: {
           (JSON: [NSObject : AnyObject]!) in
-          let created: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName,
+          let createdObject: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName,
             inManagedObjectContext: context)
-          created.hyp_fillWithDictionary(JSON)
-          created.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
+          createdObject.hyp_fillWithDictionary(JSON)
+          createdObject.sync_processRelationshipsUsingDictionary(objectDictionary: JSON,
             andParent: parent,
             dataStack: dataStack)
         }, updated: {
