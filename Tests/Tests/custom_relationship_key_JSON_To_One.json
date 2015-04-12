@@ -3,6 +3,7 @@
         "id":50,
         "title":"Fairy tale",
         "summarize_text":{
+            "id":10,
             "body":"Body of tale"
         }
     }
