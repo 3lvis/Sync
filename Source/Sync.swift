@@ -47,10 +47,10 @@ extension NSManagedObject {
         if relationship.toMany {
           self.sync_processToManyRelationship(relationship,
             usingDictionary: dictionary,
-            andParent: parent!,
+            andParent: parent,
             dataStack: dataStack)
         } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
-          self.setValue(parent, forKey: relationship.name)
+          self.setValue(parent!, forKey: relationship.name)
         } else {
           self.sync_processToOneRelationship(relationship,
             usingDictionary: dictionary)
@@ -96,12 +96,12 @@ extension NSManagedObject {
 
   private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
     dictionary: [NSObject : AnyObject],
-    andParent parent: NSManagedObject!,
+    andParent parent: NSManagedObject?,
     dataStack: DATAStack) {
 
       let relationshipName = self.relationshipName(relationship)
       let childEntityName: String = relationship.destinationEntity!.name!
-      let parentEntityName: String = parent.entity.name!
+      let parentEntityName: String? = parent?.entity.name
       let inverseEntityName: String = relationship.inverseRelationship!.name
       let inverseIsToMany: Bool = relationship.inverseRelationship!.toMany
       let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
