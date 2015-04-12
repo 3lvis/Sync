@@ -61,7 +61,7 @@
            NSError *countError = nil;
            NSInteger count = [mainContext countForFetchRequest:request error:&countError];
            if (countError) {
-                NSLog(@"countError: %@", [countError description]);
+               NSLog(@"countError: %@", [countError description]);
            }
            XCTAssertEqual(count, 8);
        }];
