@@ -189,7 +189,7 @@ public extension NSManagedObject {
   class func changes(changes: [AnyObject],
     entityName: String,
     dataStack: DATAStack,
-    completion: ((error: NSError) -> Void)?) {
+    completion: ((error: NSError?) -> Void)?) {
       self.changes(changes,
         entityName: entityName,
         predicate: nil,
@@ -201,7 +201,7 @@ public extension NSManagedObject {
     entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
-    completion: ((error: NSError) -> Void)?) {
+    completion: ((error: NSError?) -> Void)?) {
       dataStack.performInNewBackgroundContext {
         (backgroundContext: NSManagedObjectContext!) in
         [self.changes(changes,
@@ -218,7 +218,7 @@ public extension NSManagedObject {
     entityName: String,
     parent: NSManagedObject,
     dataStack: DATAStack,
-    completion: ((error: NSError) -> Void)?) {
+    completion: ((error: NSError?) -> Void)?) {
       dataStack.performInNewBackgroundContext {
         (backgroundContext: NSManagedObjectContext!) in
 
@@ -241,7 +241,7 @@ public extension NSManagedObject {
     parent: NSManagedObject?,
     context: NSManagedObjectContext,
     dataStack: DATAStack,
-    completion: ((error: NSError) -> Void)?) {
+    completion: ((error: NSError?) -> Void)?) {
       let entity = NSEntityDescription.entityForName(entityName,
         inManagedObjectContext: context)
 
@@ -275,7 +275,7 @@ public extension NSManagedObject {
       }
 
       dataStack.persistWithCompletion {
-
+        completion?(error: error)
       }
   }
 
