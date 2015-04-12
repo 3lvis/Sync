@@ -153,11 +153,11 @@ extension NSManagedObject {
       let entityName = relationship.destinationEntity?.name
       let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
       if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
-        if let remoteKey = entity?.sync_remoteKey(),
-          remoteID = dictionary[remoteKey] as? String {
+        if let remoteKey: String = entity?.sync_remoteKey(),
+          remoteID: AnyObject? = dictionary[remoteKey] {
             if let object = Sync.safeObjectInContext(self.managedObjectContext!,
               entityName: entityName!,
-              remoteID: remoteID) {
+              remoteID: remoteID!) {
                 object.hyp_fillWithDictionary(filteredObjectDictionary)
                 self.setValue(object, forKey: relationship.name)
             } else if let object = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
@@ -182,7 +182,7 @@ extension NSManagedObject {
       let request = NSFetchRequest(entityName: entityName)
       let localKey = entity?.sync_localKey()
 
-      request.predicate = NSPredicate(format: "%K = \(remoteID)", localKey!)
+      request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID as! NSObject)
 
       let objects = context.executeFetchRequest(request, error: &error)
 
