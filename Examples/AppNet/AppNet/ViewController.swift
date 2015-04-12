@@ -59,7 +59,7 @@ extension ViewController: UITableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier)as! UITableViewCell
+    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier) as! UITableViewCell
     let data = self.items[indexPath.row]
 
     cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constanst.SYNCCellIdentifier)
