@@ -24,7 +24,6 @@
 		7C20689848C76D31B9980BCA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7E7DC0DFD240A693DE10D2 /* libPods.a */; };
 		B55077B61ABAFD8800A02AD2 /* numbers_in_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */; };
 		B58D5ACA1AA5C88300DFC880 /* numbers.json in Resources */ = {isa = PBXBuildFile; fileRef = B58D5AC91AA5C88300DFC880 /* numbers.json */; };
-		BDF45D271ADA459F00D040B3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF45D261ADA459F00D040B3 /* Pods.framework */; };
 		F602C3391ACC63E50060C080 /* custom_relationship_key_JSON.json in Resources */ = {isa = PBXBuildFile; fileRef = F602C3381ACC63E50060C080 /* custom_relationship_key_JSON.json */; };
 		F6C1C9641ACEEED500339BAA /* custom_relationship_key_JSON_To_One.json in Resources */ = {isa = PBXBuildFile; fileRef = F6C1C9631ACEEED400339BAA /* custom_relationship_key_JSON_To_One.json */; };
 /* End PBXBuildFile section */
@@ -72,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDF45D271ADA459F00D040B3 /* Pods.framework in Frameworks */,
 				7C20689848C76D31B9980BCA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
