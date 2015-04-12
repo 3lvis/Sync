@@ -106,26 +106,33 @@ extension NSManagedObject {
       let inverseIsToMany: Bool = relationship.inverseRelationship!.toMany
       let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
 
-      if let children = dictionary[relationshipName] as? NSDictionary {
+      var children: NSArray?
+      if let keyExists: AnyObject? = dictionary[relationshipName] {
+        children = dictionary[relationshipName] as? NSArray
+      }
+
+      if children != nil {
+
         var childPredicate = NSPredicate()
         let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
 
         if inverseIsToMany {
           if let destinationRemoteKey = entity?.sync_remoteKey() {
-            let childsIDs: AnyObject? = children[destinationRemoteKey]
+            let childsIDs: AnyObject? = children!.valueForKey(destinationRemoteKey)
             let destinationLocalKey = entity?.sync_localKey()
 
             if childsIDs!.count == 1 {
-              childPredicate = NSPredicate(format: "%K = %@", destinationLocalKey!, (children.valueForKey(destinationRemoteKey)!.firstObject as? String)!)
+              let childKey: Int = children!.valueForKey(destinationRemoteKey)!.firstObject! as! Int
+              childPredicate = NSPredicate(format: "%K = \(childKey)", destinationLocalKey!)
             } else {
-              childPredicate = NSPredicate(format: "ANY %K.%K = %@", relationshipName, destinationLocalKey!, (children.valueForKey(destinationRemoteKey) as? String)!)
+              childPredicate = NSPredicate(format: "ANY %K.%K = %@", relationshipName, destinationLocalKey!, children!.valueForKey(destinationRemoteKey) as! NSArray)
             }
           }
         } else {
           childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
         }
 
-        Sync.changes([children],
+        Sync.changes(children! as Array,
           entityName: childEntityName,
           predicate: childPredicate,
           parent: self,
@@ -275,7 +282,9 @@ extension NSManagedObject {
       }
 
       dataStack.persistWithCompletion {
-        completion!(error: error)
+        if completion != nil {
+          completion!(error: error)
+        }
       }
   }
 
