@@ -275,7 +275,7 @@ public extension NSManagedObject {
       }
 
       dataStack.persistWithCompletion {
-        completion?(error: error)
+        completion!(error: error)
       }
   }
 
