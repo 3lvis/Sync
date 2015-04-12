@@ -36,7 +36,27 @@ private extension NSEntityDescription {
 
 }
 
-public extension NSManagedObject {
+extension NSManagedObject {
+
+  public func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
+    andParent parent: NSManagedObject?,
+    dataStack: DATAStack!) {
+      let relationships = self.sync_relationships()
+
+      for relationship in relationships {
+        if relationship.toMany {
+          self.sync_processToManyRelationship(relationship,
+            usingDictionary: dictionary,
+            andParent: parent!,
+            dataStack: dataStack)
+        } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
+          self.setValue(parent, forKey: relationship.name)
+        } else {
+          self.sync_processToOneRelationship(relationship,
+            usingDictionary: dictionary)
+        }
+      }
+  }
 
   private func relationshipName(relationship: NSRelationshipDescription) -> String {
     var relationshipName = relationship.name
@@ -72,26 +92,6 @@ public extension NSManagedObject {
     }
 
     return relationships
-  }
-
-  func sync_processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
-    andParent parent: NSManagedObject?,
-    dataStack: DATAStack!) {
-      let relationships = self.sync_relationships()
-
-      for relationship in relationships {
-        if relationship.toMany {
-          self.sync_processToManyRelationship(relationship,
-            usingDictionary: dictionary,
-            andParent: parent!,
-            dataStack: dataStack)
-        } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
-          self.setValue(parent, forKey: relationship.name)
-        } else {
-          self.sync_processToOneRelationship(relationship,
-            usingDictionary: dictionary)
-        }
-      }
   }
 
   private func sync_processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
@@ -140,7 +140,7 @@ public extension NSManagedObject {
       }
   }
 
-  func sync_processToOneRelationship(relationship: NSRelationshipDescription,
+  private func sync_processToOneRelationship(relationship: NSRelationshipDescription,
     usingDictionary dictionary: [NSObject : AnyObject]) {
       let relationshipName = self.relationshipName(relationship)
       let entityName = relationship.destinationEntity?.name
