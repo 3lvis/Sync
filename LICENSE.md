@@ -1,8 +1,8 @@
 Licensed under the **MIT** license
 
-> Copyright (c) 2015 [Hyper Interaktiv AS](ios@hyper.no)
+> Copyright (c) 2015 [Hyper Interaktiv AS](http://www.hyper.no/)
 >
-> Copyright (c) 2015 [Elvis Nuñez](elvisnunez@me.com)
+> Copyright (c) 2015 [Elvis Nuñez](https://github.com/3lvis)
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
