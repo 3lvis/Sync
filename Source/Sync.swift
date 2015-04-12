@@ -122,7 +122,7 @@ extension NSManagedObject {
             let destinationLocalKey = entity?.sync_localKey()
 
             if childsIDs!.count == 1 {
-              let childKey: Int = children!.valueForKey(destinationRemoteKey)!.firstObject! as! Int
+              let childKey: Int = children!.valueForKey(destinationRemoteKey)!.firstObject!!.integerValue
               childPredicate = NSPredicate(format: "%K = \(childKey)", destinationLocalKey!)
             } else {
               childPredicate = NSPredicate(format: "ANY %K.%K = %@", relationshipName, destinationLocalKey!, children!.valueForKey(destinationRemoteKey) as! NSArray)
