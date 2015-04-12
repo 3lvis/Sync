@@ -51,7 +51,7 @@
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
 
-    NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+    NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
     [Sync changes:objectsA
        entityName:@"User"
@@ -106,7 +106,7 @@
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSError *userError = nil;
            NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
@@ -153,7 +153,7 @@
             NSLog(@"userError: %@", userError);
         }
 
-        NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+        NSManagedObjectContext *mainContext = self.dataStack.mainContext;
         [mainContext performBlockAndWait:^{
             [self.dataStack persistWithCompletion:^{
                 NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
@@ -168,7 +168,7 @@
                        parent:[users firstObject]
                     dataStack:self.dataStack
                    completion:^(NSError *error) {
-                       NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+                       NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
                        NSError *userFetchError = nil;
                        NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
@@ -203,7 +203,7 @@
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSError *notesError = nil;
            NSFetchRequest *notesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
@@ -252,7 +252,7 @@
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSError *usersError = nil;
            NSFetchRequest *usersRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
@@ -303,7 +303,7 @@
         predicate:nil
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSInteger numberCount =[self countAllEntities:@"Number" inContext:mainContext];
            XCTAssertEqual(numberCount, 6);
@@ -324,7 +324,7 @@
        entityName:@"Number"
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSInteger collectioCount =[self countAllEntities:@"Collection" inContext:mainContext];
            XCTAssertEqual(collectioCount, 1);
@@ -344,7 +344,7 @@
        entityName:@"Comment"
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSError *commentsError = nil;
            NSFetchRequest *commentsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Comment"];
@@ -373,7 +373,7 @@
        entityName:@"Story"
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSError *storiesError = nil;
            NSFetchRequest *storiesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
@@ -419,7 +419,7 @@
        entityName:@"User"
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSError *userError = nil;
            NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
@@ -437,7 +437,7 @@
        entityName:@"Story"
         dataStack:self.dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+           NSManagedObjectContext *mainContext = self.dataStack.mainContext;
 
            NSError *storyError = nil;
            NSFetchRequest *storyRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
