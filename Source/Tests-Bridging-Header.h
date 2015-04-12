@@ -1,5 +1,5 @@
-#import "DATAStack.h"
-#import "NSDictionary+ANDYSafeValue.h"
-#import "NSManagedObject+HYPPropertyMapper.h"
-#import "DATAFilter.h"
-#import "NSString+HYPNetworking.h"
+@import DATAStack;
+@import NSDictionary_ANDYSafeValue;
+@import NSManagedObject_HYPPropertyMapper;
+@import DATAFilter;
+@import NSString_HYPNetworking;

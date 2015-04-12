@@ -194,7 +194,7 @@ extension NSManagedObject {
       return objects?.first as? NSManagedObject
   }
 
-  class func changes(changes: [AnyObject],
+  public class func changes(changes: [AnyObject],
     entityName: String,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
@@ -205,7 +205,7 @@ extension NSManagedObject {
         completion: completion)
   }
 
-  class func changes(changes: [AnyObject],
+  public class func changes(changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
@@ -222,7 +222,7 @@ extension NSManagedObject {
       }
   }
 
-  class func changes(changes: [AnyObject],
+  public class func changes(changes: [AnyObject],
     entityName: String,
     parent: NSManagedObject,
     dataStack: DATAStack,
@@ -243,7 +243,7 @@ extension NSManagedObject {
       }
   }
 
-  class func changes(changes: [AnyObject],
+  public class func changes(changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,
