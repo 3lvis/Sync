@@ -283,35 +283,50 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 
 @implementation NSEntityDescription (Sync)
 
-- (NSString *)sync_localKey
+- (NSAttributeDescription *)sync_primaryAttribute
 {
-    __block NSString *localKey;
-    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key,
-                                                               NSAttributeDescription *attributeDescription,
-                                                               BOOL *stop) {
+    __block NSAttributeDescription *primaryAttribute = nil;
+    
+    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSAttributeDescription *attributeDescription, BOOL *stop) {
         NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
         BOOL hasCustomPrimaryKey = (isPrimaryKey &&
                                     [isPrimaryKey isEqualToString:@"YES"]);
+        
         if (hasCustomPrimaryKey) {
-            localKey = key;
+            primaryAttribute = attributeDescription;
+            *stop = YES;
+        }
+        
+        if ([key isEqualToString:SyncDefaultLocalPrimaryKey]) {
+            primaryAttribute = attributeDescription;
         }
     }];
+    
+    return primaryAttribute;
+}
 
-    if (!localKey) {
-        localKey = SyncDefaultLocalPrimaryKey;
-    }
+- (NSString *)sync_localKey
+{
+    NSString *localKey;
+    NSAttributeDescription *primaryAttribute = [self sync_primaryAttribute];
+    
+    localKey = primaryAttribute.name;
 
     return localKey;
 }
 
 - (NSString *)sync_remoteKey
 {
-    NSString *remoteKey;
-    NSString *localKey = [self sync_localKey];
-    if ([localKey isEqualToString:SyncDefaultLocalPrimaryKey]) {
-        remoteKey = SyncDefaultRemotePrimaryKey;
-    } else {
-        remoteKey = [localKey hyp_remoteString];
+    NSAttributeDescription *primaryAttribute = [self sync_primaryAttribute];
+    NSString *remoteKey = primaryAttribute.userInfo[HYPPropertyMapperCustomRemoteKey];
+    
+    if (!remoteKey) {
+        if ([primaryAttribute.name isEqualToString:SyncDefaultLocalPrimaryKey]) {
+            remoteKey = SyncDefaultRemotePrimaryKey;
+        } else {
+            remoteKey = [primaryAttribute.name hyp_remoteString];
+        }
+        
     }
 
     return remoteKey;
