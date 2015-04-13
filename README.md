@@ -15,6 +15,15 @@
 
 ## Interface
 
+```swift
+public class func changes(changes: [AnyObject],
+  entityName: String,
+  dataStack: DATAStack,
+  completion: ((error: NSError?) -> Void)?) {
+
+}
+```
+
 ```objc
 + (void)changes:(NSArray *)changes
   inEntityNamed:(NSString *)entityName
@@ -55,6 +64,17 @@
 ```
 
 #### Sync
+
+```swift
+Sync.changes(JSON,
+  entityName: "Data",
+  dataStack: self.dataStack,
+  completion: { (error) -> Void in
+// New objects have been inserted
+// Existing objects have been updated
+// And not found objects have been deleted
+})
+```
 
 ```objc
 [Sync changes:JSON
