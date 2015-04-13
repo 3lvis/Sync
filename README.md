@@ -15,6 +15,18 @@
 
 ## Interface
 
+### Swift
+
+```swift
+Sync.changes(
+  changes: [AnyObject]!,
+  inEntityNamed: String!,
+  dataStack: DATAStack!,
+  completion: ((NSError!) -> Void)!)
+```
+
+### Objective-C
+
 ```objc
 + (void)changes:(NSArray *)changes
   inEntityNamed:(NSString *)entityName
