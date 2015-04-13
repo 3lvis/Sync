@@ -413,6 +413,7 @@
 
            NSError *imagesError = nil;
            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
+           request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES]];
            NSArray *array = [mainContext executeFetchRequest:request error:&imagesError];
            XCTAssertEqual(array.count, 3);
            NSManagedObject *image = [array firstObject];
