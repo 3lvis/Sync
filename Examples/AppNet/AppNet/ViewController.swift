@@ -33,7 +33,7 @@ class ViewController: UITableViewController {
   // MARK: Networking methods
 
   func fetchNewData() {
-    networking.fetchItems {
+    networking.fetchItems { _ in
       self.fetchCurrentObjects()
     }
   }
