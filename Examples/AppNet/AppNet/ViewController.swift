@@ -33,7 +33,7 @@ class ViewController: UITableViewController {
   // MARK: Networking methods
 
   func fetchNewData() {
-    networking.fetchItems { (error) -> Void in
+    networking.fetchItems { (error) in
       self.fetchCurrentObjects()
     }
   }
