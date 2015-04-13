@@ -367,7 +367,7 @@
 
 - (void)testCustomKeysInRelationshipsToMany
 {
-    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON.json"];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_to_many.json"];
 
     [Sync changes:objects
     inEntityNamed:@"User"
@@ -385,7 +385,7 @@
 
 - (void)testCustomKeysInRelationshipsToOne
 {
-    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON_To_One.json"];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_to_one.json"];
 
     [Sync changes:objects
     inEntityNamed:@"Story"
