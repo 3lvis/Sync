@@ -2,20 +2,20 @@ PODS:
   - DATAFilter (0.8.0):
     - DATAObjectIDs
   - DATAObjectIDs (0.5.0)
-  - DATASource (2.1)
+  - DATASource (3.0.0)
   - DATAStack (3.0.4):
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
-  - NSManagedObject-HYPPropertyMapper (3.0.1):
-    - NSString-HYPNetworking (~> 0.3.0)
+  - NSManagedObject-HYPPropertyMapper (3.0.2):
+    - NSString-HYPNetworking (~> 0.3.1)
   - NSObject-HYPTesting (1.2)
   - NSString-ANDYSizes (2.0)
-  - NSString-HYPNetworking (0.3.0)
+  - NSString-HYPNetworking (0.3.1)
   - Sync (1.0.0):
     - DATAFilter (~> 0.8.0)
     - DATAStack (~> 3.0.4)
     - NSDictionary-ANDYSafeValue (~> 0.3)
-    - NSManagedObject-HYPPropertyMapper (~> 3.0.1)
+    - NSManagedObject-HYPPropertyMapper (~> 3.0.2)
 
 DEPENDENCIES:
   - DATASource
@@ -29,13 +29,13 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   DATAFilter: aa7a6b0d1ee0841d9ae4402e0da7d9f6cd209e06
   DATAObjectIDs: 472eae6d8d6b57109b973c837ec3dd5e78016ab6
-  DATASource: 013d7a7d4c378b5a67b880de7b7f2a29f701eeab
+  DATASource: 769e53094001aaab261f6a9dfb631fc6653d9b2c
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
-  NSManagedObject-HYPPropertyMapper: 8559d1ac8dd804ee2c29ae4c8fff0459b221657b
+  NSManagedObject-HYPPropertyMapper: 8475073a98791325f3268f591e836e5bb6ecc0f4
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-ANDYSizes: 40605b9c6542cd9b8e186fd3f9081b3645848603
-  NSString-HYPNetworking: c8592ecb67780d42456e45962aa61f2bb43b5289
-  Sync: a2e867b28093c55d4d2f01fa2447d8fedbbe6e69
+  NSString-HYPNetworking: 49ed5fd85aeb3159da40f8aabad787c4d13d17d7
+  Sync: 603e1368cec977ef53b06aca3ab2c2c7fa3a401a
 
 COCOAPODS: 0.36.3

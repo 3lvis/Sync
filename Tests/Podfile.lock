@@ -6,10 +6,10 @@ PODS:
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
   - NSJSONSerialization-ANDYJSONFile (1.1)
-  - NSManagedObject-HYPPropertyMapper (3.0.1):
-    - NSString-HYPNetworking (~> 0.3.0)
+  - NSManagedObject-HYPPropertyMapper (3.0.2):
+    - NSString-HYPNetworking (~> 0.3.1)
   - NSObject-HYPTesting (1.2)
-  - NSString-HYPNetworking (0.3.0)
+  - NSString-HYPNetworking (0.3.1)
 
 DEPENDENCIES:
   - DATAFilter
@@ -24,8 +24,8 @@ SPEC CHECKSUMS:
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
   NSJSONSerialization-ANDYJSONFile: 4a92ca174d5ccde13015e853e9eb62440459b478
-  NSManagedObject-HYPPropertyMapper: 8559d1ac8dd804ee2c29ae4c8fff0459b221657b
+  NSManagedObject-HYPPropertyMapper: 8475073a98791325f3268f591e836e5bb6ecc0f4
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
-  NSString-HYPNetworking: c8592ecb67780d42456e45962aa61f2bb43b5289
+  NSString-HYPNetworking: 49ed5fd85aeb3159da40f8aabad787c4d13d17d7
 
 COCOAPODS: 0.36.3

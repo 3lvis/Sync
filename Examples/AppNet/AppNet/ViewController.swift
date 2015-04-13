@@ -1,10 +1,7 @@
 import UIKit
 
 class ViewController: UITableViewController {
-    struct Constanst {
-      static let SYNCCellIdentifier = "CellID"
-      static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
-  }
+  let CellIdentifier = "CellID"
 
   let dataStack: DATAStack
   lazy var networking: Networking = { [unowned self] in Networking(dataStack: self.dataStack) }()
@@ -17,8 +14,8 @@ class ViewController: UITableViewController {
     super.init(nibName: nil, bundle: nil);
   }
 
-  required init(coder aDecoder: NSCoder) {
-    assertionFailure("Must use init(dataStack: DATAStack) ");
+  required init!(coder aDecoder: NSCoder!) {
+    fatalError("init(coder:) has not been implemented")
   }
 
   // MARK: View Lifecycle
@@ -27,7 +24,7 @@ class ViewController: UITableViewController {
     super.viewDidLoad()
 
     title = "AppNet"
-    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: Constanst.SYNCCellIdentifier)
+    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
 
     fetchCurrentObjects()
     fetchNewData()
@@ -36,7 +33,7 @@ class ViewController: UITableViewController {
   // MARK: Networking methods
 
   func fetchNewData() {
-    networking.fetchNewContent { [unowned self] in
+    networking.fetchItems { _ in
       self.fetchCurrentObjects()
     }
   }
@@ -46,7 +43,7 @@ class ViewController: UITableViewController {
   func fetchCurrentObjects() {
     let request = NSFetchRequest(entityName: "Data")
     request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-    items = dataStack.mainContext.executeFetchRequest(request, error: nil) as [Data]
+    items = dataStack.mainContext.executeFetchRequest(request, error: nil) as! [Data]
 
     tableView.reloadData()
   }
@@ -59,13 +56,16 @@ extension ViewController: UITableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier) as UITableViewCell
+    var cell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! UITableViewCell
     let data = self.items[indexPath.row]
 
-    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constanst.SYNCCellIdentifier)
+    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier)
 
     cell.textLabel?.text = data.text
-    cell.textLabel?.numberOfLines = 0
+
+    // Workaround: The proper value of `numberOfLines` should be 0
+    // but there's a weird bug that causes UITableView to go crazy
+    cell.textLabel?.numberOfLines = 1
     cell.detailTextLabel?.text = data.user.username
 
     return cell
