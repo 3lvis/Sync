@@ -401,4 +401,23 @@
        }];
 }
 
+- (void)testCustomMappingAndCustomPrimaryKey
+{
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"images.json"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Image"
+        dataStack:self.dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+
+           NSError *imagesError = nil;
+           NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
+           NSArray *array = [mainContext executeFetchRequest:request error:&imagesError];
+           XCTAssertEqual(array.count, 3);
+           NSManagedObject *image = [array firstObject];
+           XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
+       }];
+}
+
 @end
