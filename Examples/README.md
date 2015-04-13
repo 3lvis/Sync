@@ -2,6 +2,10 @@
 
 ![Sync examples](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/examples.png)
 
+- DesignerNews example, sync stories, dates, comments, and navigate through them in an Objective-C dedicated app.
+
+- AppNet example, sync new posts in an app done in Swift.
+
 ## Building
 
 Run `pod install` in each sample project directory to set up their
