@@ -193,7 +193,7 @@ extension NSManagedObject {
       return objects?.first as? NSManagedObject
   }
 
-  @availability(*, deprecated=1.0.0) public class func changes(changes: [AnyObject],
+  @availability(*, deprecated=1.0.0, message="Use Sync.changes(changes,entityName:dataStack:completion) instead.") public class func changes(changes: [AnyObject],
     inEntityName entityName: String,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
