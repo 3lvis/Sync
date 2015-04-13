@@ -68,9 +68,9 @@ Sync.changes(JSON,
   entityName: "Data",
   dataStack: self.dataStack,
   completion: { (error) -> Void in
-// New objects have been inserted
-// Existing objects have been updated
-// And not found objects have been deleted
+  // New objects have been inserted
+  // Existing objects have been updated
+  // And not found objects have been deleted
 })
 ```
 
