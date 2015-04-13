@@ -33,7 +33,6 @@ private extension NSEntityDescription {
 
     return remote
   }
-
 }
 
 extension NSManagedObject {
