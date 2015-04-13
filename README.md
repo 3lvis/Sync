@@ -65,7 +65,7 @@ public class func changes(changes: [AnyObject],
 
 ```swift
 Sync.changes(JSON,
-  entityName: "Data",
+  entityName: "User",
   dataStack: self.dataStack,
   completion: { (error) -> Void in
   // New objects have been inserted
