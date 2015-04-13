@@ -194,6 +194,17 @@ extension NSManagedObject {
       return objects?.first as? NSManagedObject
   }
 
+  @availability(*, deprecated=1.0) public class func changes(changes: [AnyObject],
+    inEntityName entityName: String,
+    dataStack: DATAStack,
+    completion: ((error: NSError?) -> Void)?) {
+      self.changes(changes,
+        entityName: entityName,
+        predicate: nil,
+        dataStack: dataStack,
+        completion: completion)
+  }
+
   public class func changes(changes: [AnyObject],
     entityName: String,
     dataStack: DATAStack,
