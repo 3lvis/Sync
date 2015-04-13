@@ -19,9 +19,7 @@
 public class func changes(changes: [AnyObject],
   entityName: String,
   dataStack: DATAStack,
-  completion: ((error: NSError?) -> Void)?) {
-
-}
+  completion: ((error: NSError?) -> Void)?) {}
 ```
 
 ```objc
