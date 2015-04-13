@@ -22,21 +22,26 @@ class Networking {
 
     NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { [unowned self] _, data, error in
       if error != nil {
-        let alertController = UIAlertController(title: "Ooops!", message: "There was a connection error. \(error)", preferredStyle: .Alert)
-        let alertAction = UIAlertAction(title: "OK", style: .Default, handler: { action in
-          alertController.dismissViewControllerAnimated(true, completion: nil)
+        let alertController = UIAlertController(title: "Ooops!",
+          message: "There was a connection error. \(error)",
+          preferredStyle: .Alert)
+        let alertAction = UIAlertAction(title: "OK",
+          style: .Default,
+          handler: { action in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
         })
 
         alertController.addAction(alertAction)
       } else {
-        if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? Dictionary<String, AnyObject> {
-          Sync.changes(
-            (json["data"] as? Array)!,
-            entityName: "Data",
-            dataStack: self.dataStack,
-            completion: { (error) -> Void in
-            completion()
-          })
+        if let json = NSJSONSerialization.JSONObjectWithData(data,
+          options: NSJSONReadingOptions.MutableContainers, error: nil) as? Dictionary<String, AnyObject> {
+            Sync.changes(
+              (json["data"] as? Array)!,
+              entityName: "Data",
+              dataStack: self.dataStack,
+              completion: { (error) -> Void in
+                completion()
+            })
         }
       }
     }

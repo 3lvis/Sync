@@ -2,9 +2,9 @@ import UIKit
 import DATAStack
 
 class ViewController: UITableViewController {
-    struct Constant {
-      static let SYNCCellIdentifier = "CellID"
-      static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
+  struct Constant {
+    static let SYNCCellIdentifier = "CellID"
+    static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
   }
 
   let dataStack: DATAStack
@@ -19,7 +19,7 @@ class ViewController: UITableViewController {
   }
 
   required init!(coder aDecoder: NSCoder!) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
 
   // MARK: View Lifecycle
@@ -28,7 +28,8 @@ class ViewController: UITableViewController {
     super.viewDidLoad()
 
     title = "AppNet"
-    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: Constant.SYNCCellIdentifier)
+    tableView.registerClass(UITableViewCell.classForCoder(),
+      forCellReuseIdentifier: Constant.SYNCCellIdentifier)
 
     fetchCurrentObjects()
     fetchNewData()
@@ -63,7 +64,8 @@ extension ViewController: UITableViewDataSource {
     var cell = self.tableView.dequeueReusableCellWithIdentifier(Constant.SYNCCellIdentifier) as! UITableViewCell
     let data = self.items[indexPath.row]
 
-    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constant.SYNCCellIdentifier)
+    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
+      reuseIdentifier: Constant.SYNCCellIdentifier)
 
     cell.textLabel?.text = data.text
     cell.textLabel?.numberOfLines = 1
