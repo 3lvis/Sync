@@ -1,14 +1,14 @@
 [
   {
-    "id": 0,
+    "ImageId": 0,
     "url": "http://sample.com/sample.png"
   },
   {
-    "id": 1,
+    "ImageId": 1,
     "url": "http://sample.com/sample.png"
   },
   {
-    "id": 2,
+    "ImageId": 2,
     "url": "http://sample.com/sample.png"
   }
 ]
