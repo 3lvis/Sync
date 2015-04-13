@@ -321,7 +321,12 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     NSString *remoteKey = primaryAttribute.userInfo[HYPPropertyMapperCustomRemoteKey];
     
     if (!remoteKey) {
-        remoteKey = SyncDefaultRemotePrimaryKey;
+        if ([primaryAttribute.name isEqualToString:SyncDefaultLocalPrimaryKey]) {
+            remoteKey = SyncDefaultRemotePrimaryKey;
+        } else {
+            remoteKey = [primaryAttribute.name hyp_remoteString];
+        }
+        
     }
 
     return remoteKey;
