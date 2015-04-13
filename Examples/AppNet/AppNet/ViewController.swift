@@ -36,7 +36,7 @@ class ViewController: UITableViewController {
   // MARK: Networking methods
 
   func fetchNewData() {
-    networking.fetchNewContent { [unowned self] in
+    networking.fetchItems { (error) -> Void in
       self.fetchCurrentObjects()
     }
   }
@@ -65,7 +65,7 @@ extension ViewController: UITableViewDataSource {
     cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constanst.SYNCCellIdentifier)
 
     cell.textLabel?.text = data.text
-    
+
     // Workaround: The proper value of `numberOfLines` should be 0
     // but there's a weird bug that causes UITableView to go crazy
     cell.textLabel?.numberOfLines = 1
