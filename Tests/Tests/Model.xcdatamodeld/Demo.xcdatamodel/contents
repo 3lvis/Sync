@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D105g" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Collection" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="numbers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Number" inverseName="parent" inverseEntity="Number" syncable="YES"/>
@@ -17,6 +17,15 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Image" syncable="YES">
+        <attribute name="imageId" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="hyper.remoteKey" value="ImageId"/>
+            </userInfo>
+        </attribute>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Note" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -71,8 +80,9 @@
         <element name="Note" positionX="-20" positionY="18" width="128" height="103"/>
         <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
         <element name="Story" positionX="-180" positionY="135" width="128" height="103"/>
+        <element name="Summarize" positionX="-180" positionY="135" width="128" height="88"/>
         <element name="Tag" positionX="160" positionY="0" width="128" height="90"/>
         <element name="User" positionX="-207" positionY="-15" width="128" height="150"/>
-        <element name="Summarize" positionX="-180" positionY="135" width="128" height="88"/>
+        <element name="Image" positionX="-180" positionY="135" width="128" height="75"/>
     </elements>
 </model>
