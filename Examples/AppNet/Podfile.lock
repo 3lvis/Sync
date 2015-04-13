@@ -2,7 +2,7 @@ PODS:
   - DATAFilter (0.8.0):
     - DATAObjectIDs
   - DATAObjectIDs (0.5.0)
-  - DATASource (2.1)
+  - DATASource (3.0.0)
   - DATAStack (3.0.4):
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   DATAFilter: aa7a6b0d1ee0841d9ae4402e0da7d9f6cd209e06
   DATAObjectIDs: 472eae6d8d6b57109b973c837ec3dd5e78016ab6
-  DATASource: 013d7a7d4c378b5a67b880de7b7f2a29f701eeab
+  DATASource: 769e53094001aaab261f6a9dfb631fc6653d9b2c
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
   NSManagedObject-HYPPropertyMapper: 8475073a98791325f3268f591e836e5bb6ecc0f4

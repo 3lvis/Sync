@@ -2,10 +2,7 @@ import UIKit
 import DATAStack
 
 class ViewController: UITableViewController {
-  struct Constant {
-    static let SYNCCellIdentifier = "CellID"
-    static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
-  }
+  let CellIdentifier = "CellID"
 
   let dataStack: DATAStack
   lazy var networking: Networking = { [unowned self] in Networking(dataStack: self.dataStack) }()
@@ -29,7 +26,7 @@ class ViewController: UITableViewController {
 
     title = "AppNet"
     tableView.registerClass(UITableViewCell.classForCoder(),
-      forCellReuseIdentifier: Constant.SYNCCellIdentifier)
+      forCellReuseIdentifier: CellIdentifier)
 
     fetchCurrentObjects()
     fetchNewData()
@@ -38,7 +35,7 @@ class ViewController: UITableViewController {
   // MARK: Networking methods
 
   func fetchNewData() {
-    networking.fetchNewContent { [unowned self] in
+    networking.fetchItems { _ in
       self.fetchCurrentObjects()
     }
   }
@@ -61,13 +58,15 @@ extension ViewController: UITableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constant.SYNCCellIdentifier) as! UITableViewCell
+    var cell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! UITableViewCell
     let data = self.items[indexPath.row]
 
-    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
-      reuseIdentifier: Constant.SYNCCellIdentifier)
+    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier)
 
     cell.textLabel?.text = data.text
+
+    // Workaround: The proper value of `numberOfLines` should be 0
+    // but there's a weird bug that causes UITableView to go crazy
     cell.textLabel?.numberOfLines = 1
     cell.detailTextLabel?.text = data.user.username
 

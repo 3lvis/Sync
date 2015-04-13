@@ -15,12 +15,16 @@
 
 ## Interface
 
+### Swift
+
 ```swift
 public class func changes(changes: [AnyObject],
   entityName: String,
   dataStack: DATAStack,
   completion: ((error: NSError?) -> Void)?) {}
 ```
+
+### Objective-C
 
 ```objc
 + (void)changes:(NSArray *)changes
@@ -88,11 +92,11 @@ inEntityNamed:@"User"
 ## More Examples
 
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet/README.md">
-  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v2.png" />
+  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
 </a>
 
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews/README.md">
-  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v3.png" />
+  <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v4.png" />
 </a>
 
 ## Getting Started
