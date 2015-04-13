@@ -1,10 +1,7 @@
 import UIKit
 
 class ViewController: UITableViewController {
-    struct Constanst {
-      static let SYNCCellIdentifier = "CellID"
-      static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
-  }
+  let CellIdentifier = "CellID"
 
   let dataStack: DATAStack
   lazy var networking: Networking = { [unowned self] in Networking(dataStack: self.dataStack) }()
@@ -18,7 +15,7 @@ class ViewController: UITableViewController {
   }
 
   required init!(coder aDecoder: NSCoder!) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
 
   // MARK: View Lifecycle
@@ -27,7 +24,7 @@ class ViewController: UITableViewController {
     super.viewDidLoad()
 
     title = "AppNet"
-    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: Constanst.SYNCCellIdentifier)
+    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
 
     fetchCurrentObjects()
     fetchNewData()
@@ -59,10 +56,10 @@ extension ViewController: UITableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = self.tableView.dequeueReusableCellWithIdentifier(Constanst.SYNCCellIdentifier) as! UITableViewCell
+    var cell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! UITableViewCell
     let data = self.items[indexPath.row]
 
-    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: Constanst.SYNCCellIdentifier)
+    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier)
 
     cell.textLabel?.text = data.text
 

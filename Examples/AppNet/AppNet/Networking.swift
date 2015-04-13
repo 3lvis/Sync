@@ -1,12 +1,7 @@
 import UIKit
 
 class Networking {
-
-  struct Constanst {
-    static let SYNCAppNetURL = "https://api.app.net/posts/stream/global"
-    static let SYNCReloadTableNotification = "SYNCReloadTableNotification"
-  }
-
+  let AppNetURL = "https://api.app.net/posts/stream/global"
   let dataStack: DATAStack
 
   required init(dataStack: DATAStack) {
@@ -15,7 +10,7 @@ class Networking {
 
   func fetchItems(completion: (NSError?) -> Void) {
 
-    let urlAppNet = NSURL(string: Constanst.SYNCAppNetURL)
+    let urlAppNet = NSURL(string: AppNetURL)
     let request = NSURLRequest(URL: urlAppNet!)
     let operationQueue = NSOperationQueue()
 
