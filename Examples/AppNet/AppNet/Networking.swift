@@ -25,7 +25,7 @@ class Networking {
                 entityName: "Data",
                 dataStack: self.dataStack,
                 completion: { (error) -> Void in
-                    completion()
+                    completion(error)
             })
         } else {
           completion(error)
