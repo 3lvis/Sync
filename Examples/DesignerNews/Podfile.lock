@@ -24,7 +24,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Sync:
-    :path: ../../
+    :path: "../../"
 
 SPEC CHECKSUMS:
   DATAFilter: aa7a6b0d1ee0841d9ae4402e0da7d9f6cd209e06
