@@ -19,7 +19,12 @@
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Image" syncable="YES">
-        <attribute name="imageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageId" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="hyper.remoteKey" value="ImageId"/>
+            </userInfo>
+        </attribute>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Note" syncable="YES">
