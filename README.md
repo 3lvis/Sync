@@ -24,7 +24,7 @@ public class func changes(changes: [AnyObject],
 
 ```objc
 + (void)changes:(NSArray *)changes
-  inEntityNamed:(NSString *)entityName
+     entityName:(NSString *)entityName
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion
 ```
