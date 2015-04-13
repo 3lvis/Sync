@@ -39,7 +39,7 @@ extension NSManagedObject {
 
   public func processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
     parent: NSManagedObject?,
-    dataStack: DATAStack!) {
+    dataStack: DATAStack) {
       let relationships = self.relationships()
 
       for relationship in relationships {
