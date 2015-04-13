@@ -283,50 +283,35 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 
 @implementation NSEntityDescription (Sync)
 
-- (NSAttributeDescription *)sync_primaryAttribute
+- (NSString *)sync_localKey
 {
-    __block NSAttributeDescription *primaryAttribute = nil;
-    
-    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSAttributeDescription *attributeDescription, BOOL *stop) {
+    __block NSString *localKey;
+    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key,
+                                                               NSAttributeDescription *attributeDescription,
+                                                               BOOL *stop) {
         NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
         BOOL hasCustomPrimaryKey = (isPrimaryKey &&
                                     [isPrimaryKey isEqualToString:@"YES"]);
-        
         if (hasCustomPrimaryKey) {
-            primaryAttribute = attributeDescription;
-            *stop = YES;
-        }
-        
-        if ([key isEqualToString:SyncDefaultLocalPrimaryKey]) {
-            primaryAttribute = attributeDescription;
+            localKey = key;
         }
     }];
-    
-    return primaryAttribute;
-}
 
-- (NSString *)sync_localKey
-{
-    NSString *localKey;
-    NSAttributeDescription *primaryAttribute = [self sync_primaryAttribute];
-    
-    localKey = primaryAttribute.name;
+    if (!localKey) {
+        localKey = SyncDefaultLocalPrimaryKey;
+    }
 
     return localKey;
 }
 
 - (NSString *)sync_remoteKey
 {
-    NSAttributeDescription *primaryAttribute = [self sync_primaryAttribute];
-    NSString *remoteKey = primaryAttribute.userInfo[HYPPropertyMapperCustomRemoteKey];
-    
-    if (!remoteKey) {
-        if ([primaryAttribute.name isEqualToString:SyncDefaultLocalPrimaryKey]) {
-            remoteKey = SyncDefaultRemotePrimaryKey;
-        } else {
-            remoteKey = [primaryAttribute.name hyp_remoteString];
-        }
-        
+    NSString *remoteKey;
+    NSString *localKey = [self sync_localKey];
+    if ([localKey isEqualToString:SyncDefaultLocalPrimaryKey]) {
+        remoteKey = SyncDefaultRemotePrimaryKey;
+    } else {
+        remoteKey = [localKey hyp_remoteString];
     }
 
     return remoteKey;
