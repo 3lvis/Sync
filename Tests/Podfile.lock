@@ -1,5 +1,5 @@
 PODS:
-  - DATAFilter (0.8.0):
+  - DATAFilter (0.8.1):
     - DATAObjectIDs
   - DATAObjectIDs (0.5.0)
   - DATAStack (3.0.4):
@@ -19,7 +19,7 @@ DEPENDENCIES:
   - NSManagedObject-HYPPropertyMapper
 
 SPEC CHECKSUMS:
-  DATAFilter: aa7a6b0d1ee0841d9ae4402e0da7d9f6cd209e06
+  DATAFilter: 3f89692f7c52dd3c3973287ee8c9bb2c0e76d344
   DATAObjectIDs: 472eae6d8d6b57109b973c837ec3dd5e78016ab6
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
