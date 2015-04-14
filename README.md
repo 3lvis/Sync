@@ -83,7 +83,7 @@ Alternatively if you only want to sync users that have been created in the last 
 
 ```objc
 NSDate *now = [NSDate date];
-NSDate *yesterday = [now dateByAddingTimeInterval:24*60*60];
+NSDate *yesterday = [now dateByAddingTimeInterval:-24*60*60];
 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdAt > %@", yesterday];
 
 [Sync changes:JSON
