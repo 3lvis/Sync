@@ -40,13 +40,12 @@
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
                                          cellIdentifier:StoryTableViewCellIdentifier
-                                            mainContext:self.dataStack.mainContext];
-
-    _dataSource.configureCellBlock = ^(StoryTableViewCell *cell,
-                                       DNStory *story,
-                                       NSIndexPath *indexPath) {
-        [cell updateWithStory:story];
-    };
+                                            mainContext:self.dataStack.mainContext
+                                          configuration:^(StoryTableViewCell *cell,
+                                                          DNStory *story,
+                                                          NSIndexPath *indexPath) {
+                                              [cell updateWithStory:story];
+                                          }];
 
     return _dataSource;
 }
