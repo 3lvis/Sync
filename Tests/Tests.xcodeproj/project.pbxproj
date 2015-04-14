@@ -103,21 +103,21 @@
 		14C4182A1A01919C00636FD6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */,
-				14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */,
 				14668E251AC8A7E9007D8B09 /* comments-no-id.json */,
+				F602C3381ACC63E50060C080 /* custom_relationship_key_to_many.json */,
+				F6C1C9631ACEEED400339BAA /* custom_relationship_key_to_one.json */,
+				14477F131ADC701200713784 /* images.json */,
 				14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */,
+				B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */,
+				B58D5AC91AA5C88300DFC880 /* numbers.json */,
+				14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */,
 				14B39D801A9BCC9500D3D01B /* tagged_notes.json */,
 				14B39D811A9BCC9500D3D01B /* users_a.json */,
 				14B39D821A9BCC9500D3D01B /* users_b.json */,
-				14477F131ADC701200713784 /* images.json */,
 				14B39D831A9BCC9500D3D01B /* users_company.json */,
 				14B39D841A9BCC9500D3D01B /* users_notes.json */,
-				B58D5AC91AA5C88300DFC880 /* numbers.json */,
-				B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */,
-				F602C3381ACC63E50060C080 /* custom_relationship_key_to_many.json */,
-				F6C1C9631ACEEED400339BAA /* custom_relationship_key_to_one.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
+				14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
 			path = Tests;
