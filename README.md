@@ -79,8 +79,7 @@ inEntityNamed:@"User"
     }];
 ```
 
-Alternately if you wanted to only sync the users that have been created in the last 24 hours
-you could do this by using a `NSPredicate`.
+Alternatively if you only want to sync users that have been created in the last 24 hours, you could do this by adding a `NSPredicate`.
 
 ```objc
 NSDate *now = [NSDate date];
