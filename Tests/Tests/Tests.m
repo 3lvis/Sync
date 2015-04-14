@@ -367,7 +367,7 @@
 
 - (void)testCustomKeysInRelationshipsToMany
 {
-    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON.json"];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_to_many.json"];
 
     [Sync changes:objects
     inEntityNamed:@"User"
@@ -385,7 +385,7 @@
 
 - (void)testCustomKeysInRelationshipsToOne
 {
-    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_JSON_To_One.json"];
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"custom_relationship_key_to_one.json"];
 
     [Sync changes:objects
     inEntityNamed:@"Story"
@@ -398,6 +398,26 @@
            NSArray *array = [mainContext executeFetchRequest:storyRequest error:&storyError];
            NSManagedObject *story = [array firstObject];
            XCTAssertNotNil([story valueForKey:@"summarize"]);
+       }];
+}
+
+- (void)testCustomMappingAndCustomPrimaryKey
+{
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"images.json"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Image"
+        dataStack:self.dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+
+           NSError *imagesError = nil;
+           NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
+           request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES]];
+           NSArray *array = [mainContext executeFetchRequest:request error:&imagesError];
+           XCTAssertEqual(array.count, 3);
+           NSManagedObject *image = [array firstObject];
+           XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
        }];
 }
 
