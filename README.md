@@ -79,6 +79,22 @@ inEntityNamed:@"User"
     }];
 ```
 
+Alternatively if you only want to sync users that have been created in the last 24 hours, you could do this by using a `NSPredicate`.
+
+```objc
+NSDate *now = [NSDate date];
+NSDate *yesterday = [now dateByAddingTimeInterval:-24*60*60];
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdAt > %@", yesterday];
+
+[Sync changes:JSON
+inEntityNamed:@"User"
+    predicate:predicate
+    dataStack:dataStack
+   completion:^{
+       //...
+    }];
+```
+
 ## More Examples
 
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet/README.md">
