@@ -10,26 +10,6 @@ struct SyncConstants {
 
 @objc public class Sync {
 
-  static func safeObjectInContext(
-    context: NSManagedObjectContext,
-    entityName: String,
-    remoteID: AnyObject) -> NSManagedObject? {
-
-      var error: NSError?
-      let entity = NSEntityDescription.entityForName(
-        entityName,
-        inManagedObjectContext: context)
-      let localKey = entity?.localKey()
-      let request = NSFetchRequest(entityName: entityName)
-      request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID as! NSObject)
-      let objects = context.executeFetchRequest(request, error: &error)
-      if (error != nil) {
-        println("parentError: \(error)")
-      }
-
-      return objects?.first as? NSManagedObject
-  }
-
   public class func changes(
     changes: [AnyObject],
     entityName: String,

@@ -47,7 +47,7 @@ extension NSManagedObject {
     let localKey = entity!.localKey()
     let remoteID: AnyObject? = valueForKey(localKey)
 
-    return Sync.safeObjectInContext(
+    return safeObjectInContext(
       context,
       entityName: self.entity.name!,
       remoteID: remoteID!)
@@ -142,7 +142,7 @@ extension NSManagedObject {
           remoteKey: String = entity?.remoteKey(),
           remoteID: AnyObject = filteredObjectDictionary[remoteKey] {
             if let
-              updatedObject = Sync.safeObjectInContext(
+              updatedObject = safeObjectInContext(
                 self.managedObjectContext!,
                 entityName: entityName!,
                 remoteID: remoteID) {
@@ -158,4 +158,23 @@ extension NSManagedObject {
       }
   }
 
+  func safeObjectInContext(
+    context: NSManagedObjectContext,
+    entityName: String,
+    remoteID: AnyObject) -> NSManagedObject? {
+
+      var error: NSError?
+      let entity = NSEntityDescription.entityForName(
+        entityName,
+        inManagedObjectContext: context)
+      let localKey = entity?.localKey()
+      let request = NSFetchRequest(entityName: entityName)
+      request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID as! NSObject)
+      let objects = context.executeFetchRequest(request, error: &error)
+      if (error != nil) {
+        println("parentError: \(error)")
+      }
+
+      return objects?.first as? NSManagedObject
+  }
 }
