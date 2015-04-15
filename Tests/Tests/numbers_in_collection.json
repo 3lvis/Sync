@@ -4,6 +4,7 @@
     "values": 10,
     "parent" :
     {
+      "id":10,
       "name": "Collection 1"
     }
   }

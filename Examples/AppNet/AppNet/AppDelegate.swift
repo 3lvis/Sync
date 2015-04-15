@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import DATAStack
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let appearance = UINavigationBar.appearance()
     appearance.barTintColor = UIColor(red:0.83, green:0.43, blue:0.36, alpha:1)
     appearance.titleTextAttributes = [NSFontAttributeName : UIFont(name: "AvenirNext-DemiBold", size: 20)!,
-                                      NSForegroundColorAttributeName : UIColor.whiteColor()]
+      NSForegroundColorAttributeName : UIColor.whiteColor()]
 
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
 

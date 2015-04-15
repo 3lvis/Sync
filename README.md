@@ -18,18 +18,17 @@
 ### Swift
 
 ```swift
-Sync.changes(
-  changes: [AnyObject]!,
-  inEntityNamed: String!,
-  dataStack: DATAStack!,
-  completion: ((NSError!) -> Void)!)
+public class func changes(changes: [AnyObject],
+  entityName: String,
+  dataStack: DATAStack,
+  completion: ((error: NSError?) -> Void)?) {}
 ```
 
 ### Objective-C
 
 ```objc
 + (void)changes:(NSArray *)changes
-  inEntityNamed:(NSString *)entityName
+     entityName:(NSString *)entityName
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion
 ```
@@ -67,6 +66,17 @@ Sync.changes(
 ```
 
 #### Sync
+
+```swift
+Sync.changes(JSON,
+  entityName: "User",
+  dataStack: self.dataStack,
+  completion: { (error) -> Void in
+  // New objects have been inserted
+  // Existing objects have been updated
+  // And not found objects have been deleted
+})
+```
 
 ```objc
 [Sync changes:JSON
@@ -111,9 +121,25 @@ inEntityNamed:@"User"
 
 **Sync** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
+#### iOS 8 and above
+
 ```ruby
+use_frameworks!
+
 pod 'Sync'
 ```
+
+#### iOS 7
+
+Our dependencies have iOS 7 support so you can add them to your Podfile and copy `Sync.swift` manually.
+
+```ruby
+pod 'DATAFilter'
+pod 'DATAStack'
+pod 'NSManagedObject-HYPPropertyMapper'
+pod 'NSDictionary-ANDYSafeValue'
+```
+
 
 ## Requisites
 

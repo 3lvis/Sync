@@ -1,5 +1,5 @@
 #import "APIClient.h"
-#import "Sync.h"
+@import Sync;
 @import UIKit;
 
 static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json";
@@ -32,12 +32,9 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
                                    if (serializationError) {
                                        NSLog(@"Error serializing JSON: %@", serializationError);
                                    } else {
-                                       [Sync changes:[JSON valueForKey:@"stories"]
-                                       inEntityNamed:@"Story"
-                                           dataStack:dataStack
-                                          completion:^(NSError *error) {
-                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                                          }];
+                                     [Sync changes:[JSON valueForKey:@"stories"] entityName:@"Story" dataStack:dataStack completion:^(NSError * error) {
+                                       [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                     }];
                                    }
                                }
                            }];

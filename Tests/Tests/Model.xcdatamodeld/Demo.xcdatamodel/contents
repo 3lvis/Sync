@@ -52,7 +52,7 @@
     </entity>
     <entity name="Summarize" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="story" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Story" inverseName="summarize" inverseEntity="Story" syncable="YES"/>
     </entity>
     <entity name="Tag" syncable="YES">
@@ -77,12 +77,12 @@
         <element name="Collection" positionX="-252" positionY="360" width="128" height="73"/>
         <element name="Comment" positionX="-180" positionY="135" width="128" height="88"/>
         <element name="Company" positionX="-389" positionY="27" width="128" height="88"/>
+        <element name="Image" positionX="-180" positionY="135" width="128" height="75"/>
         <element name="Note" positionX="-20" positionY="18" width="128" height="103"/>
         <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
         <element name="Story" positionX="-180" positionY="135" width="128" height="103"/>
-        <element name="Summarize" positionX="-180" positionY="135" width="128" height="88"/>
+        <element name="Summarize" positionX="-180" positionY="135" width="128" height="90"/>
         <element name="Tag" positionX="160" positionY="0" width="128" height="90"/>
         <element name="User" positionX="-207" positionY="-15" width="128" height="150"/>
-        <element name="Image" positionX="-180" positionY="135" width="128" height="75"/>
     </elements>
 </model>

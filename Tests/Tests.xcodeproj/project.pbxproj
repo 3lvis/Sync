@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14477F141ADC701200713784 /* images.json in Resources */ = {isa = PBXBuildFile; fileRef = 14477F131ADC701200713784 /* images.json */; };
 		14667ECE1AC8B8DC0038EEB1 /* stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */; };
 		14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14668E251AC8A7E9007D8B09 /* comments-no-id.json */; };
+		147C32551ADF0A6500888A76 /* NSEntityDescription_Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147C32541ADF0A6500888A76 /* NSEntityDescription_Sync.swift */; };
+		147C32571ADF0AE900888A76 /* NSManagedObject_Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147C32561ADF0AE900888A76 /* NSManagedObject_Sync.swift */; };
 		14B39D851A9BCC9500D3D01B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */; };
 		14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */; };
 		14B39D871A9BCC9500D3D01B /* tagged_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D801A9BCC9500D3D01B /* tagged_notes.json */; };
@@ -17,22 +18,24 @@
 		14B39D891A9BCC9500D3D01B /* users_b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D821A9BCC9500D3D01B /* users_b.json */; };
 		14B39D8A1A9BCC9500D3D01B /* users_company.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D831A9BCC9500D3D01B /* users_company.json */; };
 		14B39D8B1A9BCC9500D3D01B /* users_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D841A9BCC9500D3D01B /* users_notes.json */; };
-		14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D8D1A9BCCB300D3D01B /* Sync.m */; };
 		14B564731A06D87B00342CDA /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 14B564721A06D87B00342CDA /* .travis.yml */; };
 		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
 		14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* Sync.podspec */; };
-		4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEFB3E45BB7A8C5238E2880 /* libPods.a */; };
+		14DC935D1ADA3DFD00B0477A /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DC935C1ADA3DFD00B0477A /* Sync.swift */; };
+		14EB95A21ADC763A00222C29 /* images.json in Resources */ = {isa = PBXBuildFile; fileRef = 14EB95A11ADC763A00222C29 /* images.json */; };
+		14EB95A51ADC769800222C29 /* custom_relationship_key_to_many.json in Resources */ = {isa = PBXBuildFile; fileRef = 14EB95A31ADC769800222C29 /* custom_relationship_key_to_many.json */; };
+		14EB95A61ADC769800222C29 /* custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 14EB95A41ADC769800222C29 /* custom_relationship_key_to_one.json */; };
+		9F612707CC2CA0B4280F8C8D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2FFA48FD7C09D40D3682D0 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B55077B61ABAFD8800A02AD2 /* numbers_in_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */; };
 		B58D5ACA1AA5C88300DFC880 /* numbers.json in Resources */ = {isa = PBXBuildFile; fileRef = B58D5AC91AA5C88300DFC880 /* numbers.json */; };
-		F602C3391ACC63E50060C080 /* custom_relationship_key_to_many.json in Resources */ = {isa = PBXBuildFile; fileRef = F602C3381ACC63E50060C080 /* custom_relationship_key_to_many.json */; };
-		F6C1C9641ACEEED500339BAA /* custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = F6C1C9631ACEEED400339BAA /* custom_relationship_key_to_one.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14477F131ADC701200713784 /* images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = images.json; sourceTree = "<group>"; };
 		14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "stories-comments-no-ids.json"; sourceTree = "<group>"; };
 		14668E251AC8A7E9007D8B09 /* comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "comments-no-id.json"; sourceTree = "<group>"; };
+		147C32541ADF0A6500888A76 /* NSEntityDescription_Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSEntityDescription_Sync.swift; sourceTree = "<group>"; };
+		147C32561ADF0AE900888A76 /* NSManagedObject_Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObject_Sync.swift; sourceTree = "<group>"; };
 		14B39D7E1A9BCC9500D3D01B /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_for_user_a.json; sourceTree = "<group>"; };
 		14B39D801A9BCC9500D3D01B /* tagged_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tagged_notes.json; sourceTree = "<group>"; };
@@ -40,23 +43,33 @@
 		14B39D821A9BCC9500D3D01B /* users_b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_b.json; sourceTree = "<group>"; };
 		14B39D831A9BCC9500D3D01B /* users_company.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_company.json; sourceTree = "<group>"; };
 		14B39D841A9BCC9500D3D01B /* users_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_notes.json; sourceTree = "<group>"; };
-		14B39D8C1A9BCCB300D3D01B /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
-		14B39D8D1A9BCCB300D3D01B /* Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sync.m; sourceTree = "<group>"; };
 		14B564721A06D87B00342CDA /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		14C418261A01919C00636FD6 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4182C1A01919C00636FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; tabWidth = 4; };
 		14C418381A019A1500636FD6 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C418391A019A1500636FD6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C4183A1A019A1500636FD6 /* Sync.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Sync.podspec; path = ../Sync.podspec; sourceTree = "<group>"; };
 		14C4183B1A019A1500636FD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		14DC935B1ADA3DFD00B0477A /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		14DC935C1ADA3DFD00B0477A /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
+		14EB95A11ADC763A00222C29 /* images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = images.json; sourceTree = "<group>"; };
+		14EB95A31ADC769800222C29 /* custom_relationship_key_to_many.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_to_many.json; sourceTree = "<group>"; };
+		14EB95A41ADC769800222C29 /* custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_to_one.json; sourceTree = "<group>"; };
+		3D2FFA48FD7C09D40D3682D0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C067778DC962B70CDF74EA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = numbers_in_collection.json; sourceTree = "<group>"; };
 		B58D5AC91AA5C88300DFC880 /* numbers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = numbers.json; sourceTree = "<group>"; };
-		DCEFB3E45BB7A8C5238E2880 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F602C3381ACC63E50060C080 /* custom_relationship_key_to_many.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_to_many.json; sourceTree = "<group>"; };
-		F6C1C9631ACEEED400339BAA /* custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_to_one.json; sourceTree = "<group>"; };
+		BDF45D161ADA458F00D040B3 /* DATAFilter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAFilter.framework; path = "Pods/../build/Debug-iphoneos/Pods/DATAFilter.framework"; sourceTree = "<group>"; };
+		BDF45D171ADA458F00D040B3 /* DATAObjectIDs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAObjectIDs.framework; path = "Pods/../build/Debug-iphoneos/Pods/DATAObjectIDs.framework"; sourceTree = "<group>"; };
+		BDF45D181ADA458F00D040B3 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = "Pods/../build/Debug-iphoneos/Pods/DATAStack.framework"; sourceTree = "<group>"; };
+		BDF45D191ADA458F00D040B3 /* NSDictionary_ANDYSafeValue.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSDictionary_ANDYSafeValue.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSDictionary_ANDYSafeValue.framework"; sourceTree = "<group>"; };
+		BDF45D1A1ADA458F00D040B3 /* NSJSONSerialization_ANDYJSONFile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSJSONSerialization_ANDYJSONFile.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSJSONSerialization_ANDYJSONFile.framework"; sourceTree = "<group>"; };
+		BDF45D1B1ADA458F00D040B3 /* NSManagedObject_HYPPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSManagedObject_HYPPropertyMapper.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSManagedObject_HYPPropertyMapper.framework"; sourceTree = "<group>"; };
+		BDF45D1C1ADA458F00D040B3 /* NSObject_HYPTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSObject_HYPTesting.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSObject_HYPTesting.framework"; sourceTree = "<group>"; };
+		BDF45D1D1ADA458F00D040B3 /* NSString_HYPNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSString_HYPNetworking.framework; path = "Pods/../build/Debug-iphoneos/Pods/NSString_HYPNetworking.framework"; sourceTree = "<group>"; };
+		BDF45D261ADA459F00D040B3 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */,
+				9F612707CC2CA0B4280F8C8D /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +103,9 @@
 				1083371E17615964016F8C80 /* Pods */,
 				8D108A3917155A7C32CD56A4 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		14C4181C1A01919C00636FD6 /* Products */ = {
 			isa = PBXGroup;
@@ -104,9 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				14668E251AC8A7E9007D8B09 /* comments-no-id.json */,
-				F602C3381ACC63E50060C080 /* custom_relationship_key_to_many.json */,
-				F6C1C9631ACEEED400339BAA /* custom_relationship_key_to_one.json */,
-				14477F131ADC701200713784 /* images.json */,
+				14EB95A31ADC769800222C29 /* custom_relationship_key_to_many.json */,
+				14EB95A41ADC769800222C29 /* custom_relationship_key_to_one.json */,
+				14EB95A11ADC763A00222C29 /* images.json */,
 				14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */,
 				B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */,
 				B58D5AC91AA5C88300DFC880 /* numbers.json */,
@@ -134,8 +149,10 @@
 		14C418371A01974300636FD6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				14B39D8C1A9BCCB300D3D01B /* Sync.h */,
-				14B39D8D1A9BCCB300D3D01B /* Sync.m */,
+				14DC935B1ADA3DFD00B0477A /* Tests-Bridging-Header.h */,
+				147C32541ADF0A6500888A76 /* NSEntityDescription_Sync.swift */,
+				147C32561ADF0AE900888A76 /* NSManagedObject_Sync.swift */,
+				14DC935C1ADA3DFD00B0477A /* Sync.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -156,7 +173,16 @@
 		8D108A3917155A7C32CD56A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DCEFB3E45BB7A8C5238E2880 /* libPods.a */,
+				BDF45D261ADA459F00D040B3 /* Pods.framework */,
+				BDF45D161ADA458F00D040B3 /* DATAFilter.framework */,
+				BDF45D171ADA458F00D040B3 /* DATAObjectIDs.framework */,
+				BDF45D181ADA458F00D040B3 /* DATAStack.framework */,
+				BDF45D191ADA458F00D040B3 /* NSDictionary_ANDYSafeValue.framework */,
+				BDF45D1A1ADA458F00D040B3 /* NSJSONSerialization_ANDYJSONFile.framework */,
+				BDF45D1B1ADA458F00D040B3 /* NSManagedObject_HYPPropertyMapper.framework */,
+				BDF45D1C1ADA458F00D040B3 /* NSObject_HYPTesting.framework */,
+				BDF45D1D1ADA458F00D040B3 /* NSString_HYPNetworking.framework */,
+				3D2FFA48FD7C09D40D3682D0 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,6 +199,7 @@
 				14C418231A01919C00636FD6 /* Frameworks */,
 				14C418241A01919C00636FD6 /* Resources */,
 				252DF1D1C50771166A2129C1 /* Copy Pods Resources */,
+				2BB18452DBB9526BEAD0CB80 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,20 +248,20 @@
 			files = (
 				14B564731A06D87B00342CDA /* .travis.yml in Resources */,
 				14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */,
+				14EB95A61ADC769800222C29 /* custom_relationship_key_to_one.json in Resources */,
 				14B39D8A1A9BCC9500D3D01B /* users_company.json in Resources */,
 				14B39D8B1A9BCC9500D3D01B /* users_notes.json in Resources */,
 				14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */,
 				14667ECE1AC8B8DC0038EEB1 /* stories-comments-no-ids.json in Resources */,
-				F602C3391ACC63E50060C080 /* custom_relationship_key_to_many.json in Resources */,
 				14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */,
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,
-				14477F141ADC701200713784 /* images.json in Resources */,
+				14EB95A21ADC763A00222C29 /* images.json in Resources */,
 				B55077B61ABAFD8800A02AD2 /* numbers_in_collection.json in Resources */,
 				14B39D891A9BCC9500D3D01B /* users_b.json in Resources */,
 				B58D5ACA1AA5C88300DFC880 /* numbers.json in Resources */,
 				14B39D881A9BCC9500D3D01B /* users_a.json in Resources */,
-				F6C1C9641ACEEED500339BAA /* custom_relationship_key_to_one.json in Resources */,
 				14B39D871A9BCC9500D3D01B /* tagged_notes.json in Resources */,
+				14EB95A51ADC769800222C29 /* custom_relationship_key_to_many.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +281,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BB18452DBB9526BEAD0CB80 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		91BDE4BBBCEDFDF4378DB760 /* Check Pods Manifest.lock */ = {
@@ -278,9 +320,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
 				14C4182E1A01919C00636FD6 /* Tests.m in Sources */,
+				14DC935D1ADA3DFD00B0477A /* Sync.swift in Sources */,
 				14B39D851A9BCC9500D3D01B /* Model.xcdatamodeld in Sources */,
+				147C32551ADF0A6500888A76 /* NSEntityDescription_Sync.swift in Sources */,
+				147C32571ADF0AE900888A76 /* NSManagedObject_Sync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -361,7 +405,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -375,6 +419,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -384,8 +429,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../Source/Tests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -393,13 +441,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C067778DC962B70CDF74EA5 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../Source/Tests-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -1,4 +1,5 @@
 import UIKit
+import DATAStack
 
 class ViewController: UITableViewController {
   let CellIdentifier = "CellID"
@@ -24,7 +25,8 @@ class ViewController: UITableViewController {
     super.viewDidLoad()
 
     title = "AppNet"
-    tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
+    tableView.registerClass(UITableViewCell.classForCoder(),
+      forCellReuseIdentifier: CellIdentifier)
 
     fetchCurrentObjects()
     fetchNewData()
