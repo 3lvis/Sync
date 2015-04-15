@@ -105,9 +105,25 @@ inEntityNamed:@"User"
 
 **Sync** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
+#### iOS 8 and above
+
 ```ruby
+use_frameworks!
+
 pod 'Sync'
 ```
+
+#### iOS 7
+
+Our dependencies have iOS 7 support so you can add them to your Podfile and copy `Sync.swift` manually.
+
+```ruby
+pod 'DATAFilter'
+pod 'DATAStack'
+pod 'NSManagedObject-HYPPropertyMapper'
+pod 'NSDictionary-ANDYSafeValue'
+```
+
 
 ## Requisites
 
