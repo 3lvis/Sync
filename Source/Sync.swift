@@ -8,16 +8,31 @@ let DefaultRemotePrimaryKey = "id"
 
 private extension NSEntityDescription {
 
-  func localKey() -> String {
-    var localKey = DefaultLocalPrimaryKey
+  func primaryKeyAttribute() -> NSAttributeDescription? {
+    var primaryKeyAttribute: NSAttributeDescription?
 
+    self.propertiesByName
     for (key, attributedDescription) in self.propertiesByName {
       if let
         userInfo: Dictionary = attributedDescription.userInfo,
         customPrimaryKey = userInfo[CustomPrimaryKey] as? String
         where customPrimaryKey == "YES" {
-          localKey = key as! String
+          primaryKeyAttribute = attributedDescription as? NSAttributeDescription
       }
+
+      if key == DefaultLocalPrimaryKey {
+        primaryKeyAttribute = attributedDescription as? NSAttributeDescription
+      }
+    }
+
+    return primaryKeyAttribute
+  }
+
+  func localKey() -> String {
+    var localKey = DefaultLocalPrimaryKey
+
+    if let primaryKeyAttribute = self.primaryKeyAttribute() {
+      localKey = primaryKeyAttribute.name
     }
 
     return localKey
@@ -37,21 +52,24 @@ private extension NSEntityDescription {
 
 extension NSManagedObject {
 
-  public func processRelationshipsUsingDictionary(objectDictionary dictionary: [NSObject : AnyObject],
+  public func processRelationshipsUsingDictionary(
+    objectDictionary dictionary: [NSObject : AnyObject],
     parent: NSManagedObject?,
     dataStack: DATAStack) {
-      let relationships = self.relationships()
 
+      let relationships = self.relationships()
       for relationship in relationships {
         if relationship.toMany {
-          self.processToManyRelationship(relationship,
+          self.processToManyRelationship(
+            relationship,
             usingDictionary: dictionary,
             parent: parent,
             dataStack: dataStack)
         } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
           self.setValue(parent!, forKey: relationship.name)
         } else {
-          self.processToOneRelationship(relationship,
+          self.processToOneRelationship(
+            relationship,
             usingDictionary: dictionary)
         }
       }
@@ -70,13 +88,15 @@ extension NSManagedObject {
   }
 
   private func copyInContext(context: NSManagedObjectContext) -> NSManagedObject? {
-    let entity = NSEntityDescription.entityForName(self.entity.name!,
+    let entity = NSEntityDescription.entityForName(
+      self.entity.name!,
       inManagedObjectContext: context)
 
     let localKey = entity!.localKey()
     let remoteID: AnyObject? = valueForKey(localKey)
 
-    return Sync.safeObjectInContext(context,
+    return Sync.safeObjectInContext(
+      context,
       entityName: self.entity.name!,
       remoteID: remoteID!)
   }
@@ -93,7 +113,8 @@ extension NSManagedObject {
     return relationships
   }
 
-  private func processToManyRelationship(relationship: NSRelationshipDescription, usingDictionary
+  private func processToManyRelationship(
+    relationship: NSRelationshipDescription, usingDictionary
     dictionary: [NSObject : AnyObject],
     parent: NSManagedObject?,
     dataStack: DATAStack) {
@@ -111,9 +132,10 @@ extension NSManagedObject {
       }
 
       if children != nil {
-
         var childPredicate = NSPredicate()
-        let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName(
+          childEntityName,
+          inManagedObjectContext: self.managedObjectContext!)
 
         if inverseIsToMany {
           if let destinationRemoteKey = entity?.remoteKey() {
@@ -131,7 +153,8 @@ extension NSManagedObject {
           childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
         }
 
-        Sync.changes(children! as Array,
+        Sync.changes(
+          children! as Array,
           entityName: childEntityName,
           predicate: childPredicate,
           parent: self,
@@ -146,25 +169,29 @@ extension NSManagedObject {
       }
   }
 
-  private func processToOneRelationship(relationship: NSRelationshipDescription,
+  private func processToOneRelationship(
+    relationship: NSRelationshipDescription,
     usingDictionary dictionary: [NSObject : AnyObject]) {
+
       let relationshipName = self.relationshipName(relationship)
       let entityName = relationship.destinationEntity?.name
       let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
 
       if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
-        if let remoteKey: String = entity?.remoteKey(),
+        if let
+          remoteKey: String = entity?.remoteKey(),
           remoteID: AnyObject = filteredObjectDictionary[remoteKey] {
-          if let updatedObject = Sync.safeObjectInContext(self.managedObjectContext!,
-            entityName: entityName!,
-            remoteID: remoteID) {
-              updatedObject.hyp_fillWithDictionary(filteredObjectDictionary)
-              self.setValue(updatedObject, forKey: relationship.name)
-          } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
-            inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
-              newObject.hyp_fillWithDictionary(filteredObjectDictionary)
-              self.setValue(newObject, forKey: relationship.name)
-          }
+            if let
+              updatedObject = Sync.safeObjectInContext(self.managedObjectContext!,
+                entityName: entityName!,
+                remoteID: remoteID) {
+                  updatedObject.hyp_fillWithDictionary(filteredObjectDictionary)
+                  self.setValue(updatedObject, forKey: relationship.name)
+            } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
+              inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
+                newObject.hyp_fillWithDictionary(filteredObjectDictionary)
+                self.setValue(newObject, forKey: relationship.name)
+            }
         }
       }
   }
@@ -173,19 +200,20 @@ extension NSManagedObject {
 
 @objc public class Sync {
 
-  static func safeObjectInContext(context: NSManagedObjectContext,
+  static func safeObjectInContext(
+    context: NSManagedObjectContext,
     entityName: String,
     remoteID: AnyObject) -> NSManagedObject? {
-      var error: NSError?
-      let entity = NSEntityDescription .entityForName(entityName,
-        inManagedObjectContext: context)
-      let request = NSFetchRequest(entityName: entityName)
-      let localKey = entity?.localKey()
 
+      var error: NSError?
+      let entity = NSEntityDescription.entityForName(
+        entityName,
+        inManagedObjectContext: context)
+      let localKey = entity?.localKey()
+      let request = NSFetchRequest(entityName: entityName)
       request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID as! NSObject)
 
       let objects = context.executeFetchRequest(request, error: &error)
-
       if (error != nil) {
         println("parentError: \(error)")
       }
@@ -193,24 +221,28 @@ extension NSManagedObject {
       return objects?.first as? NSManagedObject
   }
 
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     entityName: String,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
-      self.changes(changes,
+
+      self.changes(
+        changes,
         entityName: entityName,
         predicate: nil,
         dataStack: dataStack,
         completion: completion)
   }
 
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
-      dataStack.performInNewBackgroundContext {
-        (backgroundContext: NSManagedObjectContext!) in
+
+      dataStack.performInNewBackgroundContext { (backgroundContext: NSManagedObjectContext!) in
         [self.changes(changes,
           entityName: entityName,
           predicate: predicate,
@@ -221,18 +253,20 @@ extension NSManagedObject {
       }
   }
 
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     entityName: String,
     parent: NSManagedObject,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
-      dataStack.performInNewBackgroundContext {
-        (backgroundContext: NSManagedObjectContext!) in
+
+      dataStack.performInNewBackgroundContext { (backgroundContext: NSManagedObjectContext!) in
 
         let safeParent = parent.copyInContext(backgroundContext)
         let predicate = NSPredicate(format: "%K = %@", parent.entity.name!, safeParent!)
 
-        self.changes(changes,
+        self.changes(
+          changes,
           entityName: entityName,
           predicate: predicate,
           parent:safeParent,
@@ -242,41 +276,49 @@ extension NSManagedObject {
       }
   }
 
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,
     context: NSManagedObjectContext!,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
-      let entity = NSEntityDescription.entityForName(entityName,
+
+      let entity = NSEntityDescription.entityForName(
+        entityName,
         inManagedObjectContext: context)
 
-      DATAFilter.changes(changes,
+      DATAFilter.changes(
+        changes,
         inEntityNamed: entityName,
         localKey: entity!.localKey(),
         remoteKey: entity!.remoteKey(),
         context: context,
         predicate: predicate,
-        inserted: {
-          (JSON: [NSObject : AnyObject]!) in
-          let createdObject: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName,
+        inserted: { (JSON: [NSObject : AnyObject]!) in
+
+          let createdObject: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(
+            entityName,
             inManagedObjectContext: context)
           createdObject.hyp_fillWithDictionary(JSON)
-          createdObject.processRelationshipsUsingDictionary(objectDictionary: JSON,
+          createdObject.processRelationshipsUsingDictionary(
+            objectDictionary: JSON,
             parent: parent,
             dataStack: dataStack)
-        }, updated: {
-          (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
+
+        }, updated: { (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
+
           updatedObject.hyp_fillWithDictionary(JSON)
-          updatedObject.processRelationshipsUsingDictionary(objectDictionary: JSON,
+          updatedObject.processRelationshipsUsingDictionary(
+            objectDictionary: JSON,
             parent:parent,
             dataStack: dataStack)
+
       })
 
       var error: NSError?
       context.save(&error)
-
       if error != nil {
         println("Sync (error while saving \(entityName): \(error?.description)")
       }
@@ -291,11 +333,14 @@ extension NSManagedObject {
   // MARK: Deprecated methods
 
   @availability(*, deprecated=1.0.0, message="Use Sync.changes(changes,entityName:dataStack:completion) instead.")
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     inEntityName entityName: String,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
-      self.changes(changes,
+
+      self.changes(
+        changes,
         entityName: entityName,
         predicate: nil,
         dataStack: dataStack,
@@ -303,36 +348,39 @@ extension NSManagedObject {
   }
 
   @availability(*, deprecated=1.0.0, message="Use Sync.changes(changes,entityName:predicate:dataStack:completion) instead.")
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     inEntityName entityName: String,
     predicate: NSPredicate?,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
-      dataStack.performInNewBackgroundContext {
-        (backgroundContext: NSManagedObjectContext!) in
-        [self.changes(changes,
+      dataStack.performInNewBackgroundContext { (backgroundContext: NSManagedObjectContext!) in
+
+        self.changes(
+          changes,
           entityName: entityName,
           predicate: predicate,
           parent:nil,
           context: backgroundContext,
           dataStack: dataStack,
-          completion: completion)]
+          completion: completion)
       }
   }
 
   @availability(*, deprecated=1.0.0, message="Use Sync.changes(changes,entityName:parent:dataStack:completion) instead.")
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     inEntityName entityName: String,
     parent: NSManagedObject,
     dataStack: DATAStack,
     completion: ((error: NSError?) -> Void)?) {
-      dataStack.performInNewBackgroundContext {
-        (backgroundContext: NSManagedObjectContext!) in
+      dataStack.performInNewBackgroundContext { (backgroundContext: NSManagedObjectContext!) in
 
         let safeParent = parent.copyInContext(backgroundContext)
         let predicate = NSPredicate(format: "%K = %@", parent.entity.name!, safeParent!)
 
-        self.changes(changes,
+        self.changes(
+          changes,
           entityName: entityName,
           predicate: predicate,
           parent:safeParent,
@@ -343,7 +391,8 @@ extension NSManagedObject {
   }
 
   @availability(*, deprecated=1.0.0, message="Use Sync.changes(changes,entityName:predicate:parent:context:dataStack:completion) instead.")
-  public class func changes(changes: [AnyObject],
+  public class func changes(
+    changes: [AnyObject],
     inEntityName entityName: String,
     predicate: NSPredicate?,
     parent: NSManagedObject?,
@@ -353,31 +402,33 @@ extension NSManagedObject {
       let entity = NSEntityDescription.entityForName(entityName,
         inManagedObjectContext: context)
 
-      DATAFilter.changes(changes,
+      DATAFilter.changes(
+        changes,
         inEntityNamed: entityName,
         localKey: entity!.localKey(),
         remoteKey: entity!.remoteKey(),
         context: context,
         predicate: predicate,
-        inserted: {
-          (JSON: [NSObject : AnyObject]!) in
+        inserted: { (JSON: [NSObject : AnyObject]!) in
+
           let createdObject: AnyObject = NSEntityDescription.insertNewObjectForEntityForName(entityName,
             inManagedObjectContext: context)
           createdObject.hyp_fillWithDictionary(JSON)
           createdObject.processRelationshipsUsingDictionary(objectDictionary: JSON,
             parent: parent,
             dataStack: dataStack)
-        }, updated: {
-          (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
+
+        }, updated: { (JSON: [NSObject : AnyObject]!, updatedObject: NSManagedObject!) in
+
           updatedObject.hyp_fillWithDictionary(JSON)
           updatedObject.processRelationshipsUsingDictionary(objectDictionary: JSON,
             parent:parent,
             dataStack: dataStack)
+
       })
 
       var error: NSError?
       context.save(&error)
-
       if error != nil {
         println("Sync (error while saving \(entityName): \(error?.description)")
       }
