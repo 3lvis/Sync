@@ -11,7 +11,6 @@ private extension NSEntityDescription {
   func primaryKeyAttribute() -> NSAttributeDescription? {
     var primaryKeyAttribute: NSAttributeDescription?
 
-    self.propertiesByName
     for (key, attributedDescription) in self.propertiesByName {
       if let
         userInfo: Dictionary = attributedDescription.userInfo,
