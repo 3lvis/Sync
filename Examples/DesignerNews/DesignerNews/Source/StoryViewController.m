@@ -52,15 +52,14 @@ static const CGFloat CommentTableViewCellOffset = 40.0;
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
                                          cellIdentifier:CommentTableViewCellIdentifier
-                                            mainContext:self.dataStack.mainContext];
-
-    _dataSource.configureCellBlock = ^(UITableViewCell *cell,
-                                       DNComment *comment,
-                                       NSIndexPath *indexPath) {
-        cell.textLabel.text = comment.body;
-        cell.textLabel.font = [UIFont commentFont];
-        cell.textLabel.numberOfLines = 0;
-    };
+                                            mainContext:self.dataStack.mainContext
+                                          configuration:^(UITableViewCell *cell,
+                                                          DNComment *comment,
+                                                          NSIndexPath *indexPath) {
+                                              cell.textLabel.text = comment.body;
+                                              cell.textLabel.font = [UIFont commentFont];
+                                              cell.textLabel.numberOfLines = 0;
+                                          }];
 
     return _dataSource;
 }
