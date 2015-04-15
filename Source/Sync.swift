@@ -22,7 +22,6 @@ struct SyncConstants {
       let localKey = entity?.localKey()
       let request = NSFetchRequest(entityName: entityName)
       request.predicate = NSPredicate(format: "%K = %@", localKey!, remoteID as! NSObject)
-
       let objects = context.executeFetchRequest(request, error: &error)
       if (error != nil) {
         println("parentError: \(error)")
@@ -53,13 +52,14 @@ struct SyncConstants {
     completion: ((error: NSError?) -> Void)?) {
 
       dataStack.performInNewBackgroundContext { (backgroundContext: NSManagedObjectContext!) in
-        [self.changes(changes,
+        self.changes(
+          changes,
           entityName: entityName,
           predicate: predicate,
           parent:nil,
           context: backgroundContext,
           dataStack: dataStack,
-          completion: completion)]
+          completion: completion)
       }
   }
 

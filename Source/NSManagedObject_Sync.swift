@@ -16,7 +16,9 @@ extension NSManagedObject {
             parent: parent,
             dataStack: dataStack)
         } else if parent != nil && relationship.destinationEntity?.name == parent?.entity.name! {
-          self.setValue(parent!, forKey: relationship.name)
+          self.setValue(
+            parent!,
+            forKey: relationship.name)
         } else {
           self.processToOneRelationship(
             relationship,
@@ -77,7 +79,7 @@ extension NSManagedObject {
       let hasValidManyToManyRelationship = (parent != nil && inverseIsToMany && parentEntityName == childEntityName)
 
       var children: NSArray?
-      if let keyExists: AnyObject? = dictionary[relationshipName] {
+      if let key: AnyObject = dictionary[relationshipName] {
         children = dictionary[relationshipName] as? NSArray
       }
 
@@ -131,19 +133,23 @@ extension NSManagedObject {
 
       let relationshipName = self.relationshipName(relationship)
       let entityName = relationship.destinationEntity?.name
-      let entity = NSEntityDescription.entityForName(entityName!, inManagedObjectContext: self.managedObjectContext!)
+      let entity = NSEntityDescription.entityForName(
+        entityName!,
+        inManagedObjectContext: self.managedObjectContext!)
 
       if let filteredObjectDictionary = dictionary[relationshipName] as? [NSObject : AnyObject] {
         if let
           remoteKey: String = entity?.remoteKey(),
           remoteID: AnyObject = filteredObjectDictionary[remoteKey] {
             if let
-              updatedObject = Sync.safeObjectInContext(self.managedObjectContext!,
+              updatedObject = Sync.safeObjectInContext(
+                self.managedObjectContext!,
                 entityName: entityName!,
                 remoteID: remoteID) {
                   updatedObject.hyp_fillWithDictionary(filteredObjectDictionary)
                   self.setValue(updatedObject, forKey: relationship.name)
-            } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName!,
+            } else if let newObject = NSEntityDescription.insertNewObjectForEntityForName(
+              entityName!,
               inManagedObjectContext: self.managedObjectContext!) as? NSManagedObject {
                 newObject.hyp_fillWithDictionary(filteredObjectDictionary)
                 self.setValue(newObject, forKey: relationship.name)
