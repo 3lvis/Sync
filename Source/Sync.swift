@@ -9,29 +9,29 @@ let DefaultRemotePrimaryKey = "id"
 private extension NSEntityDescription {
 
   func localKey() -> String {
-    var local = DefaultLocalPrimaryKey
+    var localKey = DefaultLocalPrimaryKey
 
     for (key, attributedDescription) in self.propertiesByName {
       if let
         userInfo: Dictionary = attributedDescription.userInfo,
         customPrimaryKey = userInfo[CustomPrimaryKey] as? String
         where customPrimaryKey == "YES" {
-          local = key as! String
+          localKey = key as! String
       }
     }
 
-    return local
+    return localKey
   }
 
   func remoteKey() -> String {
-    var remote = DefaultRemotePrimaryKey
-    let local = localKey()
+    var remoteKey = DefaultRemotePrimaryKey
+    let localKey = self.localKey()
 
-    if local != DefaultLocalPrimaryKey {
-      remote = local.hyp_remoteString()
+    if localKey != DefaultLocalPrimaryKey {
+      remoteKey = localKey.hyp_remoteString()
     }
 
-    return remote
+    return remoteKey
   }
 }
 
