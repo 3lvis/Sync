@@ -144,9 +144,15 @@ extension NSManagedObject {
 
             if childsIDs!.count == 1 {
               let childKey: Int = children!.valueForKey(destinationRemoteKey)!.firstObject!!.integerValue
-              childPredicate = NSPredicate(format: "%K = \(childKey)", destinationLocalKey!)
+              childPredicate = NSPredicate(
+                format: "%K = \(childKey)",
+                destinationLocalKey!)
             } else {
-              childPredicate = NSPredicate(format: "ANY %K.%K = %@", relationshipName, destinationLocalKey!, children!.valueForKey(destinationRemoteKey) as! NSArray)
+              childPredicate = NSPredicate(
+                format: "ANY %K.%K = %@",
+                relationshipName,
+                destinationLocalKey!,
+                children!.valueForKey(destinationRemoteKey) as! NSArray)
             }
           }
         } else {
