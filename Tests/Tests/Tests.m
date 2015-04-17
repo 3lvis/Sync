@@ -123,7 +123,7 @@
            NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
            if (notesError) NSLog(@"notesError: %@", notesError);
            XCTAssertEqual(notesCount, 5);
-         
+
            NSError *profilePicturesError = nil;
            NSFetchRequest *profilePictureRequest = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
            profilePictureRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
@@ -425,6 +425,44 @@
            XCTAssertEqual(array.count, 3);
            NSManagedObject *image = [array firstObject];
            XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
+       }];
+}
+
+- (void)testMarketsItems
+{
+    NSArray *objects = [self arrayWithObjectsFromJSON:@"markets_items.json"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Market"
+        dataStack:self.dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [self.dataStack mainContext];
+
+           NSError *marketsError = nil;
+           NSFetchRequest *marketsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Market"];
+           NSInteger numberOfMarkets = [mainContext countForFetchRequest:marketsRequest error:&marketsError];
+           if (marketsError) NSLog(@"marketsError: %@", marketsError);
+           XCTAssertEqual(numberOfMarkets, 5);
+
+           NSError *marketsFetchError = nil;
+           marketsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
+           NSArray *markets = [mainContext executeFetchRequest:marketsRequest error:&marketsFetchError];
+           if (marketsFetchError) NSLog(@"notesFetchError: %@", marketsFetchError);
+           NSManagedObject *market = [markets firstObject];
+           XCTAssertEqual([[[market valueForKey:@"items"] allObjects] count], 1);
+
+           NSError *itemsError = nil;
+           NSFetchRequest *itemsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Item"];
+           NSInteger numberOfItems = [mainContext countForFetchRequest:itemsRequest error:&itemsError];
+           if (itemsError) NSLog(@"itemsError: %@", itemsError);
+           XCTAssertEqual(numberOfItems, 1);
+
+           NSError *itemsFetchError = nil;
+           itemsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @1];
+           NSArray *items = [mainContext executeFetchRequest:itemsRequest error:&itemsFetchError];
+           if (itemsFetchError) NSLog(@"itemsFetchError: %@", itemsFetchError);
+           NSManagedObject *item = [items firstObject];
+           XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 2);
        }];
 }
 

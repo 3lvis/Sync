@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Collection" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="numbers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Number" inverseName="parent" inverseEntity="Number" syncable="YES"/>
@@ -27,6 +27,24 @@
         </attribute>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="profilePictures" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Item" syncable="YES">
+        <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <relationship name="markets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Market" inverseName="items" inverseEntity="Market" syncable="YES"/>
+    </entity>
+    <entity name="Market" syncable="YES">
+        <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="markets" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="Note" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -76,15 +94,17 @@
         <relationship name="profilePictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Collection" positionX="-252" positionY="360" width="128" height="73"/>
-        <element name="Comment" positionX="-180" positionY="135" width="128" height="88"/>
-        <element name="Company" positionX="-389" positionY="27" width="128" height="88"/>
-        <element name="Image" positionX="-180" positionY="135" width="128" height="88"/>
-        <element name="Note" positionX="-20" positionY="18" width="128" height="103"/>
-        <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
-        <element name="Story" positionX="-180" positionY="135" width="128" height="103"/>
-        <element name="Summarize" positionX="-180" positionY="135" width="128" height="88"/>
-        <element name="Tag" positionX="160" positionY="0" width="128" height="90"/>
-        <element name="User" positionX="-207" positionY="-15" width="128" height="163"/>
+        <element name="Collection" positionX="-1748" positionY="-945" width="128" height="73"/>
+        <element name="Comment" positionX="-1737" positionY="-900" width="128" height="88"/>
+        <element name="Company" positionX="-1676" positionY="-997" width="128" height="88"/>
+        <element name="Image" positionX="-1737" positionY="-900" width="128" height="88"/>
+        <element name="Note" positionX="-1577" positionY="-1017" width="128" height="103"/>
+        <element name="Number" positionX="-1701" positionY="-1009" width="128" height="118"/>
+        <element name="Story" positionX="-1737" positionY="-900" width="128" height="103"/>
+        <element name="Summarize" positionX="-1737" positionY="-900" width="128" height="88"/>
+        <element name="Tag" positionX="-1638" positionY="-990" width="128" height="90"/>
+        <element name="User" positionX="-1764" positionY="-1050" width="128" height="163"/>
+        <element name="Market" positionX="-1244" positionY="-1008" width="128" height="88"/>
+        <element name="Item" positionX="-1053" positionY="-1006" width="128" height="88"/>
     </elements>
 </model>
