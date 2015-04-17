@@ -30,20 +30,12 @@
     </entity>
     <entity name="Item" syncable="YES">
         <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
-            <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
-            </userInfo>
-        </attribute>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="markets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Market" inverseName="items" inverseEntity="Market" syncable="YES"/>
     </entity>
     <entity name="Market" syncable="YES">
         <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
-            <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
-            </userInfo>
-        </attribute>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="markets" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="Note" syncable="YES">

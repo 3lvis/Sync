@@ -442,10 +442,10 @@
            NSFetchRequest *marketsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Market"];
            NSInteger numberOfMarkets = [mainContext countForFetchRequest:marketsRequest error:&marketsError];
            if (marketsError) NSLog(@"marketsError: %@", marketsError);
-           XCTAssertEqual(numberOfMarkets, 5);
+           XCTAssertEqual(numberOfMarkets, 2);
 
            NSError *marketsFetchError = nil;
-           marketsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
+           marketsRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @"1"];
            NSArray *markets = [mainContext executeFetchRequest:marketsRequest error:&marketsFetchError];
            if (marketsFetchError) NSLog(@"notesFetchError: %@", marketsFetchError);
            NSManagedObject *market = [markets firstObject];
@@ -458,7 +458,7 @@
            XCTAssertEqual(numberOfItems, 1);
 
            NSError *itemsFetchError = nil;
-           itemsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @1];
+           itemsRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @"1"];
            NSArray *items = [mainContext executeFetchRequest:itemsRequest error:&itemsFetchError];
            if (itemsFetchError) NSLog(@"itemsFetchError: %@", itemsFetchError);
            NSManagedObject *item = [items firstObject];
