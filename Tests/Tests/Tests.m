@@ -449,6 +449,7 @@
            NSArray *markets = [mainContext executeFetchRequest:marketsRequest error:&marketsFetchError];
            if (marketsFetchError) NSLog(@"notesFetchError: %@", marketsFetchError);
            NSManagedObject *market = [markets firstObject];
+           XCTAssertEqualObjects([market valueForKey:@"otherAttribute"], @"Market 1");
            XCTAssertEqual([[[market valueForKey:@"items"] allObjects] count], 1);
 
            NSError *itemsError = nil;
@@ -462,6 +463,7 @@
            NSArray *items = [mainContext executeFetchRequest:itemsRequest error:&itemsFetchError];
            if (itemsFetchError) NSLog(@"itemsFetchError: %@", itemsFetchError);
            NSManagedObject *item = [items firstObject];
+           XCTAssertEqualObjects([item valueForKey:@"otherAttribute"], @"Item 1");
            XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 2);
        }];
 }
