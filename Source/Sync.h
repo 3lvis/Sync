@@ -5,6 +5,21 @@
 static NSString * const SyncCustomPrimaryKey = @"hyper.isPrimaryKey";
 static NSString * const SyncCustomRemoteKey = @"hyper.remoteKey";
 
+@interface NSEntityDescription (Sync)
+
+- (NSString *)sync_remoteKey;
+- (NSString *)sync_localKey;
+
+@end
+
+@interface NSManagedObject (Sync)
+
+- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+                                       andParent:(NSManagedObject *)parent
+                                       dataStack:(DATAStack *)dataStack;
+
+@end
+
 @interface Sync : NSObject
 
 + (void)changes:(NSArray *)changes

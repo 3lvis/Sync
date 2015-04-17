@@ -10,14 +10,7 @@
 static NSString * const SyncDefaultLocalPrimaryKey = @"remoteID";
 static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 
-@interface NSEntityDescription (Sync)
-
-- (NSString *)sync_remoteKey;
-- (NSString *)sync_localKey;
-
-@end
-
-@interface NSManagedObject (Sync)
+@interface NSManagedObject (SyncPrivate)
 
 - (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context;
 
