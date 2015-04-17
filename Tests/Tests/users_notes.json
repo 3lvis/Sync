@@ -3,6 +3,11 @@
     "id": 6,
     "name": "Shawn Merrill",
     "email": "firstupdate@ovium.com",
+    "location": {
+      "city": "New York",
+      "street": "Broadway",
+      "zipCode": 10012,
+    },
     "annotations": [
       {
         "id": 0,
@@ -44,6 +49,9 @@
     "id": 7,
     "name": "Bradford Duke",
     "email": "secondupdated@ovium.com",
+    "location": {
+      "city": "London"
+    },
     "annotations": [
       {
         "id": 1,
@@ -97,6 +105,9 @@
   {
     "id": 9,
     "name": "Alexis Richmond",
-    "email": "alexisrichmond@ovium.com"
+    "email": "alexisrichmond@ovium.com",
+    "location": {
+      "city": "Lille"
+    },
   }
 ]
