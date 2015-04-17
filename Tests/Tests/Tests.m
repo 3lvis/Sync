@@ -123,6 +123,13 @@
            NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
            if (notesError) NSLog(@"notesError: %@", notesError);
            XCTAssertEqual(notesCount, 5);
+         
+           NSError *profilePicturesError = nil;
+           NSFetchRequest *profilePictureRequest = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
+           profilePictureRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+           NSInteger profilePicturesCount = [mainContext countForFetchRequest:profilePictureRequest error:&profilePicturesError];
+           if (profilePicturesError) NSLog(@"profilePicturesError: %@", profilePicturesError);
+           XCTAssertEqual(profilePicturesCount, 3);
        }];
 }
 
