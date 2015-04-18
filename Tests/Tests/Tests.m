@@ -12,6 +12,8 @@
 
 @implementation Tests
 
+#pragma mark - Helpers
+
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName
 {
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
@@ -30,6 +32,8 @@
 }
 
 #pragma mark - Tests
+
+#pragma mark Contacts
 
 - (void)testLoadAndUpdateUsers
 {
@@ -140,6 +144,47 @@
            XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
        }];
 }
+
+- (void)testRelationshipsB
+{
+    NSArray *objects = [self objectsFromJSON:@"users_c.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
+
+    [Sync changes:objects
+    inEntityNamed:@"User"
+        predicate:nil
+        dataStack:dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [dataStack mainContext];
+
+           NSError *userError = nil;
+           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+           NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
+           if (userError) NSLog(@"userError: %@", userError);
+           XCTAssertEqual(usersCount, 4);
+
+           NSError *userFetchError = nil;
+           userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+           NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
+           if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+           NSManagedObject *user = [users firstObject];
+           XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+
+           NSManagedObject *location = [user valueForKey:@"location"];
+           XCTAssertTrue([[location valueForKey:@"city"] isEqualToString:@"New York"]);
+           XCTAssertTrue([[location valueForKey:@"street"] isEqualToString:@"Broadway"]);
+           XCTAssertEqualObjects([location valueForKey:@"zipCode"], @10012);
+
+           NSError *profilePicturesError = nil;
+           NSFetchRequest *profilePictureRequest = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
+           profilePictureRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+           NSInteger profilePicturesCount = [mainContext countForFetchRequest:profilePictureRequest error:&profilePicturesError];
+           if (profilePicturesError) NSLog(@"profilePicturesError: %@", profilePicturesError);
+           XCTAssertEqual(profilePicturesCount, 3);
+       }];
+}
+
+#pragma mark Notes
 
 - (void)testRelationshipsA
 {
@@ -287,6 +332,8 @@
        }];
 }
 
+#pragma mark Recursive
+
 /**
  * How to test numbers:
  * - Because of to-one collection relationship, sync is failing when parsing children objects
@@ -335,44 +382,7 @@
        }];
 }
 
-- (void)testRelationshipsB
-{
-    NSArray *objects = [self objectsFromJSON:@"users_c.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
-
-    [Sync changes:objects
-    inEntityNamed:@"User"
-        predicate:nil
-        dataStack:dataStack
-       completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSError *userError = nil;
-           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-           NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
-           if (userError) NSLog(@"userError: %@", userError);
-           XCTAssertEqual(usersCount, 4);
-
-           NSError *userFetchError = nil;
-           userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
-           NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
-           if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
-           NSManagedObject *user = [users firstObject];
-           XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
-
-           NSManagedObject *location = [user valueForKey:@"location"];
-           XCTAssertTrue([[location valueForKey:@"city"] isEqualToString:@"New York"]);
-           XCTAssertTrue([[location valueForKey:@"street"] isEqualToString:@"Broadway"]);
-           XCTAssertEqualObjects([location valueForKey:@"zipCode"], @10012);
-
-           NSError *profilePicturesError = nil;
-           NSFetchRequest *profilePictureRequest = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
-           profilePictureRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-           NSInteger profilePicturesCount = [mainContext countForFetchRequest:profilePictureRequest error:&profilePicturesError];
-           if (profilePicturesError) NSLog(@"profilePicturesError: %@", profilePicturesError);
-           XCTAssertEqual(profilePicturesCount, 3);
-       }];
-}
+#pragma mark Social
 
 - (void)testCustomPrimaryKey
 {
@@ -455,6 +465,47 @@
            NSArray *array = [mainContext executeFetchRequest:storyRequest error:&storyError];
            NSManagedObject *story = [array firstObject];
            XCTAssertNotNil([story valueForKey:@"summarize"]);
+       }];
+}
+
+#pragma mark Markets
+
+- (void)testMarketsAndItems
+{
+    NSArray *objects = [self objectsFromJSON:@"markets_items.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Markets"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Market"
+        dataStack:dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [dataStack mainContext];
+
+           NSError *marketsError = nil;
+           NSFetchRequest *marketsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Market"];
+           NSInteger numberOfMarkets = [mainContext countForFetchRequest:marketsRequest error:&marketsError];
+           if (marketsError) NSLog(@"marketsError: %@", marketsError);
+           XCTAssertEqual(numberOfMarkets, 2);
+
+           NSError *marketsFetchError = nil;
+           //marketsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
+           NSArray *markets = [mainContext executeFetchRequest:marketsRequest error:&marketsFetchError];
+           if (marketsFetchError) NSLog(@"marketsFetchError: %@", marketsFetchError);
+           NSManagedObject *market = [markets firstObject];
+           XCTAssertEqual([[[market valueForKey:@"items"] allObjects] count], 2);
+
+           NSError *itemsError = nil;
+           NSFetchRequest *itemsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Item"];
+           NSInteger numberOfItems = [mainContext countForFetchRequest:itemsRequest error:&itemsError];
+           if (itemsError) NSLog(@"itemsError: %@", itemsError);
+           XCTAssertEqual(numberOfItems, 2);
+
+           NSError *itemsFetchError = nil;
+           itemsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
+           NSArray *tags = [mainContext executeFetchRequest:itemsRequest error:&itemsFetchError];
+           if (itemsFetchError) NSLog(@"itemsFetchError: %@", itemsFetchError);
+           NSManagedObject *tag = [tags firstObject];
+           XCTAssertEqual([[[tag valueForKey:@"markets"] allObjects] count], 4);
        }];
 }
 

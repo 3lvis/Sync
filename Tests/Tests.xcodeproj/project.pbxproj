@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		14477F141ADC701200713784 /* images.json in Resources */ = {isa = PBXBuildFile; fileRef = 14477F131ADC701200713784 /* images.json */; };
+		145B5AA51AE2CF500035EE8F /* markets_items.json in Resources */ = {isa = PBXBuildFile; fileRef = 145B5AA41AE2CF500035EE8F /* markets_items.json */; };
+		145B5AA81AE2CF840035EE8F /* Markets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 145B5AA61AE2CF840035EE8F /* Markets.xcdatamodeld */; };
 		14667ECE1AC8B8DC0038EEB1 /* stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */; };
 		14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14668E251AC8A7E9007D8B09 /* comments-no-id.json */; };
 		14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		14477F131ADC701200713784 /* images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = images.json; sourceTree = "<group>"; };
+		145B5AA41AE2CF500035EE8F /* markets_items.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markets_items.json; sourceTree = "<group>"; };
+		145B5AA71AE2CF840035EE8F /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "stories-comments-no-ids.json"; sourceTree = "<group>"; };
 		14668E251AC8A7E9007D8B09 /* comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "comments-no-id.json"; sourceTree = "<group>"; };
 		14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_for_user_a.json; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				F602C3381ACC63E50060C080 /* custom_relationship_key_to_many.json */,
 				F6C1C9631ACEEED400339BAA /* custom_relationship_key_to_one.json */,
 				14477F131ADC701200713784 /* images.json */,
+				145B5AA41AE2CF500035EE8F /* markets_items.json */,
 				14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */,
 				B55077B51ABAFD8800A02AD2 /* numbers_in_collection.json */,
 				B58D5AC91AA5C88300DFC880 /* numbers.json */,
@@ -127,6 +132,7 @@
 				14B39D841A9BCC9500D3D01B /* users_notes.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
 				14C349041AE27DEF00D90923 /* Contacts.xcdatamodeld */,
+				145B5AA61AE2CF840035EE8F /* Markets.xcdatamodeld */,
 				14C349011AE27DB000D90923 /* Notes.xcdatamodeld */,
 				14C3490A1AE297BD00D90923 /* Recursive.xcdatamodeld */,
 				14C349071AE297A700D90923 /* Social.xcdatamodeld */,
@@ -235,6 +241,7 @@
 				14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */,
 				14B39D8A1A9BCC9500D3D01B /* users_company.json in Resources */,
 				14B39D8B1A9BCC9500D3D01B /* users_notes.json in Resources */,
+				145B5AA51AE2CF500035EE8F /* markets_items.json in Resources */,
 				14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */,
 				14C3490E1AE29F6F00D90923 /* users_c.json in Resources */,
 				14667ECE1AC8B8DC0038EEB1 /* stories-comments-no-ids.json in Resources */,
@@ -294,6 +301,7 @@
 				14C3490C1AE297BD00D90923 /* Recursive.xcdatamodeld in Sources */,
 				14C349091AE297A700D90923 /* Social.xcdatamodeld in Sources */,
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
+				145B5AA81AE2CF840035EE8F /* Markets.xcdatamodeld in Sources */,
 				14C4182E1A01919C00636FD6 /* Tests.m in Sources */,
 				14C349031AE27DB000D90923 /* Notes.xcdatamodeld in Sources */,
 				14C349061AE27DEF00D90923 /* Contacts.xcdatamodeld in Sources */,
@@ -443,6 +451,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		145B5AA61AE2CF840035EE8F /* Markets.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				145B5AA71AE2CF840035EE8F /* Demo.xcdatamodel */,
+			);
+			currentVersion = 145B5AA71AE2CF840035EE8F /* Demo.xcdatamodel */;
+			path = Markets.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		14C349011AE27DB000D90923 /* Notes.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
