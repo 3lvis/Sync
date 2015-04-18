@@ -80,49 +80,6 @@
     XCTAssertEqualObjects([result valueForKey:@"updatedAt"], updatedDate);
 }
 
-- (void)testRelationships
-{
-    NSArray *objects = [self objectsFromJSON:@"users_notes.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
-
-    [Sync changes:objects
-    inEntityNamed:@"User"
-        predicate:nil
-        dataStack:dataStack
-       completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSError *userError = nil;
-           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-           NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
-           if (userError) NSLog(@"userError: %@", userError);
-           XCTAssertEqual(usersCount, 4);
-
-           NSError *userFetchError = nil;
-           userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
-           NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
-           if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
-           NSManagedObject *user = [users firstObject];
-           XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
-
-           NSError *notesError = nil;
-           NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-           noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-           NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
-           if (notesError) NSLog(@"notesError: %@", notesError);
-           XCTAssertEqual(notesCount, 5);
-
-           NSError *profilePicturesError = nil;
-           NSFetchRequest *profilePictureRequest = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
-           profilePictureRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-           NSInteger profilePicturesCount = [mainContext countForFetchRequest:profilePictureRequest error:&profilePicturesError];
-           if (profilePicturesError) NSLog(@"profilePicturesError: %@", profilePicturesError);
-           XCTAssertEqual(profilePicturesCount, 3);
-
-           XCTAssertTrue([[[user valueForKey:@"location"] valueForKey:@"city"] isEqualToString:@"New York"]);
-       }];
-}
-
 - (void)testUsersAndCompanies
 {
     NSArray *objects = [self objectsFromJSON:@"users_company.json"];
@@ -160,6 +117,61 @@
            if (companiesFetchError) NSLog(@"companiesFetchError: %@", companiesFetchError);
            NSManagedObject *company = [companies firstObject];
            XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
+       }];
+}
+
+- (void)testCustomMappingAndCustomPrimaryKey
+{
+    NSArray *objects = [self objectsFromJSON:@"images.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Image"
+        dataStack:dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [dataStack mainContext];
+
+           NSError *imagesError = nil;
+           NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
+           request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES]];
+           NSArray *array = [mainContext executeFetchRequest:request error:&imagesError];
+           XCTAssertEqual(array.count, 3);
+           NSManagedObject *image = [array firstObject];
+           XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
+       }];
+}
+
+- (void)testRelationshipsA
+{
+    NSArray *objects = [self objectsFromJSON:@"users_notes.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+
+    [Sync changes:objects
+    inEntityNamed:@"User"
+        predicate:nil
+        dataStack:dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [dataStack mainContext];
+
+           NSError *userError = nil;
+           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+           NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
+           if (userError) NSLog(@"userError: %@", userError);
+           XCTAssertEqual(usersCount, 4);
+
+           NSError *userFetchError = nil;
+           userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+           NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
+           if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+           NSManagedObject *user = [users firstObject];
+           XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+
+           NSError *notesError = nil;
+           NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+           noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+           NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
+           if (notesError) NSLog(@"notesError: %@", notesError);
+           XCTAssertEqual(notesCount, 5);
        }];
 }
 
@@ -323,6 +335,42 @@
        }];
 }
 
+- (void)testRelationshipsB
+{
+    NSArray *objects = [self objectsFromJSON:@"users_c.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
+
+    [Sync changes:objects
+    inEntityNamed:@"User"
+        predicate:nil
+        dataStack:dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [dataStack mainContext];
+
+           NSError *userError = nil;
+           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+           NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
+           if (userError) NSLog(@"userError: %@", userError);
+           XCTAssertEqual(usersCount, 4);
+
+           NSError *userFetchError = nil;
+           userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+           NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
+           if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+           NSManagedObject *user = [users firstObject];
+           XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+
+           NSError *profilePicturesError = nil;
+           NSFetchRequest *profilePictureRequest = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
+           profilePictureRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+           NSInteger profilePicturesCount = [mainContext countForFetchRequest:profilePictureRequest error:&profilePicturesError];
+           if (profilePicturesError) NSLog(@"profilePicturesError: %@", profilePicturesError);
+           XCTAssertEqual(profilePicturesCount, 3);
+
+           XCTAssertTrue([[[user valueForKey:@"location"] valueForKey:@"city"] isEqualToString:@"New York"]);
+       }];
+}
+
 - (void)testCustomPrimaryKey
 {
     NSArray *objects = [self objectsFromJSON:@"comments-no-id.json"];
@@ -404,27 +452,6 @@
            NSArray *array = [mainContext executeFetchRequest:storyRequest error:&storyError];
            NSManagedObject *story = [array firstObject];
            XCTAssertNotNil([story valueForKey:@"summarize"]);
-       }];
-}
-
-- (void)testCustomMappingAndCustomPrimaryKey
-{
-    NSArray *objects = [self objectsFromJSON:@"images.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Image"
-        dataStack:dataStack
-       completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSError *imagesError = nil;
-           NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
-           request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES]];
-           NSArray *array = [mainContext executeFetchRequest:request error:&imagesError];
-           XCTAssertEqual(array.count, 3);
-           NSManagedObject *image = [array firstObject];
-           XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
        }];
 }
 
