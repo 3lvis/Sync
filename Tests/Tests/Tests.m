@@ -461,45 +461,4 @@
        }];
 }
 
-#pragma mark Markets
-
-- (void)testMarketsAndItems
-{
-    NSArray *objects = [self objectsFromJSON:@"markets_items.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Markets"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Market"
-        dataStack:dataStack
-       completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSError *marketsError = nil;
-           NSFetchRequest *marketsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Market"];
-           NSInteger numberOfMarkets = [mainContext countForFetchRequest:marketsRequest error:&marketsError];
-           if (marketsError) NSLog(@"marketsError: %@", marketsError);
-           XCTAssertEqual(numberOfMarkets, 2);
-
-           NSError *marketsFetchError = nil;
-           //marketsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
-           NSArray *markets = [mainContext executeFetchRequest:marketsRequest error:&marketsFetchError];
-           if (marketsFetchError) NSLog(@"marketsFetchError: %@", marketsFetchError);
-           NSManagedObject *market = [markets firstObject];
-           XCTAssertEqual([[[market valueForKey:@"items"] allObjects] count], 2);
-
-           NSError *itemsError = nil;
-           NSFetchRequest *itemsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Item"];
-           NSInteger numberOfItems = [mainContext countForFetchRequest:itemsRequest error:&itemsError];
-           if (itemsError) NSLog(@"itemsError: %@", itemsError);
-           XCTAssertEqual(numberOfItems, 2);
-
-           NSError *itemsFetchError = nil;
-           itemsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
-           NSArray *tags = [mainContext executeFetchRequest:itemsRequest error:&itemsFetchError];
-           if (itemsFetchError) NSLog(@"itemsFetchError: %@", itemsFetchError);
-           NSManagedObject *tag = [tags firstObject];
-           XCTAssertEqual([[[tag valueForKey:@"markets"] allObjects] count], 4);
-       }];
-}
-
 @end
