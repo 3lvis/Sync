@@ -338,7 +338,7 @@
 - (void)testRelationshipsB
 {
     NSArray *objects = [self objectsFromJSON:@"users_c.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
 
     [Sync changes:objects
     inEntityNamed:@"User"
