@@ -46,7 +46,6 @@
 
     [Sync changes:objectsA
     inEntityNamed:@"User"
-        predicate:nil
         dataStack:dataStack
        completion:^(NSError *error) {
            NSError *countError = nil;
@@ -59,7 +58,6 @@
 
     [Sync changes:objectsB
     inEntityNamed:@"User"
-        predicate:nil
         dataStack:dataStack
        completion:^(NSError *error) {
            NSError *countError = nil;
@@ -91,7 +89,6 @@
 
     [Sync changes:objects
     inEntityNamed:@"User"
-        predicate:nil
         dataStack:dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
@@ -152,7 +149,6 @@
 
     [Sync changes:objects
     inEntityNamed:@"User"
-        predicate:nil
         dataStack:dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
@@ -193,7 +189,6 @@
 
     [Sync changes:objects
     inEntityNamed:@"User"
-        predicate:nil
         dataStack:dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
@@ -278,7 +273,6 @@
 
     [Sync changes:objects
     inEntityNamed:@"Note"
-        predicate:nil
         dataStack:dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
@@ -345,7 +339,6 @@
 
     [Sync changes:objects
     inEntityNamed:@"Number"
-        predicate:nil
         dataStack:dataStack
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
