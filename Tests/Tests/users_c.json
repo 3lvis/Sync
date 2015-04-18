@@ -6,7 +6,7 @@
     "location": {
       "city": "New York",
       "street": "Broadway",
-      "zipCode": 10012
+      "zip_code": 10012
     },
     "profile_pictures": [
       {

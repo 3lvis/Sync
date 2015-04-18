@@ -360,14 +360,17 @@
            NSManagedObject *user = [users firstObject];
            XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
+           NSManagedObject *location = [user valueForKey:@"location"];
+           XCTAssertTrue([[location valueForKey:@"city"] isEqualToString:@"New York"]);
+           XCTAssertTrue([[location valueForKey:@"street"] isEqualToString:@"Broadway"]);
+           XCTAssertEqualObjects([location valueForKey:@"zipCode"], @10012);
+
            NSError *profilePicturesError = nil;
            NSFetchRequest *profilePictureRequest = [[NSFetchRequest alloc] initWithEntityName:@"Image"];
            profilePictureRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
            NSInteger profilePicturesCount = [mainContext countForFetchRequest:profilePictureRequest error:&profilePicturesError];
            if (profilePicturesError) NSLog(@"profilePicturesError: %@", profilePicturesError);
            XCTAssertEqual(profilePicturesCount, 3);
-
-           XCTAssertTrue([[[user valueForKey:@"location"] valueForKey:@"city"] isEqualToString:@"New York"]);
        }];
 }
 

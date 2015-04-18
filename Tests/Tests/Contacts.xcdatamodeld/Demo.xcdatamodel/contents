@@ -18,7 +18,7 @@
     <entity name="Location" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="location" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="" syncable="YES">
@@ -34,7 +34,7 @@
     <elements>
         <element name="Company" positionX="-389" positionY="27" width="128" height="88"/>
         <element name="Image" positionX="-180" positionY="135" width="128" height="88"/>
-        <element name="Location" positionX="-180" positionY="135" width="128" height="103"/>
+        <element name="Location" positionX="-180" positionY="135" width="128" height="105"/>
         <element name="User" positionX="-207" positionY="-15" width="128" height="165"/>
     </elements>
 </model>
