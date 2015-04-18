@@ -14,7 +14,7 @@ static NSString * const SyncCustomRemoteKey = @"hyper.remoteKey";
 
 @interface NSManagedObject (Sync)
 
-- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack;
 

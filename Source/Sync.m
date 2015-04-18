@@ -16,17 +16,17 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 
 - (NSArray *)sync_relationships;
 
-- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack;
 
 - (void)sync_processToManyRelationship:(NSRelationshipDescription *)relationship
-                       usingDictionary:(NSDictionary *)objectDict
+                       usingDictionary:(NSDictionary *)objectDictionary
                              andParent:(NSManagedObject *)parent
                              dataStack:(DATAStack *)dataStack;
 
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
-                      usingDictionary:(NSDictionary *)objectDict
+                      usingDictionary:(NSDictionary *)objectDictionary
                             andParent:(NSManagedObject *)parent
                             dataStack:(DATAStack *)dataStack;
 
@@ -185,7 +185,7 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     return relationships;
 }
 
-- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDict
+- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack
 {
@@ -194,7 +194,7 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
             [self sync_processToManyRelationship:relationship
-                                 usingDictionary:objectDict
+                                 usingDictionary:objectDictionary
                                        andParent:parent
                                        dataStack:dataStack];
         } else if (parent &&
@@ -203,7 +203,7 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
                     forKey:relationship.name];
         } else {
             [self sync_processToOneRelationship:relationship
-                                usingDictionary:objectDict
+                                usingDictionary:objectDictionary
                                       andParent:parent
                                       dataStack:dataStack];
         }
@@ -211,7 +211,7 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 }
 
 - (void)sync_processToManyRelationship:(NSRelationshipDescription *)relationship
-                       usingDictionary:(NSDictionary *)objectDict
+                       usingDictionary:(NSDictionary *)objectDictionary
                              andParent:(NSManagedObject *)parent
                              dataStack:(DATAStack *)dataStack
 {
@@ -224,7 +224,7 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     BOOL hasValidManyToManyRelationship = (parent &&
                                            inverseIsToMany &&
                                            [parentEntityName isEqualToString:childEntityName]);
-    NSArray *children = [objectDict andy_valueForKey:relationshipName];
+    NSArray *children = [objectDictionary andy_valueForKey:relationshipName];
 
     if (children) {
         NSPredicate *childPredicate;
@@ -259,7 +259,7 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 }
 
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
-                      usingDictionary:(NSDictionary *)objectDict
+                      usingDictionary:(NSDictionary *)objectDictionary
                             andParent:(NSManagedObject *)parent
                             dataStack:(DATAStack *)dataStack
 {
@@ -268,12 +268,12 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     NSString *entityName = relationship.destinationEntity.name;
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                               inManagedObjectContext:self.managedObjectContext];
-    NSDictionary *filteredObjectDict = [objectDict andy_valueForKey:relationshipName];
-    if (filteredObjectDict) {
+    NSDictionary *filteredObjectDictionary = [objectDictionary andy_valueForKey:relationshipName];
+    if (filteredObjectDictionary) {
         NSString *remoteKey = [entity sync_remoteKey];
         NSManagedObject *object = [Sync safeObjectInContext:self.managedObjectContext
                                                  entityName:entityName
-                                                   remoteID:[filteredObjectDict andy_valueForKey:remoteKey]
+                                                   remoteID:[filteredObjectDictionary andy_valueForKey:remoteKey]
                                                      parent:self
                                      parentRelationshipName:relationship.name];
 
@@ -282,8 +282,8 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
                                                    inManagedObjectContext:self.managedObjectContext];
         }
 
-        [object hyp_fillWithDictionary:filteredObjectDict];
-        [object sync_processRelationshipsUsingDictionary:filteredObjectDict
+        [object hyp_fillWithDictionary:filteredObjectDictionary];
+        [object sync_processRelationshipsUsingDictionary:filteredObjectDictionary
                                                andParent:self
                                                dataStack:dataStack];
 
