@@ -12,7 +12,7 @@
         <relationship name="parentNumber" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Number" inverseName="numbers" inverseEntity="Number" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Collection" positionX="-290" positionY="338" width="128" height="58"/>
+        <element name="Collection" positionX="-254" positionY="338" width="128" height="58"/>
         <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
     </elements>
 </model>

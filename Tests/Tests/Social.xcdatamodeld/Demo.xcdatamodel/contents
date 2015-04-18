@@ -25,7 +25,7 @@
         <relationship name="story" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Story" inverseName="summarize" inverseEntity="Story" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Comment" positionX="-173" positionY="135" width="128" height="88"/>
+        <element name="Comment" positionX="234" positionY="164" width="128" height="88"/>
         <element name="Story" positionX="25" positionY="176" width="128" height="103"/>
         <element name="Summarize" positionX="52" positionY="45" width="128" height="88"/>
     </elements>

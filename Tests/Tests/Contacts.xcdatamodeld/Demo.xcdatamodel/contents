@@ -32,9 +32,9 @@
         <relationship name="profilePictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Company" positionX="-389" positionY="27" width="128" height="88"/>
-        <element name="Image" positionX="-180" positionY="135" width="128" height="88"/>
-        <element name="Location" positionX="-180" positionY="135" width="128" height="105"/>
+        <element name="Company" positionX="-380" positionY="18" width="128" height="88"/>
+        <element name="Image" positionX="-198" positionY="200" width="128" height="88"/>
+        <element name="Location" positionX="-27" positionY="-45" width="128" height="105"/>
         <element name="User" positionX="-207" positionY="-15" width="128" height="165"/>
     </elements>
 </model>
