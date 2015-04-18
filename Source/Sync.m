@@ -96,10 +96,16 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                               inManagedObjectContext:context];
 
+    NSString *localKey = [entity sync_localKey];
+    NSParameterAssert(localKey);
+
+    NSString *remoteKey = [entity sync_remoteKey];
+    NSParameterAssert(remoteKey);
+
     [DATAFilter changes:changes
           inEntityNamed:entityName
-               localKey:[entity sync_localKey]
-              remoteKey:[entity sync_remoteKey]
+               localKey:localKey
+              remoteKey:remoteKey
                 context:context
               predicate:predicate
                inserted:^(NSDictionary *objectJSON) {
