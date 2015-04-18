@@ -130,8 +130,6 @@
            NSInteger profilePicturesCount = [mainContext countForFetchRequest:profilePictureRequest error:&profilePicturesError];
            if (profilePicturesError) NSLog(@"profilePicturesError: %@", profilePicturesError);
            XCTAssertEqual(profilePicturesCount, 3);
-         
-           XCTAssertTrue([[[user valueForKey:@"location"] valueForKey:@"city"] isEqualToString:@"New York"]);
        }];
 }
 

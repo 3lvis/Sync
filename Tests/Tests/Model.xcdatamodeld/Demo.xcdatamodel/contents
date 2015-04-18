@@ -37,11 +37,6 @@
         <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="markets" inverseEntity="Item" syncable="YES"/>
-    <entity name="Location" syncable="YES">
-        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="location" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Note" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -83,7 +78,6 @@
         <attribute name="remoteID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="users" inverseEntity="Company" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="user" inverseEntity="Location" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="user" inverseEntity="Note" syncable="YES">
             <userInfo>
                 <entry key="hyper.remoteKey" value="annotations"/>
@@ -104,6 +98,5 @@
         <element name="User" positionX="-1764" positionY="-1050" width="128" height="163"/>
         <element name="Market" positionX="-1244" positionY="-1008" width="128" height="88"/>
         <element name="Item" positionX="-1053" positionY="-1006" width="128" height="88"/>
-        <element name="Location" positionX="-180" positionY="135" width="128" height="103"/>
     </elements>
 </model>
