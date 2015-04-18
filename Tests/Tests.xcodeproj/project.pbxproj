@@ -10,7 +10,6 @@
 		14477F141ADC701200713784 /* images.json in Resources */ = {isa = PBXBuildFile; fileRef = 14477F131ADC701200713784 /* images.json */; };
 		14667ECE1AC8B8DC0038EEB1 /* stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */; };
 		14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14668E251AC8A7E9007D8B09 /* comments-no-id.json */; };
-		14B39D851A9BCC9500D3D01B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */; };
 		14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */; };
 		14B39D871A9BCC9500D3D01B /* tagged_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D801A9BCC9500D3D01B /* tagged_notes.json */; };
 		14B39D881A9BCC9500D3D01B /* users_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D811A9BCC9500D3D01B /* users_a.json */; };
@@ -19,6 +18,10 @@
 		14B39D8B1A9BCC9500D3D01B /* users_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D841A9BCC9500D3D01B /* users_notes.json */; };
 		14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D8D1A9BCCB300D3D01B /* Sync.m */; };
 		14B564731A06D87B00342CDA /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 14B564721A06D87B00342CDA /* .travis.yml */; };
+		14C349031AE27DB000D90923 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14C349011AE27DB000D90923 /* Notes.xcdatamodeld */; };
+		14C349061AE27DEF00D90923 /* Contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14C349041AE27DEF00D90923 /* Contacts.xcdatamodeld */; };
+		14C349091AE297A700D90923 /* Social.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14C349071AE297A700D90923 /* Social.xcdatamodeld */; };
+		14C3490C1AE297BD00D90923 /* Recursive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14C3490A1AE297BD00D90923 /* Recursive.xcdatamodeld */; };
 		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
 		14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* Sync.podspec */; };
@@ -33,7 +36,6 @@
 		14477F131ADC701200713784 /* images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = images.json; sourceTree = "<group>"; };
 		14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "stories-comments-no-ids.json"; sourceTree = "<group>"; };
 		14668E251AC8A7E9007D8B09 /* comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "comments-no-id.json"; sourceTree = "<group>"; };
-		14B39D7E1A9BCC9500D3D01B /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_for_user_a.json; sourceTree = "<group>"; };
 		14B39D801A9BCC9500D3D01B /* tagged_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tagged_notes.json; sourceTree = "<group>"; };
 		14B39D811A9BCC9500D3D01B /* users_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_a.json; sourceTree = "<group>"; };
@@ -43,6 +45,10 @@
 		14B39D8C1A9BCCB300D3D01B /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		14B39D8D1A9BCCB300D3D01B /* Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sync.m; sourceTree = "<group>"; };
 		14B564721A06D87B00342CDA /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		14C349021AE27DB000D90923 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		14C349051AE27DEF00D90923 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		14C349081AE297A700D90923 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		14C3490B1AE297BD00D90923 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14C418261A01919C00636FD6 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4182C1A01919C00636FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
@@ -117,7 +123,10 @@
 				14B39D831A9BCC9500D3D01B /* users_company.json */,
 				14B39D841A9BCC9500D3D01B /* users_notes.json */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
-				14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */,
+				14C349071AE297A700D90923 /* Social.xcdatamodeld */,
+				14C349041AE27DEF00D90923 /* Contacts.xcdatamodeld */,
+				14C349011AE27DB000D90923 /* Notes.xcdatamodeld */,
+				14C3490A1AE297BD00D90923 /* Recursive.xcdatamodeld */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
 			path = Tests;
@@ -278,9 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14C3490C1AE297BD00D90923 /* Recursive.xcdatamodeld in Sources */,
+				14C349091AE297A700D90923 /* Social.xcdatamodeld in Sources */,
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
 				14C4182E1A01919C00636FD6 /* Tests.m in Sources */,
-				14B39D851A9BCC9500D3D01B /* Model.xcdatamodeld in Sources */,
+				14C349031AE27DB000D90923 /* Notes.xcdatamodeld in Sources */,
+				14C349061AE27DEF00D90923 /* Contacts.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,13 +439,43 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		14B39D7D1A9BCC9500D3D01B /* Model.xcdatamodeld */ = {
+		14C349011AE27DB000D90923 /* Notes.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				14B39D7E1A9BCC9500D3D01B /* Demo.xcdatamodel */,
+				14C349021AE27DB000D90923 /* Demo.xcdatamodel */,
 			);
-			currentVersion = 14B39D7E1A9BCC9500D3D01B /* Demo.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = 14C349021AE27DB000D90923 /* Demo.xcdatamodel */;
+			path = Notes.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14C349041AE27DEF00D90923 /* Contacts.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14C349051AE27DEF00D90923 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 14C349051AE27DEF00D90923 /* Demo.xcdatamodel */;
+			path = Contacts.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14C349071AE297A700D90923 /* Social.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14C349081AE297A700D90923 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 14C349081AE297A700D90923 /* Demo.xcdatamodel */;
+			path = Social.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14C3490A1AE297BD00D90923 /* Recursive.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14C3490B1AE297BD00D90923 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 14C3490B1AE297BD00D90923 /* Demo.xcdatamodel */;
+			path = Recursive.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
