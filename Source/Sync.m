@@ -120,10 +120,6 @@
     NSError *error = nil;
     [context save:&error];
 
-    if (error) {
-        NSLog(@"Sync (error while saving %@): %@", entityName, [error description]);
-    }
-
     [dataStack persistWithCompletion:^{
         if (completion) {
             completion(error);
@@ -227,7 +223,7 @@
                                                                      parent:self
                                                      parentRelationshipName:relationship.name];
 
-        if (object == nil) {
+        if (!object) {
             object = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                    inManagedObjectContext:self.managedObjectContext];
         }
