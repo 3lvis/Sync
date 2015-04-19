@@ -1,20 +1,15 @@
 #import "Sync.h"
 
 #import "DATAStack.h"
+#import "DATAFilter.h"
 
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
-#import "DATAFilter.h"
 #import "NSString+HYPNetworking.h"
-
-static NSString * const SyncDefaultLocalPrimaryKey = @"remoteID";
-static NSString * const SyncDefaultRemotePrimaryKey = @"id";
+#import "NSEntityDescription+Sync.h"
+#import "NSManagedObject+Sync.h"
 
 @interface NSManagedObject (SyncPrivate)
-
-- (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context;
-
-- (NSArray *)sync_relationships;
 
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
@@ -136,60 +131,9 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     }];
 }
 
-+ (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context
-                              entityName:(NSString *)entityName
-                                remoteID:(id)remoteID
-                                  parent:(NSManagedObject *)parent
-                  parentRelationshipName:(NSString *)relationshipName
-{
-    if(remoteID == nil) {
-        return [parent valueForKey:relationshipName];
-    }
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                              inManagedObjectContext:context];
-    NSError *error = nil;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
-    NSString *localKey = [entity sync_localKey];
-    request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"parentError: %@", error);
-    }
-
-    return objects.firstObject;
-}
-
 @end
 
-@implementation NSManagedObject (Sync)
-
-- (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
-{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name
-                                              inManagedObjectContext:context];
-    NSString *localKey = [entity sync_localKey];
-    NSString *remoteID = [self valueForKey:localKey];
-
-    return [Sync safeObjectInContext:context
-                          entityName:self.entity.name
-                            remoteID:remoteID
-                              parent:nil
-              parentRelationshipName:nil];
-}
-
-- (NSArray *)sync_relationships
-{
-    NSMutableArray *relationships = [NSMutableArray array];
-
-    for (id propertyDescription in [self.entity properties]) {
-        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-            [relationships addObject:propertyDescription];
-        }
-    }
-
-    return relationships;
-}
+@implementation NSManagedObject (SyncPrivate)
 
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
@@ -277,11 +221,11 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     NSDictionary *filteredObjectDictionary = [objectDictionary andy_valueForKey:relationshipName];
     if (filteredObjectDictionary) {
         NSString *remoteKey = [entity sync_remoteKey];
-        NSManagedObject *object = [Sync safeObjectInContext:self.managedObjectContext
-                                                 entityName:entityName
-                                                   remoteID:[filteredObjectDictionary andy_valueForKey:remoteKey]
-                                                     parent:self
-                                     parentRelationshipName:relationship.name];
+        NSManagedObject *object = [NSManagedObject sync_safeObjectInContext:self.managedObjectContext
+                                                                 entityName:entityName
+                                                                   remoteID:[filteredObjectDictionary andy_valueForKey:remoteKey]
+                                                                     parent:self
+                                                     parentRelationshipName:relationship.name];
 
         if (object == nil) {
             object = [NSEntityDescription insertNewObjectForEntityForName:entityName
@@ -296,61 +240,6 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
         [self setValue:object
                 forKey:relationship.name];
     }
-}
-
-@end
-
-@implementation NSEntityDescription (Sync)
-
-- (NSAttributeDescription *)sync_primaryKeyAttribute
-{
-    __block NSAttributeDescription *primaryKeyAttribute;
-
-    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key,
-                                                               NSAttributeDescription *attributeDescription,
-                                                               BOOL *stop) {
-        NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
-        BOOL hasCustomPrimaryKey = (isPrimaryKey &&
-                                    [isPrimaryKey isEqualToString:@"YES"]);
-
-        if (hasCustomPrimaryKey) {
-            primaryKeyAttribute = attributeDescription;
-            *stop = YES;
-        }
-
-        if ([key isEqualToString:SyncDefaultLocalPrimaryKey]) {
-            primaryKeyAttribute = attributeDescription;
-        }
-    }];
-
-    return primaryKeyAttribute;
-}
-
-- (NSString *)sync_localKey
-{
-    NSString *localKey;
-    NSAttributeDescription *primaryAttribute = [self sync_primaryKeyAttribute];
-
-    localKey = primaryAttribute.name;
-
-    return localKey;
-}
-
-- (NSString *)sync_remoteKey
-{
-    NSAttributeDescription *primaryAttribute = [self sync_primaryKeyAttribute];
-    NSString *remoteKey = primaryAttribute.userInfo[HYPPropertyMapperCustomRemoteKey];
-
-    if (!remoteKey) {
-        if ([primaryAttribute.name isEqualToString:SyncDefaultLocalPrimaryKey]) {
-            remoteKey = SyncDefaultRemotePrimaryKey;
-        } else {
-            remoteKey = [primaryAttribute.name hyp_remoteString];
-        }
-
-    }
-
-    return remoteKey;
 }
 
 @end
