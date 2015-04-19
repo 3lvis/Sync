@@ -9,6 +9,7 @@
                                      remoteID:(id)remoteID
                                        parent:(NSManagedObject *)parent
                        parentRelationshipName:(NSString *)relationshipName
+                                        error:(NSError **)error
 {
     if(!remoteID) {
         return [parent valueForKey:relationshipName];
@@ -16,19 +17,17 @@
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                               inManagedObjectContext:context];
-    NSError *error = nil;
+
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     NSString *localKey = [entity sync_localKey];
     request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"parentError: %@", error);
-    }
+    NSArray *objects = [context executeFetchRequest:request error:error];
 
     return objects.firstObject;
 }
 
 - (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
+                                  error:(NSError **)error
 {
     NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name
                                               inManagedObjectContext:context];
@@ -39,7 +38,8 @@
                                           entityName:self.entity.name
                                             remoteID:remoteID
                                               parent:nil
-                              parentRelationshipName:nil];
+                              parentRelationshipName:nil
+                                               error:error];
 }
 
 - (NSArray *)sync_relationships

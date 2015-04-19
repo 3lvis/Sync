@@ -6,9 +6,11 @@
                                    entityName:(NSString *)entityName
                                      remoteID:(id)remoteID
                                        parent:(NSManagedObject *)parent
-                       parentRelationshipName:(NSString *)relationshipName;
+                       parentRelationshipName:(NSString *)relationshipName
+                                        error:(NSError **)error;
 
-- (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context;
+- (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
+                                  error:(NSError **)error;
 
 - (NSArray *)sync_relationships;
 

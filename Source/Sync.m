@@ -13,7 +13,8 @@
 
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
-                                       dataStack:(DATAStack *)dataStack;
+                                       dataStack:(DATAStack *)dataStack
+                                           error:(NSError **)error;
 
 - (void)sync_processToManyRelationship:(NSRelationshipDescription *)relationship
                        usingDictionary:(NSDictionary *)objectDictionary
@@ -23,7 +24,8 @@
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
                       usingDictionary:(NSDictionary *)objectDictionary
                             andParent:(NSManagedObject *)parent
-                            dataStack:(DATAStack *)dataStack;
+                            dataStack:(DATAStack *)dataStack
+                                error:(NSError **)error;
 
 @end
 
@@ -67,7 +69,9 @@
 {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
-        NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext];
+        NSError *error = nil;
+        NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext
+                                       error:&error];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self changes:changes
@@ -104,17 +108,21 @@
                 context:context
               predicate:predicate
                inserted:^(NSDictionary *objectJSON) {
+                   NSError *error = nil;
                    NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                             inManagedObjectContext:context];
                    [created hyp_fillWithDictionary:objectJSON];
                    [created sync_processRelationshipsUsingDictionary:objectJSON
                                                            andParent:parent
-                                                           dataStack:dataStack];
+                                                           dataStack:dataStack
+                                                               error:&error];
                } updated:^(NSDictionary *objectJSON, NSManagedObject *updatedObject) {
+                   NSError *error = nil;
                    [updatedObject hyp_fillWithDictionary:objectJSON];
                    [updatedObject sync_processRelationshipsUsingDictionary:objectJSON
                                                                  andParent:parent
-                                                                 dataStack:dataStack];
+                                                                 dataStack:dataStack
+                                                                     error:&error];
                }];
 
     NSError *error = nil;
@@ -134,6 +142,7 @@
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack
+                                           error:(NSError **)error
 {
     NSArray *relationships = [self sync_relationships];
 
@@ -148,10 +157,12 @@
             [self setValue:parent
                     forKey:relationship.name];
         } else {
+            NSError *error = nil;
             [self sync_processToOneRelationship:relationship
                                 usingDictionary:objectDictionary
                                       andParent:parent
-                                      dataStack:dataStack];
+                                      dataStack:dataStack
+                                          error:&error];
         }
     }
 }
@@ -208,6 +219,7 @@
                       usingDictionary:(NSDictionary *)objectDictionary
                             andParent:(NSManagedObject *)parent
                             dataStack:(DATAStack *)dataStack
+                                error:(NSError **)error
 {
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: [relationship.name hyp_remoteString];
@@ -216,12 +228,14 @@
                                               inManagedObjectContext:self.managedObjectContext];
     NSDictionary *filteredObjectDictionary = [objectDictionary andy_valueForKey:relationshipName];
     if (filteredObjectDictionary) {
+        NSError *error = nil;
         NSString *remoteKey = [entity sync_remoteKey];
         NSManagedObject *object = [NSManagedObject sync_safeObjectInContext:self.managedObjectContext
                                                                  entityName:entityName
                                                                    remoteID:[filteredObjectDictionary andy_valueForKey:remoteKey]
                                                                      parent:self
-                                                     parentRelationshipName:relationship.name];
+                                                     parentRelationshipName:relationship.name
+                                                                      error:&error];
 
         if (!object) {
             object = [NSEntityDescription insertNewObjectForEntityForName:entityName
@@ -231,7 +245,8 @@
         [object hyp_fillWithDictionary:filteredObjectDictionary];
         [object sync_processRelationshipsUsingDictionary:filteredObjectDictionary
                                                andParent:self
-                                               dataStack:dataStack];
+                                               dataStack:dataStack
+                                                   error:&error];
 
         [self setValue:object
                 forKey:relationship.name];
