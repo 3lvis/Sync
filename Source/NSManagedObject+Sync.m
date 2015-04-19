@@ -10,7 +10,7 @@
                                        parent:(NSManagedObject *)parent
                        parentRelationshipName:(NSString *)relationshipName
 {
-    if(remoteID == nil) {
+    if(!remoteID) {
         return [parent valueForKey:relationshipName];
     }
 
