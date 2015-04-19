@@ -1,24 +1,20 @@
 #import "Sync.h"
 
 #import "DATAStack.h"
+#import "DATAFilter.h"
 
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
-#import "DATAFilter.h"
 #import "NSString+HYPNetworking.h"
-
-static NSString * const SyncDefaultLocalPrimaryKey = @"remoteID";
-static NSString * const SyncDefaultRemotePrimaryKey = @"id";
+#import "NSEntityDescription+Sync.h"
+#import "NSManagedObject+Sync.h"
 
 @interface NSManagedObject (SyncPrivate)
 
-- (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context;
-
-- (NSArray *)sync_relationships;
-
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
-                                       dataStack:(DATAStack *)dataStack;
+                                       dataStack:(DATAStack *)dataStack
+                                           error:(NSError **)error;
 
 - (void)sync_processToManyRelationship:(NSRelationshipDescription *)relationship
                        usingDictionary:(NSDictionary *)objectDictionary
@@ -28,7 +24,8 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 - (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
                       usingDictionary:(NSDictionary *)objectDictionary
                             andParent:(NSManagedObject *)parent
-                            dataStack:(DATAStack *)dataStack;
+                            dataStack:(DATAStack *)dataStack
+                                error:(NSError **)error;
 
 @end
 
@@ -72,7 +69,9 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
-        NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext];
+        NSError *error = nil;
+        NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext
+                                       error:&error];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self changes:changes
@@ -109,25 +108,25 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
                 context:context
               predicate:predicate
                inserted:^(NSDictionary *objectJSON) {
+                   NSError *error = nil;
                    NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                                             inManagedObjectContext:context];
                    [created hyp_fillWithDictionary:objectJSON];
                    [created sync_processRelationshipsUsingDictionary:objectJSON
                                                            andParent:parent
-                                                           dataStack:dataStack];
+                                                           dataStack:dataStack
+                                                               error:&error];
                } updated:^(NSDictionary *objectJSON, NSManagedObject *updatedObject) {
+                   NSError *error = nil;
                    [updatedObject hyp_fillWithDictionary:objectJSON];
                    [updatedObject sync_processRelationshipsUsingDictionary:objectJSON
                                                                  andParent:parent
-                                                                 dataStack:dataStack];
+                                                                 dataStack:dataStack
+                                                                     error:&error];
                }];
 
     NSError *error = nil;
     [context save:&error];
-
-    if (error) {
-        NSLog(@"Sync (error while saving %@): %@", entityName, [error description]);
-    }
 
     [dataStack persistWithCompletion:^{
         if (completion) {
@@ -136,64 +135,14 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
     }];
 }
 
-+ (NSManagedObject *)safeObjectInContext:(NSManagedObjectContext *)context
-                              entityName:(NSString *)entityName
-                                remoteID:(id)remoteID
-                                  parent:(NSManagedObject *)parent
-                  parentRelationshipName:(NSString *)relationshipName
-{
-    if(remoteID == nil) {
-        return [parent valueForKey:relationshipName];
-    }
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                              inManagedObjectContext:context];
-    NSError *error = nil;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
-    NSString *localKey = [entity sync_localKey];
-    request.predicate = [NSPredicate predicateWithFormat:@"%K = %@", localKey, remoteID];
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"parentError: %@", error);
-    }
-
-    return objects.firstObject;
-}
-
 @end
 
-@implementation NSManagedObject (Sync)
-
-- (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
-{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name
-                                              inManagedObjectContext:context];
-    NSString *localKey = [entity sync_localKey];
-    NSString *remoteID = [self valueForKey:localKey];
-
-    return [Sync safeObjectInContext:context
-                          entityName:self.entity.name
-                            remoteID:remoteID
-                              parent:nil
-              parentRelationshipName:nil];
-}
-
-- (NSArray *)sync_relationships
-{
-    NSMutableArray *relationships = [NSMutableArray array];
-
-    for (id propertyDescription in [self.entity properties]) {
-        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-            [relationships addObject:propertyDescription];
-        }
-    }
-
-    return relationships;
-}
+@implementation NSManagedObject (SyncPrivate)
 
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack
+                                           error:(NSError **)error
 {
     NSArray *relationships = [self sync_relationships];
 
@@ -208,10 +157,12 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
             [self setValue:parent
                     forKey:relationship.name];
         } else {
+            NSError *error = nil;
             [self sync_processToOneRelationship:relationship
                                 usingDictionary:objectDictionary
                                       andParent:parent
-                                      dataStack:dataStack];
+                                      dataStack:dataStack
+                                          error:&error];
         }
     }
 }
@@ -268,6 +219,7 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
                       usingDictionary:(NSDictionary *)objectDictionary
                             andParent:(NSManagedObject *)parent
                             dataStack:(DATAStack *)dataStack
+                                error:(NSError **)error
 {
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: [relationship.name hyp_remoteString];
@@ -276,14 +228,16 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
                                               inManagedObjectContext:self.managedObjectContext];
     NSDictionary *filteredObjectDictionary = [objectDictionary andy_valueForKey:relationshipName];
     if (filteredObjectDictionary) {
+        NSError *error = nil;
         NSString *remoteKey = [entity sync_remoteKey];
-        NSManagedObject *object = [Sync safeObjectInContext:self.managedObjectContext
-                                                 entityName:entityName
-                                                   remoteID:[filteredObjectDictionary andy_valueForKey:remoteKey]
-                                                     parent:self
-                                     parentRelationshipName:relationship.name];
+        NSManagedObject *object = [NSManagedObject sync_safeObjectInContext:self.managedObjectContext
+                                                                 entityName:entityName
+                                                                   remoteID:[filteredObjectDictionary andy_valueForKey:remoteKey]
+                                                                     parent:self
+                                                     parentRelationshipName:relationship.name
+                                                                      error:&error];
 
-        if (object == nil) {
+        if (!object) {
             object = [NSEntityDescription insertNewObjectForEntityForName:entityName
                                                    inManagedObjectContext:self.managedObjectContext];
         }
@@ -291,66 +245,12 @@ static NSString * const SyncDefaultRemotePrimaryKey = @"id";
         [object hyp_fillWithDictionary:filteredObjectDictionary];
         [object sync_processRelationshipsUsingDictionary:filteredObjectDictionary
                                                andParent:self
-                                               dataStack:dataStack];
+                                               dataStack:dataStack
+                                                   error:&error];
 
         [self setValue:object
                 forKey:relationship.name];
     }
-}
-
-@end
-
-@implementation NSEntityDescription (Sync)
-
-- (NSAttributeDescription *)sync_primaryKeyAttribute
-{
-    __block NSAttributeDescription *primaryKeyAttribute;
-
-    [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key,
-                                                               NSAttributeDescription *attributeDescription,
-                                                               BOOL *stop) {
-        NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomPrimaryKey];
-        BOOL hasCustomPrimaryKey = (isPrimaryKey &&
-                                    [isPrimaryKey isEqualToString:@"YES"]);
-
-        if (hasCustomPrimaryKey) {
-            primaryKeyAttribute = attributeDescription;
-            *stop = YES;
-        }
-
-        if ([key isEqualToString:SyncDefaultLocalPrimaryKey]) {
-            primaryKeyAttribute = attributeDescription;
-        }
-    }];
-
-    return primaryKeyAttribute;
-}
-
-- (NSString *)sync_localKey
-{
-    NSString *localKey;
-    NSAttributeDescription *primaryAttribute = [self sync_primaryKeyAttribute];
-
-    localKey = primaryAttribute.name;
-
-    return localKey;
-}
-
-- (NSString *)sync_remoteKey
-{
-    NSAttributeDescription *primaryAttribute = [self sync_primaryKeyAttribute];
-    NSString *remoteKey = primaryAttribute.userInfo[HYPPropertyMapperCustomRemoteKey];
-
-    if (!remoteKey) {
-        if ([primaryAttribute.name isEqualToString:SyncDefaultLocalPrimaryKey]) {
-            remoteKey = SyncDefaultRemotePrimaryKey;
-        } else {
-            remoteKey = [primaryAttribute.name hyp_remoteString];
-        }
-
-    }
-
-    return remoteKey;
 }
 
 @end
