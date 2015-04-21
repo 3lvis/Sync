@@ -136,7 +136,11 @@ Then add this to your App Delegate so everything gets persisted when you quit th
 
 ### Primary key
 
+Sync requires your entities to have a primary key, this is important for diffing otherwise Sync doesn't know how to differentiate between entries.
+
 By default **Sync** uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
+
+For example in our [Designer News](https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
 
 ![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v2.png)
 
