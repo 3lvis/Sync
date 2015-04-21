@@ -1,6 +1,6 @@
 #import "NSManagedObject+Sync.h"
 
-#import "NSEntityDescription+Sync.h"
+#import "NSEntityDescription+SYNCPrimaryKey.h"
 
 @implementation NSManagedObject (Sync)
 

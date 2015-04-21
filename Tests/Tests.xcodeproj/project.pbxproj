@@ -10,7 +10,6 @@
 		14477F141ADC701200713784 /* images.json in Resources */ = {isa = PBXBuildFile; fileRef = 14477F131ADC701200713784 /* images.json */; };
 		14667ECE1AC8B8DC0038EEB1 /* stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */; };
 		14668E261AC8A7E9007D8B09 /* comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14668E251AC8A7E9007D8B09 /* comments-no-id.json */; };
-		14ADDF3E1AE4349100C389AD /* NSEntityDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ADDF3D1AE4349100C389AD /* NSEntityDescription+Sync.m */; };
 		14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */; };
 		14B39D861A9BCC9500D3D01B /* notes_for_user_a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */; };
 		14B39D871A9BCC9500D3D01B /* tagged_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14B39D801A9BCC9500D3D01B /* tagged_notes.json */; };
@@ -39,8 +38,6 @@
 		14477F131ADC701200713784 /* images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = images.json; sourceTree = "<group>"; };
 		14667ECD1AC8B8DC0038EEB1 /* stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "stories-comments-no-ids.json"; sourceTree = "<group>"; };
 		14668E251AC8A7E9007D8B09 /* comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "comments-no-id.json"; sourceTree = "<group>"; };
-		14ADDF3C1AE4349100C389AD /* NSEntityDescription+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Sync.h"; sourceTree = "<group>"; };
-		14ADDF3D1AE4349100C389AD /* NSEntityDescription+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Sync.m"; sourceTree = "<group>"; };
 		14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Sync.h"; sourceTree = "<group>"; };
 		14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Sync.m"; sourceTree = "<group>"; };
 		14B39D7F1A9BCC9500D3D01B /* notes_for_user_a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_for_user_a.json; sourceTree = "<group>"; };
@@ -154,8 +151,6 @@
 			children = (
 				14B39D8C1A9BCCB300D3D01B /* Sync.h */,
 				14B39D8D1A9BCCB300D3D01B /* Sync.m */,
-				14ADDF3C1AE4349100C389AD /* NSEntityDescription+Sync.h */,
-				14ADDF3D1AE4349100C389AD /* NSEntityDescription+Sync.m */,
 				14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */,
 				14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */,
 			);
@@ -306,7 +301,6 @@
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
 				14C4182E1A01919C00636FD6 /* Tests.m in Sources */,
 				14C349031AE27DB000D90923 /* Notes.xcdatamodeld in Sources */,
-				14ADDF3E1AE4349100C389AD /* NSEntityDescription+Sync.m in Sources */,
 				14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */,
 				14C349061AE27DEF00D90923 /* Contacts.xcdatamodeld in Sources */,
 			);
