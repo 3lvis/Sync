@@ -6,7 +6,7 @@
 #import "NSDictionary+ANDYSafeValue.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSString+HYPNetworking.h"
-#import "NSEntityDescription+Sync.h"
+#import "NSEntityDescription+SYNCPrimaryKey.h"
 #import "NSManagedObject+Sync.h"
 
 @interface NSManagedObject (SyncPrivate)
@@ -172,7 +172,7 @@
                              andParent:(NSManagedObject *)parent
                              dataStack:(DATAStack *)dataStack
 {
-    NSString *relationshipKey = relationship.userInfo[SyncCustomRemoteKey];
+    NSString *relationshipKey = relationship.userInfo[SYNCCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: [relationship.name hyp_remoteString];
     NSString *childEntityName = relationship.destinationEntity.name;
     NSString *parentEntityName = parent.entity.name;
@@ -221,7 +221,7 @@
                             dataStack:(DATAStack *)dataStack
                                 error:(NSError **)error
 {
-    NSString *relationshipKey = [[relationship userInfo] valueForKey:SyncCustomRemoteKey];
+    NSString *relationshipKey = [[relationship userInfo] valueForKey:SYNCCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: [relationship.name hyp_remoteString];
     NSString *entityName = relationship.destinationEntity.name;
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName

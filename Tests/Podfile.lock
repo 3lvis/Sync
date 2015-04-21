@@ -5,6 +5,8 @@ PODS:
   - DATAStack (3.0.4):
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
+  - NSEntityDescription-SYNCPrimaryKey (0.1.0):
+    - NSString-HYPNetworking
   - NSJSONSerialization-ANDYJSONFile (1.1)
   - NSManagedObject-HYPPropertyMapper (3.0.2):
     - NSString-HYPNetworking (~> 0.3.1)
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - DATAFilter
   - DATAStack
   - NSDictionary-ANDYSafeValue
+  - NSEntityDescription-SYNCPrimaryKey
   - NSJSONSerialization-ANDYJSONFile
   - NSManagedObject-HYPPropertyMapper
 
@@ -23,6 +26,7 @@ SPEC CHECKSUMS:
   DATAObjectIDs: 472eae6d8d6b57109b973c837ec3dd5e78016ab6
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
+  NSEntityDescription-SYNCPrimaryKey: 72f1f0d30a7e8eb9d93277b1ce623cbaa6e47a38
   NSJSONSerialization-ANDYJSONFile: 4a92ca174d5ccde13015e853e9eb62440459b478
   NSManagedObject-HYPPropertyMapper: 8475073a98791325f3268f591e836e5bb6ecc0f4
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d

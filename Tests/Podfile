@@ -2,10 +2,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
 
+pod 'DATAFilter'
 pod 'DATAStack'
-
-# Categories
+pod 'NSDictionary-ANDYSafeValue'
+pod 'NSEntityDescription-SYNCPrimaryKey'
 pod 'NSJSONSerialization-ANDYJSONFile'
 pod 'NSManagedObject-HYPPropertyMapper'
-pod 'DATAFilter'
-pod 'NSDictionary-ANDYSafeValue'
