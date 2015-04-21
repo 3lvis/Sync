@@ -136,7 +136,7 @@ Then add this to your App Delegate so everything gets persisted when you quit th
 
 ### Primary key
 
-At the moment Sync requires your entities to have a primary key, this is important for diffing otherwise Sync doesn't know how to differentiate this entity with the others.
+At the moment Sync requires your entities to have a primary key, this is important for diffing otherwise Sync doesn't know how to differentiate between entries.
 
 By default **Sync** uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
 
