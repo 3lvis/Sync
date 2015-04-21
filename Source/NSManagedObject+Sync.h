@@ -1,5 +1,7 @@
 @import CoreData;
 
+@class DATAStack;
+
 @interface NSManagedObject (Sync)
 
 + (NSManagedObject *)sync_safeObjectInContext:(NSManagedObjectContext *)context
@@ -13,5 +15,22 @@
                                   error:(NSError **)error;
 
 - (NSArray *)sync_relationships;
+
+
+- (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
+                                       andParent:(NSManagedObject *)parent
+                                       dataStack:(DATAStack *)dataStack
+                                           error:(NSError **)error;
+
+- (void)sync_processToManyRelationship:(NSRelationshipDescription *)relationship
+                       usingDictionary:(NSDictionary *)objectDictionary
+                             andParent:(NSManagedObject *)parent
+                             dataStack:(DATAStack *)dataStack;
+
+- (void)sync_processToOneRelationship:(NSRelationshipDescription *)relationship
+                      usingDictionary:(NSDictionary *)objectDictionary
+                            andParent:(NSManagedObject *)parent
+                            dataStack:(DATAStack *)dataStack
+                                error:(NSError **)error;
 
 @end
