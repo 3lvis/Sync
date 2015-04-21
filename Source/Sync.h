@@ -21,4 +21,12 @@
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion;
 
++ (void)changes:(NSArray *)changes
+  inEntityNamed:(NSString *)entityName
+      predicate:(NSPredicate *)predicate
+         parent:(NSManagedObject *)parent
+      inContext:(NSManagedObjectContext *)context
+      dataStack:(DATAStack *)dataStack
+     completion:(void (^)(NSError *error))completion;
+
 @end
