@@ -14,6 +14,7 @@
 * Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
 * Uniquing, Core Data does this based on `objectID`s, we use your remote key (such as `id`) for this
 
+
 ## Table of Contents
 
 * [Interface](#interface)
@@ -35,6 +36,7 @@
 * [Components](#components)
 * [Credits](#credits)
 * [License](#license)
+
 
 ## Interface
 
@@ -61,13 +63,14 @@ Sync.changes(
 * `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
 * `dataStack`: Your [DATAStack](https://github.com/3lvis/DATAStack)
 
+
 ## Example
 
-#### Model
+### Model
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
 
-#### JSON
+### JSON
 
 ```json
 [
@@ -89,7 +92,7 @@ Sync.changes(
 ]
 ```
 
-#### Sync
+### Sync
 
 ```objc
 [Sync changes:JSON
@@ -118,7 +121,7 @@ inEntityNamed:@"User"
     }];
 ```
 
-## More Examples
+### More Examples
 
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
@@ -127,6 +130,7 @@ inEntityNamed:@"User"
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v4.png" />
 </a>
+
 
 ## Getting Started
 
@@ -187,6 +191,7 @@ You are free to use any networking library.
 
 `iOS 7 or above`
 
+
 ## Components
 
 **Sync** wouldn’t be possible without the help of this *fully tested* components:
@@ -197,9 +202,11 @@ You are free to use any networking library.
 
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
 
+
 ## Credits
 
 [Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md).
+
 
 ## License
 
