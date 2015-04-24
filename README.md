@@ -14,6 +14,30 @@
 * Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
 * Uniquing, Core Data does this based on `objectID`s, we use your remote key (such as `id`) for this
 
+
+## Table of Contents
+
+* [Interface](#interface)
+  * [Swift](#swift)
+  * [Objective-C](#objective-c)
+* [Example](#example)
+  * [Model](#model)
+  * [JSON](#json)
+  * [Sync](#sync)
+  * [More examples](#more-examples)
+* [Getting Started](#getting-started)
+  * [Installation](#installation)
+* [Requisites](#requisites)
+  * [Core Data Stack](#core-data-stack)
+  * [Primary Key](#primary-key)
+  * [Attribute Mapping](#attribute-mapping)
+  * [Networking](#networking)
+  * [Supported iOS Versions](#supported-ios-versions)
+* [Components](#components)
+* [Credits](#credits)
+* [License](#license)
+
+
 ## Interface
 
 ### Swift
@@ -36,16 +60,17 @@ Sync.changes(
 ```
 
 * `changes`: JSON response
-* `entityName`: Core Data's Model Entity Name (such as User, Note, Task)
+* `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
 * `dataStack`: Your [DATAStack](https://github.com/3lvis/DATAStack)
+
 
 ## Example
 
-#### Model
+### Model
 
 ![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
 
-#### JSON
+### JSON
 
 ```json
 [
@@ -67,7 +92,7 @@ Sync.changes(
 ]
 ```
 
-#### Sync
+### Sync
 
 ```objc
 [Sync changes:JSON
@@ -96,7 +121,7 @@ inEntityNamed:@"User"
     }];
 ```
 
-## More Examples
+### More Examples
 
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
@@ -105,6 +130,7 @@ inEntityNamed:@"User"
 <a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v4.png" />
 </a>
+
 
 ## Getting Started
 
@@ -136,7 +162,7 @@ Then add this to your App Delegate so everything gets persisted when you quit th
 
 ### Primary key
 
-Sync requires your entities to have a primary key, this is important for diffing otherwise Sync doesn't know how to differentiate between entries.
+Sync requires your entities to have a primary key, this is important for diffing otherwise Sync doesn’t know how to differentiate between entries.
 
 By default **Sync** uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
 
@@ -144,7 +170,7 @@ For example in our [Designer News](https://github.com/hyperoslo/Sync/tree/master
 
 ![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v2.png)
 
-### Attribute mapping
+### Attribute Mapping
 
 Your attributes should match their JSON counterparts in `camelCase` notation instead of `snake_case`. For example `first_name` in the JSON maps to `firstName` in Core Data and `address` in the JSON maps to `address` in Core Data.
 
@@ -161,23 +187,26 @@ If you want to map your Core Data attribute with a JSON attribute that has diffe
 
 You are free to use any networking library.
 
-### Supported iOS version
+### Supported iOS Versions
 
 `iOS 7 or above`
 
+
 ## Components
 
-**Sync** wouldn't be possible without the help of this *fully tested* components:
+**Sync** wouldn’t be possible without the help of this *fully tested* components:
 
 * [**DATAStack**](https://github.com/3lvis/DATAStack): Core Data stack and thread safe saving
 
-* [**DATAFilter**](https://github.com/3lvis/DATAFilter): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it's used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
+* [**DATAFilter**](https://github.com/3lvis/DATAFilter): Helps you purge deleted objects, internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
 
-* [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it's job using the paradigm "_convention over configuration_"
+* [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
+
 
 ## Credits
 
-[Hyper](http://hyper.no) made this. We're a digital communications agency with a passion for good code and delightful user experiences. If you're using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md).
+[Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md).
+
 
 ## License
 
