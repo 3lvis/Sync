@@ -500,7 +500,7 @@
            if (itemsFetchError) NSLog(@"itemsFetchError: %@", itemsFetchError);
            NSManagedObject *item = [items firstObject];
            XCTAssertEqualObjects([item valueForKey:@"otherAttribute"], @"Item 1");
-           XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 4);
+           XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 2);
        }];
 }
 
