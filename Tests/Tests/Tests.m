@@ -461,4 +461,47 @@
        }];
 }
 
+#pragma mark Markets
+
+- (void)testMarketsAndItems
+{
+    NSArray *objects = [self objectsFromJSON:@"markets_items.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Markets"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Market"
+        dataStack:dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [dataStack mainContext];
+
+           NSError *marketsError = nil;
+           NSFetchRequest *marketsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Market"];
+           NSInteger numberOfMarkets = [mainContext countForFetchRequest:marketsRequest error:&marketsError];
+           if (marketsError) NSLog(@"marketsError: %@", marketsError);
+           XCTAssertEqual(numberOfMarkets, 2);
+
+           NSError *marketsFetchError = nil;
+           marketsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
+           NSArray *markets = [mainContext executeFetchRequest:marketsRequest error:&marketsFetchError];
+           if (marketsFetchError) NSLog(@"marketsFetchError: %@", marketsFetchError);
+           NSManagedObject *market = [markets firstObject];
+           XCTAssertEqualObjects([market valueForKey:@"otherAttribute"], @"Market 1");
+           XCTAssertEqual([[[market valueForKey:@"items"] allObjects] count], 1);
+
+           NSError *itemsError = nil;
+           NSFetchRequest *itemsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Item"];
+           NSInteger numberOfItems = [mainContext countForFetchRequest:itemsRequest error:&itemsError];
+           if (itemsError) NSLog(@"itemsError: %@", itemsError);
+           XCTAssertEqual(numberOfItems, 1);
+
+           NSError *itemsFetchError = nil;
+           itemsRequest.predicate = [NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"];
+           NSArray *items = [mainContext executeFetchRequest:itemsRequest error:&itemsFetchError];
+           if (itemsFetchError) NSLog(@"itemsFetchError: %@", itemsFetchError);
+           NSManagedObject *item = [items firstObject];
+           XCTAssertEqualObjects([item valueForKey:@"otherAttribute"], @"Item 1");
+           XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 2);
+       }];
+}
+
 @end
