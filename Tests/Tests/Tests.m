@@ -504,4 +504,48 @@
        }];
 }
 
+#pragma mark Staff
+
+- (void)testStaffAndfullfillers
+{
+    NSArray *objects = [self objectsFromJSON:@"bug-number-84.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug84"];
+
+    [Sync changes:objects
+    inEntityNamed:@"MSStaff"
+        dataStack:dataStack
+       completion:^(NSError *error) {
+           NSManagedObjectContext *mainContext = [dataStack mainContext];
+
+           NSError *staffError = nil;
+           NSFetchRequest *staffRequest = [[NSFetchRequest alloc] initWithEntityName:@"MSStaff"];
+           NSInteger numberOfStaff = [mainContext countForFetchRequest:staffRequest error:&staffError];
+           if (staffError) NSLog(@"MSStaffError: %@", staffError);
+           XCTAssertEqual(numberOfStaff, 1);
+
+           NSError *staffFetchError = nil;
+           staffRequest.predicate = [NSPredicate predicateWithFormat:@"xid = %@", @"mstaff_F58dVBTsXznvMpCPmpQgyV"];
+           NSArray *staff = [mainContext executeFetchRequest:staffRequest error:&staffFetchError];
+           if (staffFetchError) NSLog(@"staffFetchError: %@", staffFetchError);
+           NSManagedObject *oneStaff = [staff firstObject];
+           XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
+           XCTAssertEqual([[[oneStaff valueForKey:@"fullfillers"] allObjects] count], 2);
+
+           NSError *fullfillersError = nil;
+           NSFetchRequest *fullfillersRequest = [[NSFetchRequest alloc] initWithEntityName:@"MSFulfiller"];
+           NSInteger numberOffullfillers = [mainContext countForFetchRequest:fullfillersRequest error:&fullfillersError];
+           if (fullfillersError) NSLog(@"fullfillersError: %@", fullfillersError);
+           XCTAssertEqual(numberOffullfillers, 2);
+
+           NSError *fullfillersFetchError = nil;
+           fullfillersRequest.predicate = [NSPredicate predicateWithFormat:@"xid = %@", @"ffr_AkAHQegYkrobp5xc2ySc5D"];
+           NSArray *fullfillers = [mainContext executeFetchRequest:fullfillersRequest error:&fullfillersFetchError];
+           if (fullfillersFetchError) NSLog(@"fullfillersFetchError: %@", fullfillersFetchError);
+           NSManagedObject *fullfiller = [fullfillers firstObject];
+           XCTAssertEqualObjects([fullfiller valueForKey:@"name"], @"New York");
+           XCTAssertEqual([[[fullfiller valueForKey:@"staff"] allObjects] count], 1);
+       }];
+}
+
+
 @end
