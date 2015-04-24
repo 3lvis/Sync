@@ -19,7 +19,7 @@
 
 * [Interface](#interface)
   * [Swift](#swift)
-* [Objective-C](#objective-c)
+  * [Objective-C](#objective-c)
 * [Example](#example)
   * [Model](#model)
   * [JSON](#json)
