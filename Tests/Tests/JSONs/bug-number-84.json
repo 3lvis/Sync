@@ -2,7 +2,6 @@
   {
     "xid": "mstaff_F58dVBTsXznvMpCPmpQgyV",
     "image": "a.jpg",
-    "image_xs": "s.jpg",
     "fulfillers": [
       {
         "xid": "ffr_AkAHQegYkrobp5xc2ySc5D",
@@ -12,10 +11,6 @@
         "xid": "ffr_n5eGjfHQRqKr4tAfL7RNi9",
         "name": "Chicago"
       }
-    ],
-    "current_vehicle": {
-      "xid": "vhc_test",
-      "name": "Test"
-    }
+    ]
   }
 ]
