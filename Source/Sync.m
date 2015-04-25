@@ -48,7 +48,7 @@
 
         NSError *error = nil;
         NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext
-                                       error:&error];
+                                                           error:&error];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", parent.entity.name, safeParent];
 
         [self changes:changes
