@@ -109,10 +109,8 @@
             NSString *destinationRemoteKey = [entity sync_remoteKey];
             NSArray *childIDs = [children valueForKey:destinationRemoteKey];
             NSString *destinationLocalKey = [entity sync_localKey];
-            if (childIDs.count == 1) {
+            if (childIDs) {
                 childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationLocalKey, [[children valueForKey:destinationRemoteKey] firstObject]];
-            } else {
-                childPredicate = [NSPredicate predicateWithFormat:@"ANY %K.%K = %@", relationshipName, destinationLocalKey, [children valueForKey:destinationRemoteKey]];
             }
         } else {
             childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
