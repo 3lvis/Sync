@@ -14,10 +14,27 @@
 
 #pragma mark - Helpers
 
+- (void)dropSQLiteFileForModelNamed:(NSString *)modelName {
+    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                         inDomains:NSUserDomainMask] lastObject];
+    NSString *filePath = [NSString stringWithFormat:@"%@.sqlite", modelName];
+    NSURL *storeURL = [url URLByAppendingPathComponent:filePath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    if ([fileManager fileExistsAtPath:storeURL.path]) [fileManager removeItemAtURL:storeURL error:&error];
+
+    if (error) {
+        NSLog(@"error deleting sqlite file");
+        abort();
+    }
+}
+
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName {
+    [self dropSQLiteFileForModelNamed:modelName];
+
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackInMemoryStoreType];
+                                                      storeType:DATAStackSQLiteStoreType];
 
     return dataStack;
 }
