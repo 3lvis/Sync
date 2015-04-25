@@ -15,8 +15,7 @@
                                      remoteID:(id)remoteID
                                        parent:(NSManagedObject *)parent
                        parentRelationshipName:(NSString *)relationshipName
-                                        error:(NSError **)error
-{
+                                        error:(NSError **)error {
     if(!remoteID) {
         return [parent valueForKey:relationshipName];
     }
@@ -33,8 +32,7 @@
 }
 
 - (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
-                                  error:(NSError **)error
-{
+                                  error:(NSError **)error {
     NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name
                                               inManagedObjectContext:context];
     NSString *localKey = [entity sync_localKey];
@@ -48,8 +46,7 @@
                                                error:error];
 }
 
-- (NSArray *)sync_relationships
-{
+- (NSArray *)sync_relationships {
     NSMutableArray *relationships = [NSMutableArray array];
 
     for (id propertyDescription in [self.entity properties]) {
@@ -64,8 +61,7 @@
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack
-                                           error:(NSError **)error
-{
+                                           error:(NSError **)error {
     NSArray *relationships = [self sync_relationships];
 
     for (NSRelationshipDescription *relationship in relationships) {
@@ -92,8 +88,7 @@
 - (void)sync_processToManyRelationship:(NSRelationshipDescription *)relationship
                        usingDictionary:(NSDictionary *)objectDictionary
                              andParent:(NSManagedObject *)parent
-                             dataStack:(DATAStack *)dataStack
-{
+                             dataStack:(DATAStack *)dataStack {
     NSString *relationshipKey = relationship.userInfo[SYNCCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: [relationship.name hyp_remoteString];
     NSString *childEntityName = relationship.destinationEntity.name;
@@ -141,8 +136,7 @@
                       usingDictionary:(NSDictionary *)objectDictionary
                             andParent:(NSManagedObject *)parent
                             dataStack:(DATAStack *)dataStack
-                                error:(NSError **)error
-{
+                                error:(NSError **)error {
     NSString *relationshipKey = [[relationship userInfo] valueForKey:SYNCCustomRemoteKey];
     NSString *relationshipName = (relationshipKey) ?: [relationship.name hyp_remoteString];
     NSString *entityName = relationship.destinationEntity.name;

@@ -154,8 +154,7 @@ self.dataStack = [[DATAStack alloc] initWithModelName:@"Demo"];
 
 Then add this to your App Delegate so everything gets persisted when you quit the app.
 ```objc
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
     [self.dataStack persistWithCompletion:nil];
 }
 ```

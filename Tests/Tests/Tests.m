@@ -14,8 +14,7 @@
 
 #pragma mark - Helpers
 
-- (DATAStack *)dataStackWithModelName:(NSString *)modelName
-{
+- (DATAStack *)dataStackWithModelName:(NSString *)modelName {
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
                                                       storeType:DATAStackInMemoryStoreType];
@@ -23,8 +22,7 @@
     return dataStack;
 }
 
-- (NSArray *)objectsFromJSON:(NSString *)fileName
-{
+- (NSArray *)objectsFromJSON:(NSString *)fileName {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSArray *array = [NSJSONSerialization JSONObjectWithContentsOfFile:fileName inBundle:bundle];
 
@@ -35,8 +33,7 @@
 
 #pragma mark Contacts
 
-- (void)testLoadAndUpdateUsers
-{
+- (void)testLoadAndUpdateUsers {
     NSArray *objectsA = [self objectsFromJSON:@"users_a.json"];
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
@@ -82,8 +79,7 @@
     XCTAssertEqualObjects([result valueForKey:@"updatedAt"], updatedDate);
 }
 
-- (void)testUsersAndCompanies
-{
+- (void)testUsersAndCompanies {
     NSArray *objects = [self objectsFromJSON:@"users_company.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
 
@@ -121,8 +117,7 @@
        }];
 }
 
-- (void)testCustomMappingAndCustomPrimaryKey
-{
+- (void)testCustomMappingAndCustomPrimaryKey {
     NSArray *objects = [self objectsFromJSON:@"images.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
 
@@ -142,8 +137,7 @@
        }];
 }
 
-- (void)testRelationshipsB
-{
+- (void)testRelationshipsB {
     NSArray *objects = [self objectsFromJSON:@"users_c.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
 
@@ -182,8 +176,7 @@
 
 #pragma mark Notes
 
-- (void)testRelationshipsA
-{
+- (void)testRelationshipsA {
     NSArray *objects = [self objectsFromJSON:@"users_notes.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
@@ -215,8 +208,7 @@
        }];
 }
 
-- (void)testObjectsForParent
-{
+- (void)testObjectsForParent {
     NSArray *objects = [self objectsFromJSON:@"notes_for_user_a.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
@@ -266,8 +258,7 @@
     }];
 }
 
-- (void)testTaggedNotesForUser
-{
+- (void)testTaggedNotesForUser {
     NSArray *objects = [self objectsFromJSON:@"tagged_notes.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
@@ -307,8 +298,7 @@
        }];
 }
 
-- (void)testCustomKeysInRelationshipsToMany
-{
+- (void)testCustomKeysInRelationshipsToMany {
     NSArray *objects = [self objectsFromJSON:@"custom_relationship_key_to_many.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
@@ -332,8 +322,7 @@
  * How to test numbers:
  * - Because of to-one collection relationship, sync is failing when parsing children objects
  */
-- (void)testNumbersWithEmptyRelationship
-{
+- (void)testNumbersWithEmptyRelationship {
     NSArray *objects = [self objectsFromJSON:@"numbers.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Recursive"];
 
@@ -348,14 +337,12 @@
        }];
 }
 
-- (NSInteger)countAllEntities:(NSString *)entity inContext:(NSManagedObjectContext *)context
-{
+- (NSInteger)countAllEntities:(NSString *)entity inContext:(NSManagedObjectContext *)context {
     NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:entity];
     return [context countForFetchRequest:fetch error:nil];
 }
 
-- (void)testRelationshipName
-{
+- (void)testRelationshipName {
     NSArray *objects = [self objectsFromJSON:@"numbers_in_collection.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Recursive"];
 
@@ -377,8 +364,7 @@
 
 #pragma mark Social
 
-- (void)testCustomPrimaryKey
-{
+- (void)testCustomPrimaryKey {
     NSArray *objects = [self objectsFromJSON:@"comments-no-id.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
 
@@ -403,8 +389,7 @@
        }];
 }
 
-- (void)testCustomPrimaryKeyInsideToManyRelationship
-{
+- (void)testCustomPrimaryKeyInsideToManyRelationship {
     NSArray *objects = [self objectsFromJSON:@"stories-comments-no-ids.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
 
@@ -442,8 +427,7 @@
        }];
 }
 
-- (void)testCustomKeysInRelationshipsToOne
-{
+- (void)testCustomKeysInRelationshipsToOne {
     NSArray *objects = [self objectsFromJSON:@"custom_relationship_key_to_one.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
 
@@ -463,8 +447,7 @@
 
 #pragma mark Markets
 
-- (void)testMarketsAndItems
-{
+- (void)testMarketsAndItems {
     NSArray *objects = [self objectsFromJSON:@"markets_items.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Markets"];
 
@@ -506,8 +489,7 @@
 
 #pragma mark Staff
 
-- (void)testStaffAndfulfillers
-{
+- (void)testStaffAndfulfillers {
     NSArray *objects = [self objectsFromJSON:@"bug-number-84.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Bug84"];
 

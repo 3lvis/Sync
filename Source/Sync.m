@@ -14,8 +14,7 @@
 + (void)changes:(NSArray *)changes
   inEntityNamed:(NSString *)entityName
       dataStack:(DATAStack *)dataStack
-     completion:(void (^)(NSError *error))completion
-{
+     completion:(void (^)(NSError *error))completion {
     [self changes:changes
     inEntityNamed:entityName
         predicate:nil
@@ -27,8 +26,7 @@
   inEntityNamed:(NSString *)entityName
       predicate:(NSPredicate *)predicate
       dataStack:(DATAStack *)dataStack
-     completion:(void (^)(NSError *error))completion
-{
+     completion:(void (^)(NSError *error))completion {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
         [self changes:changes
@@ -45,8 +43,7 @@
   inEntityNamed:(NSString *)entityName
          parent:(NSManagedObject *)parent
       dataStack:(DATAStack *)dataStack
-     completion:(void (^)(NSError *error))completion
-{
+     completion:(void (^)(NSError *error))completion {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
         NSError *error = nil;
@@ -70,8 +67,7 @@
          parent:(NSManagedObject *)parent
       inContext:(NSManagedObjectContext *)context
       dataStack:(DATAStack *)dataStack
-     completion:(void (^)(NSError *error))completion
-{
+     completion:(void (^)(NSError *error))completion {
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                               inManagedObjectContext:context];
 
