@@ -392,7 +392,7 @@
            NSFetchRequest *commentsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Comment"];
            NSInteger numberOfComments = [mainContext countForFetchRequest:commentsRequest error:&commentsError];
            if (commentsError) NSLog(@"commentsError: %@", commentsError);
-           XCTAssertEqual(numberOfComments, 5);
+           XCTAssertEqual(numberOfComments, 7);
 
            NSError *commentsFetchError = nil;
            commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
