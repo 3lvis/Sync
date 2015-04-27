@@ -18,7 +18,8 @@ class Networking {
         if let data = data, json = NSJSONSerialization.JSONObjectWithData(data,
           options: NSJSONReadingOptions.MutableContainers,
           error: nil) as? Dictionary<String, AnyObject> {
-            Sync.changes(json["data"] as! Array,
+            Sync.changes(
+              json["data"] as! Array,
               inEntityNamed: "Data",
               dataStack: self.dataStack,
               completion: { error in
