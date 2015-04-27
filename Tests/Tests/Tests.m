@@ -14,7 +14,25 @@
 
 #pragma mark - Helpers
 
+- (void)dropSQLiteFileForModelNamed:(NSString *)modelName {
+    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                         inDomains:NSUserDomainMask] lastObject];
+    NSString *filePath = [NSString stringWithFormat:@"%@.sqlite", modelName];
+    NSURL *storeURL = [url URLByAppendingPathComponent:filePath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    if ([fileManager fileExistsAtPath:storeURL.path]) [fileManager removeItemAtURL:storeURL error:&error];
+
+    if (error) {
+        NSLog(@"error deleting sqlite file");
+        abort();
+    }
+}
+
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName {
+    // Uncomment when using DATAStackSQLiteStoreType:
+    // [self dropSQLiteFileForModelNamed:modelName];
+
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
                                                       storeType:DATAStackInMemoryStoreType];
@@ -223,37 +241,34 @@
         [backgroundContext save:&userError];
         if (userError) NSLog(@"userError: %@", userError);
 
-        NSManagedObjectContext *mainContext = [dataStack mainContext];
-        [mainContext performBlockAndWait:^{
-            [dataStack persistWithCompletion:^{
-                NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-                userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
-                NSArray *users = [mainContext executeFetchRequest:userRequest error:nil];
-                if (users.count != 1) abort();
+        [dataStack persistWithCompletion:^{
+            NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+            userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+            NSArray *users = [dataStack.mainContext executeFetchRequest:userRequest error:nil];
+            if (users.count != 1) abort();
 
-                [Sync changes:objects
-                inEntityNamed:@"Note"
-                       parent:[users firstObject]
-                    dataStack:dataStack
-                   completion:^(NSError *error) {
-                       NSManagedObjectContext *mainContext = [dataStack mainContext];
+            [Sync changes:objects
+            inEntityNamed:@"Note"
+                   parent:[users firstObject]
+                dataStack:dataStack
+               completion:^(NSError *error) {
+                   NSManagedObjectContext *mainContext = [dataStack mainContext];
 
-                       NSError *userFetchError = nil;
-                       NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-                       userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
-                       NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
-                       if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
-                       NSManagedObject *user = [users firstObject];
-                       XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
+                   NSError *userFetchError = nil;
+                   NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+                   userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+                   NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
+                   if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
+                   NSManagedObject *user = [users firstObject];
+                   XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-                       NSError *notesError = nil;
-                       NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                       noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-                       NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
-                       if (notesError) NSLog(@"notesError: %@", notesError);
-                       XCTAssertEqual(notesCount, 5);
-                   }];
-            }];
+                   NSError *notesError = nil;
+                   NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
+                   noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+                   NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
+                   if (notesError) NSLog(@"notesError: %@", notesError);
+                   XCTAssertEqual(notesCount, 5);
+               }];
         }];
     }];
 }
@@ -378,7 +393,7 @@
            NSFetchRequest *commentsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Comment"];
            NSInteger numberOfComments = [mainContext countForFetchRequest:commentsRequest error:&commentsError];
            if (commentsError) NSLog(@"commentsError: %@", commentsError);
-           XCTAssertEqual(numberOfComments, 8);
+           XCTAssertEqual(numberOfComments, 7);
 
            NSError *commentsFetchError = nil;
            commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
