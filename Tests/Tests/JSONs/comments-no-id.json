@@ -17,13 +17,13 @@
     "body":"comment 2",
     "comments":[
       {
-        "body":"sub-comment 1"
+        "body":"sub-comment 4"
       },
       {
-        "body":"sub-comment 2"
+        "body":"sub-comment 5"
       },
       {
-        "body":"sub-comment 3"
+        "body":"sub-comment 6"
       }
     ]
   }

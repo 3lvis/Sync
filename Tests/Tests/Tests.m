@@ -393,11 +393,14 @@
            NSFetchRequest *commentsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Comment"];
            NSInteger numberOfComments = [mainContext countForFetchRequest:commentsRequest error:&commentsError];
            if (commentsError) NSLog(@"commentsError: %@", commentsError);
-           XCTAssertEqual(numberOfComments, 7);
+           XCTAssertEqual(numberOfComments, 8);
 
            NSError *commentsFetchError = nil;
            commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
            NSArray *comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
+           XCTAssertEqual(comments.count, 1);
+           XCTAssertEqual([[[comments firstObject] valueForKey:@"comments"] count], 3);
+
            if (commentsFetchError) NSLog(@"commentsFetchError: %@", commentsFetchError);
            NSManagedObject *comment = [comments firstObject];
            XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
