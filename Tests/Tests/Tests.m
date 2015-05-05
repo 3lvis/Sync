@@ -434,8 +434,12 @@
            XCTAssertEqual(numberOfComments, 9);
 
            NSError *commentsFetchError = nil;
-           commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@ AND story = %@", @"comment 1", story];
+           commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
            NSArray *comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
+           XCTAssertEqual(comments.count, 3);
+
+           commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@ AND story = %@", @"comment 1", story];
+           comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
            if (commentsFetchError) NSLog(@"commentsFetchError: %@", commentsFetchError);
            XCTAssertEqual(comments.count, 1);
            NSManagedObject *comment = [comments firstObject];
