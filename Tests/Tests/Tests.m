@@ -31,11 +31,11 @@
 
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName {
     // Uncomment when using DATAStackSQLiteStoreType:
-    // [self dropSQLiteFileForModelNamed:modelName];
+    [self dropSQLiteFileForModelNamed:modelName];
 
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackInMemoryStoreType];
+                                                      storeType:DATAStackSQLiteStoreType];
 
     return dataStack;
 }
@@ -434,11 +434,14 @@
            XCTAssertEqual(numberOfComments, 9);
 
            NSError *commentsFetchError = nil;
-           commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
+           commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@ AND story = %@", @"comment 1", story];
            NSArray *comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
            if (commentsFetchError) NSLog(@"commentsFetchError: %@", commentsFetchError);
+           XCTAssertEqual(comments.count, 1);
            NSManagedObject *comment = [comments firstObject];
            XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+           XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"remoteID"], @0);
+           XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"title"], @"story 1");
        }];
 }
 
