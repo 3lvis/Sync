@@ -13,7 +13,7 @@ PODS:
   - NSObject-HYPTesting (1.2)
   - NSString-ANDYSizes (2.0)
   - NSString-HYPNetworking (0.3.2)
-  - Sync (1.0.3):
+  - Sync (1.0.4):
     - DATAFilter (~> 0.8.1)
     - DATAStack (~> 3.0.4)
     - NSDictionary-ANDYSafeValue (~> 0.3)
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-ANDYSizes: 40605b9c6542cd9b8e186fd3f9081b3645848603
   NSString-HYPNetworking: f95766d4dc5693b45a0331ab8cf3a0b998f38cd7
-  Sync: 307e990a240926e37a9fb8347aa703a0a82be9f7
+  Sync: 356c3e31a433310aea41169555db885b93e47b9e
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.0
