@@ -307,6 +307,8 @@
            tagsRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @1];
            NSArray *tags = [mainContext executeFetchRequest:tagsRequest error:&tagsFetchError];
            if (tagsFetchError) NSLog(@"tagsFetchError: %@", tagsFetchError);
+           XCTAssertEqual(tags.count, 1);
+
            NSManagedObject *tag = [tags firstObject];
            XCTAssertEqual([[[tag valueForKey:@"notes"] allObjects] count], 4,
                           @"Tag with ID 1 should have 4 notes");
@@ -327,7 +329,7 @@
            NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
            NSArray *array = [mainContext executeFetchRequest:userRequest error:&userError];
            NSManagedObject *user = [array firstObject];
-           XCTAssertEqual([[user valueForKey:@"notes"] count], 3);
+           XCTAssertEqual([[[user valueForKey:@"notes"] allObjects] count], 3);
        }];
 }
 
