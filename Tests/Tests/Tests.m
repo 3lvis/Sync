@@ -30,7 +30,7 @@
 }
 
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName {
-    // Uncomment when using DATAStackSQLiteStoreType:
+    // Uncomment when using DATAStackSQLiteStoreType
     // [self dropSQLiteFileForModelNamed:modelName];
 
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
@@ -307,6 +307,8 @@
            tagsRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @1];
            NSArray *tags = [mainContext executeFetchRequest:tagsRequest error:&tagsFetchError];
            if (tagsFetchError) NSLog(@"tagsFetchError: %@", tagsFetchError);
+           XCTAssertEqual(tags.count, 1);
+
            NSManagedObject *tag = [tags firstObject];
            XCTAssertEqual([[[tag valueForKey:@"notes"] allObjects] count], 4,
                           @"Tag with ID 1 should have 4 notes");
@@ -327,7 +329,7 @@
            NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
            NSArray *array = [mainContext executeFetchRequest:userRequest error:&userError];
            NSManagedObject *user = [array firstObject];
-           XCTAssertEqual([[user valueForKey:@"notes"] count], 3);
+           XCTAssertEqual([[[user valueForKey:@"notes"] allObjects] count], 3);
        }];
 }
 
@@ -393,11 +395,14 @@
            NSFetchRequest *commentsRequest = [[NSFetchRequest alloc] initWithEntityName:@"Comment"];
            NSInteger numberOfComments = [mainContext countForFetchRequest:commentsRequest error:&commentsError];
            if (commentsError) NSLog(@"commentsError: %@", commentsError);
-           XCTAssertEqual(numberOfComments, 7);
+           XCTAssertEqual(numberOfComments, 8);
 
            NSError *commentsFetchError = nil;
            commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
            NSArray *comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
+           XCTAssertEqual(comments.count, 1);
+           XCTAssertEqual([[[comments firstObject] valueForKey:@"comments"] count], 3);
+
            if (commentsFetchError) NSLog(@"commentsFetchError: %@", commentsFetchError);
            NSManagedObject *comment = [comments firstObject];
            XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
@@ -436,9 +441,16 @@
            NSError *commentsFetchError = nil;
            commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@", @"comment 1"];
            NSArray *comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
+           XCTAssertEqual(comments.count, 3);
+
+           commentsRequest.predicate = [NSPredicate predicateWithFormat:@"body = %@ AND story = %@", @"comment 1", story];
+           comments = [mainContext executeFetchRequest:commentsRequest error:&commentsFetchError];
            if (commentsFetchError) NSLog(@"commentsFetchError: %@", commentsFetchError);
+           XCTAssertEqual(comments.count, 1);
            NSManagedObject *comment = [comments firstObject];
            XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+           XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"remoteID"], @0);
+           XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"title"], @"story 1");
        }];
 }
 
