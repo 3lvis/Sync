@@ -30,12 +30,12 @@
 }
 
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName {
-    // Uncomment when using DATAStackSQLiteStoreType:
-    [self dropSQLiteFileForModelNamed:modelName];
+    // Uncomment when using DATAStackSQLiteStoreType
+    // [self dropSQLiteFileForModelNamed:modelName];
 
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackSQLiteStoreType];
+                                                      storeType:DATAStackInMemoryStoreType];
 
     return dataStack;
 }
