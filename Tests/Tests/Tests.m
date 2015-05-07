@@ -555,15 +555,18 @@
        }];
 }
 
-- (void)testOrganziaiton {
+#pragma mark Organization
+
+- (void)testOrganization {
 
     NSArray *json = [self objectsFromJSON:@"organizations-tree.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
 
-    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
-    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
-    //calling sync twice for recursive entities fails
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *firstError) {
+        [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *secondError) {
 
+        }];
+    }];
 }
 
 @end
