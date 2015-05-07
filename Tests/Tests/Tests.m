@@ -562,7 +562,7 @@
     NSArray *json = [self objectsFromJSON:@"organizations-tree.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
 
-    [Sync changes:json inEntityNamed:@"OrganizationUnit" parent:nil dataStack:dataStack completion:^(NSError *firstError) {
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *firstError) {
         NSError *fetchError = nil;
         NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"OrganizationUnit"];
         NSInteger organizationsCount = [dataStack.mainContext countForFetchRequest:request error:&fetchError];
@@ -570,7 +570,7 @@
         XCTAssertEqual(organizationsCount, 7);
     }];
 
-    [Sync changes:json inEntityNamed:@"OrganizationUnit" parent:nil dataStack:dataStack completion:^(NSError *secondError) {
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *secondError) {
         NSError *fetchError = nil;
         NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"OrganizationUnit"];
         NSInteger organizationsCount = [dataStack.mainContext countForFetchRequest:request error:&fetchError];

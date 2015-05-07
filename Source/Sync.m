@@ -49,7 +49,7 @@
         NSError *error = nil;
         NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext
                                                            error:&error];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentUnit = %@", [parent.entity.name lowercaseString], safeParent];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", [parent.entity.name lowercaseString], safeParent];
 
         [self changes:changes
         inEntityNamed:entityName
@@ -76,6 +76,8 @@
 
     NSString *remoteKey = [entity sync_remoteKey];
     NSParameterAssert(remoteKey);
+
+#warning If the entity has a parent entity in Core Data but that parent hasn't been sent here, the app should do create an predicate stating that `parentName = nil`
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
