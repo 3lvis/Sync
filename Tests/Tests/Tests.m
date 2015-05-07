@@ -46,14 +46,56 @@
     return array;
 }
 
+- (NSInteger)countAllEntities:(NSString *)entity
+                    inContext:(NSManagedObjectContext *)context {
+    return [self countAllEntities:entity
+                        predicate:nil
+                        inContext:context];
+}
+
+- (NSInteger)countAllEntities:(NSString *)entity
+                    predicate:(NSPredicate *)predicate
+                    inContext:(NSManagedObjectContext *)context {
+    NSError *error = nil;
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:entity];
+    fetch.predicate = predicate;
+    NSInteger count = [context countForFetchRequest:fetch error:&error];
+    if (error) NSLog(@"countError: %@", [error description]);
+
+    return count;
+}
+
+- (void)test:(NSString *)predicateFormat, ... {
+    [NSPredicate predicateWithFormat:predicateFormat];
+
+}
+
+- (NSArray *)fetchObjects:(NSString *)entity
+                inContext:(NSManagedObjectContext *)context {
+    return [self fetchObjects:entity
+                    predicate:nil
+                    inContext:context];
+}
+
+- (NSArray *)fetchObjects:(NSString *)entity
+         predicate:(NSPredicate *)predicate
+         inContext:(NSManagedObjectContext *)context {
+
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    request.predicate = predicate;
+    NSError *error = nil;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    if (error) NSLog(@"usersFetchError: %@", error);
+
+    return objects;
+}
+
 #pragma mark - Tests
 
 #pragma mark Contacts
 
 - (void)testLoadAndUpdateUsers {
     NSArray *objectsA = [self objectsFromJSON:@"users_a.json"];
-
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
 
     DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
     NSManagedObjectContext *mainContext = [dataStack mainContext];
@@ -62,9 +104,7 @@
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSError *countError = nil;
-           NSInteger count = [mainContext countForFetchRequest:request error:&countError];
-           if (countError) NSLog(@"countError: %@", [countError description]);
+           NSInteger count = [self countAllEntities:@"User" inContext:mainContext];
            XCTAssertEqual(count, 8);
        }];
 
@@ -74,15 +114,13 @@
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSError *countError = nil;
-           NSInteger count = [mainContext countForFetchRequest:request error:&countError];
-           if (countError) NSLog(@"countError: %@", [countError description]);
+           NSInteger count = [self countAllEntities:@"User" inContext:mainContext];
            XCTAssertEqual(count, 6);
        }];
 
-    request.predicate = [NSPredicate predicateWithFormat:@"remoteID == %@", @7];
-    NSArray *results = [mainContext executeFetchRequest:request error:nil];
-    NSManagedObject *result = [results firstObject];
+    NSManagedObject *result = [[self fetchObjects:@"User"
+                                        predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @7]
+                                        inContext:mainContext] firstObject];
     XCTAssertEqualObjects([result valueForKey:@"email"], @"secondupdated@ovium.com");
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -106,30 +144,20 @@
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
 
-           NSError *usersError = nil;
-           NSFetchRequest *usersRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-           NSInteger numberOfUsers = [mainContext countForFetchRequest:usersRequest error:&usersError];
-           if (usersError) NSLog(@"usersError: %@", usersError);
-           XCTAssertEqual(numberOfUsers, 5);
+           NSInteger count = [self countAllEntities:@"User" inContext:mainContext];
+           XCTAssertEqual(count, 5);
 
-           NSError *usersFetchError = nil;
-           usersRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @0];
-           NSArray *users = [mainContext executeFetchRequest:usersRequest error:&usersFetchError];
-           if (usersFetchError) NSLog(@"usersFetchError: %@", usersFetchError);
-           NSManagedObject *user = [users firstObject];
+           NSManagedObject *user = [[self fetchObjects:@"User"
+                                             predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @0]
+                                             inContext:mainContext] firstObject];
            XCTAssertEqualObjects([[user valueForKey:@"company"] valueForKey:@"name"], @"Apple");
 
-           NSError *companiesError = nil;
-           NSFetchRequest *companiesRequest = [[NSFetchRequest alloc] initWithEntityName:@"Company"];
-           NSInteger numberOfCompanies = [mainContext countForFetchRequest:companiesRequest error:&companiesError];
-           if (companiesError) NSLog(@"companiesError: %@", companiesError);
+           NSInteger numberOfCompanies = [self countAllEntities:@"Company" inContext:mainContext];
            XCTAssertEqual(numberOfCompanies, 2);
 
-           NSError *companiesFetchError = nil;
-           companiesRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @1];
-           NSArray *companies = [mainContext executeFetchRequest:companiesRequest error:&companiesFetchError];
-           if (companiesFetchError) NSLog(@"companiesFetchError: %@", companiesFetchError);
-           NSManagedObject *company = [companies firstObject];
+           NSManagedObject *company = [[self fetchObjects:@"Company"
+                                                predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
+                                                inContext:mainContext] firstObject];
            XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
        }];
 }
@@ -164,14 +192,12 @@
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
 
-           NSError *userError = nil;
-           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-           NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
-           if (userError) NSLog(@"userError: %@", userError);
+           NSInteger usersCount = [self countAllEntities:@"User" inContext:mainContext];
            XCTAssertEqual(usersCount, 4);
 
-           NSError *userFetchError = nil;
+           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
            userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+           NSError *userFetchError = nil;
            NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
            if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
            NSManagedObject *user = [users firstObject];
@@ -203,14 +229,12 @@
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
 
-           NSError *userError = nil;
-           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-           NSInteger usersCount = [mainContext countForFetchRequest:userRequest error:&userError];
-           if (userError) NSLog(@"userError: %@", userError);
+           NSInteger usersCount = [self countAllEntities:@"User" inContext:mainContext];
            XCTAssertEqual(usersCount, 4);
 
-           NSError *userFetchError = nil;
+           NSFetchRequest *userRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
            userRequest.predicate = [NSPredicate predicateWithFormat:@"remoteID = %@", @6];
+           NSError *userFetchError = nil;
            NSArray *users = [mainContext executeFetchRequest:userRequest error:&userFetchError];
            if (userFetchError) NSLog(@"userFetchError: %@", userFetchError);
            NSManagedObject *user = [users firstObject];
@@ -261,11 +285,9 @@
                    NSManagedObject *user = [users firstObject];
                    XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-                   NSError *notesError = nil;
-                   NSFetchRequest *noteRequest = [[NSFetchRequest alloc] initWithEntityName:@"Note"];
-                   noteRequest.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
-                   NSInteger notesCount = [mainContext countForFetchRequest:noteRequest error:&notesError];
-                   if (notesError) NSLog(@"notesError: %@", notesError);
+                   NSInteger notesCount = [self countAllEntities:@"Note"
+                                                       predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
+                                                       inContext:mainContext];
                    XCTAssertEqual(notesCount, 5);
                }];
         }];
@@ -351,11 +373,6 @@
            NSInteger numberCount =[self countAllEntities:@"Number" inContext:mainContext];
            XCTAssertEqual(numberCount, 6);
        }];
-}
-
-- (NSInteger)countAllEntities:(NSString *)entity inContext:(NSManagedObjectContext *)context {
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:entity];
-    return [context countForFetchRequest:fetch error:nil];
 }
 
 - (void)testRelationshipName {
@@ -525,28 +542,24 @@
        completion:^(NSError *error) {
            NSManagedObjectContext *mainContext = [dataStack mainContext];
 
-           NSError *staffError = nil;
-           NSFetchRequest *staffRequest = [[NSFetchRequest alloc] initWithEntityName:@"MSStaff"];
-           NSInteger numberOfStaff = [mainContext countForFetchRequest:staffRequest error:&staffError];
-           if (staffError) NSLog(@"MSStaffError: %@", staffError);
+           NSInteger numberOfStaff = [self countAllEntities:@"MSStaff" inContext:mainContext];
            XCTAssertEqual(numberOfStaff, 1);
 
-           NSError *staffFetchError = nil;
+           NSFetchRequest *staffRequest = [[NSFetchRequest alloc] initWithEntityName:@"MSStaff"];
            staffRequest.predicate = [NSPredicate predicateWithFormat:@"xid = %@", @"mstaff_F58dVBTsXznvMpCPmpQgyV"];
+           NSError *staffFetchError = nil;
            NSArray *staff = [mainContext executeFetchRequest:staffRequest error:&staffFetchError];
            if (staffFetchError) NSLog(@"staffFetchError: %@", staffFetchError);
            NSManagedObject *oneStaff = [staff firstObject];
            XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
            XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
 
-           NSError *fulfillersError = nil;
-           NSFetchRequest *fulfillersRequest = [[NSFetchRequest alloc] initWithEntityName:@"MSFulfiller"];
-           NSInteger numberOffulfillers = [mainContext countForFetchRequest:fulfillersRequest error:&fulfillersError];
-           if (fulfillersError) NSLog(@"fulfillersError: %@", fulfillersError);
+           NSInteger numberOffulfillers = [self countAllEntities:@"MSFulfiller" inContext:mainContext];
            XCTAssertEqual(numberOffulfillers, 2);
 
-           NSError *fulfillersFetchError = nil;
+           NSFetchRequest *fulfillersRequest = [[NSFetchRequest alloc] initWithEntityName:@"MSFulfiller"];
            fulfillersRequest.predicate = [NSPredicate predicateWithFormat:@"xid = %@", @"ffr_AkAHQegYkrobp5xc2ySc5D"];
+           NSError *fulfillersFetchError = nil;
            NSArray *fulfillers = [mainContext executeFetchRequest:fulfillersRequest error:&fulfillersFetchError];
            if (fulfillersFetchError) NSLog(@"fulfillersFetchError: %@", fulfillersFetchError);
            NSManagedObject *fullfiller = [fulfillers firstObject];
