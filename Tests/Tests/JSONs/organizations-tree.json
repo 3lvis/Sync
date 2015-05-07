@@ -13,11 +13,11 @@
             "children" : [
               {
                 "id" : 1106,
-                "name" : "Org 1106",
+                "name" : "Org 1106"
               },
               {
                 "id" : 1131,
-                "name" : "Org 1131",
+                "name" : "Org 1131"
               }
             ]
           },
@@ -27,8 +27,8 @@
             "children" : [
               {
                 "id" : 1114,
-                "name" : "Org 12132",
-              },
+                "name" : "Org 12132"
+              }
             ]
           }
         ]
