@@ -568,14 +568,14 @@
         NSInteger organizationsCount = [dataStack.mainContext countForFetchRequest:request error:&fetchError];
         if (fetchError) NSLog(@"fetchError: %@", fetchError);
         XCTAssertEqual(organizationsCount, 7);
+    }];
 
-        [Sync changes:json inEntityNamed:@"OrganizationUnit" parent:nil dataStack:dataStack completion:^(NSError *secondError) {
-            NSError *fetchError = nil;
-            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"OrganizationUnit"];
-            NSInteger organizationsCount = [dataStack.mainContext countForFetchRequest:request error:&fetchError];
-            if (fetchError) NSLog(@"fetchError: %@", fetchError);
-            XCTAssertEqual(organizationsCount, 7);
-        }];
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" parent:nil dataStack:dataStack completion:^(NSError *secondError) {
+        NSError *fetchError = nil;
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"OrganizationUnit"];
+        NSInteger organizationsCount = [dataStack.mainContext countForFetchRequest:request error:&fetchError];
+        if (fetchError) NSLog(@"fetchError: %@", fetchError);
+        XCTAssertEqual(organizationsCount, 7);
     }];
 }
 
