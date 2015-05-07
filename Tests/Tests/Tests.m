@@ -562,6 +562,7 @@
 
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
+    //calling sync twice for recursive entities fails
 
 }
 
