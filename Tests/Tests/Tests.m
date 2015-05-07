@@ -561,7 +561,7 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
 
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
-   // [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
 
 }
 
