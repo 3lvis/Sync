@@ -65,11 +65,6 @@
     return count;
 }
 
-- (void)test:(NSString *)predicateFormat, ... {
-    [NSPredicate predicateWithFormat:predicateFormat];
-
-}
-
 - (NSArray *)fetchObjects:(NSString *)entity
                 inContext:(NSManagedObjectContext *)context {
     return [self fetchObjects:entity
