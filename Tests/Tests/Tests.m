@@ -556,5 +556,14 @@
        }];
 }
 
+- (void)testOrganziaiton {
+
+    NSArray *json = [self objectsFromJSON:@"organizations-tree.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
+
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
+   // [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
+
+}
 
 @end
