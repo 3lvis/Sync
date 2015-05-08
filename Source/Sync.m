@@ -80,8 +80,6 @@
 
     BOOL shouldLookForParent = (!parent && !predicate);
     if (shouldLookForParent) {
-        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                                   inManagedObjectContext:context];
         NSRelationshipDescription *parentEntity = [entity sync_parentEntity];
         if (parentEntity) {
             predicate = [NSPredicate predicateWithFormat:@"%K = nil", parentEntity.name];
