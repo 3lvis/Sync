@@ -13,6 +13,9 @@
 		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
 		14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* Sync.podspec */; };
+		446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 446866971AFCBC7A0006A32B /* NSEntityDescription+Sync.m */; };
+		4468669B1AFCBC870006A32B /* Organizations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 446866991AFCBC870006A32B /* Organizations.xcdatamodeld */; };
+		4468669D1AFCBC910006A32B /* organizations-tree.json in Resources */ = {isa = PBXBuildFile; fileRef = 4468669C1AFCBC910006A32B /* organizations-tree.json */; };
 		44B072B81AEA364D00ACD275 /* comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B072A81AEA364D00ACD275 /* comments-no-id.json */; };
 		44B072B91AEA364D00ACD275 /* custom_relationship_key_to_many.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B072A91AEA364D00ACD275 /* custom_relationship_key_to_many.json */; };
 		44B072BA1AEA364D00ACD275 /* custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B072AA1AEA364D00ACD275 /* custom_relationship_key_to_one.json */; };
@@ -53,6 +56,10 @@
 		14C418391A019A1500636FD6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C4183A1A019A1500636FD6 /* Sync.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Sync.podspec; path = ../Sync.podspec; sourceTree = "<group>"; };
 		14C4183B1A019A1500636FD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		446866961AFCBC7A0006A32B /* NSEntityDescription+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Sync.h"; sourceTree = "<group>"; };
+		446866971AFCBC7A0006A32B /* NSEntityDescription+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Sync.m"; sourceTree = "<group>"; };
+		4468669A1AFCBC870006A32B /* Organizations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Organizations.xcdatamodel; sourceTree = "<group>"; };
+		4468669C1AFCBC910006A32B /* organizations-tree.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "organizations-tree.json"; sourceTree = "<group>"; };
 		44B072A81AEA364D00ACD275 /* comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "comments-no-id.json"; sourceTree = "<group>"; };
 		44B072A91AEA364D00ACD275 /* custom_relationship_key_to_many.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_to_many.json; sourceTree = "<group>"; };
 		44B072AA1AEA364D00ACD275 /* custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_relationship_key_to_one.json; sourceTree = "<group>"; };
@@ -151,6 +158,8 @@
 				14B39D8D1A9BCCB300D3D01B /* Sync.m */,
 				14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */,
 				14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */,
+				446866961AFCBC7A0006A32B /* NSEntityDescription+Sync.h */,
+				446866971AFCBC7A0006A32B /* NSEntityDescription+Sync.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -188,6 +197,7 @@
 				44B072B51AEA364D00ACD275 /* users_company.json */,
 				44B072B61AEA364D00ACD275 /* users_notes.json */,
 				B5A4E1821AFB801C00A250F2 /* unique.json */,
+				4468669C1AFCBC910006A32B /* organizations-tree.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -202,6 +212,7 @@
 				44B072CE1AEA366B00ACD275 /* Recursive.xcdatamodeld */,
 				44B072D01AEA366B00ACD275 /* Social.xcdatamodeld */,
 				B5A4E17F1AFB7E7D00A250F2 /* Unique.xcdatamodeld */,
+				446866991AFCBC870006A32B /* Organizations.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +300,7 @@
 				44B072C21AEA364D00ACD275 /* users_a.json in Resources */,
 				B5A4E1831AFB801C00A250F2 /* unique.json in Resources */,
 				44B072B91AEA364D00ACD275 /* custom_relationship_key_to_many.json in Resources */,
+				4468669D1AFCBC910006A32B /* organizations-tree.json in Resources */,
 				44B072B81AEA364D00ACD275 /* comments-no-id.json in Resources */,
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,
 				44B072D81AEA36A700ACD275 /* bug-number-84.json in Resources */,
@@ -336,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B072D21AEA366B00ACD275 /* Contacts.xcdatamodeld in Sources */,
+				446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */,
 				44B072D41AEA366B00ACD275 /* Notes.xcdatamodeld in Sources */,
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
 				44B072DB1AEA36D300ACD275 /* Bug84.xcdatamodeld in Sources */,
@@ -344,6 +357,7 @@
 				44B072D51AEA366B00ACD275 /* Recursive.xcdatamodeld in Sources */,
 				44B072D61AEA366B00ACD275 /* Social.xcdatamodeld in Sources */,
 				B5A4E1811AFB7E7D00A250F2 /* Unique.xcdatamodeld in Sources */,
+				4468669B1AFCBC870006A32B /* Organizations.xcdatamodeld in Sources */,
 				14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +509,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		446866991AFCBC870006A32B /* Organizations.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4468669A1AFCBC870006A32B /* Organizations.xcdatamodel */,
+			);
+			currentVersion = 4468669A1AFCBC870006A32B /* Organizations.xcdatamodel */;
+			path = Organizations.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		44B072C81AEA366B00ACD275 /* Contacts.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
