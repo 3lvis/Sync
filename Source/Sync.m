@@ -77,7 +77,21 @@
     NSString *remoteKey = [entity sync_remoteKey];
     NSParameterAssert(remoteKey);
 
-#warning If the entity has a parent entity in Core Data but that parent hasn't been sent here, the app should do create an predicate stating that `parentName = nil`
+    if (!parent && !predicate) {
+        NSManagedObject *current = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                                                 inManagedObjectContext:context];
+        NSArray *relationships = [current sync_relationships];
+        NSString *foundParentEntityName = nil;
+        for (NSRelationshipDescription *relationship in relationships) {
+            if ([relationship.destinationEntity.name isEqualToString:entityName] && !relationship.isToMany) {
+                foundParentEntityName = relationship.name;
+            }
+        }
+
+        if (foundParentEntityName) {
+            predicate = [NSPredicate predicateWithFormat:@"%K = nil", foundParentEntityName];
+        }
+    }
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
