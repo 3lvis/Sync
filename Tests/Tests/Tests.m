@@ -450,9 +450,8 @@
     inEntityNamed:@"Story"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSError *storyError = nil;
-           NSFetchRequest *storyRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
-           NSArray *array = [dataStack.mainContext executeFetchRequest:storyRequest error:&storyError];
+           NSArray *array = [self fetchEntity:@"Story"
+                                    inContext:dataStack.mainContext];
            NSManagedObject *story = [array firstObject];
            XCTAssertNotNil([story valueForKey:@"summarize"]);
        }];
@@ -502,7 +501,8 @@
     inEntityNamed:@"MSStaff"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSInteger numberOfStaff = [self countForEntity:@"MSStaff" inContext:dataStack.mainContext];
+           NSInteger numberOfStaff = [self countForEntity:@"MSStaff"
+                                                inContext:dataStack.mainContext];
            XCTAssertEqual(numberOfStaff, 1);
 
 
@@ -513,7 +513,8 @@
            XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
            XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
 
-           NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller" inContext:dataStack.mainContext];
+           NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller"
+                                                     inContext:dataStack.mainContext];
            XCTAssertEqual(numberOffulfillers, 2);
 
            NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
@@ -550,6 +551,26 @@
     array = [self fetchEntity:@"C" inContext:dataStack.mainContext];
     count = [self countForEntity:@"B" inContext:dataStack.mainContext];
     XCTAssertEqual(count, 2);
+}
+
+#pragma mark Organization
+
+- (void)testOrganization {
+
+    NSArray *json = [self objectsFromJSON:@"organizations-tree.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
+
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *firstError) {
+        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
+                                                  inContext:dataStack.mainContext];
+        XCTAssertEqual(organizationsCount, 7);
+    }];
+
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *secondError) {
+        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
+                                                  inContext:dataStack.mainContext];
+        XCTAssertEqual(organizationsCount, 7);
+    }];
 }
 
 @end

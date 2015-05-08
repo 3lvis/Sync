@@ -8,6 +8,7 @@
 #import "NSString+HYPNetworking.h"
 #import "NSEntityDescription+SYNCPrimaryKey.h"
 #import "NSManagedObject+Sync.h"
+#import "NSEntityDescription+Sync.h"
 
 @implementation Sync
 
@@ -76,6 +77,15 @@
 
     NSString *remoteKey = [entity sync_remoteKey];
     NSParameterAssert(remoteKey);
+
+    if (!parent && !predicate) {
+        NSEntityDescription *current = [NSEntityDescription entityForName:entityName
+                                                   inManagedObjectContext:context];
+        NSRelationshipDescription *parentEntity = [current sync_parentEntity];
+        if (parentEntity) {
+            predicate = [NSPredicate predicateWithFormat:@"%K = nil", parentEntity.name];
+        }
+    }
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
