@@ -79,9 +79,7 @@
     NSParameterAssert(remoteKey);
 
     if (!parent && !predicate) {
-        NSEntityDescription *current = [NSEntityDescription entityForName:entityName
-                                                   inManagedObjectContext:context];
-        NSRelationshipDescription *parentEntity = [current sync_parentEntity];
+        NSRelationshipDescription *parentEntity = [entity sync_parentEntity];
         if (parentEntity) {
             predicate = [NSPredicate predicateWithFormat:@"%K = nil", parentEntity.name];
         }
