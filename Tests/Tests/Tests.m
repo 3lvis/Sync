@@ -82,6 +82,15 @@
 }
 
 - (NSArray *)fetchEntity:(NSString *)entity
+         sortDescriptors:(NSArray *)sortDescriptors
+               inContext:(NSManagedObjectContext *)context {
+    return [self fetchEntity:entity
+                   predicate:nil
+             sortDescriptors:sortDescriptors
+                   inContext:context];
+}
+
+- (NSArray *)fetchEntity:(NSString *)entity
                predicate:(NSPredicate *)predicate
          sortDescriptors:(NSArray *)sortDescriptors
                inContext:(NSManagedObjectContext *)context {
@@ -104,13 +113,12 @@
     NSArray *objectsA = [self objectsFromJSON:@"users_a.json"];
 
     DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
-    NSManagedObjectContext *mainContext = [dataStack mainContext];
 
     [Sync changes:objectsA
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSInteger count = [self countForEntity:@"User" inContext:mainContext];
+           NSInteger count = [self countForEntity:@"User" inContext:dataStack.mainContext];
            XCTAssertEqual(count, 8);
        }];
 
@@ -120,14 +128,14 @@
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSInteger count = [self countForEntity:@"User" inContext:mainContext];
+           NSInteger count = [self countForEntity:@"User" inContext:dataStack.mainContext];
            XCTAssertEqual(count, 6);
        }];
 
     NSManagedObject *result = [[self fetchEntity:@"User"
                                        predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @7]
                                  sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
-                                       inContext:mainContext] firstObject];
+                                       inContext:dataStack.mainContext] firstObject];
     XCTAssertEqualObjects([result valueForKey:@"email"], @"secondupdated@ovium.com");
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -149,24 +157,22 @@
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSInteger count = [self countForEntity:@"User" inContext:mainContext];
+           NSInteger count = [self countForEntity:@"User" inContext:dataStack.mainContext];
            XCTAssertEqual(count, 5);
 
            NSManagedObject *user = [[self fetchEntity:@"User"
                                             predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @0]
                                       sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
-                                            inContext:mainContext] firstObject];
+                                            inContext:dataStack.mainContext] firstObject];
            XCTAssertEqualObjects([[user valueForKey:@"company"] valueForKey:@"name"], @"Apple");
 
-           NSInteger numberOfCompanies = [self countForEntity:@"Company" inContext:mainContext];
+           NSInteger numberOfCompanies = [self countForEntity:@"Company" inContext:dataStack.mainContext];
            XCTAssertEqual(numberOfCompanies, 2);
 
            NSManagedObject *company = [[self fetchEntity:@"Company"
                                                predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
                                          sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
-                                               inContext:mainContext] firstObject];
+                                               inContext:dataStack.mainContext] firstObject];
            XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
        }];
 }
@@ -180,7 +186,6 @@
         dataStack:dataStack
        completion:^(NSError *error) {
            NSArray *array = [self fetchEntity:@"Image"
-                                    predicate:nil
                               sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES]]
                                     inContext:dataStack.mainContext];
            XCTAssertEqual(array.count, 3);
@@ -197,9 +202,7 @@
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSInteger usersCount = [self countForEntity:@"User" inContext:mainContext];
+           NSInteger usersCount = [self countForEntity:@"User" inContext:dataStack.mainContext];
            XCTAssertEqual(usersCount, 4);
 
            NSArray *users = [self fetchEntity:@"User"
@@ -215,7 +218,7 @@
 
            NSInteger profilePicturesCount = [self countForEntity:@"Image"
                                                        predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
-                                                       inContext:mainContext];
+                                                       inContext:dataStack.mainContext];
            XCTAssertEqual(profilePicturesCount, 3);
        }];
 }
@@ -230,9 +233,7 @@
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSInteger usersCount = [self countForEntity:@"User" inContext:mainContext];
+           NSInteger usersCount = [self countForEntity:@"User" inContext:dataStack.mainContext];
            XCTAssertEqual(usersCount, 4);
 
            NSArray *users = [self fetchEntity:@"User"
@@ -243,7 +244,7 @@
 
            NSInteger notesCount = [self countForEntity:@"Note"
                                              predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
-                                             inContext:mainContext];
+                                             inContext:dataStack.mainContext];
            XCTAssertEqual(notesCount, 5);
        }];
 }
@@ -449,11 +450,9 @@
     inEntityNamed:@"Story"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
            NSError *storyError = nil;
            NSFetchRequest *storyRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
-           NSArray *array = [mainContext executeFetchRequest:storyRequest error:&storyError];
+           NSArray *array = [dataStack.mainContext executeFetchRequest:storyRequest error:&storyError];
            NSManagedObject *story = [array firstObject];
            XCTAssertNotNil([story valueForKey:@"summarize"]);
        }];
@@ -503,9 +502,7 @@
     inEntityNamed:@"MSStaff"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSManagedObjectContext *mainContext = [dataStack mainContext];
-
-           NSInteger numberOfStaff = [self countForEntity:@"MSStaff" inContext:mainContext];
+           NSInteger numberOfStaff = [self countForEntity:@"MSStaff" inContext:dataStack.mainContext];
            XCTAssertEqual(numberOfStaff, 1);
 
 
@@ -516,7 +513,7 @@
            XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
            XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
 
-           NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller" inContext:mainContext];
+           NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller" inContext:dataStack.mainContext];
            XCTAssertEqual(numberOffulfillers, 2);
 
            NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
