@@ -37,7 +37,7 @@
 		44B072DB1AEA36D300ACD275 /* Bug84.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B072D91AEA36D300ACD275 /* Bug84.xcdatamodeld */; };
 		4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEFB3E45BB7A8C5238E2880 /* libPods.a */; };
 		B5A4E1811AFB7E7D00A250F2 /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5A4E17F1AFB7E7D00A250F2 /* Unique.xcdatamodeld */; };
-		B5A4E1831AFB801C00A250F2 /* unique-b.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A4E1821AFB801C00A250F2 /* unique-b.json */; };
+		B5A4E1831AFB801C00A250F2 /* unique.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A4E1821AFB801C00A250F2 /* unique.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +78,7 @@
 		7C067778DC962B70CDF74EA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B5A4E1801AFB7E7D00A250F2 /* Unique.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unique.xcdatamodel; sourceTree = "<group>"; };
-		B5A4E1821AFB801C00A250F2 /* unique-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "unique-b.json"; sourceTree = "<group>"; };
+		B5A4E1821AFB801C00A250F2 /* unique.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unique.json; sourceTree = "<group>"; };
 		DCEFB3E45BB7A8C5238E2880 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,7 +187,7 @@
 				44B072B41AEA364D00ACD275 /* users_c.json */,
 				44B072B51AEA364D00ACD275 /* users_company.json */,
 				44B072B61AEA364D00ACD275 /* users_notes.json */,
-				B5A4E1821AFB801C00A250F2 /* unique-b.json */,
+				B5A4E1821AFB801C00A250F2 /* unique.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 				44B072BC1AEA364D00ACD275 /* markets_items.json in Resources */,
 				44B072C11AEA364D00ACD275 /* tagged_notes.json in Resources */,
 				44B072C21AEA364D00ACD275 /* users_a.json in Resources */,
-				B5A4E1831AFB801C00A250F2 /* unique-b.json in Resources */,
+				B5A4E1831AFB801C00A250F2 /* unique.json in Resources */,
 				44B072B91AEA364D00ACD275 /* custom_relationship_key_to_many.json in Resources */,
 				44B072B81AEA364D00ACD275 /* comments-no-id.json in Resources */,
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,

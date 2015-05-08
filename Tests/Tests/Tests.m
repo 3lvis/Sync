@@ -529,17 +529,17 @@
  *  B is a unique Entity that can be refferanced from many other entyties.
  */
 - (void)testUniqueObject {
-    NSArray *objects = [self objectsFromJSON:@"unique-b.json"];
+    NSArray *objects = [self objectsFromJSON:@"unique.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Unique"];
-    [Sync changes:objects inEntityNamed:@"A" dataStack:dataStack completion:nil];
 
-    XCTAssertEqual([self countAllEntities:@"A" inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countAllEntities:@"B" inContext:dataStack.mainContext], 2);
+    [Sync changes:objects inEntityNamed:@"A" dataStack:dataStack completion:nil];
+    XCTAssertEqual([self countForEntity:@"A" inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"B" inContext:dataStack.mainContext], 2);
 
     [Sync changes:objects inEntityNamed:@"C" dataStack:dataStack completion:nil];
-    XCTAssertEqual([self countAllEntities:@"A" inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countAllEntities:@"C" inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countAllEntities:@"B" inContext:dataStack.mainContext], 2);
+    XCTAssertEqual([self countForEntity:@"A" inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"B" inContext:dataStack.mainContext], 2);
+    XCTAssertEqual([self countForEntity:@"C" inContext:dataStack.mainContext], 1);
 }
 
 @end
