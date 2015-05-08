@@ -6,8 +6,8 @@
     </entity>
     <entity name="B" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="a" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="A" inverseName="b" inverseEntity="A" syncable="YES"/>
-        <relationship name="c" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="C" inverseName="b" inverseEntity="C" syncable="YES"/>
+        <relationship name="a" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="A" inverseName="b" inverseEntity="A" syncable="YES"/>
+        <relationship name="c" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="C" inverseName="b" inverseEntity="C" syncable="YES"/>
     </entity>
     <entity name="C" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>

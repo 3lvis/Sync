@@ -532,14 +532,24 @@
     NSArray *objects = [self objectsFromJSON:@"unique.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Unique"];
 
+    // First
+
     [Sync changes:objects inEntityNamed:@"A" dataStack:dataStack completion:nil];
     XCTAssertEqual([self countForEntity:@"A" inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"B" inContext:dataStack.mainContext], 2);
+
+    NSArray *array = [self fetchEntity:@"A" inContext:dataStack.mainContext];
+    NSInteger count = [self countForEntity:@"B" inContext:dataStack.mainContext];
+    XCTAssertEqual(count, 2);
+
+    // Second
 
     [Sync changes:objects inEntityNamed:@"C" dataStack:dataStack completion:nil];
     XCTAssertEqual([self countForEntity:@"A" inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"B" inContext:dataStack.mainContext], 2);
     XCTAssertEqual([self countForEntity:@"C" inContext:dataStack.mainContext], 1);
+
+    array = [self fetchEntity:@"C" inContext:dataStack.mainContext];
+    count = [self countForEntity:@"B" inContext:dataStack.mainContext];
+    XCTAssertEqual(count, 2);
 }
 
 @end
