@@ -14,9 +14,6 @@
 - (NSManagedObject *)sync_copyInContext:(NSManagedObjectContext *)context
                                   error:(NSError **)error;
 
-- (NSArray *)sync_relationships;
-
-
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack

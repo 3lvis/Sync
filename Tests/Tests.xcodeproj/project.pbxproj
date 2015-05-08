@@ -35,6 +35,7 @@
 		44B072D61AEA366B00ACD275 /* Social.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B072D01AEA366B00ACD275 /* Social.xcdatamodeld */; };
 		44B072D81AEA36A700ACD275 /* bug-number-84.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B072D71AEA36A700ACD275 /* bug-number-84.json */; };
 		44B072DB1AEA36D300ACD275 /* Bug84.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B072D91AEA36D300ACD275 /* Bug84.xcdatamodeld */; };
+		44C57B7E1AFCB92300D77AB2 /* NSEntityDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C57B7D1AFCB92300D77AB2 /* NSEntityDescription+Sync.m */; };
 		4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEFB3E45BB7A8C5238E2880 /* libPods.a */; };
 		B5A4E17C1AFB692C00A250F2 /* Organizations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5A4E17A1AFB692C00A250F2 /* Organizations.xcdatamodeld */; };
 		B5A4E17E1AFB693E00A250F2 /* organizations-tree.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A4E17D1AFB693E00A250F2 /* organizations-tree.json */; };
@@ -75,6 +76,8 @@
 		44B072D11AEA366B00ACD275 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		44B072D71AEA36A700ACD275 /* bug-number-84.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-number-84.json"; sourceTree = "<group>"; };
 		44B072DA1AEA36D300ACD275 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		44C57B7C1AFCB92300D77AB2 /* NSEntityDescription+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Sync.h"; sourceTree = "<group>"; };
+		44C57B7D1AFCB92300D77AB2 /* NSEntityDescription+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Sync.m"; sourceTree = "<group>"; };
 		7C067778DC962B70CDF74EA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B5A4E17B1AFB692C00A250F2 /* Organizations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Organizations.xcdatamodel; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				14B39D8D1A9BCCB300D3D01B /* Sync.m */,
 				14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */,
 				14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */,
+				44C57B7C1AFCB92300D77AB2 /* NSEntityDescription+Sync.h */,
+				44C57B7D1AFCB92300D77AB2 /* NSEntityDescription+Sync.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -336,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B072D21AEA366B00ACD275 /* Contacts.xcdatamodeld in Sources */,
+				44C57B7E1AFCB92300D77AB2 /* NSEntityDescription+Sync.m in Sources */,
 				44B072D41AEA366B00ACD275 /* Notes.xcdatamodeld in Sources */,
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
 				44B072DB1AEA36D300ACD275 /* Bug84.xcdatamodeld in Sources */,

@@ -450,9 +450,8 @@
     inEntityNamed:@"Story"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSError *storyError = nil;
-           NSFetchRequest *storyRequest = [[NSFetchRequest alloc] initWithEntityName:@"Story"];
-           NSArray *array = [dataStack.mainContext executeFetchRequest:storyRequest error:&storyError];
+           NSArray *array = [self fetchEntity:@"Story"
+                                    inContext:dataStack.mainContext];
            NSManagedObject *story = [array firstObject];
            XCTAssertNotNil([story valueForKey:@"summarize"]);
        }];
@@ -502,7 +501,8 @@
     inEntityNamed:@"MSStaff"
         dataStack:dataStack
        completion:^(NSError *error) {
-           NSInteger numberOfStaff = [self countForEntity:@"MSStaff" inContext:dataStack.mainContext];
+           NSInteger numberOfStaff = [self countForEntity:@"MSStaff"
+                                                inContext:dataStack.mainContext];
            XCTAssertEqual(numberOfStaff, 1);
 
 
@@ -513,7 +513,8 @@
            XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
            XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
 
-           NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller" inContext:dataStack.mainContext];
+           NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller"
+                                                     inContext:dataStack.mainContext];
            XCTAssertEqual(numberOffulfillers, 2);
 
            NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
@@ -533,18 +534,14 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
 
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *firstError) {
-        NSError *fetchError = nil;
-        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"OrganizationUnit"];
-        NSInteger organizationsCount = [dataStack.mainContext countForFetchRequest:request error:&fetchError];
-        if (fetchError) NSLog(@"fetchError: %@", fetchError);
+        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
+                                                  inContext:dataStack.mainContext];
         XCTAssertEqual(organizationsCount, 7);
     }];
 
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *secondError) {
-        NSError *fetchError = nil;
-        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"OrganizationUnit"];
-        NSInteger organizationsCount = [dataStack.mainContext countForFetchRequest:request error:&fetchError];
-        if (fetchError) NSLog(@"fetchError: %@", fetchError);
+        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
+                                                  inContext:dataStack.mainContext];
         XCTAssertEqual(organizationsCount, 7);
     }];
 }

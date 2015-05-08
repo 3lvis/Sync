@@ -7,6 +7,7 @@
 #import "NSEntityDescription+SYNCPrimaryKey.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSString+HYPNetworking.h"
+#import "NSEntityDescription+Sync.h"
 
 @implementation NSManagedObject (Sync)
 
@@ -46,23 +47,11 @@
                                                error:error];
 }
 
-- (NSArray *)sync_relationships {
-    NSMutableArray *relationships = [NSMutableArray array];
-
-    for (id propertyDescription in [self.entity properties]) {
-        if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-            [relationships addObject:propertyDescription];
-        }
-    }
-
-    return relationships;
-}
-
 - (void)sync_processRelationshipsUsingDictionary:(NSDictionary *)objectDictionary
                                        andParent:(NSManagedObject *)parent
                                        dataStack:(DATAStack *)dataStack
                                            error:(NSError **)error {
-    NSArray *relationships = [self sync_relationships];
+    NSArray *relationships = [self.entity sync_relationships];
 
     for (NSRelationshipDescription *relationship in relationships) {
         if (relationship.isToMany) {
