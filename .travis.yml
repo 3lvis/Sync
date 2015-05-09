@@ -1,6 +1,6 @@
-language: objective-c
-cache: cocoapods
-podfile: Tests/Podfile
-before_install: gem install cocoapods obcd slather -N
-script: xctool -workspace Tests/Tests.xcworkspace -scheme Tests -sdk iphonesimulator build test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean test
-after_success: slather
+# language: objective-c
+# cache: cocoapods
+# podfile: Tests/Podfile
+# before_install: gem install cocoapods obcd slather -N
+# script: xctool -workspace Tests/Tests.xcworkspace -scheme Tests -sdk iphonesimulator build test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean test
+# after_success: slather
