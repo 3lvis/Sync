@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D130a" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E11f" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Comment" representedClassName="DNComment" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
@@ -9,7 +9,8 @@
         <attribute name="depth" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="upvotesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="userDisplayName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="comments" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="parentComment" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="parentComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Comment" inverseName="comments" inverseEntity="Comment" syncable="YES"/>
         <relationship name="story" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Story" inverseName="comments" inverseEntity="Story" syncable="YES"/>
     </entity>
     <entity name="Story" representedClassName="DNStory" syncable="YES">
@@ -24,7 +25,7 @@
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="story" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Comment" positionX="-63" positionY="18" width="128" height="135"/>
-        <element name="Story" positionX="-243" positionY="33" width="128" height="120"/>
+        <element name="Comment" positionX="-63" positionY="18" width="128" height="148"/>
+        <element name="Story" positionX="-243" positionY="33" width="128" height="118"/>
     </elements>
 </model>
