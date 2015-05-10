@@ -546,4 +546,26 @@
     }];
 }
 
+#pragma mark Unique
+
+/**
+ *  C and A share the same collection of B, so in the first block
+ *  2 entries of B get stored in A, in the second block this
+ *  2 entries of B get updated and one entry of C gets added.
+ */
+- (void)testUniqueObject {
+    NSArray *objects = [self objectsFromJSON:@"unique.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Unique"];
+
+    [Sync changes:objects inEntityNamed:@"A" dataStack:dataStack completion:nil];
+    XCTAssertEqual([self countForEntity:@"A" inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"B" inContext:dataStack.mainContext], 2);
+    XCTAssertEqual([self countForEntity:@"C" inContext:dataStack.mainContext], 0);
+
+    [Sync changes:objects inEntityNamed:@"C" dataStack:dataStack completion:nil];
+    XCTAssertEqual([self countForEntity:@"A" inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"B" inContext:dataStack.mainContext], 2);
+    XCTAssertEqual([self countForEntity:@"C" inContext:dataStack.mainContext], 1);
+}
+
 @end
