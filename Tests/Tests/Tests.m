@@ -526,6 +526,28 @@
        }];
 }
 
+#pragma mark Organization
+
+- (void)testOrganization {
+
+    NSArray *json = [self objectsFromJSON:@"organizations-tree.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
+
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *firstError) {
+        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
+                                                  inContext:dataStack.mainContext];
+        XCTAssertEqual(organizationsCount, 7);
+    }];
+
+    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *secondError) {
+        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
+                                                  inContext:dataStack.mainContext];
+        XCTAssertEqual(organizationsCount, 7);
+    }];
+}
+
+#pragma mark Unique
+
 /**
  *  B is a unique Entity that can be refferanced from many other entyties.
  */
@@ -551,26 +573,6 @@
     array = [self fetchEntity:@"C" inContext:dataStack.mainContext];
     count = [self countForEntity:@"B" inContext:dataStack.mainContext];
     XCTAssertEqual(count, 2);
-}
-
-#pragma mark Organization
-
-- (void)testOrganization {
-
-    NSArray *json = [self objectsFromJSON:@"organizations-tree.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
-
-    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *firstError) {
-        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
-                                                  inContext:dataStack.mainContext];
-        XCTAssertEqual(organizationsCount, 7);
-    }];
-
-    [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:^(NSError *secondError) {
-        NSInteger organizationsCount = [self countForEntity:@"OrganizationUnit"
-                                                  inContext:dataStack.mainContext];
-        XCTAssertEqual(organizationsCount, 7);
-    }];
 }
 
 @end
