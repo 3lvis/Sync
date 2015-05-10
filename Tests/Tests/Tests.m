@@ -550,8 +550,8 @@
 
 /**
  *  C and A share the same collection of B, so in the first block
- *  2 entries of B get stored in A, in the second block 2 entries of B
- *  get updated and one entry of C gets added.
+ *  2 entries of B get stored in A, in the second block this
+ *  2 entries of B get updated and one entry of C gets added.
  */
 - (void)testUniqueObject {
     NSArray *objects = [self objectsFromJSON:@"unique.json"];
