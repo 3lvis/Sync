@@ -189,15 +189,15 @@
 				44B072AD1AEA364D00ACD275 /* notes_for_user_a.json */,
 				44B072AF1AEA364D00ACD275 /* numbers_in_collection.json */,
 				44B072AE1AEA364D00ACD275 /* numbers.json */,
+				4468669C1AFCBC910006A32B /* organizations-tree.json */,
 				44B072B01AEA364D00ACD275 /* stories-comments-no-ids.json */,
 				44B072B11AEA364D00ACD275 /* tagged_notes.json */,
+				B5A4E1821AFB801C00A250F2 /* unique.json */,
 				44B072B21AEA364D00ACD275 /* users_a.json */,
 				44B072B31AEA364D00ACD275 /* users_b.json */,
 				44B072B41AEA364D00ACD275 /* users_c.json */,
 				44B072B51AEA364D00ACD275 /* users_company.json */,
 				44B072B61AEA364D00ACD275 /* users_notes.json */,
-				B5A4E1821AFB801C00A250F2 /* unique.json */,
-				4468669C1AFCBC910006A32B /* organizations-tree.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -209,10 +209,10 @@
 				44B072C81AEA366B00ACD275 /* Contacts.xcdatamodeld */,
 				44B072CA1AEA366B00ACD275 /* Markets.xcdatamodeld */,
 				44B072CC1AEA366B00ACD275 /* Notes.xcdatamodeld */,
+				446866991AFCBC870006A32B /* Organizations.xcdatamodeld */,
 				44B072CE1AEA366B00ACD275 /* Recursive.xcdatamodeld */,
 				44B072D01AEA366B00ACD275 /* Social.xcdatamodeld */,
 				B5A4E17F1AFB7E7D00A250F2 /* Unique.xcdatamodeld */,
-				446866991AFCBC870006A32B /* Organizations.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
