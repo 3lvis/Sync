@@ -554,4 +554,37 @@
                               inContext:dataStack.mainContext], 1);
 }
 
+/**
+ *  Company and Department share the same collection of Employees,
+ *  Company has many emplyees but an Employee can be only in 1 Company. // many-to-one
+ *  Department has many emplyees but an Employee can be only in 1 Department. // many-to-one
+ */
+- (void)testUniqueEmployee {
+    NSArray *objects = [self objectsFromJSON:@"unique-employee.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Unique"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Company"
+        dataStack:dataStack
+       completion:nil];
+    XCTAssertEqual([self countForEntity:@"Company"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Employee"
+                              inContext:dataStack.mainContext], 2);
+    XCTAssertEqual([self countForEntity:@"Department"
+                              inContext:dataStack.mainContext], 0);
+
+    [Sync changes:objects
+    inEntityNamed:@"Department"
+        dataStack:dataStack
+       completion:nil];
+    XCTAssertEqual([self countForEntity:@"Company"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Employee"
+                              inContext:dataStack.mainContext], 2);
+    XCTAssertEqual([self countForEntity:@"Department"
+                              inContext:dataStack.mainContext], 1);
+}
+
+
 @end
