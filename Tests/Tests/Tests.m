@@ -556,8 +556,8 @@
 
 /**
  *  Company and Department share the same collection of Employees,
- *  Company has many emplyees but an Employee can be only in 1 Company. // many-to-one
- *  Department has many emplyees but an Employee can be only in 1 Department. // many-to-one
+ *  Company has many employees but an Employee can be only in 1 Company. // many-to-one
+ *  Department has many employees but an Employee can be only in 1 Department. // many-to-one
  */
 - (void)testUniqueEmployee {
     NSArray *objects = [self objectsFromJSON:@"unique-employee.json"];

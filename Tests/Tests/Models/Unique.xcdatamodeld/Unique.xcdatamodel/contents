@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E17e" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="A" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="b" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="B" inverseName="a" inverseEntity="B" syncable="YES"/>
@@ -33,8 +33,8 @@
         <element name="A" positionX="-92" positionY="72" width="128" height="73"/>
         <element name="B" positionX="79" positionY="101" width="128" height="88"/>
         <element name="C" positionX="250" positionY="71" width="128" height="73"/>
-        <element name="Employee" positionX="-342" positionY="369" width="128" height="103"/>
         <element name="Company" positionX="-522" positionY="288" width="128" height="88"/>
         <element name="Department" positionX="-164" positionY="288" width="128" height="88"/>
+        <element name="Employee" positionX="-342" positionY="369" width="128" height="103"/>
     </elements>
 </model>
