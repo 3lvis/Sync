@@ -26,8 +26,14 @@ class ViewController: UITableViewController {
     title = "AppNet"
     tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
 
+    setUpRefreshControl()
     fetchCurrentObjects()
     fetchNewData()
+  }
+
+  func setUpRefreshControl() {
+    refreshControl = UIRefreshControl()
+    refreshControl?.addTarget(self, action: "fetchNewData", forControlEvents: .ValueChanged)
   }
 
   // MARK: Networking methods
@@ -35,6 +41,8 @@ class ViewController: UITableViewController {
   func fetchNewData() {
     networking.fetchItems { _ in
       self.fetchCurrentObjects()
+
+      self.refreshControl?.endRefreshing()
     }
   }
 
