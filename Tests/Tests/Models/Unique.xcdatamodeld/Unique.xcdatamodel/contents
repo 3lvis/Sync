@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E11f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E17e" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="A" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="b" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="B" inverseName="a" inverseEntity="B" syncable="YES"/>
@@ -13,9 +13,28 @@
         <attribute name="remoteID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="b" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="B" inverseName="c" inverseEntity="B" syncable="YES"/>
     </entity>
+    <entity name="Company" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="employees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Employee" inverseName="company" inverseEntity="Employee" syncable="YES"/>
+    </entity>
+    <entity name="Department" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="employees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Employee" inverseName="department" inverseEntity="Employee" syncable="YES"/>
+    </entity>
+    <entity name="Employee" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="employees" inverseEntity="Company" syncable="YES"/>
+        <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Department" inverseName="employees" inverseEntity="Department" syncable="YES"/>
+    </entity>
     <elements>
         <element name="A" positionX="-92" positionY="72" width="128" height="73"/>
         <element name="B" positionX="79" positionY="101" width="128" height="88"/>
         <element name="C" positionX="250" positionY="71" width="128" height="73"/>
+        <element name="Company" positionX="-522" positionY="288" width="128" height="88"/>
+        <element name="Department" positionX="-164" positionY="288" width="128" height="88"/>
+        <element name="Employee" positionX="-342" positionY="369" width="128" height="103"/>
     </elements>
 </model>

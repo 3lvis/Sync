@@ -41,6 +41,7 @@
 		4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEFB3E45BB7A8C5238E2880 /* libPods.a */; };
 		B5A4E1811AFB7E7D00A250F2 /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5A4E17F1AFB7E7D00A250F2 /* Unique.xcdatamodeld */; };
 		B5A4E1831AFB801C00A250F2 /* unique.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A4E1821AFB801C00A250F2 /* unique.json */; };
+		B5E3481D1B061D080029E5B3 /* unique-employee.json in Resources */ = {isa = PBXBuildFile; fileRef = B5E3481C1B061D080029E5B3 /* unique-employee.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B5A4E1801AFB7E7D00A250F2 /* Unique.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unique.xcdatamodel; sourceTree = "<group>"; };
 		B5A4E1821AFB801C00A250F2 /* unique.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unique.json; sourceTree = "<group>"; };
+		B5E3481C1B061D080029E5B3 /* unique-employee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "unique-employee.json"; sourceTree = "<group>"; };
 		DCEFB3E45BB7A8C5238E2880 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 				44B072B01AEA364D00ACD275 /* stories-comments-no-ids.json */,
 				44B072B11AEA364D00ACD275 /* tagged_notes.json */,
 				B5A4E1821AFB801C00A250F2 /* unique.json */,
+				B5E3481C1B061D080029E5B3 /* unique-employee.json */,
 				44B072B21AEA364D00ACD275 /* users_a.json */,
 				44B072B31AEA364D00ACD275 /* users_b.json */,
 				44B072B41AEA364D00ACD275 /* users_c.json */,
@@ -289,6 +292,7 @@
 				44B072BB1AEA364D00ACD275 /* images.json in Resources */,
 				44B072BF1AEA364D00ACD275 /* numbers_in_collection.json in Resources */,
 				14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */,
+				B5E3481D1B061D080029E5B3 /* unique-employee.json in Resources */,
 				44B072C61AEA364D00ACD275 /* users_notes.json in Resources */,
 				44B072C41AEA364D00ACD275 /* users_c.json in Resources */,
 				44B072C01AEA364D00ACD275 /* stories-comments-no-ids.json in Resources */,
