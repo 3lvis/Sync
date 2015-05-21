@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		148783871B0DA50D004AB5A3 /* SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148783861B0DA50D004AB5A3 /* SwiftTests.swift */; };
 		14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */; };
 		14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D8D1A9BCCB300D3D01B /* Sync.m */; };
 		14B564731A06D87B00342CDA /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 14B564721A06D87B00342CDA /* .travis.yml */; };
 		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
 		14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* Sync.podspec */; };
+		235A739D77B0E73A71A28FCE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F955E0E6FED7E42F7B0421CF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 446866971AFCBC7A0006A32B /* NSEntityDescription+Sync.m */; };
 		4468669B1AFCBC870006A32B /* Organizations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 446866991AFCBC870006A32B /* Organizations.xcdatamodeld */; };
 		4468669D1AFCBC910006A32B /* organizations-tree.json in Resources */ = {isa = PBXBuildFile; fileRef = 4468669C1AFCBC910006A32B /* organizations-tree.json */; };
@@ -38,12 +40,13 @@
 		44B072D61AEA366B00ACD275 /* Social.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B072D01AEA366B00ACD275 /* Social.xcdatamodeld */; };
 		44B072D81AEA36A700ACD275 /* bug-number-84.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B072D71AEA36A700ACD275 /* bug-number-84.json */; };
 		44B072DB1AEA36D300ACD275 /* Bug84.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B072D91AEA36D300ACD275 /* Bug84.xcdatamodeld */; };
-		4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEFB3E45BB7A8C5238E2880 /* libPods.a */; };
 		B5A4E1811AFB7E7D00A250F2 /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5A4E17F1AFB7E7D00A250F2 /* Unique.xcdatamodeld */; };
 		B5A4E1831AFB801C00A250F2 /* unique.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A4E1821AFB801C00A250F2 /* unique.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		148783851B0DA50C004AB5A3 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		148783861B0DA50D004AB5A3 /* SwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTests.swift; sourceTree = "<group>"; };
 		14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Sync.h"; sourceTree = "<group>"; };
 		14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Sync.m"; sourceTree = "<group>"; };
 		14B39D8C1A9BCCB300D3D01B /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
@@ -86,7 +89,7 @@
 		91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B5A4E1801AFB7E7D00A250F2 /* Unique.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unique.xcdatamodel; sourceTree = "<group>"; };
 		B5A4E1821AFB801C00A250F2 /* unique.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unique.json; sourceTree = "<group>"; };
-		DCEFB3E45BB7A8C5238E2880 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F955E0E6FED7E42F7B0421CF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CEE32AFE3080F314149A6A4 /* libPods.a in Frameworks */,
+				235A739D77B0E73A71A28FCE /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +142,8 @@
 				44B072A61AEA364D00ACD275 /* JSONs */,
 				14C4182D1A01919C00636FD6 /* Tests.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
+				148783861B0DA50D004AB5A3 /* SwiftTests.swift */,
+				148783851B0DA50C004AB5A3 /* Tests-Bridging-Header.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -220,7 +225,7 @@
 		8D108A3917155A7C32CD56A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DCEFB3E45BB7A8C5238E2880 /* libPods.a */,
+				F955E0E6FED7E42F7B0421CF /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				14C418231A01919C00636FD6 /* Frameworks */,
 				14C418241A01919C00636FD6 /* Resources */,
 				252DF1D1C50771166A2129C1 /* Copy Pods Resources */,
+				804B199098C125322F8D9D8B /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -325,6 +331,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		804B199098C125322F8D9D8B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		91BDE4BBBCEDFDF4378DB760 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B072D21AEA366B00ACD275 /* Contacts.xcdatamodeld in Sources */,
+				148783871B0DA50D004AB5A3 /* SwiftTests.swift in Sources */,
 				446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */,
 				44B072D41AEA366B00ACD275 /* Notes.xcdatamodeld in Sources */,
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
@@ -402,7 +424,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -443,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -468,6 +491,8 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Tests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -475,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C067778DC962B70CDF74EA5 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -482,6 +508,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Tests-Bridging-Header.h";
 			};
 			name = Release;
 		};
