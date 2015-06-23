@@ -31,6 +31,7 @@
   * [Core Data Stack](#core-data-stack)
   * [Primary Key](#primary-key)
   * [Attribute Mapping](#attribute-mapping)
+  * [Attribute Types](#attribute-types)
   * [Networking](#networking)
   * [Supported iOS Versions](#supported-ios-versions)
 * [Components](#components)
