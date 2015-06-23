@@ -193,13 +193,15 @@ For mapping for arrays and dictionaries just set attributes as `Binary Data` on 
 
 We went for just supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) out of the box because that's the most common format when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
+```json
+{
+  "created_at": "2014-01-01T00:00:00+00:00",
+  "updated_at": "2014-01-02",
+  "number_of_attendes": 20
+}
+```
+
 ```objc
-NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
-                         @"updated_at" : @"2014-01-02",
-                         @"number_of_attendes": @20};
-
-[managedObject hyp_fillWithDictionary:values];
-
 NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
 // ==> "2014-01-01 00:00:00 +00:00" 
 
@@ -208,24 +210,32 @@ NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
 ```
 
 #### Array
+```json
+{
+  "hobbies": [
+    "football",
+    "soccer",
+    "code"
+  ]
+}
+```
+
 ```objc
-NSDictionary *values = @{@"hobbies" : @[@"football",
-                                        @"soccer",
-                                        @"code"]};
-
-[managedObject hyp_fillWithDictionary:values];
-
 NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
 // ==> "football", "soccer", "code" 
 ```
 
 #### Dictionary
+```json
+{
+  "expenses" : {
+    "cake" : 12.50,
+    "juice" : 0.50
+  }
+}
+```
+
 ```objc
-NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
-                                         @"juice" : @0.50}};
-
-[managedObject hyp_fillWithDictionary:values];
-
 NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
 // ==> "cake" : 12.50, "juice" : 0.50
 ```
