@@ -185,9 +185,42 @@ If you want to map your Core Data attribute with a JSON attribute that has diffe
 
 ### Attribute Types
 
-For mapping for arrays and dictionaries just set attributes as `Binary Data` on the Core Data modeler
+#### Array/Dictionary
+
+To map **arrays** or **dictionaries** just set attributes as `Binary Data` on the Core Data modeler.
 
 ![screen shot 2015-04-02 at 11 10 11 pm](https://cloud.githubusercontent.com/assets/1088217/6973785/7d3767dc-d98d-11e4-8add-9c9421b5ed47.png)
+
+#### Retreiving mapped arrays
+```json
+{
+  "hobbies": [
+    "football",
+    "soccer",
+    "code"
+  ]
+}
+```
+
+```objc
+NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
+// ==> "football", "soccer", "code" 
+```
+
+#### Retreiving mapped dictionaries
+```json
+{
+  "expenses" : {
+    "cake" : 12.50,
+    "juice" : 0.50
+  }
+}
+```
+
+```objc
+NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
+// ==> "cake" : 12.50, "juice" : 0.50
+```
 
 #### Dates
 
@@ -207,37 +240,6 @@ NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
 
 NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
 // ==> "2014-01-02 00:00:00 +00:00" 
-```
-
-#### Array
-```json
-{
-  "hobbies": [
-    "football",
-    "soccer",
-    "code"
-  ]
-}
-```
-
-```objc
-NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
-// ==> "football", "soccer", "code" 
-```
-
-#### Dictionary
-```json
-{
-  "expenses" : {
-    "cake" : 12.50,
-    "juice" : 0.50
-  }
-}
-```
-
-```objc
-NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
-// ==> "cake" : 12.50, "juice" : 0.50
 ```
 
 ### Networking
