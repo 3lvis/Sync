@@ -182,6 +182,53 @@ If you want to map your Core Data attribute with a JSON attribute that has diffe
 
 ![Custom remote key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-remote-key-v2.png)
 
+### Attribute Types
+
+For mapping for arrays and dictionaries just set attributes as `Binary Data` on the Core Data modeler
+
+![screen shot 2015-04-02 at 11 10 11 pm](https://cloud.githubusercontent.com/assets/1088217/6973785/7d3767dc-d98d-11e4-8add-9c9421b5ed47.png)
+
+#### Dates
+
+We went for just supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) out of the box because that's the most common format when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+
+```objc
+NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
+                         @"updated_at" : @"2014-01-02",
+                         @"number_of_attendes": @20};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
+// ==> "2014-01-01 00:00:00 +00:00" 
+
+NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
+// ==> "2014-01-02 00:00:00 +00:00" 
+```
+
+#### Array
+```objc
+NSDictionary *values = @{@"hobbies" : @[@"football",
+                                        @"soccer",
+                                        @"code"]};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
+// ==> "football", "soccer", "code" 
+```
+
+#### Dictionary
+```objc
+NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
+                                         @"juice" : @0.50}};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
+// ==> "cake" : 12.50, "juice" : 0.50
+```
+
 ### Networking
 
 You are free to use any networking library.
