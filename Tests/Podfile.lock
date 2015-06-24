@@ -12,6 +12,7 @@ PODS:
     - NSString-HYPNetworking (~> 0.3.2)
   - NSObject-HYPTesting (1.2)
   - NSString-HYPNetworking (0.3.2)
+  - SwiftRecord (0.0.1)
 
 DEPENDENCIES:
   - DATAFilter
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - NSEntityDescription-SYNCPrimaryKey
   - NSJSONSerialization-ANDYJSONFile
   - NSManagedObject-HYPPropertyMapper
+  - SwiftRecord
 
 SPEC CHECKSUMS:
   DATAFilter: 3f89692f7c52dd3c3973287ee8c9bb2c0e76d344
@@ -31,5 +33,6 @@ SPEC CHECKSUMS:
   NSManagedObject-HYPPropertyMapper: 165dc76cc94e9a59e0c86b19aee974e20db47c36
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-HYPNetworking: f95766d4dc5693b45a0331ab8cf3a0b998f38cd7
+  SwiftRecord: 9bf14036c84f89119c7f62a9842713766449a2fa
 
 COCOAPODS: 0.37.1
