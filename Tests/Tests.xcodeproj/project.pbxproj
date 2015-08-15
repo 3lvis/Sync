@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14584B041B7EE38600293841 /* Bug113.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14584B021B7EE38600293841 /* Bug113.xcdatamodeld */; };
+		14584B061B7EE4E900293841 /* bug-113-comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */; };
+		14584B081B7EE50000293841 /* bug-113-stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */; };
+		14584B0A1B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */; };
 		14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */; };
 		14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D8D1A9BCCB300D3D01B /* Sync.m */; };
 		14B564731A06D87B00342CDA /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 14B564721A06D87B00342CDA /* .travis.yml */; };
@@ -44,6 +48,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14584B031B7EE38600293841 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-comments-no-id.json"; sourceTree = "<group>"; };
+		14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-stories-comments-no-ids.json"; sourceTree = "<group>"; };
+		14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-custom_relationship_key_to_one.json"; sourceTree = "<group>"; };
 		14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Sync.h"; sourceTree = "<group>"; };
 		14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Sync.m"; sourceTree = "<group>"; };
 		14B39D8C1A9BCCB300D3D01B /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
@@ -180,6 +188,9 @@
 		44B072A61AEA364D00ACD275 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */,
+				14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */,
+				14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */,
 				44B072D71AEA36A700ACD275 /* bug-number-84.json */,
 				44B072A81AEA364D00ACD275 /* comments-no-id.json */,
 				44B072A91AEA364D00ACD275 /* custom_relationship_key_to_many.json */,
@@ -206,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				44B072D91AEA36D300ACD275 /* Bug84.xcdatamodeld */,
+				14584B021B7EE38600293841 /* Bug113.xcdatamodeld */,
 				44B072C81AEA366B00ACD275 /* Contacts.xcdatamodeld */,
 				44B072CA1AEA366B00ACD275 /* Markets.xcdatamodeld */,
 				44B072CC1AEA366B00ACD275 /* Notes.xcdatamodeld */,
@@ -298,11 +310,14 @@
 				44B072BC1AEA364D00ACD275 /* markets_items.json in Resources */,
 				44B072C11AEA364D00ACD275 /* tagged_notes.json in Resources */,
 				44B072C21AEA364D00ACD275 /* users_a.json in Resources */,
+				14584B0A1B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				B5A4E1831AFB801C00A250F2 /* unique.json in Resources */,
 				44B072B91AEA364D00ACD275 /* custom_relationship_key_to_many.json in Resources */,
 				4468669D1AFCBC910006A32B /* organizations-tree.json in Resources */,
+				14584B061B7EE4E900293841 /* bug-113-comments-no-id.json in Resources */,
 				44B072B81AEA364D00ACD275 /* comments-no-id.json in Resources */,
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,
+				14584B081B7EE50000293841 /* bug-113-stories-comments-no-ids.json in Resources */,
 				44B072D81AEA36A700ACD275 /* bug-number-84.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +365,7 @@
 				44B072D21AEA366B00ACD275 /* Contacts.xcdatamodeld in Sources */,
 				446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */,
 				44B072D41AEA366B00ACD275 /* Notes.xcdatamodeld in Sources */,
+				14584B041B7EE38600293841 /* Bug113.xcdatamodeld in Sources */,
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
 				44B072DB1AEA36D300ACD275 /* Bug84.xcdatamodeld in Sources */,
 				44B072D31AEA366B00ACD275 /* Markets.xcdatamodeld in Sources */,
@@ -509,6 +525,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		14584B021B7EE38600293841 /* Bug113.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14584B031B7EE38600293841 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 14584B031B7EE38600293841 /* Demo.xcdatamodel */;
+			path = Bug113.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		446866991AFCBC870006A32B /* Organizations.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
