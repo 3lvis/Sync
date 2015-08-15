@@ -467,39 +467,6 @@
     XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 2);
 }
 
-#pragma mark Staff
-
-- (void)testStaffAndfulfillers {
-    NSArray *objects = [self objectsFromJSON:@"bug-number-84.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug84"];
-
-    [Sync changes:objects
-    inEntityNamed:@"MSStaff"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([self countForEntity:@"MSStaff"
-                              inContext:dataStack.mainContext], 1);
-
-    NSArray *staff = [self fetchEntity:@"MSStaff"
-                             predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"mstaff_F58dVBTsXznvMpCPmpQgyV"]
-                             inContext:dataStack.mainContext];
-    NSManagedObject *oneStaff = [staff firstObject];
-    XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
-    XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
-
-    NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller"
-                                              inContext:dataStack.mainContext];
-    XCTAssertEqual(numberOffulfillers, 2);
-
-    NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
-                                  predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"ffr_AkAHQegYkrobp5xc2ySc5D"]
-                                  inContext:dataStack.mainContext];
-    NSManagedObject *fullfiller = [fulfillers firstObject];
-    XCTAssertEqualObjects([fullfiller valueForKey:@"name"], @"New York");
-    XCTAssertEqual([[[fullfiller valueForKey:@"staff"] allObjects] count], 1);
-}
-
 #pragma mark Organization
 
 - (void)testOrganization {
@@ -548,6 +515,111 @@
                               inContext:dataStack.mainContext], 2);
     XCTAssertEqual([self countForEntity:@"C"
                               inContext:dataStack.mainContext], 1);
+}
+
+#pragma mark Bug 84 => https://github.com/hyperoslo/Sync/issues/84
+
+- (void)testStaffAndfulfillers {
+    NSArray *objects = [self objectsFromJSON:@"bug-number-84.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug84"];
+
+    [Sync changes:objects
+    inEntityNamed:@"MSStaff"
+        dataStack:dataStack
+       completion:nil];
+
+    XCTAssertEqual([self countForEntity:@"MSStaff"
+                              inContext:dataStack.mainContext], 1);
+
+    NSArray *staff = [self fetchEntity:@"MSStaff"
+                             predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"mstaff_F58dVBTsXznvMpCPmpQgyV"]
+                             inContext:dataStack.mainContext];
+    NSManagedObject *oneStaff = [staff firstObject];
+    XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
+    XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
+
+    NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller"
+                                              inContext:dataStack.mainContext];
+    XCTAssertEqual(numberOffulfillers, 2);
+
+    NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
+                                  predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"ffr_AkAHQegYkrobp5xc2ySc5D"]
+                                  inContext:dataStack.mainContext];
+    NSManagedObject *fullfiller = [fulfillers firstObject];
+    XCTAssertEqualObjects([fullfiller valueForKey:@"name"], @"New York");
+    XCTAssertEqual([[[fullfiller valueForKey:@"staff"] allObjects] count], 1);
+}
+
+#pragma mark Bug 113 => https://github.com/hyperoslo/Sync/issues/113
+
+- (void)testCustomPrimaryKeyBug113 {
+    NSArray *objects = [self objectsFromJSON:@"bug-113-comments-no-id.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug113"];
+
+    [Sync changes:objects
+    inEntityNamed:@"AwesomeComment"
+        dataStack:dataStack
+       completion:nil];
+
+    XCTAssertEqual([self countForEntity:@"AwesomeComment"
+                              inContext:dataStack.mainContext], 8);
+    NSArray *comments = [self fetchEntity:@"AwesomeComment"
+                                predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
+                                inContext:dataStack.mainContext];
+    XCTAssertEqual(comments.count, 1);
+    XCTAssertEqual([[[comments firstObject] valueForKey:@"awesomeComments"] count], 3);
+
+    NSManagedObject *comment = [comments firstObject];
+    XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+}
+
+- (void)testCustomPrimaryKeyInsideToManyRelationshipBug113 {
+    NSArray *objects = [self objectsFromJSON:@"bug-113-stories-comments-no-ids.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug113"];
+
+    [Sync changes:objects
+    inEntityNamed:@"AwesomeStory"
+        dataStack:dataStack
+       completion:nil];
+
+    XCTAssertEqual([self countForEntity:@"AwesomeStory"
+                              inContext:dataStack.mainContext], 3);
+    NSArray *stories = [self fetchEntity:@"AwesomeStory"
+                               predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
+                               inContext:dataStack.mainContext];
+    NSManagedObject *story = [stories firstObject];
+    XCTAssertEqual([[story valueForKey:@"awesomeComments"] count], 3);
+
+    XCTAssertEqual([self countForEntity:@"AwesomeComment"
+                              inContext:dataStack.mainContext], 9);
+    NSArray *comments = [self fetchEntity:@"AwesomeComment"
+                                predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
+                                inContext:dataStack.mainContext];
+    XCTAssertEqual(comments.count, 3);
+
+    comments = [self fetchEntity:@"AwesomeComment"
+                       predicate:[NSPredicate predicateWithFormat:@"body = %@ AND awesomeStory = %@", @"comment 1", story]
+                       inContext:dataStack.mainContext];
+    XCTAssertEqual(comments.count, 1);
+    NSManagedObject *comment = [comments firstObject];
+    XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+    XCTAssertEqualObjects([[comment valueForKey:@"awesomeStory"] valueForKey:@"remoteID"], @0);
+    XCTAssertEqualObjects([[comment valueForKey:@"awesomeStory"] valueForKey:@"title"], @"story 1");
+}
+
+- (void)testCustomKeysInRelationshipsToOneBug113 {
+    NSArray *objects = [self objectsFromJSON:@"bug-113-custom_relationship_key_to_one.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug113"];
+
+    [Sync changes:objects
+    inEntityNamed:@"AwesomeStory"
+        dataStack:dataStack
+       completion:nil];
+
+    NSArray *array = [self fetchEntity:@"AwesomeStory"
+                             inContext:dataStack.mainContext];
+    NSManagedObject *story = [array firstObject];
+    XCTAssertNotNil([story valueForKey:@"awesomeSummarize"]);
 }
 
 @end
