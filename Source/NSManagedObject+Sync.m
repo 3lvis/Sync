@@ -99,7 +99,12 @@
             NSArray *childIDs = [children valueForKey:destinationRemoteKey];
             NSString *destinationLocalKey = [entity sync_localKey];
             if (childIDs.count > 0) {
-                childPredicate = [NSPredicate predicateWithFormat:@"ANY %K IN %@", destinationLocalKey, [children valueForKey:destinationRemoteKey]];
+                if (childIDs.count == 1) {
+                    childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", destinationLocalKey, childIDs.firstObject];
+                } else {
+                    NSString *constructedOperator = [NSString stringWithFormat:@"%@.%@", relationship.name, destinationLocalKey];
+                    childPredicate = [NSPredicate predicateWithFormat:@"ANY %K = %@", constructedOperator, childIDs];
+                }
             }
         } else {
             childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
