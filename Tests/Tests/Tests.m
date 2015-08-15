@@ -602,7 +602,7 @@
     XCTAssertEqual(comments.count, 3);
 
     comments = [self fetchEntity:@"AwesomeComment"
-                       predicate:[NSPredicate predicateWithFormat:@"body = %@ AND story = %@", @"comment 1", story]
+                       predicate:[NSPredicate predicateWithFormat:@"body = %@ AND awesomeStory = %@", @"comment 1", story]
                        inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 1);
     NSManagedObject *comment = [comments firstObject];
@@ -623,7 +623,7 @@
     NSArray *array = [self fetchEntity:@"AwesomeStory"
                              inContext:dataStack.mainContext];
     NSManagedObject *story = [array firstObject];
-    XCTAssertNotNil([story valueForKey:@"summarize"]);
+    XCTAssertNotNil([story valueForKey:@"awesomeSummarize"]);
 }
 
 @end
