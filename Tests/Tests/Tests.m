@@ -471,39 +471,6 @@
     XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 2);
 }
 
-#pragma mark Staff (Bug 84) => https://github.com/hyperoslo/Sync/issues/84
-
-- (void)testStaffAndfulfillers {
-    NSArray *objects = [self objectsFromJSON:@"bug-number-84.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug84"];
-
-    [Sync changes:objects
-    inEntityNamed:@"MSStaff"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([self countForEntity:@"MSStaff"
-                              inContext:dataStack.mainContext], 1);
-
-    NSArray *staff = [self fetchEntity:@"MSStaff"
-                             predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"mstaff_F58dVBTsXznvMpCPmpQgyV"]
-                             inContext:dataStack.mainContext];
-    NSManagedObject *oneStaff = [staff firstObject];
-    XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
-    XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
-
-    NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller"
-                                              inContext:dataStack.mainContext];
-    XCTAssertEqual(numberOffulfillers, 2);
-
-    NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
-                                  predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"ffr_AkAHQegYkrobp5xc2ySc5D"]
-                                  inContext:dataStack.mainContext];
-    NSManagedObject *fullfiller = [fulfillers firstObject];
-    XCTAssertEqualObjects([fullfiller valueForKey:@"name"], @"New York");
-    XCTAssertEqual([[[fullfiller valueForKey:@"staff"] allObjects] count], 1);
-}
-
 #pragma mark Organization
 
 - (void)testOrganization {
@@ -552,6 +519,39 @@
                               inContext:dataStack.mainContext], 2);
     XCTAssertEqual([self countForEntity:@"C"
                               inContext:dataStack.mainContext], 1);
+}
+
+#pragma mark Bug 84 => https://github.com/hyperoslo/Sync/issues/84
+
+- (void)testStaffAndfulfillers {
+    NSArray *objects = [self objectsFromJSON:@"bug-number-84.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug84"];
+
+    [Sync changes:objects
+    inEntityNamed:@"MSStaff"
+        dataStack:dataStack
+       completion:nil];
+
+    XCTAssertEqual([self countForEntity:@"MSStaff"
+                              inContext:dataStack.mainContext], 1);
+
+    NSArray *staff = [self fetchEntity:@"MSStaff"
+                             predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"mstaff_F58dVBTsXznvMpCPmpQgyV"]
+                             inContext:dataStack.mainContext];
+    NSManagedObject *oneStaff = [staff firstObject];
+    XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
+    XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
+
+    NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller"
+                                              inContext:dataStack.mainContext];
+    XCTAssertEqual(numberOffulfillers, 2);
+
+    NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
+                                  predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"ffr_AkAHQegYkrobp5xc2ySc5D"]
+                                  inContext:dataStack.mainContext];
+    NSManagedObject *fullfiller = [fulfillers firstObject];
+    XCTAssertEqualObjects([fullfiller valueForKey:@"name"], @"New York");
+    XCTAssertEqual([[[fullfiller valueForKey:@"staff"] allObjects] count], 1);
 }
 
 #pragma mark Bug 113 => https://github.com/hyperoslo/Sync/issues/113
