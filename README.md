@@ -204,7 +204,7 @@ To map **arrays** or **dictionaries** just set attributes as `Binary Data` on th
 
 ```objc
 NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
-// ==> "football", "soccer", "code" 
+// ==> "football", "soccer", "code"
 ```
 
 #### Retreiving mapped dictionaries
@@ -236,15 +236,15 @@ We went for just supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) out
 
 ```objc
 NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
-// ==> "2014-01-01 00:00:00 +00:00" 
+// ==> "2014-01-01 00:00:00 +00:00"
 
 NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
-// ==> "2014-01-02 00:00:00 +00:00" 
+// ==> "2014-01-02 00:00:00 +00:00"
 ```
 
 ### Networking
 
-You are free to use any networking library.
+You are free to use any networking library!
 
 ### Supported iOS Versions
 
