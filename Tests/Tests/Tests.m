@@ -333,10 +333,6 @@
 
 #pragma mark Recursive
 
-/**
- * How to test numbers:
- * - Because of to-one collection relationship, sync is failing when parsing children objects
- */
 - (void)testNumbersWithEmptyRelationship {
     NSArray *objects = [self objectsFromJSON:@"numbers.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Recursive"];
