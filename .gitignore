@@ -19,4 +19,6 @@ profile
 DerivedData
 *.hmap
 *.ipa
+*.gcno
+*.gcda
 Pods
