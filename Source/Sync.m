@@ -86,6 +86,33 @@
         }
     }
 
+    if (predicate) {
+        if ([predicate isKindOfClass:[NSComparisonPredicate class]]) {
+            NSComparisonPredicate *castedPredicate = (NSComparisonPredicate *)predicate;
+            NSExpression *rightExpression = castedPredicate.rightExpression;
+            id rightValue = [rightExpression constantValue];
+            BOOL rightValueCanBeCompared = (rightValue &&
+                                            ![rightValue isKindOfClass:[NSManagedObject class]] &&
+                                            ![rightValue isKindOfClass:[NSArray class]]);
+            if (rightValueCanBeCompared) {
+                NSMutableArray *objectChanges = [NSMutableArray new];
+                for (NSDictionary *change in changes) {
+                    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:dataStack.disposableMainContext];
+                    [object hyp_fillWithDictionary:change];
+                    [objectChanges addObject:object];
+                }
+
+                NSMutableArray *filteredChanges = [NSMutableArray new];
+                NSArray *filteredArray = [objectChanges filteredArrayUsingPredicate:predicate];
+                for (NSManagedObject *filteredObject in filteredArray) {
+                    [filteredChanges addObject:[filteredObject hyp_dictionary]];
+                }
+                
+                changes = [filteredChanges copy];
+            }
+        }
+    }
+
     [DATAFilter changes:changes
           inEntityNamed:entityName
                localKey:localKey
