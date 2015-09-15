@@ -331,6 +331,39 @@
     XCTAssertEqual([[[user valueForKey:@"notes"] allObjects] count], 3);
 }
 
+// Sync provides a predicate method to filter which methods would be synced
+// this test checks that providing a predicate for "startTime > now" only syncs
+// elements that start in the future.
+- (void)testSyncWithPredicateAfterDate {
+    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+
+    NSDictionary *old1 = @{@"id" : @1, @"name" : @"Old 1", @"created_at" : @"2014-02-14T00:00:00+00:00"};
+    NSDictionary *old2 = @{@"id" : @2, @"name" : @"Old 2", @"created_at" : @"2014-03-14T00:00:00+00:00"};
+    NSArray *objects = @[old1, old2];
+
+    [Sync changes:objects
+    inEntityNamed:@"User"
+        dataStack:dataStack
+       completion:nil];
+
+    NSArray *array = [self fetchEntity:@"User"
+                             inContext:dataStack.mainContext];
+    XCTAssertEqual(array.count, 2);
+
+    NSDictionary *updatedOld2 = @{@"id" : @2, @"name" : @"Updated Old 2", @"created_at" : @"2014-03-14T00:00:00+00:00"};
+    NSDictionary *new = @{@"id" : @3, @"name" : @"New 2", @"created_at" : @"2019-03-14T00:00:00+00:00"};
+    NSArray *newObjects = @[updatedOld2, new];
+
+    [Sync changes:newObjects
+    inEntityNamed:@"User"
+        dataStack:dataStack
+       completion:nil];
+
+    NSArray *updatedArray = [self fetchEntity:@"User"
+                                    inContext:dataStack.mainContext];
+    XCTAssertEqual(updatedArray.count, 3);
+}
+
 #pragma mark Recursive
 
 - (void)testNumbersWithEmptyRelationship {
@@ -615,7 +648,7 @@
     inEntityNamed:@"AwesomeStory"
         dataStack:dataStack
        completion:nil];
-
+    
     NSArray *array = [self fetchEntity:@"AwesomeStory"
                              inContext:dataStack.mainContext];
     NSManagedObject *story = [array firstObject];
