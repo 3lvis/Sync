@@ -92,8 +92,9 @@
             NSExpression *rightExpression = castedPredicate.rightExpression;
             id rightValue = [rightExpression constantValue];
             BOOL rightValueCanBeCompared = (rightValue &&
-                                            ![rightValue isKindOfClass:[NSManagedObject class]] &&
-                                            ![rightValue isKindOfClass:[NSArray class]]);
+                                            ([rightValue isKindOfClass:[NSDate class]] ||
+                                             [rightValue isKindOfClass:[NSNumber class]] ||
+                                             [rightValue isKindOfClass:[NSString class]]));
             if (rightValueCanBeCompared) {
                 NSMutableArray *objectChanges = [NSMutableArray new];
                 for (NSDictionary *change in changes) {
