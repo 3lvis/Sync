@@ -648,7 +648,7 @@
     inEntityNamed:@"AwesomeStory"
         dataStack:dataStack
        completion:nil];
-    
+
     NSArray *array = [self fetchEntity:@"AwesomeStory"
                              inContext:dataStack.mainContext];
     NSManagedObject *story = [array firstObject];
