@@ -356,6 +356,7 @@
 
     [Sync changes:newObjects
     inEntityNamed:@"User"
+        predicate:[NSPredicate predicateWithFormat:@"createdAt > %@", [NSDate date]]
         dataStack:dataStack
        completion:nil];
 
