@@ -333,6 +333,42 @@ For example a author can have many documents and a document can have many author
 ]
 ```
 
+**Logging changes:**
+
+[[NSNotificationCenter defaultCenter]addObserver:self
+                                        selector:@selector(changeNotification:)
+                                            name:NSManagedObjectContextObjectsDidChangeNotification
+                                          object:self.dataStack.mainContext];
+
+```Objective-C
+- (void)viewDidLoad
+{
+.
+.
+.
+
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(NotificatorChange:)
+                                                name:NSManagedObjectContextObjectsDidChangeNotification
+                                              object:self.dataStack.mainContext];
+.
+.
+.
+}
+...........
+-(void)NotificatorChange:(NSNotification*)notification
+{
+    NSSet *updatedObjects   = [[notification userInfo] objectForKey:NSUpdatedObjectsKey];
+    NSSet *deletedObjects   = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
+    NSSet *insertedObjects  = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
+
+}
+
+```
+
+
+
+
 ## Credits
 
 [Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md) (we consider remote employees too, the only requirement is that you’re awesome).
