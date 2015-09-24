@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		145EAA3E1BB4A3D100618177 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145EAA3C1BB4A3D100618177 /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
 		5830AEF1C3C6D2A809BEB139 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D6E913B7A55D59997E0004 /* libPods.a */; };
 		F6691BAE1AD02AE7009D6BA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6691BAD1AD02AE7009D6BA5 /* AppDelegate.swift */; };
 		F6691BB11AD02AE7009D6BA5 /* AppNet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6691BAF1AD02AE7009D6BA5 /* AppNet.xcdatamodeld */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		145EAA3D1BB4A3D100618177 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2EFAE9C8E20523E9FCB380BB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2F0878F351E487D4661F44D7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49D6E913B7A55D59997E0004 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 		F6691BAB1AD02AE7009D6BA5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				145EAA3C1BB4A3D100618177 /* LaunchScreen.xib */,
 				F6691BAC1AD02AE7009D6BA5 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -175,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145EAA3E1BB4A3D100618177 /* LaunchScreen.xib in Resources */,
 				F6691BB81AD02AE7009D6BA5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +233,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		145EAA3C1BB4A3D100618177 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				145EAA3D1BB4A3D100618177 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F6691BC81AD02AE7009D6BA5 /* Debug */ = {
@@ -314,7 +329,6 @@
 			baseConfigurationReference = 2EFAE9C8E20523E9FCB380BB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = AppNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.hyper.$(PRODUCT_NAME:rfc1034identifier)";
@@ -328,7 +342,6 @@
 			baseConfigurationReference = 2F0878F351E487D4661F44D7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = AppNet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.hyper.$(PRODUCT_NAME:rfc1034identifier)";
