@@ -51,6 +51,7 @@ static const CGFloat CommentTableViewCellOffset = 40.0;
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
+                                            sectionName:nil
                                          cellIdentifier:CommentTableViewCellIdentifier
                                             mainContext:self.dataStack.mainContext
                                           configuration:^(UITableViewCell *cell,

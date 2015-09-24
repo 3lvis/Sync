@@ -39,6 +39,7 @@
 
     _dataSource = [[DATASource alloc] initWithTableView:self.tableView
                                            fetchRequest:request
+                                            sectionName:nil
                                          cellIdentifier:StoryTableViewCellIdentifier
                                             mainContext:self.dataStack.mainContext
                                           configuration:^(StoryTableViewCell *cell,

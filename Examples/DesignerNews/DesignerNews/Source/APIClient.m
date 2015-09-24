@@ -2,7 +2,7 @@
 #import "Sync.h"
 @import UIKit;
 
-static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json";
+static NSString * const HYPBaseURL = @"https://www.designernews.co/?format=json";
 
 @interface APIClient ()
 
@@ -22,7 +22,7 @@ static NSString * const HYPBaseURL = @"https://news.layervault.com/?format=json"
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                if (connectionError) {
-                                   NSLog(@"There was an error: %@", [[[connectionError userInfo] objectForKey:@"error"] capitalizedString]);
+                                   NSLog(@"There was an error: %@", connectionError);
                                } else {
                                    NSError *serializationError = nil;
                                    NSJSONSerialization *JSON = [NSJSONSerialization JSONObjectWithData:data
