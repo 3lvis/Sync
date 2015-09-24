@@ -34,7 +34,7 @@
 
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackInMemoryStoreType];
+                                                      storeType:DATAStackSQLiteStoreType];
 
     return dataStack;
 }

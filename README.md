@@ -264,7 +264,7 @@ You are free to use any networking library.
 
 ## FAQ
 
-**Using `hyper.primaryKey` in addition to `hyper.remoteKey`**:
+#### Using `hyper.primaryKey` in addition to `hyper.remoteKey`:
 
 Well, the thing is that if you add `hyper.primaryKey` it would uses the normal attribute for the local primary key, but the remote primary key is the snake_case representation of it. Some people might expect that the local keeps been the same (remoteID), or that the remote keeps been the same (id).
 
@@ -275,7 +275,7 @@ For example if you add the flag `hyper.PrimaryKey` to the attribute `article_bod
 
 If you want to use `id` for the remote primary key you also have to add the flag `hyper.remoteKey` and write `id` as the value.
 
-**How uniquing works (many-to-many, one-to-many)?:**
+#### How uniquing works (many-to-many, one-to-many)?:
 
 In a `one-to-many` relationship IDs are unique for a parent, but not between parents. For example in this example we have a list of posts where each post has many comments. When syncing posts 2 comment entries will be created:
 
@@ -333,41 +333,22 @@ For example a author can have many documents and a document can have many author
 ]
 ```
 
-**Logging changes:**
+#### Logging changes:
 
+Logging changes to Core Data is quite simple, just subscribe to changes like this and print the needed elements:
+
+```objc
 [[NSNotificationCenter defaultCenter]addObserver:self
                                         selector:@selector(changeNotification:)
                                             name:NSManagedObjectContextObjectsDidChangeNotification
                                           object:self.dataStack.mainContext];
-
-```Objective-C
-- (void)viewDidLoad
-{
-.
-.
-.
-
-    [[NSNotificationCenter defaultCenter]addObserver:self
-                                            selector:@selector(NotificatorChange:)
-                                                name:NSManagedObjectContextObjectsDidChangeNotification
-                                              object:self.dataStack.mainContext];
-.
-.
-.
-}
-...........
--(void)NotificatorChange:(NSNotification*)notification
-{
+                                          
+- (void)changeNotification:(NSNotification *)notification {
     NSSet *updatedObjects   = [[notification userInfo] objectForKey:NSUpdatedObjectsKey];
     NSSet *deletedObjects   = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
     NSSet *insertedObjects  = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
-
 }
-
 ```
-
-
-
 
 ## Credits
 
