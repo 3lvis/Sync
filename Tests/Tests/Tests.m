@@ -5,6 +5,7 @@
 #import "Sync.h"
 #import "NSJSONSerialization+ANDYJSONFile.h"
 #import "DATAStack.h"
+#import "NSManagedObject+HYPPropertyMapper.h"
 
 @interface Tests : XCTestCase
 
@@ -549,6 +550,63 @@
                               inContext:dataStack.mainContext], 2);
     XCTAssertEqual([self countForEntity:@"C"
                               inContext:dataStack.mainContext], 1);
+}
+
+#pragma mark Patients
+
+- (void)testPatients {
+    NSArray *objects = [self objectsFromJSON:@"patients.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Patients"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Patient"
+        dataStack:dataStack
+       completion:nil];
+    XCTAssertEqual([self countForEntity:@"Patient"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Baseline"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Alcohol"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Fitness"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Weight"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Measure"
+                              inContext:dataStack.mainContext], 1);
+
+    NSArray *patients = [self fetchEntity:@"Patient"
+                             inContext:dataStack.mainContext];
+    NSManagedObject *patient = patients.firstObject;
+    NSLog(@"[patient hyp_dictionary];: %@", [patient hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray]);
+    /*
+    alcohols =     (
+                    {
+                        id = 0;
+                        text = "Alcohol 1";
+                    }
+                    );
+    baselines =     (
+                     {
+                         id = 0;
+                         text = "Baseline 1";
+                     }
+                     );
+    fitnesses =     (
+                     {
+                         id = 0;
+                         text = "Fitness 1";
+                     }
+                     );
+    id = 0;
+    text = "Melisa White";
+    weights =     (
+                   {
+                       id = 0;
+                       text = "Weight 1";
+                   }
+                   );
+     */
 }
 
 #pragma mark Bug 84 => https://github.com/hyperoslo/Sync/issues/84
