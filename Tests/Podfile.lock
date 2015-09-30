@@ -8,7 +8,7 @@ PODS:
   - NSEntityDescription-SYNCPrimaryKey (0.1.0):
     - NSString-HYPNetworking
   - NSJSONSerialization-ANDYJSONFile (1.1)
-  - NSManagedObject-HYPPropertyMapper (3.2.1):
+  - NSManagedObject-HYPPropertyMapper (3.3.0):
     - NSString-HYPNetworking (~> 0.3.2)
   - NSObject-HYPTesting (1.2)
   - NSString-HYPNetworking (0.3.2)
@@ -28,7 +28,7 @@ SPEC CHECKSUMS:
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
   NSEntityDescription-SYNCPrimaryKey: 72f1f0d30a7e8eb9d93277b1ce623cbaa6e47a38
   NSJSONSerialization-ANDYJSONFile: 4a92ca174d5ccde13015e853e9eb62440459b478
-  NSManagedObject-HYPPropertyMapper: 36468b24fe4a273b86913300f86d4d7eb3b48220
+  NSManagedObject-HYPPropertyMapper: 5963b59f14b1f208ad47ac2dbb7f8ae2c64c2beb
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-HYPNetworking: f95766d4dc5693b45a0331ab8cf3a0b998f38cd7
 

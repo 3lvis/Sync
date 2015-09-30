@@ -5,6 +5,7 @@
 #import "Sync.h"
 #import "NSJSONSerialization+ANDYJSONFile.h"
 #import "DATAStack.h"
+#import "NSManagedObject+HYPPropertyMapper.h"
 
 @interface Tests : XCTestCase
 
@@ -548,6 +549,30 @@
     XCTAssertEqual([self countForEntity:@"B"
                               inContext:dataStack.mainContext], 2);
     XCTAssertEqual([self countForEntity:@"C"
+                              inContext:dataStack.mainContext], 1);
+}
+
+#pragma mark Patients => https://github.com/hyperoslo/Sync/issues/121
+
+- (void)testPatients {
+    NSArray *objects = [self objectsFromJSON:@"patients.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Patients"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Patient"
+        dataStack:dataStack
+       completion:nil];
+    XCTAssertEqual([self countForEntity:@"Patient"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Baseline"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Alcohol"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Fitness"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Weight"
+                              inContext:dataStack.mainContext], 1);
+    XCTAssertEqual([self countForEntity:@"Measure"
                               inContext:dataStack.mainContext], 1);
 }
 
