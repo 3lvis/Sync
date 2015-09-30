@@ -350,6 +350,18 @@ Logging changes to Core Data is quite simple, just subscribe to changes like thi
 }
 ```
 
+#### Crash on NSParameterAssert
+
+This means that the local primary key was not found, Sync uses `remoteID` by default but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "YES"` in your attribute's user info.
+
+```objc
+NSString *localKey = [entity sync_localKey];
+NSParameterAssert(localKey);
+
+NSString *remoteKey = [entity sync_remoteKey];
+NSParameterAssert(remoteKey);
+```
+
 ## Credits
 
 [Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md) (we consider remote employees too, the only requirement is that you’re awesome).
