@@ -552,7 +552,7 @@
                               inContext:dataStack.mainContext], 1);
 }
 
-#pragma mark Patients
+#pragma mark Patients => https://github.com/hyperoslo/Sync/issues/121
 
 - (void)testPatients {
     NSArray *objects = [self objectsFromJSON:@"patients.json"];
@@ -574,39 +574,6 @@
                               inContext:dataStack.mainContext], 1);
     XCTAssertEqual([self countForEntity:@"Measure"
                               inContext:dataStack.mainContext], 1);
-
-    NSArray *patients = [self fetchEntity:@"Patient"
-                             inContext:dataStack.mainContext];
-    NSManagedObject *patient = patients.firstObject;
-    NSLog(@"[patient hyp_dictionary];: %@", [patient hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray]);
-    /*
-    alcohols =     (
-                    {
-                        id = 0;
-                        text = "Alcohol 1";
-                    }
-                    );
-    baselines =     (
-                     {
-                         id = 0;
-                         text = "Baseline 1";
-                     }
-                     );
-    fitnesses =     (
-                     {
-                         id = 0;
-                         text = "Fitness 1";
-                     }
-                     );
-    id = 0;
-    text = "Melisa White";
-    weights =     (
-                   {
-                       id = 0;
-                       text = "Weight 1";
-                   }
-                   );
-     */
 }
 
 #pragma mark Bug 84 => https://github.com/hyperoslo/Sync/issues/84
