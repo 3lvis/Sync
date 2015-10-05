@@ -86,13 +86,6 @@
         }
     }
 
-    if (predicate) {
-        NSArray *processedChanges = [self preprocessRemoteChanges:changes forEntity:entity usingPredicate:predicate dataStack:dataStack];
-        if (processedChanges.count > 0) {
-            changes = processedChanges;
-        }
-    }
-
     [DATAFilter changes:changes
           inEntityNamed:entityName
                localKey:localKey
