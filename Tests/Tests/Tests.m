@@ -23,11 +23,11 @@
     return dataStack;
 }
 
-- (NSArray *)objectsFromJSON:(NSString *)fileName {
+- (id)objectsFromJSON:(NSString *)fileName {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSArray *array = [NSJSONSerialization JSONObjectWithContentsOfFile:fileName inBundle:bundle];
+    id objects = [NSJSONSerialization JSONObjectWithContentsOfFile:fileName inBundle:bundle];
 
-    return array;
+    return objects;
 }
 
 - (NSInteger)countForEntity:(NSString *)entity
@@ -710,25 +710,34 @@
 
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
-/*- (void)testNilRelationshipsAfterUpdating_Sync_1_0_10 {
-    NSArray *objects = [self objectsFromJSON:@"bug-125.json"];
+- (void)testNilRelationshipsAfterUpdating_Sync_1_0_10 {
+    NSDictionary *form = [self objectsFromJSON:@"bug-125.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
 
-    [Sync changes:objects
+    [Sync changes:@[form]
     inEntityNamed:@"Form"
         dataStack:dataStack
        completion:nil];
-//
-//    XCTAssertEqual([self countForEntity:@"AwesomeComment"
-//                              inContext:dataStack.mainContext], 8);
-//    NSArray *comments = [self fetchEntity:@"AwesomeComment"
-//                                predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
-//                                inContext:dataStack.mainContext];
-//    XCTAssertEqual(comments.count, 1);
-//    XCTAssertEqual([[[comments firstObject] valueForKey:@"awesomeComments"] count], 3);
-//
-//    NSManagedObject *comment = [comments firstObject];
-//    XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
-}*/
+
+    XCTAssertEqual([self countForEntity:@"Form"
+                              inContext:dataStack.mainContext], 1);
+
+    XCTAssertEqual([self countForEntity:@"Element"
+                              inContext:dataStack.mainContext], 11);
+
+    XCTAssertEqual([self countForEntity:@"SelectionItem"
+                              inContext:dataStack.mainContext], 4);
+
+    XCTAssertEqual([self countForEntity:@"Model"
+                              inContext:dataStack.mainContext], 1);
+
+    XCTAssertEqual([self countForEntity:@"ModelProperty"
+                              inContext:dataStack.mainContext], 9);
+
+    XCTAssertEqual([self countForEntity:@"Restriction"
+                              inContext:dataStack.mainContext], 3);
+
+    [dataStack drop];
+}
 
 @end
