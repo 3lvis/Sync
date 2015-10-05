@@ -711,11 +711,13 @@
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
 - (void)testNilRelationshipsAfterUpdating_Sync_1_0_10 {
-    NSDictionary *form = [self objectsFromJSON:@"bug-125.json"];
+    NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125.json"];
+    NSString *uri = formDictionary[@"uri"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
 
-    [Sync changes:@[form]
+    [Sync changes:@[formDictionary]
     inEntityNamed:@"Form"
+        predicate:[NSPredicate predicateWithFormat:@"uri == %@", uri]
         dataStack:dataStack
        completion:nil];
 
@@ -736,6 +738,14 @@
 
     XCTAssertEqual([self countForEntity:@"Restriction"
                               inContext:dataStack.mainContext], 3);
+
+    NSArray *array = [self fetchEntity:@"Form"
+                             inContext:dataStack.mainContext];
+    NSManagedObject *form = [array firstObject];
+    NSManagedObject *element = [form valueForKey:@"element"];
+    NSManagedObject *model = [form valueForKey:@"model"];
+    XCTAssertNotNil(element);
+    XCTAssertNotNil(model);
 
     [dataStack drop];
 }
