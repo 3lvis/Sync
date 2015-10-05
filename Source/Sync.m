@@ -9,6 +9,7 @@
 #import "NSEntityDescription+SYNCPrimaryKey.h"
 #import "NSManagedObject+Sync.h"
 #import "NSEntityDescription+Sync.h"
+#import "NSArray+Sync.h"
 
 @implementation Sync
 
@@ -87,7 +88,7 @@
     }
 
     if (predicate) {
-        NSArray *processedChanges = [self preprocessRemoteChanges:changes forEntity:entity usingPredicate:predicate dataStack:dataStack];
+        NSArray *processedChanges = [changes preprocessForEntity:entity usingPredicate:predicate dataStack:dataStack];
         if (processedChanges.count > 0) {
             changes = processedChanges;
         }
@@ -125,38 +126,6 @@
             completion(error);
         }
     }];
-}
-
-+ (NSArray *)preprocessRemoteChanges:(NSArray *)changes
-                           forEntity:(NSEntityDescription *)entity
-                      usingPredicate:(NSPredicate *)predicate
-                           dataStack:(DATAStack *)dataStack {
-    NSMutableArray *filteredChanges = [NSMutableArray new];
-
-    if ([predicate isKindOfClass:[NSComparisonPredicate class]]) {
-        NSComparisonPredicate *castedPredicate = (NSComparisonPredicate *)predicate;
-        NSExpression *rightExpression = castedPredicate.rightExpression;
-        id rightValue = [rightExpression constantValue];
-        BOOL rightValueCanBeCompared = (rightValue &&
-                                        ([rightValue isKindOfClass:[NSDate class]] ||
-                                         [rightValue isKindOfClass:[NSNumber class]] ||
-                                         [rightValue isKindOfClass:[NSString class]]));
-        if (rightValueCanBeCompared) {
-            NSMutableArray *objectChanges = [NSMutableArray new];
-            for (NSDictionary *change in changes) {
-                NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:dataStack.disposableMainContext];
-                [object hyp_fillWithDictionary:change];
-                [objectChanges addObject:object];
-            }
-
-            NSArray *filteredArray = [objectChanges filteredArrayUsingPredicate:predicate];
-            for (NSManagedObject *filteredObject in filteredArray) {
-                [filteredChanges addObject:[filteredObject hyp_dictionary]];
-            }
-        }
-    }
-
-    return [filteredChanges copy];
 }
 
 @end

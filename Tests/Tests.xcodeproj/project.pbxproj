@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141603011BC32307007D0600 /* NSArray+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603001BC32307007D0600 /* NSArray+Sync.m */; settings = {ASSET_TAGS = (); }; };
+		141603031BC32425007D0600 /* NSArray+Sync_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603021BC32425007D0600 /* NSArray+Sync_Tests.m */; settings = {ASSET_TAGS = (); }; };
+		141603051BC32481007D0600 /* BaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603041BC32481007D0600 /* BaseTestCase.m */; settings = {ASSET_TAGS = (); }; };
 		14584B041B7EE38600293841 /* Bug113.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14584B021B7EE38600293841 /* Bug113.xcdatamodeld */; };
 		14584B061B7EE4E900293841 /* bug-113-comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */; };
 		14584B081B7EE50000293841 /* bug-113-stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */; };
@@ -16,7 +19,7 @@
 		14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */; };
 		14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B39D8D1A9BCCB300D3D01B /* Sync.m */; };
 		14B564731A06D87B00342CDA /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 14B564721A06D87B00342CDA /* .travis.yml */; };
-		14C4182E1A01919C00636FD6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* Tests.m */; };
+		14C4182E1A01919C00636FD6 /* SyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4182D1A01919C00636FD6 /* SyncTests.m */; };
 		14C4183D1A019A1500636FD6 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 14C418391A019A1500636FD6 /* LICENSE.md */; };
 		14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* Sync.podspec */; };
 		14CF861F1BC2F98B001CF9C1 /* Bug125.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14CF861D1BC2F98B001CF9C1 /* Bug125.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
@@ -52,10 +55,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141602FF1BC32307007D0600 /* NSArray+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sync.h"; sourceTree = "<group>"; };
+		141603001BC32307007D0600 /* NSArray+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sync.m"; sourceTree = "<group>"; };
+		141603021BC32425007D0600 /* NSArray+Sync_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sync_Tests.m"; sourceTree = "<group>"; };
+		141603041BC32481007D0600 /* BaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestCase.m; sourceTree = "<group>"; };
 		14584B031B7EE38600293841 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-comments-no-id.json"; sourceTree = "<group>"; };
 		14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-stories-comments-no-ids.json"; sourceTree = "<group>"; };
 		14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-custom_relationship_key_to_one.json"; sourceTree = "<group>"; };
+		145F712A1BC3279100023F7B /* BaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
 		14A718541BB931A700E708E6 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14A718561BB9370100E708E6 /* patients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = patients.json; sourceTree = "<group>"; };
 		14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Sync.h"; sourceTree = "<group>"; };
@@ -65,7 +73,7 @@
 		14B564721A06D87B00342CDA /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		14C418261A01919C00636FD6 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4182C1A01919C00636FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14C4182D1A01919C00636FD6 /* Tests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; tabWidth = 4; };
+		14C4182D1A01919C00636FD6 /* SyncTests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTests.m; sourceTree = "<group>"; tabWidth = 4; };
 		14C418381A019A1500636FD6 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C418391A019A1500636FD6 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
 		14C4183A1A019A1500636FD6 /* Sync.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Sync.podspec; path = ../Sync.podspec; sourceTree = "<group>"; };
@@ -153,7 +161,10 @@
 			children = (
 				44B072C71AEA366B00ACD275 /* Models */,
 				44B072A61AEA364D00ACD275 /* JSONs */,
-				14C4182D1A01919C00636FD6 /* Tests.m */,
+				14C4182D1A01919C00636FD6 /* SyncTests.m */,
+				141603021BC32425007D0600 /* NSArray+Sync_Tests.m */,
+				145F712A1BC3279100023F7B /* BaseTestCase.h */,
+				141603041BC32481007D0600 /* BaseTestCase.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
 			path = Tests;
@@ -176,6 +187,8 @@
 				14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */,
 				446866961AFCBC7A0006A32B /* NSEntityDescription+Sync.h */,
 				446866971AFCBC7A0006A32B /* NSEntityDescription+Sync.m */,
+				141602FF1BC32307007D0600 /* NSArray+Sync.h */,
+				141603001BC32307007D0600 /* NSArray+Sync.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -377,6 +390,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B072D21AEA366B00ACD275 /* Contacts.xcdatamodeld in Sources */,
+				141603011BC32307007D0600 /* NSArray+Sync.m in Sources */,
+				141603051BC32481007D0600 /* BaseTestCase.m in Sources */,
 				14A718551BB931A700E708E6 /* Patients.xcdatamodeld in Sources */,
 				446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */,
 				44B072D41AEA366B00ACD275 /* Notes.xcdatamodeld in Sources */,
@@ -385,7 +400,8 @@
 				14B39D8E1A9BCCB300D3D01B /* Sync.m in Sources */,
 				44B072DB1AEA36D300ACD275 /* Bug84.xcdatamodeld in Sources */,
 				44B072D31AEA366B00ACD275 /* Markets.xcdatamodeld in Sources */,
-				14C4182E1A01919C00636FD6 /* Tests.m in Sources */,
+				141603031BC32425007D0600 /* NSArray+Sync_Tests.m in Sources */,
+				14C4182E1A01919C00636FD6 /* SyncTests.m in Sources */,
 				44B072D51AEA366B00ACD275 /* Recursive.xcdatamodeld in Sources */,
 				44B072D61AEA366B00ACD275 /* Social.xcdatamodeld in Sources */,
 				B5A4E1811AFB7E7D00A250F2 /* Unique.xcdatamodeld in Sources */,
@@ -492,10 +508,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91F302F02821DE7BE3BF6336 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -511,10 +524,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C067778DC962B70CDF74EA5 /* Pods.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.hyper.$(PRODUCT_NAME:rfc1034identifier)";
