@@ -15,24 +15,7 @@
 
 #pragma mark - Helpers
 
-- (void)dropSQLiteFileForModelNamed:(NSString *)modelName {
-    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                                         inDomains:NSUserDomainMask] lastObject];
-    NSString *filePath = [NSString stringWithFormat:@"%@.sqlite", modelName];
-    NSURL *storeURL = [url URLByAppendingPathComponent:filePath];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error = nil;
-    if ([fileManager fileExistsAtPath:storeURL.path]) [fileManager removeItemAtURL:storeURL error:&error];
-
-    if (error) {
-        NSLog(@"error deleting sqlite file");
-        abort();
-    }
-}
-
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName {
-    [self dropSQLiteFileForModelNamed:modelName];
-
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
                                                       storeType:DATAStackSQLiteStoreType];
@@ -148,6 +131,8 @@
 
     NSDate *updatedDate = [dateFormat dateFromString:@"2014-02-17"];
     XCTAssertEqualObjects([result valueForKey:@"updatedAt"], updatedDate);
+
+    [dataStack drop];
 }
 
 - (void)testUsersAndCompanies {
@@ -174,6 +159,8 @@
                                   sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                                         inContext:dataStack.mainContext] firstObject];
     XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
+
+    [dataStack drop];
 }
 
 - (void)testCustomMappingAndCustomPrimaryKey {
@@ -191,6 +178,8 @@
     XCTAssertEqual(array.count, 3);
     NSManagedObject *image = [array firstObject];
     XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
+
+    [dataStack drop];
 }
 
 - (void)testRelationshipsB {
@@ -219,6 +208,8 @@
                                                 predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
                                                 inContext:dataStack.mainContext];
     XCTAssertEqual(profilePicturesCount, 3);
+
+    [dataStack drop];
 }
 
 #pragma mark Notes
@@ -244,6 +235,8 @@
                                       predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
                                       inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
+
+    [dataStack drop];
 }
 
 - (void)testObjectsForParent {
@@ -285,6 +278,8 @@
                                       predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
                                       inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
+
+    [dataStack drop];
 }
 
 - (void)testTaggedNotesForUser {
@@ -315,6 +310,8 @@
     NSManagedObject *tag = [tags firstObject];
     XCTAssertEqual([[[tag valueForKey:@"notes"] allObjects] count], 4,
                    @"Tag with ID 1 should have 4 notes");
+
+    [dataStack drop];
 }
 
 - (void)testCustomKeysInRelationshipsToMany {
@@ -330,6 +327,8 @@
                              inContext:dataStack.mainContext];
     NSManagedObject *user = [array firstObject];
     XCTAssertEqual([[[user valueForKey:@"notes"] allObjects] count], 3);
+
+    [dataStack drop];
 }
 
 // Sync provides a predicate method to filter which methods would be synced
@@ -364,6 +363,8 @@
     NSArray *updatedArray = [self fetchEntity:@"User"
                                     inContext:dataStack.mainContext];
     XCTAssertEqual(updatedArray.count, 3);
+
+    [dataStack drop];
 }
 
 #pragma mark Recursive
@@ -379,6 +380,8 @@
 
     XCTAssertEqual([self countForEntity:@"Number"
                               inContext:dataStack.mainContext], 6);
+
+    [dataStack drop];
 }
 
 - (void)testRelationshipName {
@@ -398,6 +401,8 @@
     NSManagedObject *number = [numbers firstObject];
     XCTAssertNotNil([number valueForKey:@"parent"]);
     XCTAssertEqualObjects([[number valueForKey:@"parent"]  valueForKey:@"name"], @"Collection 1");
+
+    [dataStack drop];
 }
 
 #pragma mark Social
@@ -421,6 +426,8 @@
 
     NSManagedObject *comment = [comments firstObject];
     XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+
+    [dataStack drop];
 }
 
 - (void)testCustomPrimaryKeyInsideToManyRelationship {
@@ -455,6 +462,8 @@
     XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
     XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"remoteID"], @0);
     XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"title"], @"story 1");
+
+    [dataStack drop];
 }
 
 - (void)testCustomKeysInRelationshipsToOne {
@@ -470,6 +479,8 @@
                              inContext:dataStack.mainContext];
     NSManagedObject *story = [array firstObject];
     XCTAssertNotNil([story valueForKey:@"summarize"]);
+
+    [dataStack drop];
 }
 
 #pragma mark Markets
@@ -500,6 +511,8 @@
     NSManagedObject *item = [items firstObject];
     XCTAssertEqualObjects([item valueForKey:@"otherAttribute"], @"Item 1");
     XCTAssertEqual([[[item valueForKey:@"markets"] allObjects] count], 2);
+
+    [dataStack drop];
 }
 
 #pragma mark Organization
@@ -516,6 +529,8 @@
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
     XCTAssertEqual([self countForEntity:@"OrganizationUnit"
                               inContext:dataStack.mainContext], 7);
+
+    [dataStack drop];
 }
 
 #pragma mark Unique
@@ -550,6 +565,8 @@
                               inContext:dataStack.mainContext], 2);
     XCTAssertEqual([self countForEntity:@"C"
                               inContext:dataStack.mainContext], 1);
+
+    [dataStack drop];
 }
 
 #pragma mark Patients => https://github.com/hyperoslo/Sync/issues/121
@@ -574,6 +591,8 @@
                               inContext:dataStack.mainContext], 1);
     XCTAssertEqual([self countForEntity:@"Measure"
                               inContext:dataStack.mainContext], 1);
+
+    [dataStack drop];
 }
 
 #pragma mark Bug 84 => https://github.com/hyperoslo/Sync/issues/84
@@ -607,6 +626,8 @@
     NSManagedObject *fullfiller = [fulfillers firstObject];
     XCTAssertEqualObjects([fullfiller valueForKey:@"name"], @"New York");
     XCTAssertEqual([[[fullfiller valueForKey:@"staff"] allObjects] count], 1);
+
+    [dataStack drop];
 }
 
 #pragma mark Bug 113 => https://github.com/hyperoslo/Sync/issues/113
@@ -630,6 +651,8 @@
 
     NSManagedObject *comment = [comments firstObject];
     XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+
+    [dataStack drop];
 }
 
 - (void)testCustomPrimaryKeyInsideToManyRelationshipBug113 {
@@ -664,6 +687,8 @@
     XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
     XCTAssertEqualObjects([[comment valueForKey:@"awesomeStory"] valueForKey:@"remoteID"], @0);
     XCTAssertEqualObjects([[comment valueForKey:@"awesomeStory"] valueForKey:@"title"], @"story 1");
+
+    [dataStack drop];
 }
 
 - (void)testCustomKeysInRelationshipsToOneBug113 {
@@ -679,6 +704,8 @@
                              inContext:dataStack.mainContext];
     NSManagedObject *story = [array firstObject];
     XCTAssertNotNil([story valueForKey:@"awesomeSummarize"]);
+
+    [dataStack drop];
 }
 
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
