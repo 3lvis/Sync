@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B22c" minimumToolsVersion="Automatic">
+    <entity name="Element" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="elementType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="formURI" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inputConfigurationData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="locationRepresentation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maximumFileSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="reference" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selection" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="elements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Element" inverseName="parent" inverseEntity="Element" syncable="YES"/>
+        <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="element" inverseEntity="Form" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SelectionItem" inverseName="element" inverseEntity="SelectionItem" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="elements" inverseEntity="Element" syncable="YES"/>
+    </entity>
+    <entity name="Form" syncable="YES">
+        <attribute name="formType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uri" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="element" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="form" inverseEntity="Element" syncable="YES"/>
+        <relationship name="model" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Model" inverseName="form" inverseEntity="Model" syncable="YES"/>
+        <userInfo>
+            <entry key="hyper.isPrimaryKey" value="YES"/>
+        </userInfo>
+    </entity>
+    <entity name="Model" syncable="YES">
+        <attribute name="modelType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uri" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="model" inverseEntity="Form" syncable="YES"/>
+        <relationship name="properties" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelProperty" inverseName="model" inverseEntity="ModelProperty" syncable="YES"/>
+    </entity>
+    <entity name="ModelProperty" syncable="YES">
+        <attribute name="modelpropertyType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="required" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="model" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Model" inverseName="properties" inverseEntity="Model" syncable="YES"/>
+        <relationship name="restrictions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restriction" inverseName="property" inverseEntity="Restriction" syncable="YES"/>
+    </entity>
+    <entity name="Restriction" syncable="YES">
+        <attribute name="itemsData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pattern" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="restriction" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="property" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelProperty" inverseName="restrictions" inverseEntity="ModelProperty" syncable="YES"/>
+    </entity>
+    <entity name="SelectionItem" syncable="YES">
+        <attribute name="aliasLabelsData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="element" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="items" inverseEntity="Element" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Form" positionX="-56" positionY="-243" width="128" height="133"/>
+        <element name="Restriction" positionX="-297" positionY="188" width="128" height="118"/>
+        <element name="Element" positionX="151" positionY="-279" width="128" height="268"/>
+        <element name="Model" positionX="-81" positionY="-28" width="128" height="118"/>
+        <element name="ModelProperty" positionX="-72" positionY="189" width="128" height="118"/>
+        <element name="SelectionItem" positionX="151" positionY="176" width="128" height="103"/>
+    </elements>
+</model>

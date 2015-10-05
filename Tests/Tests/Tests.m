@@ -681,4 +681,27 @@
     XCTAssertNotNil([story valueForKey:@"awesomeSummarize"]);
 }
 
+#pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
+
+/*- (void)testNilRelationshipsAfterUpdating_Sync_1_0_10 {
+    NSArray *objects = [self objectsFromJSON:@"bug-125.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
+
+    [Sync changes:objects
+    inEntityNamed:@"Form"
+        dataStack:dataStack
+       completion:nil];
+//
+//    XCTAssertEqual([self countForEntity:@"AwesomeComment"
+//                              inContext:dataStack.mainContext], 8);
+//    NSArray *comments = [self fetchEntity:@"AwesomeComment"
+//                                predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
+//                                inContext:dataStack.mainContext];
+//    XCTAssertEqual(comments.count, 1);
+//    XCTAssertEqual([[[comments firstObject] valueForKey:@"awesomeComments"] count], 3);
+//
+//    NSManagedObject *comment = [comments firstObject];
+//    XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
+}*/
+
 @end
