@@ -86,6 +86,13 @@
         }
     }
 
+    if (predicate) {
+        NSArray *processedChanges = [self preprocessRemoteChanges:changes forEntity:entity usingPredicate:predicate dataStack:dataStack];
+        if (processedChanges.count > 0) {
+            changes = processedChanges;
+        }
+    }
+
     [DATAFilter changes:changes
           inEntityNamed:entityName
                localKey:localKey
@@ -120,7 +127,10 @@
     }];
 }
 
-+ (NSArray *)preprocessRemoteChanges:(NSArray *)changes forEntity:(NSEntityDescription *)entity usingPredicate:(NSPredicate *)predicate dataStack:(DATAStack *)dataStack {
++ (NSArray *)preprocessRemoteChanges:(NSArray *)changes
+                           forEntity:(NSEntityDescription *)entity
+                      usingPredicate:(NSPredicate *)predicate
+                           dataStack:(DATAStack *)dataStack {
     NSMutableArray *filteredChanges = [NSMutableArray new];
 
     if ([predicate isKindOfClass:[NSComparisonPredicate class]]) {
