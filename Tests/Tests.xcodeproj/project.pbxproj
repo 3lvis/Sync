@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		141603011BC32307007D0600 /* NSArray+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603001BC32307007D0600 /* NSArray+Sync.m */; settings = {ASSET_TAGS = (); }; };
 		141603031BC32425007D0600 /* NSArray+Sync_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603021BC32425007D0600 /* NSArray+Sync_Tests.m */; settings = {ASSET_TAGS = (); }; };
-		141603051BC32481007D0600 /* BaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603041BC32481007D0600 /* BaseTestCase.m */; settings = {ASSET_TAGS = (); }; };
 		14584B041B7EE38600293841 /* Bug113.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14584B021B7EE38600293841 /* Bug113.xcdatamodeld */; };
 		14584B061B7EE4E900293841 /* bug-113-comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */; };
 		14584B081B7EE50000293841 /* bug-113-stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */; };
 		14584B0A1B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */; };
+		145F712E1BC3289200023F7B /* BaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 145F712D1BC3289200023F7B /* BaseTestCase.m */; settings = {ASSET_TAGS = (); }; };
 		14A718551BB931A700E708E6 /* Patients.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A718531BB931A700E708E6 /* Patients.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		14A718571BB9370100E708E6 /* patients.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A718561BB9370100E708E6 /* patients.json */; settings = {ASSET_TAGS = (); }; };
 		14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */; };
@@ -58,12 +58,12 @@
 		141602FF1BC32307007D0600 /* NSArray+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sync.h"; sourceTree = "<group>"; };
 		141603001BC32307007D0600 /* NSArray+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sync.m"; sourceTree = "<group>"; };
 		141603021BC32425007D0600 /* NSArray+Sync_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sync_Tests.m"; sourceTree = "<group>"; };
-		141603041BC32481007D0600 /* BaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestCase.m; sourceTree = "<group>"; };
 		14584B031B7EE38600293841 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-comments-no-id.json"; sourceTree = "<group>"; };
 		14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-stories-comments-no-ids.json"; sourceTree = "<group>"; };
 		14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-custom_relationship_key_to_one.json"; sourceTree = "<group>"; };
-		145F712A1BC3279100023F7B /* BaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
+		145F712C1BC3289200023F7B /* BaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
+		145F712D1BC3289200023F7B /* BaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestCase.m; sourceTree = "<group>"; };
 		14A718541BB931A700E708E6 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14A718561BB9370100E708E6 /* patients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = patients.json; sourceTree = "<group>"; };
 		14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Sync.h"; sourceTree = "<group>"; };
@@ -134,6 +134,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		145F712B1BC3289200023F7B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				145F712C1BC3289200023F7B /* BaseTestCase.h */,
+				145F712D1BC3289200023F7B /* BaseTestCase.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		14C418111A01919C00636FD6 = {
 			isa = PBXGroup;
 			children = (
@@ -159,12 +168,11 @@
 		14C4182A1A01919C00636FD6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				145F712B1BC3289200023F7B /* Helpers */,
 				44B072C71AEA366B00ACD275 /* Models */,
 				44B072A61AEA364D00ACD275 /* JSONs */,
 				14C4182D1A01919C00636FD6 /* SyncTests.m */,
 				141603021BC32425007D0600 /* NSArray+Sync_Tests.m */,
-				145F712A1BC3279100023F7B /* BaseTestCase.h */,
-				141603041BC32481007D0600 /* BaseTestCase.m */,
 				14C4182B1A01919C00636FD6 /* Supporting Files */,
 			);
 			path = Tests;
@@ -391,7 +399,7 @@
 			files = (
 				44B072D21AEA366B00ACD275 /* Contacts.xcdatamodeld in Sources */,
 				141603011BC32307007D0600 /* NSArray+Sync.m in Sources */,
-				141603051BC32481007D0600 /* BaseTestCase.m in Sources */,
+				145F712E1BC3289200023F7B /* BaseTestCase.m in Sources */,
 				14A718551BB931A700E708E6 /* Patients.xcdatamodeld in Sources */,
 				446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */,
 				44B072D41AEA366B00ACD275 /* Notes.xcdatamodeld in Sources */,
