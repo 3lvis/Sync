@@ -13,18 +13,18 @@
     "uri":"http://tempuri.org/any/path/mymodel/1.0/",
     "properties":[
       {
-        "id":"anyString",
-        "restrictions":[
-          {
-            "restriction":"enumeration"
-          }
-        ]
-      },
-      {
         "id":"anyBoolean",
         "restrictions":[
           {
             "restriction":"minLength"
+          }
+        ]
+      },
+      {
+        "id":"anyString",
+        "restrictions":[
+          {
+            "restriction":"enumeration"
           }
         ]
       }

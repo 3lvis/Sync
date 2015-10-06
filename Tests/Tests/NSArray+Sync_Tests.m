@@ -14,6 +14,7 @@
 - (void)testNilRelationshipsAfterUpdating_Sync_1_0_10 {
     NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125.json"];
     NSString *uri = formDictionary[@"uri"];
+
     DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Form"
@@ -23,7 +24,22 @@
                                                         usingPredicate:[NSPredicate predicateWithFormat:@"uri == %@", uri]
                                                                 parent:nil
                                                              dataStack:dataStack].firstObject;
-    XCTAssertEqualObjects(preprocessed, @[formDictionary]);
+
+
+    NSDictionary *model = preprocessed[@"model"];
+
+    NSArray *properties = model[@"properties"];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
+    NSArray *sortedProperties = [properties sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
+    NSMutableDictionary *mutableModel = [model mutableCopy];
+    mutableModel[@"properties"] = sortedProperties;
+    model = [mutableModel copy];
+
+    NSMutableDictionary *mutableForm = [preprocessed mutableCopy];
+    mutableForm[@"model"] = model;
+    preprocessed = [mutableForm copy];
+
+    XCTAssertEqualObjects(preprocessed, formDictionary);
 }
 
 @end
