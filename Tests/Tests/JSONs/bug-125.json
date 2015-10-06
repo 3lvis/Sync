@@ -1,23 +1,22 @@
 {
   "uri":"http://tempuri.org/any/path/mydescriptor/1.2?language=en-US",
   "element":{
-    "label":"Any Form"
+    "label":"Any Form",
+    "elements":[
+
+    ],
+    "items":[
+
+    ]
   },
   "model":{
     "uri":"http://tempuri.org/any/path/mymodel/1.0/",
-    "type":"http://tempuri.org/any/path/mymodel/",
-    "version":"1.0",
     "properties":[
       {
         "id":"anyString",
         "restrictions":[
           {
-            "restriction":"enumeration",
-            "items":[
-              "option1",
-              "option2",
-              "option3"
-            ]
+            "restriction":"enumeration"
           }
         ]
       },
@@ -25,8 +24,7 @@
         "id":"anyBoolean",
         "restrictions":[
           {
-            "restriction":"minLength",
-            "value":2
+            "restriction":"minLength"
           }
         ]
       }
