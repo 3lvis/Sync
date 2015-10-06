@@ -7,6 +7,7 @@
 
 - (NSArray *)preprocessForEntity:(NSEntityDescription *)entity
                   usingPredicate:(NSPredicate *)predicate
+                          parent:(NSManagedObject *)parent
                        dataStack:(DATAStack *)dataStack;
 
 @end

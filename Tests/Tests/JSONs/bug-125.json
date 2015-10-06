@@ -1,43 +1,7 @@
 {
   "uri":"http://tempuri.org/any/path/mydescriptor/1.2?language=en-US",
   "element":{
-    "label":"Any Form",
-    "elements":[
-      {
-        "label":"Any Input",
-        "inputConfiguration":{
-          "justAHint":[
-            "a",
-            "b",
-            "c"
-          ]
-        }
-      },
-      {
-        "label":"Any Group",
-        "elements":[
-          {
-            "label":"Any Multiple Select",
-            "items":[
-              {
-                "label":"Option Three",
-                "aliasLabels":[
-                  {
-                    "label":"Option Three A"
-                  },
-                  {
-                    "label":"Option Three B"
-                  }
-                ]
-              },
-              {
-                "label":"Option Four"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    "label":"Any Form"
   },
   "model":{
     "uri":"http://tempuri.org/any/path/mymodel/1.0/",

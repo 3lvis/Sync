@@ -1,11 +1,13 @@
 #import "NSArray+Sync.h"
 
 #import "NSManagedObject+HYPPropertyMapper.h"
+#import "NSManagedObject+Sync.h"
 
 @implementation NSArray (Sync)
 
 - (NSArray *)preprocessForEntity:(NSEntityDescription *)entity
                   usingPredicate:(NSPredicate *)predicate
+                          parent:(NSManagedObject *)parent
                        dataStack:(DATAStack *)dataStack {
     NSMutableArray *filteredChanges = [NSMutableArray new];
 
@@ -21,13 +23,18 @@
             NSMutableArray *objectChanges = [NSMutableArray new];
             for (NSDictionary *change in self) {
                 NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:dataStack.disposableMainContext];
+                NSError *error = nil;
                 [object hyp_fillWithDictionary:change];
+                [object sync_processRelationshipsUsingDictionary:change
+                                                        andParent:parent
+                                                        dataStack:dataStack
+                                                            error:&error];
                 [objectChanges addObject:object];
             }
 
             NSArray *filteredArray = [objectChanges filteredArrayUsingPredicate:predicate];
             for (NSManagedObject *filteredObject in filteredArray) {
-                [filteredChanges addObject:[filteredObject hyp_dictionary]];
+                [filteredChanges addObject:[filteredObject hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray]];
             }
         }
     }

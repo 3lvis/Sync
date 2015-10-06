@@ -17,12 +17,13 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Form"
-                                              inManagedObjectContext:dataStack.mainContext];
+                                              inManagedObjectContext:dataStack.disposableMainContext];
 
     NSDictionary *preprocessed = [@[formDictionary]preprocessForEntity:entity
                                                         usingPredicate:[NSPredicate predicateWithFormat:@"uri == %@", uri]
+                                                                parent:nil
                                                              dataStack:dataStack].firstObject;
-    XCTAssertEqualObjects(preprocessed, @{@"" : @""});
+    XCTAssertEqualObjects(preprocessed, @[formDictionary]);
 }
 
 @end
