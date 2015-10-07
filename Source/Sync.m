@@ -70,9 +70,14 @@
       inContext:(NSManagedObjectContext *)context
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion {
-
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                               inManagedObjectContext:context];
+
+    NSString *localKey = [entity sync_localKey];
+    NSParameterAssert(localKey);
+
+    NSString *remoteKey = [entity sync_remoteKey];
+    NSParameterAssert(remoteKey);
 
     BOOL shouldLookForParent = (!parent && !predicate);
     if (shouldLookForParent) {
@@ -91,38 +96,6 @@
             changes = processedChanges;
         }
     }
-
-    [self processChanges:changes
-              entityName:entityName
-               predicate:predicate
-                  parent:parent
-                 context:context
-               dataStack:dataStack];
-
-    NSError *error = nil;
-    [context save:&error];
-
-    [dataStack persistWithCompletion:^{
-        if (completion) {
-            completion(error);
-        }
-    }];
-}
-
-+ (void)processChanges:(NSArray *)changes
-            entityName:(NSString *)entityName
-             predicate:(NSPredicate *)predicate
-                parent:(NSManagedObject *)parent
-               context:(NSManagedObjectContext *)context
-             dataStack:(DATAStack *)dataStack {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                              inManagedObjectContext:context];
-
-    NSString *localKey = [entity sync_localKey];
-    NSParameterAssert(localKey);
-
-    NSString *remoteKey = [entity sync_remoteKey];
-    NSParameterAssert(remoteKey);
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
@@ -147,6 +120,15 @@
                                                                  dataStack:dataStack
                                                                      error:&error];
                }];
+
+    NSError *error = nil;
+    [context save:&error];
+
+    [dataStack persistWithCompletion:^{
+        if (completion) {
+            completion(error);
+        }
+    }];
 }
 
 @end

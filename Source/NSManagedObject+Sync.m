@@ -88,6 +88,7 @@
                                            inverseIsToMany &&
                                            [parentEntityName isEqualToString:childEntityName]);
     NSArray *children = [objectDictionary andy_valueForKey:relationshipName];
+
     if (children) {
         NSPredicate *childPredicate;
         NSEntityDescription *entity = [NSEntityDescription entityForName:childEntityName
@@ -104,12 +105,13 @@
             childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
         }
 
-        [Sync processChanges:children
-                  entityName:childEntityName
-                   predicate:childPredicate
-                      parent:self
-                     context:self.managedObjectContext
-                   dataStack:dataStack];
+        [Sync changes:children
+        inEntityNamed:childEntityName
+            predicate:childPredicate
+               parent:self
+            inContext:self.managedObjectContext
+            dataStack:dataStack
+           completion:nil];
     } else if (hasValidManyToManyRelationship) {
         NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
         [relatedObjects addObject:parent];
