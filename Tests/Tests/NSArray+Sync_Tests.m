@@ -22,7 +22,6 @@
                                                                      parent:nil
                                                                   dataStack:dataStack].firstObject;
 
-
     NSDictionary *model = preprocessed[@"model"];
 
     NSArray *properties = model[@"properties"];

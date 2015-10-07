@@ -47,8 +47,7 @@
         <relationship name="property" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelProperty" inverseName="restrictions" inverseEntity="ModelProperty" syncable="YES"/>
     </entity>
     <entity name="SelectionItem" syncable="YES">
-        <attribute name="aliasLabelsData" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="label" optional="YES" attributeType="String" syncable="YES">
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="YES"/>
             </userInfo>
@@ -61,6 +60,6 @@
         <element name="Model" positionX="-81" positionY="-28" width="128" height="88"/>
         <element name="ModelProperty" positionX="-72" positionY="189" width="128" height="88"/>
         <element name="Restriction" positionX="-297" positionY="188" width="128" height="73"/>
-        <element name="SelectionItem" positionX="151" positionY="176" width="128" height="88"/>
+        <element name="SelectionItem" positionX="151" positionY="176" width="128" height="73"/>
     </elements>
 </model>

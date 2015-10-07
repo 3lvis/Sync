@@ -29,4 +29,10 @@
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion;
 
++ (void)processChanges:(NSArray *)changes
+            entityName:(NSString *)entityName
+             predicate:(NSPredicate *)predicate
+                parent:(NSManagedObject *)parent
+               context:(NSManagedObjectContext *)context
+             dataStack:(DATAStack *)dataStack;
 @end

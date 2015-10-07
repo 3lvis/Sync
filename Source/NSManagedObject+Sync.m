@@ -105,13 +105,12 @@
             childPredicate = [NSPredicate predicateWithFormat:@"%K = %@", inverseEntityName, self];
         }
 
-        [Sync changes:children
-        inEntityNamed:childEntityName
-            predicate:childPredicate
-               parent:self
-            inContext:self.managedObjectContext
-            dataStack:dataStack
-           completion:nil];
+        [Sync processChanges:children
+                  entityName:childEntityName
+                   predicate:childPredicate
+                      parent:self
+                     context:self.managedObjectContext
+                   dataStack:dataStack];
     } else if (hasValidManyToManyRelationship) {
         NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
         [relatedObjects addObject:parent];

@@ -2,29 +2,26 @@
   "uri":"http://tempuri.org/any/path/mydescriptor/1.2?language=en-US",
   "element":{
     "label":"Any Form",
-    "elements":[
+    "items": [
 
     ],
-    "items":[
+    "elements":[
+      {
+        "label":"Any Group",
+        "items": [
 
-    ]
-  },
-  "model":{
-    "uri":"http://tempuri.org/any/path/mymodel/1.0/",
-    "properties":[
-      {
-        "id":"anyBoolean",
-        "restrictions":[
+        ],
+        "elements":[
           {
-            "restriction":"minLength"
-          }
-        ]
-      },
-      {
-        "id":"anyString",
-        "restrictions":[
-          {
-            "restriction":"enumeration"
+            "elements":[
+
+            ],
+            "label":"Any Single Select",
+            "items":[
+              {
+                "value":"option2"
+              }
+            ]
           }
         ]
       }

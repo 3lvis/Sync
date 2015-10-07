@@ -25,6 +25,7 @@
 		14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 14C4183A1A019A1500636FD6 /* Sync.podspec */; };
 		14CF861F1BC2F98B001CF9C1 /* Bug125.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14CF861D1BC2F98B001CF9C1 /* Bug125.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		14CF86211BC2FE2B001CF9C1 /* bug-125.json in Resources */ = {isa = PBXBuildFile; fileRef = 14CF86201BC2FE2B001CF9C1 /* bug-125.json */; settings = {ASSET_TAGS = (); }; };
+		14F208251BC5887B00C31AC2 /* bug-125-light.json in Resources */ = {isa = PBXBuildFile; fileRef = 14F208241BC5887B00C31AC2 /* bug-125-light.json */; settings = {ASSET_TAGS = (); }; };
 		446866981AFCBC7A0006A32B /* NSEntityDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 446866971AFCBC7A0006A32B /* NSEntityDescription+Sync.m */; };
 		4468669B1AFCBC870006A32B /* Organizations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 446866991AFCBC870006A32B /* Organizations.xcdatamodeld */; };
 		4468669D1AFCBC910006A32B /* organizations-tree.json in Resources */ = {isa = PBXBuildFile; fileRef = 4468669C1AFCBC910006A32B /* organizations-tree.json */; };
@@ -82,6 +83,7 @@
 		14C4183B1A019A1500636FD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		14CF861E1BC2F98B001CF9C1 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14CF86201BC2FE2B001CF9C1 /* bug-125.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-125.json"; sourceTree = "<group>"; };
+		14F208241BC5887B00C31AC2 /* bug-125-light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-125-light.json"; sourceTree = "<group>"; };
 		446866961AFCBC7A0006A32B /* NSEntityDescription+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Sync.h"; sourceTree = "<group>"; };
 		446866971AFCBC7A0006A32B /* NSEntityDescription+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Sync.m"; sourceTree = "<group>"; };
 		4468669A1AFCBC870006A32B /* Organizations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Organizations.xcdatamodel; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		44B072A61AEA364D00ACD275 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				14F208241BC5887B00C31AC2 /* bug-125-light.json */,
 				14632D4E1BC4A3A4003E3168 /* story-summarize.json */,
 				14CF86201BC2FE2B001CF9C1 /* bug-125.json */,
 				14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */,
@@ -353,6 +356,7 @@
 				44B072B91AEA364D00ACD275 /* custom_relationship_key_to_many.json in Resources */,
 				4468669D1AFCBC910006A32B /* organizations-tree.json in Resources */,
 				14584B061B7EE4E900293841 /* bug-113-comments-no-id.json in Resources */,
+				14F208251BC5887B00C31AC2 /* bug-125-light.json in Resources */,
 				44B072B81AEA364D00ACD275 /* comments-no-id.json in Resources */,
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,
 				14584B081B7EE50000293841 /* bug-113-stories-comments-no-ids.json in Resources */,
