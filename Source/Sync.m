@@ -139,8 +139,6 @@
                                                            andParent:parent
                                                            dataStack:dataStack
                                                                error:&error];
-                   NSLog(@"created: %@", created);
-
                } updated:^(NSDictionary *objectJSON, NSManagedObject *updatedObject) {
                    NSError *error = nil;
                    [updatedObject hyp_fillWithDictionary:objectJSON];

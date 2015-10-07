@@ -15,14 +15,14 @@
     NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125-light.json"];
     NSString *uri = formDictionary[@"uri"];
 
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Bug125-simplified"];
 
-    NSDictionary *preprocessed = [@[formDictionary]preprocessForEntityNamed:@"Form"
-                                                             usingPredicate:[NSPredicate predicateWithFormat:@"uri == %@", uri]
-                                                                     parent:nil
-                                                                  dataStack:dataStack].firstObject;
+    NSDictionary *preprocessed = [@[formDictionary] preprocessForEntityNamed:@"Form"
+                                                              usingPredicate:[NSPredicate predicateWithFormat:@"uri == %@", uri]
+                                                                      parent:nil
+                                                                   dataStack:dataStack].firstObject;
 
-    NSDictionary *model = preprocessed[@"model"];
+    /*NSDictionary *model = preprocessed[@"model"];
 
     NSArray *properties = model[@"properties"];
     NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
@@ -33,7 +33,7 @@
 
     NSMutableDictionary *mutableForm = [preprocessed mutableCopy];
     mutableForm[@"model"] = model;
-    preprocessed = [mutableForm copy];
+    preprocessed = [mutableForm copy];*/
 
     XCTAssertEqualObjects(preprocessed, formDictionary);
 }

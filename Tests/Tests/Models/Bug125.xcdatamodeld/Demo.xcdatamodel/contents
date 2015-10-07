@@ -6,14 +6,10 @@
                 <entry key="hyper.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
-        <relationship name="elements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Element" inverseName="parent" inverseEntity="Element" syncable="YES"/>
+        <relationship name="element" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="elements" inverseEntity="Element" syncable="YES"/>
+        <relationship name="elements" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Element" inverseName="element" inverseEntity="Element" syncable="YES"/>
         <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="element" inverseEntity="Form" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SelectionItem" inverseName="element" inverseEntity="SelectionItem" syncable="YES"/>
-        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="elements" inverseEntity="Element" syncable="YES">
-            <userInfo>
-                <entry key="hyper.remoteKey" value="element"/>
-            </userInfo>
-        </relationship>
     </entity>
     <entity name="Form" syncable="YES">
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES">

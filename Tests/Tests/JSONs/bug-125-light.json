@@ -1,30 +1,16 @@
 {
-  "uri":"http://tempuri.org/any/path/mydescriptor/1.2?language=en-US",
   "element":{
-    "label":"Any Form",
-    "items": [
-
-    ],
     "elements":[
       {
-        "label":"Any Group",
-        "items": [
-
-        ],
         "elements":[
           {
-            "elements":[
-
-            ],
-            "label":"Any Single Select",
-            "items":[
-              {
-                "value":"option2"
-              }
-            ]
+            "label":"Child element 1 - Grandchild element 1"
           }
-        ]
+        ],
+        "label":"Parent element - Child element 1"
       }
-    ]
-  }
+    ],
+    "label":"Parent element"
+  },
+  "uri":"http://tempuri.org/any/path/mydescriptor/1.2?language=en-US"
 }
