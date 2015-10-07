@@ -5,10 +5,9 @@
 
 @interface NSArray (Sync)
 
-- (void)preprocessForEntity:(NSEntityDescription *)entity
-             usingPredicate:(NSPredicate *)predicate
-                     parent:(NSManagedObject *)parent
-                  dataStack:(DATAStack *)dataStack
-                 completion:(void (^)(NSArray *preprocessedArray))completion;
+- (NSArray *)preprocessForEntity:(NSEntityDescription *)entity
+                  usingPredicate:(NSPredicate *)predicate
+                          parent:(NSManagedObject *)parent
+                       dataStack:(DATAStack *)dataStack;
 
 @end

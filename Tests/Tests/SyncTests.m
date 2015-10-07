@@ -644,19 +644,19 @@
                               inContext:dataStack.mainContext], 1);
 
     XCTAssertEqual([self countForEntity:@"Element"
-                              inContext:dataStack.mainContext], 1);
+                              inContext:dataStack.mainContext], 11);
 
     XCTAssertEqual([self countForEntity:@"SelectionItem"
-                              inContext:dataStack.mainContext], 0);
+                              inContext:dataStack.mainContext], 4);
 
     XCTAssertEqual([self countForEntity:@"Model"
                               inContext:dataStack.mainContext], 1);
 
     XCTAssertEqual([self countForEntity:@"ModelProperty"
-                              inContext:dataStack.mainContext], 2);
+                              inContext:dataStack.mainContext], 9);
 
     XCTAssertEqual([self countForEntity:@"Restriction"
-                              inContext:dataStack.mainContext], 2);
+                              inContext:dataStack.mainContext], 3);
 
     NSArray *array = [self fetchEntity:@"Form"
                              inContext:dataStack.mainContext];
