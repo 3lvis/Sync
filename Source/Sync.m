@@ -88,15 +88,69 @@
     }
 
     if (predicate) {
-        NSArray *processedChanges = [changes preprocessForEntity:entity
-                                                  usingPredicate:predicate
-                                                          parent:parent
-                                                       dataStack:dataStack];
-        if (processedChanges.count > 0) {
-            changes = processedChanges;
-        }
-    }
+        [changes preprocessForEntity:entity
+                      usingPredicate:predicate
+                              parent:parent
+                           dataStack:dataStack
+                          completion:^(NSArray *preprocessedArray) {
+                              if (preprocessedArray.count > 0) {
+                                  [self processChanges:preprocessedArray
+                                         inEntityNamed:entityName
+                                              localKey:localKey
+                                             remoteKey:remoteKey
+                                               context:context
+                                             predicate:predicate
+                                                parent:parent
+                                             dataStack:dataStack];
+                              } else {
+                                  [self processChanges:changes
+                                         inEntityNamed:entityName
+                                              localKey:localKey
+                                             remoteKey:remoteKey
+                                               context:context
+                                             predicate:predicate
+                                                parent:parent
+                                             dataStack:dataStack];
+                              }
 
+                              NSError *error = nil;
+                              [context save:&error];
+
+                              [dataStack persistWithCompletion:^{
+                                  if (completion) {
+                                      completion(error);
+                                  }
+                              }];
+                          }];
+    } else {
+        [self processChanges:changes
+               inEntityNamed:entityName
+                    localKey:localKey
+                   remoteKey:remoteKey
+                     context:context
+                   predicate:predicate
+                      parent:parent
+                   dataStack:dataStack];
+
+        NSError *error = nil;
+        [context save:&error];
+
+        [dataStack persistWithCompletion:^{
+            if (completion) {
+                completion(error);
+            }
+        }];
+    }
+}
+
++ (void)processChanges:(NSArray *)changes
+         inEntityNamed:(NSString *)entityName
+              localKey:(NSString *)localKey
+             remoteKey:(NSString *)remoteKey
+               context:(NSManagedObjectContext *)context
+             predicate:(NSPredicate *)predicate
+                parent:(NSManagedObject *)parent
+             dataStack:(DATAStack *)dataStack {
     [DATAFilter changes:changes
           inEntityNamed:entityName
                localKey:localKey
@@ -120,15 +174,6 @@
                                                                  dataStack:dataStack
                                                                      error:&error];
                }];
-
-    NSError *error = nil;
-    [context save:&error];
-
-    [dataStack persistWithCompletion:^{
-        if (completion) {
-            completion(error);
-        }
-    }];
 }
 
 @end
