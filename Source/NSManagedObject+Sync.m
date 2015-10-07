@@ -61,12 +61,6 @@
                                        dataStack:dataStack];
         } else if (parent &&
                    [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
-            NSLog(@"_______________________________");
-            NSLog(@"Setting parent relationship: %@", relationship.name);
-            NSLog(@"parent: %@", parent.entity.name);
-            NSLog(@"____________ ~~~ ______________");
-            NSLog(@" ");
-
             [self setValue:parent
                     forKey:relationship.name];
         } else {
@@ -94,14 +88,6 @@
                                            inverseIsToMany &&
                                            [parentEntityName isEqualToString:childEntityName]);
     NSArray *children = [objectDictionary andy_valueForKey:relationshipName];
-
-    NSLog(@"==================================");
-    NSLog(@"Processing to many relationship: %@", relationship.name);
-    NSLog(@"parent: %@", parent.entity.name);
-    NSLog(@"obj: %@", children);
-    NSLog(@"============== ~~~ ================");
-    NSLog(@" ");
-
     if (children) {
         NSPredicate *childPredicate;
         NSEntityDescription *entity = [NSEntityDescription entityForName:childEntityName
@@ -142,14 +128,6 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                               inManagedObjectContext:self.managedObjectContext];
     NSDictionary *filteredObjectDictionary = [objectDictionary andy_valueForKey:relationshipName];
-
-    NSLog(@"**********************************");
-    NSLog(@"Processing to one relationship: %@", relationship.name);
-    NSLog(@"parent: %@", parent.entity.name);
-    NSLog(@"obj: %@", filteredObjectDictionary);
-    NSLog(@"************** ~~~ ***************");
-    NSLog(@" ");
-
     if (filteredObjectDictionary) {
         NSError *error = nil;
         NSString *remoteKey = [entity sync_remoteKey];

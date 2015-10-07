@@ -644,7 +644,7 @@
                               inContext:dataStack.mainContext], 1);
 
     XCTAssertEqual([self countForEntity:@"Element"
-                              inContext:dataStack.mainContext], 9);
+                              inContext:dataStack.mainContext], 11);
 
     XCTAssertEqual([self countForEntity:@"SelectionItem"
                               inContext:dataStack.mainContext], 4);

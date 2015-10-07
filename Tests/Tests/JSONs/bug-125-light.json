@@ -1,16 +1,38 @@
+
 {
   "element":{
     "elements":[
       {
         "elements":[
           {
-            "label":"Child element 1 - Grandchild element 1"
+            "elements":[],
+            "items":[
+              {
+                "value":"option1"
+              }
+            ],
+            "label":"Any Single Select"
           }
         ],
-        "label":"Parent element - Child element 1"
+        "items":[],
+        "label":"Any Group"
       }
     ],
-    "label":"Parent element"
+    "items":[],
+    "label":"Any Form"
+  },
+  "model":{
+    "uri":"http://tempuri.org/any/path/mymodel/1.0/",
+    "properties":[
+      {
+        "id":"anyString",
+        "restrictions":[
+          {
+            "restriction":"enumeration"
+          }
+        ]
+      }
+    ]
   },
   "uri":"http://tempuri.org/any/path/mydescriptor/1.2?language=en-US"
 }
