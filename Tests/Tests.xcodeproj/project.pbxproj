@@ -14,6 +14,7 @@
 		14584B081B7EE50000293841 /* bug-113-stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */; };
 		14584B0A1B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */; };
 		145F712E1BC3289200023F7B /* BaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 145F712D1BC3289200023F7B /* BaseTestCase.m */; settings = {ASSET_TAGS = (); }; };
+		14632D4F1BC4A3A4003E3168 /* story-summarize.json in Resources */ = {isa = PBXBuildFile; fileRef = 14632D4E1BC4A3A4003E3168 /* story-summarize.json */; settings = {ASSET_TAGS = (); }; };
 		14A718551BB931A700E708E6 /* Patients.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A718531BB931A700E708E6 /* Patients.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		14A718571BB9370100E708E6 /* patients.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A718561BB9370100E708E6 /* patients.json */; settings = {ASSET_TAGS = (); }; };
 		14ADDF411AE434A100C389AD /* NSManagedObject+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ADDF401AE434A100C389AD /* NSManagedObject+Sync.m */; };
@@ -64,6 +65,7 @@
 		14584B091B7EE53000293841 /* bug-113-custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-custom_relationship_key_to_one.json"; sourceTree = "<group>"; };
 		145F712C1BC3289200023F7B /* BaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
 		145F712D1BC3289200023F7B /* BaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestCase.m; sourceTree = "<group>"; };
+		14632D4E1BC4A3A4003E3168 /* story-summarize.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "story-summarize.json"; sourceTree = "<group>"; };
 		14A718541BB931A700E708E6 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14A718561BB9370100E708E6 /* patients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = patients.json; sourceTree = "<group>"; };
 		14ADDF3F1AE434A100C389AD /* NSManagedObject+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Sync.h"; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		44B072A61AEA364D00ACD275 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				14632D4E1BC4A3A4003E3168 /* story-summarize.json */,
 				14CF86201BC2FE2B001CF9C1 /* bug-125.json */,
 				14584B051B7EE4E900293841 /* bug-113-comments-no-id.json */,
 				14584B071B7EE50000293841 /* bug-113-stories-comments-no-ids.json */,
@@ -354,6 +357,7 @@
 				14C4183E1A019A1500636FD6 /* Sync.podspec in Resources */,
 				14584B081B7EE50000293841 /* bug-113-stories-comments-no-ids.json in Resources */,
 				44B072D81AEA36A700ACD275 /* bug-number-84.json in Resources */,
+				14632D4F1BC4A3A4003E3168 /* story-summarize.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

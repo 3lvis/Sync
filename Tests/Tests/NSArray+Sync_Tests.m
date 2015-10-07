@@ -11,7 +11,7 @@
 
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
-- (void)testNilRelationshipsAfterUpdating_Sync_1_0_10 {
+- (void)testChangesPreprocessing {
     NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125.json"];
     NSString *uri = formDictionary[@"uri"];
 

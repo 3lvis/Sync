@@ -669,4 +669,17 @@
     [dataStack drop];
 }
 
+- (void)testStoryToSummarize {
+    NSDictionary *formDictionary = [self objectsFromJSON:@"story-summarize.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
+
+    [Sync changes:@[formDictionary]
+    inEntityNamed:@"Story"
+        predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @1]
+        dataStack:dataStack
+       completion:nil];
+
+    [dataStack drop];
+}
+
 @end
