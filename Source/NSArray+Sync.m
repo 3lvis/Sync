@@ -5,10 +5,10 @@
 
 @implementation NSArray (Sync)
 
-- (NSArray *)preprocessForEntity:(NSEntityDescription *)entity
-                  usingPredicate:(NSPredicate *)predicate
-                          parent:(NSManagedObject *)parent
-                       dataStack:(DATAStack *)dataStack {
+- (NSArray *)preprocessForEntityNamed:(NSString *)entityName
+                       usingPredicate:(NSPredicate *)predicate
+                               parent:(NSManagedObject *)parent
+                            dataStack:(DATAStack *)dataStack {
     NSMutableArray *filteredChanges = [NSMutableArray new];
 
     if ([predicate isKindOfClass:[NSComparisonPredicate class]]) {
@@ -21,14 +21,16 @@
                                          [rightValue isKindOfClass:[NSString class]]));
         if (rightValueCanBeCompared) {
             NSMutableArray *objectChanges = [NSMutableArray new];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                                      inManagedObjectContext:dataStack.disposableMainContext];
             for (NSDictionary *change in self) {
                 NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:dataStack.disposableMainContext];
                 NSError *error = nil;
                 [object hyp_fillWithDictionary:change];
                 [object sync_processRelationshipsUsingDictionary:change
-                                                        andParent:parent
-                                                        dataStack:dataStack
-                                                            error:&error];
+                                                       andParent:parent
+                                                       dataStack:dataStack
+                                                           error:&error];
                 [objectChanges addObject:object];
             }
 

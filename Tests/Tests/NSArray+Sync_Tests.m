@@ -17,13 +17,10 @@
 
     DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
 
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Form"
-                                              inManagedObjectContext:dataStack.disposableMainContext];
-
-    NSDictionary *preprocessed = [@[formDictionary]preprocessForEntity:entity
-                                                        usingPredicate:[NSPredicate predicateWithFormat:@"uri == %@", uri]
-                                                                parent:nil
-                                                             dataStack:dataStack].firstObject;
+    NSDictionary *preprocessed = [@[formDictionary]preprocessForEntityNamed:@"Form"
+                                                             usingPredicate:[NSPredicate predicateWithFormat:@"uri == %@", uri]
+                                                                     parent:nil
+                                                                  dataStack:dataStack].firstObject;
 
 
     NSDictionary *model = preprocessed[@"model"];

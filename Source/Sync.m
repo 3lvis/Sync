@@ -88,10 +88,10 @@
     }
 
     if (predicate) {
-        NSArray *processedChanges = [changes preprocessForEntity:entity
-                                                  usingPredicate:predicate
-                                                          parent:parent
-                                                       dataStack:dataStack];
+        NSArray *processedChanges = [changes preprocessForEntityNamed:entityName
+                                                       usingPredicate:predicate
+                                                               parent:parent
+                                                            dataStack:dataStack];
         if (processedChanges.count > 0) {
             changes = processedChanges;
         }
