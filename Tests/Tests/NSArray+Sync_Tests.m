@@ -12,7 +12,7 @@
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
 - (void)testChangesPreprocessing {
-    NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125.json"];
+    NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125-light.json"];
     NSString *uri = formDictionary[@"uri"];
 
     DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
