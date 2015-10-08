@@ -64,12 +64,12 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "X -com.apple.CoreData.ConcurrencyDebug 1"
-            isEnabled = "YES">
+            argument = "-com.apple.CoreData.ConcurrencyDebug 1"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "X -com.apple.CoreData.SQLDebug 3"
-            isEnabled = "YES">
+            argument = "-com.apple.CoreData.SQLDebug 3"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
