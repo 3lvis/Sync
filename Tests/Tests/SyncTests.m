@@ -266,11 +266,18 @@
        completion:nil];
 
     NSArray *array = [self fetchEntity:@"User"
+                       sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                              inContext:dataStack.mainContext];
     XCTAssertEqual(array.count, 2);
 
+    NSManagedObject *user1 = array[0];
+    XCTAssertEqualObjects([user1 valueForKey:@"name"], old1[@"name"]);
+
+    NSManagedObject *user2 = array[1];
+    XCTAssertEqualObjects([user2 valueForKey:@"name"], old2[@"name"]);
+
     NSDictionary *updatedOld2 = @{@"id" : @2, @"name" : @"Updated Old 2", @"created_at" : @"2014-03-14T00:00:00+00:00"};
-    NSDictionary *new = @{@"id" : @3, @"name" : @"New 2", @"created_at" : @"2019-03-14T00:00:00+00:00"};
+    NSDictionary *new = @{@"id" : @3, @"name" : @"New 2", @"created_at" : @"2049-03-14T00:00:00+00:00"};
     NSArray *newObjects = @[updatedOld2, new];
 
     [Sync changes:newObjects
@@ -280,8 +287,18 @@
        completion:nil];
 
     NSArray *updatedArray = [self fetchEntity:@"User"
-                                    inContext:dataStack.mainContext];
+                       sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
+                             inContext:dataStack.mainContext];
     XCTAssertEqual(updatedArray.count, 3);
+
+    NSManagedObject *updatedUser1 = updatedArray[0];
+    XCTAssertEqualObjects([updatedUser1 valueForKey:@"name"], old1[@"name"]);
+
+    NSManagedObject *updatedUser2 = updatedArray[1];
+    XCTAssertEqualObjects([updatedUser2 valueForKey:@"name"], old2[@"name"]);
+
+    NSManagedObject *updatedUser3 = updatedArray[2];
+    XCTAssertEqualObjects([updatedUser3 valueForKey:@"name"], new[@"name"]);
 
     [dataStack drop];
 }
