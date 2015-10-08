@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import DATAStack
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

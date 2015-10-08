@@ -1,7 +1,7 @@
 @import Foundation;
 @import CoreData;
 
-#import "DATAStack.h"
+@import DATAStack;
 
 @interface NSArray (Sync)
 
