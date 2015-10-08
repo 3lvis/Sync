@@ -18,7 +18,7 @@
 		14615C861ACD560F00FE93A0 /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14615C801ACD560F00FE93A0 /* StoryViewController.m */; };
 		14615C871ACD560F00FE93A0 /* UIFont+DNStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 14615C821ACD560F00FE93A0 /* UIFont+DNStyle.m */; };
 		14993F6B1BB4A2D70022E381 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14993F691BB4A2D70022E381 /* LaunchScreen.xib */; settings = {ASSET_TAGS = (); }; };
-		D25F967187DC17C9C2D150F6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 581617F06614B282BA55A2A2 /* libPods.a */; };
+		EF1F3E42F95828F2AAD5E839 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2B69DC4C60223CE7FBA4B6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F6ACF0041ABCA539001E5652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF0031ABCA539001E5652 /* main.m */; };
 		F6ACF00A1ABCA539001E5652 /* DesignerNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6ACF0081ABCA539001E5652 /* DesignerNews.xcdatamodeld */; };
 		F6ACF0121ABCA539001E5652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6ACF0111ABCA539001E5652 /* Images.xcassets */; };
@@ -46,8 +46,8 @@
 		14615C811ACD560F00FE93A0 /* UIFont+DNStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DNStyle.h"; sourceTree = "<group>"; };
 		14615C821ACD560F00FE93A0 /* UIFont+DNStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DNStyle.m"; sourceTree = "<group>"; };
 		14993F6A1BB4A2D70022E381 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		581617F06614B282BA55A2A2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3CC52748EF0117319DEF380 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BA2B69DC4C60223CE7FBA4B6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA395298F667B5F57922875 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F6ACEFFE1ABCA539001E5652 /* DesignerNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignerNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6ACF0021ABCA539001E5652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D25F967187DC17C9C2D150F6 /* libPods.a in Frameworks */,
+				EF1F3E42F95828F2AAD5E839 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +130,7 @@
 		DD317DD9308A61D7089EE31B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				581617F06614B282BA55A2A2 /* libPods.a */,
+				BA2B69DC4C60223CE7FBA4B6 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,6 +187,7 @@
 				F6ACEFFB1ABCA539001E5652 /* Frameworks */,
 				F6ACEFFC1ABCA539001E5652 /* Resources */,
 				EAE5F99C026E23C0D7422FEC /* Copy Pods Resources */,
+				F8FC509A07981681DB9D6393 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +271,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8FC509A07981681DB9D6393 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
