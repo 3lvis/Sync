@@ -3,7 +3,7 @@ PODS:
     - DATAObjectIDs
   - DATAObjectIDs (0.5.0)
   - DATAStack (3.1.1):
-    - NSObject-HYPTesting (~> 1.2)
+    - NSOddbject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
   - NSEntityDescription-SYNCPrimaryKey (0.1.0):
     - NSString-HYPNetworking

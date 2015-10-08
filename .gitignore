@@ -22,3 +22,5 @@ DerivedData
 *.gcno
 *.gcda
 Pods
+
+*.lock
