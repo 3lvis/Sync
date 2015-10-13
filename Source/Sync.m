@@ -99,10 +99,11 @@
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
+              predicate:predicate
+             operations:DATAFilterOperationAll
                localKey:localKey
               remoteKey:remoteKey
                 context:context
-              predicate:predicate
                inserted:^(NSDictionary *objectJSON) {
                    NSError *error = nil;
                    NSManagedObject *created = [NSEntityDescription insertNewObjectForEntityForName:entityName
