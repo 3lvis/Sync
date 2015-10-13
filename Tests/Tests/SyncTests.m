@@ -696,6 +696,23 @@
         dataStack:dataStack
        completion:nil];
 
+    XCTAssertEqual([self countForEntity:@"Story"
+                              inContext:dataStack.mainContext], 1);
+    NSArray *stories = [self fetchEntity:@"Story"
+                               predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
+                               inContext:dataStack.mainContext];
+    NSManagedObject *story = [stories firstObject];
+    NSManagedObject *summarize = [story valueForKey:@"summarize"];
+    XCTAssertEqualObjects([summarize valueForKey:@"remoteID"], @1);
+    XCTAssertEqual([[story valueForKey:@"comments"] count], 1);
+
+    XCTAssertEqual([self countForEntity:@"Comment"
+                              inContext:dataStack.mainContext], 1);
+    NSArray *comments = [self fetchEntity:@"Comment"
+                                predicate:[NSPredicate predicateWithFormat:@"body = %@", @"Hi"]
+                                inContext:dataStack.mainContext];
+    XCTAssertEqual(comments.count, 1);
+
     [dataStack drop];
 }
 
