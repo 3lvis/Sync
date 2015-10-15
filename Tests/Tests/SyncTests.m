@@ -163,6 +163,8 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
+
+        // First, we create a parent user, this user is the one that will own all the notes
         NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                               inManagedObjectContext:backgroundContext];
         [user setValue:@6 forKey:@"remoteID"];
@@ -176,17 +178,20 @@
         [dataStack persistWithCompletion:nil];
     }];
 
+    // Then we fetch the user on the main context, because we don't want to break things between contexts
     NSArray *users = [self fetchEntity:@"User"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                              inContext:dataStack.mainContext];
     if (users.count != 1) abort();
 
+    // Finally we say "Sync all the notes, for this user"
     [Sync changes:objects
     inEntityNamed:@"Note"
            parent:[users firstObject]
         dataStack:dataStack
        completion:nil];
 
+    // Here we just make sure that the user has the notes that we just inserted
     users = [self fetchEntity:@"User"
                     predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                     inContext:dataStack.mainContext];
