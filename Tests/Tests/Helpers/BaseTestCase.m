@@ -1,7 +1,7 @@
 @import XCTest;
 
 #import "NSJSONSerialization+ANDYJSONFile.h"
-#import "DATAStack.h"
+@import DATAStack;
 #import "NSJSONSerialization+ANDYJSONFile.h"
 #import "Sync.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
@@ -48,7 +48,7 @@
 - (DATAStack *)dataStackWithModelName:(NSString *)modelName {
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:modelName
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackSQLiteStoreType];
+                                                      storeType:DATAStackStoreTypeSQLite];
 
     return dataStack;
 }

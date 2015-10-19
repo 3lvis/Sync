@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0374412F80C6B8D5200C882C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6C99E9E23EA886944E25CF9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0374412F80C6B8D5200C882C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6C99E9E23EA886944E25CF9 /* Pods.framework */; };
 		141603011BC32307007D0600 /* NSArray+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603001BC32307007D0600 /* NSArray+Sync.m */; settings = {ASSET_TAGS = (); }; };
 		141603031BC32425007D0600 /* NSArray+Sync_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141603021BC32425007D0600 /* NSArray+Sync_Tests.m */; settings = {ASSET_TAGS = (); }; };
 		14584B041B7EE38600293841 /* Bug113.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14584B021B7EE38600293841 /* Bug113.xcdatamodeld */; };

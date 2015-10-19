@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '8.0'
 
 pod 'DATAFilter'
-pod 'DATAStack'
+pod 'DATAStack', git: 'git@github.com:3lvis/DATAStack.git'
 pod 'NSDictionary-ANDYSafeValue'
 pod 'NSEntityDescription-SYNCPrimaryKey'
 pod 'NSJSONSerialization-ANDYJSONFile'

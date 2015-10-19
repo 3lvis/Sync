@@ -1,7 +1,7 @@
 @import XCTest;
 @import CoreData;
 
-#import "DATAStack.h"
+@import DATAStack;
 #import "Sync.h"
 
 @interface BaseTestCase : XCTestCase
