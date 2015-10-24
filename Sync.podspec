@@ -22,7 +22,7 @@ s.source_files = 'Source/**/*'
 
 s.frameworks = 'Foundation', 'CoreData'
 
-s.dependency 'DATAFilter', '~> 0.9.0'
+s.dependency 'DATAFilter', '~> 0.9.1'
 s.dependency 'DATAStack', '~> 3.1.2'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3'
 s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 0.1.1'
