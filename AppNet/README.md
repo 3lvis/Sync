@@ -37,7 +37,7 @@
 
 ## Sync
 
-[Reference](https://github.com/hyperoslo/Sync/blob/master/AppNet/AppNet/Networking.swift#L32-L34)
+[Reference](https://github.com/hyperoslo/Sync/blob/master/AppNet/Networking.swift#L32-L34)
 
 ```swift
 Sync.changes(
