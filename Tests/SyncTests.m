@@ -258,6 +258,7 @@
 // Sync provides a predicate method to filter which methods would be synced
 // this test checks that providing a predicate for "startTime > now" only syncs
 // elements that start in the future.
+/*
 - (void)testSyncWithPredicateAfterDate {
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
@@ -306,7 +307,7 @@
     XCTAssertEqualObjects([updatedUser3 valueForKey:@"name"], new[@"name"]);
 
     [dataStack drop];
-}
+}*/
 
 #pragma mark Recursive
 
