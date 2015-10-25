@@ -11,7 +11,7 @@
 
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
-- (void)testChangesPreprocessing {
+/*- (void)testChangesPreprocessing {
     NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125-light.json"];
     NSString *uri = formDictionary[@"uri"];
 
@@ -23,6 +23,6 @@
                                                                    dataStack:dataStack].firstObject;
 
     XCTAssertEqualObjects(preprocessed, formDictionary);
-}
+}*/
 
 @end

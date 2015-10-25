@@ -87,7 +87,7 @@
         }
     }
 
-    if (predicate) {
+    /*if (predicate) {
         NSArray *processedChanges = [changes preprocessForEntityNamed:entityName
                                                        usingPredicate:predicate
                                                                parent:parent
@@ -95,7 +95,7 @@
         if (processedChanges.count > 0) {
             changes = processedChanges;
         }
-    }
+    }*/
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
