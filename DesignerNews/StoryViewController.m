@@ -9,7 +9,6 @@
 
 static NSString * const CommentTableViewCellIdentifier = @"CommentTableViewCellIdentifier";
 static const CGFloat CommentTableViewCellHeight = 50.0;
-static const CGFloat CommentTableViewCellOffset = 40.0;
 
 @interface StoryViewController ()
 
