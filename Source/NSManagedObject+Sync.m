@@ -1,6 +1,6 @@
 #import "NSManagedObject+Sync.h"
 
-#import "DATAStack.h"
+@import DATAStack;
 #import "Sync.h"
 
 #import "NSDictionary+ANDYSafeValue.h"

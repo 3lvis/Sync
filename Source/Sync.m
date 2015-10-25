@@ -1,6 +1,6 @@
 #import "Sync.h"
 
-#import "DATAStack.h"
+@import DATAStack;
 #import "DATAFilter.h"
 
 #import "NSDictionary+ANDYSafeValue.h"

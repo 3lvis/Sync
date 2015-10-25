@@ -21,10 +21,11 @@
                                          [rightValue isKindOfClass:[NSString class]]));
         if (rightValueCanBeCompared) {
             NSMutableArray *objectChanges = [NSMutableArray new];
+            NSManagedObjectContext *context = [dataStack newDisposableMainContext];
             NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                                      inManagedObjectContext:dataStack.disposableMainContext];
+                                                      inManagedObjectContext:context];
             for (NSDictionary *change in self) {
-                NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:dataStack.disposableMainContext];
+                NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
                 NSError *error = nil;
                 [object hyp_fillWithDictionary:change];
                 [object sync_processRelationshipsUsingDictionary:change
