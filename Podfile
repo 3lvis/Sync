@@ -1,7 +1,7 @@
 use_frameworks!
 
-# When using more than one target in your project
-# link_with 'DemoProject', 'Tests'
+link_with 'Tests', 'AppNet', 'DesignerNews'
 
 pod 'Sync', path: "."
 pod 'NSJSONSerialization-ANDYJSONFile'
+pod 'DATASource'
