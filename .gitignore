@@ -1,7 +1,14 @@
 # OS X
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
 
 # Xcode
+#
 build/
 *.pbxuser
 !default.pbxuser
@@ -13,14 +20,13 @@ build/
 !default.perspectivev3
 xcuserdata
 *.xccheckout
-*.xcuserstate
-profile
 *.moved-aside
 DerivedData
 *.hmap
 *.ipa
-*.gcno
-*.gcda
-Pods
+*.xcuserstate
+*.xcscmblueprint
 
+# CocoaPods
+Pods
 *.lock
