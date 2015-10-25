@@ -125,11 +125,11 @@ inEntityNamed:@"User"
 
 ### More Examples
 
-<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/AppNet/README.md">
+<a href="https://github.com/hyperoslo/Sync/tree/master/AppNet/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
 </a>
 
-<a href="https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews/README.md">
+<a href="https://github.com/hyperoslo/Sync/tree/master/DesignerNews/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v4.png" />
 </a>
 
@@ -167,7 +167,7 @@ Sync requires your entities to have a primary key, this is important for diffing
 
 By default **Sync** uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
 
-For example in our [Designer News](https://github.com/hyperoslo/Sync/tree/master/Examples/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
+For example in our [Designer News](https://github.com/hyperoslo/Sync/tree/master/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
 
 ![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v2.png)
 
