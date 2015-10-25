@@ -15,16 +15,18 @@ s.author           = { "Hyper AS" => "iOS@hyper.no" }
 s.source           = { :git => "https://github.com/hyperoslo/Sync.git", :tag => s.version.to_s }
 s.social_media_url = 'https://twitter.com/hyperoslo'
 
-s.platform     = :ios, '8.0'
+s.ios.deployment_target = '8.0'
+s.osx.deployment_target = '10.9'
+s.watchos.deployment_target = '2.0'
+s.tvos.deployment_target = '9.0'
 s.requires_arc = true
-
 s.source_files = 'Source/**/*'
 
 s.frameworks = 'Foundation', 'CoreData'
 
-s.dependency 'DATAFilter', '~> 0.8.4'
-s.dependency 'DATAStack', '~> 3.1.2'
-s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3'
-s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 0.1.0'
-s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.3.2'
+s.dependency 'DATAFilter', '~> 0.9.1'
+s.dependency 'DATAStack', '~> 4.0.1'
+s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3.1'
+s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 0.1.1'
+s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.3.3'
 end
