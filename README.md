@@ -3,7 +3,6 @@
 [![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
 [![License](https://img.shields.io/cocoapods/l/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
 [![Platform](https://img.shields.io/cocoapods/p/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
-[![Join the chat at https://gitter.im/hyperoslo/Sync](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hyperoslo/Sync?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 **Sync** eases your every day job of parsing a `JSON` response and getting it into Core Data. It uses a convention over configuration paradigm to facilitate your workflow.
 
