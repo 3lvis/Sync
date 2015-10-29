@@ -351,7 +351,7 @@ Logging changes to Core Data is quite simple, just subscribe to changes like thi
 
 #### Crash on NSParameterAssert
 
-This means that the local primary key was not found, Sync uses `remoteID` by default but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "YES"` in your attribute's user info.
+This means that the local primary key was not found, Sync uses `remoteID` by default but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "YES"` in your attribute's user info. For more information check the [Primary Key](https://github.com/hyperoslo/Sync#primary-key) section.
 
 ```objc
 NSString *localKey = [entity sync_localKey];
