@@ -11,7 +11,7 @@
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
 * Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
-* Uniquing, Core Data does this based on `objectID`s. We use your remote key (such as `id`) for this
+* Uniquing, Core Data does this based on `objectID`s, we use your remote key (such as `id`) for this
 
 
 ## Table of Contents
@@ -162,7 +162,7 @@ Then add this to your App Delegate so everything gets persisted when you quit th
 
 ### Primary key
 
-Sync requires your entities to have a primary key. This is important for diffing--otherwise Sync doesn’t know how to differentiate between entries.
+Sync requires your entities to have a primary key, this is important for diffing, otherwise Sync doesn’t know how to differentiate between entries.
 
 By default **Sync** uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
 
@@ -334,7 +334,7 @@ For example a author can have many documents and a document can have many author
 
 #### Logging changes:
 
-Logging changes to Core Data is quite simple: Just subscribe to changes like this and print the needed elements:
+Logging changes to Core Data is quite simple, just subscribe to changes like this and print the needed elements:
 
 ```objc
 [[NSNotificationCenter defaultCenter]addObserver:self
