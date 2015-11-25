@@ -722,7 +722,6 @@
     [dataStack drop];
 }
 
-
 /*
  When having JSONs like this:
 {
@@ -757,11 +756,13 @@
     XCTAssertEqual(notesCount, 5);
 
     NSArray *notes = [self fetchEntity:@"Note"
-                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", 0]
+                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
                              inContext:dataStack.mainContext];
     NSManagedObject *note = notes.firstObject;
     NSManagedObject *user = [note valueForKey:@"user"];
     XCTAssertEqualObjects([user valueForKey:@"name"], @"Melisa White");
+
+    [dataStack drop];
 }
 
 @end

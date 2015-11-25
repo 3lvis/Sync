@@ -30,7 +30,6 @@
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
-
         [self changes:changes
         inEntityNamed:entityName
             predicate:predicate
@@ -47,7 +46,6 @@
       dataStack:(DATAStack *)dataStack
      completion:(void (^)(NSError *error))completion {
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
-
         NSError *error = nil;
         NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext
                                                            error:&error];
@@ -87,7 +85,8 @@
         }
     }
 
-    /*if (predicate) {
+    /*
+    if (predicate) {
         NSArray *processedChanges = [changes preprocessForEntityNamed:entityName
                                                        usingPredicate:predicate
                                                                parent:parent
@@ -95,7 +94,8 @@
         if (processedChanges.count > 0) {
             changes = processedChanges;
         }
-    }*/
+    }
+     */
 
     [DATAFilter changes:changes
           inEntityNamed:entityName
