@@ -73,6 +73,7 @@
 		141894A71BDD64AF00EE52CE /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141894A31BDD64AF00EE52CE /* Networking.swift */; };
 		141894A81BDD64AF00EE52CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141894A41BDD64AF00EE52CE /* User.swift */; };
 		141894A91BDD64AF00EE52CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141894A51BDD64AF00EE52CE /* ViewController.swift */; };
+		14959D141C065350004EF790 /* notes_with_user_id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14959D131C065350004EF790 /* notes_with_user_id.json */; };
 		8C1190CE4B3821813B6A3421 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
 		BD2A2CB4A6B4EC694D5E358A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
 		E9FABD68F0CA454B8D54104E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
@@ -166,6 +167,7 @@
 		141894A51BDD64AF00EE52CE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14959D131C065350004EF790 /* notes_with_user_id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_with_user_id.json; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				141894211BDD62F600EE52CE /* users_c.json */,
 				141894221BDD62F600EE52CE /* users_company.json */,
 				141894231BDD62F600EE52CE /* users_notes.json */,
+				14959D131C065350004EF790 /* notes_with_user_id.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1418944C1BDD62F600EE52CE /* numbers.json in Resources */,
+				14959D141C065350004EF790 /* notes_with_user_id.json in Resources */,
 				141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */,
 				141894571BDD62F600EE52CE /* users_company.json in Resources */,
 				141894441BDD62F600EE52CE /* bug-125.json in Resources */,

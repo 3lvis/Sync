@@ -722,4 +722,46 @@
     [dataStack drop];
 }
 
+
+/*
+ When having JSONs like this:
+{
+    "id":12345,
+    "name":"My Project",
+    "category_id":12345
+}
+ 
+ It will should map category_id with the necesary category object using the ID 12345
+*/
+
+- (void)testIDRelationshipMapping {
+    NSArray *usersDictionary = [self objectsFromJSON:@"users_a.json"];
+    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+
+    [Sync changes:usersDictionary
+    inEntityNamed:@"User"
+        dataStack:dataStack
+       completion:nil];
+
+    NSInteger usersCount = [self countForEntity:@"User" inContext:dataStack.mainContext];
+    XCTAssertEqual(usersCount, 8);
+
+    NSArray *notesDictionary = [self objectsFromJSON:@"notes_with_user_id.json"];
+
+    [Sync changes:notesDictionary
+    inEntityNamed:@"Note"
+        dataStack:dataStack
+       completion:nil];
+
+    NSInteger notesCount = [self countForEntity:@"Note" inContext:dataStack.mainContext];
+    XCTAssertEqual(notesCount, 5);
+
+    NSArray *notes = [self fetchEntity:@"Note"
+                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", 0]
+                             inContext:dataStack.mainContext];
+    NSManagedObject *note = notes.firstObject;
+    NSManagedObject *user = [note valueForKey:@"user"];
+    XCTAssertEqualObjects([user valueForKey:@"name"], @"Melisa White");
+}
+
 @end

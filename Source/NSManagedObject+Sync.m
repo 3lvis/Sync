@@ -54,7 +54,6 @@
     NSArray *relationships = [self.entity sync_relationships];
 
     for (NSRelationshipDescription *relationship in relationships) {
-        NSString *keyName = [[relationship.destinationEntity.name lowercaseString] stringByAppendingString:@"_id"];
         if (relationship.isToMany) {
             [self sync_processToManyRelationship:relationship
                                  usingDictionary:objectDictionary
@@ -64,13 +63,6 @@
                    [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
             [self setValue:parent
                     forKey:relationship.name];
-        } else if ([objectDictionary objectForKey:keyName]) {
-            NSError *error = nil;
-            [self sync_processIdRelationship:relationship
-                                    remoteID:[objectDictionary objectForKey:keyName]
-                                      andParent:parent
-                                      dataStack:dataStack
-                                          error:&error];
         } else {
             NSError *error = nil;
             [self sync_processToOneRelationship:relationship
@@ -159,27 +151,6 @@
                                                dataStack:dataStack
                                                    error:&error];
 
-        [self setValue:object
-                forKey:relationship.name];
-    }
-}
-
-- (void)sync_processIdRelationship:(NSRelationshipDescription *)relationship
-                      remoteID:(NSNumber *)remoteID
-                            andParent:(NSManagedObject *)parent
-                            dataStack:(DATAStack *)dataStack
-                                error:(NSError **)error {
-    
-    NSString *entityName = relationship.destinationEntity.name;
-    
-    NSError *errors = nil;
-    NSManagedObject *object = [NSManagedObject sync_safeObjectInContext:self.managedObjectContext
-                                                             entityName:entityName
-                                                               remoteID:remoteID
-                                                                 parent:self
-                                                 parentRelationshipName:relationship.name
-                                                                  error:&errors];
-    if (object) {
         [self setValue:object
                 forKey:relationship.name];
     }
