@@ -49,7 +49,10 @@
         NSError *error = nil;
         NSManagedObject *safeParent = [parent sync_copyInContext:backgroundContext
                                                            error:&error];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", [parent.entity.name lowercaseString], safeParent];
+
+        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:backgroundContext];
+        NSArray<NSRelationshipDescription *> *relationships = [entity relationshipsWithDestinationEntity:parent.entity];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", relationships.firstObject.name, safeParent];
 
         [self changes:changes
         inEntityNamed:entityName

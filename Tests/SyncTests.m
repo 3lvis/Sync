@@ -138,20 +138,20 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
     [Sync changes:objects
-    inEntityNamed:@"User"
+    inEntityNamed:@"SuperUser"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"User"
+    XCTAssertEqual([self countForEntity:@"SuperUser"
                               inContext:dataStack.mainContext], 4);
-    NSArray *users = [self fetchEntity:@"User"
+    NSArray *users = [self fetchEntity:@"SuperUser"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                              inContext:dataStack.mainContext];
     NSManagedObject *user = [users firstObject];
     XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-    NSInteger notesCount = [self countForEntity:@"Note"
-                                      predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
+    NSInteger notesCount = [self countForEntity:@"SuperNote"
+                                      predicate:[NSPredicate predicateWithFormat:@"superUser = %@", user]
                                       inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
 
@@ -165,7 +165,7 @@
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
         // First, we create a parent user, this user is the one that will own all the notes
-        NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+        NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"SuperUser"
                                                               inManagedObjectContext:backgroundContext];
         [user setValue:@6 forKey:@"remoteID"];
         [user setValue:@"Shawn Merrill" forKey:@"name"];
@@ -179,27 +179,27 @@
     }];
 
     // Then we fetch the user on the main context, because we don't want to break things between contexts
-    NSArray *users = [self fetchEntity:@"User"
+    NSArray *users = [self fetchEntity:@"SuperUser"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                              inContext:dataStack.mainContext];
-    if (users.count != 1) abort();
+    XCTAssertEqual(users.count, 1);
 
     // Finally we say "Sync all the notes, for this user"
     [Sync changes:objects
-    inEntityNamed:@"Note"
+    inEntityNamed:@"SuperNote"
            parent:[users firstObject]
         dataStack:dataStack
        completion:nil];
 
     // Here we just make sure that the user has the notes that we just inserted
-    users = [self fetchEntity:@"User"
+    users = [self fetchEntity:@"SuperUser"
                     predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                     inContext:dataStack.mainContext];
     NSManagedObject *user = [users firstObject];
     XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-    NSInteger notesCount = [self countForEntity:@"Note"
-                                      predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
+    NSInteger notesCount = [self countForEntity:@"SuperNote"
+                                      predicate:[NSPredicate predicateWithFormat:@"superUser = %@", user]
                                       inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
 
@@ -211,28 +211,28 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
     [Sync changes:objects
-    inEntityNamed:@"Note"
+    inEntityNamed:@"SuperNote"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Note"
+    XCTAssertEqual([self countForEntity:@"SuperNote"
                               inContext:dataStack.mainContext], 5);
-    NSArray *notes = [self fetchEntity:@"Note"
+    NSArray *notes = [self fetchEntity:@"SuperNote"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
                              inContext:dataStack.mainContext];
     NSManagedObject *note = [notes firstObject];
-    XCTAssertEqual([[[note valueForKey:@"tags"] allObjects] count], 2,
+    XCTAssertEqual([[[note valueForKey:@"superTags"] allObjects] count], 2,
                    @"Note with ID 0 should have 2 tags");
 
-    XCTAssertEqual([self countForEntity:@"Tag"
+    XCTAssertEqual([self countForEntity:@"SuperTag"
                               inContext:dataStack.mainContext], 2);
-    NSArray *tags = [self fetchEntity:@"Tag"
+    NSArray *tags = [self fetchEntity:@"SuperTag"
                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
                             inContext:dataStack.mainContext];
     XCTAssertEqual(tags.count, 1);
 
     NSManagedObject *tag = [tags firstObject];
-    XCTAssertEqual([[[tag valueForKey:@"notes"] allObjects] count], 4,
+    XCTAssertEqual([[[tag valueForKey:@"superNotes"] allObjects] count], 4,
                    @"Tag with ID 1 should have 4 notes");
 
     [dataStack drop];
@@ -243,14 +243,14 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
     [Sync changes:objects
-    inEntityNamed:@"User"
+    inEntityNamed:@"SuperUser"
         dataStack:dataStack
        completion:nil];
 
-    NSArray *array = [self fetchEntity:@"User"
+    NSArray *array = [self fetchEntity:@"SuperUser"
                              inContext:dataStack.mainContext];
     NSManagedObject *user = [array firstObject];
-    XCTAssertEqual([[[user valueForKey:@"notes"] allObjects] count], 3);
+    XCTAssertEqual([[[user valueForKey:@"superNotes"] allObjects] count], 3);
 
     [dataStack drop];
 }
@@ -267,11 +267,11 @@
     NSArray *objects = @[old1, old2];
 
     [Sync changes:objects
-    inEntityNamed:@"User"
+    inEntityNamed:@"SuperUser"
         dataStack:dataStack
        completion:nil];
 
-    NSArray *array = [self fetchEntity:@"User"
+    NSArray *array = [self fetchEntity:@"SuperUser"
                        sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                              inContext:dataStack.mainContext];
     XCTAssertEqual(array.count, 2);
@@ -287,12 +287,12 @@
     NSArray *newObjects = @[updatedOld2, new];
 
     [Sync changes:newObjects
-    inEntityNamed:@"User"
+    inEntityNamed:@"SuperUser"
         predicate:[NSPredicate predicateWithFormat:@"createdAt > %@", [NSDate date]]
         dataStack:dataStack
        completion:nil];
 
-    NSArray *updatedArray = [self fetchEntity:@"User"
+    NSArray *updatedArray = [self fetchEntity:@"SuperUser"
                        sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                              inContext:dataStack.mainContext];
     XCTAssertEqual(updatedArray.count, 3);
@@ -738,28 +738,28 @@
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
 
     [Sync changes:usersDictionary
-    inEntityNamed:@"User"
+    inEntityNamed:@"SuperUser"
         dataStack:dataStack
        completion:nil];
 
-    NSInteger usersCount = [self countForEntity:@"User" inContext:dataStack.mainContext];
+    NSInteger usersCount = [self countForEntity:@"SuperUser" inContext:dataStack.mainContext];
     XCTAssertEqual(usersCount, 8);
 
     NSArray *notesDictionary = [self objectsFromJSON:@"notes_with_user_id.json"];
 
     [Sync changes:notesDictionary
-    inEntityNamed:@"Note"
+    inEntityNamed:@"SuperNote"
         dataStack:dataStack
        completion:nil];
 
-    NSInteger notesCount = [self countForEntity:@"Note" inContext:dataStack.mainContext];
+    NSInteger notesCount = [self countForEntity:@"SuperNote" inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
 
-    NSArray *notes = [self fetchEntity:@"Note"
+    NSArray *notes = [self fetchEntity:@"SuperNote"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
                              inContext:dataStack.mainContext];
     NSManagedObject *note = notes.firstObject;
-    NSManagedObject *user = [note valueForKey:@"user"];
+    NSManagedObject *user = [note valueForKey:@"superUser"];
     XCTAssertEqualObjects([user valueForKey:@"name"], @"Melisa White");
 
     [dataStack drop];
