@@ -221,25 +221,26 @@ NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobb
 NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
 // ==> "cake" : 12.50, "juice" : 0.50
 ```
-
 #### Dates
 
-We went for just supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) out of the box because that's the most common format when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
-
-```json
-{
-  "created_at": "2014-01-01T00:00:00+00:00",
-  "updated_at": "2014-01-02",
-  "number_of_attendes": 20
-}
-```
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```objc
+NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
+                         @"updated_at" : @"2014-01-02",
+                         @"published_at": @"1441843200"
+                         @"number_of_attendes": @20};
+
+[managedObject hyp_fillWithDictionary:values];
+
 NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
 // ==> "2014-01-01 00:00:00 +00:00" 
 
 NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
 // ==> "2014-01-02 00:00:00 +00:00" 
+
+NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
+// ==> "2015-09-10 00:00:00 +00:00" 
 ```
 
 ### Networking
