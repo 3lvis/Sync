@@ -17,7 +17,7 @@
                                        parent:(NSManagedObject *)parent
                        parentRelationshipName:(NSString *)relationshipName
                                         error:(NSError **)error {
-    if(!remoteID) {
+    if (!remoteID) {
         return [parent valueForKey:relationshipName];
     }
 
@@ -54,7 +54,10 @@
     NSArray *relationships = [self.entity sync_relationships];
 
     for (NSRelationshipDescription *relationship in relationships) {
-        NSString *keyName = [[relationship.destinationEntity.name lowercaseString] stringByAppendingString:@"_id"];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:relationship.entity.name inManagedObjectContext:self.managedObjectContext];
+        NSArray<NSRelationshipDescription *> *relationships = [entity relationshipsWithDestinationEntity:relationship.destinationEntity];
+        NSString *keyName = [[relationships.firstObject.name hyp_remoteString] stringByAppendingString:@"_id"];
+        NSLog(@"keyName: %@", keyName);
         if (relationship.isToMany) {
             [self sync_processToManyRelationship:relationship
                                  usingDictionary:objectDictionary
@@ -66,13 +69,14 @@
                     forKey:relationship.name];
         } else if ([objectDictionary objectForKey:keyName]) {
             NSError *error = nil;
-            [self sync_processIdRelationship:relationship
+            [self sync_processIDRelationship:relationship
                                     remoteID:[objectDictionary objectForKey:keyName]
-                                      andParent:parent
-                                      dataStack:dataStack
-                                          error:&error];
+                                   andParent:parent
+                                   dataStack:dataStack
+                                       error:&error];
         } else {
             NSError *error = nil;
+
             [self sync_processToOneRelationship:relationship
                                 usingDictionary:objectDictionary
                                       andParent:parent
@@ -164,14 +168,13 @@
     }
 }
 
-- (void)sync_processIdRelationship:(NSRelationshipDescription *)relationship
-                      remoteID:(NSNumber *)remoteID
-                            andParent:(NSManagedObject *)parent
-                            dataStack:(DATAStack *)dataStack
-                                error:(NSError **)error {
-    
+- (void)sync_processIDRelationship:(NSRelationshipDescription *)relationship
+                          remoteID:(NSNumber *)remoteID
+                         andParent:(NSManagedObject *)parent
+                         dataStack:(DATAStack *)dataStack
+                             error:(NSError **)error {
     NSString *entityName = relationship.destinationEntity.name;
-    
+
     NSError *errors = nil;
     NSManagedObject *object = [NSManagedObject sync_safeObjectInContext:self.managedObjectContext
                                                              entityName:entityName
