@@ -57,7 +57,6 @@
         NSEntityDescription *entity = [NSEntityDescription entityForName:relationship.entity.name inManagedObjectContext:self.managedObjectContext];
         NSArray<NSRelationshipDescription *> *relationships = [entity relationshipsWithDestinationEntity:relationship.destinationEntity];
         NSString *keyName = [[relationships.firstObject.name hyp_remoteString] stringByAppendingString:@"_id"];
-        NSLog(@"keyName: %@", keyName);
         if (relationship.isToMany) {
             [self sync_processToManyRelationship:relationship
                                  usingDictionary:objectDictionary
