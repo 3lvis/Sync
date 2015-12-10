@@ -249,8 +249,10 @@ You are free to use any networking library.
 
 ### Supported iOS Versions
 
-`iOS 7 or above`
-
+- iOS 8 or above
+- OS X 10.9 or above
+- watchOS 2.0 or above
+- tvOS 9.0 or above
 
 ## Components
 
