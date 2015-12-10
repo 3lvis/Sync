@@ -323,7 +323,7 @@ For example a author can have many documents and a document can have many author
   {
     "id": 1,
     "title": "Document name 1",
-    "comments": [
+    "authors": [
       {
         "id":0,
         "body":"Michael Jackson"
