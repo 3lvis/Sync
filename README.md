@@ -12,7 +12,6 @@
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
 * Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
 * Uniquing, Core Data does this based on `objectID`s, we use your remote key (such as `id`) for this
-* Works in iOS, OS X, watchOS and tvOS.
 
 ## Table of Contents
 
