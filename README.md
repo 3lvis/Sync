@@ -32,7 +32,7 @@
   * [Attribute Mapping](#attribute-mapping)
   * [Attribute Types](#attribute-types)
   * [Networking](#networking)
-  * [Supported iOS Versions](#supported-ios-versions)
+  * [Supported OS Versions](#supported-ios-versions)
 * [Components](#components)
 * [FAQ](#faq)
 * [Credits](#credits)
