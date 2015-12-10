@@ -32,7 +32,7 @@
   * [Attribute Mapping](#attribute-mapping)
   * [Attribute Types](#attribute-types)
   * [Networking](#networking)
-  * [Supported OS Versions](#supported-ios-versions)
+  * [Supported iOS, OS X, watchOS and tvOS Versions](#supported-ios-versions)
 * [Components](#components)
 * [FAQ](#faq)
 * [Credits](#credits)
@@ -247,7 +247,7 @@ NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
 
 You are free to use any networking library.
 
-### Supported iOS Versions
+### Supported iOS, OS X, watchOS and tvOS Versions
 
 - iOS 8 or above
 - OS X 10.9 or above
