@@ -32,7 +32,7 @@
   * [Attribute Mapping](#attribute-mapping)
   * [Attribute Types](#attribute-types)
   * [Networking](#networking)
-  * [Supported iOS, OS X, watchOS and tvOS Versions](#supported-ios-versions)
+  * [Supported iOS, OS X, watchOS and tvOS Versions](#supported-ios-os-x-watchos-and-tvos-versions)
 * [Components](#components)
 * [FAQ](#faq)
 * [Credits](#credits)
