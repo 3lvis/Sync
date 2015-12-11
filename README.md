@@ -30,6 +30,9 @@
   * [Primary Key](#primary-key)
   * [Attribute Mapping](#attribute-mapping)
   * [Attribute Types](#attribute-types)
+  * [Relationship Mapping](#relationship-mapping)
+    * [One-to-many](#one-to-many)
+    * [One-to-one](#one-to-one)
   * [Networking](#networking)
   * [Supported iOS, OS X, watchOS and tvOS Versions](#supported-ios-os-x-watchos-and-tvos-versions)
 * [Components](#components)
@@ -240,6 +243,69 @@ NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
 
 NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
 // ==> "2015-09-10 00:00:00 +00:00" 
+```
+### Relationship mapping
+
+**Sync** will map your relationships to their JSON counterparts. In the [Example](#example) presented at the beginning of this document you can see a very basic example of relationship mapping.
+
+#### One-to-many
+
+Lets consider the following Core Data model.
+
+![One-to-many](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
+
+This model has a one-to-many relationship between `User` and `Note`, so in other words a user has many notes. Here can also find an inverse relationship to user on the Note model. This is required for Sync to have more context on how your models are presented. Finally, in the Core Data model there is a cascade relationship between user and note, so when a user is deleted all the notes linked to that user are also removed (you can specify any delete rule).
+
+So when Sync, looks into the following JSON, it will sync all the notes for that specific user, doing the necesary inverse relationship dance.
+
+```json
+[
+  {
+    "id": 6,
+    "name": "Shawn Merrill",
+    "notes": [
+      {
+        "id": 0,
+        "text": "Shawn Merril's diary, episode 1",
+      }
+    ]
+  }
+]
+```
+
+#### One-to-one
+
+A similar procedure is applied to one-to-one relationships. For example lets say you have the following model:
+
+![one-to-one](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/one-to-one.png)
+
+This model is simple, a user as a company. A compatible JSON would look like this:
+
+```json
+[
+  {
+    "id": 6,
+    "name": "Shawn Merrill",
+    "company": {
+      "id": 0,
+      "text": "Facebook",
+    }
+  }
+]
+```
+
+As you can see this procedures require the full JSON object to be included, but when working with APIs, sometimes you already have synced all the required items. Sync supports this too.
+
+For example, in the one-to-one example, you have a user, that has one company. If you already have synced all the companies then your JSON would only need the `company_id`. As a sidenote only do this if you are 100% sure that all the required items (companies) have been synced.
+
+```json
+[
+  {
+    "id": 6,
+    "name": "Shawn Merrill",
+    "company_id": 0
+  }
+]
 ```
 
 ### Networking
