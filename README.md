@@ -31,6 +31,8 @@
   * [Attribute Mapping](#attribute-mapping)
   * [Attribute Types](#attribute-types)
   * [Relationship Mapping](#relationship-mapping)
+   * [One-to-many](#one-to-many)
+   * [One-to-one](#one-to-one)
   * [Networking](#networking)
   * [Supported iOS, OS X, watchOS and tvOS Versions](#supported-ios-os-x-watchos-and-tvos-versions)
 * [Components](#components)
