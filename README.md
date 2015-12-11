@@ -250,7 +250,11 @@ NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
 
 #### One-to-many
 
-The [Core Data model](#model) in the first example has a one-to-many relationship between `User` and `Note`, so in other words a user has many notes. Here can also find an inverse relationship to user on the Note model. This is required for Sync to have more context on how your models are presented. Finally, in the Core Data model there is a cascade relationship between user and note, so when a user is deleted all the notes linked to that user are also removed (you can specify any delete rule).
+Lets consider the following Core Data model.
+
+![One-to-many](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
+
+This model has a one-to-many relationship between `User` and `Note`, so in other words a user has many notes. Here can also find an inverse relationship to user on the Note model. This is required for Sync to have more context on how your models are presented. Finally, in the Core Data model there is a cascade relationship between user and note, so when a user is deleted all the notes linked to that user are also removed (you can specify any delete rule).
 
 So when Sync, looks into the following JSON, it will sync all the notes for that specific user, doing the necesary inverse relationship dance.
 
