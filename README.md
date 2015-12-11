@@ -33,6 +33,7 @@
   * [Relationship Mapping](#relationship-mapping)
     * [One-to-many](#one-to-many)
     * [One-to-one](#one-to-one)
+    * [One-to-one (simplified)](#one-to-one-simplified)
   * [Networking](#networking)
   * [Supported iOS, OS X, watchOS and tvOS Versions](#supported-ios-os-x-watchos-and-tvos-versions)
 * [Components](#components)
@@ -293,6 +294,8 @@ This model is simple, a user as a company. A compatible JSON would look like thi
   }
 ]
 ```
+
+#### One-to-one Simplified
 
 As you can see this procedures require the full JSON object to be included, but when working with APIs, sometimes you already have synced all the required items. Sync supports this too.
 
