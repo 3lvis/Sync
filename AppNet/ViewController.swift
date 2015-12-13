@@ -5,8 +5,8 @@ import CoreData
 class ViewController: UITableViewController {
     let CellIdentifier = "CellID"
 
-    let dataStack: DATAStack
-    lazy var networking: Networking = { [unowned self] in Networking(dataStack: self.dataStack) }()
+    unowned var dataStack: DATAStack
+    lazy var networking: Networking = Networking(dataStack: self.dataStack)
     var items = [Data]()
 
     // MARK: Initializers
@@ -26,14 +26,18 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
 
         title = "AppNet"
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier)
 
-        setUpRefreshControl()
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: "fetchNewData", forControlEvents: .ValueChanged)
+
         fetchCurrentObjects()
         fetchNewData()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeNotification:", name: NSManagedObjectContextObjectsDidChangeNotification, object: self.dataStack.mainContext)
     }
+
+    // MARK: Private methods
 
     func changeNotification(notification: NSNotification) {
         let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey]
@@ -45,13 +49,6 @@ class ViewController: UITableViewController {
         print("insertedObjects: \(insertedObjects)")
     }
 
-    func setUpRefreshControl() {
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: "fetchNewData", forControlEvents: .ValueChanged)
-    }
-
-    // MARK: Networking methods
-
     func fetchNewData() {
         networking.fetchItems { _ in
             self.fetchCurrentObjects()
@@ -60,30 +57,31 @@ class ViewController: UITableViewController {
         }
     }
 
-    // MARK: Model methods
-
     func fetchCurrentObjects() {
         let request = NSFetchRequest(entityName: "Data")
         request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         items = (try! dataStack.mainContext.executeFetchRequest(request)) as! [Data]
-
         tableView.reloadData()
     }
+}
 
+// MARK: UITableViewDataSource
+
+extension ViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier)
-        let data = self.items[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier)
+        let data = items[indexPath.row]
         cell?.textLabel?.text = data.text
 
         // Workaround: The proper value of `numberOfLines` should be 0
         // but there's a weird bug that causes UITableView to go crazy
         cell?.textLabel?.numberOfLines = 1
         cell?.detailTextLabel?.text = data.user.username
-        
+
         return cell!
     }
 }

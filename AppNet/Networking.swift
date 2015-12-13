@@ -11,24 +11,25 @@ class Networking {
     }
 
     func fetchItems(completion: (NSError?) -> Void) {
-
-        if let urlAppNet = NSURL(string: AppNetURL) {
-            let request = NSURLRequest(URL: urlAppNet)
-            let operationQueue = NSOperationQueue()
-
-            NSURLConnection.sendAsynchronousRequest(request, queue: operationQueue) { [unowned self] _, data, error in
-                if let data = data, json = (try? NSJSONSerialization.JSONObjectWithData(data,
-                    options: NSJSONReadingOptions.MutableContainers)) as? Dictionary<String, AnyObject> {
-                        Sync.changes(json["data"] as! Array,
-                            inEntityNamed: "Data",
-                            dataStack: self.dataStack,
-                            completion: { error in
-                                completion(error)
-                        })
-                } else {
+        let session = NSURLSession.sharedSession()
+        let request = NSURLRequest(URL: NSURL(string: AppNetURL)!)
+        session.dataTaskWithRequest(request, completionHandler: { data, response, error in
+            if let data = data, json = (try? NSJSONSerialization.JSONObjectWithData(data, options: [])) as? [String: AnyObject] {
+                Sync.changes(json["data"] as! Array, inEntityNamed: "Data", dataStack: self.dataStack, completion: { error in
                     completion(error)
-                }
+                })
+            } else {
+                completion(error)
             }
-        }
+        }).resume()
+    }
+
+    func fetchLocalItems(completion: (NSError?) -> Void) {
+        guard let url = NSURL(string: "global.json"), filePath = NSBundle.mainBundle().pathForResource(url.URLByDeletingPathExtension?.absoluteString, ofType: url.pathExtension) else { fatalError() }
+        guard let data = NSData(contentsOfFile: filePath) else { fatalError() }
+        let json = try! NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: AnyObject]
+        Sync.changes(json["data"] as! Array, inEntityNamed: "Data", dataStack: self.dataStack, completion: { error in
+            completion(error)
+        })
     }
 }

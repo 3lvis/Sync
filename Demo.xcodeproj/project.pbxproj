@@ -74,6 +74,7 @@
 		141894A81BDD64AF00EE52CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141894A41BDD64AF00EE52CE /* User.swift */; };
 		141894A91BDD64AF00EE52CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141894A51BDD64AF00EE52CE /* ViewController.swift */; };
 		14959D141C065350004EF790 /* notes_with_user_id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14959D131C065350004EF790 /* notes_with_user_id.json */; };
+		14D292681C1DD07E00467F6B /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = 14D292671C1DD07E00467F6B /* global.json */; };
 		8C1190CE4B3821813B6A3421 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
 		BD2A2CB4A6B4EC694D5E358A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
 		E9FABD68F0CA454B8D54104E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
@@ -173,6 +174,7 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14D292671C1DD07E00467F6B /* global.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = global.json; sourceTree = "<group>"; };
 		9E482492041434DB374B1948 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13281341A77530FC5AE626A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E80F7331DFE41909E28F2702 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				1418948C1BDD635800EE52CE /* LaunchScreen.storyboard */,
 				1418948F1BDD635800EE52CE /* Info.plist */,
 				141894871BDD635800EE52CE /* AppNet.xcdatamodeld */,
+				14D292671C1DD07E00467F6B /* global.json */,
 			);
 			path = AppNet;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D292681C1DD07E00467F6B /* global.json in Resources */,
 				1418948B1BDD635800EE52CE /* Assets.xcassets in Resources */,
 				1418948E1BDD635800EE52CE /* LaunchScreen.storyboard in Resources */,
 			);
