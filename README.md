@@ -408,10 +408,10 @@ For example a author can have many documents and a document can have many author
 Logging changes to Core Data is quite simple, just subscribe to changes like this and print the needed elements:
 
 ```objc
-[[NSNotificationCenter defaultCenter]addObserver:self
-                                        selector:@selector(changeNotification:)
-                                            name:NSManagedObjectContextObjectsDidChangeNotification
-                                          object:self.dataStack.mainContext];
+[[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(changeNotification:)
+                                             name:NSManagedObjectContextObjectsDidChangeNotification
+                                           object:self.dataStack.mainContext];
                                           
 - (void)changeNotification:(NSNotification *)notification {
     NSSet *deletedObjects   = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
@@ -420,6 +420,8 @@ Logging changes to Core Data is quite simple, just subscribe to changes like thi
 ```
 
 Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/hyperoslo/Sync/blob/master/AppNet/Networking.swift#L27-L57).
+
+If you're using Swift to be able to use `NSNotificationCenter` your class should be a subclass of `NSObject` or similar.
 
 #### Crash on NSParameterAssert
 
