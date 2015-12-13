@@ -414,11 +414,12 @@ Logging changes to Core Data is quite simple, just subscribe to changes like thi
                                           object:self.dataStack.mainContext];
                                           
 - (void)changeNotification:(NSNotification *)notification {
-    NSSet *updatedObjects   = [[notification userInfo] objectForKey:NSUpdatedObjectsKey];
     NSSet *deletedObjects   = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
     NSSet *insertedObjects  = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
 }
 ```
+
+Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/hyperoslo/Sync/blob/master/AppNet/Networking.swift#L27-L57).
 
 #### Crash on NSParameterAssert
 
