@@ -73,8 +73,8 @@ extension ViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier)
-        let data = self.items[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier)
+        let data = items[indexPath.row]
         cell?.textLabel?.text = data.text
 
         // Workaround: The proper value of `numberOfLines` should be 0
