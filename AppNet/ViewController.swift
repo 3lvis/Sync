@@ -36,6 +36,7 @@ class ViewController: UITableViewController {
     }
 
     func fetchNewData() {
+        // Use the `networking.fetchLocalItems` method to try change notifications
         networking.fetchItems { _ in
             self.fetchCurrentObjects()
 
