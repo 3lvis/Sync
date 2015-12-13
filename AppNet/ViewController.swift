@@ -39,7 +39,7 @@ class ViewController: UITableViewController {
 
     // MARK: Private methods
 
-    private func changeNotification(notification: NSNotification) {
+    func changeNotification(notification: NSNotification) {
         let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey]
         let deletedObjects = notification.userInfo?[NSDeletedObjectsKey]
         let insertedObjects = notification.userInfo?[NSInsertedObjectsKey]
@@ -49,7 +49,7 @@ class ViewController: UITableViewController {
         print("insertedObjects: \(insertedObjects)")
     }
 
-    private func fetchNewData() {
+    func fetchNewData() {
         networking.fetchItems { _ in
             self.fetchCurrentObjects()
 
@@ -57,7 +57,7 @@ class ViewController: UITableViewController {
         }
     }
 
-    private func fetchCurrentObjects() {
+    func fetchCurrentObjects() {
         let request = NSFetchRequest(entityName: "Data")
         request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         items = (try! dataStack.mainContext.executeFetchRequest(request)) as! [Data]

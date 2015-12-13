@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "min_id": "66582440",
+    "code": 200,
+    "max_id": "66582467",
+    "more": true
+  },
+  "data": [
+    {
+      "created_at": "2015-12-13T15:43:35Z",
+      "text": "Hei there",
+      "id": "66582467",
+      "user": {
+        "username": "sportsmole",
+        "id": "213778",
+        "name": "Sports Mole"
+      }
+    },
+    {
+      "created_at": "2015-12-13T15:43:25Z",
+      "text": "Interesting tweet",
+      "id": "66582466",
+      "user": {
+        "username": "observer",
+        "id": "293913",
+        "name": "kayotinsky"
+      }
+    }
+  ]
+}
