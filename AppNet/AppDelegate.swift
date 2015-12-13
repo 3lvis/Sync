@@ -17,10 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSForegroundColorAttributeName : UIColor.whiteColor()]
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-
-        let initialViewController = ViewController(dataStack: dataStack)
-
-        window?.rootViewController = UINavigationController(rootViewController: initialViewController)
+        window?.rootViewController = UINavigationController(rootViewController: ViewController(dataStack: dataStack))
         window?.makeKeyAndVisible()
 
         return true
