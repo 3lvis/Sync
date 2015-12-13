@@ -33,23 +33,10 @@ class ViewController: UITableViewController {
 
         fetchCurrentObjects()
         fetchNewData()
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeNotification:", name: NSManagedObjectContextObjectsDidChangeNotification, object: self.dataStack.mainContext)
-    }
-
-    // MARK: Private methods
-
-    func changeNotification(notification: NSNotification) {
-        let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey]
-        let deletedObjects = notification.userInfo?[NSDeletedObjectsKey]
-        let insertedObjects = notification.userInfo?[NSInsertedObjectsKey]
-
-        print("updatedObjects: \(updatedObjects)")
-        print("deletedObjects: \(deletedObjects)")
-        print("insertedObjects: \(insertedObjects)")
     }
 
     func fetchNewData() {
+        // Use the `networking.fetchLocalItems` method to try change notifications
         networking.fetchItems { _ in
             self.fetchCurrentObjects()
 
@@ -76,10 +63,6 @@ extension ViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier)
         let data = items[indexPath.row]
         cell?.textLabel?.text = data.text
-
-        // Workaround: The proper value of `numberOfLines` should be 0
-        // but there's a weird bug that causes UITableView to go crazy
-        cell?.textLabel?.numberOfLines = 1
         cell?.detailTextLabel?.text = data.user.username
 
         return cell!
