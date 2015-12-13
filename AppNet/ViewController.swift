@@ -33,20 +33,6 @@ class ViewController: UITableViewController {
 
         fetchCurrentObjects()
         fetchNewData()
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeNotification:", name: NSManagedObjectContextObjectsDidChangeNotification, object: self.dataStack.mainContext)
-    }
-
-    // MARK: Private methods
-
-    func changeNotification(notification: NSNotification) {
-        let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey]
-        let deletedObjects = notification.userInfo?[NSDeletedObjectsKey]
-        let insertedObjects = notification.userInfo?[NSInsertedObjectsKey]
-
-        print("updatedObjects: \(updatedObjects)")
-        print("deletedObjects: \(deletedObjects)")
-        print("insertedObjects: \(insertedObjects)")
     }
 
     func fetchNewData() {
