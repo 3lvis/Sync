@@ -63,10 +63,6 @@ extension ViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier)
         let data = items[indexPath.row]
         cell?.textLabel?.text = data.text
-
-        // Workaround: The proper value of `numberOfLines` should be 0
-        // but there's a weird bug that causes UITableView to go crazy
-        cell?.textLabel?.numberOfLines = 1
         cell?.detailTextLabel?.text = data.user.username
 
         return cell!
