@@ -102,7 +102,7 @@ Sync.changes(
 [Sync changes:JSON
 inEntityNamed:@"User"
     dataStack:dataStack
-   completion:^{
+   completion:^(NSError *error) {
        // New objects have been inserted
        // Existing objects have been updated
        // And not found objects have been deleted
