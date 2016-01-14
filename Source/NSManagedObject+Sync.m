@@ -37,7 +37,6 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name
                                               inManagedObjectContext:context];
     NSString *localKey = [entity sync_localKey];
-    NSParameterAssert(localKey); // Failed because remoteID is missing, make sure your entity has this attribute
     NSString *remoteID = [self valueForKey:localKey];
 
     return [NSManagedObject sync_safeObjectInContext:context
