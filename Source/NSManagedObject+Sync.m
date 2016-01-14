@@ -130,7 +130,8 @@
     } else if (hasValidManyToManyRelationship) {
         NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
         [relatedObjects addObject:parent];
-        [self setValue:relatedObjects forKey:relationship.name];
+        [self setValue:relatedObjects
+                forKey:relationship.name];
     }
 }
 
