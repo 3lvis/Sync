@@ -65,8 +65,11 @@
                                        dataStack:dataStack];
         } else if (parent &&
                    [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
-            [self setValue:parent
-                    forKey:relationship.name];
+            id currentParent = [self valueForKey:relationship.name];
+            if (![currentParent isEqual:parent]) {
+                [self setValue:parent
+                        forKey:relationship.name];
+            }
         } else if ([objectDictionary objectForKey:keyName]) {
             NSError *error = nil;
             [self sync_processIDRelationship:relationship
