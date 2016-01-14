@@ -129,9 +129,11 @@
            completion:nil];
     } else if (hasValidManyToManyRelationship) {
         NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
-        [relatedObjects addObject:parent];
-        [self setValue:relatedObjects
-                forKey:relationship.name];
+        if (![relatedObjects containsObject:parent]) {
+            [relatedObjects addObject:parent];
+            [self setValue:relatedObjects
+                    forKey:relationship.name];
+        }
     }
 }
 
@@ -189,8 +191,11 @@
                                                  parentRelationshipName:relationship.name
                                                                   error:&errors];
     if (object) {
-        [self setValue:object
-                forKey:relationship.name];
+        id currentRelationship = [self valueForKey:relationship.name];
+        if (![currentRelationship isEqual:object]) {
+            [self setValue:object
+                    forKey:relationship.name];
+        }
     }
 }
 
