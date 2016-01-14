@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E7f" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
     <entity name="Collection" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="numbers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Number" inverseName="parent" inverseEntity="Number" syncable="YES"/>
     </entity>
     <entity name="Number" syncable="YES">
@@ -12,7 +13,7 @@
         <relationship name="parentNumber" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Number" inverseName="numbers" inverseEntity="Number" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Collection" positionX="-254" positionY="338" width="128" height="58"/>
+        <element name="Collection" positionX="-254" positionY="338" width="128" height="88"/>
         <element name="Number" positionX="-72" positionY="360" width="128" height="118"/>
     </elements>
 </model>
