@@ -37,7 +37,6 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:self.entity.name
                                               inManagedObjectContext:context];
     NSString *localKey = [entity sync_localKey];
-    NSParameterAssert(localKey); // Failed because remoteID is missing, make sure your entity has this attribute
     NSString *remoteID = [self valueForKey:localKey];
 
     return [NSManagedObject sync_safeObjectInContext:context
@@ -65,8 +64,11 @@
                                        dataStack:dataStack];
         } else if (parent &&
                    [relationship.destinationEntity.name isEqualToString:parent.entity.name]) {
-            [self setValue:parent
-                    forKey:relationship.name];
+            id currentParent = [self valueForKey:relationship.name];
+            if (![currentParent isEqual:parent]) {
+                [self setValue:parent
+                        forKey:relationship.name];
+            }
         } else if ([objectDictionary objectForKey:keyName]) {
             NSError *error = nil;
             [self sync_processIDRelationship:relationship
@@ -126,8 +128,11 @@
            completion:nil];
     } else if (hasValidManyToManyRelationship) {
         NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
-        [relatedObjects addObject:parent];
-        [self setValue:relatedObjects forKey:relationship.name];
+        if (![relatedObjects containsObject:parent]) {
+            [relatedObjects addObject:parent];
+            [self setValue:relatedObjects
+                    forKey:relationship.name];
+        }
     }
 }
 
@@ -162,9 +167,11 @@
                                                andParent:self
                                                dataStack:dataStack
                                                    error:&error];
-
-        [self setValue:object
-                forKey:relationship.name];
+        id currentRelationship = [self valueForKey:relationship.name];
+        if (![currentRelationship isEqual:object]) {
+            [self setValue:object
+                    forKey:relationship.name];
+        }
     }
 }
 
@@ -183,8 +190,11 @@
                                                  parentRelationshipName:relationship.name
                                                                   error:&errors];
     if (object) {
-        [self setValue:object
-                forKey:relationship.name];
+        id currentRelationship = [self valueForKey:relationship.name];
+        if (![currentRelationship isEqual:object]) {
+            [self setValue:object
+                    forKey:relationship.name];
+        }
     }
 }
 

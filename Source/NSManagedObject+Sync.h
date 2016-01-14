@@ -30,4 +30,10 @@
                             dataStack:(DATAStack *)dataStack
                                 error:(NSError **)error;
 
+- (void)sync_processIDRelationship:(NSRelationshipDescription *)relationship
+                          remoteID:(NSNumber *)remoteID
+                         andParent:(NSManagedObject *)parent
+                         dataStack:(DATAStack *)dataStack
+                             error:(NSError **)error;
+
 @end
