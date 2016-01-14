@@ -166,9 +166,11 @@
                                                andParent:self
                                                dataStack:dataStack
                                                    error:&error];
-
-        [self setValue:object
-                forKey:relationship.name];
+        id currentRelationship = [self valueForKey:relationship.name];
+        if (![currentRelationship isEqual:object]) {
+            [self setValue:object
+                    forKey:relationship.name];
+        }
     }
 }
 
