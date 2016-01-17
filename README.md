@@ -207,7 +207,7 @@ To map **arrays** or **dictionaries** just set attributes as `Binary Data` on th
 
 ```objc
 NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
-// ==> "football", "soccer", "code" 
+// ==> "football", "soccer", "code"
 ```
 
 #### Retreiving mapped dictionaries
@@ -237,14 +237,19 @@ NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
 [managedObject hyp_fillWithDictionary:values];
 
 NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
-// ==> "2014-01-01 00:00:00 +00:00" 
+// ==> "2014-01-01 00:00:00 +00:00"
 
 NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
-// ==> "2014-01-02 00:00:00 +00:00" 
+// ==> "2014-01-02 00:00:00 +00:00"
 
 NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
-// ==> "2015-09-10 00:00:00 +00:00" 
+// ==> "2015-09-10 00:00:00 +00:00"
 ```
+
+#### JSON representation from a NSManagedObject
+
+**Sync**'s dependency [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper#json-representation-from-a-nsmanagedobject)
+
 ### Relationship mapping
 
 **Sync** will map your relationships to their JSON counterparts. In the [Example](#example) presented at the beginning of this document you can see a very basic example of relationship mapping.
@@ -412,7 +417,7 @@ Logging changes to Core Data is quite simple, just subscribe to changes like thi
                                          selector:@selector(changeNotification:)
                                              name:NSManagedObjectContextObjectsDidChangeNotification
                                            object:self.dataStack.mainContext];
-                                          
+
 - (void)changeNotification:(NSNotification *)notification {
     NSSet *deletedObjects   = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
     NSSet *insertedObjects  = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
