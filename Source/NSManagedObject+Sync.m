@@ -11,6 +11,16 @@
 
 @implementation NSManagedObject (Sync)
 
+/**
+ Fetches a NSManagedObject in the requested context.
+ - parameter context: The NSManagedObjectContext where the object will be fetched.
+ - parameter entityName: The name of the Core Data entity.
+ - parameter remoteID: The primary key.
+ - parameter parent: The parent of the object.
+ - parameter relationshipName: The name of the relationship with the parent.
+ - parameter error: The error to be fullfilled if the operation fails.
+ - returns: A NSManagedObject contained in the provided context.
+ */
 + (NSManagedObject *)sync_safeObjectInContext:(NSManagedObjectContext *)context
                                    entityName:(NSString *)entityName
                                      remoteID:(id)remoteID
