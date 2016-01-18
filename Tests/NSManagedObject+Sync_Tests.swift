@@ -21,7 +21,7 @@ class NSManagedObject_Sync_Tests: XCTestCase {
 
     }
 
-    func sync_processIDRelationship() {
+    func testProcessIDRelationship() {
 
     }
 }
