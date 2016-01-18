@@ -11,10 +11,6 @@
 		1405FA4F1BDD654600F10DFA /* _DNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405FA491BDD654600F10DFA /* _DNStory.m */; };
 		1405FA501BDD654600F10DFA /* DNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405FA4B1BDD654600F10DFA /* DNComment.m */; };
 		1405FA511BDD654600F10DFA /* DNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405FA4D1BDD654600F10DFA /* DNStory.m */; };
-		141894031BDD62E900EE52CE /* NSArray+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 141893FC1BDD62E900EE52CE /* NSArray+Sync.m */; };
-		141894041BDD62E900EE52CE /* NSEntityDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 141893FE1BDD62E900EE52CE /* NSEntityDescription+Sync.m */; };
-		141894051BDD62E900EE52CE /* NSManagedObject+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 141894001BDD62E900EE52CE /* NSManagedObject+Sync.m */; };
-		141894061BDD62E900EE52CE /* Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 141894021BDD62E900EE52CE /* Sync.m */; };
 		1418943F1BDD62F600EE52CE /* BaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 141894091BDD62F600EE52CE /* BaseTestCase.m */; };
 		141894401BDD62F600EE52CE /* bug-113-comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */; };
 		141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */; };
@@ -90,14 +86,6 @@
 		1405FA4B1BDD654600F10DFA /* DNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNComment.m; sourceTree = "<group>"; };
 		1405FA4C1BDD654600F10DFA /* DNStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNStory.h; sourceTree = "<group>"; };
 		1405FA4D1BDD654600F10DFA /* DNStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNStory.m; sourceTree = "<group>"; };
-		141893FB1BDD62E900EE52CE /* NSArray+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sync.h"; sourceTree = "<group>"; };
-		141893FC1BDD62E900EE52CE /* NSArray+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sync.m"; sourceTree = "<group>"; };
-		141893FD1BDD62E900EE52CE /* NSEntityDescription+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+Sync.h"; sourceTree = "<group>"; };
-		141893FE1BDD62E900EE52CE /* NSEntityDescription+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+Sync.m"; sourceTree = "<group>"; };
-		141893FF1BDD62E900EE52CE /* NSManagedObject+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Sync.h"; sourceTree = "<group>"; };
-		141894001BDD62E900EE52CE /* NSManagedObject+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Sync.m"; sourceTree = "<group>"; };
-		141894011BDD62E900EE52CE /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
-		141894021BDD62E900EE52CE /* Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sync.m; sourceTree = "<group>"; };
 		141894081BDD62F600EE52CE /* BaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
 		141894091BDD62F600EE52CE /* BaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestCase.m; sourceTree = "<group>"; };
 		1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-comments-no-id.json"; sourceTree = "<group>"; };
@@ -341,7 +329,6 @@
 			isa = PBXGroup;
 			children = (
 				14C136501AB7849300B7B07A /* Metadata */,
-				14C0AF841BD6D4370009ECBE /* Source */,
 				146D72AF1AB782920058798C /* Tests */,
 				1418946C1BDD634F00EE52CE /* DesignerNews */,
 				141894841BDD635800EE52CE /* AppNet */,
@@ -384,21 +371,6 @@
 				146D72B11AB782920058798C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		14C0AF841BD6D4370009ECBE /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				141893FB1BDD62E900EE52CE /* NSArray+Sync.h */,
-				141893FC1BDD62E900EE52CE /* NSArray+Sync.m */,
-				141893FD1BDD62E900EE52CE /* NSEntityDescription+Sync.h */,
-				141893FE1BDD62E900EE52CE /* NSEntityDescription+Sync.m */,
-				141893FF1BDD62E900EE52CE /* NSManagedObject+Sync.h */,
-				141894001BDD62E900EE52CE /* NSManagedObject+Sync.m */,
-				141894011BDD62E900EE52CE /* Sync.h */,
-				141894021BDD62E900EE52CE /* Sync.m */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		14C136501AB7849300B7B07A /* Metadata */ = {
@@ -766,7 +738,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D4CA801C48176F00CAB8A0 /* NSManagedObject+Sync_Tests.swift in Sources */,
-				141894061BDD62E900EE52CE /* Sync.m in Sources */,
 				141894611BDD62F600EE52CE /* Patients.xcdatamodeld in Sources */,
 				1418945B1BDD62F600EE52CE /* Bug125.xcdatamodeld in Sources */,
 				1418945C1BDD62F600EE52CE /* Bug84.xcdatamodeld in Sources */,
@@ -774,16 +745,13 @@
 				141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */,
 				141894621BDD62F600EE52CE /* Recursive.xcdatamodeld in Sources */,
 				1418943F1BDD62F600EE52CE /* BaseTestCase.m in Sources */,
-				141894041BDD62E900EE52CE /* NSEntityDescription+Sync.m in Sources */,
 				141894591BDD62F600EE52CE /* Bug113.xcdatamodeld in Sources */,
 				141894651BDD62F600EE52CE /* NSArray+Sync_Tests.m in Sources */,
 				141894631BDD62F600EE52CE /* Social.xcdatamodeld in Sources */,
 				141894601BDD62F600EE52CE /* Organizations.xcdatamodeld in Sources */,
 				141894661BDD62F600EE52CE /* SyncTests.m in Sources */,
 				1418945E1BDD62F600EE52CE /* Markets.xcdatamodeld in Sources */,
-				141894051BDD62E900EE52CE /* NSManagedObject+Sync.m in Sources */,
 				1418945D1BDD62F600EE52CE /* Contacts.xcdatamodeld in Sources */,
-				141894031BDD62E900EE52CE /* NSArray+Sync.m in Sources */,
 				1418945A1BDD62F600EE52CE /* Bug125-simplified.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
