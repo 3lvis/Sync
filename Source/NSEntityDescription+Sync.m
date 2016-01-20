@@ -2,7 +2,7 @@
 
 @implementation NSEntityDescription (Sync)
 
-- (NSArray *)sync_relationships {
+- (nonnull NSArray *)sync_relationships {
     NSMutableArray *relationships = [NSMutableArray array];
 
     for (id propertyDescription in [self properties]) {
@@ -11,10 +11,10 @@
         }
     }
 
-    return relationships;
+    return relationships.copy;
 }
 
-- (NSRelationshipDescription *)sync_parentEntity {
+- (nullable NSRelationshipDescription *)sync_parentEntity {
     NSArray *relationships = [self sync_relationships];
     NSRelationshipDescription *foundParentEntity = nil;
     for (NSRelationshipDescription *relationship in relationships) {
