@@ -2,11 +2,11 @@
 
 #import "BaseTestCase.h"
 
-@interface NSArray_Sync_Tests : BaseTestCase
+@interface NSArray_SyncTests : BaseTestCase
 
 @end
 
-@implementation NSArray_Sync_Tests
+@implementation NSArray_SyncTests
 
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
