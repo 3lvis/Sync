@@ -11,8 +11,8 @@ public extension NSManagedObject {
         return context.sync_safeObject(self.entity.name!, remoteID: remoteID, parent: nil, parentRelationshipName: nil)
     }
 
-    public func sync_processRelationshipsUsingDictionary(objectDictionary: NSDictionary, parent: NSManagedObject, dataStack: DATAStack) {
-
+    public func sync_processRelationshipsUsingDictionary(objectDictionary: NSDictionary, parent: NSManagedObject?, dataStack: DATAStack) {
+        
     }
 
     public func sync_processToManyRelationship(relationship: NSRelationshipDescription, objectDictionary: NSDictionary, parent: NSManagedObject, dataStack: DATAStack) {
