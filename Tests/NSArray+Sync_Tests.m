@@ -1,6 +1,5 @@
 @import XCTest;
 
-#import "NSArray+Sync.h"
 #import "BaseTestCase.h"
 
 @interface NSArray_Sync_Tests : BaseTestCase

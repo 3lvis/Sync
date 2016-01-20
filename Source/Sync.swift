@@ -2,14 +2,15 @@ import CoreData
 import NSEntityDescription_SYNCPrimaryKey
 import DATAFilter
 import NSManagedObject_HYPPropertyMapper
+import DATAStack
 
 @objc public class Sync: NSObject {
     public class func changes(changes: [AnyObject], inEntityNamed entityName: String, parent: NSManagedObject, dataStack: DATAStack, completion: Void -> Void) {
         dataStack.performInNewBackgroundContext { backgroundContext in
-            let safeParent = parent.sync_copyInContext(backgroundContext)
-            let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: backgroundContext)!
-            let relationships = entity.relationshipsWithDestinationEntity(parent.entity)
-            let predicate = NSPredicate(format: "%K = %@", relationships.first!.name, safeParent)
+//            let safeParent = parent.sync_copyInContext(backgroundContext)
+//            let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: backgroundContext)!
+//            let relationships = entity.relationshipsWithDestinationEntity(parent.entity)
+//            let predicate = NSPredicate(format: "%K = %@", relationships.first!.name, safeParent)
         }
     }
 
@@ -19,18 +20,17 @@ import NSManagedObject_HYPPropertyMapper
         let remoteKey = entity.sync_remoteKey()
         let shouldLookForParent = (parent == nil && predicate == nil)
         if shouldLookForParent {
-            let parentEntity = entity.sync_parentEntity()
+            // let parentEntity = entity.sync_parentEntity()
             // predicate = NSPredicate(format: "%K = nil", parentEntity.name)
         }
 
-        var error: NSError?
         DATAFilter.changes(changes, inEntityNamed: entityName, predicate: predicate, operations: .All, localKey: localKey, remoteKey: remoteKey, context: context, inserted: { JSON in
             let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
             created.hyp_fillWithDictionary(JSON)
-            created.sync_processRelationshipsUsingDictionary(JSON, andParent: parent, dataStack: dataStack, error: &error)
+            // created.sync_processRelationshipsUsingDictionary(JSON, andParent: parent, dataStack: dataStack)
         }) { (JSON, updatedObject) in
             updatedObject.hyp_fillWithDictionary(JSON)
-            updatedObject.sync_processRelationshipsUsingDictionary(JSON, andParent: parent, dataStack: dataStack, error: &error)
+            // updatedObject.sync_processRelationshipsUsingDictionary(JSON, andParent: parent, dataStack: dataStack)
         }
 
         try! context.save()

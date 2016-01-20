@@ -2,7 +2,7 @@
 @import CoreData;
 
 @import DATAStack;
-#import "Sync.h"
+@import Sync;
 
 @interface BaseTestCase : XCTestCase
 

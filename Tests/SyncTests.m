@@ -1,6 +1,7 @@
 @import XCTest;
 
 #import "BaseTestCase.h"
+@import Sync;
 
 @interface SyncTests : BaseTestCase
 
