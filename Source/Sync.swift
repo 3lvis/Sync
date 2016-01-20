@@ -17,7 +17,7 @@ import DATAStack
 
     }
 
-    public class func changes(changes: NSArray, inEntityNamed entityName: String, predicate: NSPredicate, parent: NSManagedObject, inContext context:NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+    public class func changes(changes: NSArray, inEntityNamed entityName: String, predicate: NSPredicate, parent: NSManagedObject, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
 
     }
 }
