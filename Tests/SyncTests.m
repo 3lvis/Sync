@@ -11,54 +11,6 @@
 
 #pragma mark Notes
 
-- (void)testObjectsForParent {
-    NSArray *objects = [Helper objectsFromJSON:@"notes_for_user_a.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
-
-    [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
-
-        // First, we create a parent user, this user is the one that will own all the notes
-        NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"SuperUser"
-                                                              inManagedObjectContext:backgroundContext];
-        [user setValue:@6 forKey:@"remoteID"];
-        [user setValue:@"Shawn Merrill" forKey:@"name"];
-        [user setValue:@"firstupdate@ovium.com" forKey:@"email"];
-
-        NSError *userError = nil;
-        [backgroundContext save:&userError];
-        if (userError) NSLog(@"userError: %@", userError);
-
-        [dataStack persistWithCompletion:nil];
-    }];
-
-    // Then we fetch the user on the main context, because we don't want to break things between contexts
-    NSArray *users = [Helper fetchEntity:@"SuperUser"
-                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
-                             inContext:dataStack.mainContext];
-    XCTAssertEqual(users.count, 1);
-
-    // Finally we say "Sync all the notes, for this user"
-    [Sync changes:objects
-    inEntityNamed:@"SuperNote"
-           parent:[users firstObject]
-        dataStack:dataStack
-       completion:nil];
-
-    // Here we just make sure that the user has the notes that we just inserted
-    users = [Helper fetchEntity:@"SuperUser"
-                    predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
-                    inContext:dataStack.mainContext];
-    NSManagedObject *user = [users firstObject];
-    XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
-
-    NSInteger notesCount = [Helper countForEntity:@"SuperNote"
-                                      predicate:[NSPredicate predicateWithFormat:@"superUser = %@", user]
-                                      inContext:dataStack.mainContext];
-    XCTAssertEqual(notesCount, 5);
-
-    [dataStack drop];
-}
-
 - (void)testTaggedNotesForUser {
     NSArray *objects = [Helper objectsFromJSON:@"tagged_notes.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
