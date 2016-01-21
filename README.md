@@ -131,7 +131,7 @@ inEntityNamed:@"User"
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
 </a>
 
-<a href="https://github.com/hyperoslo/Sync/tree/master/DesignerNews/README.md">
+<a href="https://github.com/3lvis/SyncDesignerNewsDemo/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v4.png" />
 </a>
 
