@@ -1,8 +1,8 @@
 ![Hyper Sync™](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/logo-v2.png)
 
-[![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
-[![License](https://img.shields.io/cocoapods/l/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
-[![Platform](https://img.shields.io/cocoapods/p/Sync.svg?style=flat)](http://cocoadocs.org/docsets/Sync)
+[![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
+[![License](https://img.shields.io/cocoapods/l/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
+[![Platform](https://img.shields.io/cocoapods/p/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
 
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
