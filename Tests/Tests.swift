@@ -253,4 +253,42 @@ class Tests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // MARK: - Markets
+
+    func testMarketsAndItems() {
+        let objects = Helper.objectsFromJSON("markets_items.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Markets")
+
+        Sync.changes(objects, inEntityNamed: "Market", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Market", inContext:dataStack.mainContext), 2)
+        let markets = Helper.fetchEntity("Market", predicate: NSPredicate(format:"uniqueId = %@", "1"), inContext:dataStack.mainContext)
+        let market = markets.first!
+        XCTAssertEqual(market.valueForKey("otherAttribute") as? String, "Market 1")
+        XCTAssertEqual((market.valueForKey("items") as? NSSet)!.allObjects.count, 1)
+
+        XCTAssertEqual(Helper.countForEntity("Item", inContext:dataStack.mainContext), 1)
+        let items = Helper.fetchEntity("Item", predicate: NSPredicate(format:"uniqueId = %@", "1"), inContext:dataStack.mainContext)
+        let item = items.first!
+        XCTAssertEqual(item.valueForKey("otherAttribute") as? String, "Item 1")
+        XCTAssertEqual((item.valueForKey("markets") as? NSSet)!.allObjects.count, 2)
+        
+        dataStack.drop()
+    }
+
+    // MARK: - Organization
+
+    func testOrganization() {
+        let json = Helper.objectsFromJSON("organizations-tree.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Organizations")
+
+        Sync.changes(json, inEntityNamed:"OrganizationUnit", dataStack:dataStack, completion:nil)
+        XCTAssertEqual(Helper.countForEntity("OrganizationUnit", inContext:dataStack.mainContext), 7)
+
+        Sync.changes(json, inEntityNamed:"OrganizationUnit", dataStack:dataStack, completion:nil)
+        XCTAssertEqual(Helper.countForEntity("OrganizationUnit", inContext:dataStack.mainContext), 7)
+        
+        dataStack.drop()
+    }
 }
