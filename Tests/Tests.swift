@@ -214,4 +214,30 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    func testCustomPrimaryKeyInsideToManyRelationship() {
+        let objects = Helper.objectsFromJSON("stories-comments-no-ids.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Social")
+
+        Sync.changes(objects, inEntityNamed: "Story", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Story", inContext:dataStack.mainContext), 3)
+        let stories = Helper.fetchEntity("Story", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
+        let story = stories.first!
+
+        XCTAssertEqual((story.valueForKey("comments") as! NSSet).count, 3)
+
+        XCTAssertEqual(Helper.countForEntity("Comment", inContext:dataStack.mainContext), 9)
+        var comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
+        XCTAssertEqual(comments.count, 3)
+
+        comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@ AND story = %@", "comment 1", story), inContext:dataStack.mainContext)
+        XCTAssertEqual(comments.count, 1)
+        let comment = comments.first!
+        XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
+        XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("remoteID") as? NSNumber, NSNumber(int: 0))
+        XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("title") as? String, "story 1")
+            
+            dataStack.drop()
+    }
 }

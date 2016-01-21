@@ -68,42 +68,6 @@
 
 #pragma mark Social
 
-- (void)testCustomPrimaryKeyInsideToManyRelationship {
-    NSArray *objects = [Helper objectsFromJSON:@"stories-comments-no-ids.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Story"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"Story"
-                              inContext:dataStack.mainContext], 3);
-    NSArray *stories = [Helper fetchEntity:@"Story"
-                               predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
-                               inContext:dataStack.mainContext];
-    NSManagedObject *story = [stories firstObject];
-    XCTAssertEqual([[story valueForKey:@"comments"] count], 3);
-
-    XCTAssertEqual([Helper countForEntity:@"Comment"
-                              inContext:dataStack.mainContext], 9);
-    NSArray *comments = [Helper fetchEntity:@"Comment"
-                                predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
-                                inContext:dataStack.mainContext];
-    XCTAssertEqual(comments.count, 3);
-
-    comments = [Helper fetchEntity:@"Comment"
-                       predicate:[NSPredicate predicateWithFormat:@"body = %@ AND story = %@", @"comment 1", story]
-                       inContext:dataStack.mainContext];
-    XCTAssertEqual(comments.count, 1);
-    NSManagedObject *comment = [comments firstObject];
-    XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
-    XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"remoteID"], @0);
-    XCTAssertEqualObjects([[comment valueForKey:@"story"] valueForKey:@"title"], @"story 1");
-
-    [dataStack drop];
-}
-
 - (void)testCustomKeysInRelationshipsToOne {
     NSArray *objects = [Helper objectsFromJSON:@"custom_relationship_key_to_one.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
