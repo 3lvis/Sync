@@ -1,50 +1,35 @@
 import Foundation
 import DATAStack
+import NSManagedObject_HYPPropertyMapper
 
 public extension NSArray {
-    func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject, dataStack: DATAStack) {
+    func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject, dataStack: DATAStack) -> [[String : AnyObject]] {
+        var filteredChanges = [[String : AnyObject]]()
+        if predicate.isKindOfClass(NSComparisonPredicate.self), let castedPredicate = predicate as? NSComparisonPredicate, selfArray = self as? [[String : AnyObject]] {
+            let rightExpression = castedPredicate.rightExpression
+            let rightValue = rightExpression.constantValue
+            let rightValueCanBeCompared = rightValue.isKindOfClass(NSDate.self) || rightValue.isKindOfClass(NSNumber.self) || rightValue.isKindOfClass(NSString.self)
+            if (rightValueCanBeCompared) {
+                var objectChanges = [NSManagedObject]()
+                let context = dataStack.newDisposableMainContext()
+                if let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) {
+                    for change in selfArray {
+                        let object = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
+                        object.hyp_fillWithDictionary(change)
+                        object.sync_processRelationshipsUsingDictionary(change, parent: parent, dataStack: dataStack)
+                        objectChanges.append(object)
+                    }
 
-    }
-}
-
-/*
-- (NSArray *)preprocessForEntityNamed:(NSString *)entityName
-usingPredicate:(NSPredicate *)predicate
-parent:(NSManagedObject *)parent
-dataStack:(DATAStack *)dataStack {
-    NSMutableArray *filteredChanges = [NSMutableArray new];
-
-    if ([predicate isKindOfClass:[NSComparisonPredicate class]]) {
-        NSComparisonPredicate *castedPredicate = (NSComparisonPredicate *)predicate;
-        NSExpression *rightExpression = castedPredicate.rightExpression;
-        id rightValue = [rightExpression constantValue];
-        BOOL rightValueCanBeCompared = (rightValue &&
-            ([rightValue isKindOfClass:[NSDate class]] ||
-                [rightValue isKindOfClass:[NSNumber class]] ||
-                [rightValue isKindOfClass:[NSString class]]));
-        if (rightValueCanBeCompared) {
-            NSMutableArray *objectChanges = [NSMutableArray new];
-            NSManagedObjectContext *context = [dataStack newDisposableMainContext];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                inManagedObjectContext:context];
-            for (NSDictionary *change in self) {
-                NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
-                NSError *error = nil;
-                [object hyp_fillWithDictionary:change];
-                [object sync_processRelationshipsUsingDictionary:change
-                    andParent:parent
-                    dataStack:dataStack
-                    error:&error];
-                [objectChanges addObject:object];
-            }
-
-            NSArray *filteredArray = [objectChanges filteredArrayUsingPredicate:predicate];
-            for (NSManagedObject *filteredObject in filteredArray) {
-                [filteredChanges addObject:[filteredObject hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray]];
+                    let filteredArray = (objectChanges as NSArray).filteredArrayUsingPredicate(predicate)
+                    for filteredObject in filteredArray as! [NSManagedObject] {
+                        if let change = filteredObject.hyp_dictionaryUsingRelationshipType(.Array) as? [String : AnyObject] {
+                            filteredChanges.append(change)
+                        }
+                    }
+                }
             }
         }
-    }
 
-    return [filteredChanges copy];
+        return filteredChanges
+    }
 }
-*/
