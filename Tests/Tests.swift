@@ -154,4 +154,17 @@ class Tests: XCTestCase {
         XCTAssertEqual((tag.valueForKey("superNotes") as? NSSet)!.allObjects.count, 4)
         dataStack.drop()
     }
+
+    func testCustomKeysInRelationshipsToMany() {
+        let objects = Helper.objectsFromJSON("custom_relationship_key_to_many.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Notes")
+
+        Sync.changes(objects, inEntityNamed: "SuperUser", dataStack: dataStack, completion: nil)
+
+        let array = Helper.fetchEntity("SuperUser", inContext:dataStack.mainContext)
+        let user = array.first!
+        XCTAssertEqual((user.valueForKey("superNotes") as? NSSet)!.allObjects.count, 3)
+        
+        dataStack.drop()
+    }
 }

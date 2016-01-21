@@ -11,23 +11,6 @@
 
 #pragma mark Notes
 
-- (void)testCustomKeysInRelationshipsToMany {
-    NSArray *objects = [Helper objectsFromJSON:@"custom_relationship_key_to_many.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
-
-    [Sync changes:objects
-    inEntityNamed:@"SuperUser"
-        dataStack:dataStack
-       completion:nil];
-
-    NSArray *array = [Helper fetchEntity:@"SuperUser"
-                             inContext:dataStack.mainContext];
-    NSManagedObject *user = [array firstObject];
-    XCTAssertEqual([[[user valueForKey:@"superNotes"] allObjects] count], 3);
-
-    [dataStack drop];
-}
-
 // Sync provides a predicate method to filter which methods would be synced
 // this test checks that providing a predicate for "startTime > now" only syncs
 // elements that start in the future.
