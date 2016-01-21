@@ -3,7 +3,7 @@ import DATAStack
 import NSManagedObject_HYPPropertyMapper
 
 public extension NSArray {
-    func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject, dataStack: DATAStack) -> [[String : AnyObject]] {
+    func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack) -> [[String : AnyObject]] {
         var filteredChanges = [[String : AnyObject]]()
         if predicate.isKindOfClass(NSComparisonPredicate.self), let castedPredicate = predicate as? NSComparisonPredicate, selfArray = self as? [[String : AnyObject]] {
             let rightExpression = castedPredicate.rightExpression
