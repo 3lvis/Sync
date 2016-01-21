@@ -39,7 +39,7 @@ public extension NSManagedObject {
         }
     }
 
-    public func sync_processToManyRelationship(relationship: NSRelationshipDescription, objectDictionary: NSDictionary, parent: NSManagedObject?, dataStack: DATAStack) {
+    public func sync_processToManyRelationship(relationship: NSRelationshipDescription, objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
         let relationshipKey = relationship.userInfo?[SYNCCustomRemoteKey]
         let relationshipName = (relationshipKey != nil) ? relationshipKey : relationship.name.hyp_remoteString()
         let childEntityName = relationship.destinationEntity!.name!
@@ -47,7 +47,7 @@ public extension NSManagedObject {
         let inverseEntityName = relationship.inverseRelationship?.name
         let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
         let hasValidManyToManyRelationship = parent != nil && parentEntityName != nil && inverseIsToMany && parentEntityName! == childEntityName
-        if let children = objectDictionary.andy_valueForKey(relationshipName) as? [[String : AnyObject]] {
+        if let children = (objectDictionary as NSDictionary).andy_valueForKey(relationshipName) as? [[String : AnyObject]] {
             var childPredicate: NSPredicate? = nil
             if inverseIsToMany {
                 let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)!
@@ -81,12 +81,12 @@ public extension NSManagedObject {
         }
     }
 
-    public func sync_processToOneRelationship(relationship: NSRelationshipDescription, objectDictionary: NSDictionary, parent: NSManagedObject?, dataStack: DATAStack) {
+    public func sync_processToOneRelationship(relationship: NSRelationshipDescription, objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
         let relationshipKey = relationship.userInfo?[SYNCCustomRemoteKey]
         let relationshipName = (relationshipKey != nil) ? relationshipKey : relationship.name.hyp_remoteString()
         let entityName = relationship.destinationEntity!.name!
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext!)!
-        if let filteredObjectDictionary = objectDictionary.andy_valueForKey(relationshipName) as? NSDictionary {
+        if let filteredObjectDictionary = (objectDictionary as NSDictionary).andy_valueForKey(relationshipName) as? NSDictionary {
             let remoteKey = entity.sync_remoteKey()
             let object = self.managedObjectContext!.sync_safeObject(entityName, remoteID: filteredObjectDictionary.andy_valueForKey(remoteKey), parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext!)
             object.hyp_fillWithDictionary(filteredObjectDictionary as [NSObject : AnyObject])
