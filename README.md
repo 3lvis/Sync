@@ -127,11 +127,11 @@ inEntityNamed:@"User"
 
 ### More Examples
 
-<a href="https://github.com/3lvis/SyncAppNetDemo/blob/master/README.md">
+<a href="https://github.com/3lvis/SyncAppNetDemo">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
 </a>
 
-<a href="https://github.com/3lvis/SyncDesignerNewsDemo/blob/master/README.md">
+<a href="https://github.com/3lvis/SyncDesignerNewsDemo">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/DN-v4.png" />
 </a>
 
