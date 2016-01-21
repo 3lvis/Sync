@@ -358,4 +358,61 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    // MARK: - Bug 113 => https://github.com/hyperoslo/Sync/issues/113
+
+    func testCustomPrimaryKeyBug113() {
+        let objects = Helper.objectsFromJSON("bug-113-comments-no-id.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Bug113")
+
+        Sync.changes(objects, inEntityNamed: "AwesomeComment", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("AwesomeComment", inContext:dataStack.mainContext), 8)
+        let comments = Helper.fetchEntity("AwesomeComment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
+        XCTAssertEqual(comments.count, 1)
+        XCTAssertEqual((comments.first!.valueForKey("awesomeComments") as! NSSet).count, 3)
+
+        let comment = comments.first!
+        XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
+
+        dataStack.drop()
+    }
+
+    func testCustomPrimaryKeyInsideToManyRelationshipBug113() {
+        let objects = Helper.objectsFromJSON("bug-113-stories-comments-no-ids.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Bug113")
+
+        Sync.changes(objects, inEntityNamed: "AwesomeStory", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("AwesomeStory", inContext:dataStack.mainContext), 3)
+        let stories = Helper.fetchEntity("AwesomeStory", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
+        let story = stories.first!
+        XCTAssertEqual((story.valueForKey("awesomeComments") as! NSSet).count, 3)
+
+        XCTAssertEqual(Helper.countForEntity("AwesomeComment", inContext:dataStack.mainContext), 9)
+        var comments = Helper.fetchEntity("AwesomeComment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
+        XCTAssertEqual(comments.count, 3)
+
+        comments = Helper.fetchEntity("AwesomeComment", predicate: NSPredicate(format:"body = %@ AND awesomeStory = %@", "comment 1", story), inContext: dataStack.mainContext)
+        XCTAssertEqual(comments.count, 1)
+        let comment = comments.first!
+        XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
+        XCTAssertEqual(comment.valueForKey("awesomeStory")!.valueForKey("remoteID") as? NSNumber, NSNumber(int: 0))
+        XCTAssertEqual(comment.valueForKey("awesomeStory")!.valueForKey("title") as? String, "story 1")
+
+        dataStack.drop()
+    }
+
+    func testCustomKeysInRelationshipsToOneBug113() {
+        let objects = Helper.objectsFromJSON("bug-113-custom_relationship_key_to_one.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Bug113")
+
+        Sync.changes(objects, inEntityNamed: "AwesomeStory", dataStack: dataStack, completion: nil)
+        
+        let array = Helper.fetchEntity("AwesomeStory", inContext:dataStack.mainContext)
+        let story = array.first!
+        XCTAssertNotNil(story.valueForKey("awesomeSummarize"))
+        
+        dataStack.drop()
+    }
 }
