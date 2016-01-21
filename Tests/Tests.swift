@@ -28,7 +28,7 @@ class Tests: XCTestCase {
 
         let updatedDate = dateFormat.dateFromString("2014-02-17")
         XCTAssertEqual(result.valueForKey("updatedAt") as? NSDate, updatedDate)
-        
+
         dataStack.drop()
     }
 
@@ -45,7 +45,7 @@ class Tests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Company", inContext:dataStack.mainContext), 2)
         let company = Helper.fetchEntity("Company", predicate: NSPredicate(format: "remoteID = %@", NSNumber(int: 1)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext:dataStack.mainContext).first!
         XCTAssertEqual(company.valueForKey("name") as? String, "Facebook")
-        
+
         dataStack.drop()
     }
 
@@ -99,7 +99,7 @@ class Tests: XCTestCase {
 
         let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format:"superUser = %@", user), inContext:dataStack.mainContext)
         XCTAssertEqual(notesCount, 5);
-        
+
         dataStack.drop()
     }
 
@@ -128,10 +128,10 @@ class Tests: XCTestCase {
         users = Helper.fetchEntity("SuperUser", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 6)), inContext: dataStack.mainContext)
         let user = users.first!
         XCTAssertEqual(user.valueForKey("name") as? String, "Shawn Merrill")
-        
+
         let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format:"superUser = %@", user), inContext:dataStack.mainContext)
         XCTAssertEqual(notesCount, 5)
-        
+
         dataStack.drop()
     }
 
@@ -164,7 +164,7 @@ class Tests: XCTestCase {
         let array = Helper.fetchEntity("SuperUser", inContext:dataStack.mainContext)
         let user = array.first!
         XCTAssertEqual((user.valueForKey("superNotes") as? NSSet)!.allObjects.count, 3)
-        
+
         dataStack.drop()
     }
 
@@ -211,7 +211,7 @@ class Tests: XCTestCase {
 
         let comment = comments.first!
         XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
-        
+
         dataStack.drop()
     }
 
@@ -237,7 +237,7 @@ class Tests: XCTestCase {
         XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
         XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("remoteID") as? NSNumber, NSNumber(int: 0))
         XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("title") as? String, "story 1")
-            
-            dataStack.drop()
+        
+        dataStack.drop()
     }
 }
