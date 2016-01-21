@@ -315,4 +315,47 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    // MARK: - Patients => https://github.com/hyperoslo/Sync/issues/121
+
+    func testPatients() {
+        let objects = Helper.objectsFromJSON("patients.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Patients")
+
+        Sync.changes(objects, inEntityNamed: "Patient", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Patient", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Baseline", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Alcohol", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Fitness", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Weight", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Measure", inContext:dataStack.mainContext), 1)
+        
+        dataStack.drop()
+    }
+
+    // MARK: - Bug 84 => https://github.com/hyperoslo/Sync/issues/84
+
+    func testStaffAndfulfillers() {
+        let objects = Helper.objectsFromJSON("bug-number-84.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Bug84")
+
+        Sync.changes(objects, inEntityNamed: "MSStaff", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("MSStaff", inContext:dataStack.mainContext), 1)
+
+        let staff = Helper.fetchEntity("MSStaff", predicate: NSPredicate(format:"xid = %@", "mstaff_F58dVBTsXznvMpCPmpQgyV"), inContext:dataStack.mainContext)
+        let oneStaff = staff.first!
+        XCTAssertEqual(oneStaff.valueForKey("image") as? String, "a.jpg")
+        XCTAssertEqual((oneStaff.valueForKey("fulfillers") as? NSSet)!.allObjects.count, 2)
+
+        let numberOffulfillers = Helper.countForEntity("MSFulfiller", inContext:dataStack.mainContext)
+        XCTAssertEqual(numberOffulfillers, 2)
+
+        let fulfillers = Helper.fetchEntity("MSFulfiller", predicate: NSPredicate(format:"xid = %@", "ffr_AkAHQegYkrobp5xc2ySc5D"), inContext:dataStack.mainContext)
+        let fullfiller = fulfillers.first!
+        XCTAssertEqual(fullfiller.valueForKey("name") as? String, "New York")
+        XCTAssertEqual((fullfiller.valueForKey("staff") as? NSSet)!.allObjects.count, 1)
+        
+        dataStack.drop()
+    }
 }
