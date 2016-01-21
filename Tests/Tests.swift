@@ -240,4 +240,17 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    func testCustomKeysInRelationshipsToOne() {
+        let objects = Helper.objectsFromJSON("custom_relationship_key_to_one.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Social")
+
+        Sync.changes(objects, inEntityNamed: "Story", dataStack: dataStack, completion: nil)
+
+        let array = Helper.fetchEntity("Story", inContext:dataStack.mainContext)
+        let story = array.first!
+        XCTAssertNotNil(story.valueForKey("summarize"))
+
+        dataStack.drop()
+    }
 }

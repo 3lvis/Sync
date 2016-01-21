@@ -66,25 +66,6 @@
 }
 */
 
-#pragma mark Social
-
-- (void)testCustomKeysInRelationshipsToOne {
-    NSArray *objects = [Helper objectsFromJSON:@"custom_relationship_key_to_one.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Story"
-        dataStack:dataStack
-       completion:nil];
-
-    NSArray *array = [Helper fetchEntity:@"Story"
-                             inContext:dataStack.mainContext];
-    NSManagedObject *story = [array firstObject];
-    XCTAssertNotNil([story valueForKey:@"summarize"]);
-
-    [dataStack drop];
-}
-
 #pragma mark Markets
 
 - (void)testMarketsAndItems {
