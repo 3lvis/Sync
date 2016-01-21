@@ -1,14 +1,17 @@
-#import "NSArray+Sync.h"
+import Foundation
+import DATAStack
 
-#import "NSManagedObject+HYPPropertyMapper.h"
-#import "NSManagedObject+Sync.h"
+public extension NSArray {
+    public func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject, dataStack: DATAStack) {
 
-@implementation NSArray (Sync)
+    }
+}
 
+/*
 - (NSArray *)preprocessForEntityNamed:(NSString *)entityName
-                       usingPredicate:(NSPredicate *)predicate
-                               parent:(NSManagedObject *)parent
-                            dataStack:(DATAStack *)dataStack {
+usingPredicate:(NSPredicate *)predicate
+parent:(NSManagedObject *)parent
+dataStack:(DATAStack *)dataStack {
     NSMutableArray *filteredChanges = [NSMutableArray new];
 
     if ([predicate isKindOfClass:[NSComparisonPredicate class]]) {
@@ -16,22 +19,22 @@
         NSExpression *rightExpression = castedPredicate.rightExpression;
         id rightValue = [rightExpression constantValue];
         BOOL rightValueCanBeCompared = (rightValue &&
-                                        ([rightValue isKindOfClass:[NSDate class]] ||
-                                         [rightValue isKindOfClass:[NSNumber class]] ||
-                                         [rightValue isKindOfClass:[NSString class]]));
+            ([rightValue isKindOfClass:[NSDate class]] ||
+                [rightValue isKindOfClass:[NSNumber class]] ||
+                [rightValue isKindOfClass:[NSString class]]));
         if (rightValueCanBeCompared) {
             NSMutableArray *objectChanges = [NSMutableArray new];
             NSManagedObjectContext *context = [dataStack newDisposableMainContext];
             NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                                      inManagedObjectContext:context];
+                inManagedObjectContext:context];
             for (NSDictionary *change in self) {
                 NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
                 NSError *error = nil;
                 [object hyp_fillWithDictionary:change];
                 [object sync_processRelationshipsUsingDictionary:change
-                                                       andParent:parent
-                                                       dataStack:dataStack
-                                                           error:&error];
+                    andParent:parent
+                    dataStack:dataStack
+                    error:&error];
                 [objectChanges addObject:object];
             }
 
@@ -44,5 +47,4 @@
 
     return [filteredChanges copy];
 }
-
-@end
+*/

@@ -1,10 +1,6 @@
 import XCTest
 
-class NSManagedObject_Sync_Tests: XCTestCase {
-    func testSafeObjectInContext() {
-
-    }
-
+class NSManagedObject_SyncTests: XCTestCase {
     func testCopyInContext() {
 
     }

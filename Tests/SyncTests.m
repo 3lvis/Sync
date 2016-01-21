@@ -1,6 +1,7 @@
 @import XCTest;
 
 #import "BaseTestCase.h"
+@import Sync;
 
 @interface SyncTests : BaseTestCase
 
@@ -293,8 +294,8 @@
        completion:nil];
 
     NSArray *updatedArray = [self fetchEntity:@"SuperUser"
-                       sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
-                             inContext:dataStack.mainContext];
+                              sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
+                                    inContext:dataStack.mainContext];
     XCTAssertEqual(updatedArray.count, 3);
 
     NSManagedObject *updatedUser1 = updatedArray[0];
@@ -307,7 +308,8 @@
     XCTAssertEqualObjects([updatedUser3 valueForKey:@"name"], new[@"name"]);
 
     [dataStack drop];
-}*/
+}
+*/
 
 #pragma mark Recursive
 
@@ -724,15 +726,14 @@
 
 /*
  When having JSONs like this:
-{
-    "id":12345,
-    "name":"My Project",
-    "category_id":12345
-}
- 
+ {
+   "id":12345,
+   "name":"My Project",
+   "category_id":12345
+ }
+
  It will should map category_id with the necesary category object using the ID 12345
 */
-
 - (void)testIDRelationshipMapping {
     NSArray *usersDictionary = [self objectsFromJSON:@"users_a.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
