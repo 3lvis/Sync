@@ -134,4 +134,24 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    func testTaggedNotesForUser() {
+        let objects = Helper.objectsFromJSON("tagged_notes.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Notes")
+
+        Sync.changes(objects, inEntityNamed: "SuperNote", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("SuperNote", inContext:dataStack.mainContext), 5)
+        let notes = Helper.fetchEntity("SuperNote", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
+        let note = notes.first!
+        XCTAssertEqual((note.valueForKey("superTags") as? NSSet)!.allObjects.count, 2)
+
+        XCTAssertEqual(Helper.countForEntity("SuperTag", inContext:dataStack.mainContext), 2)
+        let tags = Helper.fetchEntity("SuperTag", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 1)), inContext:dataStack.mainContext)
+        XCTAssertEqual(tags.count, 1)
+
+        let tag = tags.first!
+        XCTAssertEqual((tag.valueForKey("superNotes") as? NSSet)!.allObjects.count, 4)
+        dataStack.drop()
+    }
 }

@@ -11,38 +11,6 @@
 
 #pragma mark Notes
 
-- (void)testTaggedNotesForUser {
-    NSArray *objects = [Helper objectsFromJSON:@"tagged_notes.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
-
-    [Sync changes:objects
-    inEntityNamed:@"SuperNote"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"SuperNote"
-                              inContext:dataStack.mainContext], 5);
-    NSArray *notes = [Helper fetchEntity:@"SuperNote"
-                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
-                             inContext:dataStack.mainContext];
-    NSManagedObject *note = [notes firstObject];
-    XCTAssertEqual([[[note valueForKey:@"superTags"] allObjects] count], 2,
-                   @"Note with ID 0 should have 2 tags");
-
-    XCTAssertEqual([Helper countForEntity:@"SuperTag"
-                              inContext:dataStack.mainContext], 2);
-    NSArray *tags = [Helper fetchEntity:@"SuperTag"
-                            predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
-                            inContext:dataStack.mainContext];
-    XCTAssertEqual(tags.count, 1);
-
-    NSManagedObject *tag = [tags firstObject];
-    XCTAssertEqual([[[tag valueForKey:@"superNotes"] allObjects] count], 4,
-                   @"Tag with ID 1 should have 4 notes");
-
-    [dataStack drop];
-}
-
 - (void)testCustomKeysInRelationshipsToMany {
     NSArray *objects = [Helper objectsFromJSON:@"custom_relationship_key_to_many.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
