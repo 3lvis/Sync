@@ -8,18 +8,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var dataStack: DATAStack = DATAStack()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = UINavigationController(rootViewController: ViewController(dataStack: dataStack))
-        window?.makeKeyAndVisible()
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = UINavigationController(rootViewController: ViewController(dataStack: self.dataStack))
+        self.window?.makeKeyAndVisible()
+
         return true
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        dataStack.persistWithCompletion(nil)
+        self.dataStack.persistWithCompletion(nil)
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        dataStack.persistWithCompletion(nil)
+        self.dataStack.persistWithCompletion(nil)
     }
 }
 

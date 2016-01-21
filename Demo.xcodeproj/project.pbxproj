@@ -317,8 +317,8 @@
 			children = (
 				141894851BDD635800EE52CE /* AppDelegate.swift */,
 				141894A21BDD64AF00EE52CE /* Data.swift */,
-				141894A31BDD64AF00EE52CE /* Networking.swift */,
 				141894A41BDD64AF00EE52CE /* User.swift */,
+				141894A31BDD64AF00EE52CE /* Networking.swift */,
 				141894A51BDD64AF00EE52CE /* ViewController.swift */,
 				1418948A1BDD635800EE52CE /* Assets.xcassets */,
 				1418948C1BDD635800EE52CE /* LaunchScreen.storyboard */,
