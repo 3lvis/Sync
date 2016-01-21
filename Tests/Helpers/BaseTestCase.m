@@ -1,9 +1,8 @@
 @import XCTest;
 
-#import "NSJSONSerialization+ANDYJSONFile.h"
 @import DATAStack;
-#import "NSJSONSerialization+ANDYJSONFile.h"
 @import Sync;
+#import "NSJSONSerialization+ANDYJSONFile.h"
 #import "NSManagedObject+HYPPropertyMapper.h"
 
 @interface BaseTestCase : XCTestCase
