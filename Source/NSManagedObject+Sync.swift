@@ -2,7 +2,6 @@ import CoreData
 import NSEntityDescription_SYNCPrimaryKey
 import DATAStack
 import NSString_HYPNetworking
-import NSDictionary_ANDYSafeValue
 
 public extension NSManagedObject {
     public func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
