@@ -11,34 +11,6 @@
 
 #pragma mark Contacts
 
-- (void)testUsersAndCompanies {
-    NSArray *objects = [Helper objectsFromJSON:@"users_company.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
-
-    [Sync changes:objects
-    inEntityNamed:@"User"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"User"
-                              inContext:dataStack.mainContext], 5);
-    NSManagedObject *user = [[Helper fetchEntity:@"User"
-                                     predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @0]
-                               sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
-                                     inContext:dataStack.mainContext] firstObject];
-    XCTAssertEqualObjects([[user valueForKey:@"company"] valueForKey:@"name"], @"Apple");
-
-    XCTAssertEqual([Helper countForEntity:@"Company"
-                              inContext:dataStack.mainContext], 2);
-    NSManagedObject *company = [[Helper fetchEntity:@"Company"
-                                        predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
-                                  sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
-                                        inContext:dataStack.mainContext] firstObject];
-    XCTAssertEqualObjects([company valueForKey:@"name"], @"Facebook");
-
-    [dataStack drop];
-}
-
 - (void)testCustomMappingAndCustomPrimaryKey {
     NSArray *objects = [Helper objectsFromJSON:@"images.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
