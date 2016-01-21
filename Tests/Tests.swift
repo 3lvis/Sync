@@ -48,4 +48,17 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    func testCustomMappingAndCustomPrimaryKey() {
+        let dataStack = Helper.dataStackWithModelName("Contacts")
+        let objects = Helper.objectsFromJSON("images.json") as! [[String : AnyObject]]
+        Sync.changes(objects, inEntityNamed: "Image", dataStack: dataStack, completion: nil)
+
+        let array = Helper.fetchEntity("Image", sortDescriptors: [NSSortDescriptor(key: "url", ascending: true)], inContext: dataStack.mainContext)
+        XCTAssertEqual(array.count, 3)
+        let image = array.first
+        XCTAssertEqual(image!.valueForKey("url") as? String, "http://sample.com/sample0.png")
+
+        dataStack.drop()
+    }
 }

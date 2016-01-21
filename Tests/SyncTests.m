@@ -11,25 +11,6 @@
 
 #pragma mark Contacts
 
-- (void)testCustomMappingAndCustomPrimaryKey {
-    NSArray *objects = [Helper objectsFromJSON:@"images.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Image"
-        dataStack:dataStack
-       completion:nil];
-
-    NSArray *array = [Helper fetchEntity:@"Image"
-                       sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES]]
-                             inContext:dataStack.mainContext];
-    XCTAssertEqual(array.count, 3);
-    NSManagedObject *image = [array firstObject];
-    XCTAssertEqualObjects([image valueForKey:@"url"], @"http://sample.com/sample0.png");
-
-    [dataStack drop];
-}
-
 - (void)testRelationshipsB {
     NSArray *objects = [Helper objectsFromJSON:@"users_c.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
