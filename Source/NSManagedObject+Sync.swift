@@ -4,7 +4,7 @@ import DATAStack
 import NSString_HYPNetworking
 
 public extension NSManagedObject {
-    public func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
+    func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
         let entity = NSEntityDescription.entityForName(self.entity.name!, inManagedObjectContext: context)!
         let localKey = entity.sync_localKey()
         let remoteID = self.valueForKey(localKey)
@@ -15,7 +15,7 @@ public extension NSManagedObject {
     /**
      Fills relationships using the received dictionary.
      */
-    public func sync_processRelationshipsUsingDictionary(objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
+    func sync_processRelationshipsUsingDictionary(objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
         let relationships = self.entity.sync_relationships()
         for relationship in relationships {
             let entity = NSEntityDescription.entityForName(relationship.entity.name!, inManagedObjectContext: self.managedObjectContext!)!
@@ -38,7 +38,7 @@ public extension NSManagedObject {
         }
     }
 
-    public func sync_processToManyRelationship(relationship: NSRelationshipDescription, objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
+    func sync_processToManyRelationship(relationship: NSRelationshipDescription, objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
         let relationshipKey = relationship.userInfo?[SYNCCustomRemoteKey] as? String
         let relationshipName = (relationshipKey != nil) ? relationshipKey : relationship.name.hyp_remoteString()
         let childEntityName = relationship.destinationEntity!.name!
@@ -70,7 +70,7 @@ public extension NSManagedObject {
         }
     }
 
-    public func sync_processIDRelationship(relationship: NSRelationshipDescription, remoteID: AnyObject, parent: NSManagedObject?, dataStack: DATAStack) {
+    func sync_processIDRelationship(relationship: NSRelationshipDescription, remoteID: AnyObject, parent: NSManagedObject?, dataStack: DATAStack) {
         let entityName = relationship.destinationEntity!.name!
         guard let object = self.managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) else { abort() }
 
@@ -80,7 +80,7 @@ public extension NSManagedObject {
         }
     }
 
-    public func sync_processToOneRelationship(relationship: NSRelationshipDescription, objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
+    func sync_processToOneRelationship(relationship: NSRelationshipDescription, objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
         let relationshipKey = relationship.userInfo?[SYNCCustomRemoteKey] as? String
         let relationshipName = (relationshipKey != nil) ? relationshipKey : relationship.name.hyp_remoteString()
         let entityName = relationship.destinationEntity!.name!
