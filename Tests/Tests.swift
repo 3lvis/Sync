@@ -83,4 +83,23 @@ class Tests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // MARK: - Notes
+
+    func testRelationshipsA() {
+        let objects = Helper.objectsFromJSON("users_notes.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Notes")
+
+        Sync.changes(objects, inEntityNamed: "SuperUser", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("SuperUser", inContext:dataStack.mainContext), 4)
+        let users = Helper.fetchEntity("SuperUser", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 6)), inContext:dataStack.mainContext)
+        let user = users.first!
+        XCTAssertEqual(user.valueForKey("name") as? String, "Shawn Merrill")
+
+        let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format:"superUser = %@", user), inContext:dataStack.mainContext)
+        XCTAssertEqual(notesCount, 5);
+        
+        dataStack.drop()
+    }
 }

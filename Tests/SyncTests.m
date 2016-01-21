@@ -11,31 +11,6 @@
 
 #pragma mark Notes
 
-- (void)testRelationshipsA {
-    NSArray *objects = [Helper objectsFromJSON:@"users_notes.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
-
-    [Sync changes:objects
-    inEntityNamed:@"SuperUser"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"SuperUser"
-                              inContext:dataStack.mainContext], 4);
-    NSArray *users = [Helper fetchEntity:@"SuperUser"
-                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
-                             inContext:dataStack.mainContext];
-    NSManagedObject *user = [users firstObject];
-    XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
-
-    NSInteger notesCount = [Helper countForEntity:@"SuperNote"
-                                      predicate:[NSPredicate predicateWithFormat:@"superUser = %@", user]
-                                      inContext:dataStack.mainContext];
-    XCTAssertEqual(notesCount, 5);
-
-    [dataStack drop];
-}
-
 - (void)testObjectsForParent {
     NSArray *objects = [Helper objectsFromJSON:@"notes_for_user_a.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
