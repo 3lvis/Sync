@@ -1,9 +1,9 @@
 @import XCTest;
-
-#import "BaseTestCase.h"
+@import DATAStack;
+#import "Tests-Swift.h"
 @import Sync;
 
-@interface SyncTests : BaseTestCase
+@interface SyncTests : XCTestCase
 
 @end
 
@@ -14,29 +14,29 @@
 #pragma mark Contacts
 
 - (void)testLoadAndUpdateUsers {
-    NSArray *objectsA = [self objectsFromJSON:@"users_a.json"];
+    NSArray *objectsA = [Helper objectsFromJSON:@"users_a.json"];
 
-    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
 
     [Sync changes:objectsA
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:nil];
 
-    NSInteger count = [self countForEntity:@"User" inContext:dataStack.mainContext];
+    NSInteger count = [Helper countForEntity:@"User" inContext:dataStack.mainContext];
     XCTAssertEqual(count, 8);
 
-    NSArray *objectsB = [self objectsFromJSON:@"users_b.json"];
+    NSArray *objectsB = [Helper objectsFromJSON:@"users_b.json"];
 
     [Sync changes:objectsB
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"User"
+    XCTAssertEqual([Helper countForEntity:@"User"
                               inContext:dataStack.mainContext], 6);
 
-    NSManagedObject *result = [[self fetchEntity:@"User"
+    NSManagedObject *result = [[Helper fetchEntity:@"User"
                                        predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @7]
                                  sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                                        inContext:dataStack.mainContext] firstObject];
@@ -56,25 +56,25 @@
 }
 
 - (void)testUsersAndCompanies {
-    NSArray *objects = [self objectsFromJSON:@"users_company.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
+    NSArray *objects = [Helper objectsFromJSON:@"users_company.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
 
     [Sync changes:objects
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"User"
+    XCTAssertEqual([Helper countForEntity:@"User"
                               inContext:dataStack.mainContext], 5);
-    NSManagedObject *user = [[self fetchEntity:@"User"
+    NSManagedObject *user = [[Helper fetchEntity:@"User"
                                      predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @0]
                                sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                                      inContext:dataStack.mainContext] firstObject];
     XCTAssertEqualObjects([[user valueForKey:@"company"] valueForKey:@"name"], @"Apple");
 
-    XCTAssertEqual([self countForEntity:@"Company"
+    XCTAssertEqual([Helper countForEntity:@"Company"
                               inContext:dataStack.mainContext], 2);
-    NSManagedObject *company = [[self fetchEntity:@"Company"
+    NSManagedObject *company = [[Helper fetchEntity:@"Company"
                                         predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
                                   sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                                         inContext:dataStack.mainContext] firstObject];
@@ -84,15 +84,15 @@
 }
 
 - (void)testCustomMappingAndCustomPrimaryKey {
-    NSArray *objects = [self objectsFromJSON:@"images.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
+    NSArray *objects = [Helper objectsFromJSON:@"images.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
 
     [Sync changes:objects
     inEntityNamed:@"Image"
         dataStack:dataStack
        completion:nil];
 
-    NSArray *array = [self fetchEntity:@"Image"
+    NSArray *array = [Helper fetchEntity:@"Image"
                        sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"url" ascending:YES]]
                              inContext:dataStack.mainContext];
     XCTAssertEqual(array.count, 3);
@@ -103,17 +103,17 @@
 }
 
 - (void)testRelationshipsB {
-    NSArray *objects = [self objectsFromJSON:@"users_c.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Contacts"];
+    NSArray *objects = [Helper objectsFromJSON:@"users_c.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
 
     [Sync changes:objects
     inEntityNamed:@"User"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"User"
+    XCTAssertEqual([Helper countForEntity:@"User"
                               inContext:dataStack.mainContext], 4);
-    NSArray *users = [self fetchEntity:@"User"
+    NSArray *users = [Helper fetchEntity:@"User"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                              inContext:dataStack.mainContext];
     NSManagedObject *user = [users firstObject];
@@ -124,7 +124,7 @@
     XCTAssertTrue([[location valueForKey:@"street"] isEqualToString:@"Broadway"]);
     XCTAssertEqualObjects([location valueForKey:@"zipCode"], @10012);
 
-    NSInteger profilePicturesCount = [self countForEntity:@"Image"
+    NSInteger profilePicturesCount = [Helper countForEntity:@"Image"
                                                 predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
                                                 inContext:dataStack.mainContext];
     XCTAssertEqual(profilePicturesCount, 3);
@@ -135,23 +135,23 @@
 #pragma mark Notes
 
 - (void)testRelationshipsA {
-    NSArray *objects = [self objectsFromJSON:@"users_notes.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+    NSArray *objects = [Helper objectsFromJSON:@"users_notes.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
 
     [Sync changes:objects
     inEntityNamed:@"SuperUser"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"SuperUser"
+    XCTAssertEqual([Helper countForEntity:@"SuperUser"
                               inContext:dataStack.mainContext], 4);
-    NSArray *users = [self fetchEntity:@"SuperUser"
+    NSArray *users = [Helper fetchEntity:@"SuperUser"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                              inContext:dataStack.mainContext];
     NSManagedObject *user = [users firstObject];
     XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-    NSInteger notesCount = [self countForEntity:@"SuperNote"
+    NSInteger notesCount = [Helper countForEntity:@"SuperNote"
                                       predicate:[NSPredicate predicateWithFormat:@"superUser = %@", user]
                                       inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
@@ -160,8 +160,8 @@
 }
 
 - (void)testObjectsForParent {
-    NSArray *objects = [self objectsFromJSON:@"notes_for_user_a.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+    NSArray *objects = [Helper objectsFromJSON:@"notes_for_user_a.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
 
     [dataStack performInNewBackgroundContext:^(NSManagedObjectContext *backgroundContext) {
 
@@ -180,7 +180,7 @@
     }];
 
     // Then we fetch the user on the main context, because we don't want to break things between contexts
-    NSArray *users = [self fetchEntity:@"SuperUser"
+    NSArray *users = [Helper fetchEntity:@"SuperUser"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                              inContext:dataStack.mainContext];
     XCTAssertEqual(users.count, 1);
@@ -193,13 +193,13 @@
        completion:nil];
 
     // Here we just make sure that the user has the notes that we just inserted
-    users = [self fetchEntity:@"SuperUser"
+    users = [Helper fetchEntity:@"SuperUser"
                     predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
                     inContext:dataStack.mainContext];
     NSManagedObject *user = [users firstObject];
     XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
 
-    NSInteger notesCount = [self countForEntity:@"SuperNote"
+    NSInteger notesCount = [Helper countForEntity:@"SuperNote"
                                       predicate:[NSPredicate predicateWithFormat:@"superUser = %@", user]
                                       inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
@@ -208,26 +208,26 @@
 }
 
 - (void)testTaggedNotesForUser {
-    NSArray *objects = [self objectsFromJSON:@"tagged_notes.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+    NSArray *objects = [Helper objectsFromJSON:@"tagged_notes.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
 
     [Sync changes:objects
     inEntityNamed:@"SuperNote"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"SuperNote"
+    XCTAssertEqual([Helper countForEntity:@"SuperNote"
                               inContext:dataStack.mainContext], 5);
-    NSArray *notes = [self fetchEntity:@"SuperNote"
+    NSArray *notes = [Helper fetchEntity:@"SuperNote"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
                              inContext:dataStack.mainContext];
     NSManagedObject *note = [notes firstObject];
     XCTAssertEqual([[[note valueForKey:@"superTags"] allObjects] count], 2,
                    @"Note with ID 0 should have 2 tags");
 
-    XCTAssertEqual([self countForEntity:@"SuperTag"
+    XCTAssertEqual([Helper countForEntity:@"SuperTag"
                               inContext:dataStack.mainContext], 2);
-    NSArray *tags = [self fetchEntity:@"SuperTag"
+    NSArray *tags = [Helper fetchEntity:@"SuperTag"
                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
                             inContext:dataStack.mainContext];
     XCTAssertEqual(tags.count, 1);
@@ -240,15 +240,15 @@
 }
 
 - (void)testCustomKeysInRelationshipsToMany {
-    NSArray *objects = [self objectsFromJSON:@"custom_relationship_key_to_many.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+    NSArray *objects = [Helper objectsFromJSON:@"custom_relationship_key_to_many.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
 
     [Sync changes:objects
     inEntityNamed:@"SuperUser"
         dataStack:dataStack
        completion:nil];
 
-    NSArray *array = [self fetchEntity:@"SuperUser"
+    NSArray *array = [Helper fetchEntity:@"SuperUser"
                              inContext:dataStack.mainContext];
     NSManagedObject *user = [array firstObject];
     XCTAssertEqual([[[user valueForKey:@"superNotes"] allObjects] count], 3);
@@ -261,7 +261,7 @@
 // elements that start in the future.
 /*
 - (void)testSyncWithPredicateAfterDate {
-    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
 
     NSDictionary *old1 = @{@"id" : @1, @"name" : @"Old 1", @"created_at" : @"2014-02-14T00:00:00+00:00"};
     NSDictionary *old2 = @{@"id" : @2, @"name" : @"Old 2", @"created_at" : @"2014-03-14T00:00:00+00:00"};
@@ -272,7 +272,7 @@
         dataStack:dataStack
        completion:nil];
 
-    NSArray *array = [self fetchEntity:@"SuperUser"
+    NSArray *array = [Helper fetchEntity:@"SuperUser"
                        sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                              inContext:dataStack.mainContext];
     XCTAssertEqual(array.count, 2);
@@ -293,7 +293,7 @@
         dataStack:dataStack
        completion:nil];
 
-    NSArray *updatedArray = [self fetchEntity:@"SuperUser"
+    NSArray *updatedArray = [Helper fetchEntity:@"SuperUser"
                               sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
                                     inContext:dataStack.mainContext];
     XCTAssertEqual(updatedArray.count, 3);
@@ -314,33 +314,33 @@
 #pragma mark Recursive
 
 - (void)testNumbersWithEmptyRelationship {
-    NSArray *objects = [self objectsFromJSON:@"numbers.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Recursive"];
+    NSArray *objects = [Helper objectsFromJSON:@"numbers.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Recursive"];
 
     [Sync changes:objects
     inEntityNamed:@"Number"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Number"
+    XCTAssertEqual([Helper countForEntity:@"Number"
                               inContext:dataStack.mainContext], 6);
 
     [dataStack drop];
 }
 
 - (void)testRelationshipName {
-    NSArray *objects = [self objectsFromJSON:@"numbers_in_collection.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Recursive"];
+    NSArray *objects = [Helper objectsFromJSON:@"numbers_in_collection.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Recursive"];
 
     [Sync changes:objects
     inEntityNamed:@"Number"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Collection"
+    XCTAssertEqual([Helper countForEntity:@"Collection"
                               inContext:dataStack.mainContext], 1);
 
-    NSArray *numbers = [self fetchEntity:@"Number"
+    NSArray *numbers = [Helper fetchEntity:@"Number"
                                inContext:dataStack.mainContext];
     NSManagedObject *number = [numbers firstObject];
     XCTAssertNotNil([number valueForKey:@"parent"]);
@@ -352,17 +352,17 @@
 #pragma mark Social
 
 - (void)testCustomPrimaryKey {
-    NSArray *objects = [self objectsFromJSON:@"comments-no-id.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
+    NSArray *objects = [Helper objectsFromJSON:@"comments-no-id.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
 
     [Sync changes:objects
     inEntityNamed:@"Comment"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Comment"
+    XCTAssertEqual([Helper countForEntity:@"Comment"
                               inContext:dataStack.mainContext], 8);
-    NSArray *comments = [self fetchEntity:@"Comment"
+    NSArray *comments = [Helper fetchEntity:@"Comment"
                                 predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
                                 inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 1);
@@ -375,30 +375,30 @@
 }
 
 - (void)testCustomPrimaryKeyInsideToManyRelationship {
-    NSArray *objects = [self objectsFromJSON:@"stories-comments-no-ids.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
+    NSArray *objects = [Helper objectsFromJSON:@"stories-comments-no-ids.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
 
     [Sync changes:objects
     inEntityNamed:@"Story"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Story"
+    XCTAssertEqual([Helper countForEntity:@"Story"
                               inContext:dataStack.mainContext], 3);
-    NSArray *stories = [self fetchEntity:@"Story"
+    NSArray *stories = [Helper fetchEntity:@"Story"
                                predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
                                inContext:dataStack.mainContext];
     NSManagedObject *story = [stories firstObject];
     XCTAssertEqual([[story valueForKey:@"comments"] count], 3);
 
-    XCTAssertEqual([self countForEntity:@"Comment"
+    XCTAssertEqual([Helper countForEntity:@"Comment"
                               inContext:dataStack.mainContext], 9);
-    NSArray *comments = [self fetchEntity:@"Comment"
+    NSArray *comments = [Helper fetchEntity:@"Comment"
                                 predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
                                 inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 3);
 
-    comments = [self fetchEntity:@"Comment"
+    comments = [Helper fetchEntity:@"Comment"
                        predicate:[NSPredicate predicateWithFormat:@"body = %@ AND story = %@", @"comment 1", story]
                        inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 1);
@@ -411,15 +411,15 @@
 }
 
 - (void)testCustomKeysInRelationshipsToOne {
-    NSArray *objects = [self objectsFromJSON:@"custom_relationship_key_to_one.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
+    NSArray *objects = [Helper objectsFromJSON:@"custom_relationship_key_to_one.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
 
     [Sync changes:objects
     inEntityNamed:@"Story"
         dataStack:dataStack
        completion:nil];
 
-    NSArray *array = [self fetchEntity:@"Story"
+    NSArray *array = [Helper fetchEntity:@"Story"
                              inContext:dataStack.mainContext];
     NSManagedObject *story = [array firstObject];
     XCTAssertNotNil([story valueForKey:@"summarize"]);
@@ -430,26 +430,26 @@
 #pragma mark Markets
 
 - (void)testMarketsAndItems {
-    NSArray *objects = [self objectsFromJSON:@"markets_items.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Markets"];
+    NSArray *objects = [Helper objectsFromJSON:@"markets_items.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Markets"];
 
     [Sync changes:objects
     inEntityNamed:@"Market"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Market"
+    XCTAssertEqual([Helper countForEntity:@"Market"
                               inContext:dataStack.mainContext], 2);
-    NSArray *markets = [self fetchEntity:@"Market"
+    NSArray *markets = [Helper fetchEntity:@"Market"
                                predicate:[NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"]
                                inContext:dataStack.mainContext];
     NSManagedObject *market = [markets firstObject];
     XCTAssertEqualObjects([market valueForKey:@"otherAttribute"], @"Market 1");
     XCTAssertEqual([[[market valueForKey:@"items"] allObjects] count], 1);
 
-    XCTAssertEqual([self countForEntity:@"Item"
+    XCTAssertEqual([Helper countForEntity:@"Item"
                               inContext:dataStack.mainContext], 1);
-    NSArray *items = [self fetchEntity:@"Item"
+    NSArray *items = [Helper fetchEntity:@"Item"
                              predicate:[NSPredicate predicateWithFormat:@"uniqueId = %@", @"1"]
                              inContext:dataStack.mainContext];
     NSManagedObject *item = [items firstObject];
@@ -463,15 +463,15 @@
 
 - (void)testOrganization {
 
-    NSArray *json = [self objectsFromJSON:@"organizations-tree.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Organizations"];
+    NSArray *json = [Helper objectsFromJSON:@"organizations-tree.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Organizations"];
 
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
-    XCTAssertEqual([self countForEntity:@"OrganizationUnit"
+    XCTAssertEqual([Helper countForEntity:@"OrganizationUnit"
                               inContext:dataStack.mainContext], 7);
 
     [Sync changes:json inEntityNamed:@"OrganizationUnit" dataStack:dataStack completion:nil];
-    XCTAssertEqual([self countForEntity:@"OrganizationUnit"
+    XCTAssertEqual([Helper countForEntity:@"OrganizationUnit"
                               inContext:dataStack.mainContext], 7);
 
     [dataStack drop];
@@ -485,29 +485,29 @@
  *  2 entries of B get updated and one entry of C gets added.
  */
 - (void)testUniqueObject {
-    NSArray *objects = [self objectsFromJSON:@"unique.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Unique"];
+    NSArray *objects = [Helper objectsFromJSON:@"unique.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Unique"];
 
     [Sync changes:objects
     inEntityNamed:@"A"
         dataStack:dataStack
        completion:nil];
-    XCTAssertEqual([self countForEntity:@"A"
+    XCTAssertEqual([Helper countForEntity:@"A"
                               inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"B"
+    XCTAssertEqual([Helper countForEntity:@"B"
                               inContext:dataStack.mainContext], 2);
-    XCTAssertEqual([self countForEntity:@"C"
+    XCTAssertEqual([Helper countForEntity:@"C"
                               inContext:dataStack.mainContext], 0);
 
     [Sync changes:objects
     inEntityNamed:@"C"
         dataStack:dataStack
        completion:nil];
-    XCTAssertEqual([self countForEntity:@"A"
+    XCTAssertEqual([Helper countForEntity:@"A"
                               inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"B"
+    XCTAssertEqual([Helper countForEntity:@"B"
                               inContext:dataStack.mainContext], 2);
-    XCTAssertEqual([self countForEntity:@"C"
+    XCTAssertEqual([Helper countForEntity:@"C"
                               inContext:dataStack.mainContext], 1);
 
     [dataStack drop];
@@ -516,24 +516,24 @@
 #pragma mark Patients => https://github.com/hyperoslo/Sync/issues/121
 
 - (void)testPatients {
-    NSArray *objects = [self objectsFromJSON:@"patients.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Patients"];
+    NSArray *objects = [Helper objectsFromJSON:@"patients.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Patients"];
 
     [Sync changes:objects
     inEntityNamed:@"Patient"
         dataStack:dataStack
        completion:nil];
-    XCTAssertEqual([self countForEntity:@"Patient"
+    XCTAssertEqual([Helper countForEntity:@"Patient"
                               inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"Baseline"
+    XCTAssertEqual([Helper countForEntity:@"Baseline"
                               inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"Alcohol"
+    XCTAssertEqual([Helper countForEntity:@"Alcohol"
                               inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"Fitness"
+    XCTAssertEqual([Helper countForEntity:@"Fitness"
                               inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"Weight"
+    XCTAssertEqual([Helper countForEntity:@"Weight"
                               inContext:dataStack.mainContext], 1);
-    XCTAssertEqual([self countForEntity:@"Measure"
+    XCTAssertEqual([Helper countForEntity:@"Measure"
                               inContext:dataStack.mainContext], 1);
 
     [dataStack drop];
@@ -542,29 +542,29 @@
 #pragma mark Bug 84 => https://github.com/hyperoslo/Sync/issues/84
 
 - (void)testStaffAndfulfillers {
-    NSArray *objects = [self objectsFromJSON:@"bug-number-84.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug84"];
+    NSArray *objects = [Helper objectsFromJSON:@"bug-number-84.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Bug84"];
 
     [Sync changes:objects
     inEntityNamed:@"MSStaff"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"MSStaff"
+    XCTAssertEqual([Helper countForEntity:@"MSStaff"
                               inContext:dataStack.mainContext], 1);
 
-    NSArray *staff = [self fetchEntity:@"MSStaff"
+    NSArray *staff = [Helper fetchEntity:@"MSStaff"
                              predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"mstaff_F58dVBTsXznvMpCPmpQgyV"]
                              inContext:dataStack.mainContext];
     NSManagedObject *oneStaff = [staff firstObject];
     XCTAssertEqualObjects([oneStaff valueForKey:@"image"], @"a.jpg");
     XCTAssertEqual([[[oneStaff valueForKey:@"fulfillers"] allObjects] count], 2);
 
-    NSInteger numberOffulfillers = [self countForEntity:@"MSFulfiller"
+    NSInteger numberOffulfillers = [Helper countForEntity:@"MSFulfiller"
                                               inContext:dataStack.mainContext];
     XCTAssertEqual(numberOffulfillers, 2);
 
-    NSArray *fulfillers = [self fetchEntity:@"MSFulfiller"
+    NSArray *fulfillers = [Helper fetchEntity:@"MSFulfiller"
                                   predicate:[NSPredicate predicateWithFormat:@"xid = %@", @"ffr_AkAHQegYkrobp5xc2ySc5D"]
                                   inContext:dataStack.mainContext];
     NSManagedObject *fullfiller = [fulfillers firstObject];
@@ -577,17 +577,17 @@
 #pragma mark Bug 113 => https://github.com/hyperoslo/Sync/issues/113
 
 - (void)testCustomPrimaryKeyBug113 {
-    NSArray *objects = [self objectsFromJSON:@"bug-113-comments-no-id.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug113"];
+    NSArray *objects = [Helper objectsFromJSON:@"bug-113-comments-no-id.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Bug113"];
 
     [Sync changes:objects
     inEntityNamed:@"AwesomeComment"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"AwesomeComment"
+    XCTAssertEqual([Helper countForEntity:@"AwesomeComment"
                               inContext:dataStack.mainContext], 8);
-    NSArray *comments = [self fetchEntity:@"AwesomeComment"
+    NSArray *comments = [Helper fetchEntity:@"AwesomeComment"
                                 predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
                                 inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 1);
@@ -600,30 +600,30 @@
 }
 
 - (void)testCustomPrimaryKeyInsideToManyRelationshipBug113 {
-    NSArray *objects = [self objectsFromJSON:@"bug-113-stories-comments-no-ids.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug113"];
+    NSArray *objects = [Helper objectsFromJSON:@"bug-113-stories-comments-no-ids.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Bug113"];
 
     [Sync changes:objects
     inEntityNamed:@"AwesomeStory"
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"AwesomeStory"
+    XCTAssertEqual([Helper countForEntity:@"AwesomeStory"
                               inContext:dataStack.mainContext], 3);
-    NSArray *stories = [self fetchEntity:@"AwesomeStory"
+    NSArray *stories = [Helper fetchEntity:@"AwesomeStory"
                                predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
                                inContext:dataStack.mainContext];
     NSManagedObject *story = [stories firstObject];
     XCTAssertEqual([[story valueForKey:@"awesomeComments"] count], 3);
 
-    XCTAssertEqual([self countForEntity:@"AwesomeComment"
+    XCTAssertEqual([Helper countForEntity:@"AwesomeComment"
                               inContext:dataStack.mainContext], 9);
-    NSArray *comments = [self fetchEntity:@"AwesomeComment"
+    NSArray *comments = [Helper fetchEntity:@"AwesomeComment"
                                 predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
                                 inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 3);
 
-    comments = [self fetchEntity:@"AwesomeComment"
+    comments = [Helper fetchEntity:@"AwesomeComment"
                        predicate:[NSPredicate predicateWithFormat:@"body = %@ AND awesomeStory = %@", @"comment 1", story]
                        inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 1);
@@ -636,15 +636,15 @@
 }
 
 - (void)testCustomKeysInRelationshipsToOneBug113 {
-    NSArray *objects = [self objectsFromJSON:@"bug-113-custom_relationship_key_to_one.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug113"];
+    NSArray *objects = [Helper objectsFromJSON:@"bug-113-custom_relationship_key_to_one.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Bug113"];
 
     [Sync changes:objects
     inEntityNamed:@"AwesomeStory"
         dataStack:dataStack
        completion:nil];
 
-    NSArray *array = [self fetchEntity:@"AwesomeStory"
+    NSArray *array = [Helper fetchEntity:@"AwesomeStory"
                              inContext:dataStack.mainContext];
     NSManagedObject *story = [array firstObject];
     XCTAssertNotNil([story valueForKey:@"awesomeSummarize"]);
@@ -655,9 +655,9 @@
 #pragma mark Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
 - (void)testNilRelationshipsAfterUpdating_Sync_1_0_10 {
-    NSDictionary *formDictionary = [self objectsFromJSON:@"bug-125.json"];
+    NSDictionary *formDictionary = [Helper objectsFromJSON:@"bug-125.json"];
     NSString *uri = formDictionary[@"uri"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Bug125"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Bug125"];
 
     [Sync changes:@[formDictionary]
     inEntityNamed:@"Form"
@@ -665,25 +665,25 @@
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Form"
+    XCTAssertEqual([Helper countForEntity:@"Form"
                               inContext:dataStack.mainContext], 1);
 
-    XCTAssertEqual([self countForEntity:@"Element"
+    XCTAssertEqual([Helper countForEntity:@"Element"
                               inContext:dataStack.mainContext], 11);
 
-    XCTAssertEqual([self countForEntity:@"SelectionItem"
+    XCTAssertEqual([Helper countForEntity:@"SelectionItem"
                               inContext:dataStack.mainContext], 4);
 
-    XCTAssertEqual([self countForEntity:@"Model"
+    XCTAssertEqual([Helper countForEntity:@"Model"
                               inContext:dataStack.mainContext], 1);
 
-    XCTAssertEqual([self countForEntity:@"ModelProperty"
+    XCTAssertEqual([Helper countForEntity:@"ModelProperty"
                               inContext:dataStack.mainContext], 9);
 
-    XCTAssertEqual([self countForEntity:@"Restriction"
+    XCTAssertEqual([Helper countForEntity:@"Restriction"
                               inContext:dataStack.mainContext], 3);
 
-    NSArray *array = [self fetchEntity:@"Form"
+    NSArray *array = [Helper fetchEntity:@"Form"
                              inContext:dataStack.mainContext];
     NSManagedObject *form = [array firstObject];
     NSManagedObject *element = [form valueForKey:@"element"];
@@ -695,8 +695,8 @@
 }
 
 - (void)testStoryToSummarize {
-    NSDictionary *formDictionary = [self objectsFromJSON:@"story-summarize.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Social"];
+    NSDictionary *formDictionary = [Helper objectsFromJSON:@"story-summarize.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
 
     [Sync changes:@[formDictionary]
     inEntityNamed:@"Story"
@@ -704,9 +704,9 @@
         dataStack:dataStack
        completion:nil];
 
-    XCTAssertEqual([self countForEntity:@"Story"
+    XCTAssertEqual([Helper countForEntity:@"Story"
                               inContext:dataStack.mainContext], 1);
-    NSArray *stories = [self fetchEntity:@"Story"
+    NSArray *stories = [Helper fetchEntity:@"Story"
                                predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @1]
                                inContext:dataStack.mainContext];
     NSManagedObject *story = [stories firstObject];
@@ -714,9 +714,9 @@
     XCTAssertEqualObjects([summarize valueForKey:@"remoteID"], @1);
     XCTAssertEqual([[story valueForKey:@"comments"] count], 1);
 
-    XCTAssertEqual([self countForEntity:@"Comment"
+    XCTAssertEqual([Helper countForEntity:@"Comment"
                               inContext:dataStack.mainContext], 1);
-    NSArray *comments = [self fetchEntity:@"Comment"
+    NSArray *comments = [Helper fetchEntity:@"Comment"
                                 predicate:[NSPredicate predicateWithFormat:@"body = %@", @"Hi"]
                                 inContext:dataStack.mainContext];
     XCTAssertEqual(comments.count, 1);
@@ -735,28 +735,28 @@
  It will should map category_id with the necesary category object using the ID 12345
 */
 - (void)testIDRelationshipMapping {
-    NSArray *usersDictionary = [self objectsFromJSON:@"users_a.json"];
-    DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
+    NSArray *usersDictionary = [Helper objectsFromJSON:@"users_a.json"];
+    DATAStack *dataStack = [Helper dataStackWithModelName:@"Notes"];
 
     [Sync changes:usersDictionary
     inEntityNamed:@"SuperUser"
         dataStack:dataStack
        completion:nil];
 
-    NSInteger usersCount = [self countForEntity:@"SuperUser" inContext:dataStack.mainContext];
+    NSInteger usersCount = [Helper countForEntity:@"SuperUser" inContext:dataStack.mainContext];
     XCTAssertEqual(usersCount, 8);
 
-    NSArray *notesDictionary = [self objectsFromJSON:@"notes_with_user_id.json"];
+    NSArray *notesDictionary = [Helper objectsFromJSON:@"notes_with_user_id.json"];
 
     [Sync changes:notesDictionary
     inEntityNamed:@"SuperNote"
         dataStack:dataStack
        completion:nil];
 
-    NSInteger notesCount = [self countForEntity:@"SuperNote" inContext:dataStack.mainContext];
+    NSInteger notesCount = [Helper countForEntity:@"SuperNote" inContext:dataStack.mainContext];
     XCTAssertEqual(notesCount, 5);
 
-    NSArray *notes = [self fetchEntity:@"SuperNote"
+    NSArray *notes = [Helper fetchEntity:@"SuperNote"
                              predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @0]
                              inContext:dataStack.mainContext];
     NSManagedObject *note = notes.firstObject;

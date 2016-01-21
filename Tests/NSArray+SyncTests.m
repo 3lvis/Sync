@@ -1,8 +1,7 @@
 @import XCTest;
+#import "Tests-Swift.h"
 
-#import "BaseTestCase.h"
-
-@interface NSArray_SyncTests : BaseTestCase
+@interface NSArray_SyncTests : XCTestCase
 
 @end
 

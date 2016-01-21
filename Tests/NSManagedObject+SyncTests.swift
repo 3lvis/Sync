@@ -2,7 +2,7 @@ import XCTest
 
 class NSManagedObject_SyncTests: XCTestCase {
     func testCopyInContext() {
-
+        
     }
 
     func testProcessRelationshipsUsingDictionary() {
