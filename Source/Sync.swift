@@ -48,9 +48,14 @@ import DATAStack
                 updatedObject.sync_processRelationshipsUsingDictionary(objectJSON, parent: parent, dataStack: dataStack)
         }
 
-        try! context.save()
+        var syncError: NSError?
+        do {
+            try context.save()
+        } catch let error as NSError {
+            syncError = error
+        }
         dataStack.persistWithCompletion {
-            completion?(error: nil)
+            completion?(error: syncError)
         }
     }
 }
