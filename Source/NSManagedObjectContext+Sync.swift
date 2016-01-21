@@ -4,7 +4,7 @@ import NSString_HYPNetworking
 
 public extension NSManagedObjectContext {
     /**
-     Safely fetches a NSManagedObject in the current context.
+     Safely fetches a NSManagedObject in the current context. If no remoteID is provided then it will check for the parent entity and use that.
      - parameter entityName: The name of the Core Data entity.
      - parameter remoteID: The primary key.
      - parameter parent: The parent of the object.
@@ -19,8 +19,11 @@ public extension NSManagedObjectContext {
             request.predicate = NSPredicate(format: "%K = %@", localKey, (remoteID as! NSObject))
             let objects = try! self.executeFetchRequest(request)
             return objects.first as? NSManagedObject
+        } else if let parentRelationshipName = parentRelationshipName {
+            // More info: https://github.com/hyperoslo/Sync/pull/72
+            return parent?.valueForKey(parentRelationshipName) as? NSManagedObject
         } else {
-            return parent?.valueForKey(parentRelationshipName!) as? NSManagedObject
+            return nil
         }
     }
 }
