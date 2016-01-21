@@ -40,12 +40,14 @@ import DATAStack
         }
 
         DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: predicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
+            guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
             let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
-            created.hyp_fillWithDictionary(objectJSON)
-            created.sync_processRelationshipsUsingDictionary(objectJSON, parent: parent, dataStack: dataStack)
+            created.hyp_fillWithDictionary(JSON)
+            created.sync_processRelationshipsUsingDictionary(JSON, parent: parent, dataStack: dataStack)
             }) { objectJSON, updatedObject in
-                updatedObject.hyp_fillWithDictionary(objectJSON)
-                updatedObject.sync_processRelationshipsUsingDictionary(objectJSON, parent: parent, dataStack: dataStack)
+                guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
+                updatedObject.hyp_fillWithDictionary(JSON)
+                updatedObject.sync_processRelationshipsUsingDictionary(JSON, parent: parent, dataStack: dataStack)
         }
 
         var syncError: NSError?

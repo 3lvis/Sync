@@ -16,7 +16,7 @@ public extension NSManagedObject {
     /**
      Fills relationships using the received dictionary.
      */
-    public func sync_processRelationshipsUsingDictionary(objectDictionary: NSDictionary, parent: NSManagedObject?, dataStack: DATAStack) {
+    public func sync_processRelationshipsUsingDictionary(objectDictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
         let relationships = self.entity.sync_relationships()
         for relationship in relationships {
             let entity = NSEntityDescription.entityForName(relationship.entity.name!, inManagedObjectContext: self.managedObjectContext!)!
@@ -30,7 +30,7 @@ public extension NSManagedObject {
                     if currentParent == nil || parent != nil && !currentParent!.isEqual(parent!) {
                         self.setValue(parent, forKey: relationship.name)
                     }
-                } else if let remoteID = objectDictionary.objectForKey(keyName) {
+                } else if let remoteID = objectDictionary[keyName] {
                     self.sync_processIDRelationship(relationship, remoteID: remoteID, parent: parent, dataStack: dataStack)
                 } else {
                     self.sync_processToOneRelationship(relationship, objectDictionary: objectDictionary, parent: parent, dataStack: dataStack)
@@ -92,7 +92,7 @@ public extension NSManagedObject {
             let remoteKey = entity.sync_remoteKey()
             let object = self.managedObjectContext!.sync_safeObject(entityName, remoteID: filteredObjectDictionary.andy_valueForKey(remoteKey), parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext!)
             object.hyp_fillWithDictionary(filteredObjectDictionary as [NSObject : AnyObject])
-            object.sync_processRelationshipsUsingDictionary(filteredObjectDictionary, parent: self, dataStack: dataStack)
+            object.sync_processRelationshipsUsingDictionary(filteredObjectDictionary as! [String : AnyObject], parent: self, dataStack: dataStack)
             let currentRelationship = self.valueForKey(relationship.name)
             if currentRelationship == nil || !currentRelationship!.isEqual(object) {
                 self.setValue(object, forKey: relationship.name)
