@@ -2,7 +2,7 @@
 
 @implementation NSEntityDescription (Sync)
 
-- (nonnull NSArray *)sync_relationships {
+- (nonnull NSArray<NSRelationshipDescription *> *)sync_relationships {
     NSMutableArray *relationships = [NSMutableArray array];
 
     for (id propertyDescription in [self properties]) {

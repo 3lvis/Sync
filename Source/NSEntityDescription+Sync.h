@@ -2,7 +2,7 @@
 
 @interface NSEntityDescription (Sync)
 
-- (nonnull NSArray *)sync_relationships;
+- (nonnull NSArray<NSRelationshipDescription *> *)sync_relationships;
 
 - (nullable NSRelationshipDescription *)sync_parentEntity;
 
