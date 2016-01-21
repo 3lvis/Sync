@@ -48,10 +48,10 @@
 
 ```swift
 Sync.changes(
-  changes: [AnyObject]!,
-  inEntityNamed: String!,
-  dataStack: DATAStack!,
-  completion: ((NSError!) -> Void)!)
+  changes: [AnyObject],
+  inEntityNamed: String,
+  dataStack: DATAStack,
+  completion: ((NSError?) -> Void)?)
 ```
 
 ### Objective-C
