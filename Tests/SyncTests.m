@@ -727,14 +727,13 @@
 /*
  When having JSONs like this:
  {
- "id":12345,
- "name":"My Project",
- "category_id":12345
+   "id":12345,
+   "name":"My Project",
+   "category_id":12345
  }
 
  It will should map category_id with the necesary category object using the ID 12345
- */
-
+*/
 - (void)testIDRelationshipMapping {
     NSArray *usersDictionary = [self objectsFromJSON:@"users_a.json"];
     DATAStack *dataStack = [self dataStackWithModelName:@"Notes"];
