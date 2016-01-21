@@ -127,7 +127,7 @@ inEntityNamed:@"User"
 
 ### More Examples
 
-<a href="https://github.com/hyperoslo/Sync/tree/master/AppNet/README.md">
+<a href="https://github.com/3lvis/SyncAppNetDemo/README.md">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
 </a>
 
