@@ -415,4 +415,89 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    // MARK: - Bug 125 => https://github.com/hyperoslo/Sync/issues/125
+
+    func testNilRelationshipsAfterUpdating_Sync_1_0_10() {
+        let formDictionary = Helper.objectsFromJSON("bug-125.json") as! [String : AnyObject]
+        let uri = formDictionary["uri"] as! String
+        let dataStack = Helper.dataStackWithModelName("Bug125")
+
+        Sync.changes([formDictionary], inEntityNamed:"Form", predicate: NSPredicate(format: "uri == %@", uri), dataStack:dataStack, completion:nil)
+
+        XCTAssertEqual(Helper.countForEntity("Form", inContext:dataStack.mainContext), 1)
+
+        XCTAssertEqual(Helper.countForEntity("Element", inContext:dataStack.mainContext), 11)
+
+        XCTAssertEqual(Helper.countForEntity("SelectionItem", inContext:dataStack.mainContext), 4)
+
+        XCTAssertEqual(Helper.countForEntity("Model", inContext:dataStack.mainContext), 1)
+
+        XCTAssertEqual(Helper.countForEntity("ModelProperty", inContext:dataStack.mainContext), 9)
+
+        XCTAssertEqual(Helper.countForEntity("Restriction", inContext:dataStack.mainContext), 3)
+
+        let array = Helper.fetchEntity("Form", inContext:dataStack.mainContext)
+        let form = array.first!
+        let element = form.valueForKey("element") as! NSManagedObject
+        let model = form.valueForKey("model") as! NSManagedObject
+        XCTAssertNotNil(element)
+        XCTAssertNotNil(model)
+
+        dataStack.drop()
+    }
+
+    func testStoryToSummarize() {
+        let formDictionary = Helper.objectsFromJSON("story-summarize.json") as! [String : AnyObject]
+        let dataStack = Helper.dataStackWithModelName("Social")
+
+        Sync.changes([formDictionary], inEntityNamed:"Story", predicate: NSPredicate(format:"remoteID == %@", NSNumber(int: 1)), dataStack:dataStack, completion:nil)
+
+        XCTAssertEqual(Helper.countForEntity("Story", inContext:dataStack.mainContext), 1)
+        let stories = Helper.fetchEntity("Story", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 1)), inContext:dataStack.mainContext)
+        let story = stories.first!
+        let summarize = story.valueForKey("summarize") as! NSManagedObject
+        XCTAssertEqual(summarize.valueForKey("remoteID") as? NSNumber, NSNumber(int: 1))
+        XCTAssertEqual((story.valueForKey("comments") as! NSSet).count, 1)
+
+        XCTAssertEqual(Helper.countForEntity("Comment", inContext:dataStack.mainContext), 1)
+        let comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@", "Hi"), inContext:dataStack.mainContext)
+        XCTAssertEqual(comments.count, 1)
+
+        dataStack.drop()
+    }
+
+    /**
+     When having JSONs like this:
+     {
+         "id":12345,
+         "name":"My Project",
+         "category_id":12345
+     }
+
+     It will should map category_id with the necesary category object using the ID 12345
+     */
+    func testIDRelationshipMapping() {
+        let usersDictionary = Helper.objectsFromJSON("users_a.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Notes")
+
+        Sync.changes(usersDictionary, inEntityNamed:"SuperUser", dataStack:dataStack, completion:nil)
+
+        let usersCount = Helper.countForEntity("SuperUser", inContext:dataStack.mainContext)
+        XCTAssertEqual(usersCount, 8)
+
+        let notesDictionary = Helper.objectsFromJSON("notes_with_user_id.json") as! [[String : AnyObject]]
+
+        Sync.changes(notesDictionary, inEntityNamed:"SuperNote", dataStack:dataStack, completion:nil)
+
+        let notesCount = Helper.countForEntity("SuperNote", inContext:dataStack.mainContext)
+        XCTAssertEqual(notesCount, 5)
+        
+        let notes = Helper.fetchEntity("SuperNote", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
+        let note = notes.first!
+        let user = note.valueForKey("superUser")!
+        XCTAssertEqual(user.valueForKey("name") as? String, "Melisa White")
+        
+        dataStack.drop()
+    }
 }
