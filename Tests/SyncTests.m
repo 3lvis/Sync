@@ -9,51 +9,7 @@
 
 @implementation SyncTests
 
-#pragma mark - Tests
-
 #pragma mark Contacts
-
-- (void)testLoadAndUpdateUsers {
-    NSArray *objectsA = [Helper objectsFromJSON:@"users_a.json"];
-
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
-
-    [Sync changes:objectsA
-    inEntityNamed:@"User"
-        dataStack:dataStack
-       completion:nil];
-
-    NSInteger count = [Helper countForEntity:@"User" inContext:dataStack.mainContext];
-    XCTAssertEqual(count, 8);
-
-    NSArray *objectsB = [Helper objectsFromJSON:@"users_b.json"];
-
-    [Sync changes:objectsB
-    inEntityNamed:@"User"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"User"
-                              inContext:dataStack.mainContext], 6);
-
-    NSManagedObject *result = [[Helper fetchEntity:@"User"
-                                       predicate:[NSPredicate predicateWithFormat:@"remoteID == %@", @7]
-                                 sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES]]
-                                       inContext:dataStack.mainContext] firstObject];
-    XCTAssertEqualObjects([result valueForKey:@"email"], @"secondupdated@ovium.com");
-
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    dateFormat.dateFormat = @"yyyy-MM-dd";
-    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-
-    NSDate *createdDate = [dateFormat dateFromString:@"2014-02-14"];
-    XCTAssertEqualObjects([result valueForKey:@"createdAt"], createdDate);
-
-    NSDate *updatedDate = [dateFormat dateFromString:@"2014-02-17"];
-    XCTAssertEqualObjects([result valueForKey:@"updatedAt"], updatedDate);
-
-    [dataStack drop];
-}
 
 - (void)testUsersAndCompanies {
     NSArray *objects = [Helper objectsFromJSON:@"users_company.json"];

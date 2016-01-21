@@ -215,12 +215,12 @@
 				141894241BDD62F600EE52CE /* Models */,
 				1418943D1BDD62F600EE52CE /* NSArray+SyncTests.m */,
 				1418943E1BDD62F600EE52CE /* SyncTests.m */,
+				14FDB4D01C511A5B0061D9FA /* Tests.swift */,
 				14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */,
 				14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */,
 				14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */,
 				14D4CA7E1C48176F00CAB8A0 /* Tests-Bridging-Header.h */,
 				146D72B01AB782920058798C /* Supporting Files */,
-				14FDB4D01C511A5B0061D9FA /* Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
