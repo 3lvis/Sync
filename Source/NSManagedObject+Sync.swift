@@ -47,15 +47,15 @@ public extension NSManagedObject {
         let inverseEntityName = relationship.inverseRelationship?.name
         let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
         let hasValidManyToManyRelationship = parent != nil && parentEntityName != nil && inverseIsToMany && parentEntityName! == childEntityName
-        if let children = objectDictionary.andy_valueForKey(relationshipName) as? NSArray {
+        if let children = objectDictionary.andy_valueForKey(relationshipName) as? [[String : AnyObject]] {
             var childPredicate: NSPredicate? = nil
             if inverseIsToMany {
                 let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)!
                 let destinationRemoteKey = entity.sync_remoteKey()
-                let childIDs = children.valueForKey(destinationRemoteKey)
+                let childIDs = (children as NSArray).valueForKey(destinationRemoteKey) as? [[String : AnyObject]]
                 let destinationLocalKey = entity.sync_localKey()
-                if childIDs.count > 0 {
-                    childPredicate = NSPredicate(format: "ANY %K IN %@", destinationLocalKey, children.valueForKey(destinationRemoteKey) as! NSObject)
+                if let childIDs = childIDs where childIDs.count > 0 {
+                    childPredicate = NSPredicate(format: "ANY %K IN %@", destinationLocalKey, (children as NSArray).valueForKey(destinationRemoteKey) as! NSObject)
                 }
             } else if let inverseEntityName = inverseEntityName {
                 childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
