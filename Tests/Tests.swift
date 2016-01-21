@@ -61,4 +61,26 @@ class Tests: XCTestCase {
 
         dataStack.drop()
     }
+
+    func testRelationshipsB() {
+        let dataStack = Helper.dataStackWithModelName("Contacts")
+
+        let objects = Helper.objectsFromJSON("users_c.json") as! [[String : AnyObject]]
+        Sync.changes(objects, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 4);
+
+        let users = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(int: 6)), inContext:dataStack.mainContext)
+        let user = users.first!
+        XCTAssertEqual(user.valueForKey("name") as? String, "Shawn Merrill")
+
+        let location = user.valueForKey("location") as! NSManagedObject
+        XCTAssertEqual(location.valueForKey("city") as? String, "New York")
+        XCTAssertEqual(location.valueForKey("street") as? String, "Broadway")
+        XCTAssertEqual(location.valueForKey("zipCode") as? NSNumber, NSNumber(int: 10012))
+
+        let profilePicturesCount = Helper.countForEntity("Image", predicate: NSPredicate(format: "user = %@", user), inContext:dataStack.mainContext)
+        XCTAssertEqual(profilePicturesCount, 3);
+
+        dataStack.drop()
+    }
 }

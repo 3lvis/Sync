@@ -9,38 +9,6 @@
 
 @implementation SyncTests
 
-#pragma mark Contacts
-
-- (void)testRelationshipsB {
-    NSArray *objects = [Helper objectsFromJSON:@"users_c.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Contacts"];
-
-    [Sync changes:objects
-    inEntityNamed:@"User"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"User"
-                              inContext:dataStack.mainContext], 4);
-    NSArray *users = [Helper fetchEntity:@"User"
-                             predicate:[NSPredicate predicateWithFormat:@"remoteID = %@", @6]
-                             inContext:dataStack.mainContext];
-    NSManagedObject *user = [users firstObject];
-    XCTAssertEqualObjects([user valueForKey:@"name"], @"Shawn Merrill");
-
-    NSManagedObject *location = [user valueForKey:@"location"];
-    XCTAssertTrue([[location valueForKey:@"city"] isEqualToString:@"New York"]);
-    XCTAssertTrue([[location valueForKey:@"street"] isEqualToString:@"Broadway"]);
-    XCTAssertEqualObjects([location valueForKey:@"zipCode"], @10012);
-
-    NSInteger profilePicturesCount = [Helper countForEntity:@"Image"
-                                                predicate:[NSPredicate predicateWithFormat:@"user = %@", user]
-                                                inContext:dataStack.mainContext];
-    XCTAssertEqual(profilePicturesCount, 3);
-
-    [dataStack drop];
-}
-
 #pragma mark Notes
 
 - (void)testRelationshipsA {
