@@ -1,6 +1,6 @@
 use_frameworks!
 
-link_with 'Tests', 'AppNet', 'DesignerNews'
+link_with 'Tests', 'AppNet'
 
 pod 'Sync', path: "."
 pod 'NSJSONSerialization-ANDYJSONFile'
