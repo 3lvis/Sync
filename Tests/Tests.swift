@@ -179,4 +179,20 @@ class Tests: XCTestCase {
 
         dataStack.drop()
     }
+
+    func testRelationshipName() {
+        let objects = Helper.objectsFromJSON("numbers_in_collection.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Recursive")
+
+        Sync.changes(objects, inEntityNamed: "Number", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Collection", inContext:dataStack.mainContext), 1)
+
+        let numbers = Helper.fetchEntity("Number", inContext:dataStack.mainContext)
+        let number = numbers.first!
+        XCTAssertNotNil(number.valueForKey("parent"))
+        XCTAssertEqual((number.valueForKey("parent") as! NSManagedObject).valueForKey("name") as? String, "Collection 1")
+
+        dataStack.drop()
+    }
 }

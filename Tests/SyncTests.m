@@ -66,29 +66,6 @@
 }
 */
 
-#pragma mark Recursive
-
-- (void)testRelationshipName {
-    NSArray *objects = [Helper objectsFromJSON:@"numbers_in_collection.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Recursive"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Number"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"Collection"
-                              inContext:dataStack.mainContext], 1);
-
-    NSArray *numbers = [Helper fetchEntity:@"Number"
-                               inContext:dataStack.mainContext];
-    NSManagedObject *number = [numbers firstObject];
-    XCTAssertNotNil([number valueForKey:@"parent"]);
-    XCTAssertEqualObjects([[number valueForKey:@"parent"]  valueForKey:@"name"], @"Collection 1");
-
-    [dataStack drop];
-}
-
 #pragma mark Social
 
 - (void)testCustomPrimaryKey {
