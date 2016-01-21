@@ -68,21 +68,6 @@
 
 #pragma mark Recursive
 
-- (void)testNumbersWithEmptyRelationship {
-    NSArray *objects = [Helper objectsFromJSON:@"numbers.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Recursive"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Number"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"Number"
-                              inContext:dataStack.mainContext], 6);
-
-    [dataStack drop];
-}
-
 - (void)testRelationshipName {
     NSArray *objects = [Helper objectsFromJSON:@"numbers_in_collection.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Recursive"];

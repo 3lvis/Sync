@@ -167,4 +167,16 @@ class Tests: XCTestCase {
         
         dataStack.drop()
     }
+
+    // MARK: - Recursive
+
+    func testNumbersWithEmptyRelationship() {
+        let objects = Helper.objectsFromJSON("numbers.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Recursive")
+
+        Sync.changes(objects, inEntityNamed: "Number", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Number", inContext:dataStack.mainContext), 6)
+
+        dataStack.drop()
+    }
 }
