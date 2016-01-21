@@ -61,7 +61,7 @@ public extension NSManagedObject {
                 childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
             }
 
-            if children = children as? [[String : AnyObject]] {
+            if let children = children as? [[String : AnyObject]] {
                 Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, inContext: self.managedObjectContext!, dataStack: dataStack, completion: nil)
             }
         } else if hasValidManyToManyRelationship, let parent = parent {
