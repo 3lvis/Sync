@@ -5,19 +5,19 @@ class NSManagedObject_SyncTests: XCTestCase {
         
     }
 
-    func testProcessRelationshipsUsingDictionary() {
+    func testFillWithDictionary() {
 
     }
 
-    func testProcessToManyRelationship() {
+    func testToManyRelationship() {
 
     }
 
-    func testProcessToOneRelationship() {
+    func testRelationshipUsingIDInsteadOfDictionary() {
 
     }
 
-    func testProcessIDRelationship() {
+    func testToOneRelationship() {
 
     }
 }

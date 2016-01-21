@@ -15,8 +15,7 @@ public extension NSArray {
                 if let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) {
                     for change in selfArray {
                         let object = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
-                        object.hyp_fillWithDictionary(change)
-                        object.sync_processRelationshipsUsingDictionary(change, parent: parent, dataStack: dataStack)
+                        object.sync_fillWithDictionary(change, parent: parent, dataStack: dataStack)
                         objectChanges.append(object)
                     }
 
