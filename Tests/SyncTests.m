@@ -68,29 +68,6 @@
 
 #pragma mark Social
 
-- (void)testCustomPrimaryKey {
-    NSArray *objects = [Helper objectsFromJSON:@"comments-no-id.json"];
-    DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
-
-    [Sync changes:objects
-    inEntityNamed:@"Comment"
-        dataStack:dataStack
-       completion:nil];
-
-    XCTAssertEqual([Helper countForEntity:@"Comment"
-                              inContext:dataStack.mainContext], 8);
-    NSArray *comments = [Helper fetchEntity:@"Comment"
-                                predicate:[NSPredicate predicateWithFormat:@"body = %@", @"comment 1"]
-                                inContext:dataStack.mainContext];
-    XCTAssertEqual(comments.count, 1);
-    XCTAssertEqual([[[comments firstObject] valueForKey:@"comments"] count], 3);
-
-    NSManagedObject *comment = [comments firstObject];
-    XCTAssertEqualObjects([comment valueForKey:@"body"], @"comment 1");
-
-    [dataStack drop];
-}
-
 - (void)testCustomPrimaryKeyInsideToManyRelationship {
     NSArray *objects = [Helper objectsFromJSON:@"stories-comments-no-ids.json"];
     DATAStack *dataStack = [Helper dataStackWithModelName:@"Social"];
