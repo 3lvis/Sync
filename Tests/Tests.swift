@@ -1,6 +1,7 @@
 import XCTest
 import DATAStack
 import Sync
+import CoreData
 
 class Tests: XCTestCase {
     // MARK: - Contacts
