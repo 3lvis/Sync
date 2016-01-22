@@ -3,7 +3,7 @@ import DATAStack
 import Sync
 import CoreData
 
-class Tests: XCTestCase {
+class SyncTests: XCTestCase {
     // MARK: - Contacts
 
     func testLoadAndUpdateUsers() {

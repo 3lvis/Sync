@@ -49,7 +49,7 @@
 		14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */; };
 		14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */; };
 		14D943591C51844C00F90DC2 /* NSArray+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */; };
-		14FDB4D11C511A5B0061D9FA /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D01C511A5B0061D9FA /* Tests.swift */; };
+		14FDB4D11C511A5B0061D9FA /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D01C511A5B0061D9FA /* SyncTests.swift */; };
 		14FDB4D31C511A6F0061D9FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D21C511A6F0061D9FA /* Helper.swift */; };
 		8C1190CE4B3821813B6A3421 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -105,7 +105,7 @@
 		14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SyncTests.swift"; sourceTree = "<group>"; };
 		14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+SyncTests.swift"; sourceTree = "<group>"; };
-		14FDB4D01C511A5B0061D9FA /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		14FDB4D01C511A5B0061D9FA /* SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTests.swift; sourceTree = "<group>"; };
 		14FDB4D21C511A6F0061D9FA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9E482492041434DB374B1948 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13281341A77530FC5AE626A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 				141894071BDD62F600EE52CE /* Helpers */,
 				1418940A1BDD62F600EE52CE /* JSONs */,
 				141894241BDD62F600EE52CE /* Models */,
-				14FDB4D01C511A5B0061D9FA /* Tests.swift */,
+				14FDB4D01C511A5B0061D9FA /* SyncTests.swift */,
 				14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */,
 				14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */,
 				14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */,
@@ -407,7 +407,7 @@
 			files = (
 				14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */,
 				14D943591C51844C00F90DC2 /* NSArray+SyncTests.swift in Sources */,
-				14FDB4D11C511A5B0061D9FA /* Tests.swift in Sources */,
+				14FDB4D11C511A5B0061D9FA /* SyncTests.swift in Sources */,
 				141894611BDD62F600EE52CE /* Patients.xcdatamodeld in Sources */,
 				1418945B1BDD62F600EE52CE /* Bug125.xcdatamodeld in Sources */,
 				1418945C1BDD62F600EE52CE /* Bug84.xcdatamodeld in Sources */,
