@@ -3,6 +3,13 @@ import DATAStack
 import NSManagedObject_HYPPropertyMapper
 
 public extension NSArray {
+    /**
+     Filters the items using the provided predicate, useful to exclude JSON objects from a JSON array by using a predicate.
+     - parameter entityName: The name of the entity to be synced.
+     - parameter predicate: The predicate used to filter out changes, if you want to exclude some items, you just need to provide this predicate.
+     - parameter parent: The parent of the entity, optional since many entities are orphans.
+     - parameter dataStack: The DATAStack instance.
+     */
     func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack) -> [[String : AnyObject]] {
         var filteredChanges = [[String : AnyObject]]()
         if predicate.isKindOfClass(NSComparisonPredicate.self), let castedPredicate = predicate as? NSComparisonPredicate, selfArray = self as? [[String : AnyObject]] {
