@@ -22,7 +22,7 @@ public extension NSManagedObject {
     }
 
     /**
-     Fills the entity using the received dictionary, maps one-to-many, many-to-many and one-to-one relationships.
+     Syncs the entity using the received dictionary, maps one-to-many, many-to-many and one-to-one relationships.
      It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
      and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
      entire company object inside the employees dictionary.
