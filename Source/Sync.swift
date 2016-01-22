@@ -58,4 +58,8 @@ import DATAStack
             completion?(error: syncError)
         }
     }
+
+    public class func insert(changes: [String : AnyObject], inEntityNamed entityName: String, parent: NSManagedObject? = nil, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+        completion?(error: nil)
+    }
 }
