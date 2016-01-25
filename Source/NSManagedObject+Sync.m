@@ -124,7 +124,7 @@
             dataStack:dataStack
            completion:nil];
     } else if (hasValidManyToManyRelationship) {
-        NSMutableSet *relatedObjects = [self mutableSetValueForKey:relationship.name];
+        NSMutableOrderedSet *relatedObjects = [self mutableOrderedSetValueForKey:relationship.name];
         [relatedObjects addObject:parent];
         [self setValue:relatedObjects forKey:relationship.name];
     }
