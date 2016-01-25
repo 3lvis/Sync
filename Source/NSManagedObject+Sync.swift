@@ -86,7 +86,7 @@ public extension NSManagedObject {
 
             Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, inContext: self.managedObjectContext!, dataStack: dataStack, completion: nil)
         } else if hasValidManyToManyRelationship, let parent = parent {
-            let relatedObjects = self.mutableSetValueForKey(relationship.name)
+            let relatedObjects = self.mutableOrderedSetValueForKey(relationship.name)
             if !relatedObjects.containsObject(parent) {
                 relatedObjects.addObject(parent)
                 self.setValue(relatedObjects, forKey: relationship.name)
