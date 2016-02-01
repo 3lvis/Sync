@@ -70,7 +70,7 @@ public extension NSManagedObject {
         let inverseEntityName = relationship.inverseRelationship?.name
         let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
         let hasValidManyToManyRelationship = parent != nil && parentEntityName != nil && inverseIsToMany && parentEntityName! == childEntityName
-        if let children = dictionary[relationshipName] as? [[String : AnyObject]] {
+        if let relationshipName = relationshipName, children = dictionary[relationshipName] as? [[String : AnyObject]] {
             var childPredicate: NSPredicate? = nil
             if inverseIsToMany {
                 let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)!
@@ -131,11 +131,9 @@ public extension NSManagedObject {
         let relationshipName = (relationshipKey != nil) ? relationshipKey : relationship.name.hyp_remoteString()
         let entityName = relationship.destinationEntity!.name!
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext!)!
-        if let filteredObjectDictionary = dictionary[relationshipName] as? NSDictionary {
-            var remoteID: AnyObject?
-            if let remoteKey = entity.sync_remoteKey() {
-                remoteID = filteredObjectDictionary[remoteKey]
-            }
+        if let relationshipName = relationshipName, filteredObjectDictionary = dictionary[relationshipName] as? NSDictionary {
+            let remoteKey = entity.sync_remoteKey()
+            let remoteID = filteredObjectDictionary[remoteKey]
             let object = self.managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext!)
             object.sync_fillWithDictionary(filteredObjectDictionary as! [String : AnyObject], parent: self, dataStack: dataStack)
             let currentRelationship = self.valueForKey(relationship.name)
