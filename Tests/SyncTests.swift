@@ -502,6 +502,40 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
+    /**
+     When having JSONs like this:
+     {
+     "id":12345,
+     "name":"My Project",
+     "category":12345
+     }
+
+     It will should map category_id with the necesary category object using the ID 12345, but adding a custom remoteKey would make it map to category with ID 12345
+     */
+    func testIDRelationshipCustomMapping() {
+        let usersDictionary = Helper.objectsFromJSON("users_a.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("NotesB")
+
+        Sync.changes(usersDictionary, inEntityNamed:"SuperUser", dataStack:dataStack, completion:nil)
+
+        let usersCount = Helper.countForEntity("SuperUser", inContext:dataStack.mainContext)
+        XCTAssertEqual(usersCount, 8)
+
+        let notesDictionary = Helper.objectsFromJSON("notes_with_user_id_custom.json") as! [[String : AnyObject]]
+
+        Sync.changes(notesDictionary, inEntityNamed:"SuperNote", dataStack:dataStack, completion:nil)
+
+        let notesCount = Helper.countForEntity("SuperNote", inContext:dataStack.mainContext)
+        XCTAssertEqual(notesCount, 5)
+
+        let notes = Helper.fetchEntity("SuperNote", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
+        let note = notes.first!
+        let user = note.valueForKey("superUser")!
+        XCTAssertEqual(user.valueForKey("name") as? String, "Melisa White")
+
+        dataStack.drop()
+    }
+
     // MARK:- Ordered Social
 
     func testCustomPrimaryKeyInOrderedRelationship() {

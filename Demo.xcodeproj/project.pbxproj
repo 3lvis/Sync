@@ -44,6 +44,8 @@
 		141894621BDD62F600EE52CE /* Recursive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141894371BDD62F600EE52CE /* Recursive.xcdatamodeld */; };
 		141894631BDD62F600EE52CE /* Social.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141894391BDD62F600EE52CE /* Social.xcdatamodeld */; };
 		141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1418943B1BDD62F600EE52CE /* Unique.xcdatamodeld */; };
+		1469B7F91C68D7820080FD71 /* NotesB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */; };
+		1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */; };
 		14959D141C065350004EF790 /* notes_with_user_id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14959D131C065350004EF790 /* notes_with_user_id.json */; };
 		14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */; };
 		14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */; };
@@ -93,6 +95,8 @@
 		141894381BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1418943A1BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1418943C1BDD62F600EE52CE /* Unique.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unique.xcdatamodel; sourceTree = "<group>"; };
+		1469B7F81C68D7820080FD71 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_with_user_id_custom.json; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14959D131C065350004EF790 /* notes_with_user_id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_with_user_id.json; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				141894221BDD62F600EE52CE /* users_company.json */,
 				141894231BDD62F600EE52CE /* users_notes.json */,
 				14959D131C065350004EF790 /* notes_with_user_id.json */,
+				1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				1418942D1BDD62F600EE52CE /* Contacts.xcdatamodeld */,
 				1418942F1BDD62F600EE52CE /* Markets.xcdatamodeld */,
 				141894311BDD62F600EE52CE /* Notes.xcdatamodeld */,
+				1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */,
 				141894331BDD62F600EE52CE /* Organizations.xcdatamodeld */,
 				141894351BDD62F600EE52CE /* Patients.xcdatamodeld */,
 				141894371BDD62F600EE52CE /* Recursive.xcdatamodeld */,
@@ -326,6 +332,7 @@
 				14959D141C065350004EF790 /* notes_with_user_id.json in Resources */,
 				141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */,
 				141894571BDD62F600EE52CE /* users_company.json in Resources */,
+				1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */,
 				141894441BDD62F600EE52CE /* bug-125.json in Resources */,
 				1418944D1BDD62F600EE52CE /* numbers_in_collection.json in Resources */,
 				1418944B1BDD62F600EE52CE /* notes_for_user_a.json in Resources */,
@@ -420,6 +427,7 @@
 				14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */,
 				14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				14FDB4D31C511A6F0061D9FA /* Helper.swift in Sources */,
+				1469B7F91C68D7820080FD71 /* NotesB.xcdatamodeld in Sources */,
 				141894631BDD62F600EE52CE /* Social.xcdatamodeld in Sources */,
 				141894601BDD62F600EE52CE /* Organizations.xcdatamodeld in Sources */,
 				1418945E1BDD62F600EE52CE /* Markets.xcdatamodeld in Sources */,
@@ -680,6 +688,16 @@
 			);
 			currentVersion = 1418943C1BDD62F600EE52CE /* Unique.xcdatamodel */;
 			path = Unique.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1469B7F81C68D7820080FD71 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 1469B7F81C68D7820080FD71 /* Demo.xcdatamodel */;
+			path = NotesB.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
