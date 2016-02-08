@@ -38,7 +38,8 @@ public extension NSManagedObject {
             let entity = NSEntityDescription.entityForName(relationship.entity.name!, inManagedObjectContext: self.managedObjectContext!)!
             let relationships = entity.relationshipsWithDestinationEntity(relationship.destinationEntity!)
             if relationships.count > 0 {
-                let keyName = relationships.first!.name.hyp_remoteString().stringByAppendingString("_id")
+                let constructedKeyName = relationships.first!.name.hyp_remoteString().stringByAppendingString("_id")
+                let keyName = relationships.first!.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
                 if relationship.toMany {
                     self.sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
                 } else if relationship.destinationEntity?.name == parent?.entity.name {
@@ -46,7 +47,7 @@ public extension NSManagedObject {
                     if currentParent == nil || parent != nil && !currentParent!.isEqual(parent!) {
                         self.setValue(parent, forKey: relationship.name)
                     }
-                } else if let remoteID = dictionary[keyName] {
+                } else if let remoteID = dictionary[keyName] where remoteID.isKindOfClass(NSString.self) || remoteID.isKindOfClass(NSNumber.self) {
                     self.sync_relationshipUsingIDInsteadOfDictionary(relationship, remoteID: remoteID, dataStack: dataStack)
                 } else {
                     self.sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
