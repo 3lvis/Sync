@@ -78,7 +78,7 @@ import DATAStack
      - parameter dataStack: The DATAStack instance.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, var predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+    public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, var predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
         let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)!
         let localKey = entity.sync_localKey()
         let remoteKey = entity.sync_remoteKey()
