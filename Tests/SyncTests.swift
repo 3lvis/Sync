@@ -203,10 +203,10 @@ class SyncTests: XCTestCase {
         let objects = Helper.objectsFromJSON("comments-no-id.json") as! [[String : AnyObject]]
         let dataStack = Helper.dataStackWithModelName("Social")
 
-        Sync.changes(objects, inEntityNamed: "Comment", dataStack: dataStack, completion: nil)
+        Sync.changes(objects, inEntityNamed: "SocialComment", dataStack: dataStack, completion: nil)
 
-        XCTAssertEqual(Helper.countForEntity("Comment", inContext:dataStack.mainContext), 8)
-        let comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
+        XCTAssertEqual(Helper.countForEntity("SocialComment", inContext:dataStack.mainContext), 8)
+        let comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
         XCTAssertEqual((comments.first!.valueForKey("comments") as! NSSet).count, 3)
 
@@ -228,11 +228,11 @@ class SyncTests: XCTestCase {
 
         XCTAssertEqual((story.valueForKey("comments") as! NSSet).count, 3)
 
-        XCTAssertEqual(Helper.countForEntity("Comment", inContext:dataStack.mainContext), 9)
-        var comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
+        XCTAssertEqual(Helper.countForEntity("SocialComment", inContext:dataStack.mainContext), 9)
+        var comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
         XCTAssertEqual(comments.count, 3)
 
-        comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@ AND story = %@", "comment 1", story), inContext:dataStack.mainContext)
+        comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format:"body = %@ AND story = %@", "comment 1", story), inContext:dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
         let comment = comments.first!
         XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
@@ -461,8 +461,8 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(summarize.valueForKey("remoteID") as? NSNumber, NSNumber(int: 1))
         XCTAssertEqual((story.valueForKey("comments") as! NSSet).count, 1)
 
-        XCTAssertEqual(Helper.countForEntity("Comment", inContext:dataStack.mainContext), 1)
-        let comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@", "Hi"), inContext:dataStack.mainContext)
+        XCTAssertEqual(Helper.countForEntity("SocialComment", inContext:dataStack.mainContext), 1)
+        let comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format:"body = %@", "Hi"), inContext:dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
 
         dataStack.drop()
@@ -516,19 +516,19 @@ class SyncTests: XCTestCase {
         let usersDictionary = Helper.objectsFromJSON("users_a.json") as! [[String : AnyObject]]
         let dataStack = Helper.dataStackWithModelName("NotesB")
 
-        Sync.changes(usersDictionary, inEntityNamed:"SuperUser", dataStack:dataStack, completion:nil)
+        Sync.changes(usersDictionary, inEntityNamed:"SuperUserB", dataStack:dataStack, completion:nil)
 
-        let usersCount = Helper.countForEntity("SuperUser", inContext:dataStack.mainContext)
+        let usersCount = Helper.countForEntity("SuperUserB", inContext:dataStack.mainContext)
         XCTAssertEqual(usersCount, 8)
 
         let notesDictionary = Helper.objectsFromJSON("notes_with_user_id_custom.json") as! [[String : AnyObject]]
 
-        Sync.changes(notesDictionary, inEntityNamed:"SuperNote", dataStack:dataStack, completion:nil)
+        Sync.changes(notesDictionary, inEntityNamed:"SuperNoteB", dataStack:dataStack, completion:nil)
 
-        let notesCount = Helper.countForEntity("SuperNote", inContext:dataStack.mainContext)
+        let notesCount = Helper.countForEntity("SuperNoteB", inContext:dataStack.mainContext)
         XCTAssertEqual(notesCount, 5)
 
-        let notes = Helper.fetchEntity("SuperNote", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
+        let notes = Helper.fetchEntity("SuperNoteB", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
         let note = notes.first!
         let user = note.valueForKey("superUser")!
         XCTAssertEqual(user.valueForKey("name") as? String, "Melisa White")

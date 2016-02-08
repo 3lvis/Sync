@@ -33,7 +33,6 @@
 		141894571BDD62F600EE52CE /* users_company.json in Resources */ = {isa = PBXBuildFile; fileRef = 141894221BDD62F600EE52CE /* users_company.json */; };
 		141894581BDD62F600EE52CE /* users_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 141894231BDD62F600EE52CE /* users_notes.json */; };
 		141894591BDD62F600EE52CE /* Bug113.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141894251BDD62F600EE52CE /* Bug113.xcdatamodeld */; };
-		1418945A1BDD62F600EE52CE /* Bug125-simplified.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141894271BDD62F600EE52CE /* Bug125-simplified.xcdatamodeld */; };
 		1418945B1BDD62F600EE52CE /* Bug125.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141894291BDD62F600EE52CE /* Bug125.xcdatamodeld */; };
 		1418945C1BDD62F600EE52CE /* Bug84.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1418942B1BDD62F600EE52CE /* Bug84.xcdatamodeld */; };
 		1418945D1BDD62F600EE52CE /* Contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1418942D1BDD62F600EE52CE /* Contacts.xcdatamodeld */; };
@@ -84,7 +83,6 @@
 		141894221BDD62F600EE52CE /* users_company.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_company.json; sourceTree = "<group>"; };
 		141894231BDD62F600EE52CE /* users_notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users_notes.json; sourceTree = "<group>"; };
 		141894261BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
-		141894281BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1418942A1BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1418942C1BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1418942E1BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				141894251BDD62F600EE52CE /* Bug113.xcdatamodeld */,
-				141894271BDD62F600EE52CE /* Bug125-simplified.xcdatamodeld */,
 				141894291BDD62F600EE52CE /* Bug125.xcdatamodeld */,
 				1418942B1BDD62F600EE52CE /* Bug84.xcdatamodeld */,
 				1418942D1BDD62F600EE52CE /* Contacts.xcdatamodeld */,
@@ -432,7 +429,6 @@
 				141894601BDD62F600EE52CE /* Organizations.xcdatamodeld in Sources */,
 				1418945E1BDD62F600EE52CE /* Markets.xcdatamodeld in Sources */,
 				1418945D1BDD62F600EE52CE /* Contacts.xcdatamodeld in Sources */,
-				1418945A1BDD62F600EE52CE /* Bug125-simplified.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,16 +574,6 @@
 			);
 			currentVersion = 141894261BDD62F600EE52CE /* Demo.xcdatamodel */;
 			path = Bug113.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		141894271BDD62F600EE52CE /* Bug125-simplified.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				141894281BDD62F600EE52CE /* Demo.xcdatamodel */,
-			);
-			currentVersion = 141894281BDD62F600EE52CE /* Demo.xcdatamodel */;
-			path = "Bug125-simplified.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
