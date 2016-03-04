@@ -341,11 +341,11 @@ You are free to use any networking library.
 
 ## FAQ
 
-#### Using `hyper.primaryKey` in addition to `hyper.remoteKey`:
+#### Using `hyper.isPrimaryKey` in addition to `hyper.remoteKey`:
 
-Well, the thing is that if you add `hyper.primaryKey` it would uses the normal attribute for the local primary key, but the remote primary key is the snake_case representation of it. Some people might expect that the local keeps been the same (remoteID), or that the remote keeps been the same (id).
+Well, the thing is that if you add `hyper.isPrimaryKey` it would use the normal attribute for the local primary key, but the remote primary key is the snake_case representation of it. Some people might expect that the local keeps been the same (remoteID), or that the remote keeps been the same (id).
 
-For example if you add the flag `hyper.PrimaryKey` to the attribute `article_body` then:
+For example if you add the flag `hyper.isPrimaryKey` to the attribute `article_body` then:
 
 - Remote primary key: `article_body`
 - Local primary key: `articleBody`
