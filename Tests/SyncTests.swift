@@ -238,7 +238,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
         XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("remoteID") as? NSNumber, NSNumber(int: 0))
         XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("title") as? String, "story 1")
-        
+
         dataStack.drop()
     }
 
@@ -274,7 +274,7 @@ class SyncTests: XCTestCase {
         let item = items.first!
         XCTAssertEqual(item.valueForKey("otherAttribute") as? String, "Item 1")
         XCTAssertEqual((item.valueForKey("markets") as? NSSet)!.allObjects.count, 2)
-        
+
         dataStack.drop()
     }
 
@@ -289,7 +289,7 @@ class SyncTests: XCTestCase {
 
         Sync.changes(json, inEntityNamed:"OrganizationUnit", dataStack:dataStack, completion:nil)
         XCTAssertEqual(Helper.countForEntity("OrganizationUnit", inContext:dataStack.mainContext), 7)
-        
+
         dataStack.drop()
     }
 
@@ -313,7 +313,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("A", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("B", inContext:dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("C", inContext:dataStack.mainContext), 1)
-        
+
         dataStack.drop()
     }
 
@@ -330,7 +330,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Fitness", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Weight", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Measure", inContext:dataStack.mainContext), 1)
-        
+
         dataStack.drop()
     }
 
@@ -356,7 +356,7 @@ class SyncTests: XCTestCase {
         let fullfiller = fulfillers.first!
         XCTAssertEqual(fullfiller.valueForKey("name") as? String, "New York")
         XCTAssertEqual((fullfiller.valueForKey("staff") as? NSSet)!.allObjects.count, 1)
-        
+
         dataStack.drop()
     }
 
@@ -409,11 +409,11 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Bug113")
 
         Sync.changes(objects, inEntityNamed: "AwesomeStory", dataStack: dataStack, completion: nil)
-        
+
         let array = Helper.fetchEntity("AwesomeStory", inContext:dataStack.mainContext)
         let story = array.first!
         XCTAssertNotNil(story.valueForKey("awesomeSummarize"))
-        
+
         dataStack.drop()
     }
 
@@ -493,12 +493,12 @@ class SyncTests: XCTestCase {
 
         let notesCount = Helper.countForEntity("SuperNote", inContext:dataStack.mainContext)
         XCTAssertEqual(notesCount, 5)
-        
+
         let notes = Helper.fetchEntity("SuperNote", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
         let note = notes.first!
         let user = note.valueForKey("superUser")!
         XCTAssertEqual(user.valueForKey("name") as? String, "Melisa White")
-        
+
         dataStack.drop()
     }
 
@@ -551,6 +551,31 @@ class SyncTests: XCTestCase {
 
         let comment = comments.first!
         XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
+
+        dataStack.drop()
+    }
+
+    // MARK: - Bug 179 => https://github.com/hyperoslo/Sync/issues/179
+
+    func testConnectMultipleRelationships() {
+        let places = Helper.objectsFromJSON("bug-179-places.json") as! [[String : AnyObject]]
+        let routes = Helper.objectsFromJSON("bug-179-routes.json") as! [String : AnyObject]
+        let dataStack = Helper.dataStackWithModelName("Bug179")
+
+        Sync.changes(places, inEntityNamed: "Place", dataStack: dataStack, completion: nil)
+        Sync.changes([routes], inEntityNamed: "Route", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Route", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Place", inContext:dataStack.mainContext), 2)
+        let importedRoutes = Helper.fetchEntity("Route", predicate: nil, inContext:dataStack.mainContext)
+        XCTAssertEqual(importedRoutes.count, 1)
+        let importedRouter = importedRoutes.first!
+        XCTAssertEqual(importedRouter.valueForKey("ident") as? String, "1")
+
+        let startPlace = importedRoutes.first!.valueForKey("startPlace") as! NSManagedObject
+        let endPlace = importedRoutes.first!.valueForKey("endPlace") as! NSManagedObject
+        XCTAssertEqual(startPlace.valueForKey("name") as? String, "Here")
+        XCTAssertEqual(endPlace.valueForKey("name") as? String, "There")
 
         dataStack.drop()
     }
