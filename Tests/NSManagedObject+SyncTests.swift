@@ -26,4 +26,30 @@ class NSManagedObject_SyncTests: XCTestCase {
     func testToOneRelationship() {
 
     }
+    
+    // MARK: - Bug 179 => https://github.com/hyperoslo/Sync/issues/179
+    
+    func testConnectMultipleRelationships() {
+        let places = Helper.objectsFromJSON("bug-179-places.json") as! [[String : AnyObject]]
+        let routes = Helper.objectsFromJSON("bug-179-routes.json") as! [String : AnyObject]
+        let dataStack = Helper.dataStackWithModelName("Bug179")
+        
+        Sync.changes(places, inEntityNamed: "Place", dataStack: dataStack, completion: nil)
+        Sync.changes([ routes ], inEntityNamed: "Route", dataStack: dataStack, completion: nil)
+        
+        XCTAssertEqual(Helper.countForEntity("Route", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Place", inContext:dataStack.mainContext), 2)
+        let importedRoutes = Helper.fetchEntity("Route", predicate: nil, inContext:dataStack.mainContext)
+        XCTAssertEqual(importedRoutes.count, 1)
+        
+        let startPlace = importedRoutes.first!.valueForKey("startPlace") as! NSManagedObject
+        let endPlace = importedRoutes.first!.valueForKey("endPlace") as! NSManagedObject
+        
+        XCTAssertNotNil(startPlace)
+        XCTAssertNotNil(endPlace)
+        
+        XCTAssertNotEqual(startPlace, endPlace)
+        
+        dataStack.drop()
+    }
 }

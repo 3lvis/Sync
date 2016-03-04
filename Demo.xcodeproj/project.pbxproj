@@ -54,6 +54,9 @@
 		14FDB4D11C511A5B0061D9FA /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D01C511A5B0061D9FA /* SyncTests.swift */; };
 		14FDB4D31C511A6F0061D9FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D21C511A6F0061D9FA /* Helper.swift */; };
 		8C1190CE4B3821813B6A3421 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
+		B0B637141C6E4F2D00229B03 /* Bug179.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0B637121C6E4F2D00229B03 /* Bug179.xcdatamodeld */; };
+		B0B637171C6E517F00229B03 /* bug-179-places.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B637151C6E517F00229B03 /* bug-179-places.json */; };
+		B0B637181C6E517F00229B03 /* bug-179-routes.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B637161C6E517F00229B03 /* bug-179-routes.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +114,9 @@
 		14FDB4D01C511A5B0061D9FA /* SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTests.swift; sourceTree = "<group>"; };
 		14FDB4D21C511A6F0061D9FA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9E482492041434DB374B1948 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0B637131C6E4F2D00229B03 /* Bug179.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bug179.xcdatamodel; sourceTree = "<group>"; };
+		B0B637151C6E517F00229B03 /* bug-179-places.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-179-places.json"; sourceTree = "<group>"; };
+		B0B637161C6E517F00229B03 /* bug-179-routes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-179-routes.json"; sourceTree = "<group>"; };
 		C13281341A77530FC5AE626A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E80F7331DFE41909E28F2702 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +144,8 @@
 		1418940A1BDD62F600EE52CE /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				B0B637151C6E517F00229B03 /* bug-179-places.json */,
+				B0B637161C6E517F00229B03 /* bug-179-routes.json */,
 				1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */,
 				1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */,
 				1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */,
@@ -172,6 +180,7 @@
 		141894241BDD62F600EE52CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B0B637121C6E4F2D00229B03 /* Bug179.xcdatamodeld */,
 				141894251BDD62F600EE52CE /* Bug113.xcdatamodeld */,
 				141894291BDD62F600EE52CE /* Bug125.xcdatamodeld */,
 				1418942B1BDD62F600EE52CE /* Bug84.xcdatamodeld */,
@@ -325,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B637171C6E517F00229B03 /* bug-179-places.json in Resources */,
 				1418944C1BDD62F600EE52CE /* numbers.json in Resources */,
 				14959D141C065350004EF790 /* notes_with_user_id.json in Resources */,
 				141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */,
@@ -336,6 +346,7 @@
 				141894521BDD62F600EE52CE /* tagged_notes.json in Resources */,
 				141894581BDD62F600EE52CE /* users_notes.json in Resources */,
 				141894531BDD62F600EE52CE /* unique.json in Resources */,
+				B0B637181C6E517F00229B03 /* bug-179-routes.json in Resources */,
 				141894401BDD62F600EE52CE /* bug-113-comments-no-id.json in Resources */,
 				141894431BDD62F600EE52CE /* bug-125-light.json in Resources */,
 				1418944A1BDD62F600EE52CE /* markets_items.json in Resources */,
@@ -416,6 +427,7 @@
 				141894611BDD62F600EE52CE /* Patients.xcdatamodeld in Sources */,
 				1418945B1BDD62F600EE52CE /* Bug125.xcdatamodeld in Sources */,
 				1418945C1BDD62F600EE52CE /* Bug84.xcdatamodeld in Sources */,
+				B0B637141C6E4F2D00229B03 /* Bug179.xcdatamodeld in Sources */,
 				1418945F1BDD62F600EE52CE /* Notes.xcdatamodeld in Sources */,
 				141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */,
 				141894621BDD62F600EE52CE /* Recursive.xcdatamodeld in Sources */,
@@ -694,6 +706,16 @@
 			);
 			currentVersion = 14E298421C563EE500B68B72 /* Demo.xcdatamodel */;
 			path = OrderedSocial.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		B0B637121C6E4F2D00229B03 /* Bug179.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B0B637131C6E4F2D00229B03 /* Bug179.xcdatamodel */,
+			);
+			currentVersion = B0B637131C6E4F2D00229B03 /* Bug179.xcdatamodel */;
+			path = Bug179.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
