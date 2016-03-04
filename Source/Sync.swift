@@ -90,7 +90,7 @@ import DATAStack
         }
 
         if localKey.characters.count == 0 {
-            fatalError("Local primary key not found for entity: \(entityName), add a primary key named remoteID or mark an existing attribute using hyper.primaryKey")
+            fatalError("Local primary key not found for entity: \(entityName), add a primary key named remoteID or mark an existing attribute using hyper.isPrimaryKey")
         }
 
         if remoteKey.characters.count == 0 {
