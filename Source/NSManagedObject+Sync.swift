@@ -17,10 +17,10 @@ public extension NSManagedObject {
         let entity = NSEntityDescription.entityForName(self.entity.name!, inManagedObjectContext: context)!
         let localKey = entity.sync_localKey()
         let remoteID = self.valueForKey(localKey)
-        
+
         return context.sync_safeObject(self.entity.name!, remoteID: remoteID, parent: nil, parentRelationshipName: nil)!
     }
-    
+
     /**
      Syncs the entity using the received dictionary, maps one-to-many, many-to-many and one-to-one relationships.
      It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
@@ -51,7 +51,7 @@ public extension NSManagedObject {
             }
         }
     }
-    
+
     /**
      Syncs the entity's to-many relationship, it will also sync the childs of this relationship.
      - parameter relationship: The relationship to be synced.
@@ -98,7 +98,7 @@ public extension NSManagedObject {
             }
         }
     }
-    
+
     /**
      Syncs relationships where only the id is present, for example if your model is: Company -> Employee,
      and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
@@ -116,7 +116,7 @@ public extension NSManagedObject {
             self.setValue(object, forKey: relationship.name)
         }
     }
-    
+
     /**
      Syncs the entity's to-one relationship, it will also sync the child of this entity.
      - parameter relationship: The relationship to be synced.
