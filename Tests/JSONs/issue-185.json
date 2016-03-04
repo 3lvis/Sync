@@ -1,0 +1,39 @@
+{
+   "rmcorganization":[
+      {
+         "id":"41da96ba-e818-7edf-7658-e26ec2a91600",
+         "name":"Find My Employee Staging",
+         "web_url":"http%3A%2F%2Fraremediacompany.in%2F",
+         "domainName":"findmyemployeestaging",
+         "rmcobject":"rmcorganization",
+         "rmcphoto":{
+            "thumbnailUrl":null,
+            "photoUrl":null,
+            "orgUrl":null
+         },
+         "address":"G-84, Connaught Place New Delhi -110001",
+         "updated":"2016-02-26T06:02:49+05:30",
+         "rmcosd":[
+            {
+               "rmcservice":[
+                  {
+                     "id":"8574eca3-1d30-9d95-bdd2-a73812ff796a"
+                  }
+               ],
+               "name":"User State",
+               "object":[
+                  "rmccheckin"
+               ]
+            }
+         ],
+         "rmcservice":[
+            {
+               "id":"8574eca3-1d30-9d95-bdd2-a73812ff796a",
+               "rmcssd":[
+
+               ]
+            }
+         ]
+      }
+   ]
+}

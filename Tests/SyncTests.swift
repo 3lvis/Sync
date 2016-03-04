@@ -579,4 +579,14 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // MARK: - Bug 185 => https://github.com/hyperoslo/Sync/issues/185
+
+    func test185() {
+        let dataStack = Helper.dataStackWithModelName("Issue185")
+        let objects = Helper.objectsFromJSON("issue-185.json") as! [String : AnyObject]
+        Sync.changes(objects["rmcorganization"] as! [[String : AnyObject]], inEntityNamed: "RMCOrganization", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("RMCOrganization", inContext:dataStack.mainContext), 1)
+        dataStack.drop()
+    }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="RMCOrganization" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="domainName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rmcobject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="webURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rmcosd" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RMCOsd" inverseName="organization" inverseEntity="RMCOsd" syncable="YES"/>
+        <relationship name="rmcphoto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RMCPhoto" inverseName="organization" inverseEntity="RMCPhoto" syncable="YES"/>
+    </entity>
+    <entity name="RMCOsd" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="object" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RMCOrganization" inverseName="rmcosd" inverseEntity="RMCOrganization" syncable="YES"/>
+        <relationship name="rmcservice" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RMCService" inverseName="rmcosd" inverseEntity="RMCService" syncable="YES"/>
+    </entity>
+    <entity name="RMCPhoto" syncable="YES">
+        <attribute name="orgURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RMCOrganization" inverseName="rmcphoto" inverseEntity="RMCOrganization" syncable="YES"/>
+    </entity>
+    <entity name="RMCService" syncable="YES">
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rmcosd" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RMCOsd" inverseName="rmcservice" inverseEntity="RMCOsd" syncable="YES"/>
+        <relationship name="rmcssd" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RMCSsd" inverseName="rmcservice" inverseEntity="RMCSsd" syncable="YES"/>
+    </entity>
+    <entity name="RMCSsd" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+            </userInfo>
+        </attribute>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rmcservice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RMCService" inverseName="rmcssd" inverseEntity="RMCService" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="RMCOrganization" positionX="-657" positionY="47" width="128" height="178"/>
+        <element name="RMCPhoto" positionX="-342" positionY="185" width="128" height="103"/>
+        <element name="RMCOsd" positionX="-468" positionY="-135" width="128" height="103"/>
+        <element name="RMCService" positionX="-270" positionY="-162" width="128" height="88"/>
+        <element name="RMCSsd" positionX="-56" positionY="-27" width="128" height="88"/>
+    </elements>
+</model>
