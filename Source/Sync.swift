@@ -89,6 +89,15 @@ import DATAStack
             }
         }
 
+        var updatedChanges = changes
+        /*
+        if let predicate = predicate {
+            let processedChanges = (changes as NSArray).preprocessForEntityNamed(entityName, predicate: predicate, parent: parent, dataStack: dataStack)
+            if processedChanges.count > 0 {
+                updatedChanges = processedChanges
+            }
+        }*/
+
         if localKey.characters.count == 0 {
             fatalError("Local primary key not found for entity: \(entityName), add a primary key named remoteID or mark an existing attribute using hyper.isPrimaryKey")
         }
@@ -97,7 +106,7 @@ import DATAStack
             fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
         }
 
-        DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: predicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
+        DATAFilter.changes(updatedChanges as [AnyObject], inEntityNamed: entityName, predicate: predicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
             guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
             let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
             created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack)
