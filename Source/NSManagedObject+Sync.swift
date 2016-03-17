@@ -48,52 +48,51 @@ public extension NSManagedObject {
     }
   }
 
-    /**
-     Syncs the entity's to-many relationship, it will also sync the childs of this relationship.
-     - parameter relationship: The relationship to be synced.
-     - parameter dictionary: The JSON with the changes to be applied to the entity.
-     - parameter parent: The parent of the entity, optional since many entities are orphans.
-     - parameter dataStack: The DATAStack instance.
-     */
-    func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
-        let relationshipKey = relationship.userInfo?[SYNCCustomRemoteKey] as? String
-        let relationshipName = (relationshipKey != nil) ? relationshipKey : relationship.name.hyp_remoteString()
-        let childEntityName = relationship.destinationEntity!.name!
-        let parentEntityName = parent?.entity.name
-        let inverseEntityName = relationship.inverseRelationship?.name
-        let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
-        let hasValidManyToManyRelationship = parent != nil && parentEntityName != nil && inverseIsToMany && parentEntityName! == childEntityName
-        if let relationshipName = relationshipName, children = dictionary[relationshipName] as? [[String : AnyObject]] {
-            var childPredicate: NSPredicate? = nil
-            if inverseIsToMany {
-                let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: self.managedObjectContext!)!
-                let destinationRemoteKey = entity.sync_remoteKey()
-                let childIDs = (children as NSArray).valueForKey(destinationRemoteKey)
-                let destinationLocalKey = entity.sync_localKey()
-                if childIDs.count > 0 {
-                    childPredicate = NSPredicate(format: "ANY %K IN %@", destinationLocalKey, childIDs as! NSObject)
-                }
-            } else if let inverseEntityName = inverseEntityName {
-                childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
-            }
-            
-            Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, inContext: self.managedObjectContext!, dataStack: dataStack, completion: nil)
-        } else if hasValidManyToManyRelationship, let parent = parent {
-            if relationship.ordered {
-                let relatedObjects = self.mutableOrderedSetValueForKey(relationship.name)
-                if !relatedObjects.containsObject(parent) {
-                    relatedObjects.addObject(parent)
-                    self.setValue(relatedObjects, forKey: relationship.name)
-                }
-            } else {
-                let relatedObjects = self.mutableSetValueForKey(relationship.name)
-                if !relatedObjects.containsObject(parent) {
-                    relatedObjects.addObject(parent)
-                    self.setValue(relatedObjects, forKey: relationship.name)
-                }
-            }
+  /**
+   Syncs the entity's to-many relationship, it will also sync the childs of this relationship.
+   - parameter relationship: The relationship to be synced.
+   - parameter dictionary: The JSON with the changes to be applied to the entity.
+   - parameter parent: The parent of the entity, optional since many entities are orphans.
+   - parameter dataStack: The DATAStack instance.
+   */
+  func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
+    guard let managedObjectContext = managedObjectContext,
+      destinationEntity = relationship.destinationEntity,
+      childEntityName = destinationEntity.name else {
+        abort()
+     }
+
+    let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
+    let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
+
+    if let children = dictionary[relationshipName] as? [[String : AnyObject]] {
+      var childPredicate: NSPredicate?
+      let childIDs = (children as NSArray).valueForKey(entity.sync_remoteKey())
+
+      if let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: managedObjectContext),
+        object = childIDs as? NSObject where inverseIsToMany && childIDs.count > 0 {
+          childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localKey(), object)
+      } else if let inverseEntityName = relationship.inverseRelationship?.name {
+        childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
+      }
+
+      Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, inContext: managedObjectContext, dataStack: dataStack, completion: nil)
+    } else if let parent = parent, entityName = parent.entity.name where inverseIsToMany && entityName == childEntityName {
+      if relationship.ordered {
+        let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
+        if !relatedObjects.containsObject(parent) {
+          relatedObjects.addObject(parent)
+          setValue(relatedObjects, forKey: relationship.name)
         }
+      } else {
+        let relatedObjects = mutableSetValueForKey(relationship.name)
+        if !relatedObjects.containsObject(parent) {
+          relatedObjects.addObject(parent)
+          setValue(relatedObjects, forKey: relationship.name)
+        }
+      }
     }
+  }
 
     /**
      Syncs relationships where only the id is present, for example if your model is: Company -> Employee,
