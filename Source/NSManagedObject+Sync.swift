@@ -94,23 +94,24 @@ public extension NSManagedObject {
     }
   }
 
-    /**
-     Syncs relationships where only the id is present, for example if your model is: Company -> Employee,
-     and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
-     entire company object inside the employees dictionary.
-     - parameter relationship: The relationship to be synced.
-     - parameter remoteID: The remoteID of the relationship to be synced.
-     - parameter dataStack: The DATAStack instance.
-     */
-    func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, remoteID: AnyObject, dataStack: DATAStack) {
-        let entityName = relationship.destinationEntity!.name!
-        guard let object = self.managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) else { abort() }
-        
-        let currentRelationship = self.valueForKey(relationship.name)
-        if currentRelationship == nil || !currentRelationship!.isEqual(object) {
-            self.setValue(object, forKey: relationship.name)
-        }
+  /**
+   Syncs relationships where only the id is present, for example if your model is: Company -> Employee,
+   and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
+   entire company object inside the employees dictionary.
+   - parameter relationship: The relationship to be synced.
+   - parameter remoteID: The remoteID of the relationship to be synced.
+   - parameter dataStack: The DATAStack instance.
+   */
+  func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, remoteID: AnyObject, dataStack: DATAStack) {
+    guard let entityName = relationship.destinationEntity!.name,
+      object = managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name)
+      else { abort() }
+
+    let currentRelationship = valueForKey(relationship.name)
+    if currentRelationship == nil || !currentRelationship!.isEqual(object) {
+      setValue(object, forKey: relationship.name)
     }
+  }
 
     /**
      Syncs the entity's to-one relationship, it will also sync the child of this entity.
