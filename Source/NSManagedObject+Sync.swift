@@ -9,35 +9,6 @@ public extension NSManagedObject {
    and has unexpected behaviour most of the time, although it has gotten better throught
    the years, it's a simple method with not many moving parts.
 
-    /**
-     Syncs the entity using the received dictionary, maps one-to-many, many-to-many and one-to-one relationships.
-     It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
-     and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
-     entire company object inside the employees dictionary.
-     - parameter dictionary: The JSON with the changes to be applied to the entity.
-     - parameter parent: The parent of the entity, optional since many entities are orphans.
-     - parameter dataStack: The DATAStack instance.
-     */
-    func sync_fillWithDictionary(dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
-        self.hyp_fillWithDictionary(dictionary)
-        
-        let relationships = self.entity.sync_relationships()
-        for relationship in relationships {
-            let constructedKeyName = relationship.name.hyp_remoteString().stringByAppendingString("_id")
-            let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
-            if relationship.toMany {
-                self.sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
-            } else if relationship.destinationEntity?.name == parent?.entity.name {
-                let currentParent = self.valueForKey(relationship.name)
-                if currentParent == nil || parent != nil && !currentParent!.isEqual(parent!) {
-                    self.setValue(parent, forKey: relationship.name)
-                }
-            } else if let remoteID = dictionary[keyName] where remoteID.isKindOfClass(NSString.self) || remoteID.isKindOfClass(NSNumber.self) {
-                self.sync_relationshipUsingIDInsteadOfDictionary(relationship, remoteID: remoteID, dataStack: dataStack)
-            } else {
-                self.sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
-            }
-        }
    Copy in context gives you a similar behaviour, just a bit safer.
    - parameter context: The context where the NSManagedObject will be taken
    - returns: A NSManagedObject copied in the provided context.
@@ -48,7 +19,34 @@ public extension NSManagedObject {
 
     return context.sync_safeObject(entityName, remoteID: valueForKey(entity.sync_localKey()), parent: nil, parentRelationshipName: nil)!
   }
+
+  /**
+   Syncs the entity using the received dictionary, maps one-to-many, many-to-many and one-to-one relationships.
+   It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
+   and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
+   entire company object inside the employees dictionary.
+   - parameter dictionary: The JSON with the changes to be applied to the entity.
+   - parameter parent: The parent of the entity, optional since many entities are orphans.
+   - parameter dataStack: The DATAStack instance.
+   */
+  func sync_fillWithDictionary(dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
+    hyp_fillWithDictionary(dictionary)
+
+    entity.sync_relationships().forEach { relationship in
+      let constructedKeyName = relationship.name.hyp_remoteString() + "_id"
+      let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
+
+      if relationship.toMany {
+        sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
+      } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == parent.entity.name {
+        setValue(parent, forKey: relationship.name)
+      } else if let remoteID = dictionary[keyName] where remoteID is NSString || remoteID is NSNumber {
+        sync_relationshipUsingIDInsteadOfDictionary(relationship, remoteID: remoteID, dataStack: dataStack)
+      } else {
+        sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
+      }
     }
+  }
 
     /**
      Syncs the entity's to-many relationship, it will also sync the childs of this relationship.
