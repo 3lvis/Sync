@@ -113,26 +113,31 @@ public extension NSManagedObject {
     }
   }
 
-    /**
-     Syncs the entity's to-one relationship, it will also sync the child of this entity.
-     - parameter relationship: The relationship to be synced.
-     - parameter dictionary: The JSON with the changes to be applied to the entity.
-     - parameter dataStack: The DATAStack instance.
-     */
-    func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack) {
-        let relationshipKey = relationship.userInfo?[SYNCCustomRemoteKey] as? String
-        let relationshipName = (relationshipKey != nil) ? relationshipKey : relationship.name.hyp_remoteString()
-        let entityName = relationship.destinationEntity!.name!
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext!)!
-        if let relationshipName = relationshipName, filteredObjectDictionary = dictionary[relationshipName] as? NSDictionary {
-            let remoteKey = entity.sync_remoteKey()
-            let remoteID = filteredObjectDictionary[remoteKey]
-            let object = self.managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext!)
-            object.sync_fillWithDictionary(filteredObjectDictionary as! [String : AnyObject], parent: self, dataStack: dataStack)
-            let currentRelationship = self.valueForKey(relationship.name)
-            if currentRelationship == nil || !currentRelationship!.isEqual(object) {
-                self.setValue(object, forKey: relationship.name)
-            }
-        }
+  /**
+   Syncs the entity's to-one relationship, it will also sync the child of this entity.
+   - parameter relationship: The relationship to be synced.
+   - parameter dictionary: The JSON with the changes to be applied to the entity.
+   - parameter dataStack: The DATAStack instance.
+   */
+  func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack) {
+    let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
+
+    guard let managedObjectContext = managedObjectContext,
+      filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject],
+      destinationEntity = relationship.destinationEntity,
+      entityName = destinationEntity.name,
+      entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext)
+      else { return }
+
+    let remoteID = filteredObjectDictionary[entity.sync_remoteKey()]
+    let object = managedObjectContext.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
+
+    object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, dataStack: dataStack)
+
+    let currentRelationship = valueForKey(relationship.name)
+    if currentRelationship == nil || !currentRelationship!.isEqual(object) {
+      print(currentRelationship)
+      setValue(object, forKey: relationship.name)
     }
+  }
 }
