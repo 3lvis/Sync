@@ -136,7 +136,6 @@ public extension NSManagedObject {
 
     let currentRelationship = valueForKey(relationship.name)
     if currentRelationship == nil || !currentRelationship!.isEqual(object) {
-      print(currentRelationship)
       setValue(object, forKey: relationship.name)
     }
   }
