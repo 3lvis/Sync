@@ -14,20 +14,16 @@ extension NSEntityDescription {
       }
     }
 
-    /**
-     Finds the parent for the current entity, if there are many parents nil will be returned.
-     - returns The parent relationship for the current entity
-     */
-    func sync_parentEntity() -> NSRelationshipDescription? {
-        let relationships = self.sync_relationships()
-        var foundParentEntity: NSRelationshipDescription? = nil
-        for relationship in relationships {
-            let isParent = relationship.destinationEntity?.name == self.name && !relationship.toMany
-            if isParent {
-                foundParentEntity = relationship
-            }
-        }
+    return relationships
+  }
 
-        return foundParentEntity
-    }
+  /**
+   Finds the parent for the current entity, if there are many parents nil will be returned.
+   - returns The parent relationship for the current entity
+   */
+  func sync_parentEntity() -> NSRelationshipDescription? {
+    return sync_relationships()
+      .filter { $0.destinationEntity?.name == name && !$0.toMany }
+      .first
+  }
 }
