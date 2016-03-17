@@ -4,22 +4,10 @@ import DATAStack
 import NSString_HYPNetworking
 
 public extension NSManagedObject {
-    /**
-     Using objectID to fetch an NSManagedObject from a NSManagedContext is quite unsafe,
-     and has unexpected behaviour most of the time, although it has gotten better throught
-     the years, it's a simple method with not many moving parts.
-     
-     Copy in context gives you a similar behaviour, just a bit safer.
-     - parameter context: The context where the NSManagedObject will be taken
-     - returns: A NSManagedObject copied in the provided context.
-     */
-    func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
-        let entity = NSEntityDescription.entityForName(self.entity.name!, inManagedObjectContext: context)!
-        let localKey = entity.sync_localKey()
-        let remoteID = self.valueForKey(localKey)
-
-        return context.sync_safeObject(self.entity.name!, remoteID: remoteID, parent: nil, parentRelationshipName: nil)!
-    }
+  /**
+   Using objectID to fetch an NSManagedObject from a NSManagedContext is quite unsafe,
+   and has unexpected behaviour most of the time, although it has gotten better throught
+   the years, it's a simple method with not many moving parts.
 
     /**
      Syncs the entity using the received dictionary, maps one-to-many, many-to-many and one-to-one relationships.
@@ -50,6 +38,16 @@ public extension NSManagedObject {
                 self.sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
             }
         }
+   Copy in context gives you a similar behaviour, just a bit safer.
+   - parameter context: The context where the NSManagedObject will be taken
+   - returns: A NSManagedObject copied in the provided context.
+   */
+  func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
+    guard let entityName = entity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)
+      else { abort() }
+
+    return context.sync_safeObject(entityName, remoteID: valueForKey(entity.sync_localKey()), parent: nil, parentRelationshipName: nil)!
+  }
     }
 
     /**
