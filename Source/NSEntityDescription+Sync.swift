@@ -1,19 +1,17 @@
 import CoreData
 
 extension NSEntityDescription {
-    /**
-     Finds the relationships for the current entity.
-     - returns The list of relationships for the current entity.
-     */
-    func sync_relationships() -> [NSRelationshipDescription] {
-        var relationships = [NSRelationshipDescription]()
-        for propertyDescription in self.properties {
-            if propertyDescription.isKindOfClass(NSRelationshipDescription.self), let relationshipDescription = propertyDescription as? NSRelationshipDescription {
-                relationships.append(relationshipDescription)
-            }
-        }
+  /**
+   Finds the relationships for the current entity.
+   - returns The list of relationships for the current entity.
+   */
+  func sync_relationships() -> [NSRelationshipDescription] {
+    var relationships = [NSRelationshipDescription]()
 
-        return relationships
+    properties.forEach { propertyDescription in
+      if let relationshipDescription = propertyDescription as? NSRelationshipDescription {
+        relationships.append(relationshipDescription)
+      }
     }
 
     /**
