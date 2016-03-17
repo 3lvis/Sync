@@ -13,12 +13,9 @@ public extension NSArray {
   func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack) -> [[String : AnyObject]] {
     var filteredChanges = [[String : AnyObject]]()
     let validClasses = [NSDate.classForCoder(), NSNumber.classForCoder(), NSString.classForCoder()]
-
-    if let predicate = predicate as? NSComparisonPredicate, selfArray = self as? [[String : AnyObject]]
-      where validClasses.contains({ $0 == predicate.rightExpression.classForCoder }) {
+    if let predicate = predicate as? NSComparisonPredicate, selfArray = self as? [[String : AnyObject]] where validClasses.contains({ $0 == predicate.rightExpression.classForCoder }) {
         var objectChanges = [NSManagedObject]()
         let context = dataStack.newDisposableMainContext()
-
         if let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) {
           selfArray.forEach {
             let object = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
