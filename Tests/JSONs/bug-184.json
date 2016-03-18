@@ -1,0 +1,17 @@
+{
+   "plan":[
+      {
+         "id":"1",
+         "name":"Marathon",
+         "workouts":[
+            {
+               "id":"1",
+               "week":1,
+               "day":1,
+               "name":"Easy run",
+               "distance":""
+            }
+         ]
+      }
+   ]
+}
