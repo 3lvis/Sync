@@ -33,7 +33,6 @@
     <entity name="Station" syncable="YES">
         <attribute name="cityId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
                 <entry key="hyper.remoteKey" value="cityId"/>
             </userInfo>
         </attribute>
@@ -60,6 +59,7 @@
         </attribute>
         <attribute name="stationId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
                 <entry key="hyper.remoteKey" value="stationId"/>
             </userInfo>
         </attribute>
