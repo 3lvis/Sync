@@ -14,8 +14,7 @@ public extension NSManagedObject {
    - returns: A NSManagedObject copied in the provided context.
    */
   func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
-    guard let entityName = entity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)
-      else { abort() }
+    guard let entityName = entity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
     return context.sync_safeObject(entityName, remoteID: valueForKey(entity.sync_localKey()), parent: nil, parentRelationshipName: nil)!
   }
@@ -56,11 +55,7 @@ public extension NSManagedObject {
    - parameter dataStack: The DATAStack instance.
    */
   func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack) {
-    guard let managedObjectContext = managedObjectContext,
-      destinationEntity = relationship.destinationEntity,
-      childEntityName = destinationEntity.name else {
-        abort()
-     }
+    guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, childEntityName = destinationEntity.name else { abort() }
 
     let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
     let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
@@ -69,9 +64,8 @@ public extension NSManagedObject {
       var childPredicate: NSPredicate?
       let childIDs = (children as NSArray).valueForKey(entity.sync_remoteKey())
 
-      if let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: managedObjectContext),
-        object = childIDs as? NSObject where inverseIsToMany && childIDs.count > 0 {
-          childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localKey(), object)
+      if let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: managedObjectContext), childIDsObject = childIDs as? NSObject where inverseIsToMany && childIDs.count > 0 {
+        childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localKey(), childIDsObject)
       } else if let inverseEntityName = relationship.inverseRelationship?.name {
         childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
       }
@@ -103,9 +97,7 @@ public extension NSManagedObject {
    - parameter dataStack: The DATAStack instance.
    */
   func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, remoteID: AnyObject, dataStack: DATAStack) {
-    guard let entityName = relationship.destinationEntity!.name,
-      object = managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name)
-      else { abort() }
+    guard let entityName = relationship.destinationEntity!.name, object = managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) else { abort() }
 
     let currentRelationship = valueForKey(relationship.name)
     if currentRelationship == nil || !currentRelationship!.isEqual(object) {
@@ -122,12 +114,7 @@ public extension NSManagedObject {
   func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack) {
     let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
 
-    guard let managedObjectContext = managedObjectContext,
-      filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject],
-      destinationEntity = relationship.destinationEntity,
-      entityName = destinationEntity.name,
-      entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext)
-      else { return }
+    guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
 
     let remoteID = filteredObjectDictionary[entity.sync_remoteKey()]
     let object = managedObjectContext.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
@@ -136,7 +123,6 @@ public extension NSManagedObject {
 
     let currentRelationship = valueForKey(relationship.name)
     if currentRelationship == nil || !currentRelationship!.isEqual(object) {
-      print(currentRelationship)
       setValue(object, forKey: relationship.name)
     }
   }

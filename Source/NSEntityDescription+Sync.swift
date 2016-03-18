@@ -7,7 +7,6 @@ extension NSEntityDescription {
    */
   func sync_relationships() -> [NSRelationshipDescription] {
     var relationships = [NSRelationshipDescription]()
-
     properties.forEach { propertyDescription in
       if let relationshipDescription = propertyDescription as? NSRelationshipDescription {
         relationships.append(relationshipDescription)
@@ -22,8 +21,6 @@ extension NSEntityDescription {
    - returns The parent relationship for the current entity
    */
   func sync_parentEntity() -> NSRelationshipDescription? {
-    return sync_relationships()
-      .filter { $0.destinationEntity?.name == name && !$0.toMany }
-      .first
+    return sync_relationships().filter { $0.destinationEntity?.name == name && !$0.toMany }.first
   }
 }
