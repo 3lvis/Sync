@@ -53,6 +53,8 @@
 		14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */; };
 		14D943591C51844C00F90DC2 /* NSArray+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */; };
 		14E298431C563EE500B68B72 /* OrderedSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E298411C563EE500B68B72 /* OrderedSocial.xcdatamodeld */; };
+		14ECC03E1C9C414300BBCD13 /* bug-184-just-workouts-first.json in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC03D1C9C414300BBCD13 /* bug-184-just-workouts-first.json */; };
+		14ECC0401C9C415100BBCD13 /* bug-184-just-workouts-second.json in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC03F1C9C415100BBCD13 /* bug-184-just-workouts-second.json */; };
 		14FDB4D11C511A5B0061D9FA /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D01C511A5B0061D9FA /* SyncTests.swift */; };
 		14FDB4D31C511A6F0061D9FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D21C511A6F0061D9FA /* Helper.swift */; };
 		8C1190CE4B3821813B6A3421 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E482492041434DB374B1948 /* Pods.framework */; };
@@ -115,6 +117,8 @@
 		14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+SyncTests.swift"; sourceTree = "<group>"; };
 		14E298421C563EE500B68B72 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		14ECC03D1C9C414300BBCD13 /* bug-184-just-workouts-first.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-184-just-workouts-first.json"; sourceTree = "<group>"; };
+		14ECC03F1C9C415100BBCD13 /* bug-184-just-workouts-second.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-184-just-workouts-second.json"; sourceTree = "<group>"; };
 		14FDB4D01C511A5B0061D9FA /* SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTests.swift; sourceTree = "<group>"; };
 		14FDB4D21C511A6F0061D9FA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9E482492041434DB374B1948 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +160,8 @@
 				B0B637151C6E517F00229B03 /* bug-179-places.json */,
 				B0B637161C6E517F00229B03 /* bug-179-routes.json */,
 				144A47591C9C3CEF000F6A4A /* bug-184.json */,
+				14ECC03D1C9C414300BBCD13 /* bug-184-just-workouts-first.json */,
+				14ECC03F1C9C415100BBCD13 /* bug-184-just-workouts-second.json */,
 				141894101BDD62F600EE52CE /* bug-number-84.json */,
 				141894111BDD62F600EE52CE /* comments-no-id.json */,
 				141894121BDD62F600EE52CE /* custom_relationship_key_to_many.json */,
@@ -346,6 +352,7 @@
 				141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */,
 				141894571BDD62F600EE52CE /* users_company.json in Resources */,
 				1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */,
+				14ECC03E1C9C414300BBCD13 /* bug-184-just-workouts-first.json in Resources */,
 				141894441BDD62F600EE52CE /* bug-125.json in Resources */,
 				1418944D1BDD62F600EE52CE /* numbers_in_collection.json in Resources */,
 				1418944B1BDD62F600EE52CE /* notes_for_user_a.json in Resources */,
@@ -363,6 +370,7 @@
 				141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				141894551BDD62F600EE52CE /* users_b.json in Resources */,
 				141894481BDD62F600EE52CE /* custom_relationship_key_to_one.json in Resources */,
+				14ECC0401C9C415100BBCD13 /* bug-184-just-workouts-second.json in Resources */,
 				1418944E1BDD62F600EE52CE /* organizations-tree.json in Resources */,
 				141894491BDD62F600EE52CE /* images.json in Resources */,
 				141894501BDD62F600EE52CE /* stories-comments-no-ids.json in Resources */,

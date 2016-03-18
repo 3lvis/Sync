@@ -581,11 +581,18 @@ class SyncTests: XCTestCase {
   // MARK: - Bug 184
 
   func testBug184() {
-    let json = Helper.objectsFromJSON("bug-184.json") as! [String : [[String : AnyObject]]]
-    let plans = json["plan"]!
+    // First create 3 workouts, 2 with null distance
+    let firstJSON = Helper.objectsFromJSON("bug-184-just-workouts-first.json") as! [[String : AnyObject]]
     let dataStack = Helper.dataStackWithModelName("Bug184")
-    Sync.changes(plans, inEntityNamed: "Plan", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Plan", inContext:dataStack.mainContext), 1)
-    XCTAssertEqual(Helper.countForEntity("Workout", inContext:dataStack.mainContext), 1)
+    Sync.changes(firstJSON, inEntityNamed: "Workout", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Workout", inContext:dataStack.mainContext), 3)
+
+    // This second json should only update workout 2 and 3. First workout should keep being 500 instead of 100
+    let secondJSON = Helper.objectsFromJSON("bug-184-just-workouts-second.json") as! [[String : AnyObject]]
+    let predicate = NSPredicate(format: "distance = %@", NSNull())
+    Sync.changes(secondJSON, inEntityNamed: "Workout", predicate: predicate, dataStack: dataStack, completion: nil)
+
+    let workout = Helper.fetchEntity("Workout", predicate: NSPredicate(format: "remoteID = %@", "1"), inContext:dataStack.mainContext).first!
+    XCTAssertEqual(workout.valueForKey("distance") as? Int, 500)
   }
 }

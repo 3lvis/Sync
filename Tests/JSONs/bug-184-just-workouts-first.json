@@ -1,0 +1,23 @@
+[
+   {
+      "id":"1",
+      "week":1,
+      "day":1,
+      "name":"500 m",
+      "distance":500
+   },
+   {
+      "id":"2",
+      "week":1,
+      "day":2,
+      "name":"200 m",
+      "distance":null
+   },
+   {
+      "id":"3",
+      "week":1,
+      "day":3,
+      "name":"300 run",
+      "distance":null
+   }
+]
