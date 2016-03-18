@@ -207,9 +207,9 @@
 				7022AAD62B9688833050CCBB /* Pods */,
 				515545DD1958EE5C50CA007A /* Frameworks */,
 			);
-			indentWidth = 4;
+			indentWidth = 2;
 			sourceTree = "<group>";
-			tabWidth = 4;
+			tabWidth = 2;
 		};
 		146D72941AB782920058798C /* Products */ = {
 			isa = PBXGroup;
