@@ -1,0 +1,43 @@
+{
+   "citiesFrom":[
+      {
+         "countryTitle":"Country 1",
+         "point":{
+            "longitude":16.36879539489746,
+            "latitude":48.20253753662109
+         },
+         "districtTitle":"",
+         "cityId":2352,
+         "cityTitle":"City A",
+         "regionTitle":"",
+         "stations":[
+            {
+               "countryTitle":"Country 1",
+               "point":{
+                  "longitude":16.36879539489746,
+                  "latitude":48.20253753662109
+               },
+               "districtTitle":"",
+               "cityId":2352,
+               "cityTitle":"City A",
+               "regionTitle":"",
+               "stationId":1,
+               "stationTitle":"Station 1"
+            },
+            {
+               "countryTitle":"Country 1",
+               "point":{
+                  "longitude":16.36879539489746,
+                  "latitude":48.20253753662109
+               },
+               "districtTitle":"",
+               "cityId":2353,
+               "cityTitle":"City A",
+               "regionTitle":"",
+               "stationId":2,
+               "stationTitle":"Station 2"
+            }
+         ]
+      }
+   ]
+}

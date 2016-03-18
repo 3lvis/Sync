@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="City" syncable="YES">
+        <attribute name="cityId" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="hyper.remoteKey" value="cityId"/>
+            </userInfo>
+        </attribute>
+        <attribute name="cityTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="cityTitle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="countryTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="countryTitle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="districtTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="districtTitle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="point" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="regionTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="regionTitle"/>
+            </userInfo>
+        </attribute>
+        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Station" inverseName="city" inverseEntity="Station" syncable="YES"/>
+    </entity>
+    <entity name="Station" syncable="YES">
+        <attribute name="cityId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="hyper.remoteKey" value="cityId"/>
+            </userInfo>
+        </attribute>
+        <attribute name="cityTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="cityTitle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="countryTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="countryTitle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="districtTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="districtTitle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="point" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="regionTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="regionTitle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="stationId" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="stationId"/>
+            </userInfo>
+        </attribute>
+        <attribute name="stationTitle" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="stationTitle"/>
+            </userInfo>
+        </attribute>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="stations" inverseEntity="City" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="City" positionX="-245" positionY="21" width="128" height="148"/>
+        <element name="Station" positionX="-54" positionY="-9" width="128" height="178"/>
+    </elements>
+</model>
