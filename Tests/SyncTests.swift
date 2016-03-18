@@ -577,4 +577,28 @@ class SyncTests: XCTestCase {
     
     dataStack.drop()
   }
+
+  // MARK: - Bug 192
+
+  func testBug192() {
+    let json = Helper.objectsFromJSON("bug-192.json") as! [String : [[String : AnyObject]]]
+    let dataStack = Helper.dataStackWithModelName("Bug192")
+
+    Sync.changes(json["citiesFrom"]!, inEntityNamed: "City", dataStack: dataStack, completion: nil)
+
+    XCTAssertEqual(Helper.countForEntity("City", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Station", inContext:dataStack.mainContext), 2)
+
+    let city = Helper.fetchEntity("City", predicate: nil, inContext:dataStack.mainContext).first!
+    XCTAssertEqual(city.valueForKey("countryTitle") as? String, "Country 1")
+
+    let routes = Helper.fetchEntity("Station", sortDescriptors: [NSSortDescriptor(key: "stationId", ascending: true)], inContext: dataStack.mainContext)
+    XCTAssertEqual(routes.count, 2)
+
+    let firstRoute = routes.first!
+    XCTAssertEqual(firstRoute.valueForKey("stationTitle") as? String, "Station 1")
+
+    let lastRoute = routes.last!
+    XCTAssertEqual(lastRoute.valueForKey("stationTitle") as? String, "Station 2")
+  }
 }
