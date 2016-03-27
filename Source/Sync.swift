@@ -80,15 +80,16 @@ import DATAStack
    - parameter dataStack: The DATAStack instance.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, var predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
     let localKey = entity.sync_localKey()
     let remoteKey = entity.sync_remoteKey()
     let shouldLookForParent = parent == nil && predicate == nil
 
+    var finalPredicate = predicate
     if let parentEntity = entity.sync_parentEntity() where shouldLookForParent {
-      predicate = NSPredicate(format: "%K = nil", parentEntity.name)
+      finalPredicate = NSPredicate(format: "%K = nil", parentEntity.name)
     }
 
     if localKey.isEmpty {
@@ -99,7 +100,7 @@ import DATAStack
       fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
     }
 
-    DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: predicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
+    DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
 
       let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
