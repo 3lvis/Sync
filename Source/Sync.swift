@@ -80,15 +80,16 @@ import DATAStack
    - parameter dataStack: The DATAStack instance.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, var predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
     let localKey = entity.sync_localKey()
     let remoteKey = entity.sync_remoteKey()
     let shouldLookForParent = parent == nil && predicate == nil
 
+    var finalPredicate = predicate
     if let parentEntity = entity.sync_parentEntity() where shouldLookForParent {
-      predicate = NSPredicate(format: "%K = nil", parentEntity.name)
+      finalPredicate = NSPredicate(format: "%K = nil", parentEntity.name)
     }
 
     if localKey.isEmpty {

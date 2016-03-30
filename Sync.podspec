@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "Sync"
-s.version          = "1.5.2"
+s.version          = "1.5.3"
 s.summary          = "Modern JSON synchronization to Core Data"
 s.description      = <<-DESC
 This is a category that eases your every day job of parsing an API and getting it into Core Data.
@@ -25,7 +25,7 @@ s.source_files = 'Source/**/*'
 s.frameworks = 'Foundation', 'CoreData'
 
 s.dependency 'DATAFilter', '~> 0.9.1'
-s.dependency 'DATAStack', '~> 4.2.0'
+s.dependency 'DATAStack', '~> 4.2.1'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3.1'
 s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 0.1.2'
 s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.4.2'
