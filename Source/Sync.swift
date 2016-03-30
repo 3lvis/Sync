@@ -101,14 +101,14 @@ import DATAStack
     }
 
     var updatedChanges = changes
-    if let predicate = predicate {
-      let processedChanges = (changes as NSArray).preprocessForEntityNamed(entityName, predicate: predicate, parent: parent, dataStack: dataStack)
+    if let processedPredicate = finalPredicate {
+      let processedChanges = (changes as NSArray).preprocessForEntityNamed(entityName, predicate: processedPredicate, parent: parent, dataStack: dataStack)
       if processedChanges.count > 0 {
         updatedChanges = processedChanges
       }
     }
 
-    DATAFilter.changes(updatedChanges as [AnyObject], inEntityNamed: entityName, predicate: predicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
+    DATAFilter.changes(updatedChanges as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
 
       let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
