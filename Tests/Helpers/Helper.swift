@@ -2,12 +2,12 @@ import XCTest
 import CoreData
 import DATAStack
 import Sync
-import NSJSONSerialization_ANDYJSONFile
+import JSON
 
 @objc class Helper: NSObject {
     class func objectsFromJSON(fileName: String) -> AnyObject {
         let bundle = NSBundle(forClass: Helper.self)
-        let objects = NSJSONSerialization.JSONObjectWithContentsOfFile(fileName, inBundle: bundle)
+        let objects = try! JSON.from(fileName, bundle: bundle)!
         return objects
     }
 
