@@ -8,7 +8,7 @@ PODS:
   - NSDictionary-ANDYSafeValue (0.3.1)
   - NSEntityDescription-SYNCPrimaryKey (0.1.2):
     - NSString-HYPNetworking (~> 0.4.0)
-  - NSManagedObject-HYPPropertyMapper (3.4.3):
+  - NSManagedObject-HYPPropertyMapper (3.5.0):
     - NSString-HYPNetworking (~> 0.4.0)
   - NSString-HYPNetworking (0.4.0)
   - Sync (1.5.4):
@@ -16,7 +16,7 @@ PODS:
     - DATAStack (~> 4.2.1)
     - NSDictionary-ANDYSafeValue (~> 0.3.1)
     - NSEntityDescription-SYNCPrimaryKey (~> 0.1.2)
-    - NSManagedObject-HYPPropertyMapper (~> 3.4.3)
+    - NSManagedObject-HYPPropertyMapper (~> 3.5.0)
 
 DEPENDENCIES:
   - DATASource
@@ -35,8 +35,8 @@ SPEC CHECKSUMS:
   JSON: d08f22c3e523be050d5d5f40bca43ec02d95b2cc
   NSDictionary-ANDYSafeValue: 2d7adf339b6e302d71fec5f1d71ae00aacda993e
   NSEntityDescription-SYNCPrimaryKey: 9a2b2f7b838913eb445f20cc2f2edca7281fcfa5
-  NSManagedObject-HYPPropertyMapper: e75901a91950e9c80510f33bb41e94a2d6ce677c
+  NSManagedObject-HYPPropertyMapper: c307b6455b8fd572f793e4a80b9055f3c2fc0e3b
   NSString-HYPNetworking: 24c3828eebde8a37cc16101a475934a56ac820c0
-  Sync: 7831aa847c08e79f4e92619e26ef65e671e8cd53
+  Sync: 6d8c816d00a80144e3e6c76c08f6ace31c611ddc
 
 COCOAPODS: 0.39.0

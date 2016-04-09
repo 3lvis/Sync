@@ -28,5 +28,5 @@ s.dependency 'DATAFilter', '~> 0.9.1'
 s.dependency 'DATAStack', '~> 4.2.1'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3.1'
 s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 0.1.2'
-s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.4.3'
+s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.5.0'
 end
