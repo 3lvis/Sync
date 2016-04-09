@@ -14,6 +14,10 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(result.count, 1)
 
     let first = result.first!
+    XCTAssertEqual(first.valueForKey("etternavn") as? String, "Nuñez")
+    XCTAssertEqual(first.valueForKey("firstName") as? String, "Elvis")
+    XCTAssertEqual(first.valueForKey("fullName") as? String, "Elvis Nuñez")
+    XCTAssertEqual(first.valueForKey("numberOfChildren") as? Int, 1)
     XCTAssertEqual(first.valueForKey("remoteID") as? String, "1")
 
     dataStack.drop()
