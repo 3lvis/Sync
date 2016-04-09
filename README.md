@@ -6,6 +6,7 @@
 
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
+* Automatic mapping of CamelCase or snake_case JSON into Core Data
 * Handles operations in safe background threads
 * Thread-safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
@@ -48,7 +49,7 @@
 
 ```swift
 Sync.changes(
-  changes: [AnyObject],
+  changes: [[String : AnyObject]],
   inEntityNamed: String,
   dataStack: DATAStack,
   completion: ((NSError?) -> Void)?)
@@ -67,8 +68,7 @@ Sync.changes(
 * `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
 * `dataStack`: Your [DATAStack](https://github.com/3lvis/DATAStack)
 
-
-## Example
+## Example with snake_case in Swift
 
 ### Model
 
@@ -90,6 +90,63 @@ Sync.changes(
         "text": "Shawn Merril's diary, episode 1",
         "created_at": "2014-03-11T19:11:00+00:00",
         "updated_at": "2014-04-18T22:01:00+00:00"
+      }
+    ]
+  }
+]
+```
+
+### Sync
+
+```swift
+Sync.changes(
+  changes: JSON,
+  inEntityNamed: "User",
+  dataStack: dataStack) { error in
+    // New objects have been inserted
+    // Existing objects have been updated
+    // And not found objects have been deleted
+}
+```
+
+Alternatively, if you only want to sync users that have been created in the last 24 hours, you could do this by using a `NSPredicate`.
+
+```swift
+let now = NSDate()
+let yesterday = now.dateByAddingTimeInterval(-24*60*60)
+let predicate = NSPredicate(format:@"createdAt > %@", yesterday)
+
+Sync.changes(
+  changes: JSON,
+  inEntityNamed: "User",
+  predicate: predicate
+  dataStack: dataStack) { error in
+    //..
+}
+```
+
+## Example with CamelCase in Objective-C
+
+### Model
+
+![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
+
+### JSON
+
+```json
+[
+  {
+    "id": 6,
+    "name": "Shawn Merrill",
+    "email": "shawn@ovium.com",
+    "createdAt": "2014-02-14T04:30:10+00:00",
+    "updatedAt": "2014-02-17T10:01:12+00:00",
+    "notes": [
+      {
+        "id": 0,
+        "text": "Shawn Merril's diary, episode 1",
+        "createdAt": "2014-03-11T19:11:00+00:00",
+        "updatedAt": "2014-04-18T22:01:00+00:00"
       }
     ]
   }
@@ -125,7 +182,7 @@ inEntityNamed:@"User"
     }];
 ```
 
-### More Examples
+## More Examples
 
 <a href="https://github.com/3lvis/SyncAppNetDemo">
   <img src="https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/APPNET-v3.png" />
@@ -154,14 +211,18 @@ pod 'Sync'
 
 Replace your Core Data stack with an instance of [DATAStack](https://github.com/3lvis/DATAStack).
 
-```objc
-self.dataStack = [[DATAStack alloc] initWithModelName:@"Demo"];
+```swift
+self.dataStack = DATAStack(modelName: "Demo")
 ```
 
 Then add this to your App Delegate so everything gets persisted when you quit the app.
-```objc
-- (void)applicationWillTerminate:(UIApplication *)application {
-    [self.dataStack persistWithCompletion:nil];
+```swift
+func applicationDidEnterBackground(application: UIApplication) {
+    self.dataStack.persistWithCompletion(nil)
+}
+
+func applicationWillTerminate(application: UIApplication) {
+    self.dataStack.persistWithCompletion(nil)
 }
 ```
 
@@ -197,6 +258,7 @@ To map **arrays** or **dictionaries** just set attributes as `Binary Data` on th
 ![screen shot 2015-04-02 at 11 10 11 pm](https://cloud.githubusercontent.com/assets/1088217/6973785/7d3767dc-d98d-11e4-8add-9c9421b5ed47.png)
 
 #### Retrieving mapped arrays
+
 ```json
 {
   "hobbies": [
@@ -207,8 +269,8 @@ To map **arrays** or **dictionaries** just set attributes as `Binary Data` on th
 }
 ```
 
-```objc
-NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
+```swift
+let hobbies = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.hobbies)
 // ==> "football", "soccer", "code"
 ```
 
@@ -222,29 +284,30 @@ NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobb
 }
 ```
 
-```objc
-NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
+```swift
+let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 // ==> "cake" : 12.50, "juice" : 0.50
 ```
+
 #### Dates
 
 We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
-```objc
-NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
-                         @"updated_at" : @"2014-01-02",
-                         @"published_at": @"1441843200"
-                         @"number_of_attendes": @20};
+```swift
+let values = ["created_at" : "2014-01-01T00:00:00+00:00",
+              "updated_at" : "2014-01-02",
+              "published_at": "1441843200"
+              "number_of_attendes": 20]
 
-[managedObject hyp_fillWithDictionary:values];
+managedObject.hyp_fillWithDictionary(values)
 
-NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
+let createdAt = managedObject.valueForKey("createdAt")
 // ==> "2014-01-01 00:00:00 +00:00"
 
-NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
+let updatedAt = managedObject.valueForKey("updatedAt")
 // ==> "2014-01-02 00:00:00 +00:00"
 
-NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
+let publishedAt = managedObject.valueForKey("publishedAt")
 // ==> "2015-09-10 00:00:00 +00:00"
 ```
 
@@ -434,12 +497,12 @@ If you're using Swift to be able to use `NSNotificationCenter` your class should
 
 This means that the local primary key was not found, Sync uses `remoteID` by default, but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "YES"` in your attribute's user info. For more information check the [Primary Key](https://github.com/hyperoslo/Sync#primary-key) section.
 
-```objc
-NSString *localKey = [entity sync_localKey];
-NSParameterAssert(localKey);
+```swift
+let localKey = entity.sync_localKey()
+assert(localKey != nil, "nil value")
 
-NSString *remoteKey = [entity sync_remoteKey];
-NSParameterAssert(remoteKey);
+let remoteKey = entity.sync_remoteKey()
+assert(remoteKey != nil, "nil value")
 ```
 
 ## Credits
