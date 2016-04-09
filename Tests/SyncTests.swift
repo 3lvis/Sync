@@ -4,6 +4,21 @@ import Sync
 import CoreData
 
 class SyncTests: XCTestCase {
+  // MARK: - Camelcase
+  func testAutomaticCamelcaseMapping() {
+    let dataStack = Helper.dataStackWithModelName("Camelcase")
+    let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : AnyObject]]
+    Sync.changes(objects, inEntityNamed: "NormalUser", dataStack: dataStack, completion: nil)
+
+    let result = Helper.fetchEntity("NormalUser", inContext: dataStack.mainContext)
+    XCTAssertEqual(result.count, 1)
+
+    let first = result.first!
+    XCTAssertEqual(first.valueForKey("remoteID") as? String, "1")
+
+    dataStack.drop()
+  }
+
   // MARK: - Contacts
 
   func testLoadAndUpdateUsers() {
