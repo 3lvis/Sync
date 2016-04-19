@@ -15,9 +15,12 @@ public extension NSManagedObjectContext {
     if let remoteID = remoteID as? NSObject, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self) {
       let request = NSFetchRequest(entityName: entityName)
       request.predicate = NSPredicate(format: "%K = %@", entity.sync_localKey(), remoteID)
-      let objects = try! executeFetchRequest(request)
-
-      return objects.first as? NSManagedObject
+      do {
+        let objects = try executeFetchRequest(request)
+        return objects.first as? NSManagedObject
+      } catch {
+        fatalError("Failed to fetch request for entityName: \(entityName), predicate: \(request.predicate)")
+      }
     } else if let parentRelationshipName = parentRelationshipName {
       // More info: https://github.com/hyperoslo/Sync/pull/72
       return parent?.valueForKey(parentRelationshipName) as? NSManagedObject

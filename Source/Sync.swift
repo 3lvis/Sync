@@ -53,7 +53,7 @@ import DATAStack
   public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, parent: NSManagedObject, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
     dataStack.performInNewBackgroundContext { backgroundContext in
       let safeParent = parent.sync_copyInContext(backgroundContext)
-      let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: backgroundContext)!
+      guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: backgroundContext) else { fatalError("Couldn't find entity named: \(entityName)") }
       let relationships = entity.relationshipsWithDestinationEntity(parent.entity)
       var predicate: NSPredicate? = nil
 

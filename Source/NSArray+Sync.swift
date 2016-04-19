@@ -23,8 +23,8 @@ public extension NSArray {
             objectChanges.append(object)
           }
 
-          let filteredArray = (objectChanges as NSArray).filteredArrayUsingPredicate(predicate)
-          for filteredObject in filteredArray as! [NSManagedObject] {
+          guard let filteredArray = (objectChanges as NSArray).filteredArrayUsingPredicate(predicate) as? [NSManagedObject] else { fatalError("Couldn't cast filteredArray as [NSManagedObject]: \(objectChanges), predicate: \(predicate)") }
+          for filteredObject in filteredArray  {
             if let change = filteredObject.hyp_dictionaryUsingRelationshipType(.Array) as? [String : AnyObject] {
               filteredChanges.append(change)
             }
