@@ -15,8 +15,10 @@ public extension NSManagedObject {
    */
   func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
     guard let entityName = entity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
+    let remoteID = valueForKey(entity.sync_localKey())
+    guard let copiedObject = context.sync_safeObject(entityName, remoteID: remoteID, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) remoteID: \(remoteID)") }
 
-    return context.sync_safeObject(entityName, remoteID: valueForKey(entity.sync_localKey()), parent: nil, parentRelationshipName: nil)!
+    return copiedObject
   }
 
   /**
@@ -97,11 +99,14 @@ public extension NSManagedObject {
    - parameter dataStack: The DATAStack instance.
    */
   func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, remoteID: AnyObject, dataStack: DATAStack) {
-    guard let entityName = relationship.destinationEntity!.name, object = managedObjectContext!.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) else { abort() }
+    guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
+    guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
+    guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
+    guard let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) else { fatalError("safeObject not found: \(destinationEntityName), remoteID: \(remoteID), parent: \(self), parentRelationshipName: \(relationship.name)") }
 
     let currentRelationship = valueForKey(relationship.name)
-    if currentRelationship == nil || !currentRelationship!.isEqual(object) {
-      setValue(object, forKey: relationship.name)
+    if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
+      setValue(safeObject, forKey: relationship.name)
     }
   }
 

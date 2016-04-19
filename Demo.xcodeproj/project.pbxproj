@@ -45,6 +45,11 @@
 		141894621BDD62F600EE52CE /* Recursive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141894371BDD62F600EE52CE /* Recursive.xcdatamodeld */; };
 		141894631BDD62F600EE52CE /* Social.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141894391BDD62F600EE52CE /* Social.xcdatamodeld */; };
 		141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1418943B1BDD62F600EE52CE /* Unique.xcdatamodeld */; };
+		1425D5A01CC65BEB00EC49D4 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59B1CC65BEB00EC49D4 /* NSArray+Sync.swift */; };
+		1425D5A11CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59C1CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift */; };
+		1425D5A21CC65BEB00EC49D4 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */; };
+		1425D5A31CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */; };
+		1425D5A41CC65BEB00EC49D4 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59F1CC65BEB00EC49D4 /* Sync.swift */; };
 		1469B7F91C68D7820080FD71 /* NotesB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */; };
 		1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */; };
 		14959D141C065350004EF790 /* notes_with_user_id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14959D131C065350004EF790 /* notes_with_user_id.json */; };
@@ -100,6 +105,11 @@
 		141894381BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1418943A1BDD62F600EE52CE /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1418943C1BDD62F600EE52CE /* Unique.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unique.xcdatamodel; sourceTree = "<group>"; };
+		1425D59B1CC65BEB00EC49D4 /* NSArray+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+Sync.swift"; sourceTree = "<group>"; };
+		1425D59C1CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+Sync.swift"; sourceTree = "<group>"; };
+		1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Sync.swift"; sourceTree = "<group>"; };
+		1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Sync.swift"; sourceTree = "<group>"; };
+		1425D59F1CC65BEB00EC49D4 /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
 		1469B7F81C68D7820080FD71 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_with_user_id_custom.json; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,9 +214,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1425D59A1CC65BEB00EC49D4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1425D59B1CC65BEB00EC49D4 /* NSArray+Sync.swift */,
+				1425D59C1CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift */,
+				1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */,
+				1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */,
+				1425D59F1CC65BEB00EC49D4 /* Sync.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		146D728A1AB782920058798C = {
 			isa = PBXGroup;
 			children = (
+				1425D59A1CC65BEB00EC49D4 /* Source */,
 				14C136501AB7849300B7B07A /* Metadata */,
 				146D72AF1AB782920058798C /* Tests */,
 				146D72941AB782920058798C /* Products */,
@@ -430,9 +453,11 @@
 			files = (
 				14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */,
 				140FBF1C1CB91A5D0026484E /* Camelcase.xcdatamodeld in Sources */,
+				1425D5A21CC65BEB00EC49D4 /* NSManagedObject+Sync.swift in Sources */,
 				14D943591C51844C00F90DC2 /* NSArray+SyncTests.swift in Sources */,
 				14FDB4D11C511A5B0061D9FA /* SyncTests.swift in Sources */,
 				141894611BDD62F600EE52CE /* Patients.xcdatamodeld in Sources */,
+				1425D5A41CC65BEB00EC49D4 /* Sync.swift in Sources */,
 				1418945B1BDD62F600EE52CE /* Bug125.xcdatamodeld in Sources */,
 				1418945C1BDD62F600EE52CE /* Bug84.xcdatamodeld in Sources */,
 				B0B637141C6E4F2D00229B03 /* Bug179.xcdatamodeld in Sources */,
@@ -440,12 +465,15 @@
 				141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */,
 				141894621BDD62F600EE52CE /* Recursive.xcdatamodeld in Sources */,
 				14E298431C563EE500B68B72 /* OrderedSocial.xcdatamodeld in Sources */,
+				1425D5A31CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift in Sources */,
 				141894591BDD62F600EE52CE /* Bug113.xcdatamodeld in Sources */,
 				14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */,
 				14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */,
+				1425D5A01CC65BEB00EC49D4 /* NSArray+Sync.swift in Sources */,
 				14FDB4D31C511A6F0061D9FA /* Helper.swift in Sources */,
 				1469B7F91C68D7820080FD71 /* NotesB.xcdatamodeld in Sources */,
 				141894631BDD62F600EE52CE /* Social.xcdatamodeld in Sources */,
+				1425D5A11CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift in Sources */,
 				141894601BDD62F600EE52CE /* Organizations.xcdatamodeld in Sources */,
 				1418945E1BDD62F600EE52CE /* Markets.xcdatamodeld in Sources */,
 				1418945D1BDD62F600EE52CE /* Contacts.xcdatamodeld in Sources */,
