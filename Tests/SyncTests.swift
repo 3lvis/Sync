@@ -134,7 +134,7 @@ class SyncTests: XCTestCase {
       user.setValue("firstupdate@ovium.com", forKey: "email")
 
       try! backgroundContext.save()
-      dataStack.persistWithCompletion(nil)
+      dataStack.persist(nil)
     }
 
     // Then we fetch the user on the main context, because we don't want to break things between contexts

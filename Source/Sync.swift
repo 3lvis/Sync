@@ -117,7 +117,7 @@ import DATAStack
       syncError = error
     }
 
-    dataStack.persistWithCompletion {
+    dataStack.persist { error in
       completion?(error: syncError)
     }
   }
