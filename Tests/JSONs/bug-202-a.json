@@ -1,0 +1,12 @@
+[
+  {
+    "id": "1",
+    "name": "First",
+    "favorite_tags": [
+        {
+          "id": "1",
+          "hashtag": "#first"
+        }
+    ]
+  }
+]
