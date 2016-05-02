@@ -66,7 +66,8 @@ public extension NSManagedObject {
       var childPredicate: NSPredicate?
       let childIDs = (children as NSArray).valueForKey(entity.sync_remoteKey())
 
-      if inverseIsToMany && relationship.toMany {
+      let manyToMany = inverseIsToMany && relationship.toMany
+      if manyToMany {
         if childIDs.count > 0 {
           guard let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: managedObjectContext) else { fatalError() }
           guard let childIDsObject = childIDs as? NSObject else { fatalError() }
