@@ -56,7 +56,6 @@
 		14A644111CD77A4C00F51E23 /* Bug202.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A6440F1CD77A4C00F51E23 /* Bug202.xcdatamodeld */; };
 		14A644151CD77C7A00F51E23 /* bug-202-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644121CD77C7A00F51E23 /* bug-202-a.json */; };
 		14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644131CD77C7A00F51E23 /* bug-202-b.json */; };
-		14A644171CD77C7A00F51E23 /* bug-202-c.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644141CD77C7A00F51E23 /* bug-202-c.json */; };
 		14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */; };
 		14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */; };
 		14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */; };
@@ -122,7 +121,6 @@
 		14A644101CD77A4C00F51E23 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14A644121CD77C7A00F51E23 /* bug-202-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-202-a.json"; sourceTree = "<group>"; };
 		14A644131CD77C7A00F51E23 /* bug-202-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-202-b.json"; sourceTree = "<group>"; };
-		14A644141CD77C7A00F51E23 /* bug-202-c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-202-c.json"; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				B0B637161C6E517F00229B03 /* bug-179-routes.json */,
 				14A644121CD77C7A00F51E23 /* bug-202-a.json */,
 				14A644131CD77C7A00F51E23 /* bug-202-b.json */,
-				14A644141CD77C7A00F51E23 /* bug-202-c.json */,
 				141894101BDD62F600EE52CE /* bug-number-84.json */,
 				140FBF1D1CB91C2D0026484E /* camelcase.json */,
 				141894111BDD62F600EE52CE /* comments-no-id.json */,
@@ -396,7 +393,6 @@
 				141894561BDD62F600EE52CE /* users_c.json in Resources */,
 				141894541BDD62F600EE52CE /* users_a.json in Resources */,
 				141894461BDD62F600EE52CE /* comments-no-id.json in Resources */,
-				14A644171CD77C7A00F51E23 /* bug-202-c.json in Resources */,
 				141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				141894551BDD62F600EE52CE /* users_b.json in Resources */,
 				141894481BDD62F600EE52CE /* custom_relationship_key_to_one.json in Resources */,

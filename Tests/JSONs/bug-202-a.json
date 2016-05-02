@@ -2,10 +2,11 @@
   {
     "id": "1",
     "name": "First",
-    "user_favorite_tags": [
+    "favorite_tags": [
         {
           "id": "1",
           "hashtag": "#first"
         }
     ]
-{
+  }
+]

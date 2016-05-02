@@ -2,14 +2,6 @@
   {
     "id": "1",
     "name": "First",
-    "user_favorite_tags": [
-        {
-          "id": "1",
-          "hashtag": "#first"
-        },
-        {
-          "id": "2",
-          "hashtag": "#second"
-        }
-    ]
-{
+    "favorite_tags": []
+  }
+]

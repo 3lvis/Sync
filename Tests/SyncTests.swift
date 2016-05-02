@@ -596,4 +596,20 @@ class SyncTests: XCTestCase {
     
     dataStack.drop()
   }
+
+  // MARK: - Bug 202 => https://github.com/hyperoslo/Sync/issues/202
+
+  func testManyToManyKeyNotAllowedHere() {
+    let dataStack = Helper.dataStackWithModelName("Bug202")
+
+    let initialInsert = Helper.objectsFromJSON("bug-202-a.json") as! [[String : AnyObject]]
+    Sync.changes(initialInsert, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+    let removeAll = Helper.objectsFromJSON("bug-202-b.json") as! [[String : AnyObject]]
+    Sync.changes(removeAll, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+
+    dataStack.drop()
+  }
 }
