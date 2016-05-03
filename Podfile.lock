@@ -11,7 +11,7 @@ PODS:
   - NSManagedObject-HYPPropertyMapper (3.6.0):
     - NSString-HYPNetworking (~> 0.4.0)
   - NSString-HYPNetworking (0.4.0)
-  - Sync (1.6.4):
+  - Sync (1.6.5):
     - DATAFilter (~> 0.9.1)
     - DATAStack (~> 4.3.0)
     - NSDictionary-ANDYSafeValue (~> 0.3.1)
@@ -25,7 +25,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Sync:
-    :path: .
+    :path: "."
 
 SPEC CHECKSUMS:
   DATAFilter: 4a1bdc065847e19d9fa1c9dd92ed2d85847967a1
@@ -37,6 +37,6 @@ SPEC CHECKSUMS:
   NSEntityDescription-SYNCPrimaryKey: 9a2b2f7b838913eb445f20cc2f2edca7281fcfa5
   NSManagedObject-HYPPropertyMapper: dbcaa74a43b522d45dacf1ad1c56b41ef008a0c0
   NSString-HYPNetworking: 24c3828eebde8a37cc16101a475934a56ac820c0
-  Sync: 218ca77da2090101790bbc7c4d2bd14b0b8bb022
+  Sync: b2f1c213d5019f4dd019a9bba6be418606602a60
 
 COCOAPODS: 0.39.0
