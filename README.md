@@ -503,6 +503,11 @@ let remoteKey = entity.sync_remoteKey()
 assert(remoteKey != nil, "nil value")
 ```
 
+#### How to map relationships that don't have remote IDs?
+
+There are two ways you can sync a JSON object that doesn't have a `remoteID`. You can either set one of it's [attributes as the primary key](https://github.com/hyperoslo/Sync#primary-key), or you can store the JSON object as NSData, I have done this myself in a couple of apps works pretty well. You can find more information on how to store dictionaries using Sync [here](https://github.com/hyperoslo/Sync#arraydictionary).
+
+
 ## Credits
 
 [Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md) (we consider remote employees too, the only requirement is that you’re awesome).
