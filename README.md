@@ -213,17 +213,6 @@ Replace your Core Data stack with an instance of [DATAStack](https://github.com/
 self.dataStack = DATAStack(modelName: "Demo")
 ```
 
-Then add this to your App Delegate so everything gets persisted when you quit the app.
-```swift
-func applicationDidEnterBackground(application: UIApplication) {
-    self.dataStack.persistWithCompletion(nil)
-}
-
-func applicationWillTerminate(application: UIApplication) {
-    self.dataStack.persistWithCompletion(nil)
-}
-```
-
 ### Primary key
 
 Sync requires your entities to have a primary key, this is important for diffing, otherwise Sync doesn’t know how to differentiate between entries.
