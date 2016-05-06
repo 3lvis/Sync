@@ -20,7 +20,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(first.valueForKey("numberOfChildren") as? Int, 1)
     XCTAssertEqual(first.valueForKey("remoteID") as? String, "1")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Contacts
@@ -49,7 +49,7 @@ class SyncTests: XCTestCase {
     let updatedDate = dateFormat.dateFromString("2014-02-17")
     XCTAssertEqual(result.valueForKey("updatedAt") as? NSDate, updatedDate)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testUsersAndCompanies() {
@@ -66,7 +66,7 @@ class SyncTests: XCTestCase {
     let company = Helper.fetchEntity("Company", predicate: NSPredicate(format: "remoteID = %@", NSNumber(int: 1)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext:dataStack.mainContext).first!
     XCTAssertEqual(company.valueForKey("name") as? String, "Facebook")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testCustomMappingAndCustomPrimaryKey() {
@@ -79,7 +79,7 @@ class SyncTests: XCTestCase {
     let image = array.first
     XCTAssertEqual(image!.valueForKey("url") as? String, "http://sample.com/sample0.png")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testRelationshipsB() {
@@ -101,7 +101,7 @@ class SyncTests: XCTestCase {
     let profilePicturesCount = Helper.countForEntity("Image", predicate: NSPredicate(format: "user = %@", user), inContext:dataStack.mainContext)
     XCTAssertEqual(profilePicturesCount, 3);
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Notes
@@ -120,7 +120,7 @@ class SyncTests: XCTestCase {
     let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format:"superUser = %@", user), inContext:dataStack.mainContext)
     XCTAssertEqual(notesCount, 5);
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testObjectsForParent() {
@@ -134,7 +134,6 @@ class SyncTests: XCTestCase {
       user.setValue("firstupdate@ovium.com", forKey: "email")
 
       try! backgroundContext.save()
-      dataStack.persist(nil)
     }
 
     // Then we fetch the user on the main context, because we don't want to break things between contexts
@@ -152,7 +151,7 @@ class SyncTests: XCTestCase {
     let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format:"superUser = %@", user), inContext:dataStack.mainContext)
     XCTAssertEqual(notesCount, 5)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testTaggedNotesForUser() {
@@ -172,7 +171,7 @@ class SyncTests: XCTestCase {
 
     let tag = tags.first!
     XCTAssertEqual((tag.valueForKey("superNotes") as? NSSet)!.allObjects.count, 4)
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testCustomKeysInRelationshipsToMany() {
@@ -185,7 +184,7 @@ class SyncTests: XCTestCase {
     let user = array.first!
     XCTAssertEqual((user.valueForKey("superNotes") as? NSSet)!.allObjects.count, 3)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Recursive
@@ -197,7 +196,7 @@ class SyncTests: XCTestCase {
     Sync.changes(objects, inEntityNamed: "Number", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Number", inContext:dataStack.mainContext), 6)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testRelationshipName() {
@@ -213,7 +212,7 @@ class SyncTests: XCTestCase {
     XCTAssertNotNil(number.valueForKey("parent"))
     XCTAssertEqual((number.valueForKey("parent") as! NSManagedObject).valueForKey("name") as? String, "Collection 1")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Social
@@ -232,7 +231,7 @@ class SyncTests: XCTestCase {
     let comment = comments.first!
     XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testCustomPrimaryKeyInsideToManyRelationship() {
@@ -258,7 +257,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("remoteID") as? NSNumber, NSNumber(int: 0))
     XCTAssertEqual((comment.valueForKey("story") as? NSManagedObject)!.valueForKey("title") as? String, "story 1")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testCustomKeysInRelationshipsToOne() {
@@ -271,7 +270,7 @@ class SyncTests: XCTestCase {
     let story = array.first!
     XCTAssertNotNil(story.valueForKey("summarize"))
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Markets
@@ -294,7 +293,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(item.valueForKey("otherAttribute") as? String, "Item 1")
     XCTAssertEqual((item.valueForKey("markets") as? NSSet)!.allObjects.count, 2)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Organization
@@ -309,7 +308,7 @@ class SyncTests: XCTestCase {
     Sync.changes(json, inEntityNamed:"OrganizationUnit", dataStack:dataStack, completion:nil)
     XCTAssertEqual(Helper.countForEntity("OrganizationUnit", inContext:dataStack.mainContext), 7)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Unique
@@ -333,7 +332,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("B", inContext:dataStack.mainContext), 2)
     XCTAssertEqual(Helper.countForEntity("C", inContext:dataStack.mainContext), 1)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Patients => https://github.com/hyperoslo/Sync/issues/121
@@ -350,7 +349,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("Weight", inContext:dataStack.mainContext), 1)
     XCTAssertEqual(Helper.countForEntity("Measure", inContext:dataStack.mainContext), 1)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Bug 84 => https://github.com/hyperoslo/Sync/issues/84
@@ -376,7 +375,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(fullfiller.valueForKey("name") as? String, "New York")
     XCTAssertEqual((fullfiller.valueForKey("staff") as? NSSet)!.allObjects.count, 1)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Bug 113 => https://github.com/hyperoslo/Sync/issues/113
@@ -395,7 +394,7 @@ class SyncTests: XCTestCase {
     let comment = comments.first!
     XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testCustomPrimaryKeyInsideToManyRelationshipBug113() {
@@ -420,7 +419,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(comment.valueForKey("awesomeStory")!.valueForKey("remoteID") as? NSNumber, NSNumber(int: 0))
     XCTAssertEqual(comment.valueForKey("awesomeStory")!.valueForKey("title") as? String, "story 1")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testCustomKeysInRelationshipsToOneBug113() {
@@ -433,7 +432,7 @@ class SyncTests: XCTestCase {
     let story = array.first!
     XCTAssertNotNil(story.valueForKey("awesomeSummarize"))
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Bug 125 => https://github.com/hyperoslo/Sync/issues/125
@@ -464,7 +463,7 @@ class SyncTests: XCTestCase {
     XCTAssertNotNil(element)
     XCTAssertNotNil(model)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   func testStoryToSummarize() {
@@ -484,7 +483,7 @@ class SyncTests: XCTestCase {
     let comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format:"body = %@", "Hi"), inContext:dataStack.mainContext)
     XCTAssertEqual(comments.count, 1)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   /**
@@ -517,7 +516,7 @@ class SyncTests: XCTestCase {
     let user = note.valueForKey("superUser")!
     XCTAssertEqual(user.valueForKey("name") as? String, "Melisa White")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   /**
@@ -550,7 +549,7 @@ class SyncTests: XCTestCase {
     let user = note.valueForKey("superUser")!
     XCTAssertEqual(user.valueForKey("name") as? String, "Melisa White")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK:- Ordered Social
@@ -569,7 +568,7 @@ class SyncTests: XCTestCase {
     let comment = comments.first!
     XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Bug 179 => https://github.com/hyperoslo/Sync/issues/179
@@ -594,7 +593,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(startPlace.valueForKey("name") as? String, "Here")
     XCTAssertEqual(endPlace.valueForKey("name") as? String, "There")
     
-    dataStack.drop()
+    try! dataStack.drop()
   }
 
   // MARK: - Bug 202 => https://github.com/hyperoslo/Sync/issues/202
@@ -610,6 +609,6 @@ class SyncTests: XCTestCase {
     Sync.changes(removeAll, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
-    dataStack.drop()
+    try! dataStack.drop()
   }
 }
