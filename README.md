@@ -12,7 +12,7 @@
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
 * Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
-* Uniquing, Core Data does this based on `objectID`s, we use your remote key (such as `id`) for this
+* Uniquing, Core Data does this based on `objectID`s, we use your primary key (such as `id`) for this
 
 ## Table of Contents
 
@@ -217,9 +217,9 @@ self.dataStack = DATAStack(modelName: "Demo")
 
 Sync requires your entities to have a primary key, this is important for diffing, otherwise Sync doesn’t know how to differentiate between entries.
 
-By default **Sync** uses `id` from the JSON and `remoteID` from Core Data as the primary key. You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`.
+By default **Sync** uses `id` from the JSON and `id` (or `remoteID` for Objective-C compatibility) from Core Data as the primary key.
 
-For example, in our [Designer News](https://github.com/hyperoslo/Sync/tree/master/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
+You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES`. For example, in our [Designer News](https://github.com/hyperoslo/Sync/tree/master/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
 
 ![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v2.png)
 
@@ -227,9 +227,8 @@ For example, in our [Designer News](https://github.com/hyperoslo/Sync/tree/maste
 
 Your attributes should match their JSON counterparts in `camelCase` notation instead of `snake_case`. For example `first_name` in the JSON maps to `firstName` in Core Data and `address` in the JSON maps to `address` in Core Data.
 
-There are two exceptions to this rule:
+There is an exception to this rule:
 
-* `id`s should match `remoteID`
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
@@ -393,14 +392,15 @@ You are free to use any networking library.
 
 #### Using `hyper.isPrimaryKey` in addition to `hyper.remoteKey`:
 
-Well, the thing is that if you add `hyper.isPrimaryKey` it would use the normal attribute for the local primary key, but the remote primary key is the snake_case representation of it. Some people might expect that the local keeps been the same (remoteID), or that the remote keeps been the same (id).
+If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
 
-For example if you add the flag `hyper.isPrimaryKey` to the attribute `article_body` then:
-
-- Remote primary key: `article_body`
-- Local primary key: `articleBody`
+- Local primary key will be: `contractID`
+- Remote primary key will be: `contract_id`
 
 If you want to use `id` for the remote primary key you also have to add the flag `hyper.remoteKey` and write `id` as the value.
+
+- Local primary key will be: `articleBody`
+- Remote primary key will be: `id`
 
 #### How uniquing works (many-to-many, one-to-many)?:
 
@@ -482,7 +482,7 @@ If you're using Swift to be able to use `NSNotificationCenter` your class should
 
 #### Crash on NSParameterAssert
 
-This means that the local primary key was not found, Sync uses `remoteID` by default, but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "YES"` in your attribute's user info. For more information check the [Primary Key](https://github.com/hyperoslo/Sync#primary-key) section.
+This means that the local primary key was not found, Sync uses `id` (or `remoteID` for Objective-C compatibility) by default, but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "YES"` in your attribute's user info. For more information check the [Primary Key](https://github.com/hyperoslo/Sync#primary-key) section.
 
 ```swift
 let localKey = entity.sync_localKey()
@@ -492,9 +492,9 @@ let remoteKey = entity.sync_remoteKey()
 assert(remoteKey != nil, "nil value")
 ```
 
-#### How to map relationships that don't have remote IDs?
+#### How to map relationships that don't have IDs?
 
-There are two ways you can sync a JSON object that doesn't have a `remoteID`. You can either set one of it's [attributes as the primary key](https://github.com/hyperoslo/Sync#primary-key), or you can store the JSON object as NSData, I have done this myself in a couple of apps works pretty well. You can find more information on how to store dictionaries using Sync [here](https://github.com/hyperoslo/Sync#arraydictionary).
+There are two ways you can sync a JSON object that doesn't have an `id`. You can either set one of it's [attributes as the primary key](https://github.com/hyperoslo/Sync#primary-key), or you can store the JSON object as NSData, I have done this myself in a couple of apps works pretty well. You can find more information on how to store dictionaries using Sync [here](https://github.com/hyperoslo/Sync#arraydictionary).
 
 
 ## Credits

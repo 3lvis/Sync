@@ -37,6 +37,6 @@ SPEC CHECKSUMS:
   NSEntityDescription-SYNCPrimaryKey: 3c6c6a49964a6a2e11e42709bd92e2f02b19fe79
   NSManagedObject-HYPPropertyMapper: b47eb32a4e9b0feeab69bc42f98fc425aa6428f7
   NSString-HYPNetworking: 24c3828eebde8a37cc16101a475934a56ac820c0
-  Sync: 4a6ee4dd59fa8c6804f1e76d56886f137f1eb397
+  Sync: d33a266a36ae032014ca930cd9f1d8566429a918
 
 COCOAPODS: 0.39.0
