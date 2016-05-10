@@ -303,7 +303,7 @@ let publishedAt = managedObject.valueForKey("publishedAt")
 
 ### Relationship mapping
 
-**Sync** will map your relationships to their JSON counterparts. In the [Example](#example) presented at the beginning of this document you can see a very basic example of relationship mapping.
+**Sync** will map your relationships to their JSON counterparts. In the [Example](#example-with-snake_case-in-swift) presented at the beginning of this document you can see a very basic example of relationship mapping.
 
 #### One-to-many
 
