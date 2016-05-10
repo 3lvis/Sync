@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 s.name             = "Sync"
 s.version          = "1.6.8"
-s.summary          = "Modern JSON synchronization to Core Data"
+s.summary          = "Modern Swift JSON synchronization to Core Data"
 s.description      = <<-DESC
 This is a category that eases your every day job of parsing an API and getting it into Core Data.
 
