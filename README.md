@@ -70,7 +70,7 @@ Sync.changes(
 
 ### Model
 
-![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
+![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/one-to-many-swift.png)
 
 ### JSON
 
@@ -127,7 +127,7 @@ Sync.changes(
 
 ### Model
 
-![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
+![Model](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/one-to-many-objc.png)
 
 ### JSON
 
@@ -309,7 +309,7 @@ let publishedAt = managedObject.valueForKey("publishedAt")
 
 Lets consider the following Core Data model.
 
-![One-to-many](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/sync-model.png)
+![One-to-many](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/one-to-many-swift.png)
 
 This model has a one-to-many relationship between `User` and `Note`, so in other words a user has many notes. Here can also find an inverse relationship to user on the Note model. This is required for Sync to have more context on how your models are presented. Finally, in the Core Data model there is a cascade relationship between user and note, so when a user is deleted all the notes linked to that user are also removed (you can specify any delete rule).
 
@@ -334,7 +334,7 @@ So when Sync, looks into the following JSON, it will sync all the notes for that
 
 A similar procedure is applied to one-to-one relationships. For example lets say you have the following model:
 
-![one-to-one](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/one-to-one.png)
+![one-to-one](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/one-to-one-v2.png)
 
 This model is simple, a user as a company. A compatible JSON would look like this:
 
