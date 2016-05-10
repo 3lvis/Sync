@@ -611,4 +611,16 @@ class SyncTests: XCTestCase {
 
     try! dataStack.drop()
   }
+
+  // MARK: - Automatic use of id as remoteID
+
+  func testIDAsRemoteID() {
+    let dataStack = Helper.dataStackWithModelName("id")
+
+    let users = Helper.objectsFromJSON("id.json") as! [[String : AnyObject]]
+    Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 2)
+
+    try! dataStack.drop()
+  }
 }
