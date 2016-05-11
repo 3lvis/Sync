@@ -14,7 +14,7 @@ public extension NSManagedObjectContext {
   public func sync_safeObject(entityName: String, localPrimaryKey: AnyObject?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
     if let localPrimaryKey = localPrimaryKey as? NSObject, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self) {
       let request = NSFetchRequest(entityName: entityName)
-      request.predicate = NSPredicate(format: "%K = %@", entity.sync_localKey(), localPrimaryKey)
+      request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), localPrimaryKey)
       do {
         let objects = try executeFetchRequest(request)
         return objects.first as? NSManagedObject

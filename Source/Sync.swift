@@ -83,8 +83,8 @@ import DATAStack
   public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
-    let localPrimaryKey = entity.sync_localKey()
-    let remoteKey = entity.sync_remoteKey()
+    let localPrimaryKey = entity.sync_localPrimaryKey()
+    let remotePrimaryKey = entity.sync_remotePrimaryKey()
     let shouldLookForParent = parent == nil && predicate == nil
 
     var finalPredicate = predicate
@@ -96,11 +96,11 @@ import DATAStack
       fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using hyper.isPrimaryKey")
     }
 
-    if remoteKey.isEmpty {
+    if remotePrimaryKey.isEmpty {
       fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
     }
 
-    DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: [.All], localKey: localPrimaryKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
+    DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: [.All], localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { objectJSON in
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
 
       let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)

@@ -15,7 +15,7 @@ public extension NSManagedObject {
    */
   func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
     guard let entityName = entity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
-    let localPrimaryKey = valueForKey(entity.sync_localKey())
+    let localPrimaryKey = valueForKey(entity.sync_localPrimaryKey())
     guard let copiedObject = context.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(localPrimaryKey)") }
 
     return copiedObject
@@ -64,14 +64,14 @@ public extension NSManagedObject {
 
     if let children = dictionary[relationshipName] as? [[String : AnyObject]] {
       var childPredicate: NSPredicate?
-      let childIDs = (children as NSArray).valueForKey(entity.sync_remoteKey())
+      let childIDs = (children as NSArray).valueForKey(entity.sync_remotePrimaryKey())
 
       let manyToMany = inverseIsToMany && relationship.toMany
       if manyToMany {
         if childIDs.count > 0 {
           guard let entity = NSEntityDescription.entityForName(childEntityName, inManagedObjectContext: managedObjectContext) else { fatalError() }
           guard let childIDsObject = childIDs as? NSObject else { fatalError() }
-          childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localKey(), childIDsObject)
+          childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), childIDsObject)
         }
       } else {
         guard let inverseEntityName = relationship.inverseRelationship?.name else { fatalError() }
@@ -127,7 +127,7 @@ public extension NSManagedObject {
 
     guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
 
-    let localPrimaryKey = filteredObjectDictionary[entity.sync_remoteKey()]
+    let localPrimaryKey = filteredObjectDictionary[entity.sync_remotePrimaryKey()]
     let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
 
     object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, dataStack: dataStack)
