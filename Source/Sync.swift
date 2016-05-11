@@ -100,7 +100,15 @@ import DATAStack
       fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
     }
 
-    DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
+    var updatedChanges = changes
+    if let processedPredicate = finalPredicate {
+      let processedChanges = (changes as NSArray).preprocessForEntityNamed(entityName, predicate: processedPredicate, parent: parent, dataStack: dataStack)
+      if processedChanges.count > 0 {
+        updatedChanges = processedChanges
+      }
+    }
+
+    DATAFilter.changes(updatedChanges as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: [.All], localKey: localKey, remoteKey: remoteKey, context: context, inserted: { objectJSON in
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
 
       let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
