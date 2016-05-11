@@ -485,10 +485,10 @@ If you're using Swift to be able to use `NSNotificationCenter` your class should
 This means that the local primary key was not found, Sync uses `id` (or `remoteID` for Objective-C compatibility) by default, but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "YES"` in your attribute's user info. For more information check the [Primary Key](https://github.com/hyperoslo/Sync#primary-key) section.
 
 ```swift
-let localKey = entity.sync_localKey()
+let localKey = entity.sync_localPrimaryKey()
 assert(localKey != nil, "nil value")
 
-let remoteKey = entity.sync_remoteKey()
+let remoteKey = entity.sync_remotePrimaryKey()
 assert(remoteKey != nil, "nil value")
 ```
 

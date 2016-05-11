@@ -1,23 +1,23 @@
 PODS:
-  - DATAFilter (0.9.1):
+  - DATAFilter (0.10.0):
     - DATAObjectIDs (~> 0.5.1)
   - DATAObjectIDs (0.5.1)
   - DATASource (5.8.0)
   - DATAStack (5.0.0)
   - JSON (4.0.2)
   - NSDictionary-ANDYSafeValue (0.3.1)
-  - NSEntityDescription-SYNCPrimaryKey (1.0.0):
+  - NSEntityDescription-SYNCPrimaryKey (1.1.0):
     - NSString-HYPNetworking (~> 0.4.0)
-  - NSManagedObject-HYPPropertyMapper (3.6.3):
-    - NSEntityDescription-SYNCPrimaryKey (~> 1.0.0)
+  - NSManagedObject-HYPPropertyMapper (3.6.4):
+    - NSEntityDescription-SYNCPrimaryKey (~> 1.1.0)
     - NSString-HYPNetworking (~> 0.4.0)
   - NSString-HYPNetworking (0.4.0)
   - Sync (1.6.8):
-    - DATAFilter (~> 0.9.1)
+    - DATAFilter (~> 0.10.0)
     - DATAStack (~> 5.0.0)
     - NSDictionary-ANDYSafeValue (~> 0.3.1)
-    - NSEntityDescription-SYNCPrimaryKey (~> 1.0.0)
-    - NSManagedObject-HYPPropertyMapper (~> 3.6.3)
+    - NSEntityDescription-SYNCPrimaryKey (~> 1.1.0)
+    - NSManagedObject-HYPPropertyMapper (~> 3.6.4)
 
 DEPENDENCIES:
   - DATASource
@@ -29,16 +29,16 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  DATAFilter: 4a1bdc065847e19d9fa1c9dd92ed2d85847967a1
+  DATAFilter: b6662b05dd0dcf658d526aa0f9095bb202d7b10e
   DATAObjectIDs: 33db74dd1c858c2d22a45a4013c95f1082182e4e
   DATASource: d5ecdfa4be7d73d41f58746d3346e5238766c86d
   DATAStack: e0111e1db6044c8b355e68311e002cbec8963b28
   JSON: d08f22c3e523be050d5d5f40bca43ec02d95b2cc
   NSDictionary-ANDYSafeValue: 2d7adf339b6e302d71fec5f1d71ae00aacda993e
-  NSEntityDescription-SYNCPrimaryKey: 3c6c6a49964a6a2e11e42709bd92e2f02b19fe79
-  NSManagedObject-HYPPropertyMapper: 963c7f060cede6eca56a47581b32eceb7af8a507
+  NSEntityDescription-SYNCPrimaryKey: 66f1b5393ee3b6c8b12700d4c86ba6e5ad2bcfe9
+  NSManagedObject-HYPPropertyMapper: 01ea4945879774201011260f6e309b1ae347b6fb
   NSString-HYPNetworking: 24c3828eebde8a37cc16101a475934a56ac820c0
-  Sync: 8cf6e0c97f2061cf6c015473032c1ea883c9d6a9
+  Sync: 0666eb4d05ad3db2024bf5148e763d7261a6c755
 
 PODFILE CHECKSUM: a4ce83b9a5d0f8218c6d94acc4cfa26b0d4000d6
 
