@@ -16,7 +16,7 @@ public extension NSManagedObject {
   func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
     guard let entityName = entity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
     let localKey = valueForKey(entity.sync_localKey())
-    guard let copiedObject = context.sync_safeObject(entityName, localKey: localKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) remoteID: \(localKey)") }
+    guard let copiedObject = context.sync_safeObject(entityName, localKey: localKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localKey: \(localKey)") }
 
     return copiedObject
   }
@@ -41,8 +41,8 @@ public extension NSManagedObject {
         sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
       } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == parent.entity.name {
         setValue(parent, forKey: relationship.name)
-      } else if let remoteID = dictionary[keyName] where remoteID is NSString || remoteID is NSNumber {
-        sync_relationshipUsingIDInsteadOfDictionary(relationship, localKey: remoteID, dataStack: dataStack)
+      } else if let localKey = dictionary[keyName] where localKey is NSString || localKey is NSNumber {
+        sync_relationshipUsingIDInsteadOfDictionary(relationship, localKey: localKey, dataStack: dataStack)
       } else {
         sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
       }
@@ -101,7 +101,7 @@ public extension NSManagedObject {
    and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
    entire company object inside the employees dictionary.
    - parameter relationship: The relationship to be synced.
-   - parameter localKey: The remoteID of the relationship to be synced.
+   - parameter localKey: The localKey of the relationship to be synced.
    - parameter dataStack: The DATAStack instance.
    */
   func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, localKey: AnyObject, dataStack: DATAStack) {
@@ -127,8 +127,8 @@ public extension NSManagedObject {
 
     guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
 
-    let remoteID = filteredObjectDictionary[entity.sync_remoteKey()]
-    let object = managedObjectContext.sync_safeObject(entityName, localKey: remoteID, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
+    let localKey = filteredObjectDictionary[entity.sync_remoteKey()]
+    let object = managedObjectContext.sync_safeObject(entityName, localKey: localKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
 
     object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, dataStack: dataStack)
 

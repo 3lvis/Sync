@@ -4,7 +4,7 @@ import NSString_HYPNetworking
 
 public extension NSManagedObjectContext {
   /**
-   Safely fetches a NSManagedObject in the current context. If no remoteID is provided then it will check for the parent entity and use that. Otherwise it will return nil.
+   Safely fetches a NSManagedObject in the current context. If no localKey is provided then it will check for the parent entity and use that. Otherwise it will return nil.
    - parameter entityName: The name of the Core Data entity.
    - parameter localKey: The primary key.
    - parameter parent: The parent of the object.
