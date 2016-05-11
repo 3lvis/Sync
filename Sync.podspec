@@ -3,11 +3,15 @@ s.name             = "Sync"
 s.version          = "1.7.0"
 s.summary          = "Modern Swift JSON synchronization to Core Data"
 s.description      = <<-DESC
-This is a category that eases your every day job of parsing an API and getting it into Core Data.
+**Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
-* Handles operations in safe background threats.
-* Thread safe saving (if you're saving in the wrong thread, we'll tell you).
-* Diffing of changes, updated, inserted and deleted objects are automatically handled for you.
+* Automatic mapping of CamelCase or snake_case JSON into Core Data
+* Handles operations in safe background threads
+* Thread-safe saving, we handle retrieving and storing objects in the right threads
+* Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
+* Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
+* Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
+* Uniquing, Core Data does this based on `objectID`s, we use your primary key (such as `id`) for this
 DESC
 s.homepage         = "https://github.com/hyperoslo/Sync"
 s.license          = 'MIT'
