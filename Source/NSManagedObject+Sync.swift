@@ -15,8 +15,8 @@ public extension NSManagedObject {
    */
   func sync_copyInContext(context: NSManagedObjectContext) -> NSManagedObject {
     guard let entityName = entity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
-    let remoteID = valueForKey(entity.sync_localKey())
-    guard let copiedObject = context.sync_safeObject(entityName, remoteID: remoteID, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) remoteID: \(remoteID)") }
+    let localKey = valueForKey(entity.sync_localKey())
+    guard let copiedObject = context.sync_safeObject(entityName, localKey: localKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) remoteID: \(localKey)") }
 
     return copiedObject
   }
@@ -42,7 +42,7 @@ public extension NSManagedObject {
       } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == parent.entity.name {
         setValue(parent, forKey: relationship.name)
       } else if let remoteID = dictionary[keyName] where remoteID is NSString || remoteID is NSNumber {
-        sync_relationshipUsingIDInsteadOfDictionary(relationship, remoteID: remoteID, dataStack: dataStack)
+        sync_relationshipUsingIDInsteadOfDictionary(relationship, localKey: remoteID, dataStack: dataStack)
       } else {
         sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
       }
@@ -101,14 +101,14 @@ public extension NSManagedObject {
    and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
    entire company object inside the employees dictionary.
    - parameter relationship: The relationship to be synced.
-   - parameter remoteID: The remoteID of the relationship to be synced.
+   - parameter localKey: The remoteID of the relationship to be synced.
    - parameter dataStack: The DATAStack instance.
    */
-  func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, remoteID: AnyObject, dataStack: DATAStack) {
+  func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, localKey: AnyObject, dataStack: DATAStack) {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
-    guard let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) else { fatalError("safeObject not found: \(destinationEntityName), remoteID: \(remoteID), parent: \(self), parentRelationshipName: \(relationship.name)") }
+    guard let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localKey: localKey, parent: self, parentRelationshipName: relationship.name) else { fatalError("safeObject not found: \(destinationEntityName), localKey: \(localKey), parent: \(self), parentRelationshipName: \(relationship.name)") }
 
     let currentRelationship = valueForKey(relationship.name)
     if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
@@ -128,7 +128,7 @@ public extension NSManagedObject {
     guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
 
     let remoteID = filteredObjectDictionary[entity.sync_remoteKey()]
-    let object = managedObjectContext.sync_safeObject(entityName, remoteID: remoteID, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
+    let object = managedObjectContext.sync_safeObject(entityName, localKey: remoteID, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
 
     object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, dataStack: dataStack)
 
