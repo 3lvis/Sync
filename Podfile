@@ -1,7 +1,7 @@
 use_frameworks!
 
-link_with 'Tests'
-
-pod 'Sync', path: "."
-pod 'JSON'
-pod 'DATASource'
+target 'Tests' do
+  pod 'Sync', path: "."
+  pod 'JSON'
+  pod 'DATASource'
+end
