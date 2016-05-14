@@ -623,4 +623,19 @@ class SyncTests: XCTestCase {
 
     try! dataStack.drop()
   }
+
+  // MARK: - Performance
+
+  func testPerformance() {
+    let dataStack = Helper.dataStackWithModelName("ManyPeople")
+
+    let users = Helper.objectsFromJSON("many_people.json") as! [[String : AnyObject]]
+
+    self.measureBlock { 
+      Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    }
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 13272)
+
+    try! dataStack.drop()
+  }
 }
