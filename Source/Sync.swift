@@ -117,6 +117,8 @@ import DATAStack
       syncError = error
     }
 
-    completion?(error: syncError)
+    dispatch_async(dispatch_get_main_queue()) {
+      completion?(error: syncError)
+    }
   }
 }
