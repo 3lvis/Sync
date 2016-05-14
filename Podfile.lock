@@ -12,7 +12,7 @@ PODS:
     - NSEntityDescription-SYNCPrimaryKey (~> 1.1.0)
     - NSString-HYPNetworking (~> 0.4.0)
   - NSString-HYPNetworking (0.4.0)
-  - Sync (1.7.0):
+  - Sync (1.7.1):
     - DATAFilter (~> 0.10.0)
     - DATAStack (~> 5.0.0)
     - NSDictionary-ANDYSafeValue (~> 0.3.1)
@@ -38,7 +38,7 @@ SPEC CHECKSUMS:
   NSEntityDescription-SYNCPrimaryKey: 66f1b5393ee3b6c8b12700d4c86ba6e5ad2bcfe9
   NSManagedObject-HYPPropertyMapper: 01ea4945879774201011260f6e309b1ae347b6fb
   NSString-HYPNetworking: 24c3828eebde8a37cc16101a475934a56ac820c0
-  Sync: f56c2d180e04d1a53eeb9b4c527fce44bccfb4ef
+  Sync: b95a3fd9a8a3c4a091ac23c41836419912d2bfd7
 
 PODFILE CHECKSUM: a4ce83b9a5d0f8218c6d94acc4cfa26b0d4000d6
 

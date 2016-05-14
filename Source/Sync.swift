@@ -81,6 +81,10 @@ import DATAStack
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
   public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+    self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, savingContext: true, completion: completion)
+  }
+
+  class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, savingContext: Bool, completion: ((error: NSError?) -> Void)?) {
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
     let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -105,20 +109,24 @@ import DATAStack
 
       let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
       created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack)
-      }) { objectJSON, updatedObject in
-        guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
-        updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack)
+    }) { objectJSON, updatedObject in
+      guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
+      updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack)
     }
 
-    var syncError: NSError?
-    do {
-      try context.save()
-    } catch let error as NSError {
-      syncError = error
-    }
+    if savingContext {
+      var syncError: NSError?
+      do {
+        try context.save()
+      } catch let error as NSError {
+        syncError = error
+      }
 
-    dispatch_async(dispatch_get_main_queue()) {
-      completion?(error: syncError)
+      dispatch_async(dispatch_get_main_queue()) {
+        completion?(error: syncError)
+      }
+    } else {
+      completion?(error: nil)
     }
   }
 }
