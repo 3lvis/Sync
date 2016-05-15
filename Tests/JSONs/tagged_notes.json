@@ -25,26 +25,6 @@
   },
   {
     "id": 2,
-    "text": "Shawn Merril's diary, episode 2",
-    "super_tags": [
-      {
-        "id": 1,
-        "name": "diary"
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "text": "Shawn Merril's diary, episode 3",
-    "super_tags": [
-      {
-        "id": 1,
-        "name": "diary"
-      }
-    ]
-  },
-  {
-    "id": 4,
     "text": "Shawn Merril's diary, episode 4"
   }
 ]

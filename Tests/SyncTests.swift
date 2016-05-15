@@ -160,7 +160,7 @@ class SyncTests: XCTestCase {
 
     Sync.changes(objects, inEntityNamed: "SuperNote", dataStack: dataStack, completion: nil)
 
-    XCTAssertEqual(Helper.countForEntity("SuperNote", inContext:dataStack.mainContext), 5)
+    XCTAssertEqual(Helper.countForEntity("SuperNote", inContext:dataStack.mainContext), 3)
     let notes = Helper.fetchEntity("SuperNote", predicate: NSPredicate(format:"remoteID = %@", NSNumber(int: 0)), inContext:dataStack.mainContext)
     let note = notes.first!
     XCTAssertEqual((note.valueForKey("superTags") as? NSSet)!.allObjects.count, 2)
@@ -170,7 +170,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(tags.count, 1)
 
     let tag = tags.first!
-    XCTAssertEqual((tag.valueForKey("superNotes") as? NSSet)!.allObjects.count, 4)
+    XCTAssertEqual((tag.valueForKey("superNotes") as? NSSet)!.allObjects.count, 2)
     try! dataStack.drop()
   }
 
