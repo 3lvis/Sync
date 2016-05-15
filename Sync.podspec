@@ -31,6 +31,6 @@ s.frameworks = 'Foundation', 'CoreData'
 s.dependency 'DATAFilter', '~> 0.10.0'
 s.dependency 'DATAStack', '~> 5.2.0'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3.1'
-s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.1.0'
-s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.6.4'
+s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.1.1'
+s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.6.5'
 end
