@@ -111,10 +111,12 @@ import DATAStack
     }
 
     var syncError: NSError?
-    do {
-      try context.save()
-    } catch let error as NSError {
-      syncError = error
+    if context.hasChanges {
+      do {
+        try context.save()
+      } catch let error as NSError {
+        syncError = error
+      }
     }
 
     dispatch_async(dispatch_get_main_queue()) {
