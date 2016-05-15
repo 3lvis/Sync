@@ -114,19 +114,19 @@ import DATAStack
       updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack)
     }
 
-    if savingContext {
-      var syncError: NSError?
-      do {
+    var syncError: NSError?
+    do {
+      if savingContext {
         try context.save()
-      } catch let error as NSError {
-        syncError = error
+      } else {
+        try dataStack.saveBackgroundContextWithoutMergingWithMainContext(context)
       }
+    } catch let error as NSError {
+      syncError = error
+    }
 
-      dispatch_async(dispatch_get_main_queue()) {
-        completion?(error: syncError)
-      }
-    } else {
-      completion?(error: nil)
+    dispatch_async(dispatch_get_main_queue()) {
+      completion?(error: syncError)
     }
   }
 }
