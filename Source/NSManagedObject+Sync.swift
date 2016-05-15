@@ -78,7 +78,7 @@ public extension NSManagedObject {
         childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
       }
 
-      Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, inContext: managedObjectContext, dataStack: dataStack, savingContext: true, completion: nil)
+      Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, inContext: managedObjectContext, dataStack: dataStack, mergingWithMainContext: false, completion: nil)
     } else if let parent = parent, entityName = parent.entity.name where inverseIsToMany && entityName == childEntityName {
       if relationship.ordered {
         let relatedObjects = mutableOrderedSetValueForKey(relationship.name)

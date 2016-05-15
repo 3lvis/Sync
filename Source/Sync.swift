@@ -81,10 +81,10 @@ import DATAStack
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
   public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
-    self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, savingContext: true, completion: completion)
+    self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, mergingWithMainContext: true, completion: completion)
   }
 
-  class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, savingContext: Bool, completion: ((error: NSError?) -> Void)?) {
+  class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, mergingWithMainContext: Bool, completion: ((error: NSError?) -> Void)?) {
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
     let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -116,7 +116,7 @@ import DATAStack
 
     var syncError: NSError?
     do {
-      if savingContext {
+      if mergingWithMainContext {
         try context.save()
       } else {
         try dataStack.saveBackgroundContextWithoutMergingWithMainContext(context)
