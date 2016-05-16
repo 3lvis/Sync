@@ -652,4 +652,15 @@ class SyncTests: XCTestCase {
 
     try! dataStack.drop()
   }
+
+  func testOperation() {
+    let dataStack = Helper.dataStackWithModelName("id")
+
+    let users = Helper.objectsFromJSON("id.json") as! [[String : AnyObject]]
+    let operation = Sync(changes: users, inEntityNamed: "User", predicate: nil, dataStack: dataStack)
+    operation.start()
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 2)
+
+    try! dataStack.drop()
+  }
 }

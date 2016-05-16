@@ -28,16 +28,12 @@ import DATAStack
   var changes: [[String : AnyObject]]
   var entityName: String
   weak var predicate: NSPredicate?
-  weak var parent: NSManagedObject?
-  unowned var context: NSManagedObjectContext
   unowned var dataStack: DATAStack
 
-  public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack) {
+  public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack) {
     self.changes = changes
     self.entityName = entityName
     self.predicate = predicate
-    self.parent = parent
-    self.context = context
     self.dataStack = dataStack
   }
 
@@ -60,7 +56,7 @@ import DATAStack
     } else {
       updateExecuting(true)
       dataStack.performInNewBackgroundContext { backgroundContext in
-        self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, inContext: self.context, dataStack: self.dataStack)
+        self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: nil, inContext: backgroundContext, dataStack: self.dataStack)
         updateExecuting(false)
         updateFinished(true)
       }
