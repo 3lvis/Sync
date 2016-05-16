@@ -623,4 +623,33 @@ class SyncTests: XCTestCase {
 
     try! dataStack.drop()
   }
+
+  // MARK: - Bug 157
+
+  func testBug157() {
+    let dataStack = Helper.dataStackWithModelName("Bug157")
+
+    let locations = Helper.objectsFromJSON("bug-157.json") as! [[String : AnyObject]]
+    Sync.changes(locations, inEntityNamed: "Location", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Location", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("City", inContext:dataStack.mainContext), 0)
+
+    let cities = Helper.objectsFromJSON("bug-157-city.json") as! [[String : AnyObject]]
+    Sync.changes(cities, inEntityNamed: "City", dataStack: dataStack, completion: nil)
+
+    XCTAssertEqual(Helper.countForEntity("Location", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("City", inContext:dataStack.mainContext), 1)
+
+    let location = Helper.fetchEntity("Location", inContext: dataStack.mainContext).first!
+    let city = location.valueForKey("city")
+    XCTAssertNil(city)
+
+    Sync.changes(locations, inEntityNamed: "Location", dataStack: dataStack, completion: nil)
+
+    let updatedLocation = Helper.fetchEntity("Location", inContext: dataStack.mainContext).first!
+    let updatedCity = updatedLocation.valueForKey("city")!
+    XCTAssertEqual(updatedCity.valueForKey("name") as? String, "Oslo")
+
+    try! dataStack.drop()
+  }
 }

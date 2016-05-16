@@ -108,11 +108,13 @@ public extension NSManagedObject {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
-    guard let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) else { fatalError("safeObject not found: \(destinationEntityName), localPrimaryKey: \(localPrimaryKey), parent: \(self), parentRelationshipName: \(relationship.name)") }
-
-    let currentRelationship = valueForKey(relationship.name)
-    if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
-      setValue(safeObject, forKey: relationship.name)
+    if let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) {
+      let currentRelationship = valueForKey(relationship.name)
+      if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
+        setValue(safeObject, forKey: relationship.name)
+      }
+    } else {
+      print("Trying to sync a \(self.entity.name!) \(self) with a \(destinationEntityName) with ID \(localPrimaryKey), didn't work because \(destinationEntityName) doesn't exist. Make sure the \(destinationEntityName) exists before proceeding.")
     }
   }
 
