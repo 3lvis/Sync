@@ -40,7 +40,7 @@ public extension NSManagedObject {
 
       if relationship.toMany {
         if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> {
-          sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
+          sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
         } else {
           sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
         }
@@ -59,28 +59,58 @@ public extension NSManagedObject {
    and your tag has a users_ids, it will try to sync using those ID instead of requiring you to provide the entire users list inside each tag.
    - parameter relationship: The relationship to be synced.
    - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually an array of strings or numbers.
-   - parameter dataStack: The DATAStack instance.
+   - parameter context: The NSManagedContext.
    */
-  func sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship: NSRelationshipDescription, localPrimaryKey: AnyObject, dataStack: DATAStack) {
+  func sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship: NSRelationshipDescription, localPrimaryKey: AnyObject) {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
     guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
     guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
 
+    let localRelationship = self.valueForKey(relationship.name)
+    print("localRelationship: \(localRelationship)")
+
+    /*let remoteItems = localPrimaryKey
+    var localKeys = [AnyObject]()
+    if let localRelationship = self.valueForKey(relationship.name) as? NSSet {
+      for localObject in localRelationship.allObjects {
+        print("localObject: \(localObject)")
+        if let id = localObject.valueForKey("id") {
+          localKeys.append(id)
+        }
+      }
+    }*/
+
+    /*print("localRelationship: \(localRelationship)")
+    let key = entity.sync_localPrimaryKey()
+    print("key: \(key)")
+    let localKeys = localRelationship?.valueForKey(key)
+    print("localKeys: \(localKeys)")
+    let localItems = localKeys as? NSArray ?? NSArray()
+    print("name: \(self.valueForKey("name")!)")
+    print("remoteItems \(remoteItems)")
+    print("localItems \(localItems)")
+
+    let deletedItems = localItems.mutableCopy() as? NSMutableArray
+    deletedItems?.removeObjectsInArray(remoteItems as [AnyObject])
+    print("should delete: \(deletedItems)")
+
+    let insertedItems = remoteItems.mutableCopy() as? NSMutableArray
+    insertedItems?.removeObjectsInArray(localItems as [AnyObject])
+    print("should insert: \(insertedItems)")
+    print("---")*/
+
     let request = NSFetchRequest(entityName: destinationEntityName)
     if localPrimaryKey.count == 0 {
-        request.predicate = NSPredicate(format: "%K = nil", entity.sync_localPrimaryKey())
+      request.predicate = NSPredicate(format: "%K = nil", entity.sync_localPrimaryKey())
     } else if localPrimaryKey.count == 1, let value = localPrimaryKey.firstObject as? NSObject {
-        request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value)
+      request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value)
     } else if localPrimaryKey.count > 1 {
       request.predicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), localPrimaryKey)
     }
 
-    var fetchedObjects: [NSManagedObject]?
-    if request.predicate != nil {
-      fetchedObjects = try? managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
-    }
+    let fetchedObjects = try? managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
     guard let objects = fetchedObjects else { return }
     let currentRelationship = valueForKey(relationship.name)
     for safeObject in objects {

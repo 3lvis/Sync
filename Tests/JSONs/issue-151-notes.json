@@ -1,14 +1,10 @@
 [
   {
     "id": 0,
-    "text": "Note 0"
+    "name": "Note 0"
   },
   {
     "id": 1,
-    "text": "Note 1"
-  },
-  {
-    "id": 2,
-    "text": "Note 2"
+    "name": "Note 1"
   }
 ]

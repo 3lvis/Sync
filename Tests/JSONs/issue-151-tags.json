@@ -1,10 +1,10 @@
 [
   {
     "id": 0,
-    "title": "#yolo"
+    "name": "#yolo"
   },
   {
     "id": 1,
-    "title": "#nofilter"
+    "name": "#nofilter"
   }
 ]
