@@ -66,14 +66,13 @@ public extension NSManagedObject {
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
     guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
-    guard localPrimaryKey.count > 0 else { return }
     guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
 
     let request = NSFetchRequest(entityName: destinationEntityName)
-    if localPrimaryKey.count == 1 {
-      if let value = localPrimaryKey.firstObject as? NSObject {
+    if localPrimaryKey.count == 0 {
+        request.predicate = NSPredicate(format: "%K = nil", entity.sync_localPrimaryKey())
+    } else if localPrimaryKey.count == 1, let value = localPrimaryKey.firstObject as? NSObject {
         request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value)
-      }
     } else if localPrimaryKey.count > 1 {
       request.predicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), localPrimaryKey)
     }
@@ -85,7 +84,8 @@ public extension NSManagedObject {
     guard let objects = fetchedObjects else { return }
     let currentRelationship = valueForKey(relationship.name)
     for safeObject in objects {
-      if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
+      let relationshipIsNotSetOrIsDifferent = currentRelationship == nil || !currentRelationship!.isEqual(safeObject)
+      if relationshipIsNotSetOrIsDifferent {
         if relationship.ordered {
           let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
           if !relatedObjects.containsObject(safeObject) {
