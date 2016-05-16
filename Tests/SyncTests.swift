@@ -623,4 +623,33 @@ class SyncTests: XCTestCase {
 
     try! dataStack.drop()
   }
+
+  // MARK: - Bug 157 => https://github.com/hyperoslo/Sync/issues/157
+
+  func testBug157() {
+    let dataStack = Helper.dataStackWithModelName("Bug157")
+
+    // Location Mesh get synced, it references to city_id 1, this relationship gets ignored
+    let locations = Helper.objectsFromJSON("bug-157.json") as! [[String : AnyObject]]
+    Sync.changes(locations, inEntityNamed: "Location", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Location", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("City", inContext:dataStack.mainContext), 0)
+
+    // City Oslo get synced with ID 1
+    let cities = Helper.objectsFromJSON("bug-157-city.json") as! [[String : AnyObject]]
+    Sync.changes(cities, inEntityNamed: "City", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Location", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("City", inContext:dataStack.mainContext), 1)
+    let location = Helper.fetchEntity("Location", inContext: dataStack.mainContext).first!
+    let city = location.valueForKey("city")
+    XCTAssertNil(city)
+
+    // Location Mesh gets synced again, now that the Oslo city is available, the relationship should be made
+    Sync.changes(locations, inEntityNamed: "Location", dataStack: dataStack, completion: nil)
+    let updatedLocation = Helper.fetchEntity("Location", inContext: dataStack.mainContext).first!
+    let updatedCity = updatedLocation.valueForKey("city")!
+    XCTAssertEqual(updatedCity.valueForKey("name") as? String, "Oslo")
+
+    try! dataStack.drop()
+  }
 }
