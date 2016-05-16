@@ -663,4 +663,33 @@ class SyncTests: XCTestCase {
 
     try! dataStack.drop()
   }
+
+  // MARK: - Support multiple ids to set a relationship => https://github.com/hyperoslo/Sync/issues/151
+
+  func testMultipleIDRelationship() {
+    let dataStack = Helper.dataStackWithModelName("Issue151")
+
+    // User Shawn Merrill get synced, it references to notes_ids 0, 1 and 2, but since no notes are found this relationship gets ignored
+    let users = Helper.objectsFromJSON("issue-151.json") as! [[String : AnyObject]]
+    Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 0)
+
+    // Notes 0, 1 and 2 get synced
+    let notes = Helper.objectsFromJSON("issue-151-notes.json") as! [[String : AnyObject]]
+    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    let savedUsers = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
+    let savedNotes = savedUsers.valueForKey("notes") as? Set<NSManagedObject>
+    XCTAssertEqual(savedNotes?.count, 0)
+
+    // User Shawn Merrill get synced, now that the notes are available, the relationship should be made
+    Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    let updatedUser = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
+    let updatedNotes = updatedUser.valueForKey("notes") as? Set<NSManagedObject>
+    XCTAssertEqual(updatedNotes?.count, 3)
+
+    try! dataStack.drop()
+  }
 }
