@@ -679,7 +679,7 @@ class SyncTests: XCTestCase {
     let notes = Helper.objectsFromJSON("issue-151-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 2)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     let savedUsers = Helper.fetchEntity("User", inContext: dataStack.mainContext)
     var total = 0
     for user in savedUsers {
@@ -691,7 +691,7 @@ class SyncTests: XCTestCase {
     // Updates the first 3 users, but now it makes the relationships with the notes
     Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 2)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     var user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
     XCTAssertEqual(user10?.valueForKey("name") as? String, "User 10")
     var user10Notes = user10?.valueForKey("notes") as? Set<NSManagedObject>
@@ -709,7 +709,7 @@ class SyncTests: XCTestCase {
     let updatedUsers = Helper.objectsFromJSON("issue-151-update.json") as! [[String : AnyObject]]
     Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 2)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
     XCTAssertEqual(user10?.valueForKey("name") as? String, "User 10")
     user10Notes = user10?.valueForKey("notes") as? Set<NSManagedObject>
