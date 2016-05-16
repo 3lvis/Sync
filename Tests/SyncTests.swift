@@ -710,15 +710,22 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     let savedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
-
-    print(savedTags)
-    //XCTAssertEqual(savedTags, 3)
+    var total = 0
+    for note in savedNotes {
+      let tags = note.valueForKey("tags") as? Set<NSManagedObject> ?? Set<NSManagedObject>()
+      total += tags.count
+    }
+    XCTAssertEqual(total, 0)
 
     // User Shawn Merrill get synced, now that the notes are available, the relationship should be made
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     let updatedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
-    // let updatedTags = updatedNotes.valueForKey("tags") as? Set<NSManagedObject>
-    // XCTAssertEqual(updatedTags?.count, 3)
+    total = 0
+    for note in updatedNotes {
+      let tags = note.valueForKey("tags") as? Set<NSManagedObject> ?? Set<NSManagedObject>()
+      total += tags.count
+    }
+    XCTAssertEqual(total, 3)
 
     try! dataStack.drop()
   }
