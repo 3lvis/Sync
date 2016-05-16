@@ -729,7 +729,7 @@ class SyncTests: XCTestCase {
   // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/hyperoslo/Sync/issues/151
 
   func testMultipleIDRelationshipManyToMany() {
-    let dataStack = Helper.dataStackWithModelName("Issue151")
+    let dataStack = Helper.dataStackWithModelName("Issue151-B")
 
     // Inserts 3 notes
     let notes = Helper.objectsFromJSON("issue-151-notes-tags.json") as! [[String : AnyObject]]

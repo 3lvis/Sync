@@ -68,6 +68,7 @@
 		14AEB5101CEA4ECB006AA043 /* issue-151-notes-tags-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14AEB50F1CEA4ECB006AA043 /* issue-151-notes-tags-update.json */; };
 		14AEB5141CEA5076006AA043 /* issue-151-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14AEB5131CEA5076006AA043 /* issue-151-update.json */; };
 		14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */; };
+		14D53BD71CEA7ABB00177718 /* Issue151-B.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14D53BD51CEA7ABB00177718 /* Issue151-B.xcdatamodeld */; };
 		14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */; };
 		14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */; };
 		14D7321F1CE9A6C400C28D40 /* bug-157-city.json in Resources */ = {isa = PBXBuildFile; fileRef = 14D7321E1CE9A6C400C28D40 /* bug-157-city.json */; };
@@ -150,6 +151,7 @@
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+SyncTests.swift"; sourceTree = "<group>"; };
+		14D53BD61CEA7ABB00177718 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SyncTests.swift"; sourceTree = "<group>"; };
 		14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14D7321E1CE9A6C400C28D40 /* bug-157-city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-157-city.json"; sourceTree = "<group>"; };
@@ -211,8 +213,8 @@
 				141478221CEA219E00B18BF3 /* issue-151-notes-tags.json */,
 				14243E0F1CEA142D000624BD /* issue-151-notes.json */,
 				141478231CEA219E00B18BF3 /* issue-151-tags.json */,
-				14243E0C1CEA0DEA000624BD /* issue-151.json */,
 				14AEB5131CEA5076006AA043 /* issue-151-update.json */,
+				14243E0C1CEA0DEA000624BD /* issue-151.json */,
 				141894151BDD62F600EE52CE /* markets_items.json */,
 				141894161BDD62F600EE52CE /* notes_for_user_a.json */,
 				1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */,
@@ -246,6 +248,7 @@
 				140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */,
 				1418942D1BDD62F600EE52CE /* Contacts.xcdatamodeld */,
 				146F2EB11CE1F27200543F83 /* id.xcdatamodeld */,
+				14D53BD51CEA7ABB00177718 /* Issue151-B.xcdatamodeld */,
 				14243E091CEA0A55000624BD /* Issue151.xcdatamodeld */,
 				1418942F1BDD62F600EE52CE /* Markets.xcdatamodeld */,
 				141894311BDD62F600EE52CE /* Notes.xcdatamodeld */,
@@ -520,6 +523,7 @@
 				1418945B1BDD62F600EE52CE /* Bug125.xcdatamodeld in Sources */,
 				1418945C1BDD62F600EE52CE /* Bug84.xcdatamodeld in Sources */,
 				B0B637141C6E4F2D00229B03 /* Bug179.xcdatamodeld in Sources */,
+				14D53BD71CEA7ABB00177718 /* Issue151-B.xcdatamodeld in Sources */,
 				1418945F1BDD62F600EE52CE /* Notes.xcdatamodeld in Sources */,
 				141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */,
 				14243E0B1CEA0A55000624BD /* Issue151.xcdatamodeld in Sources */,
@@ -844,6 +848,16 @@
 			);
 			currentVersion = 14A644101CD77A4C00F51E23 /* Demo.xcdatamodel */;
 			path = Bug202.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14D53BD51CEA7ABB00177718 /* Issue151-B.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14D53BD61CEA7ABB00177718 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 14D53BD61CEA7ABB00177718 /* Demo.xcdatamodel */;
+			path = "Issue151-B.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

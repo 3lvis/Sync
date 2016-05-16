@@ -68,8 +68,6 @@ public extension NSManagedObject {
     guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
     guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
 
-    let localRelationship = self.valueForKey(relationship.name)
-    print("localRelationship: \(localRelationship)")
 
     /*let remoteItems = localPrimaryKey
     var localKeys = [AnyObject]()
@@ -102,12 +100,11 @@ public extension NSManagedObject {
     print("---")*/
 
     let request = NSFetchRequest(entityName: destinationEntityName)
-    if localPrimaryKey.count == 0 {
-      request.predicate = NSPredicate(format: "%K = nil", entity.sync_localPrimaryKey())
-    } else if localPrimaryKey.count == 1, let value = localPrimaryKey.firstObject as? NSObject {
-      request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value)
-    } else if localPrimaryKey.count > 1 {
+    if localPrimaryKey.count > 1 {
       request.predicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), localPrimaryKey)
+    } else {
+      let value = localPrimaryKey.firstObject as? NSObject
+      request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value ?? nil as COpaquePointer)
     }
 
     let fetchedObjects = try? managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
