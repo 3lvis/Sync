@@ -664,9 +664,9 @@ class SyncTests: XCTestCase {
     try! dataStack.drop()
   }
 
-  // MARK: - Support multiple ids to set a relationship => https://github.com/hyperoslo/Sync/issues/151
+  // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/hyperoslo/Sync/issues/151
 
-  func testMultipleIDRelationship() {
+  func testMultipleIDRelationshipToMany() {
     let dataStack = Helper.dataStackWithModelName("Issue151")
 
     // User Shawn Merrill get synced, it references to notes_ids 0, 1 and 2, but since no notes are found this relationship gets ignored
@@ -689,6 +689,36 @@ class SyncTests: XCTestCase {
     let updatedUser = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
     let updatedNotes = updatedUser.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(updatedNotes?.count, 3)
+
+    try! dataStack.drop()
+  }
+
+  // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/hyperoslo/Sync/issues/151
+
+  func testMultipleIDRelationshipManyToMany() {
+    let dataStack = Helper.dataStackWithModelName("Issue151")
+
+    // User Shawn Merrill get synced, it references to notes_ids 0, 1 and 2, but since no notes are found this relationship gets ignored
+    let notes = Helper.objectsFromJSON("issue-151-notes-tags.json") as! [[String : AnyObject]]
+    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+
+    // Notes 0, 1 and 2 get synced
+    let tags = Helper.objectsFromJSON("issue-151-tags.json") as! [[String : AnyObject]]
+    Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
+    let savedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
+
+    print(savedTags)
+    //XCTAssertEqual(savedTags, 3)
+
+    // User Shawn Merrill get synced, now that the notes are available, the relationship should be made
+    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
+    let updatedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
+    // let updatedTags = updatedNotes.valueForKey("tags") as? Set<NSManagedObject>
+    // XCTAssertEqual(updatedTags?.count, 3)
 
     try! dataStack.drop()
   }

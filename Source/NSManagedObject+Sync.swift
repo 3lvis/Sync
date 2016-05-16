@@ -68,7 +68,13 @@ public extension NSManagedObject {
 
     if let localPrimaryKey = localPrimaryKey as? NSArray, entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) {
       let request = NSFetchRequest(entityName: destinationEntityName)
-      request.predicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), localPrimaryKey)
+      if localPrimaryKey.count > 1 {
+        request.predicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), localPrimaryKey)
+      } else if localPrimaryKey.count == 1 {
+        if let value = localPrimaryKey.firstObject as? NSObject {
+          request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value)
+        }
+      }
       do {
         guard let objects = try managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] else { return }
         let currentRelationship = valueForKey(relationship.name)

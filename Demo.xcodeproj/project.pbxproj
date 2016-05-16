@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		140FBF1C1CB91A5D0026484E /* Camelcase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */; };
 		140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 140FBF1D1CB91C2D0026484E /* camelcase.json */; };
+		141478241CEA219E00B18BF3 /* issue-151-notes-tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 141478221CEA219E00B18BF3 /* issue-151-notes-tags.json */; };
+		141478251CEA219E00B18BF3 /* issue-151-tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 141478231CEA219E00B18BF3 /* issue-151-tags.json */; };
 		141894401BDD62F600EE52CE /* bug-113-comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */; };
 		141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */; };
 		141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */; };
@@ -80,6 +82,8 @@
 /* Begin PBXFileReference section */
 		140FBF1B1CB91A5D0026484E /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		140FBF1D1CB91C2D0026484E /* camelcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = camelcase.json; sourceTree = "<group>"; };
+		141478221CEA219E00B18BF3 /* issue-151-notes-tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151-notes-tags.json"; sourceTree = "<group>"; };
+		141478231CEA219E00B18BF3 /* issue-151-tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151-tags.json"; sourceTree = "<group>"; };
 		1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-comments-no-id.json"; sourceTree = "<group>"; };
 		1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-custom_relationship_key_to_one.json"; sourceTree = "<group>"; };
 		1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-stories-comments-no-ids.json"; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				141894141BDD62F600EE52CE /* images.json */,
 				14243E0C1CEA0DEA000624BD /* issue-151.json */,
 				14243E0F1CEA142D000624BD /* issue-151-notes.json */,
+				141478221CEA219E00B18BF3 /* issue-151-notes-tags.json */,
+				141478231CEA219E00B18BF3 /* issue-151-tags.json */,
 				141894151BDD62F600EE52CE /* markets_items.json */,
 				141894161BDD62F600EE52CE /* notes_for_user_a.json */,
 				1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */,
@@ -423,6 +429,7 @@
 				141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				141894551BDD62F600EE52CE /* users_b.json in Resources */,
 				14D7321F1CE9A6C400C28D40 /* bug-157-city.json in Resources */,
+				141478251CEA219E00B18BF3 /* issue-151-tags.json in Resources */,
 				141894481BDD62F600EE52CE /* custom_relationship_key_to_one.json in Resources */,
 				1418944E1BDD62F600EE52CE /* organizations-tree.json in Resources */,
 				14243E0D1CEA0DEA000624BD /* issue-151.json in Resources */,
@@ -430,6 +437,7 @@
 				140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */,
 				141894501BDD62F600EE52CE /* stories-comments-no-ids.json in Resources */,
 				1418944F1BDD62F600EE52CE /* patients.json in Resources */,
+				141478241CEA219E00B18BF3 /* issue-151-notes-tags.json in Resources */,
 				141894471BDD62F600EE52CE /* custom_relationship_key_to_many.json in Resources */,
 				141894451BDD62F600EE52CE /* bug-number-84.json in Resources */,
 				141D9E721CE9A4830041A7FC /* bug-157.json in Resources */,
