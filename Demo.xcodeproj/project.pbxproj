@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140F9BEC1CE7BA4B0063FFE5 /* many_people.json in Resources */ = {isa = PBXBuildFile; fileRef = 140F9BEB1CE7BA4B0063FFE5 /* many_people.json */; };
+		140F9BEF1CE7BAB60063FFE5 /* ManyPeople.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140F9BED1CE7BAB60063FFE5 /* ManyPeople.xcdatamodeld */; };
 		140FBF1C1CB91A5D0026484E /* Camelcase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */; };
 		140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 140FBF1D1CB91C2D0026484E /* camelcase.json */; };
 		141894401BDD62F600EE52CE /* bug-113-comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */; };
@@ -72,6 +74,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140F9BEB1CE7BA4B0063FFE5 /* many_people.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = many_people.json; sourceTree = "<group>"; };
+		140F9BEE1CE7BAB60063FFE5 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		140FBF1B1CB91A5D0026484E /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		140FBF1D1CB91C2D0026484E /* camelcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = camelcase.json; sourceTree = "<group>"; };
 		1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-comments-no-id.json"; sourceTree = "<group>"; };
@@ -169,7 +173,6 @@
 		1418940A1BDD62F600EE52CE /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
-				146F2EB41CE1F2C500543F83 /* id.json */,
 				1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */,
 				1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */,
 				1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */,
@@ -184,7 +187,9 @@
 				141894111BDD62F600EE52CE /* comments-no-id.json */,
 				141894121BDD62F600EE52CE /* custom_relationship_key_to_many.json */,
 				141894131BDD62F600EE52CE /* custom_relationship_key_to_one.json */,
+				146F2EB41CE1F2C500543F83 /* id.json */,
 				141894141BDD62F600EE52CE /* images.json */,
+				140F9BEB1CE7BA4B0063FFE5 /* many_people.json */,
 				141894151BDD62F600EE52CE /* markets_items.json */,
 				141894161BDD62F600EE52CE /* notes_for_user_a.json */,
 				1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */,
@@ -209,7 +214,6 @@
 		141894241BDD62F600EE52CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				146F2EB11CE1F27200543F83 /* id.xcdatamodeld */,
 				1418942B1BDD62F600EE52CE /* Bug84.xcdatamodeld */,
 				141894251BDD62F600EE52CE /* Bug113.xcdatamodeld */,
 				141894291BDD62F600EE52CE /* Bug125.xcdatamodeld */,
@@ -217,6 +221,8 @@
 				14A6440F1CD77A4C00F51E23 /* Bug202.xcdatamodeld */,
 				140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */,
 				1418942D1BDD62F600EE52CE /* Contacts.xcdatamodeld */,
+				146F2EB11CE1F27200543F83 /* id.xcdatamodeld */,
+				140F9BED1CE7BAB60063FFE5 /* ManyPeople.xcdatamodeld */,
 				1418942F1BDD62F600EE52CE /* Markets.xcdatamodeld */,
 				141894311BDD62F600EE52CE /* Notes.xcdatamodeld */,
 				1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */,
@@ -385,6 +391,7 @@
 				1418944C1BDD62F600EE52CE /* numbers.json in Resources */,
 				14959D141C065350004EF790 /* notes_with_user_id.json in Resources */,
 				14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */,
+				140F9BEC1CE7BA4B0063FFE5 /* many_people.json in Resources */,
 				141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */,
 				141894571BDD62F600EE52CE /* users_company.json in Resources */,
 				1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */,
@@ -486,6 +493,7 @@
 				141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */,
 				141894621BDD62F600EE52CE /* Recursive.xcdatamodeld in Sources */,
 				14E298431C563EE500B68B72 /* OrderedSocial.xcdatamodeld in Sources */,
+				140F9BEF1CE7BAB60063FFE5 /* ManyPeople.xcdatamodeld in Sources */,
 				14A644111CD77A4C00F51E23 /* Bug202.xcdatamodeld in Sources */,
 				1425D5A31CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift in Sources */,
 				141894591BDD62F600EE52CE /* Bug113.xcdatamodeld in Sources */,
@@ -637,6 +645,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		140F9BED1CE7BAB60063FFE5 /* ManyPeople.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				140F9BEE1CE7BAB60063FFE5 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 140F9BEE1CE7BAB60063FFE5 /* Demo.xcdatamodel */;
+			path = ManyPeople.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
