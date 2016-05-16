@@ -65,42 +65,40 @@ public extension NSManagedObject {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
+    guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
+    guard localPrimaryKey.count > 0 else { return }
+    guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
 
-    if let localPrimaryKey = localPrimaryKey as? NSArray, entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) {
-      let request = NSFetchRequest(entityName: destinationEntityName)
-      do {
-        var objects = [NSManagedObject]()
-        if localPrimaryKey.count > 0 {
-          if localPrimaryKey.count > 1 {
-            request.predicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), localPrimaryKey)
-          } else if let value = localPrimaryKey.firstObject as? NSObject {
-            request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value)
+    let request = NSFetchRequest(entityName: destinationEntityName)
+    if localPrimaryKey.count == 1 {
+      if let value = localPrimaryKey.firstObject as? NSObject {
+        request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), value)
+      }
+    } else if localPrimaryKey.count > 1 {
+      request.predicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), localPrimaryKey)
+    }
+
+    var fetchedObjects: [NSManagedObject]?
+    if request.predicate != nil {
+      fetchedObjects = try? managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
+    }
+    guard let objects = fetchedObjects else { return }
+    let currentRelationship = valueForKey(relationship.name)
+    for safeObject in objects {
+      if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
+        if relationship.ordered {
+          let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
+          if !relatedObjects.containsObject(safeObject) {
+            relatedObjects.addObject(safeObject)
+            setValue(relatedObjects, forKey: relationship.name)
           }
-
-          if let fetchedObjects = try managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] {
-            objects = fetchedObjects
+        } else {
+          let relatedObjects = mutableSetValueForKey(relationship.name)
+          if !relatedObjects.containsObject(safeObject) {
+            relatedObjects.addObject(safeObject)
+            setValue(relatedObjects, forKey: relationship.name)
           }
         }
-        let currentRelationship = valueForKey(relationship.name)
-        for safeObject in objects {
-          if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
-            if relationship.ordered {
-              let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
-              if !relatedObjects.containsObject(safeObject) {
-                relatedObjects.addObject(safeObject)
-                setValue(relatedObjects, forKey: relationship.name)
-              }
-            } else {
-              let relatedObjects = mutableSetValueForKey(relationship.name)
-              if !relatedObjects.containsObject(safeObject) {
-                relatedObjects.addObject(safeObject)
-                setValue(relatedObjects, forKey: relationship.name)
-              }
-            }
-          }
-        }
-      } catch {
-        fatalError("Failed to fetch request for entityName: \(destinationEntityName), predicate: \(request.predicate)")
       }
     }
   }
