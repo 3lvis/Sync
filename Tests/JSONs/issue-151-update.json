@@ -2,16 +2,16 @@
   {
     "id": 10,
     "name": "User 10",
-    "notes_ids": [0, 1, 2]
+    "notes_ids": []
   },
   {
     "id": 11,
     "name": "User 11",
-    "notes_ids": [0]
+    "notes_ids": [1]
   },
   {
     "id": 12,
     "name": "User 12",
-    "notes_ids": []
+    "notes_ids": [0, 1, 2]
   }
 ]
