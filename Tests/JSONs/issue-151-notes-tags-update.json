@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "text": "Note 0",
+    "tags_ids": [0]
+  },
+  {
+    "id": 1,
+    "text": "Note 1",
+    "tags_ids": []
+  },
+  {
+    "id": 2,
+    "text": "Note 2",
+    "tags_ids": [0, 1]
+  }
+]

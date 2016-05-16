@@ -698,13 +698,17 @@ class SyncTests: XCTestCase {
   func testMultipleIDRelationshipManyToMany() {
     let dataStack = Helper.dataStackWithModelName("Issue151")
 
-    // User Shawn Merrill get synced, it references to notes_ids 0, 1 and 2, but since no notes are found this relationship gets ignored
     let notes = Helper.objectsFromJSON("issue-151-notes-tags.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+    var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note0?.valueForKey("text") as? String, "Note 0")
+    var note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note1?.valueForKey("text") as? String, "Note 1")
+    var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note2?.valueForKey("text") as? String, "Note 2")
 
-    // Notes 0, 1 and 2 get synced
     let tags = Helper.objectsFromJSON("issue-151-tags.json") as! [[String : AnyObject]]
     Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -717,15 +721,35 @@ class SyncTests: XCTestCase {
     }
     XCTAssertEqual(total, 0)
 
-    // User Shawn Merrill get synced, now that the notes are available, the relationship should be made
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    let updatedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
-    total = 0
-    for note in updatedNotes {
-      let tags = note.valueForKey("tags") as? Set<NSManagedObject> ?? Set<NSManagedObject>()
-      total += tags.count
-    }
-    XCTAssertEqual(total, 3)
+    note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note0?.valueForKey("text") as? String, "Note 0")
+    var note0Tags = note0?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note0Tags?.count, 2)
+    note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note1?.valueForKey("text") as? String, "Note 1")
+    var note1Tags = note1?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note1Tags?.count, 1)
+    note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note2?.valueForKey("text") as? String, "Note 2")
+    var note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note2Tags?.count, 0)
+
+    let updatedNotes = Helper.objectsFromJSON("issue-151-notes-tags-update.json") as! [[String : AnyObject]]
+    Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
+    note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note0?.valueForKey("text") as? String, "Note 0")
+    note0Tags = note0?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note0Tags?.count, 1)
+    note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note1?.valueForKey("text") as? String, "Note 1")
+    note1Tags = note1?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note1Tags?.count, 0)
+    note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
+    XCTAssertEqual(note2?.valueForKey("text") as? String, "Note 2")
+    note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note2Tags?.count, 2)
+
 
     try! dataStack.drop()
   }
