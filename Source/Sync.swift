@@ -4,7 +4,75 @@ import DATAFilter
 import NSManagedObject_HYPPropertyMapper
 import DATAStack
 
-@objc public class Sync: NSObject {
+@objc public class Sync: NSOperation {
+  var downloadFinished = false
+  var downloadExecuting = false
+  var downloadCancelled = false
+
+  public override var finished: Bool {
+    return self.downloadFinished
+  }
+
+  public override var executing: Bool {
+    return self.downloadExecuting
+  }
+
+  public override var cancelled: Bool {
+    return self.downloadCancelled
+  }
+
+  public override var asynchronous: Bool {
+    return true
+  }
+
+  var changes: [[String : AnyObject]]
+  var entityName: String
+  weak var predicate: NSPredicate?
+  unowned var dataStack: DATAStack
+
+  public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack) {
+    self.changes = changes
+    self.entityName = entityName
+    self.predicate = predicate
+    self.dataStack = dataStack
+  }
+
+  public override func start() {
+    func updateExecuting(isExecuting: Bool) {
+      self.willChangeValueForKey("isExecuting")
+      self.downloadExecuting = isExecuting
+      self.didChangeValueForKey("isExecuting")
+    }
+
+    func updateFinished(isFinished: Bool) {
+      self.willChangeValueForKey("isFinished")
+      self.downloadFinished = isFinished
+      self.didChangeValueForKey("isFinished")
+    }
+
+    if self.cancelled {
+      updateExecuting(false)
+      updateFinished(true)
+    } else {
+      updateExecuting(true)
+      dataStack.performInNewBackgroundContext { backgroundContext in
+        self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: nil, inContext: backgroundContext, dataStack: self.dataStack)
+        updateExecuting(false)
+        updateFinished(true)
+      }
+    }
+  }
+
+  public override func cancel() {
+    func updateCancelled(isCancelled: Bool) {
+      self.willChangeValueForKey("isCancelled")
+      self.downloadCancelled = isCancelled
+      self.didChangeValueForKey("isCancelled")
+    }
+
+    updateCancelled(true)
+  }
+
   /**
    Syncs the entity using the received array of dictionaries, maps one-to-many, many-to-many and one-to-one relationships.
    It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
@@ -121,6 +189,47 @@ import DATAStack
 
     dispatch_async(dispatch_get_main_queue()) {
       completion?(error: syncError)
+    }
+  }
+
+  func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack) {
+    guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
+
+    let localPrimaryKey = entity.sync_localPrimaryKey()
+    let remotePrimaryKey = entity.sync_remotePrimaryKey()
+    let shouldLookForParent = parent == nil && predicate == nil
+
+    var finalPredicate = predicate
+    if let parentEntity = entity.sync_parentEntity() where shouldLookForParent {
+      finalPredicate = NSPredicate(format: "%K = nil", parentEntity.name)
+    }
+
+    if localPrimaryKey.isEmpty {
+      fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using hyper.isPrimaryKey")
+    }
+
+    if remotePrimaryKey.isEmpty {
+      fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
+    }
+
+    DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: [.All], localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { objectJSON in
+      guard self.cancelled == false else { return }
+      guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
+
+      let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
+      created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack)
+    }) { objectJSON, updatedObject in
+      guard self.cancelled == false else { return }
+      guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
+      updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack)
+    }
+
+    if context.hasChanges {
+      if self.cancelled {
+        context.reset()
+      } else {
+        let _ = try? context.save()
+      }
     }
   }
 }
