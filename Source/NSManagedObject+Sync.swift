@@ -34,17 +34,95 @@ public extension NSManagedObject {
     hyp_fillWithDictionary(dictionary)
 
     entity.sync_relationships().forEach { relationship in
-      let constructedKeyName = relationship.name.hyp_remoteString() + "_id"
+      let suffix = relationship.toMany ? "_ids" : "_id"
+      let constructedKeyName = relationship.name.hyp_remoteString() + suffix
       let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
 
       if relationship.toMany {
-        sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
+        if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> {
+          sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
+        } else {
+          sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
+        }
       } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == parent.entity.name {
         setValue(parent, forKey: relationship.name)
       } else if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is NSString || localPrimaryKey is NSNumber {
-        sync_relationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
+        sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
       } else {
         sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
+      }
+    }
+  }
+
+  /**
+   Syncs relationships where only the ids are present, for example if your model is: User <<->> Tags (a user has many tags and a tag belongs to many users),
+   and your tag has a users_ids, it will try to sync using those ID instead of requiring you to provide the entire users list inside each tag.
+   - parameter relationship: The relationship to be synced.
+   - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually an array of strings or numbers.
+   */
+  func sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship: NSRelationshipDescription, localPrimaryKey: AnyObject) {
+    guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
+    guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
+    guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
+    guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
+    guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
+
+    let remoteItems = localPrimaryKey
+    let localRelationship: NSSet
+    if relationship.ordered {
+      let value = self.valueForKey(relationship.name) as? NSOrderedSet ?? NSOrderedSet()
+      localRelationship = value.set
+    } else {
+      localRelationship = self.valueForKey(relationship.name) as? NSSet ?? NSSet()
+    }
+    let localItems = localRelationship.valueForKey(entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
+
+    let deletedItems = NSMutableArray(array: localItems.allObjects)
+    deletedItems.removeObjectsInArray(remoteItems as [AnyObject])
+
+    let insertedItems = remoteItems.mutableCopy() as? NSMutableArray ?? NSMutableArray()
+    insertedItems.removeObjectsInArray(localItems.allObjects)
+
+    guard insertedItems.count > 0 || deletedItems.count > 0 else { return }
+    let request = NSFetchRequest(entityName: destinationEntityName)
+    let fetchedObjects = try? managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
+    guard let objects = fetchedObjects else { return }
+    for safeObject in objects {
+      let currentID = safeObject.valueForKey(entity.sync_localPrimaryKey())!
+      for inserted in insertedItems {
+        if currentID.isEqual(inserted) {
+          if relationship.ordered {
+            let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
+            if !relatedObjects.containsObject(safeObject) {
+              relatedObjects.addObject(safeObject)
+              setValue(relatedObjects, forKey: relationship.name)
+            }
+          } else {
+            let relatedObjects = mutableSetValueForKey(relationship.name)
+            if !relatedObjects.containsObject(safeObject) {
+              relatedObjects.addObject(safeObject)
+              setValue(relatedObjects, forKey: relationship.name)
+            }
+          }
+        }
+      }
+
+      for deleted in deletedItems {
+        if currentID.isEqual(deleted) {
+          if relationship.ordered {
+            let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
+            if relatedObjects.containsObject(safeObject) {
+              relatedObjects.removeObject(safeObject)
+              setValue(relatedObjects, forKey: relationship.name)
+            }
+          } else {
+            let relatedObjects = mutableSetValueForKey(relationship.name)
+            if relatedObjects.containsObject(safeObject) {
+              relatedObjects.removeObject(safeObject)
+              setValue(relatedObjects, forKey: relationship.name)
+            }
+          }
+        }
       }
     }
   }
@@ -101,10 +179,10 @@ public extension NSManagedObject {
    and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
    entire company object inside the employees dictionary.
    - parameter relationship: The relationship to be synced.
-   - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced.
+   - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually a number or an integer.
    - parameter dataStack: The DATAStack instance.
    */
-  func sync_relationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, localPrimaryKey: AnyObject, dataStack: DATAStack) {
+  func sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship: NSRelationshipDescription, localPrimaryKey: AnyObject, dataStack: DATAStack) {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
