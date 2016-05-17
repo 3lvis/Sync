@@ -712,15 +712,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     var user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user10?.valueForKey("name") as? String, "User 10")
     var user10Notes = user10?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user10Notes?.count, 2)
     var user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 11"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user11?.valueForKey("name") as? String, "User 11")
     var user11Notes = user11?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user11Notes?.count, 1)
     var user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user12?.valueForKey("name") as? String, "User 12")
     var user12Notes = user12?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user12Notes?.count, 0)
 
@@ -730,15 +727,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user10?.valueForKey("name") as? String, "User 10")
     user10Notes = user10?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user10Notes?.count, 0)
     user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 11"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user11?.valueForKey("name") as? String, "User 11")
     user11Notes = user11?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user11Notes?.count, 1)
     user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user12?.valueForKey("name") as? String, "User 12")
     user12Notes = user12?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user12Notes?.count, 2)
 
@@ -774,15 +768,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note0?.valueForKey("name") as? String, "Note 0")
     var note0Tags = note0?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note0Tags?.count, 2)
     var note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note1?.valueForKey("name") as? String, "Note 1")
     var note1Tags = note1?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note1Tags?.count, 1)
     var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note2?.valueForKey("name") as? String, "Note 2")
     var note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note2Tags?.count, 0)
 
@@ -792,15 +783,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note0?.valueForKey("name") as? String, "Note 0")
     note0Tags = note0?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note0Tags?.count, 1)
     note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note1?.valueForKey("name") as? String, "Note 1")
     note1Tags = note1?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note1Tags?.count, 0)
     note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note2?.valueForKey("name") as? String, "Note 2")
     note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note2Tags?.count, 2)
 
@@ -838,15 +826,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     var user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user10?.valueForKey("name") as? String, "User 10")
     var user10Notes = user10?.valueForKey("notes") as? NSOrderedSet
     XCTAssertEqual(user10Notes?.set.count, 2)
     var user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 11"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user11?.valueForKey("name") as? String, "User 11")
     var user11Notes = user11?.valueForKey("notes") as? NSOrderedSet
     XCTAssertEqual(user11Notes?.set.count, 1)
     var user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user12?.valueForKey("name") as? String, "User 12")
     var user12Notes = user12?.valueForKey("notes") as? NSOrderedSet
     XCTAssertEqual(user12Notes?.set.count, 0)
 
@@ -856,15 +841,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user10?.valueForKey("name") as? String, "User 10")
     user10Notes = user10?.valueForKey("notes") as? NSOrderedSet
     XCTAssertEqual(user10Notes?.set.count, 0)
     user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 11"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user11?.valueForKey("name") as? String, "User 11")
     user11Notes = user11?.valueForKey("notes") as? NSOrderedSet
     XCTAssertEqual(user11Notes?.set.count, 1)
     user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(user12?.valueForKey("name") as? String, "User 12")
     user12Notes = user12?.valueForKey("notes") as? NSOrderedSet
     XCTAssertEqual(user12Notes?.set.count, 2)
 
@@ -900,15 +882,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note0?.valueForKey("name") as? String, "Note 0")
     var note0Tags = note0?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note0Tags?.count, 2)
     var note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note1?.valueForKey("name") as? String, "Note 1")
     var note1Tags = note1?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note1Tags?.count, 1)
     var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note2?.valueForKey("name") as? String, "Note 2")
     var note2Tags = note2?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note2Tags?.count, 0)
 
@@ -918,15 +897,12 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note0?.valueForKey("name") as? String, "Note 0")
     note0Tags = note0?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note0Tags?.set.count, 1)
     note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note1?.valueForKey("name") as? String, "Note 1")
     note1Tags = note1?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note1Tags?.set.count, 0)
     note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
-    XCTAssertEqual(note2?.valueForKey("name") as? String, "Note 2")
     note2Tags = note2?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note2Tags?.set.count, 2)
     
