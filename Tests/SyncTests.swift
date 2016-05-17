@@ -744,16 +744,16 @@ class SyncTests: XCTestCase {
   func testMultipleIDRelationshipManyToMany() {
     let dataStack = Helper.dataStackWithModelName("151-many-to-many")
 
-    // Inserts 3 notes
+    // Inserts 4 notes
     let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
     // Inserts 3 tags
     let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : AnyObject]]
     Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     let savedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
     var total = 0
@@ -763,9 +763,9 @@ class SyncTests: XCTestCase {
     }
     XCTAssertEqual(total, 0)
 
-    // Updates the first 3 notes, but now it makes the relationships with the tags
+    // Updates the first 4 notes, but now it makes the relationships with the tags
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
     var note0Tags = note0?.valueForKey("tags") as? Set<NSManagedObject>
@@ -776,10 +776,13 @@ class SyncTests: XCTestCase {
     var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
     var note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note2Tags?.count, 0)
+    var note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 3"), inContext: dataStack.mainContext).first
+    var note3Tags = note3?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note3Tags?.count, 1)
 
-    // Updates the first 3 notes again, but now it changes all the relationships
+    // Updates the first 4 notes again, but now it changes all the relationships
     let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : AnyObject]]
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
@@ -791,6 +794,9 @@ class SyncTests: XCTestCase {
     note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
     note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
     XCTAssertEqual(note2Tags?.count, 2)
+    note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 3"), inContext: dataStack.mainContext).first
+    note3Tags = note3?.valueForKey("tags") as? Set<NSManagedObject>
+    XCTAssertEqual(note3Tags?.count, 0)
 
 
     try! dataStack.drop()
@@ -858,16 +864,16 @@ class SyncTests: XCTestCase {
   func testOrderedMultipleIDRelationshipManyToMany() {
     let dataStack = Helper.dataStackWithModelName("151-ordered-many-to-many")
 
-    // Inserts 3 notes
+    // Inserts 4 notes
     let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
     // Inserts 3 tags
     let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : AnyObject]]
     Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     let savedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
     var total = 0
@@ -877,9 +883,9 @@ class SyncTests: XCTestCase {
     }
     XCTAssertEqual(total, 0)
 
-    // Updates the first 3 notes, but now it makes the relationships with the tags
+    // Updates the first 4 notes, but now it makes the relationships with the tags
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
     var note0Tags = note0?.valueForKey("tags") as? NSOrderedSet
@@ -890,10 +896,13 @@ class SyncTests: XCTestCase {
     var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
     var note2Tags = note2?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note2Tags?.count, 0)
+    var note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 3"), inContext: dataStack.mainContext).first
+    var note3Tags = note3?.valueForKey("tags") as? NSOrderedSet
+    XCTAssertEqual(note3Tags?.count, 1)
 
-    // Updates the first 3 notes again, but now it changes all the relationships
+    // Updates the first 4 notes again, but now it changes all the relationships
     let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : AnyObject]]
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
+    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
@@ -905,7 +914,10 @@ class SyncTests: XCTestCase {
     note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
     note2Tags = note2?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note2Tags?.set.count, 2)
-    
+    note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 3"), inContext: dataStack.mainContext).first
+    note3Tags = note3?.valueForKey("tags") as? NSOrderedSet
+    XCTAssertEqual(note3Tags?.count, 0)
+
     try! dataStack.drop()
   }
 }

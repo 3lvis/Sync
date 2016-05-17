@@ -13,5 +13,10 @@
     "id": 2,
     "name": "Note 2",
     "tags_ids": []
+  },
+  {
+    "id": 3,
+    "name": "Note 3",
+    "tags_ids": ["1"]
   }
 ]
