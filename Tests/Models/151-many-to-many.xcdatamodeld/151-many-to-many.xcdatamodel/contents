@@ -4,7 +4,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="noteID" attributeType="Integer 32" defaultValueString="0" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="hyper.isPrimaryKey" value="true"/>
                 <entry key="hyper.remoteKey" value="id"/>
             </userInfo>
         </attribute>
@@ -14,7 +14,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tagID" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="hyper.isPrimaryKey" value="true"/>
                 <entry key="hyper.remoteKey" value="id"/>
             </userInfo>
         </attribute>
