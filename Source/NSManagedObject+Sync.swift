@@ -46,7 +46,7 @@ public extension NSManagedObject {
         }
       } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == parent.entity.name {
         setValue(parent, forKey: relationship.name)
-      } else if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is NSString || localPrimaryKey is NSNumber {
+      } else if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
         sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
       } else {
         sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack)
@@ -186,7 +186,11 @@ public extension NSManagedObject {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
-    if let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) {
+    if localPrimaryKey is NSNull {
+        if let _ = valueForKey(relationship.name) {
+            setValue(nil, forKey: relationship.name)
+        }
+    } else if let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) {
       let currentRelationship = valueForKey(relationship.name)
       if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
         setValue(safeObject, forKey: relationship.name)
