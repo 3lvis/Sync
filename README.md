@@ -31,6 +31,7 @@
   * [Attribute Types](#attribute-types)
   * [Relationship Mapping](#relationship-mapping)
     * [One-to-many](#one-to-many)
+    * [One-to-many (simplified)](#one-to-many-simplified)
     * [One-to-one](#one-to-one)
     * [One-to-one (simplified)](#one-to-one-simplified)
   * [Networking](#networking)
@@ -330,6 +331,22 @@ So when Sync, looks into the following JSON, it will sync all the notes for that
 ]
 ```
 
+#### One-to-many Simplified
+
+As you can see this procedures require the full JSON object to be included, but when working with APIs, sometimes you already have synced all the required items. Sync supports this too.
+
+For example, in the one-to-many example, you have a user, that has many notes. If you already have synced all the notes then your JSON would only need the `notes_ids`, this can be an array of strings or integers. As a sidenote only do this if you are 100% sure that all the required items (notes) have been synced, otherwise this relationships will get ignored and an error will be logged. Also if you want to remove all the notes from a user, just provide `"notes_ids": null` and **Sync** will do the clean up for you.
+
+```json
+[
+  {
+    "id": 6,
+    "name": "Shawn Merrill",
+    "notes_ids": [0, 1, 2]
+  }
+]
+```
+
 #### One-to-one
 
 A similar procedure is applied to one-to-one relationships. For example lets say you have the following model:
@@ -355,7 +372,7 @@ This model is simple, a user as a company. A compatible JSON would look like thi
 
 As you can see this procedures require the full JSON object to be included, but when working with APIs, sometimes you already have synced all the required items. Sync supports this too.
 
-For example, in the one-to-one example, you have a user, that has one company. If you already have synced all the companies then your JSON would only need the `company_id`. As a sidenote only do this if you are 100% sure that all the required items (companies) have been synced.
+For example, in the one-to-one example, you have a user, that has one company. If you already have synced all the companies then your JSON would only need the `company_id`. As a sidenote only do this if you are 100% sure that all the required items (companies) have been synced, otherwise this relationships will get ignored and an error will be logged. Also if you want to remove the company from the user, just provide `"company_id": null` and **Sync** will do the clean up for you.
 
 ```json
 [
