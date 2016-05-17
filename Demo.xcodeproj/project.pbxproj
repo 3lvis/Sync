@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14096A321CEAF329002690D6 /* 151-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14096A2C1CEAF329002690D6 /* 151-many-to-many-notes-update.json */; };
+		14096A331CEAF329002690D6 /* 151-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14096A2D1CEAF329002690D6 /* 151-many-to-many-notes.json */; };
+		14096A341CEAF329002690D6 /* 151-many-to-many-tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 14096A2E1CEAF329002690D6 /* 151-many-to-many-tags.json */; };
+		14096A351CEAF329002690D6 /* 151-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14096A2F1CEAF329002690D6 /* 151-to-many-notes.json */; };
+		14096A361CEAF329002690D6 /* 151-to-many-users-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14096A301CEAF329002690D6 /* 151-to-many-users-update.json */; };
+		14096A371CEAF329002690D6 /* 151-to-many-users.json in Resources */ = {isa = PBXBuildFile; fileRef = 14096A311CEAF329002690D6 /* 151-to-many-users.json */; };
 		140FBF1C1CB91A5D0026484E /* Camelcase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */; };
 		140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 140FBF1D1CB91C2D0026484E /* camelcase.json */; };
-		141478241CEA219E00B18BF3 /* issue-151-notes-tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 141478221CEA219E00B18BF3 /* issue-151-notes-tags.json */; };
-		141478251CEA219E00B18BF3 /* issue-151-tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 141478231CEA219E00B18BF3 /* issue-151-tags.json */; };
 		141894401BDD62F600EE52CE /* bug-113-comments-no-id.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */; };
 		141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */; };
 		141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */ = {isa = PBXBuildFile; fileRef = 1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */; };
@@ -50,8 +54,6 @@
 		141D9E721CE9A4830041A7FC /* bug-157.json in Resources */ = {isa = PBXBuildFile; fileRef = 141D9E711CE9A4830041A7FC /* bug-157.json */; };
 		141D9E751CE9A4970041A7FC /* Bug157.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141D9E731CE9A4970041A7FC /* Bug157.xcdatamodeld */; };
 		14243E0B1CEA0A55000624BD /* Issue151.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14243E091CEA0A55000624BD /* Issue151.xcdatamodeld */; };
-		14243E0D1CEA0DEA000624BD /* issue-151.json in Resources */ = {isa = PBXBuildFile; fileRef = 14243E0C1CEA0DEA000624BD /* issue-151.json */; };
-		14243E101CEA142D000624BD /* issue-151-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14243E0F1CEA142D000624BD /* issue-151-notes.json */; };
 		1425D5A01CC65BEB00EC49D4 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59B1CC65BEB00EC49D4 /* NSArray+Sync.swift */; };
 		1425D5A11CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59C1CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift */; };
 		1425D5A21CC65BEB00EC49D4 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */; };
@@ -65,8 +67,6 @@
 		14A644111CD77A4C00F51E23 /* Bug202.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A6440F1CD77A4C00F51E23 /* Bug202.xcdatamodeld */; };
 		14A644151CD77C7A00F51E23 /* bug-202-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644121CD77C7A00F51E23 /* bug-202-a.json */; };
 		14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644131CD77C7A00F51E23 /* bug-202-b.json */; };
-		14AEB5101CEA4ECB006AA043 /* issue-151-notes-tags-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14AEB50F1CEA4ECB006AA043 /* issue-151-notes-tags-update.json */; };
-		14AEB5141CEA5076006AA043 /* issue-151-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14AEB5131CEA5076006AA043 /* issue-151-update.json */; };
 		14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */; };
 		14D53BD71CEA7ABB00177718 /* Issue151-B.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14D53BD51CEA7ABB00177718 /* Issue151-B.xcdatamodeld */; };
 		14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */; };
@@ -83,10 +83,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14096A2C1CEAF329002690D6 /* 151-many-to-many-notes-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes-update.json"; sourceTree = "<group>"; };
+		14096A2D1CEAF329002690D6 /* 151-many-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes.json"; sourceTree = "<group>"; };
+		14096A2E1CEAF329002690D6 /* 151-many-to-many-tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-tags.json"; sourceTree = "<group>"; };
+		14096A2F1CEAF329002690D6 /* 151-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-to-many-notes.json"; sourceTree = "<group>"; };
+		14096A301CEAF329002690D6 /* 151-to-many-users-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-to-many-users-update.json"; sourceTree = "<group>"; };
+		14096A311CEAF329002690D6 /* 151-to-many-users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-to-many-users.json"; sourceTree = "<group>"; };
 		140FBF1B1CB91A5D0026484E /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		140FBF1D1CB91C2D0026484E /* camelcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = camelcase.json; sourceTree = "<group>"; };
-		141478221CEA219E00B18BF3 /* issue-151-notes-tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151-notes-tags.json"; sourceTree = "<group>"; };
-		141478231CEA219E00B18BF3 /* issue-151-tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151-tags.json"; sourceTree = "<group>"; };
 		1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-comments-no-id.json"; sourceTree = "<group>"; };
 		1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-custom_relationship_key_to_one.json"; sourceTree = "<group>"; };
 		1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-113-stories-comments-no-ids.json"; sourceTree = "<group>"; };
@@ -126,8 +130,6 @@
 		141D9E711CE9A4830041A7FC /* bug-157.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-157.json"; sourceTree = "<group>"; };
 		141D9E741CE9A4970041A7FC /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14243E0A1CEA0A55000624BD /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
-		14243E0C1CEA0DEA000624BD /* issue-151.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151.json"; sourceTree = "<group>"; };
-		14243E0F1CEA142D000624BD /* issue-151-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151-notes.json"; sourceTree = "<group>"; };
 		1425D59B1CC65BEB00EC49D4 /* NSArray+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+Sync.swift"; sourceTree = "<group>"; };
 		1425D59C1CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+Sync.swift"; sourceTree = "<group>"; };
 		1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Sync.swift"; sourceTree = "<group>"; };
@@ -143,8 +145,6 @@
 		14A644101CD77A4C00F51E23 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14A644121CD77C7A00F51E23 /* bug-202-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-202-a.json"; sourceTree = "<group>"; };
 		14A644131CD77C7A00F51E23 /* bug-202-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-202-b.json"; sourceTree = "<group>"; };
-		14AEB50F1CEA4ECB006AA043 /* issue-151-notes-tags-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151-notes-tags-update.json"; sourceTree = "<group>"; };
-		14AEB5131CEA5076006AA043 /* issue-151-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "issue-151-update.json"; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -191,6 +191,12 @@
 		1418940A1BDD62F600EE52CE /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				14096A2C1CEAF329002690D6 /* 151-many-to-many-notes-update.json */,
+				14096A2D1CEAF329002690D6 /* 151-many-to-many-notes.json */,
+				14096A2E1CEAF329002690D6 /* 151-many-to-many-tags.json */,
+				14096A2F1CEAF329002690D6 /* 151-to-many-notes.json */,
+				14096A301CEAF329002690D6 /* 151-to-many-users-update.json */,
+				14096A311CEAF329002690D6 /* 151-to-many-users.json */,
 				1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */,
 				1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */,
 				1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */,
@@ -209,12 +215,6 @@
 				141894131BDD62F600EE52CE /* custom_relationship_key_to_one.json */,
 				146F2EB41CE1F2C500543F83 /* id.json */,
 				141894141BDD62F600EE52CE /* images.json */,
-				14AEB50F1CEA4ECB006AA043 /* issue-151-notes-tags-update.json */,
-				141478221CEA219E00B18BF3 /* issue-151-notes-tags.json */,
-				14243E0F1CEA142D000624BD /* issue-151-notes.json */,
-				141478231CEA219E00B18BF3 /* issue-151-tags.json */,
-				14AEB5131CEA5076006AA043 /* issue-151-update.json */,
-				14243E0C1CEA0DEA000624BD /* issue-151.json */,
 				141894151BDD62F600EE52CE /* markets_items.json */,
 				141894161BDD62F600EE52CE /* notes_for_user_a.json */,
 				1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */,
@@ -419,15 +419,17 @@
 				14959D141C065350004EF790 /* notes_with_user_id.json in Resources */,
 				14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */,
 				141894421BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json in Resources */,
+				14096A331CEAF329002690D6 /* 151-many-to-many-notes.json in Resources */,
 				141894571BDD62F600EE52CE /* users_company.json in Resources */,
+				14096A321CEAF329002690D6 /* 151-many-to-many-notes-update.json in Resources */,
 				1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */,
 				141894441BDD62F600EE52CE /* bug-125.json in Resources */,
 				1418944D1BDD62F600EE52CE /* numbers_in_collection.json in Resources */,
 				1418944B1BDD62F600EE52CE /* notes_for_user_a.json in Resources */,
+				14096A361CEAF329002690D6 /* 151-to-many-users-update.json in Resources */,
 				141894521BDD62F600EE52CE /* tagged_notes.json in Resources */,
 				141894581BDD62F600EE52CE /* users_notes.json in Resources */,
 				141894531BDD62F600EE52CE /* unique.json in Resources */,
-				14AEB5101CEA4ECB006AA043 /* issue-151-notes-tags-update.json in Resources */,
 				B0B637181C6E517F00229B03 /* bug-179-routes.json in Resources */,
 				141894401BDD62F600EE52CE /* bug-113-comments-no-id.json in Resources */,
 				141894431BDD62F600EE52CE /* bug-125-light.json in Resources */,
@@ -435,24 +437,22 @@
 				146F2EB51CE1F2C500543F83 /* id.json in Resources */,
 				141894561BDD62F600EE52CE /* users_c.json in Resources */,
 				141894541BDD62F600EE52CE /* users_a.json in Resources */,
+				14096A341CEAF329002690D6 /* 151-many-to-many-tags.json in Resources */,
 				141894461BDD62F600EE52CE /* comments-no-id.json in Resources */,
+				14096A351CEAF329002690D6 /* 151-to-many-notes.json in Resources */,
 				141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				141894551BDD62F600EE52CE /* users_b.json in Resources */,
 				14D7321F1CE9A6C400C28D40 /* bug-157-city.json in Resources */,
-				141478251CEA219E00B18BF3 /* issue-151-tags.json in Resources */,
 				141894481BDD62F600EE52CE /* custom_relationship_key_to_one.json in Resources */,
 				1418944E1BDD62F600EE52CE /* organizations-tree.json in Resources */,
-				14243E0D1CEA0DEA000624BD /* issue-151.json in Resources */,
 				141894491BDD62F600EE52CE /* images.json in Resources */,
+				14096A371CEAF329002690D6 /* 151-to-many-users.json in Resources */,
 				140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */,
-				14AEB5141CEA5076006AA043 /* issue-151-update.json in Resources */,
 				141894501BDD62F600EE52CE /* stories-comments-no-ids.json in Resources */,
 				1418944F1BDD62F600EE52CE /* patients.json in Resources */,
-				141478241CEA219E00B18BF3 /* issue-151-notes-tags.json in Resources */,
 				141894471BDD62F600EE52CE /* custom_relationship_key_to_many.json in Resources */,
 				141894451BDD62F600EE52CE /* bug-number-84.json in Resources */,
 				141D9E721CE9A4830041A7FC /* bug-157.json in Resources */,
-				14243E101CEA142D000624BD /* issue-151-notes.json in Resources */,
 				141894511BDD62F600EE52CE /* story-summarize.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

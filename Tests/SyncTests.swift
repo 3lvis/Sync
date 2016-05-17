@@ -671,13 +671,13 @@ class SyncTests: XCTestCase {
     let dataStack = Helper.dataStackWithModelName("Issue151")
 
     // Inserts 3 users, it ignores the relationships since no notes are found
-    let users = Helper.objectsFromJSON("issue-151.json") as! [[String : AnyObject]]
+    let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : AnyObject]]
     Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 0)
 
     // Inserts 3 notes
-    let notes = Helper.objectsFromJSON("issue-151-notes.json") as! [[String : AnyObject]]
+    let notes = Helper.objectsFromJSON("151-to-many-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -707,7 +707,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(user12Notes?.count, 0)
 
     // Updates the first 3 users again, but now it changes all the relationships
-    let updatedUsers = Helper.objectsFromJSON("issue-151-update.json") as! [[String : AnyObject]]
+    let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : AnyObject]]
     Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -733,13 +733,13 @@ class SyncTests: XCTestCase {
     let dataStack = Helper.dataStackWithModelName("Issue151-B")
 
     // Inserts 3 notes
-    let notes = Helper.objectsFromJSON("issue-151-notes-tags.json") as! [[String : AnyObject]]
+    let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
     // Inserts 3 tags
-    let tags = Helper.objectsFromJSON("issue-151-tags.json") as! [[String : AnyObject]]
+    let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : AnyObject]]
     Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
@@ -769,7 +769,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(note2Tags?.count, 0)
 
     // Updates the first 3 notes again, but now it changes all the relationships
-    let updatedNotes = Helper.objectsFromJSON("issue-151-notes-tags-update.json") as! [[String : AnyObject]]
+    let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : AnyObject]]
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
