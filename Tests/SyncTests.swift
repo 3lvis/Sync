@@ -668,7 +668,7 @@ class SyncTests: XCTestCase {
   // Notes have to be unique, two users can't have the same note.
 
   func testMultipleIDRelationshipToMany() {
-    let dataStack = Helper.dataStackWithModelName("Issue151")
+    let dataStack = Helper.dataStackWithModelName("151-to-many")
 
     // Inserts 3 users, it ignores the relationships since no notes are found
     let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : AnyObject]]
@@ -730,7 +730,7 @@ class SyncTests: XCTestCase {
   // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/hyperoslo/Sync/issues/151
 
   func testMultipleIDRelationshipManyToMany() {
-    let dataStack = Helper.dataStackWithModelName("Issue151-B")
+    let dataStack = Helper.dataStackWithModelName("151-many-to-many")
 
     // Inserts 3 notes
     let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
