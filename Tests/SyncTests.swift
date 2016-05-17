@@ -720,6 +720,15 @@ class SyncTests: XCTestCase {
     var user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
     var user12Notes = user12?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user12Notes?.count, 0)
+    var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
+    var note0User = note0?.valueForKey("user") as? NSManagedObject
+    XCTAssertEqual(note0User?.valueForKey("id") as? Int, 10)
+    var note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
+    var note1User = note1?.valueForKey("user") as? NSManagedObject
+    XCTAssertEqual(note1User?.valueForKey("id") as? Int, 10)
+    var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
+    var note2User = note2?.valueForKey("user") as? NSManagedObject
+    XCTAssertEqual(note2User?.valueForKey("id") as? Int, 11)
 
     // Updates the first 3 users again, but now it changes all the relationships
     let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : AnyObject]]
@@ -735,6 +744,15 @@ class SyncTests: XCTestCase {
     user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
     user12Notes = user12?.valueForKey("notes") as? Set<NSManagedObject>
     XCTAssertEqual(user12Notes?.count, 2)
+    note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
+    note0User = note0?.valueForKey("user") as? NSManagedObject
+    XCTAssertEqual(note0User?.valueForKey("id") as? Int, 12)
+    note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
+    note1User = note1?.valueForKey("user") as? NSManagedObject
+    XCTAssertEqual(note1User?.valueForKey("id") as? Int, 12)
+    note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
+    note2User = note2?.valueForKey("user") as? NSManagedObject
+    XCTAssertEqual(note2User?.valueForKey("id") as? Int, 11)
 
     try! dataStack.drop()
   }
