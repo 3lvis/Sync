@@ -217,7 +217,7 @@ self.dataStack = DATAStack(modelName: "Demo")
 
 Sync requires your entities to have a primary key, this is important for diffing, otherwise Sync doesn’t know how to differentiate between entries.
 
-By default **Sync** uses `id` from the JSON and `id` (or `remoteID` for Objective-C compatibility) from Core Data as the primary key.
+By default **Sync** uses `id` from the JSON and `id` (or `remoteID`) from Core Data as the primary key.
 
 You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/hyperoslo/Sync/tree/master/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
 
@@ -482,7 +482,7 @@ If you're using Swift to be able to use `NSNotificationCenter` your class should
 
 #### Crash on NSParameterAssert
 
-This means that the local primary key was not found, Sync uses `id` (or `remoteID` for Objective-C compatibility) by default, but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "true"` in your attribute's user info. For more information check the [Primary Key](https://github.com/hyperoslo/Sync#primary-key) section.
+This means that the local primary key was not found, Sync uses `id` (or `remoteID`) by default, but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "true"` in your attribute's user info. For more information check the [Primary Key](https://github.com/hyperoslo/Sync#primary-key) section.
 
 ```swift
 let localKey = entity.sync_localPrimaryKey()
