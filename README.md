@@ -221,7 +221,7 @@ By default **Sync** uses `id` from the JSON and `id` (or `remoteID` for Objectiv
 
 You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/hyperoslo/Sync/tree/master/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
 
-![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v2.png)
+![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v3.png)
 
 ### Attribute Mapping
 
