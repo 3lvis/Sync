@@ -2,12 +2,12 @@
   {
     "id": 0,
     "name": "Note 0",
-    "tags_ids": [0, 1]
+    "tags_ids": ["0", "1"]
   },
   {
     "id": 1,
     "name": "Note 1",
-    "tags_ids": [0]
+    "tags_ids": ["0"]
   },
   {
     "id": 2,
