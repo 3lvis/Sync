@@ -39,7 +39,7 @@ public extension NSManagedObject {
       let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
 
       if relationship.toMany {
-        if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> {
+        if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> || localPrimaryKey is NSNull {
           sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
         } else {
           sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, dataStack: dataStack)
@@ -64,62 +64,67 @@ public extension NSManagedObject {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
-    guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
     guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
-
-    let remoteItems = localPrimaryKey
-    let localRelationship: NSSet
-    if relationship.ordered {
-      let value = self.valueForKey(relationship.name) as? NSOrderedSet ?? NSOrderedSet()
-      localRelationship = value.set
+    if localPrimaryKey is NSNull {
+      if let _ = valueForKey(relationship.name) {
+        setValue(nil, forKey: relationship.name)
+      }
     } else {
-      localRelationship = self.valueForKey(relationship.name) as? NSSet ?? NSSet()
-    }
-    let localItems = localRelationship.valueForKey(entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
+      guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
+      let remoteItems = localPrimaryKey
+      let localRelationship: NSSet
+      if relationship.ordered {
+        let value = self.valueForKey(relationship.name) as? NSOrderedSet ?? NSOrderedSet()
+        localRelationship = value.set
+      } else {
+        localRelationship = self.valueForKey(relationship.name) as? NSSet ?? NSSet()
+      }
+      let localItems = localRelationship.valueForKey(entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
 
-    let deletedItems = NSMutableArray(array: localItems.allObjects)
-    deletedItems.removeObjectsInArray(remoteItems as [AnyObject])
+      let deletedItems = NSMutableArray(array: localItems.allObjects)
+      deletedItems.removeObjectsInArray(remoteItems as [AnyObject])
 
-    let insertedItems = remoteItems.mutableCopy() as? NSMutableArray ?? NSMutableArray()
-    insertedItems.removeObjectsInArray(localItems.allObjects)
+      let insertedItems = remoteItems.mutableCopy() as? NSMutableArray ?? NSMutableArray()
+      insertedItems.removeObjectsInArray(localItems.allObjects)
 
-    guard insertedItems.count > 0 || deletedItems.count > 0 else { return }
-    let request = NSFetchRequest(entityName: destinationEntityName)
-    let fetchedObjects = try? managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
-    guard let objects = fetchedObjects else { return }
-    for safeObject in objects {
-      let currentID = safeObject.valueForKey(entity.sync_localPrimaryKey())!
-      for inserted in insertedItems {
-        if currentID.isEqual(inserted) {
-          if relationship.ordered {
-            let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
-            if !relatedObjects.containsObject(safeObject) {
-              relatedObjects.addObject(safeObject)
-              setValue(relatedObjects, forKey: relationship.name)
-            }
-          } else {
-            let relatedObjects = mutableSetValueForKey(relationship.name)
-            if !relatedObjects.containsObject(safeObject) {
-              relatedObjects.addObject(safeObject)
-              setValue(relatedObjects, forKey: relationship.name)
+      guard insertedItems.count > 0 || deletedItems.count > 0 else { return }
+      let request = NSFetchRequest(entityName: destinationEntityName)
+      let fetchedObjects = try? managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
+      guard let objects = fetchedObjects else { return }
+      for safeObject in objects {
+        let currentID = safeObject.valueForKey(entity.sync_localPrimaryKey())!
+        for inserted in insertedItems {
+          if currentID.isEqual(inserted) {
+            if relationship.ordered {
+              let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
+              if !relatedObjects.containsObject(safeObject) {
+                relatedObjects.addObject(safeObject)
+                setValue(relatedObjects, forKey: relationship.name)
+              }
+            } else {
+              let relatedObjects = mutableSetValueForKey(relationship.name)
+              if !relatedObjects.containsObject(safeObject) {
+                relatedObjects.addObject(safeObject)
+                setValue(relatedObjects, forKey: relationship.name)
+              }
             }
           }
         }
-      }
 
-      for deleted in deletedItems {
-        if currentID.isEqual(deleted) {
-          if relationship.ordered {
-            let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
-            if relatedObjects.containsObject(safeObject) {
-              relatedObjects.removeObject(safeObject)
-              setValue(relatedObjects, forKey: relationship.name)
-            }
-          } else {
-            let relatedObjects = mutableSetValueForKey(relationship.name)
-            if relatedObjects.containsObject(safeObject) {
-              relatedObjects.removeObject(safeObject)
-              setValue(relatedObjects, forKey: relationship.name)
+        for deleted in deletedItems {
+          if currentID.isEqual(deleted) {
+            if relationship.ordered {
+              let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
+              if relatedObjects.containsObject(safeObject) {
+                relatedObjects.removeObject(safeObject)
+                setValue(relatedObjects, forKey: relationship.name)
+              }
+            } else {
+              let relatedObjects = mutableSetValueForKey(relationship.name)
+              if relatedObjects.containsObject(safeObject) {
+                relatedObjects.removeObject(safeObject)
+                setValue(relatedObjects, forKey: relationship.name)
+              }
             }
           }
         }
@@ -187,9 +192,9 @@ public extension NSManagedObject {
     guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
     guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
     if localPrimaryKey is NSNull {
-        if let _ = valueForKey(relationship.name) {
-            setValue(nil, forKey: relationship.name)
-        }
+      if let _ = valueForKey(relationship.name) {
+        setValue(nil, forKey: relationship.name)
+      }
     } else if let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) {
       let currentRelationship = valueForKey(relationship.name)
       if currentRelationship == nil || !currentRelationship!.isEqual(safeObject) {
