@@ -665,17 +665,18 @@ class SyncTests: XCTestCase {
   }
 
   // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/hyperoslo/Sync/issues/151
+  // Notes have to be unique, two users can't have the same note.
 
   func testMultipleIDRelationshipToMany() {
     let dataStack = Helper.dataStackWithModelName("Issue151")
 
-    // Inserts 3 users
+    // Inserts 3 users, it ignores the relationships since no notes are found
     let users = Helper.objectsFromJSON("issue-151.json") as! [[String : AnyObject]]
     Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 0)
 
-    // Inserts 2 notes
+    // Inserts 3 notes
     let notes = Helper.objectsFromJSON("issue-151-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)

@@ -68,7 +68,6 @@ public extension NSManagedObject {
     guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
     guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
 
-
     /*let remoteItems = localPrimaryKey
     var localKeys = [AnyObject]()
     if let localRelationship = self.valueForKey(relationship.name) as? NSSet {
