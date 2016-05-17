@@ -59,7 +59,6 @@ public extension NSManagedObject {
    and your tag has a users_ids, it will try to sync using those ID instead of requiring you to provide the entire users list inside each tag.
    - parameter relationship: The relationship to be synced.
    - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually an array of strings or numbers.
-   - parameter context: The NSManagedContext.
    */
   func sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship: NSRelationshipDescription, localPrimaryKey: AnyObject) {
     guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
@@ -69,7 +68,13 @@ public extension NSManagedObject {
     guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
 
     let remoteItems = localPrimaryKey
-    let localRelationship = self.valueForKey(relationship.name) as? NSSet ?? NSSet()
+    let localRelationship: NSSet
+    if relationship.ordered {
+      let value = self.valueForKey(relationship.name) as? NSOrderedSet ?? NSOrderedSet()
+      localRelationship = value.set
+    } else {
+      localRelationship = self.valueForKey(relationship.name) as? NSSet ?? NSSet()
+    }
     let localItems = localRelationship.valueForKey(entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
 
     let deletedItems = NSMutableArray(array: localItems.allObjects)
