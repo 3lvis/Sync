@@ -6,14 +6,12 @@
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="city" inverseEntity="Location" syncable="YES"/>
     </entity>
     <entity name="Location" syncable="YES">
-        <attribute name="addressLine" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="locations" inverseEntity="City" syncable="YES"/>
     </entity>
     <elements>
         <element name="City" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Location" positionX="-54" positionY="-9" width="128" height="120"/>
+        <element name="Location" positionX="-54" positionY="-9" width="128" height="90"/>
     </elements>
 </model>
