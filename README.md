@@ -408,7 +408,7 @@ You are free to use any networking library.
 
 ## FAQ
 
-#### Using `hyper.isPrimaryKey` in addition to `hyper.remoteKey`:
+#### Using `hyper.isPrimaryKey` in addition to `hyper.remoteKey`
 
 If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
 
@@ -420,7 +420,7 @@ If you want to use `id` for the remote primary key you also have to add the flag
 - Local primary key will be: `articleBody`
 - Remote primary key will be: `id`
 
-#### How uniquing works (many-to-many, one-to-many)?:
+#### How uniquing works (many-to-many, one-to-many)?
 
 In a `one-to-many` relationship IDs are unique for a parent, but not between parents. For example in this example we have a list of posts where each post has many comments. When syncing posts 2 comment entries will be created:
 
@@ -478,7 +478,7 @@ For example a author can have many documents and a document can have many author
 ]
 ```
 
-#### Logging changes:
+#### Logging changes
 
 Logging changes to Core Data is quite simple, just subscribe to changes like this and print the needed elements:
 
@@ -514,7 +514,7 @@ assert(remoteKey != nil, "nil value")
 
 There are two ways you can sync a JSON object that doesn't have an `id`. You can either set one of it's [attributes as the primary key](https://github.com/hyperoslo/Sync#primary-key), or you can store the JSON object as NSData, I have done this myself in a couple of apps works pretty well. You can find more information on how to store dictionaries using Sync [here](https://github.com/hyperoslo/Sync#arraydictionary).
 
-#### What if I only want inserts and updates?:
+#### What if I only want inserts and updates?
 
 You can provide the type of operations that you want too. If you don't set this parameter, insert, updates and deletes will be done.
 
