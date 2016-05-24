@@ -164,6 +164,29 @@ class SyncTests: XCTestCase {
     try! dataStack.drop()
   }
 
+  // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
+  // and one user deleted. In this test we try inserting and updating users, no delete, so the second sync should leave us with
+  // one updated user, one inserted user, and one user with no changes.
+  func testSyncingWithInsertAndUpdateOperationType() {
+    let dataStack = Helper.dataStackWithModelName("Contacts")
+
+    let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : AnyObject]]
+    Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
+
+    let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : AnyObject]]
+    Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert, .Update], completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
+
+    let user0 = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(int: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
+    XCTAssertEqual(user0.valueForKey("email") as? String, "updated@ovium.com")
+
+    let user1 = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(int: 1)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
+    XCTAssertNotNil(user1)
+
+    try! dataStack.drop()
+  }
+
   // MARK: - Notes
 
   func testRelationshipsA() {
