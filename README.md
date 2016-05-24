@@ -514,6 +514,24 @@ assert(remoteKey != nil, "nil value")
 
 There are two ways you can sync a JSON object that doesn't have an `id`. You can either set one of it's [attributes as the primary key](https://github.com/hyperoslo/Sync#primary-key), or you can store the JSON object as NSData, I have done this myself in a couple of apps works pretty well. You can find more information on how to store dictionaries using Sync [here](https://github.com/hyperoslo/Sync#arraydictionary).
 
+#### What if I only want inserts and updates?:
+
+You can provide the type of operations that you want too. If you don't set this parameter, insert, updates and deletes will be done.
+
+This is how setting operations should work:
+
+```swift
+let firstImport = // First import of users
+Sync.changes(firstBatch, inEntityNamed: "User", dataStack: dataStack, operations: [.All]) {
+    // All users have been imported, they are happy 
+}
+
+let secondImport = // Second import of users
+Sync.changes(secondImport, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert, .Update]) {
+    // Likely after some changes have happened, here usually Sync would remove the not found items but this time
+    // new users have been imported, existing users have been updated, and not found users have been ignored
+}
+```
 
 ## Credits
 
