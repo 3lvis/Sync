@@ -64,6 +64,9 @@
 		1425D5A31CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */; };
 		1425D5A41CC65BEB00EC49D4 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59F1CC65BEB00EC49D4 /* Sync.swift */; };
 		143D74B11D07629500B1385F /* 225.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 143D74AF1D07629500B1385F /* 225.xcdatamodeld */; };
+		143D74B51D077DC300B1385F /* 225-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 143D74B21D077DC300B1385F /* 225-a.json */; };
+		143D74B61D077DC300B1385F /* 225-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 143D74B31D077DC300B1385F /* 225-b.json */; };
+		143D74B71D077DC300B1385F /* 225-c.json in Resources */ = {isa = PBXBuildFile; fileRef = 143D74B41D077DC300B1385F /* 225-c.json */; };
 		1466B48D1CF4EDF1000B7CBD /* operation-types-users-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 1466B48B1CF4EDF1000B7CBD /* operation-types-users-a.json */; };
 		1466B48E1CF4EDF1000B7CBD /* operation-types-users-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 1466B48C1CF4EDF1000B7CBD /* operation-types-users-b.json */; };
 		1469B7F91C68D7820080FD71 /* NotesB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */; };
@@ -146,6 +149,9 @@
 		1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Sync.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		1425D59F1CC65BEB00EC49D4 /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; tabWidth = 2; };
 		143D74B01D07629500B1385F /* 151-many-to-many.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "151-many-to-many.xcdatamodel"; sourceTree = "<group>"; };
+		143D74B21D077DC300B1385F /* 225-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-a.json"; sourceTree = "<group>"; };
+		143D74B31D077DC300B1385F /* 225-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-b.json"; sourceTree = "<group>"; };
+		143D74B41D077DC300B1385F /* 225-c.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-c.json"; sourceTree = "<group>"; };
 		1466B48B1CF4EDF1000B7CBD /* operation-types-users-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "operation-types-users-a.json"; sourceTree = "<group>"; };
 		1466B48C1CF4EDF1000B7CBD /* operation-types-users-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "operation-types-users-b.json"; sourceTree = "<group>"; };
 		1469B7F81C68D7820080FD71 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
@@ -212,6 +218,9 @@
 				14D7321E1CE9A6C400C28D40 /* 157-cities.json */,
 				140B0DEE1CEAFAFC00D0EE3E /* 157-locations-update.json */,
 				141D9E711CE9A4830041A7FC /* 157-locations.json */,
+				143D74B21D077DC300B1385F /* 225-a.json */,
+				143D74B31D077DC300B1385F /* 225-b.json */,
+				143D74B41D077DC300B1385F /* 225-c.json */,
 				1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */,
 				1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */,
 				1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */,
@@ -254,11 +263,11 @@
 		141894241BDD62F600EE52CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				143D74AF1D07629500B1385F /* 225.xcdatamodeld */,
+				14096A381CEAF40E002690D6 /* 151-many-to-many.xcdatamodeld */,
 				14096A3E1CEAF483002690D6 /* 151-ordered-many-to-many.xcdatamodeld */,
 				14096A401CEAF483002690D6 /* 151-ordered-to-many.xcdatamodeld */,
-				14096A381CEAF40E002690D6 /* 151-many-to-many.xcdatamodeld */,
 				14096A3A1CEAF40E002690D6 /* 151-to-many.xcdatamodeld */,
+				143D74AF1D07629500B1385F /* 225.xcdatamodeld */,
 				1418942B1BDD62F600EE52CE /* Bug84.xcdatamodeld */,
 				141894251BDD62F600EE52CE /* Bug113.xcdatamodeld */,
 				141894291BDD62F600EE52CE /* Bug125.xcdatamodeld */,
@@ -455,6 +464,7 @@
 				1418944A1BDD62F600EE52CE /* markets_items.json in Resources */,
 				146F2EB51CE1F2C500543F83 /* id.json in Resources */,
 				141894561BDD62F600EE52CE /* users_c.json in Resources */,
+				143D74B51D077DC300B1385F /* 225-a.json in Resources */,
 				141894541BDD62F600EE52CE /* users_a.json in Resources */,
 				14096A341CEAF329002690D6 /* 151-many-to-many-tags.json in Resources */,
 				141894461BDD62F600EE52CE /* comments-no-id.json in Resources */,
@@ -466,6 +476,7 @@
 				1418944E1BDD62F600EE52CE /* organizations-tree.json in Resources */,
 				141894491BDD62F600EE52CE /* images.json in Resources */,
 				14096A371CEAF329002690D6 /* 151-to-many-users.json in Resources */,
+				143D74B61D077DC300B1385F /* 225-b.json in Resources */,
 				140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */,
 				141894501BDD62F600EE52CE /* stories-comments-no-ids.json in Resources */,
 				1418944F1BDD62F600EE52CE /* patients.json in Resources */,
@@ -475,6 +486,7 @@
 				141D9E721CE9A4830041A7FC /* 157-locations.json in Resources */,
 				1466B48E1CF4EDF1000B7CBD /* operation-types-users-b.json in Resources */,
 				141894511BDD62F600EE52CE /* story-summarize.json in Resources */,
+				143D74B71D077DC300B1385F /* 225-c.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

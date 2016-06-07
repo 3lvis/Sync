@@ -3,15 +3,15 @@
     <entity name="Tag" syncable="YES">
         <attribute name="hashtag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="favoriteTags" inverseEntity="User" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="tags" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="favoriteTags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="users" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="users" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <elements>
         <element name="Tag" positionX="-63" positionY="-18" width="128" height="88"/>
-        <element name="User" positionX="124" positionY="-27" width="128" height="88"/>
+        <element name="User" positionX="124" positionY="-27" width="128" height="90"/>
     </elements>
 </model>
