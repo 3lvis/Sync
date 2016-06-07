@@ -63,6 +63,7 @@
 		1425D5A21CC65BEB00EC49D4 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */; };
 		1425D5A31CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */; };
 		1425D5A41CC65BEB00EC49D4 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1425D59F1CC65BEB00EC49D4 /* Sync.swift */; };
+		143D74B11D07629500B1385F /* 225.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 143D74AF1D07629500B1385F /* 225.xcdatamodeld */; };
 		1466B48D1CF4EDF1000B7CBD /* operation-types-users-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 1466B48B1CF4EDF1000B7CBD /* operation-types-users-a.json */; };
 		1466B48E1CF4EDF1000B7CBD /* operation-types-users-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 1466B48C1CF4EDF1000B7CBD /* operation-types-users-b.json */; };
 		1469B7F91C68D7820080FD71 /* NotesB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */; };
@@ -144,6 +145,7 @@
 		1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Sync.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Sync.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		1425D59F1CC65BEB00EC49D4 /* Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; tabWidth = 2; };
+		143D74B01D07629500B1385F /* 151-many-to-many.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "151-many-to-many.xcdatamodel"; sourceTree = "<group>"; };
 		1466B48B1CF4EDF1000B7CBD /* operation-types-users-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "operation-types-users-a.json"; sourceTree = "<group>"; };
 		1466B48C1CF4EDF1000B7CBD /* operation-types-users-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "operation-types-users-b.json"; sourceTree = "<group>"; };
 		1469B7F81C68D7820080FD71 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		141894241BDD62F600EE52CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				143D74AF1D07629500B1385F /* 225.xcdatamodeld */,
 				14096A3E1CEAF483002690D6 /* 151-ordered-many-to-many.xcdatamodeld */,
 				14096A401CEAF483002690D6 /* 151-ordered-to-many.xcdatamodeld */,
 				14096A381CEAF40E002690D6 /* 151-many-to-many.xcdatamodeld */,
@@ -531,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */,
+				143D74B11D07629500B1385F /* 225.xcdatamodeld in Sources */,
 				140FBF1C1CB91A5D0026484E /* Camelcase.xcdatamodeld in Sources */,
 				1425D5A21CC65BEB00EC49D4 /* NSManagedObject+Sync.swift in Sources */,
 				14D943591C51844C00F90DC2 /* NSArray+SyncTests.swift in Sources */,
@@ -868,6 +872,16 @@
 			);
 			currentVersion = 141D9E741CE9A4970041A7FC /* Demo.xcdatamodel */;
 			path = Bug157.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		143D74AF1D07629500B1385F /* 225.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				143D74B01D07629500B1385F /* 151-many-to-many.xcdatamodel */,
+			);
+			currentVersion = 143D74B01D07629500B1385F /* 151-many-to-many.xcdatamodel */;
+			path = 225.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
