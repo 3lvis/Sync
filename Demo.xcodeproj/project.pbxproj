@@ -82,6 +82,11 @@
 		14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */; };
 		14D7321F1CE9A6C400C28D40 /* 157-cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 14D7321E1CE9A6C400C28D40 /* 157-cities.json */; };
 		14D943591C51844C00F90DC2 /* NSArray+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */; };
+		14DFB8B41D0788BB00AB375F /* 225-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8AE1D0788BB00AB375F /* 225-many-to-many-notes-update.json */; };
+		14DFB8B51D0788BB00AB375F /* 225-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8AF1D0788BB00AB375F /* 225-many-to-many-notes.json */; };
+		14DFB8B71D0788BB00AB375F /* 225-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8B11D0788BB00AB375F /* 225-to-many-notes.json */; };
+		14DFB8B81D0788BB00AB375F /* 225-to-many-users-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8B21D0788BB00AB375F /* 225-to-many-users-update.json */; };
+		14DFB8B91D0788BB00AB375F /* 225-to-many-users.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8B31D0788BB00AB375F /* 225-to-many-users.json */; };
 		14E298431C563EE500B68B72 /* OrderedSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E298411C563EE500B68B72 /* OrderedSocial.xcdatamodeld */; };
 		14FDB4D11C511A5B0061D9FA /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D01C511A5B0061D9FA /* SyncTests.swift */; };
 		14FDB4D31C511A6F0061D9FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D21C511A6F0061D9FA /* Helper.swift */; };
@@ -174,6 +179,11 @@
 		14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14D7321E1CE9A6C400C28D40 /* 157-cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "157-cities.json"; sourceTree = "<group>"; };
 		14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+SyncTests.swift"; sourceTree = "<group>"; };
+		14DFB8AE1D0788BB00AB375F /* 225-many-to-many-notes-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-many-to-many-notes-update.json"; sourceTree = "<group>"; };
+		14DFB8AF1D0788BB00AB375F /* 225-many-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-many-to-many-notes.json"; sourceTree = "<group>"; };
+		14DFB8B11D0788BB00AB375F /* 225-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-to-many-notes.json"; sourceTree = "<group>"; };
+		14DFB8B21D0788BB00AB375F /* 225-to-many-users-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-to-many-users-update.json"; sourceTree = "<group>"; };
+		14DFB8B31D0788BB00AB375F /* 225-to-many-users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-to-many-users.json"; sourceTree = "<group>"; };
 		14E298421C563EE500B68B72 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14FDB4D01C511A5B0061D9FA /* SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTests.swift; sourceTree = "<group>"; };
 		14FDB4D21C511A6F0061D9FA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -221,6 +231,11 @@
 				143D74B21D077DC300B1385F /* 225-a.json */,
 				143D74B31D077DC300B1385F /* 225-b.json */,
 				143D74B41D077DC300B1385F /* 225-c.json */,
+				14DFB8AE1D0788BB00AB375F /* 225-many-to-many-notes-update.json */,
+				14DFB8AF1D0788BB00AB375F /* 225-many-to-many-notes.json */,
+				14DFB8B11D0788BB00AB375F /* 225-to-many-notes.json */,
+				14DFB8B21D0788BB00AB375F /* 225-to-many-users-update.json */,
+				14DFB8B31D0788BB00AB375F /* 225-to-many-users.json */,
 				1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */,
 				1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */,
 				1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */,
@@ -441,7 +456,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B637171C6E517F00229B03 /* bug-179-places.json in Resources */,
+				14DFB8B41D0788BB00AB375F /* 225-many-to-many-notes-update.json in Resources */,
 				14A644151CD77C7A00F51E23 /* bug-202-a.json in Resources */,
+				14DFB8B91D0788BB00AB375F /* 225-to-many-users.json in Resources */,
 				1418944C1BDD62F600EE52CE /* numbers.json in Resources */,
 				14959D141C065350004EF790 /* notes_with_user_id.json in Resources */,
 				14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */,
@@ -450,10 +467,12 @@
 				141894571BDD62F600EE52CE /* users_company.json in Resources */,
 				140B0DEF1CEAFAFC00D0EE3E /* 157-locations-update.json in Resources */,
 				14096A321CEAF329002690D6 /* 151-many-to-many-notes-update.json in Resources */,
+				14DFB8B81D0788BB00AB375F /* 225-to-many-users-update.json in Resources */,
 				1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */,
 				141894441BDD62F600EE52CE /* bug-125.json in Resources */,
 				1418944D1BDD62F600EE52CE /* numbers_in_collection.json in Resources */,
 				1418944B1BDD62F600EE52CE /* notes_for_user_a.json in Resources */,
+				14DFB8B51D0788BB00AB375F /* 225-many-to-many-notes.json in Resources */,
 				14096A361CEAF329002690D6 /* 151-to-many-users-update.json in Resources */,
 				141894521BDD62F600EE52CE /* tagged_notes.json in Resources */,
 				141894581BDD62F600EE52CE /* users_notes.json in Resources */,
@@ -472,6 +491,7 @@
 				141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				141894551BDD62F600EE52CE /* users_b.json in Resources */,
 				14D7321F1CE9A6C400C28D40 /* 157-cities.json in Resources */,
+				14DFB8B71D0788BB00AB375F /* 225-to-many-notes.json in Resources */,
 				141894481BDD62F600EE52CE /* custom_relationship_key_to_one.json in Resources */,
 				1418944E1BDD62F600EE52CE /* organizations-tree.json in Resources */,
 				141894491BDD62F600EE52CE /* images.json in Resources */,

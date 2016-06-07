@@ -1,0 +1,41 @@
+[
+  {
+    "id": 0,
+    "name": "Note 0",
+    "tags": [
+      {
+        "id": "0",
+        "name": "#yolo"
+      },
+      {
+        "id": "1",
+        "name": "#nofilter"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Note 1",
+    "tags": [
+      {
+        "id": "0",
+        "name": "#yolo"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Note 2",
+    "tags": []
+  },
+  {
+    "id": 3,
+    "name": "Note 3",
+    "tags": [
+      {
+        "id": "1",
+        "name": "#nofilter"
+      }
+    ]
+  }
+]
