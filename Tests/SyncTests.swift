@@ -1055,29 +1055,11 @@ class SyncTests: XCTestCase {
   // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/hyperoslo/Sync/issues/151
   // Notes have to be unique, two users can't have the same note.
 
-  func testMultipleIDRelationshipToMany() {
+  func testRelationshipToMany() {
     let dataStack = Helper.dataStackWithModelName("151-to-many")
 
     // Inserts 3 users, it ignores the relationships since no notes are found
-    let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : AnyObject]]
-    Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 0)
-
-    // Inserts 3 notes
-    let notes = Helper.objectsFromJSON("151-to-many-notes.json") as! [[String : AnyObject]]
-    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
-    let savedUsers = Helper.fetchEntity("User", inContext: dataStack.mainContext)
-    var total = 0
-    for user in savedUsers {
-      let notes = user.valueForKey("notes") as? Set<NSManagedObject> ?? Set<NSManagedObject>()
-      total += notes.count
-    }
-    XCTAssertEqual(total, 0)
-
-    // Updates the first 3 users, but now it makes the relationships with the notes
+    let users = Helper.objectsFromJSON("225-to-many-users.json") as! [[String : AnyObject]]
     Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -1101,7 +1083,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(note2User?.valueForKey("userID") as? Int, 11)
 
     // Updates the first 3 users again, but now it changes all the relationships
-    let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : AnyObject]]
+    let updatedUsers = Helper.objectsFromJSON("225-to-many-users-update.json") as! [[String : AnyObject]]
     Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -1130,29 +1112,11 @@ class SyncTests: XCTestCase {
   // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/hyperoslo/Sync/issues/151
   // Notes have to be unique, two users can't have the same note.
 
-  func testOrderedMultipleIDRelationshipToMany() {
+  func testOrderedRelationshipToMany() {
     let dataStack = Helper.dataStackWithModelName("151-ordered-to-many")
 
     // Inserts 3 users, it ignores the relationships since no notes are found
-    let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : AnyObject]]
-    Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 0)
-
-    // Inserts 3 notes
-    let notes = Helper.objectsFromJSON("151-to-many-notes.json") as! [[String : AnyObject]]
-    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
-    let savedUsers = Helper.fetchEntity("User", inContext: dataStack.mainContext)
-    var total = 0
-    for user in savedUsers {
-      let notes = user.valueForKey("notes") as? Set<NSManagedObject> ?? Set<NSManagedObject>()
-      total += notes.count
-    }
-    XCTAssertEqual(total, 0)
-
-    // Updates the first 3 users, but now it makes the relationships with the notes
+    let users = Helper.objectsFromJSON("225-to-many-users.json") as! [[String : AnyObject]]
     Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -1167,7 +1131,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(user12Notes?.set.count, 0)
 
     // Updates the first 3 users again, but now it changes all the relationships
-    let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : AnyObject]]
+    let updatedUsers = Helper.objectsFromJSON("225-to-many-users-update.json") as! [[String : AnyObject]]
     Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -1186,29 +1150,11 @@ class SyncTests: XCTestCase {
 
   // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/hyperoslo/Sync/issues/151
 
-  func testMultipleIDRelationshipManyToMany() {
+  func testRelationshipManyToMany() {
     let dataStack = Helper.dataStackWithModelName("151-many-to-many")
 
     // Inserts 4 notes
-    let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
-    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
-
-    // Inserts 3 tags
-    let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : AnyObject]]
-    Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
-    let savedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
-    var total = 0
-    for note in savedNotes {
-      let tags = note.valueForKey("tags") as? Set<NSManagedObject> ?? Set<NSManagedObject>()
-      total += tags.count
-    }
-    XCTAssertEqual(total, 0)
-
-    // Updates the first 4 notes, but now it makes the relationships with the tags
+    let notes = Helper.objectsFromJSON("225-many-to-many-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
@@ -1226,7 +1172,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(note3Tags?.count, 1)
 
     // Updates the first 4 notes again, but now it changes all the relationships
-    let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : AnyObject]]
+    let updatedNotes = Helper.objectsFromJSON("225-many-to-many-notes-update.json") as! [[String : AnyObject]]
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
@@ -1249,29 +1195,11 @@ class SyncTests: XCTestCase {
 
   // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/hyperoslo/Sync/issues/151
 
-  func testOrderedMultipleIDRelationshipManyToMany() {
+  func testOrderedRelationshipManyToMany() {
     let dataStack = Helper.dataStackWithModelName("151-ordered-many-to-many")
 
     // Inserts 4 notes
-    let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
-    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
-
-    // Inserts 3 tags
-    let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : AnyObject]]
-    Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
-    let savedNotes = Helper.fetchEntity("Note", inContext: dataStack.mainContext)
-    var total = 0
-    for note in savedNotes {
-      let tags = note.valueForKey("tags") as? Set<NSManagedObject> ?? Set<NSManagedObject>()
-      total += tags.count
-    }
-    XCTAssertEqual(total, 0)
-
-    // Updates the first 4 notes, but now it makes the relationships with the tags
+    let notes = Helper.objectsFromJSON("225-many-to-many-notes.json") as! [[String : AnyObject]]
     Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
@@ -1289,7 +1217,7 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(note3Tags?.count, 1)
 
     // Updates the first 4 notes again, but now it changes all the relationships
-    let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : AnyObject]]
+    let updatedNotes = Helper.objectsFromJSON("225-many-to-many-notes-update.json") as! [[String : AnyObject]]
     XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
     Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)

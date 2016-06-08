@@ -84,7 +84,6 @@
 		14D943591C51844C00F90DC2 /* NSArray+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */; };
 		14DFB8B41D0788BB00AB375F /* 225-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8AE1D0788BB00AB375F /* 225-many-to-many-notes-update.json */; };
 		14DFB8B51D0788BB00AB375F /* 225-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8AF1D0788BB00AB375F /* 225-many-to-many-notes.json */; };
-		14DFB8B71D0788BB00AB375F /* 225-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8B11D0788BB00AB375F /* 225-to-many-notes.json */; };
 		14DFB8B81D0788BB00AB375F /* 225-to-many-users-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8B21D0788BB00AB375F /* 225-to-many-users-update.json */; };
 		14DFB8B91D0788BB00AB375F /* 225-to-many-users.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DFB8B31D0788BB00AB375F /* 225-to-many-users.json */; };
 		14E298431C563EE500B68B72 /* OrderedSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E298411C563EE500B68B72 /* OrderedSocial.xcdatamodeld */; };
@@ -181,7 +180,6 @@
 		14D943581C51844C00F90DC2 /* NSArray+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+SyncTests.swift"; sourceTree = "<group>"; };
 		14DFB8AE1D0788BB00AB375F /* 225-many-to-many-notes-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-many-to-many-notes-update.json"; sourceTree = "<group>"; };
 		14DFB8AF1D0788BB00AB375F /* 225-many-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-many-to-many-notes.json"; sourceTree = "<group>"; };
-		14DFB8B11D0788BB00AB375F /* 225-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-to-many-notes.json"; sourceTree = "<group>"; };
 		14DFB8B21D0788BB00AB375F /* 225-to-many-users-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-to-many-users-update.json"; sourceTree = "<group>"; };
 		14DFB8B31D0788BB00AB375F /* 225-to-many-users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-to-many-users.json"; sourceTree = "<group>"; };
 		14E298421C563EE500B68B72 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 				143D74B41D077DC300B1385F /* 225-c.json */,
 				14DFB8AE1D0788BB00AB375F /* 225-many-to-many-notes-update.json */,
 				14DFB8AF1D0788BB00AB375F /* 225-many-to-many-notes.json */,
-				14DFB8B11D0788BB00AB375F /* 225-to-many-notes.json */,
 				14DFB8B21D0788BB00AB375F /* 225-to-many-users-update.json */,
 				14DFB8B31D0788BB00AB375F /* 225-to-many-users.json */,
 				1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */,
@@ -491,7 +488,6 @@
 				141894411BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				141894551BDD62F600EE52CE /* users_b.json in Resources */,
 				14D7321F1CE9A6C400C28D40 /* 157-cities.json in Resources */,
-				14DFB8B71D0788BB00AB375F /* 225-to-many-notes.json in Resources */,
 				141894481BDD62F600EE52CE /* custom_relationship_key_to_one.json in Resources */,
 				1418944E1BDD62F600EE52CE /* organizations-tree.json in Resources */,
 				141894491BDD62F600EE52CE /* images.json in Resources */,
