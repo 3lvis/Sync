@@ -1033,7 +1033,7 @@ class SyncTests: XCTestCase {
 
   // MARK: - https://github.com/hyperoslo/Sync/issues/225
 
-  func test225() {
+  func test225Empty() {
     let dataStack = Helper.dataStackWithModelName("225")
 
     let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
@@ -1041,199 +1041,27 @@ class SyncTests: XCTestCase {
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
     XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-    let usersB = Helper.objectsFromJSON("225-b.json") as! [[String : AnyObject]]
+    let usersB = Helper.objectsFromJSON("225-b-empty.json") as! [[String : AnyObject]]
     Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
-    let usersC = Helper.objectsFromJSON("225-c.json") as! [[String : AnyObject]]
-    Sync.changes(usersC, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    try! dataStack.drop()
+  }
+
+  func test225Null() {
+    let dataStack = Helper.dataStackWithModelName("225")
+
+    let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+    Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
     XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
-  }
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-  // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/hyperoslo/Sync/issues/151
-  // Notes have to be unique, two users can't have the same note.
+    let usersB = Helper.objectsFromJSON("225-b-null.json") as! [[String : AnyObject]]
+    Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
-  func testRelationshipToMany() {
-    let dataStack = Helper.dataStackWithModelName("151-to-many")
-
-    // Inserts 3 users, it ignores the relationships since no notes are found
-    let users = Helper.objectsFromJSON("225-to-many-users.json") as! [[String : AnyObject]]
-    Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
-    var user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "userID = 10"), inContext: dataStack.mainContext).first
-    var user10Notes = user10?.valueForKey("notes") as? Set<NSManagedObject>
-    XCTAssertEqual(user10Notes?.count, 2)
-    var user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "userID = 11"), inContext: dataStack.mainContext).first
-    var user11Notes = user11?.valueForKey("notes") as? Set<NSManagedObject>
-    XCTAssertEqual(user11Notes?.count, 1)
-    var user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "userID = 12"), inContext: dataStack.mainContext).first
-    var user12Notes = user12?.valueForKey("notes") as? Set<NSManagedObject>
-    XCTAssertEqual(user12Notes?.count, 0)
-    var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 0"), inContext: dataStack.mainContext).first
-    var note0User = note0?.valueForKey("user") as? NSManagedObject
-    XCTAssertEqual(note0User?.valueForKey("userID") as? Int, 10)
-    var note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 1"), inContext: dataStack.mainContext).first
-    var note1User = note1?.valueForKey("user") as? NSManagedObject
-    XCTAssertEqual(note1User?.valueForKey("userID") as? Int, 10)
-    var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 2"), inContext: dataStack.mainContext).first
-    var note2User = note2?.valueForKey("user") as? NSManagedObject
-    XCTAssertEqual(note2User?.valueForKey("userID") as? Int, 11)
-
-    // Updates the first 3 users again, but now it changes all the relationships
-    let updatedUsers = Helper.objectsFromJSON("225-to-many-users-update.json") as! [[String : AnyObject]]
-    Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
-    user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "userID = 10"), inContext: dataStack.mainContext).first
-    user10Notes = user10?.valueForKey("notes") as? Set<NSManagedObject>
-    XCTAssertEqual(user10Notes?.count, 0)
-    user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "userID = 11"), inContext: dataStack.mainContext).first
-    user11Notes = user11?.valueForKey("notes") as? Set<NSManagedObject>
-    XCTAssertEqual(user11Notes?.count, 1)
-    user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "userID = 12"), inContext: dataStack.mainContext).first
-    user12Notes = user12?.valueForKey("notes") as? Set<NSManagedObject>
-    XCTAssertEqual(user12Notes?.count, 2)
-    note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 0"), inContext: dataStack.mainContext).first
-    note0User = note0?.valueForKey("user") as? NSManagedObject
-    XCTAssertEqual(note0User?.valueForKey("userID") as? Int, 12)
-    note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 1"), inContext: dataStack.mainContext).first
-    note1User = note1?.valueForKey("user") as? NSManagedObject
-    XCTAssertEqual(note1User?.valueForKey("userID") as? Int, 12)
-    note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 2"), inContext: dataStack.mainContext).first
-    note2User = note2?.valueForKey("user") as? NSManagedObject
-    XCTAssertEqual(note2User?.valueForKey("userID") as? Int, 11)
-
-    try! dataStack.drop()
-  }
-
-  // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/hyperoslo/Sync/issues/151
-  // Notes have to be unique, two users can't have the same note.
-
-  func testOrderedRelationshipToMany() {
-    let dataStack = Helper.dataStackWithModelName("151-ordered-to-many")
-
-    // Inserts 3 users, it ignores the relationships since no notes are found
-    let users = Helper.objectsFromJSON("225-to-many-users.json") as! [[String : AnyObject]]
-    Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
-    var user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
-    var user10Notes = user10?.valueForKey("notes") as? NSOrderedSet
-    XCTAssertEqual(user10Notes?.set.count, 2)
-    var user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 11"), inContext: dataStack.mainContext).first
-    var user11Notes = user11?.valueForKey("notes") as? NSOrderedSet
-    XCTAssertEqual(user11Notes?.set.count, 1)
-    var user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
-    var user12Notes = user12?.valueForKey("notes") as? NSOrderedSet
-    XCTAssertEqual(user12Notes?.set.count, 0)
-
-    // Updates the first 3 users again, but now it changes all the relationships
-    let updatedUsers = Helper.objectsFromJSON("225-to-many-users-update.json") as! [[String : AnyObject]]
-    Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
-    user10 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 10"), inContext: dataStack.mainContext).first
-    user10Notes = user10?.valueForKey("notes") as? NSOrderedSet
-    XCTAssertEqual(user10Notes?.set.count, 0)
-    user11 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 11"), inContext: dataStack.mainContext).first
-    user11Notes = user11?.valueForKey("notes") as? NSOrderedSet
-    XCTAssertEqual(user11Notes?.set.count, 1)
-    user12 = Helper.fetchEntity("User", predicate: NSPredicate(format: "id = 12"), inContext: dataStack.mainContext).first
-    user12Notes = user12?.valueForKey("notes") as? NSOrderedSet
-    XCTAssertEqual(user12Notes?.set.count, 2)
-
-    try! dataStack.drop()
-  }
-
-  // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/hyperoslo/Sync/issues/151
-
-  func testRelationshipManyToMany() {
-    let dataStack = Helper.dataStackWithModelName("151-many-to-many")
-
-    // Inserts 4 notes
-    let notes = Helper.objectsFromJSON("225-many-to-many-notes.json") as! [[String : AnyObject]]
-    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
-    var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 0"), inContext: dataStack.mainContext).first
-    var note0Tags = note0?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note0Tags?.count, 2)
-    var note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 1"), inContext: dataStack.mainContext).first
-    var note1Tags = note1?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note1Tags?.count, 1)
-    var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 2"), inContext: dataStack.mainContext).first
-    var note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note2Tags?.count, 0)
-    var note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 3"), inContext: dataStack.mainContext).first
-    var note3Tags = note3?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note3Tags?.count, 1)
-
-    // Updates the first 4 notes again, but now it changes all the relationships
-    let updatedNotes = Helper.objectsFromJSON("225-many-to-many-notes-update.json") as! [[String : AnyObject]]
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
-    Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 0"), inContext: dataStack.mainContext).first
-    note0Tags = note0?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note0Tags?.count, 1)
-    note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 1"), inContext: dataStack.mainContext).first
-    note1Tags = note1?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note1Tags?.count, 0)
-    note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 2"), inContext: dataStack.mainContext).first
-    note2Tags = note2?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note2Tags?.count, 2)
-    note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "noteID = 3"), inContext: dataStack.mainContext).first
-    note3Tags = note3?.valueForKey("tags") as? Set<NSManagedObject>
-    XCTAssertEqual(note3Tags?.count, 0)
-
-
-    try! dataStack.drop()
-  }
-
-  // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/hyperoslo/Sync/issues/151
-
-  func testOrderedRelationshipManyToMany() {
-    let dataStack = Helper.dataStackWithModelName("151-ordered-many-to-many")
-
-    // Inserts 4 notes
-    let notes = Helper.objectsFromJSON("225-many-to-many-notes.json") as! [[String : AnyObject]]
-    Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
-    var note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
-    var note0Tags = note0?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note0Tags?.count, 2)
-    var note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
-    var note1Tags = note1?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note1Tags?.count, 1)
-    var note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
-    var note2Tags = note2?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note2Tags?.count, 0)
-    var note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 3"), inContext: dataStack.mainContext).first
-    var note3Tags = note3?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note3Tags?.count, 1)
-
-    // Updates the first 4 notes again, but now it changes all the relationships
-    let updatedNotes = Helper.objectsFromJSON("225-many-to-many-notes-update.json") as! [[String : AnyObject]]
-    XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
-    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
-    Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
-    note0 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
-    note0Tags = note0?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note0Tags?.set.count, 1)
-    note1 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
-    note1Tags = note1?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note1Tags?.set.count, 0)
-    note2 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 2"), inContext: dataStack.mainContext).first
-    note2Tags = note2?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note2Tags?.set.count, 2)
-    note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 3"), inContext: dataStack.mainContext).first
-    note3Tags = note3?.valueForKey("tags") as? NSOrderedSet
-    XCTAssertEqual(note3Tags?.count, 0)
-    
     try! dataStack.drop()
   }
 }
