@@ -188,7 +188,7 @@ import DATAStack
     self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
   }
 
-  class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
+  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
     let localPrimaryKey = entity.sync_localPrimaryKey()
