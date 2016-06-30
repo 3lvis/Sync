@@ -20,8 +20,8 @@ PODS:
     - NSManagedObject-HYPPropertyMapper (~> 3.6.9)
 
 DEPENDENCIES:
-  - DATASource (~> 6.0.0-beta)
-  - JSON (~> 5.0.0-beta)
+  - DATASource (~> 6.0.0-beta1)
+  - JSON (~> 5.0.0-beta1)
   - Sync (from `.`)
 
 EXTERNAL SOURCES:
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   NSString-HYPNetworking: 7c18e44ca9529d2f74a30a1c2a7a787da76198c1
   Sync: 40facb09f98b4ca19241ab24893b5948b8dba44e
 
-PODFILE CHECKSUM: d01bffa048306d31679a1606dd33456220fa7f36
+PODFILE CHECKSUM: 531dbbec5ed2cf7c2399761e733bf6462e28f920
 
 COCOAPODS: 1.0.1
