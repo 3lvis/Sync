@@ -4,34 +4,34 @@ import DATAFilter
 import NSManagedObject_HYPPropertyMapper
 import DATAStack
 
-@objc public class Sync: NSOperation {
+@objc public class Sync: Operation {
   var downloadFinished = false
   var downloadExecuting = false
   var downloadCancelled = false
 
-  public override var finished: Bool {
+  public override var isFinished: Bool {
     return self.downloadFinished
   }
 
-  public override var executing: Bool {
+  public override var isExecuting: Bool {
     return self.downloadExecuting
   }
 
-  public override var cancelled: Bool {
+  public override var isCancelled: Bool {
     return self.downloadCancelled
   }
 
-  public override var asynchronous: Bool {
+  public override var isAsynchronous: Bool {
     return true
   }
 
   var changes: [[String : AnyObject]]
   var entityName: String
-  weak var predicate: NSPredicate?
+  weak var predicate: Predicate?
   unowned var dataStack: DATAStack
-  var filterOperations = DATAFilterOperation.All
+  var filterOperations = DATAFilterOperation.all
 
-  public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: DATAFilterOperation = .All) {
+  public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: Predicate?, dataStack: DATAStack, operations: DATAFilterOperation = .all) {
     self.changes = changes
     self.entityName = entityName
     self.predicate = predicate
@@ -40,19 +40,19 @@ import DATAStack
   }
 
   public override func start() {
-    func updateExecuting(isExecuting: Bool) {
-      self.willChangeValueForKey("isExecuting")
+    func updateExecuting(_ isExecuting: Bool) {
+      self.willChangeValue(forKey: "isExecuting")
       self.downloadExecuting = isExecuting
-      self.didChangeValueForKey("isExecuting")
+      self.didChangeValue(forKey: "isExecuting")
     }
 
-    func updateFinished(isFinished: Bool) {
-      self.willChangeValueForKey("isFinished")
+    func updateFinished(_ isFinished: Bool) {
+      self.willChangeValue(forKey: "isFinished")
       self.downloadFinished = isFinished
-      self.didChangeValueForKey("isFinished")
+      self.didChangeValue(forKey: "isFinished")
     }
 
-    if self.cancelled {
+    if self.isCancelled {
       updateExecuting(false)
       updateFinished(true)
     } else {
@@ -66,10 +66,10 @@ import DATAStack
   }
 
   public override func cancel() {
-    func updateCancelled(isCancelled: Bool) {
-      self.willChangeValueForKey("isCancelled")
+    func updateCancelled(_ isCancelled: Bool) {
+      self.willChangeValue(forKey: "isCancelled")
       self.downloadCancelled = isCancelled
-      self.didChangeValueForKey("isCancelled")
+      self.didChangeValue(forKey: "isCancelled")
     }
 
     updateCancelled(true)
@@ -85,8 +85,8 @@ import DATAStack
    - parameter dataStack: The DATAStack instance.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
-    self.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: dataStack, operations: .All, completion: completion)
+  public class func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+    self.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: dataStack, operations: .all, completion: completion)
   }
 
   /**
@@ -100,7 +100,7 @@ import DATAStack
    - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
+  public class func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
     self.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: dataStack, operations: operations, completion: completion)
   }
 
@@ -116,9 +116,9 @@ import DATAStack
    - parameter dataStack: The DATAStack instance.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+  public class func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: Predicate?, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
     dataStack.performInNewBackgroundContext { backgroundContext in
-      self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+      self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, inContext: backgroundContext, dataStack: dataStack, operations: .all, completion: completion)
     }
   }
 
@@ -135,7 +135,7 @@ import DATAStack
    - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
+  public class func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: Predicate?, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
     dataStack.performInNewBackgroundContext { backgroundContext in
       self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, inContext: backgroundContext, dataStack: dataStack, operations: operations, completion: completion)
     }
@@ -154,18 +154,18 @@ import DATAStack
    - parameter dataStack: The DATAStack instance.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, parent: NSManagedObject, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+  public class func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, parent: NSManagedObject, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
     dataStack.performInNewBackgroundContext { backgroundContext in
       let safeParent = parent.sync_copyInContext(backgroundContext)
-      guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: backgroundContext) else { fatalError("Couldn't find entity named: \(entityName)") }
-      let relationships = entity.relationshipsWithDestinationEntity(parent.entity)
-      var predicate: NSPredicate? = nil
+      guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: backgroundContext) else { fatalError("Couldn't find entity named: \(entityName)") }
+      let relationships = entity.relationships(forDestination: parent.entity)
+      var predicate: Predicate? = nil
 
       if let firstRelationship = relationships.first {
-        predicate = NSPredicate(format: "%K = %@", firstRelationship.name, safeParent)
+        predicate = Predicate(format: "%K = %@", firstRelationship.name, safeParent)
       }
 
-      self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+      self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, inContext: backgroundContext, dataStack: dataStack, operations: .all, completion: completion)
     }
   }
 
@@ -184,12 +184,12 @@ import DATAStack
    - parameter dataStack: The DATAStack instance.
    - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
    */
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
-    self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
+  public class func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: Predicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
+    self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, operations: .all, completion: completion)
   }
 
-  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
-    guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
+  public class func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: Predicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilterOperation, completion: ((error: NSError?) -> Void)?) {
+    guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
     let localPrimaryKey = entity.sync_localPrimaryKey()
     let remotePrimaryKey = entity.sync_remotePrimaryKey()
@@ -197,7 +197,7 @@ import DATAStack
 
     var finalPredicate = predicate
     if let parentEntity = entity.sync_parentEntity() where shouldLookForParent {
-      finalPredicate = NSPredicate(format: "%K = nil", parentEntity.name)
+      finalPredicate = Predicate(format: "%K = nil", parentEntity.name)
     }
 
     if localPrimaryKey.isEmpty {
@@ -211,11 +211,11 @@ import DATAStack
     DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { objectJSON in
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
 
-      let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
+      let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
       created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
     }) { objectJSON, updatedObject in
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
-      updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
+      updatedObject?.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
     }
 
     var syncError: NSError?
@@ -227,13 +227,13 @@ import DATAStack
       }
     }
 
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
       completion?(error: syncError)
     }
   }
 
-  func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilterOperation) {
-    guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
+  func changes(_ changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: Predicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilterOperation) {
+    guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
     let localPrimaryKey = entity.sync_localPrimaryKey()
     let remotePrimaryKey = entity.sync_remotePrimaryKey()
@@ -241,7 +241,7 @@ import DATAStack
 
     var finalPredicate = predicate
     if let parentEntity = entity.sync_parentEntity() where shouldLookForParent {
-      finalPredicate = NSPredicate(format: "%K = nil", parentEntity.name)
+      finalPredicate = Predicate(format: "%K = nil", parentEntity.name)
     }
 
     if localPrimaryKey.isEmpty {
@@ -253,19 +253,19 @@ import DATAStack
     }
 
     DATAFilter.changes(changes as [AnyObject], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { objectJSON in
-      guard self.cancelled == false else { return }
+      guard self.isCancelled == false else { return }
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
 
-      let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
+      let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
       created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
     }) { objectJSON, updatedObject in
-      guard self.cancelled == false else { return }
+      guard self.isCancelled == false else { return }
       guard let JSON = objectJSON as? [String : AnyObject] else { abort() }
-      updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
+      updatedObject?.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
     }
 
     if context.hasChanges {
-      if self.cancelled {
+      if self.isCancelled {
         context.reset()
       } else {
         let _ = try? context.save()
