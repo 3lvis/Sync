@@ -11,22 +11,22 @@ public extension NSArray {
    - parameter parent: The parent of the entity, optional since many entities are orphans.
    - parameter dataStack: The DATAStack instance.
    */
-  func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilterOperation) -> [[String : AnyObject]] {
+  func preprocessForEntityNamed(_ entityName: String, predicate: Predicate, parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilterOperation) -> [[String : AnyObject]] {
     var filteredChanges = [[String : AnyObject]]()
-    let validClasses = [NSDate.classForCoder(), NSNumber.classForCoder(), NSString.classForCoder()]
-    if let predicate = predicate as? NSComparisonPredicate, selfArray = self as? [[String : AnyObject]] where validClasses.contains({ $0 == predicate.rightExpression.classForCoder }) {
+    let validClasses = [NSDate.self, NSNumber.self, NSString.self]
+    if let predicate = predicate as? ComparisonPredicate, selfArray = self as? [[String : AnyObject]] where validClasses.contains({ $0 as! NSObject == predicate.rightExpression.self }) {
       var objectChanges = [NSManagedObject]()
       let context = dataStack.newDisposableMainContext()
-      if let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) {
+      if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
         selfArray.forEach {
-          let object = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
+          let object = NSManagedObject(entity: entity, insertInto: context)
           object.sync_fillWithDictionary($0, parent: parent, dataStack: dataStack, operations: operations)
           objectChanges.append(object)
         }
 
-        guard let filteredArray = (objectChanges as NSArray).filteredArrayUsingPredicate(predicate) as? [NSManagedObject] else { fatalError("Couldn't cast filteredArray as [NSManagedObject]: \(objectChanges), predicate: \(predicate)") }
+        guard let filteredArray = (objectChanges as NSArray).filtered(using: predicate) as? [NSManagedObject] else { fatalError("Couldn't cast filteredArray as [NSManagedObject]: \(objectChanges), predicate: \(predicate)") }
         for filteredObject in filteredArray  {
-          if let change = filteredObject.hyp_dictionaryUsingRelationshipType(.Array) as? [String : AnyObject] {
+          if let change = filteredObject.hyp_dictionary(using: .array) as? [String : AnyObject] {
             filteredChanges.append(change)
           }
         }

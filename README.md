@@ -109,12 +109,12 @@ Sync.changes(
 }
 ```
 
-Alternatively, if you only want to sync users that have been created in the last 24 hours, you could do this by using a `NSPredicate`.
+Alternatively, if you only want to sync users that have been created in the last 24 hours, you could do this by using a `Predicate`.
 
 ```swift
 let now = NSDate()
 let yesterday = now.dateByAddingTimeInterval(-24*60*60)
-let predicate = NSPredicate(format:@"createdAt > %@", yesterday)
+let predicate = Predicate(format:@"createdAt > %@", yesterday)
 
 Sync.changes(
   changes: JSON,
@@ -166,12 +166,12 @@ inEntityNamed:@"User"
     }];
 ```
 
-Alternatively, if you only want to sync users that have been created in the last 24 hours, you could do this by using a `NSPredicate`.
+Alternatively, if you only want to sync users that have been created in the last 24 hours, you could do this by using a `Predicate`.
 
 ```objc
 NSDate *now = [NSDate date];
 NSDate *yesterday = [now dateByAddingTimeInterval:-24*60*60];
-NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdAt > %@", yesterday];
+Predicate *predicate = [Predicate predicateWithFormat:@"createdAt > %@", yesterday];
 
 [Sync changes:JSON
 inEntityNamed:@"User"
@@ -289,13 +289,13 @@ let values = ["created_at" : "2014-01-01T00:00:00+00:00",
 
 managedObject.hyp_fillWithDictionary(values)
 
-let createdAt = managedObject.valueForKey("createdAt")
+let createdAt = managedObject.value(forKey: "createdAt")
 // ==> "2014-01-01 00:00:00 +00:00"
 
-let updatedAt = managedObject.valueForKey("updatedAt")
+let updatedAt = managedObject.value(forKey: "updatedAt")
 // ==> "2014-01-02 00:00:00 +00:00"
 
-let publishedAt = managedObject.valueForKey("publishedAt")
+let publishedAt = managedObject.value(forKey: "publishedAt")
 // ==> "2015-09-10 00:00:00 +00:00"
 ```
 
@@ -522,12 +522,12 @@ This is how setting operations should work:
 
 ```swift
 let firstImport = // First import of users
-Sync.changes(firstBatch, inEntityNamed: "User", dataStack: dataStack, operations: [.All]) {
+Sync.changes(firstBatch, inEntityNamed: "User", dataStack: dataStack, operations: [.all]) {
     // All users have been imported, they are happy 
 }
 
 let secondImport = // Second import of users
-Sync.changes(secondImport, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert, .Update]) {
+Sync.changes(secondImport, inEntityNamed: "User", dataStack: dataStack, operations: [.insert, .update]) {
     // Likely after some changes have happened, here usually Sync would remove the not found items but this time
     // new users have been imported, existing users have been updated, and not found users have been ignored
 }
