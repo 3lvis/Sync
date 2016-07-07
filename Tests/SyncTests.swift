@@ -457,6 +457,28 @@ class SyncTests: XCTestCase {
 
     try! dataStack.drop()
   }
+  
+  // MARK: - Superentities => https://github.com/hyperoslo/Sync/issues/238
+  
+  func testSuperentities() {
+    let carsObject = Helper.objectsFromJSON("superentities-cars.json") as! [[String : AnyObject]]
+    let dataStack = Helper.dataStackWithModelName("Superentities")
+    
+    Sync.changes(carsObject, inEntityNamed: "Racecar", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Racecar", inContext:dataStack.mainContext), 1)
+    
+    let racecars = Helper.fetchEntity("Racecar", predicate: nil, inContext: dataStack.mainContext)
+    let racecar = racecars.first!
+    
+    let passengersObject = Helper.objectsFromJSON("superentities-passengers.json") as! [[String : AnyObject]]
+    
+    Sync.changes(passengersObject, inEntityNamed: "Passenger", parent: racecar, dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("Passenger", inContext:dataStack.mainContext), 2)
+    
+    XCTAssertEqual((racecar.valueForKey("passengers") as? NSSet)!.allObjects.count, 2)
+    
+    try! dataStack.drop()
+  }
 
   // MARK: - Bug 84 => https://github.com/hyperoslo/Sync/issues/84
 
