@@ -125,6 +125,29 @@ class SyncTests: XCTestCase {
   }
 
   // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
+  // and one user deleted. In this test we try only inserting user, no update, no insert, so the second sync should leave us with
+  // 2 users with no changes and 1 inserted user. After this is done, we'll try inserting again, this shouldn't make any changes.
+  func testSyncingWithMultipleInsertOperationTypes() {
+    let dataStack = Helper.dataStackWithModelName("Contacts")
+
+    let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : AnyObject]]
+    Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
+
+    let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : AnyObject]]
+    Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
+
+    let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(int: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
+    XCTAssertEqual(result.valueForKey("email") as? String, "melisawhite@ovium.com")
+
+    Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
+
+    try! dataStack.drop()
+  }
+
+  // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
   // and one user deleted. In this test we try only updating users, no insert, no delete, so the second sync should leave us with
   // one updated user and one inserted user, the third user will be discarded.
   func testSyncingWithOnlyUpdateOperationType() {
