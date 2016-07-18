@@ -224,7 +224,9 @@ import DATAStack
         try context.save()
       } catch let error as NSError {
         syncError = error
-      }
+			} catch {
+				fatalError("Fatal error")
+			}
     }
 
     dispatch_async(dispatch_get_main_queue()) {
