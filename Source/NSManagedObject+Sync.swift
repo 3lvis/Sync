@@ -31,7 +31,7 @@ public extension NSManagedObject {
    - parameter parent: The parent of the entity, optional since many entities are orphans.
    - parameter dataStack: The DATAStack instance.
    */
-  func sync_fillWithDictionary(dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilterOperation) {
+  func sync_fillWithDictionary(dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilter.Operation) {
     hyp_fillWithDictionary(dictionary)
 
     entity.sync_relationships().forEach { relationship in
@@ -140,7 +140,7 @@ public extension NSManagedObject {
    - parameter parent: The parent of the entity, optional since many entities are orphans.
    - parameter dataStack: The DATAStack instance.
    */
-  func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilterOperation) {
+  func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilter.Operation) {
     guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, childEntityName = destinationEntity.name else { abort() }
 
     let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
@@ -212,7 +212,7 @@ public extension NSManagedObject {
    - parameter dictionary: The JSON with the changes to be applied to the entity.
    - parameter dataStack: The DATAStack instance.
    */
-  func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack, operations: DATAFilterOperation) {
+  func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack, operations: DATAFilter.Operation) {
     let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
 
     guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
