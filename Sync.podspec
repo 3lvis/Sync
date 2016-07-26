@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "Sync"
-s.version          = "1.9.0"
+s.version          = "1.10.0"
 s.summary          = "Modern Swift JSON synchronization to Core Data"
 s.description      = <<-DESC
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
@@ -29,7 +29,7 @@ s.source_files = 'Source/**/*'
 s.frameworks = 'Foundation', 'CoreData'
 
 s.dependency 'DATAFilter', '~> 0.11.0'
-s.dependency 'DATAStack', '~> 5.2.1'
+s.dependency 'DATAStack', '~> 5.3.0'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3.1'
 s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.3'
 s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.6.9'

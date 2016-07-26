@@ -222,9 +222,9 @@ import DATAStack
         try context.save()
       } catch let error as NSError {
         syncError = error
-			} catch {
-				fatalError("Fatal error")
-			}
+      } catch {
+        fatalError("Fatal error")
+      }
     }
 
     dispatch_async(dispatch_get_main_queue()) {
@@ -252,7 +252,7 @@ import DATAStack
       fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
     }
 
-    DATAFilter.changes(changes as [[String: AnyObject]], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
+    DATAFilter.changes(changes as [[String : AnyObject]], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
       guard self.cancelled == false else { return }
 
       let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)

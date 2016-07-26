@@ -8,4 +8,3 @@ target 'Tests' do
   pod 'JSON'
   pod 'DATASource'
 end
-
