@@ -665,14 +665,16 @@ class SyncTests: XCTestCase {
     let dataStack = Helper.dataStackWithModelName("OrderedSocial")
 
     Sync.changes(objects, inEntityNamed: "Comment", dataStack: dataStack, completion: nil)
-
     XCTAssertEqual(Helper.countForEntity("Comment", inContext:dataStack.mainContext), 8)
-    let comments = Helper.fetchEntity("Comment", predicate: NSPredicate(format:"body = %@", "comment 1"), inContext:dataStack.mainContext)
-    XCTAssertEqual(comments.count, 1)
-    XCTAssertEqual((comments.first!.valueForKey("comments") as! NSOrderedSet).count, 3)
 
-    let comment = comments.first!
-    XCTAssertEqual(comment.valueForKey("body") as? String, "comment 1")
+    let request = NSFetchRequest(entityName: "Comment")
+    request.predicate = NSPredicate(format:"body = %@", "comment 1")
+    let comments = try! dataStack.mainContext.executeFetchRequest(request) as? [Comment] ?? [Comment]()
+
+    let firstComment = comments.first!
+    XCTAssertEqual(comments.count, 1)
+    XCTAssertEqual(firstComment.comments!.count, 3)
+    XCTAssertEqual(firstComment.body, "comment 1")
 
     try! dataStack.drop()
   }
