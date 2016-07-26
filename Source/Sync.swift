@@ -189,6 +189,10 @@ import DATAStack
   }
 
   public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((error: NSError?) -> Void)?) {
+    self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, operations: operations, syncStatus: .None,completion: completion)
+  }
+
+  public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, syncStatus: DATAFilter.SyncStatus, completion: ((error: NSError?) -> Void)?) -> ([NSManagedObject], [NSManagedObject]) {
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
     let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -208,7 +212,7 @@ import DATAStack
       fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
     }
 
-    DATAFilter.changes(changes as [[String: AnyObject]], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
+    let (created, deleted) = DATAFilter.changes(changes as [[String: AnyObject]], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, syncStatus: syncStatus, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
 
       let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
       created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
@@ -230,6 +234,8 @@ import DATAStack
     dispatch_async(dispatch_get_main_queue()) {
       completion?(error: syncError)
     }
+    
+    return (created, deleted)
   }
 
   func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation) {
