@@ -28,8 +28,8 @@ s.source_files = 'Source/**/*'
 
 s.frameworks = 'Foundation', 'CoreData'
 
-s.dependency 'DATAFilter', '~> 0.10.0'
-s.dependency 'DATAStack', '~> 5.2.1'
+s.dependency 'DATAFilter', '~> 0.11.0'
+s.dependency 'DATAStack', '~> 5.3.0'
 s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3.1'
 s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.3'
 s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 3.6.9'
