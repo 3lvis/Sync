@@ -730,6 +730,19 @@ class SyncTests: XCTestCase {
     try! dataStack.drop()
   }
 
+  // MARK: - Add support for cancellable sync processes https://github.com/hyperoslo/Sync/pull/216
+
+  func testOperation() {
+    let dataStack = Helper.dataStackWithModelName("id")
+
+    let users = Helper.objectsFromJSON("id.json") as! [[String : AnyObject]]
+    let operation = Sync(changes: users, inEntityNamed: "User", predicate: nil, dataStack: dataStack)
+    operation.start()
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 2)
+
+    try! dataStack.drop()
+  }
+
   // MARK: - Bug 157 => https://github.com/hyperoslo/Sync/issues/157
 
   func testBug157() {
@@ -775,18 +788,9 @@ class SyncTests: XCTestCase {
     try! dataStack.drop()
   }
 
-  // MARK: - Add support for cancellable sync processes https://github.com/hyperoslo/Sync/pull/216
-
-  func testOperation() {
-    let dataStack = Helper.dataStackWithModelName("id")
-
-    let users = Helper.objectsFromJSON("id.json") as! [[String : AnyObject]]
-    let operation = Sync(changes: users, inEntityNamed: "User", predicate: nil, dataStack: dataStack)
-    operation.start()
-    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 2)
-
-    try! dataStack.drop()
-  }
+  //-----------------------------------------------------------------------------------------
+  //------------------------ Improve ID based mapping ---------------------------------------
+  //-----------------------------------------------------------------------------------------
 
   // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/hyperoslo/Sync/issues/151
   // Notes have to be unique, two users can't have the same note.
@@ -1041,6 +1045,45 @@ class SyncTests: XCTestCase {
     note3 = Helper.fetchEntity("Note", predicate: NSPredicate(format: "id = 3"), inContext: dataStack.mainContext).first
     note3Tags = note3?.valueForKey("tags") as? NSOrderedSet
     XCTAssertEqual(note3Tags?.count, 0)
+
+    try! dataStack.drop()
+  }
+
+  //-----------------------------------------------------------------------------------------
+  //------------------------ Improve relationship mapping -----------------------------------
+  //-----------------------------------------------------------------------------------------
+
+
+  // MARK: - https://github.com/hyperoslo/Sync/issues/225
+
+  func test225Empty() {
+    let dataStack = Helper.dataStackWithModelName("225")
+
+    let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+    Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+    let usersB = Helper.objectsFromJSON("225-b-empty.json") as! [[String : AnyObject]]
+    Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+
+    try! dataStack.drop()
+  }
+
+  func test225Null() {
+    let dataStack = Helper.dataStackWithModelName("225")
+
+    let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+    Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+    let usersB = Helper.objectsFromJSON("225-b-null.json") as! [[String : AnyObject]]
+    Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+    XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+    XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
     try! dataStack.drop()
   }
