@@ -1,11 +1,11 @@
 import XCTest
 
 class NSEntityDescription_SyncTests: XCTestCase {
-  func testRelationships() {
+    func testRelationships() {
 
-  }
+    }
 
-  func testParentEntity() {
-
-  }
+    func testParentEntity() {
+        
+    }
 }
