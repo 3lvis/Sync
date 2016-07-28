@@ -58,9 +58,10 @@ import DATAStack
         } else {
             updateExecuting(true)
             dataStack.performInNewBackgroundContext { backgroundContext in
-                self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: nil, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations)
-                updateExecuting(false)
-                updateFinished(true)
+                self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: nil, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations) { error in
+                    updateExecuting(false)
+                    updateFinished(true)
+                }
             }
         }
     }
@@ -232,7 +233,7 @@ import DATAStack
         }
     }
 
-    func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation) {
+    func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -251,23 +252,32 @@ import DATAStack
         if remotePrimaryKey.isEmpty {
             fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
         }
-        
+
         DATAFilter.changes(changes as [[String : AnyObject]], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
             guard self.cancelled == false else { return }
-            
+
             let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
             created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
             guard self.cancelled == false else { return }
             updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
         }
-        
+
+        var syncError: NSError?
         if context.hasChanges {
             if self.cancelled {
                 context.reset()
             } else {
-                let _ = try? context.save()
+                do {
+                    try context.save()
+                } catch let error as NSError {
+                    syncError = error
+                } catch {
+                    fatalError("Fatal error")
+                }
             }
         }
+        
+        completion?(error: syncError)
     }
 }
