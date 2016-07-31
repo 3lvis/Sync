@@ -214,14 +214,14 @@ public extension NSManagedObject {
      */
     func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack, operations: DATAFilterOperation) {
         let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
-        
+
         guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
-        
+
         let localPrimaryKey = filteredObjectDictionary[entity.sync_remotePrimaryKey()]
         let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
-        
+
         object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, dataStack: dataStack, operations: operations)
-        
+
         let currentRelationship = valueForKey(relationship.name)
         if currentRelationship == nil || !currentRelationship!.isEqual(object) {
             setValue(object, forKey: relationship.name)
