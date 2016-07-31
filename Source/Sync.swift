@@ -27,9 +27,21 @@ import DATAStack
 
     var changes: [[String : AnyObject]]
     var entityName: String
-    weak var predicate: NSPredicate?
-    unowned var dataStack: DATAStack
+    var predicate: NSPredicate?
     var filterOperations = DATAFilter.Operation.All
+    var parent: NSManagedObject?
+    var context: NSManagedObjectContext?
+    unowned var dataStack: DATAStack
+
+    public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: DATAFilter.Operation = .All) {
+        self.changes = changes
+        self.entityName = entityName
+        self.predicate = predicate
+        self.parent = parent
+        self.context = context
+        self.dataStack = dataStack
+        self.filterOperations = operations
+    }
 
     public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: DATAFilter.Operation = .All) {
         self.changes = changes
@@ -57,10 +69,19 @@ import DATAStack
             updateFinished(true)
         } else {
             updateExecuting(true)
-            dataStack.performInNewBackgroundContext { backgroundContext in
-                self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: nil, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations) { error in
-                    updateExecuting(false)
-                    updateFinished(true)
+            if let context = self.context {
+                context.performBlock {
+                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, inContext: context, dataStack: self.dataStack, operations: self.filterOperations) { error in
+                        updateExecuting(false)
+                        updateFinished(true)
+                    }
+                }
+            } else {
+                dataStack.performInNewBackgroundContext { backgroundContext in
+                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations) { error in
+                        updateExecuting(false)
+                        updateFinished(true)
+                    }
                 }
             }
         }
