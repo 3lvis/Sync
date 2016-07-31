@@ -533,6 +533,16 @@ Sync.changes(secondImport, inEntityNamed: "User", dataStack: dataStack, operatio
 }
 ```
 
+#### How can I load tens of thousands of objects without blocking my UI?
+
+Saving to a background context or a main context could still block the UI since merging to the main thread is a task that of course is done in the main thread. Luckily `DATAStack` has a `newNonMergingBackgroundContext` context that helps us to perform saves without hitting the main thread and any point. If you want to load new items, let's say using a `NSFetchedResultController` you can do it like this:
+
+```swift
+try self.fetchedResultsController.performFetch()
+```
+
+For a full example on how to do achieve this magic syncing check the [SyncPerformance project](https://github.com/3lvis/SyncPerformance).
+
 ## Credits
 
 [Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md) (we consider remote employees too, the only requirement is that you’re awesome).
