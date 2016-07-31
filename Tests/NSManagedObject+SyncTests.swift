@@ -24,6 +24,6 @@ class NSManagedObject_SyncTests: XCTestCase {
   }
 
   func testToOneRelationship() {
-    
+
   }
 }
