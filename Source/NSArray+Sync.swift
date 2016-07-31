@@ -11,7 +11,7 @@ public extension NSArray {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilter.Operation) -> [[String : AnyObject]] {
+    func preprocessForEntityNamed(entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilterOperation) -> [[String : AnyObject]] {
         var filteredChanges = [[String : AnyObject]]()
         let validClasses = [NSDate.classForCoder(), NSNumber.classForCoder(), NSString.classForCoder()]
         if let predicate = predicate as? NSComparisonPredicate, selfArray = self as? [[String : AnyObject]] where validClasses.contains({ $0 == predicate.rightExpression.classForCoder }) {
