@@ -543,6 +543,23 @@ try self.fetchedResultsController.performFetch()
 
 For a full example on how to do achieve this magic syncing check the [SyncPerformance project](https://github.com/3lvis/SyncPerformance).
 
+#### Which date formats are supported by Sync?
+
+Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSDate%2BHYPPropertyMapper.m). Here are some of the supported formats, if you don't find yours, just open and issue: 
+
+```
+2014-01-02
+2016-01-09T00:00:00
+2014-03-30T09:13:00Z
+2016-01-09T00:00:00.00
+2015-06-23T19:04:19.911Z
+2014-01-01T00:00:00+00:00
+2015-09-10T00:00:00.184968Z
+2015-09-10T00:00:00.116+0000
+2015-06-23T14:40:08.000+02:00
+2014-01-02T00:00:00.000000+00:00
+```
+
 ## Credits
 
 [Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/hyperoslo/iOS-playbook/blob/master/HYPER_RECIPES.md) (we consider remote employees too, the only requirement is that you’re awesome).
