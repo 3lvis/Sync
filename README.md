@@ -545,7 +545,7 @@ For a full example on how to do achieve this magic syncing check the [SyncPerfor
 
 #### Which date formats are supported by Sync?
 
-Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSDate%2BHYPPropertyMapper.m). Here are some of the supported formats, if you don't find yours, just open and issue: 
+Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/3lvis/DateParser). Here are some of the supported formats, if you don't find yours, just open and issue: 
 
 ```
 2014-01-02
