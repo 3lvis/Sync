@@ -71,14 +71,14 @@ import DATAStack
             updateExecuting(true)
             if let context = self.context {
                 context.performBlock {
-                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, inContext: context, dataStack: self.dataStack, operations: self.filterOperations) { error in
+                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: context, dataStack: self.dataStack, operations: self.filterOperations) { error in
                         updateExecuting(false)
                         updateFinished(true)
                     }
                 }
             } else {
                 dataStack.performInNewBackgroundContext { backgroundContext in
-                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations) { error in
+                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations) { error in
                         updateExecuting(false)
                         updateFinished(true)
                     }
@@ -254,7 +254,7 @@ import DATAStack
         }
     }
 
-    func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((error: NSError?) -> Void)?) {
+    func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -278,10 +278,10 @@ import DATAStack
             guard self.cancelled == false else { return }
 
             let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
-            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: nil, dataStack: dataStack, operations: operations)
+            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
             guard self.cancelled == false else { return }
-            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: nil, dataStack: dataStack, operations: operations)
+            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }
 
         var syncError: NSError?

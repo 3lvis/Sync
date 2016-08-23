@@ -234,7 +234,7 @@ public extension NSManagedObject {
         let localPrimaryKey = filteredObjectDictionary[entity.sync_remotePrimaryKey()]
         let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
 
-        object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, parentRelationship: nil, dataStack: dataStack, operations: operations)
+        object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
 
         let currentRelationship = valueForKey(relationship.name)
         if currentRelationship == nil || !currentRelationship!.isEqual(object) {
