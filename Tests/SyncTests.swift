@@ -1080,7 +1080,7 @@ class SyncTests: XCTestCase {
         // Verify empty "Ownhouses -> Owners" connections
         let human = Helper.fetchEntity("Human", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
         let ownhouses = human?.valueForKey("ownhouses") as? Set<NSManagedObject>
-        XCTAssertNil(ownhouses)
+        XCTAssertEqual(ownhouses?.count, 0)
 
         try! dataStack.drop()
     }
