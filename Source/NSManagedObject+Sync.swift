@@ -143,10 +143,24 @@ public extension NSManagedObject {
     func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilter.Operation) {
         guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, childEntityName = destinationEntity.name else { abort() }
 
-        let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
         let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
+        var children: [[String : AnyObject]]?
 
-        if let children = dictionary[relationshipName] as? [[String : AnyObject]] {
+        if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
+            if dictionary[customRelationshipName] != nil {
+                children = dictionary[customRelationshipName] as? [[String : AnyObject]]
+            }
+        }
+
+        if dictionary[relationship.name.hyp_remoteString()] != nil {
+            children = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]]
+        }
+
+        if dictionary[relationship.name] != nil {
+            children = dictionary[relationship.name] as? [[String : AnyObject]]
+        }
+
+        if let children = children {
             var childPredicate: NSPredicate?
             let childIDs = (children as NSArray).valueForKey(entity.sync_remotePrimaryKey())
 
