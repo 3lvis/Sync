@@ -140,7 +140,7 @@ import DATAStack
      */
     public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
         }
     }
 
@@ -159,7 +159,7 @@ import DATAStack
      */
     public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, inContext: backgroundContext, dataStack: dataStack, operations: operations, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: operations, completion: completion)
         }
     }
 
@@ -187,7 +187,7 @@ import DATAStack
                 predicate = NSPredicate(format: "%K = %@", firstRelationship.name, safeParent)
             }
 
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
         }
     }
 
@@ -207,10 +207,10 @@ import DATAStack
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
     public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((error: NSError?) -> Void)?) {
-        self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
+        self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
     }
 
-    public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((error: NSError?) -> Void)?) {
+    public class func changes(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -233,9 +233,9 @@ import DATAStack
         DATAFilter.changes(changes as [[String: AnyObject]], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
 
             let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
-            created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
+            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
-            updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
+            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }
 
         var syncError: NSError?
@@ -278,10 +278,10 @@ import DATAStack
             guard self.cancelled == false else { return }
 
             let created = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
-            created.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
+            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: nil, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
             guard self.cancelled == false else { return }
-            updatedObject.sync_fillWithDictionary(JSON, parent: parent, dataStack: dataStack, operations: operations)
+            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: nil, dataStack: dataStack, operations: operations)
         }
 
         var syncError: NSError?
