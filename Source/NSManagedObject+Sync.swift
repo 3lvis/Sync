@@ -34,7 +34,7 @@ public extension NSManagedObject {
     func sync_fillWithDictionary(dictionary: [String : AnyObject], parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilter.Operation) {
         hyp_fillWithDictionary(dictionary)
 
-        entity.sync_relationships().forEach { relationship in
+        for relationship in entity.sync_relationships() {
             let suffix = relationship.toMany ? "_ids" : "_id"
             let constructedKeyName = relationship.name.hyp_remoteString() + suffix
             let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName

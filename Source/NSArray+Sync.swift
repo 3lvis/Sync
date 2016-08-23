@@ -18,9 +18,9 @@ public extension NSArray {
             var objectChanges = [NSManagedObject]()
             let context = dataStack.newDisposableMainContext()
             if let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) {
-                selfArray.forEach {
+                for objectDictionary in selfArray {
                     let object = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
-                    object.sync_fillWithDictionary($0, parent: parent, dataStack: dataStack, operations: operations)
+                    object.sync_fillWithDictionary(objectDictionary, parent: parent, dataStack: dataStack, operations: operations)
                     objectChanges.append(object)
                 }
 

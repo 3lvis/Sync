@@ -7,7 +7,7 @@ extension NSEntityDescription {
      */
     func sync_relationships() -> [NSRelationshipDescription] {
         var relationships = [NSRelationshipDescription]()
-        properties.forEach { propertyDescription in
+        for propertyDescription in properties {
             if let relationshipDescription = propertyDescription as? NSRelationshipDescription {
                 relationships.append(relationshipDescription)
             }
