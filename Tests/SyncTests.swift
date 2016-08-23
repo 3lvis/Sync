@@ -1057,4 +1057,31 @@ class SyncTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    // MARK: - Bug 254 => https://github.com/hyperoslo/Sync/issues/254
+
+    func testBug254() {
+        let dataStack = Helper.dataStackWithModelName("Bug254")
+
+        let JSON = Helper.objectsFromJSON("bug-254.json") as! [String : AnyObject]
+        Sync.changes([JSON], inEntityNamed: "House", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("House", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Human", inContext:dataStack.mainContext), 1)
+
+        // Verify correct "House -> Resident" connections
+        let house = Helper.fetchEntity("House", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
+        let residents = house?.valueForKey("residents") as? Set<NSManagedObject>
+        let resident = residents?.first
+        XCTAssertEqual(resident?.valueForKey("id") as? Int, 0)
+
+        let residentHouse = resident?.valueForKey("residenthouse") as? NSManagedObject
+        XCTAssertEqual(residentHouse?.valueForKey("id") as? Int, 0)
+
+        // Verify empty "Ownhouses -> Owners" connections
+        let human = Helper.fetchEntity("Human", predicate: NSPredicate(format: "id = 0"), inContext: dataStack.mainContext).first
+        let ownhouses = human?.valueForKey("ownhouses") as? Set<NSManagedObject>
+        XCTAssertEqual(ownhouses?.count, 0)
+
+        try! dataStack.drop()
+    }
 }
