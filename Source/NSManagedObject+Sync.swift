@@ -152,11 +152,11 @@ public extension NSManagedObject {
             }
         }
 
-        if dictionary[relationship.name.hyp_remoteString()] != nil {
+        if children == nil && dictionary[relationship.name.hyp_remoteString()] != nil {
             children = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]]
         }
 
-        if dictionary[relationship.name] != nil {
+        if children == nil && dictionary[relationship.name] != nil {
             children = dictionary[relationship.name] as? [[String : AnyObject]]
         }
 
