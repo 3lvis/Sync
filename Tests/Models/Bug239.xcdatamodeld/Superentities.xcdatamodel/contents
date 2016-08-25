@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
     <entity name="Car" syncable="YES">
         <relationship name="passengers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Passenger" inverseName="car" inverseEntity="Passenger" syncable="YES"/>
     </entity>
@@ -23,7 +23,7 @@
     <entity name="Sedan" parentEntity="Car" syncable="YES"/>
     <elements>
         <element name="Car" positionX="-72" positionY="-18" width="128" height="58"/>
-        <element name="Passenger" positionX="-65" positionY="-154" width="128" height="88"/>
+        <element name="Passenger" positionX="187" positionY="-52" width="128" height="88"/>
         <element name="Racecar" positionX="-162" positionY="101" width="128" height="73"/>
         <element name="Sedan" positionX="7" positionY="101" width="128" height="43"/>
     </elements>
