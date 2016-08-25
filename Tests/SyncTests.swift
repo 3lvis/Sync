@@ -1108,4 +1108,20 @@ class SyncTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    // MARK: Bug 239 => https://github.com/hyperoslo/Sync/pull/239
+
+    func testBug239() {
+        let carsObject = Helper.objectsFromJSON("bug-239.json") as! [[String : AnyObject]]
+        let dataStack = Helper.dataStackWithModelName("Bug239")
+        Sync.changes(carsObject, inEntityNamed: "Racecar", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Racecar", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Passenger", inContext:dataStack.mainContext), 2)
+
+        let racecars = Helper.fetchEntity("Racecar", predicate: nil, inContext: dataStack.mainContext)
+        let racecar = racecars.first!
+        XCTAssertEqual((racecar.valueForKey("passengers") as? NSSet)!.allObjects.count, 2)
+        
+        try! dataStack.drop()
+    }
 }
