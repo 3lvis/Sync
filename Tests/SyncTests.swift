@@ -1105,5 +1105,7 @@ class SyncTests: XCTestCase {
         Sync.changes([JSON], inEntityNamed: "RentedHome", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("RentedHome", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("LegalPerson", inContext:dataStack.mainContext), 1)
+
+        try! dataStack.drop()
     }
 }

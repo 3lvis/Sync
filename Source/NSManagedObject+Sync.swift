@@ -147,16 +147,10 @@ public extension NSManagedObject {
         var children: [[String : AnyObject]]?
 
         if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
-            if dictionary[customRelationshipName] != nil {
-                children = dictionary[customRelationshipName] as? [[String : AnyObject]]
-            }
-        }
-
-        if children == nil && dictionary[relationship.name.hyp_remoteString()] != nil {
+            children = dictionary[customRelationshipName] as? [[String : AnyObject]]
+        } else if dictionary[relationship.name.hyp_remoteString()] != nil {
             children = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]]
-        }
-
-        if children == nil && dictionary[relationship.name] != nil {
+        } else if [relationship.name] != nil {
             children = dictionary[relationship.name] as? [[String : AnyObject]]
         }
 
@@ -227,18 +221,28 @@ public extension NSManagedObject {
      - parameter dataStack: The DATAStack instance.
      */
     func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack, operations: DATAFilter.Operation) {
-        let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
+        var filteredObjectDictionary: [String : AnyObject]?
 
-        guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
+        if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
+            filteredObjectDictionary = dictionary[customRelationshipName] as? [String : AnyObject]
+        } else if dictionary[relationship.name.hyp_remoteString()] != nil {
+            filteredObjectDictionary = dictionary[relationship.name.hyp_remoteString()] as? [String : AnyObject]
+        } else if [relationship.name] != nil {
+            filteredObjectDictionary = dictionary[relationship.name] as? [String : AnyObject]
+        }
 
-        let localPrimaryKey = filteredObjectDictionary[entity.sync_remotePrimaryKey()]
-        let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
+        if let filteredObjectDictionary = filteredObjectDictionary {
+            guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
 
-        object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
+            let localPrimaryKey = filteredObjectDictionary[entity.sync_remotePrimaryKey()]
+            let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
 
-        let currentRelationship = valueForKey(relationship.name)
-        if currentRelationship == nil || !currentRelationship!.isEqual(object) {
-            setValue(object, forKey: relationship.name)
+            object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
+
+            let currentRelationship = valueForKey(relationship.name)
+            if currentRelationship == nil || !currentRelationship!.isEqual(object) {
+                setValue(object, forKey: relationship.name)
+            }
         }
     }
 }
