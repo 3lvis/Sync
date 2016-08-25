@@ -147,17 +147,11 @@ public extension NSManagedObject {
         var children: [[String : AnyObject]]?
 
         if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
-            if dictionary[customRelationshipName] != nil {
-                children = dictionary[customRelationshipName] as? [[String : AnyObject]]
-            }
-        }
-
-        if children == nil && dictionary[relationship.name.hyp_remoteString()] != nil {
-            children = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]]
-        }
-
-        if children == nil && dictionary[relationship.name] != nil {
-            children = dictionary[relationship.name] as? [[String : AnyObject]]
+            children = dictionary[customRelationshipName] as? [[String : AnyObject]]
+        } else if let result = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]] {
+            children = result
+        } else if let result = dictionary[relationship.name] as? [[String : AnyObject]] {
+            children = result
         }
 
         if let children = children {
@@ -227,14 +221,26 @@ public extension NSManagedObject {
      - parameter dataStack: The DATAStack instance.
      */
     func sync_toOneRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack, operations: DATAFilter.Operation) {
-        let relationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? relationship.name.hyp_remoteString()
+        var filteredObjectDictionary: [String : AnyObject]?
 
-        guard let managedObjectContext = managedObjectContext, filteredObjectDictionary = dictionary[relationshipName] as? [String : AnyObject], destinationEntity = relationship.destinationEntity, entityName = destinationEntity.name, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
+        if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
+            filteredObjectDictionary = dictionary[customRelationshipName] as? [String : AnyObject]
+        } else if let result = dictionary[relationship.name.hyp_remoteString()] as? [String : AnyObject] {
+            filteredObjectDictionary = result
+        } else if let result = dictionary[relationship.name] as? [String : AnyObject] {
+            filteredObjectDictionary = result
+        }
 
-        let localPrimaryKey = filteredObjectDictionary[entity.sync_remotePrimaryKey()]
+        guard let toOneObjectDictionary = filteredObjectDictionary else { return }
+        guard let managedObjectContext = self.managedObjectContext else { return }
+        guard let destinationEntity = relationship.destinationEntity else { return }
+        guard let entityName = destinationEntity.name else { return }
+        guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedObjectContext) else { return }
+
+        let localPrimaryKey = toOneObjectDictionary[entity.sync_remotePrimaryKey()]
         let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext)
 
-        object.sync_fillWithDictionary(filteredObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
+        object.sync_fillWithDictionary(toOneObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
 
         let currentRelationship = valueForKey(relationship.name)
         if currentRelationship == nil || !currentRelationship!.isEqual(object) {

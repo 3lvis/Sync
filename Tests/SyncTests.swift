@@ -1084,4 +1084,28 @@ class SyncTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    // MARK: Bug 260 => https://github.com/hyperoslo/Sync/issues/260
+
+    func testBug260CamelCase() {
+        let dataStack = Helper.dataStackWithModelName("ToOne")
+
+        let snakeCaseJSON = Helper.objectsFromJSON("to-one-snakecase.json") as! [String : AnyObject]
+        Sync.changes([snakeCaseJSON], inEntityNamed: "RentedHome", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("RentedHome", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("LegalPerson", inContext:dataStack.mainContext), 1)
+
+        try! dataStack.drop()
+    }
+
+    func testBug260SnakeCase() {
+        let dataStack = Helper.dataStackWithModelName("ToOne")
+
+        let camelCaseJSON = Helper.objectsFromJSON("to-one-camelcase.json") as! [String : AnyObject]
+        Sync.changes([camelCaseJSON], inEntityNamed: "RentedHome", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("RentedHome", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("LegalPerson", inContext:dataStack.mainContext), 1)
+
+        try! dataStack.drop()
+    }
 }
