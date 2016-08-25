@@ -6,7 +6,7 @@
 
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
-* Automatic mapping of CamelCase or snake_case JSON into Core Data
+* Automatic mapping of camelCase or snake_case JSON into Core Data
 * Handles operations in safe background threads
 * Thread-safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
@@ -21,7 +21,7 @@
   * [Swift](#swift)
   * [Objective-C](#objective-c)
 * [Example using snake_case in Swift](#example-with-snake_case-in-swift)
-* [Example using CamelCase in Objective-C](#example-with-camelcase-in-objective-c)
+* [Example using camelCase in Objective-C](#example-with-camelcase-in-objective-c)
 * [More examples](#more-examples)
 * [Getting Started](#getting-started)
   * [Installation](#installation)
@@ -125,7 +125,7 @@ Sync.changes(
 }
 ```
 
-## Example with CamelCase in Objective-C
+## Example with camelCase in Objective-C
 
 ### Model
 
