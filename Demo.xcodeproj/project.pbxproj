@@ -80,6 +80,9 @@
 		14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644131CD77C7A00F51E23 /* bug-202-b.json */; };
 		14BF14DA1D6ED307008F5915 /* to-one-camelcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 14BF14D81D6ED307008F5915 /* to-one-camelcase.json */; };
 		14BF14DB1D6ED307008F5915 /* to-one-snakecase.json in Resources */ = {isa = PBXBuildFile; fileRef = 14BF14D91D6ED307008F5915 /* to-one-snakecase.json */; };
+		14D16B3A1D6EE27000F63AB2 /* Bug239.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14D16B381D6EE27000F63AB2 /* Bug239.xcdatamodeld */; };
+		14D16B3D1D6EE28F00F63AB2 /* bug-239-cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 14D16B3B1D6EE28F00F63AB2 /* bug-239-cars.json */; };
+		14D16B3E1D6EE28F00F63AB2 /* bug-239-passengers.json in Resources */ = {isa = PBXBuildFile; fileRef = 14D16B3C1D6EE28F00F63AB2 /* bug-239-passengers.json */; };
 		14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */; };
 		14D5E3001C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */; };
 		14D5E3021C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */; };
@@ -175,6 +178,9 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14D16B391D6EE27000F63AB2 /* Superentities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Superentities.xcdatamodel; sourceTree = "<group>"; };
+		14D16B3B1D6EE28F00F63AB2 /* bug-239-cars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-239-cars.json"; sourceTree = "<group>"; };
+		14D16B3C1D6EE28F00F63AB2 /* bug-239-passengers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-239-passengers.json"; sourceTree = "<group>"; };
 		14D4CA7F1C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+SyncTests.swift"; sourceTree = "<group>"; tabWidth = 4; };
 		14D5E2FF1C4FF3300000CC5F /* NSManagedObjectContext+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SyncTests.swift"; sourceTree = "<group>"; tabWidth = 4; };
 		14D5E3011C4FF3750000CC5F /* NSEntityDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+SyncTests.swift"; sourceTree = "<group>"; tabWidth = 4; };
@@ -233,6 +239,8 @@
 				B0B637161C6E517F00229B03 /* bug-179-routes.json */,
 				14A644121CD77C7A00F51E23 /* bug-202-a.json */,
 				14A644131CD77C7A00F51E23 /* bug-202-b.json */,
+				14D16B3B1D6EE28F00F63AB2 /* bug-239-cars.json */,
+				14D16B3C1D6EE28F00F63AB2 /* bug-239-passengers.json */,
 				144EFF4B1D6CF3EC003EA935 /* bug-254.json */,
 				143753B41D6BAB4800577EB1 /* bug-257.json */,
 				141894101BDD62F600EE52CE /* bug-number-84.json */,
@@ -280,6 +288,7 @@
 				141D9E731CE9A4970041A7FC /* Bug157.xcdatamodeld */,
 				B0B637121C6E4F2D00229B03 /* Bug179.xcdatamodeld */,
 				14A6440F1CD77A4C00F51E23 /* Bug202.xcdatamodeld */,
+				14D16B381D6EE27000F63AB2 /* Bug239.xcdatamodeld */,
 				144EFF481D6CF3DA003EA935 /* Bug254.xcdatamodeld */,
 				143753B11D6BAAAE00577EB1 /* Bug257.xcdatamodeld */,
 				140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */,
@@ -484,10 +493,12 @@
 				14D7321F1CE9A6C400C28D40 /* 157-cities.json in Resources */,
 				143753B51D6BAB4800577EB1 /* bug-257.json in Resources */,
 				141894481BDD62F600EE52CE /* custom_relationship_key_to_one.json in Resources */,
+				14D16B3D1D6EE28F00F63AB2 /* bug-239-cars.json in Resources */,
 				1418944E1BDD62F600EE52CE /* organizations-tree.json in Resources */,
 				141894491BDD62F600EE52CE /* images.json in Resources */,
 				14096A371CEAF329002690D6 /* 151-to-many-users.json in Resources */,
 				140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */,
+				14D16B3E1D6EE28F00F63AB2 /* bug-239-passengers.json in Resources */,
 				141894501BDD62F600EE52CE /* stories-comments-no-ids.json in Resources */,
 				1418944F1BDD62F600EE52CE /* patients.json in Resources */,
 				141894471BDD62F600EE52CE /* custom_relationship_key_to_many.json in Resources */,
@@ -555,6 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D16B3A1D6EE27000F63AB2 /* Bug239.xcdatamodeld in Sources */,
 				14D4CA801C48176F00CAB8A0 /* NSManagedObject+SyncTests.swift in Sources */,
 				140FBF1C1CB91A5D0026484E /* Camelcase.xcdatamodeld in Sources */,
 				1425D5A21CC65BEB00EC49D4 /* NSManagedObject+Sync.swift in Sources */,
@@ -956,6 +968,16 @@
 			);
 			currentVersion = 14A644101CD77A4C00F51E23 /* Demo.xcdatamodel */;
 			path = Bug202.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14D16B381D6EE27000F63AB2 /* Bug239.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14D16B391D6EE27000F63AB2 /* Superentities.xcdatamodel */,
+			);
+			currentVersion = 14D16B391D6EE27000F63AB2 /* Superentities.xcdatamodel */;
+			path = Bug239.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
