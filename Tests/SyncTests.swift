@@ -1135,9 +1135,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-        /*
-         This should remove the old tag reference to the user and insert this new one.
-         */
+        // This should remove the old tag reference to the user and insert this new one.
         let usersB = Helper.objectsFromJSON("225-a-replaced.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
@@ -1159,9 +1157,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-        /*
-         This should remove the old tag reference to the user and insert this new one.
-         */
+        // This should remove all the references.
         let usersB = Helper.objectsFromJSON("225-a-empty.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
@@ -1183,9 +1179,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-        /*
-         This should remove the old tag reference to the user and insert this new one.
-         */
+        // This should remove all the references.
         let usersB = Helper.objectsFromJSON("225-a-null.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
