@@ -20,7 +20,7 @@ public extension NSArray {
             if let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) {
                 for objectDictionary in selfArray {
                     let object = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context)
-                    object.sync_fillWithDictionary(objectDictionary, remoteIDs: nil, parent: parent, parentRelationship: nil, dataStack: dataStack, operations: operations)
+                    object.sync_fillWithDictionary(objectDictionary, parent: parent, parentRelationship: nil, dataStack: dataStack, operations: operations)
                     objectChanges.append(object)
                 }
 

@@ -317,9 +317,9 @@
 		1425D59A1CC65BEB00EC49D4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */,
 				1425D59B1CC65BEB00EC49D4 /* NSArray+Sync.swift */,
 				1425D59C1CC65BEB00EC49D4 /* NSEntityDescription+Sync.swift */,
-				1425D59D1CC65BEB00EC49D4 /* NSManagedObject+Sync.swift */,
 				1425D59E1CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift */,
 				1425D59F1CC65BEB00EC49D4 /* Sync.swift */,
 			);
