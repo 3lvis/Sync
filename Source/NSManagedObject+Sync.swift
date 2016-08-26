@@ -140,8 +140,24 @@ public extension NSManagedObject {
      - parameter dataStack: The DATAStack instance.
      */
     func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
-        guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, childEntityName = destinationEntity.name else { abort() }
+        var isNull = false
 
+        if relationship.userInfo?[SYNCCustomRemoteKey] is NSNull {
+            isNull = true
+        } else if dictionary[relationship.name.hyp_remoteString()] is NSNull {
+            isNull = true
+        } else if dictionary[relationship.name] is NSNull {
+            isNull = true
+        }
+
+        guard !isNull else {
+            if let _ = valueForKey(relationship.name) {
+                setValue(nil, forKey: relationship.name)
+            }
+            return
+        }
+
+        guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, childEntityName = destinationEntity.name else { abort() }
         let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
         var children: [[String : AnyObject]]?
 
