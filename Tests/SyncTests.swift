@@ -1161,6 +1161,9 @@ class SyncTests: XCTestCase {
         let usersB = Helper.objectsFromJSON("225-a-empty.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+
+        // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
+        // object, but instead, it should just remove the reference.
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
         let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
@@ -1179,7 +1182,8 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-        // This should remove all the references.
+        // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
+        // object, but instead, it should just remove the reference.
         let usersB = Helper.objectsFromJSON("225-a-null.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
