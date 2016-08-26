@@ -74,8 +74,10 @@
 		1469B7FB1C68D7D50080FD71 /* notes_with_user_id_custom.json in Resources */ = {isa = PBXBuildFile; fileRef = 1469B7FA1C68D7D50080FD71 /* notes_with_user_id_custom.json */; };
 		146F2EB31CE1F27200543F83 /* id.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146F2EB11CE1F27200543F83 /* id.xcdatamodeld */; };
 		146F2EB51CE1F2C500543F83 /* id.json in Resources */ = {isa = PBXBuildFile; fileRef = 146F2EB41CE1F2C500543F83 /* id.json */; };
+		147A3A0F1D704D860049C22A /* 225-a-empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 147A3A0D1D704D860049C22A /* 225-a-empty.json */; };
+		147A3A101D704D860049C22A /* 225-a-null.json in Resources */ = {isa = PBXBuildFile; fileRef = 147A3A0E1D704D860049C22A /* 225-a-null.json */; };
 		1491123C1D70272D00167D26 /* 225-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 149112351D70272D00167D26 /* 225-a.json */; };
-		1491123D1D70272D00167D26 /* 225-updated-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 149112361D70272D00167D26 /* 225-updated-a.json */; };
+		1491123D1D70272D00167D26 /* 225-a-replaced.json in Resources */ = {isa = PBXBuildFile; fileRef = 149112361D70272D00167D26 /* 225-a-replaced.json */; };
 		149112451D70279200167D26 /* 225.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149112431D70279200167D26 /* 225.xcdatamodeld */; };
 		14959D141C065350004EF790 /* notes_with_user_id.json in Resources */ = {isa = PBXBuildFile; fileRef = 14959D131C065350004EF790 /* notes_with_user_id.json */; };
 		14A644111CD77A4C00F51E23 /* Bug202.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A6440F1CD77A4C00F51E23 /* Bug202.xcdatamodeld */; };
@@ -169,8 +171,10 @@
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146F2EB21CE1F27200543F83 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		146F2EB41CE1F2C500543F83 /* id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = id.json; sourceTree = "<group>"; };
+		147A3A0D1D704D860049C22A /* 225-a-empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-a-empty.json"; sourceTree = "<group>"; };
+		147A3A0E1D704D860049C22A /* 225-a-null.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-a-null.json"; sourceTree = "<group>"; };
 		149112351D70272D00167D26 /* 225-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-a.json"; sourceTree = "<group>"; };
-		149112361D70272D00167D26 /* 225-updated-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-updated-a.json"; sourceTree = "<group>"; };
+		149112361D70272D00167D26 /* 225-a-replaced.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "225-a-replaced.json"; sourceTree = "<group>"; };
 		149112441D70279200167D26 /* 151-many-to-many.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "151-many-to-many.xcdatamodel"; sourceTree = "<group>"; };
 		14959D131C065350004EF790 /* notes_with_user_id.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notes_with_user_id.json; sourceTree = "<group>"; };
 		14A644101CD77A4C00F51E23 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
@@ -235,7 +239,9 @@
 				140B0DEE1CEAFAFC00D0EE3E /* 157-locations-update.json */,
 				141D9E711CE9A4830041A7FC /* 157-locations.json */,
 				149112351D70272D00167D26 /* 225-a.json */,
-				149112361D70272D00167D26 /* 225-updated-a.json */,
+				149112361D70272D00167D26 /* 225-a-replaced.json */,
+				147A3A0D1D704D860049C22A /* 225-a-empty.json */,
+				147A3A0E1D704D860049C22A /* 225-a-null.json */,
 				1418940B1BDD62F600EE52CE /* bug-113-comments-no-id.json */,
 				1418940C1BDD62F600EE52CE /* bug-113-custom_relationship_key_to_one.json */,
 				1418940D1BDD62F600EE52CE /* bug-113-stories-comments-no-ids.json */,
@@ -466,7 +472,7 @@
 			files = (
 				B0B637171C6E517F00229B03 /* bug-179-places.json in Resources */,
 				14A644151CD77C7A00F51E23 /* bug-202-a.json in Resources */,
-				1491123D1D70272D00167D26 /* 225-updated-a.json in Resources */,
+				1491123D1D70272D00167D26 /* 225-a-replaced.json in Resources */,
 				1418944C1BDD62F600EE52CE /* numbers.json in Resources */,
 				14959D141C065350004EF790 /* notes_with_user_id.json in Resources */,
 				14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */,
@@ -489,6 +495,7 @@
 				141894401BDD62F600EE52CE /* bug-113-comments-no-id.json in Resources */,
 				141894431BDD62F600EE52CE /* bug-125-light.json in Resources */,
 				1418944A1BDD62F600EE52CE /* markets_items.json in Resources */,
+				147A3A101D704D860049C22A /* 225-a-null.json in Resources */,
 				144EFF4C1D6CF3EC003EA935 /* bug-254.json in Resources */,
 				146F2EB51CE1F2C500543F83 /* id.json in Resources */,
 				141894561BDD62F600EE52CE /* users_c.json in Resources */,
@@ -507,6 +514,7 @@
 				14096A371CEAF329002690D6 /* 151-to-many-users.json in Resources */,
 				140FBF1E1CB91C2D0026484E /* camelcase.json in Resources */,
 				141894501BDD62F600EE52CE /* stories-comments-no-ids.json in Resources */,
+				147A3A0F1D704D860049C22A /* 225-a-empty.json in Resources */,
 				1418944F1BDD62F600EE52CE /* patients.json in Resources */,
 				141894471BDD62F600EE52CE /* custom_relationship_key_to_many.json in Resources */,
 				14BF14DB1D6ED307008F5915 /* to-one-snakecase.json in Resources */,
