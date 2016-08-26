@@ -1127,7 +1127,7 @@ class SyncTests: XCTestCase {
 
     // MARK: - https://github.com/hyperoslo/Sync/issues/225
 
-    func test225Empty() {
+    func test225() {
         let dataStack = Helper.dataStackWithModelName("225")
 
         let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
@@ -1135,26 +1135,13 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-        let usersB = Helper.objectsFromJSON("225-b-empty.json") as! [[String : AnyObject]]
+        /*
+         This should remove the old tag and insert this new one.
+         */
+        let usersB = Helper.objectsFromJSON("225-updated-a.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
-
-        try! dataStack.drop()
-    }
-
-    func test225Null() {
-        let dataStack = Helper.dataStackWithModelName("225")
-
-        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
-        Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
-
-        let usersB = Helper.objectsFromJSON("225-b-null.json") as! [[String : AnyObject]]
-        Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
         
         try! dataStack.drop()
     }

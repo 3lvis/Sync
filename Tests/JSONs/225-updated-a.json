@@ -4,10 +4,6 @@
     "username": "Name",
     "tags": [
       {
-        "id": 13,
-        "hashtag": "#yolo"
-      },
-      {
         "id": 14,
         "hashtag": "#onenewtag"
       }
