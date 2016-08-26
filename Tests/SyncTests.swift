@@ -1124,4 +1124,38 @@ class SyncTests: XCTestCase {
         
         try! dataStack.drop()
     }
+
+    // MARK: - https://github.com/hyperoslo/Sync/issues/225
+
+    func test225Empty() {
+        let dataStack = Helper.dataStackWithModelName("225")
+
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+        let usersB = Helper.objectsFromJSON("225-b-empty.json") as! [[String : AnyObject]]
+        Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+
+        try! dataStack.drop()
+    }
+
+    func test225Null() {
+        let dataStack = Helper.dataStackWithModelName("225")
+
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+        let usersB = Helper.objectsFromJSON("225-b-null.json") as! [[String : AnyObject]]
+        Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+        
+        try! dataStack.drop()
+    }
 }
