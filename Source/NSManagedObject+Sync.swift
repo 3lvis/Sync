@@ -67,7 +67,7 @@ public extension NSManagedObject {
         guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
         guard let entity = NSEntityDescription.entityForName(destinationEntityName, inManagedObjectContext: managedObjectContext) else { return }
         if localPrimaryKey is NSNull {
-            if let _ = valueForKey(relationship.name) {
+            if valueForKey(relationship.name) != nil {
                 setValue(nil, forKey: relationship.name)
             }
         } else {
@@ -141,17 +141,8 @@ public extension NSManagedObject {
      */
     func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
         var children: [[String : AnyObject]]?
-        var isNull = false
-
-        if relationship.userInfo?[SYNCCustomRemoteKey] is NSNull {
-            isNull = true
-        } else if dictionary[relationship.name.hyp_remoteString()] is NSNull {
-            isNull = true
-        } else if dictionary[relationship.name] is NSNull {
-            isNull = true
-        }
-
-        if isNull {
+        let childrenIsNull = relationship.userInfo?[SYNCCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_remoteString()] is NSNull || dictionary[relationship.name] is NSNull
+        if childrenIsNull {
             children = [[String : AnyObject]]()
 
             if valueForKey(relationship.name) != nil {
@@ -176,7 +167,7 @@ public extension NSManagedObject {
             let childIDs = (children as NSArray).valueForKey(entity.sync_remotePrimaryKey())
 
             if childIDs is NSNull {
-                if let _ = valueForKey(relationship.name) {
+                if valueForKey(relationship.name) != nil {
                     setValue(nil, forKey: relationship.name)
                 }
             } else {
@@ -270,7 +261,7 @@ public extension NSManagedObject {
         guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
         guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
         if localPrimaryKey is NSNull {
-            if let _ = valueForKey(relationship.name) {
+            if valueForKey(relationship.name) != nil {
                 setValue(nil, forKey: relationship.name)
             }
         } else if let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) {
