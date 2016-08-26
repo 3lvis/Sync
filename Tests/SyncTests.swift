@@ -1161,7 +1161,7 @@ class SyncTests: XCTestCase {
         let usersB = Helper.objectsFromJSON("225-a-empty.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
         let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
         let predicate = NSPredicate(format: "ANY users IN %@", [user])
@@ -1183,7 +1183,7 @@ class SyncTests: XCTestCase {
         let usersB = Helper.objectsFromJSON("225-a-null.json") as! [[String : AnyObject]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
         let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
         let predicate = NSPredicate(format: "ANY users IN %@", [user])

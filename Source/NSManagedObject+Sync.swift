@@ -140,6 +140,7 @@ public extension NSManagedObject {
      - parameter dataStack: The DATAStack instance.
      */
     func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
+        var children: [[String : AnyObject]]?
         var isNull = false
 
         if relationship.userInfo?[SYNCCustomRemoteKey] is NSNull {
@@ -150,24 +151,26 @@ public extension NSManagedObject {
             isNull = true
         }
 
-        guard !isNull else {
-            if let _ = valueForKey(relationship.name) {
+        if isNull {
+            children = [[String : AnyObject]]()
+
+            if valueForKey(relationship.name) != nil {
                 setValue(nil, forKey: relationship.name)
             }
-            return
+        } else {
+            if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
+                children = dictionary[customRelationshipName] as? [[String : AnyObject]]
+            } else if let result = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]] {
+                children = result
+            } else if let result = dictionary[relationship.name] as? [[String : AnyObject]] {
+                children = result
+            }
         }
 
-        guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, childEntityName = destinationEntity.name else { abort() }
         let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
-        var children: [[String : AnyObject]]?
-
-        if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
-            children = dictionary[customRelationshipName] as? [[String : AnyObject]]
-        } else if let result = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]] {
-            children = result
-        } else if let result = dictionary[relationship.name] as? [[String : AnyObject]] {
-            children = result
-        }
+        guard let managedObjectContext = managedObjectContext else { abort() }
+        guard let destinationEntity = relationship.destinationEntity else { abort() }
+        guard let childEntityName = destinationEntity.name else { abort() }
 
         if let children = children {
             let childIDs = (children as NSArray).valueForKey(entity.sync_remotePrimaryKey())
