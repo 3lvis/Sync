@@ -1124,4 +1124,76 @@ class SyncTests: XCTestCase {
         
         try! dataStack.drop()
     }
+
+    // MARK: - https://github.com/hyperoslo/Sync/issues/225
+
+    func test225ReplacedTag() {
+        let dataStack = Helper.dataStackWithModelName("225")
+
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+        // This should remove the old tag reference to the user and insert this new one.
+        let usersB = Helper.objectsFromJSON("225-a-replaced.json") as! [[String : AnyObject]]
+        Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
+
+        let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
+        let predicate = NSPredicate(format: "ANY users IN %@", [user])
+        let tags = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
+        XCTAssertEqual(tags.count, 1)
+
+        try! dataStack.drop()
+    }
+
+    func test225RemovedTagsWithEmptyArray() {
+        let dataStack = Helper.dataStackWithModelName("225")
+
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+        // This should remove all the references.
+        let usersB = Helper.objectsFromJSON("225-a-empty.json") as! [[String : AnyObject]]
+        Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+
+        // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
+        // object, but instead, it should just remove the reference.
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+
+        let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
+        let predicate = NSPredicate(format: "ANY users IN %@", [user])
+        let tags = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
+        XCTAssertEqual(tags.count, 0)
+
+        try! dataStack.drop()
+    }
+
+    func test225RemovedTagsWithNull() {
+        let dataStack = Helper.dataStackWithModelName("225")
+
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+
+        // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
+        // object, but instead, it should just remove the reference.
+        let usersB = Helper.objectsFromJSON("225-a-null.json") as! [[String : AnyObject]]
+        Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
+
+        let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
+        let predicate = NSPredicate(format: "ANY users IN %@", [user])
+        let tags = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
+        XCTAssertEqual(tags.count, 0)
+
+        try! dataStack.drop()
+    }
 }

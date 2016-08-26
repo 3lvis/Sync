@@ -71,8 +71,7 @@ public extension NSManagedObject {
                 setValue(nil, forKey: relationship.name)
             }
         } else {
-            guard let localPrimaryKey = localPrimaryKey as? NSArray else { return }
-            let remoteItems = localPrimaryKey
+            guard let remoteItems = localPrimaryKey as? NSArray else { return }
             let localRelationship: NSSet
             if relationship.ordered {
                 let value = self.valueForKey(relationship.name) as? NSOrderedSet ?? NSOrderedSet()
@@ -141,23 +140,93 @@ public extension NSManagedObject {
      - parameter dataStack: The DATAStack instance.
      */
     func sync_toManyRelationship(relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
-        guard let managedObjectContext = managedObjectContext, destinationEntity = relationship.destinationEntity, childEntityName = destinationEntity.name else { abort() }
-
-        let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
         var children: [[String : AnyObject]]?
+        var isNull = false
 
-        if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
-            children = dictionary[customRelationshipName] as? [[String : AnyObject]]
-        } else if let result = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]] {
-            children = result
-        } else if let result = dictionary[relationship.name] as? [[String : AnyObject]] {
-            children = result
+        if relationship.userInfo?[SYNCCustomRemoteKey] is NSNull {
+            isNull = true
+        } else if dictionary[relationship.name.hyp_remoteString()] is NSNull {
+            isNull = true
+        } else if dictionary[relationship.name] is NSNull {
+            isNull = true
         }
 
+        if isNull {
+            children = [[String : AnyObject]]()
+
+            if valueForKey(relationship.name) != nil {
+                setValue(nil, forKey: relationship.name)
+            }
+        } else {
+            if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
+                children = dictionary[customRelationshipName] as? [[String : AnyObject]]
+            } else if let result = dictionary[relationship.name.hyp_remoteString()] as? [[String : AnyObject]] {
+                children = result
+            } else if let result = dictionary[relationship.name] as? [[String : AnyObject]] {
+                children = result
+            }
+        }
+
+        let inverseIsToMany = relationship.inverseRelationship?.toMany ?? false
+        guard let managedObjectContext = managedObjectContext else { abort() }
+        guard let destinationEntity = relationship.destinationEntity else { abort() }
+        guard let childEntityName = destinationEntity.name else { abort() }
+
         if let children = children {
-            var childPredicate: NSPredicate?
             let childIDs = (children as NSArray).valueForKey(entity.sync_remotePrimaryKey())
 
+            if childIDs is NSNull {
+                if let _ = valueForKey(relationship.name) {
+                    setValue(nil, forKey: relationship.name)
+                }
+            } else {
+                guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
+                if let remoteItems = childIDs as? NSArray {
+                    let localRelationship: NSSet
+                    if relationship.ordered {
+                        let value = self.valueForKey(relationship.name) as? NSOrderedSet ?? NSOrderedSet()
+                        localRelationship = value.set
+                    } else {
+                        localRelationship = self.valueForKey(relationship.name) as? NSSet ?? NSSet()
+                    }
+                    let localItems = localRelationship.valueForKey(entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
+
+                    let deletedItems = NSMutableArray(array: localItems.allObjects)
+                    deletedItems.removeObjectsInArray(remoteItems as [AnyObject])
+
+                    if deletedItems.count > 0 {
+                        let request = NSFetchRequest(entityName: destinationEntityName)
+
+                        do {
+                            let safeLocalObjects = try managedObjectContext.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
+                            for safeObject in safeLocalObjects {
+                                let currentID = safeObject.valueForKey(entity.sync_localPrimaryKey())!
+                                for deleted in deletedItems {
+                                    if currentID.isEqual(deleted) {
+                                        if relationship.ordered {
+                                            let relatedObjects = mutableOrderedSetValueForKey(relationship.name)
+                                            if relatedObjects.containsObject(safeObject) {
+                                                relatedObjects.removeObject(safeObject)
+                                                setValue(relatedObjects, forKey: relationship.name)
+                                            }
+                                        } else {
+                                            let relatedObjects = mutableSetValueForKey(relationship.name)
+                                            if relatedObjects.containsObject(safeObject) {
+                                                relatedObjects.removeObject(safeObject)
+                                                setValue(relatedObjects, forKey: relationship.name)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } catch {
+                            fatalError()
+                        }
+                    }
+                }
+            }
+
+            var childPredicate: NSPredicate?
             let manyToMany = inverseIsToMany && relationship.toMany
             if manyToMany {
                 if childIDs.count > 0 {
