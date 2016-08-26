@@ -1144,7 +1144,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
 
         let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
-        let predicate = NSPredicate(format: "user = %@", user)
+        let predicate = NSPredicate(format: "ANY users IN %@", [user])
         let tags = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
         XCTAssertEqual(tags.count, 1)
 
