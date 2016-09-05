@@ -4,6 +4,17 @@ import Sync
 import CoreData
 
 class SyncTests: XCTestCase {
+    func testSynchronous() {
+        let dataStack = Helper.dataStackWithModelName("Camelcase")
+        let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : AnyObject]]
+        var synchronous = false
+        Sync.changes(objects, inEntityNamed: "NormalUser", dataStack: dataStack) { _ in 
+            synchronous = true
+        }
+        XCTAssertTrue(synchronous)
+        try! dataStack.drop()
+    }
+
     // MARK: - Camelcase
     func testAutomaticCamelcaseMapping() {
         let dataStack = Helper.dataStackWithModelName("Camelcase")

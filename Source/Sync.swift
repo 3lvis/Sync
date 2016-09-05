@@ -3,6 +3,7 @@ import NSEntityDescription_SYNCPrimaryKey
 import DATAFilter
 import NSManagedObject_HYPPropertyMapper
 import DATAStack
+import TestCheck
 
 @objc public class Sync: NSOperation {
     var downloadFinished = false
@@ -249,8 +250,12 @@ import DATAStack
             }
         }
 
-        dispatch_async(dispatch_get_main_queue()) {
+        if TestCheck.isTesting {
             completion?(error: syncError)
+        } else {
+            dispatch_async(dispatch_get_main_queue()) {
+                completion?(error: syncError)
+            }
         }
     }
 
