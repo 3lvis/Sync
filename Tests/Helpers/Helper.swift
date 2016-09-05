@@ -24,11 +24,15 @@ import JSON
     class func countForEntity(entityName: String, predicate: NSPredicate?, inContext context: NSManagedObjectContext) -> Int {
         let fetchRequest = NSFetchRequest(entityName: entityName)
         fetchRequest.predicate = predicate
-        var error: NSError?
-        let count = context.countForFetchRequest(fetchRequest, error: &error)
-        if let error = error {
-            print("Count error: %@", error.description)
-        }
+        #if swift(>=2.3)
+            let count = try! context.countForFetchRequest(fetchRequest)
+        #else
+            var error: NSError?
+            let count = context.countForFetchRequest(fetchRequest, error: &error)
+            if let error = error {
+                print("Count error: %@", error.description)
+            }
+        #endif
         return count
     }
 
