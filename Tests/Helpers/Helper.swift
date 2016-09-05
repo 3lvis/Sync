@@ -8,12 +8,14 @@ import JSON
     class func objectsFromJSON(fileName: String) -> AnyObject {
         let bundle = NSBundle(forClass: Helper.self)
         let objects = try! JSON.from(fileName, bundle: bundle)!
+
         return objects
     }
 
     class func dataStackWithModelName(modelName: String) -> DATAStack {
         let bundle = NSBundle(forClass: Helper.self)
         let dataStack = DATAStack(modelName: modelName, bundle: bundle, storeType: .SQLite)
+
         return dataStack
     }
 
@@ -33,6 +35,7 @@ import JSON
                 print("Count error: %@", error.description)
             }
         #endif
+
         return count
     }
 
@@ -53,6 +56,7 @@ import JSON
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
         let objects = try! context.executeFetchRequest(request) as? [NSManagedObject] ?? [NSManagedObject]()
+
         return objects
     }
 }
