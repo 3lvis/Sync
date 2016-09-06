@@ -229,9 +229,10 @@ You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the
 
 Your attributes should match their JSON counterparts in `camelCase` notation instead of `snake_case`. For example `first_name` in the JSON maps to `firstName` in Core Data and `address` in the JSON maps to `address` in Core Data.
 
-There is an exception to this rule:
+There are some exception to this rule:
 
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/hyperoslo/NSString-HYPNetworking/blob/master/README.md#acronyms).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
