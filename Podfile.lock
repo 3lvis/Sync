@@ -1,11 +1,11 @@
 PODS:
-  - DATAFilter (0.11.2):
+  - DATAFilter (1.0.0):
     - DATAObjectIDs (~> 0.6.0)
   - DATAObjectIDs (0.6.0)
-  - DATASource (5.10.0)
-  - DATAStack (5.4.2)
+  - DATASource (6.0.0)
+  - DATAStack (6.0.0)
   - DateParser (0.1.0)
-  - JSON (4.0.2)
+  - JSON (5.0.0)
   - NSDictionary-ANDYSafeValue (0.3.1)
   - NSEntityDescription-SYNCPrimaryKey (1.2.4):
     - NSString-HYPNetworking (~> 1.0.3)
@@ -15,13 +15,13 @@ PODS:
     - NSString-HYPNetworking (~> 1.0.3)
   - NSString-HYPNetworking (1.0.3)
   - Sync (1.13.3):
-    - DATAFilter (~> 0.11.2)
-    - DATAStack (~> 5.4.1)
+    - DATAFilter (~> 1.0.0)
+    - DATAStack (~> 6.0.0)
     - NSDictionary-ANDYSafeValue (~> 0.3.1)
     - NSEntityDescription-SYNCPrimaryKey (~> 1.2.4)
     - NSManagedObject-HYPPropertyMapper (~> 4.0.1)
-    - TestCheck (~> 0.3.1)
-  - TestCheck (0.3.1)
+    - TestCheck (~> 1.0.0)
+  - TestCheck (1.0.0)
 
 DEPENDENCIES:
   - DATASource
@@ -30,22 +30,22 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Sync:
-    :path: "."
+    :path: .
 
 SPEC CHECKSUMS:
-  DATAFilter: 1d339e27caf0a72d895a1ae664e044fff368a520
+  DATAFilter: 6f6b7de6a004bbb172b78880f72fdc7f618fc4da
   DATAObjectIDs: e3d50315134d21009f3b34983bcf44e74d8ab54a
-  DATASource: 444542bc20734886c3fa46f53ec4b1dbee750950
-  DATAStack: 931ef9a21c6badd0ff5de494a5d49109ba7e8115
+  DATASource: fab70e3d22acf03b8eced9a015bdca38b5b08505
+  DATAStack: 4cdf8e1b50f6d80c7d70f75e7a2c29545a008860
   DateParser: 6609ccde5a21650e2f61cea718a2e5c6c34ce4e8
-  JSON: d08f22c3e523be050d5d5f40bca43ec02d95b2cc
+  JSON: 93622160a062588b4cd3497b77ccd777f1fd0587
   NSDictionary-ANDYSafeValue: 2d7adf339b6e302d71fec5f1d71ae00aacda993e
   NSEntityDescription-SYNCPrimaryKey: 8f3024bddb098157b08710dc29a011e9948c5ed8
   NSManagedObject-HYPPropertyMapper: 2b42481a261b467024f6b6096fbe0a307a5198e3
   NSString-HYPNetworking: d4cc1047b85a02bdadd90c51b5d497e07d812efc
-  Sync: a0ce1ad9b83c364300939cf509fea79ab808aacd
-  TestCheck: 9a9aad0a356703989f4f2b640b6ed95e53e2214f
+  Sync: 8cef2058acaa839ca4979448eddbd4d198a7b67a
+  TestCheck: af3ff0c7c7c22cc4fbcc49a7e10d4187f0cbf1b9
 
 PODFILE CHECKSUM: a4ce83b9a5d0f8218c6d94acc4cfa26b0d4000d6
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

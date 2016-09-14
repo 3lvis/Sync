@@ -50,14 +50,14 @@ class SyncTests: XCTestCase {
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(int: 7)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
         XCTAssertEqual(result.valueForKey("email") as? String, "secondupdated@ovium.com")
 
-        let dateFormat = NSDateFormatter()
+        let dateFormat = DateFormatter()
         dateFormat.dateFormat = "yyyy-MM-dd"
-        dateFormat.timeZone = NSTimeZone(name: "GMT")
+        dateFormat.timeZone = TimeZone(identifier: "GMT")
 
-        let createdDate = dateFormat.dateFromString("2014-02-14")
+        let createdDate = dateFormat.date(from: "2014-02-14")
         XCTAssertEqual(result.valueForKey("createdAt") as? NSDate, createdDate);
 
-        let updatedDate = dateFormat.dateFromString("2014-02-17")
+        let updatedDate = dateFormat.date(from: "2014-02-17")
         XCTAssertEqual(result.valueForKey("updatedAt") as? NSDate, updatedDate)
 
         try! dataStack.drop()
