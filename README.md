@@ -49,7 +49,7 @@
 
 ```swift
 Sync.changes(
-  changes: [[String : AnyObject]],
+  changes: [[String : Any]],
   inEntityNamed: String,
   dataStack: DATAStack,
   completion: ((NSError?) -> Void)?)
@@ -290,13 +290,13 @@ let values = ["created_at" : "2014-01-01T00:00:00+00:00",
 
 managedObject.hyp_fillWithDictionary(values)
 
-let createdAt = managedObject.valueForKey("createdAt")
+let createdAt = managedObject.value(forKey: "createdAt")
 // ==> "2014-01-01 00:00:00 +00:00"
 
-let updatedAt = managedObject.valueForKey("updatedAt")
+let updatedAt = managedObject.value(forKey: "updatedAt")
 // ==> "2014-01-02 00:00:00 +00:00"
 
-let publishedAt = managedObject.valueForKey("publishedAt")
+let publishedAt = managedObject.value(forKey: "publishedAt")
 // ==> "2015-09-10 00:00:00 +00:00"
 ```
 

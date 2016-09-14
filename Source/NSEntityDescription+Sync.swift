@@ -21,6 +21,6 @@ extension NSEntityDescription {
      - returns The parent relationship for the current entity
      */
     func sync_parentEntity() -> NSRelationshipDescription? {
-        return sync_relationships().filter { $0.destinationEntity?.name == name && !$0.toMany }.first
+        return sync_relationships().filter { $0.destinationEntity?.name == name && !$0.isToMany }.first
     }
 }

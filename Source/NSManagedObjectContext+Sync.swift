@@ -11,21 +11,21 @@ public extension NSManagedObjectContext {
      - parameter parentRelationshipName: The name of the relationship with the parent.
      - returns: A NSManagedObject contained in the provided context.
      */
-    public func sync_safeObject(entityName: String, localPrimaryKey: AnyObject?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
+    public func sync_safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
         var result: NSManagedObject?
 
-        if let localPrimaryKey = localPrimaryKey as? NSObject, entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self) {
-            let request = NSFetchRequest(entityName: entityName)
+        if let localPrimaryKey = localPrimaryKey as? NSObject, let entity = NSEntityDescription.entity(forEntityName: entityName, in: self) {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), localPrimaryKey)
             do {
-                let objects = try executeFetchRequest(request)
+                let objects = try fetch(request)
                 result = objects.first as? NSManagedObject
             } catch {
                 fatalError("Failed to fetch request for entityName: \(entityName), predicate: \(request.predicate)")
             }
         } else if let parentRelationshipName = parentRelationshipName {
             // More info: https://github.com/hyperoslo/Sync/pull/72
-            result = parent?.valueForKey(parentRelationshipName) as? NSManagedObject
+            result = parent?.value(forKey: parentRelationshipName) as? NSManagedObject
         }
 
         return result
