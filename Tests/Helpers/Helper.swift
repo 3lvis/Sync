@@ -5,7 +5,7 @@ import Sync
 import JSON
 
 @objc class Helper: NSObject {
-    class func objectsFromJSON(_ fileName: String) -> AnyObject {
+    class func objectsFromJSON(_ fileName: String) -> Any {
         let bundle = Bundle(for: Helper.self)
         let objects = try! JSON.from(fileName, bundle: bundle)!
 
@@ -24,17 +24,9 @@ import JSON
     }
 
     class func countForEntity(_ entityName: String, predicate: NSPredicate?, inContext context: NSManagedObjectContext) -> Int {
-        let fetchRequest = NSFetchRequest(entityName: entityName)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = predicate
-        #if swift(>=2.3)
-            let count = try! context.countForFetchRequest(fetchRequest)
-        #else
-            var error: NSError?
-            let count = context.countForFetchRequest(fetchRequest, error: &error)
-            if let error = error {
-                print("Count error: %@", error.description)
-            }
-        #endif
+        let count = try! context.countForFetchRequest(fetchRequest)
 
         return count
     }
@@ -52,7 +44,7 @@ import JSON
     }
 
     class func fetchEntity(_ entityName: String, predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?, inContext context: NSManagedObjectContext) -> [NSManagedObject] {
-        let request = NSFetchRequest(entityName: entityName)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
         let objects = try! context.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()

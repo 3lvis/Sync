@@ -11,11 +11,11 @@ public extension NSManagedObjectContext {
      - parameter parentRelationshipName: The name of the relationship with the parent.
      - returns: A NSManagedObject contained in the provided context.
      */
-    public func sync_safeObject(_ entityName: String, localPrimaryKey: AnyObject?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
+    public func sync_safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
         var result: NSManagedObject?
 
         if let localPrimaryKey = localPrimaryKey as? NSObject, let entity = NSEntityDescription.entity(forEntityName: entityName, in: self) {
-            let request = NSFetchRequest(entityName: entityName)
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             request.predicate = NSPredicate(format: "%K = %@", entity.sync_localPrimaryKey(), localPrimaryKey)
             do {
                 let objects = try fetch(request)

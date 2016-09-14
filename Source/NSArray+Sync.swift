@@ -11,10 +11,10 @@ public extension NSArray {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func preprocessForEntityNamed(_ entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilter.Operation) -> [[String : AnyObject]] {
-        var filteredChanges = [[String : AnyObject]]()
+    func preprocessForEntityNamed(_ entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack, operations: DATAFilter.Operation) -> [[String : Any]] {
+        var filteredChanges = [[String : Any]]()
         let validClasses = [NSDate.classForCoder(), NSNumber.classForCoder(), NSString.classForCoder()]
-        if let predicate = predicate as? NSComparisonPredicate, let selfArray = self as? [[String : AnyObject]] , validClasses.contains(where: { $0 == predicate.rightExpression.classForCoder }) {
+        if let predicate = predicate as? NSComparisonPredicate, let selfArray = self as? [[String : Any]] , validClasses.contains(where: { $0 == predicate.rightExpression.classForCoder }) {
             var objectChanges = [NSManagedObject]()
             let context = dataStack.newDisposableMainContext()
             if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
@@ -26,7 +26,7 @@ public extension NSArray {
 
                 guard let filteredArray = (objectChanges as NSArray).filtered(using: predicate) as? [NSManagedObject] else { fatalError("Couldn't cast filteredArray as [NSManagedObject]: \(objectChanges), predicate: \(predicate)") }
                 for filteredObject in filteredArray  {
-                    if let change = filteredObject.hyp_dictionary(using: .array) as? [String : AnyObject] {
+                    if let change = filteredObject.hyp_dictionary(using: .array) as? [String : Any] {
                         filteredChanges.append(change)
                     }
                 }

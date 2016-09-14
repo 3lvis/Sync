@@ -49,7 +49,7 @@
 
 ```swift
 Sync.changes(
-  changes: [[String : AnyObject]],
+  changes: [[String : Any]],
   inEntityNamed: String,
   dataStack: DATAStack,
   completion: ((NSError?) -> Void)?)

@@ -6,7 +6,7 @@ import CoreData
 class SyncTests: XCTestCase {
     func testSynchronous() {
         let dataStack = Helper.dataStackWithModelName("Camelcase")
-        let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : Any]]
         var synchronous = false
         Sync.changes(objects, inEntityNamed: "NormalUser", dataStack: dataStack) { _ in 
             synchronous = true
@@ -18,7 +18,7 @@ class SyncTests: XCTestCase {
     // MARK: - Camelcase
     func testAutomaticCamelcaseMapping() {
         let dataStack = Helper.dataStackWithModelName("Camelcase")
-        let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : Any]]
         Sync.changes(objects, inEntityNamed: "NormalUser", dataStack: dataStack, completion: nil)
 
         let result = Helper.fetchEntity("NormalUser", inContext: dataStack.mainContext)
@@ -39,11 +39,11 @@ class SyncTests: XCTestCase {
     func testLoadAndUpdateUsers() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objectsA = Helper.objectsFromJSON("users_a.json") as! [[String : AnyObject]]
+        let objectsA = Helper.objectsFromJSON("users_a.json") as! [[String : Any]]
         Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 8)
 
-        let objectsB = Helper.objectsFromJSON("users_b.json") as! [[String : AnyObject]]
+        let objectsB = Helper.objectsFromJSON("users_b.json") as! [[String : Any]]
         Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 6)
 
@@ -66,7 +66,7 @@ class SyncTests: XCTestCase {
     func testUsersAndCompanies() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objects = Helper.objectsFromJSON("users_company.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("users_company.json") as! [[String : Any]]
         Sync.changes(objects, inEntityNamed: "User", dataStack: dataStack, completion: nil)
 
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 5);
@@ -82,7 +82,7 @@ class SyncTests: XCTestCase {
 
     func testCustomMappingAndCustomPrimaryKey() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
-        let objects = Helper.objectsFromJSON("images.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("images.json") as! [[String : Any]]
         Sync.changes(objects, inEntityNamed: "Image", dataStack: dataStack, completion: nil)
 
         let array = Helper.fetchEntity("Image", sortDescriptors: [NSSortDescriptor(key: "url", ascending: true)], inContext: dataStack.mainContext)
@@ -96,7 +96,7 @@ class SyncTests: XCTestCase {
     func testRelationshipsB() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objects = Helper.objectsFromJSON("users_c.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("users_c.json") as! [[String : Any]]
         Sync.changes(objects, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 4);
 
@@ -121,11 +121,11 @@ class SyncTests: XCTestCase {
     func testSyncingWithOnlyInsertOperationType() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : AnyObject]]
+        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : Any]]
         Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
-        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : AnyObject]]
+        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : Any]]
         Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
 
@@ -141,11 +141,11 @@ class SyncTests: XCTestCase {
     func testSyncingWithMultipleInsertOperationTypes() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : AnyObject]]
+        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : Any]]
         Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
-        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : AnyObject]]
+        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : Any]]
         Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
 
@@ -164,11 +164,11 @@ class SyncTests: XCTestCase {
     func testSyncingWithOnlyUpdateOperationType() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : AnyObject]]
+        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : Any]]
         Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
-        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : AnyObject]]
+        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : Any]]
         Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Update], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 2)
 
@@ -184,11 +184,11 @@ class SyncTests: XCTestCase {
     func testSyncingWithOnlyDeleteOperationType() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : AnyObject]]
+        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : Any]]
         Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
-        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : AnyObject]]
+        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : Any]]
         Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Delete], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
 
@@ -204,11 +204,11 @@ class SyncTests: XCTestCase {
     func testSyncingWithInsertAndUpdateOperationType() {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
-        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : AnyObject]]
+        let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String : Any]]
         Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
-        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : AnyObject]]
+        let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String : Any]]
         Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert, .Update], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
 
@@ -224,7 +224,7 @@ class SyncTests: XCTestCase {
     // MARK: - Notes
 
     func testRelationshipsA() {
-        let objects = Helper.objectsFromJSON("users_notes.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("users_notes.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Notes")
 
         Sync.changes(objects, inEntityNamed: "SuperUser", dataStack: dataStack, completion: nil)
@@ -241,7 +241,7 @@ class SyncTests: XCTestCase {
     }
 
     func testObjectsForParent() {
-        let objects = Helper.objectsFromJSON("notes_for_user_a.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("notes_for_user_a.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Notes")
         dataStack.performInNewBackgroundContext { backgroundContext in
             // First, we create a parent user, this user is the one that will own all the notes
@@ -272,7 +272,7 @@ class SyncTests: XCTestCase {
     }
 
     func testTaggedNotesForUser() {
-        let objects = Helper.objectsFromJSON("tagged_notes.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("tagged_notes.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Notes")
 
         Sync.changes(objects, inEntityNamed: "SuperNote", dataStack: dataStack, completion: nil)
@@ -292,7 +292,7 @@ class SyncTests: XCTestCase {
     }
 
     func testCustomKeysInRelationshipsToMany() {
-        let objects = Helper.objectsFromJSON("custom_relationship_key_to_many.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("custom_relationship_key_to_many.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Notes")
 
         Sync.changes(objects, inEntityNamed: "SuperUser", dataStack: dataStack, completion: nil)
@@ -307,7 +307,7 @@ class SyncTests: XCTestCase {
     // MARK: - Recursive
 
     func testNumbersWithEmptyRelationship() {
-        let objects = Helper.objectsFromJSON("numbers.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("numbers.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Recursive")
 
         Sync.changes(objects, inEntityNamed: "Number", dataStack: dataStack, completion: nil)
@@ -317,7 +317,7 @@ class SyncTests: XCTestCase {
     }
 
     func testRelationshipName() {
-        let objects = Helper.objectsFromJSON("numbers_in_collection.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("numbers_in_collection.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Recursive")
 
         Sync.changes(objects, inEntityNamed: "Number", dataStack: dataStack, completion: nil)
@@ -335,7 +335,7 @@ class SyncTests: XCTestCase {
     // MARK: - Social
 
     func testCustomPrimaryKey() {
-        let objects = Helper.objectsFromJSON("comments-no-id.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("comments-no-id.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Social")
 
         Sync.changes(objects, inEntityNamed: "SocialComment", dataStack: dataStack, completion: nil)
@@ -352,7 +352,7 @@ class SyncTests: XCTestCase {
     }
 
     func testCustomPrimaryKeyInsideToManyRelationship() {
-        let objects = Helper.objectsFromJSON("stories-comments-no-ids.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("stories-comments-no-ids.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Social")
 
         Sync.changes(objects, inEntityNamed: "Story", dataStack: dataStack, completion: nil)
@@ -378,7 +378,7 @@ class SyncTests: XCTestCase {
     }
 
     func testCustomKeysInRelationshipsToOne() {
-        let objects = Helper.objectsFromJSON("custom_relationship_key_to_one.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("custom_relationship_key_to_one.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Social")
 
         Sync.changes(objects, inEntityNamed: "Story", dataStack: dataStack, completion: nil)
@@ -393,7 +393,7 @@ class SyncTests: XCTestCase {
     // MARK: - Markets
 
     func testMarketsAndItems() {
-        let objects = Helper.objectsFromJSON("markets_items.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("markets_items.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Markets")
 
         Sync.changes(objects, inEntityNamed: "Market", dataStack: dataStack, completion: nil)
@@ -416,7 +416,7 @@ class SyncTests: XCTestCase {
     // MARK: - Organization
 
     func testOrganization() {
-        let json = Helper.objectsFromJSON("organizations-tree.json") as! [[String : AnyObject]]
+        let json = Helper.objectsFromJSON("organizations-tree.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Organizations")
 
         Sync.changes(json, inEntityNamed:"OrganizationUnit", dataStack:dataStack, completion:nil)
@@ -436,7 +436,7 @@ class SyncTests: XCTestCase {
      *  2 entries of B get updated and one entry of C gets added.
      */
     func testUniqueObject() {
-        let objects = Helper.objectsFromJSON("unique.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("unique.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Unique")
 
         Sync.changes(objects, inEntityNamed: "A", dataStack: dataStack, completion: nil)
@@ -455,7 +455,7 @@ class SyncTests: XCTestCase {
     // MARK: - Patients => https://github.com/hyperoslo/Sync/issues/121
 
     func testPatients() {
-        let objects = Helper.objectsFromJSON("patients.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("patients.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Patients")
 
         Sync.changes(objects, inEntityNamed: "Patient", dataStack: dataStack, completion: nil)
@@ -472,7 +472,7 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 84 => https://github.com/hyperoslo/Sync/issues/84
 
     func testStaffAndfulfillers() {
-        let objects = Helper.objectsFromJSON("bug-number-84.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("bug-number-84.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Bug84")
 
         Sync.changes(objects, inEntityNamed: "MSStaff", dataStack: dataStack, completion: nil)
@@ -498,7 +498,7 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 113 => https://github.com/hyperoslo/Sync/issues/113
 
     func testCustomPrimaryKeyBug113() {
-        let objects = Helper.objectsFromJSON("bug-113-comments-no-id.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("bug-113-comments-no-id.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Bug113")
 
         Sync.changes(objects, inEntityNamed: "AwesomeComment", dataStack: dataStack, completion: nil)
@@ -515,7 +515,7 @@ class SyncTests: XCTestCase {
     }
 
     func testCustomPrimaryKeyInsideToManyRelationshipBug113() {
-        let objects = Helper.objectsFromJSON("bug-113-stories-comments-no-ids.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("bug-113-stories-comments-no-ids.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Bug113")
 
         Sync.changes(objects, inEntityNamed: "AwesomeStory", dataStack: dataStack, completion: nil)
@@ -540,7 +540,7 @@ class SyncTests: XCTestCase {
     }
 
     func testCustomKeysInRelationshipsToOneBug113() {
-        let objects = Helper.objectsFromJSON("bug-113-custom_relationship_key_to_one.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("bug-113-custom_relationship_key_to_one.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Bug113")
 
         Sync.changes(objects, inEntityNamed: "AwesomeStory", dataStack: dataStack, completion: nil)
@@ -555,7 +555,7 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 125 => https://github.com/hyperoslo/Sync/issues/125
 
     func testNilRelationshipsAfterUpdating_Sync_1_0_10() {
-        let formDictionary = Helper.objectsFromJSON("bug-125.json") as! [String : AnyObject]
+        let formDictionary = Helper.objectsFromJSON("bug-125.json") as! [String : Any]
         let uri = formDictionary["uri"] as! String
         let dataStack = Helper.dataStackWithModelName("Bug125")
 
@@ -584,7 +584,7 @@ class SyncTests: XCTestCase {
     }
 
     func testStoryToSummarize() {
-        let formDictionary = Helper.objectsFromJSON("story-summarize.json") as! [String : AnyObject]
+        let formDictionary = Helper.objectsFromJSON("story-summarize.json") as! [String : Any]
         let dataStack = Helper.dataStackWithModelName("Social")
 
         Sync.changes([formDictionary], inEntityNamed:"Story", predicate: NSPredicate(format:"remoteID == %@", NSNumber(int: 1)), dataStack:dataStack, completion:nil)
@@ -613,7 +613,7 @@ class SyncTests: XCTestCase {
      * It will should map category_id with the necesary category object using the ID 12345
      */
     func testIDRelationshipMapping() {
-        let usersDictionary = Helper.objectsFromJSON("users_a.json") as! [[String : AnyObject]]
+        let usersDictionary = Helper.objectsFromJSON("users_a.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Notes")
 
         Sync.changes(usersDictionary, inEntityNamed:"SuperUser", dataStack:dataStack, completion:nil)
@@ -621,7 +621,7 @@ class SyncTests: XCTestCase {
         let usersCount = Helper.countForEntity("SuperUser", inContext:dataStack.mainContext)
         XCTAssertEqual(usersCount, 8)
 
-        let notesDictionary = Helper.objectsFromJSON("notes_with_user_id.json") as! [[String : AnyObject]]
+        let notesDictionary = Helper.objectsFromJSON("notes_with_user_id.json") as! [[String : Any]]
 
         Sync.changes(notesDictionary, inEntityNamed:"SuperNote", dataStack:dataStack, completion:nil)
 
@@ -646,7 +646,7 @@ class SyncTests: XCTestCase {
      * It will should map category_id with the necesary category object using the ID 12345, but adding a custom remoteKey would make it map to category with ID 12345
      */
     func testIDRelationshipCustomMapping() {
-        let usersDictionary = Helper.objectsFromJSON("users_a.json") as! [[String : AnyObject]]
+        let usersDictionary = Helper.objectsFromJSON("users_a.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("NotesB")
 
         Sync.changes(usersDictionary, inEntityNamed:"SuperUserB", dataStack:dataStack, completion:nil)
@@ -654,7 +654,7 @@ class SyncTests: XCTestCase {
         let usersCount = Helper.countForEntity("SuperUserB", inContext:dataStack.mainContext)
         XCTAssertEqual(usersCount, 8)
 
-        let notesDictionary = Helper.objectsFromJSON("notes_with_user_id_custom.json") as! [[String : AnyObject]]
+        let notesDictionary = Helper.objectsFromJSON("notes_with_user_id_custom.json") as! [[String : Any]]
 
         Sync.changes(notesDictionary, inEntityNamed:"SuperNoteB", dataStack:dataStack, completion:nil)
 
@@ -672,7 +672,7 @@ class SyncTests: XCTestCase {
     // MARK:- Ordered Social
 
     func testCustomPrimaryKeyInOrderedRelationship() {
-        let objects = Helper.objectsFromJSON("comments-no-id.json") as! [[String : AnyObject]]
+        let objects = Helper.objectsFromJSON("comments-no-id.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("OrderedSocial")
 
         Sync.changes(objects, inEntityNamed: "Comment", dataStack: dataStack, completion: nil)
@@ -691,8 +691,8 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 179 => https://github.com/hyperoslo/Sync/issues/179
 
     func testConnectMultipleRelationships() {
-        let places = Helper.objectsFromJSON("bug-179-places.json") as! [[String : AnyObject]]
-        let routes = Helper.objectsFromJSON("bug-179-routes.json") as! [String : AnyObject]
+        let places = Helper.objectsFromJSON("bug-179-places.json") as! [[String : Any]]
+        let routes = Helper.objectsFromJSON("bug-179-routes.json") as! [String : Any]
         let dataStack = Helper.dataStackWithModelName("Bug179")
 
         Sync.changes(places, inEntityNamed: "Place", dataStack: dataStack, completion: nil)
@@ -718,11 +718,11 @@ class SyncTests: XCTestCase {
     func testManyToManyKeyNotAllowedHere() {
         let dataStack = Helper.dataStackWithModelName("Bug202")
 
-        let initialInsert = Helper.objectsFromJSON("bug-202-a.json") as! [[String : AnyObject]]
+        let initialInsert = Helper.objectsFromJSON("bug-202-a.json") as! [[String : Any]]
         Sync.changes(initialInsert, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
-        let removeAll = Helper.objectsFromJSON("bug-202-b.json") as! [[String : AnyObject]]
+        let removeAll = Helper.objectsFromJSON("bug-202-b.json") as! [[String : Any]]
         Sync.changes(removeAll, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
@@ -734,7 +734,7 @@ class SyncTests: XCTestCase {
     func testIDAsRemoteID() {
         let dataStack = Helper.dataStackWithModelName("id")
 
-        let users = Helper.objectsFromJSON("id.json") as! [[String : AnyObject]]
+        let users = Helper.objectsFromJSON("id.json") as! [[String : Any]]
         Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 2)
 
@@ -747,13 +747,13 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Bug157")
 
         // 3 locations get synced, their references get ignored since no cities are found
-        let locations = Helper.objectsFromJSON("157-locations.json") as! [[String : AnyObject]]
+        let locations = Helper.objectsFromJSON("157-locations.json") as! [[String : Any]]
         Sync.changes(locations, inEntityNamed: "Location", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Location", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("City", inContext:dataStack.mainContext), 0)
 
         // 3 cities get synced
-        let cities = Helper.objectsFromJSON("157-cities.json") as! [[String : AnyObject]]
+        let cities = Helper.objectsFromJSON("157-cities.json") as! [[String : Any]]
         Sync.changes(cities, inEntityNamed: "City", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Location", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("City", inContext:dataStack.mainContext), 3)
@@ -771,7 +771,7 @@ class SyncTests: XCTestCase {
         XCTAssertNil(location3City?.valueForKey("name") as? String)
 
         // Finally we update the relationships to test changing relationships
-        let updatedLocations = Helper.objectsFromJSON("157-locations-update.json") as! [[String : AnyObject]]
+        let updatedLocations = Helper.objectsFromJSON("157-locations-update.json") as! [[String : Any]]
         Sync.changes(updatedLocations, inEntityNamed: "Location", dataStack: dataStack, completion: nil)
         location1 = Helper.fetchEntity("Location", predicate: NSPredicate(format: "locationID = 0"), inContext: dataStack.mainContext).first
         location1City = location1?.valueForKey("city") as? NSManagedObject
@@ -791,7 +791,7 @@ class SyncTests: XCTestCase {
     func testOperation() {
         let dataStack = Helper.dataStackWithModelName("id")
 
-        let users = Helper.objectsFromJSON("id.json") as! [[String : AnyObject]]
+        let users = Helper.objectsFromJSON("id.json") as! [[String : Any]]
         let operation = Sync(changes: users, inEntityNamed: "User", predicate: nil, dataStack: dataStack)
         operation.start()
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 2)
@@ -806,13 +806,13 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("151-to-many")
 
         // Inserts 3 users, it ignores the relationships since no notes are found
-        let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : AnyObject]]
+        let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : Any]]
         Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 0)
 
         // Inserts 3 notes
-        let notes = Helper.objectsFromJSON("151-to-many-notes.json") as! [[String : AnyObject]]
+        let notes = Helper.objectsFromJSON("151-to-many-notes.json") as! [[String : Any]]
         Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -848,7 +848,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(note2User?.valueForKey("userID") as? Int, 11)
 
         // Updates the first 3 users again, but now it changes all the relationships
-        let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : AnyObject]]
+        let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : Any]]
         Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -881,13 +881,13 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("151-ordered-to-many")
 
         // Inserts 3 users, it ignores the relationships since no notes are found
-        let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : AnyObject]]
+        let users = Helper.objectsFromJSON("151-to-many-users.json") as! [[String : Any]]
         Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 0)
 
         // Inserts 3 notes
-        let notes = Helper.objectsFromJSON("151-to-many-notes.json") as! [[String : AnyObject]]
+        let notes = Helper.objectsFromJSON("151-to-many-notes.json") as! [[String : Any]]
         Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -914,7 +914,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(user12Notes?.set.count, 0)
 
         // Updates the first 3 users again, but now it changes all the relationships
-        let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : AnyObject]]
+        let updatedUsers = Helper.objectsFromJSON("151-to-many-users-update.json") as! [[String : Any]]
         Sync.changes(updatedUsers, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 3)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 3)
@@ -937,13 +937,13 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("151-many-to-many")
 
         // Inserts 4 notes
-        let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
+        let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : Any]]
         Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
 
         // Inserts 3 tags
-        let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : AnyObject]]
+        let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : Any]]
         Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
@@ -973,7 +973,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(note3Tags?.count, 1)
 
         // Updates the first 4 notes again, but now it changes all the relationships
-        let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : AnyObject]]
+        let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : Any]]
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
         Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
@@ -1000,13 +1000,13 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("151-ordered-many-to-many")
         
         // Inserts 4 notes
-        let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : AnyObject]]
+        let notes = Helper.objectsFromJSON("151-many-to-many-notes.json") as! [[String : Any]]
         Sync.changes(notes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)
         
         // Inserts 3 tags
-        let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : AnyObject]]
+        let tags = Helper.objectsFromJSON("151-many-to-many-tags.json") as! [[String : Any]]
         Sync.changes(tags, inEntityNamed: "Tag", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
@@ -1036,7 +1036,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(note3Tags?.count, 1)
         
         // Updates the first 4 notes again, but now it changes all the relationships
-        let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : AnyObject]]
+        let updatedNotes = Helper.objectsFromJSON("151-many-to-many-notes-update.json") as! [[String : Any]]
         XCTAssertEqual(Helper.countForEntity("Note", inContext:dataStack.mainContext), 4)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
         Sync.changes(updatedNotes, inEntityNamed: "Note", dataStack: dataStack, completion: nil)
@@ -1061,7 +1061,7 @@ class SyncTests: XCTestCase {
     func testBug257() {
         let dataStack = Helper.dataStackWithModelName("Bug257")
 
-        let JSON = Helper.objectsFromJSON("bug-257.json") as! [String : AnyObject]
+        let JSON = Helper.objectsFromJSON("bug-257.json") as! [String : Any]
         Sync.changes([JSON], inEntityNamed: "Workout", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Workout", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Exercise", inContext:dataStack.mainContext), 2)
@@ -1074,7 +1074,7 @@ class SyncTests: XCTestCase {
     func testBug254() {
         let dataStack = Helper.dataStackWithModelName("Bug254")
 
-        let JSON = Helper.objectsFromJSON("bug-254.json") as! [String : AnyObject]
+        let JSON = Helper.objectsFromJSON("bug-254.json") as! [String : Any]
         Sync.changes([JSON], inEntityNamed: "House", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("House", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Human", inContext:dataStack.mainContext), 1)
@@ -1101,7 +1101,7 @@ class SyncTests: XCTestCase {
     func testBug260CamelCase() {
         let dataStack = Helper.dataStackWithModelName("ToOne")
 
-        let snakeCaseJSON = Helper.objectsFromJSON("to-one-snakecase.json") as! [String : AnyObject]
+        let snakeCaseJSON = Helper.objectsFromJSON("to-one-snakecase.json") as! [String : Any]
         Sync.changes([snakeCaseJSON], inEntityNamed: "RentedHome", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("RentedHome", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("LegalPerson", inContext:dataStack.mainContext), 1)
@@ -1112,7 +1112,7 @@ class SyncTests: XCTestCase {
     func testBug260SnakeCase() {
         let dataStack = Helper.dataStackWithModelName("ToOne")
 
-        let camelCaseJSON = Helper.objectsFromJSON("to-one-camelcase.json") as! [String : AnyObject]
+        let camelCaseJSON = Helper.objectsFromJSON("to-one-camelcase.json") as! [String : Any]
         Sync.changes([camelCaseJSON], inEntityNamed: "RentedHome", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("RentedHome", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("LegalPerson", inContext:dataStack.mainContext), 1)
@@ -1123,7 +1123,7 @@ class SyncTests: XCTestCase {
     // MARK: Bug 239 => https://github.com/hyperoslo/Sync/pull/239
 
     func testBug239() {
-        let carsObject = Helper.objectsFromJSON("bug-239.json") as! [[String : AnyObject]]
+        let carsObject = Helper.objectsFromJSON("bug-239.json") as! [[String : Any]]
         let dataStack = Helper.dataStackWithModelName("Bug239")
         Sync.changes(carsObject, inEntityNamed: "Racecar", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Racecar", inContext:dataStack.mainContext), 1)
@@ -1141,13 +1141,13 @@ class SyncTests: XCTestCase {
     func test225ReplacedTag() {
         let dataStack = Helper.dataStackWithModelName("225")
 
-        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : Any]]
         Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
         // This should remove the old tag reference to the user and insert this new one.
-        let usersB = Helper.objectsFromJSON("225-a-replaced.json") as! [[String : AnyObject]]
+        let usersB = Helper.objectsFromJSON("225-a-replaced.json") as! [[String : Any]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 2)
@@ -1163,13 +1163,13 @@ class SyncTests: XCTestCase {
     func test225RemovedTagsWithEmptyArray() {
         let dataStack = Helper.dataStackWithModelName("225")
 
-        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : Any]]
         Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
         // This should remove all the references.
-        let usersB = Helper.objectsFromJSON("225-a-empty.json") as! [[String : AnyObject]]
+        let usersB = Helper.objectsFromJSON("225-a-empty.json") as! [[String : Any]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
 
@@ -1188,14 +1188,14 @@ class SyncTests: XCTestCase {
     func test225RemovedTagsWithNull() {
         let dataStack = Helper.dataStackWithModelName("225")
 
-        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : AnyObject]]
+        let usersA = Helper.objectsFromJSON("225-a.json") as! [[String : Any]]
         Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
 
         // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
         // object, but instead, it should just remove the reference.
-        let usersB = Helper.objectsFromJSON("225-a-null.json") as! [[String : AnyObject]]
+        let usersB = Helper.objectsFromJSON("225-a-null.json") as! [[String : Any]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 0)

@@ -15,8 +15,8 @@ public extension NSManagedObject {
      - returns: A NSManagedObject copied in the provided context.
      */
     func sync_copyInContext(_ context: NSManagedObjectContext) -> NSManagedObject {
-        guard let entity = entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError () }
-        guard let entityName = entity.name else { fatalError() }
+        guard let entityName = self.entity.name else { fatalError() }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError () }
         let localPrimaryKey = value(forKey: entity.sync_localPrimaryKey())
         guard let copiedObject = context.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(localPrimaryKey)") }
 
@@ -32,7 +32,7 @@ public extension NSManagedObject {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_fillWithDictionary(_ dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
+    func sync_fillWithDictionary(_ dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
         hyp_fill(with: dictionary)
 
         for relationship in entity.sync_relationships() {
@@ -62,7 +62,7 @@ public extension NSManagedObject {
      - parameter relationship: The relationship to be synced.
      - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually an array of strings or numbers.
      */
-    func sync_toManyRelationshipUsingIDsInsteadOfDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: AnyObject) {
+    func sync_toManyRelationshipUsingIDsInsteadOfDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: Any) {
         guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
         guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
         guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
@@ -83,13 +83,13 @@ public extension NSManagedObject {
             let localItems = localRelationship.value(forKey: entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
 
             let deletedItems = NSMutableArray(array: localItems.allObjects)
-            deletedItems.removeObjects(in: remoteItems as [AnyObject])
+            deletedItems.removeObjects(in: remoteItems as [Any])
 
             let insertedItems = remoteItems.mutableCopy() as? NSMutableArray ?? NSMutableArray()
             insertedItems.removeObjects(in: localItems.allObjects)
 
             guard insertedItems.count > 0 || deletedItems.count > 0 else { return }
-            let request = NSFetchRequest(entityName: destinationEntityName)
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: destinationEntityName)
             let fetchedObjects = try? managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
             guard let objects = fetchedObjects else { return }
             for safeObject in objects {
@@ -140,21 +140,21 @@ public extension NSManagedObject {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
-        var children: [[String : AnyObject]]?
+    func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
+        var children: [[String : Any]]?
         let childrenIsNull = relationship.userInfo?[SYNCCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_remote()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
-            children = [[String : AnyObject]]()
+            children = [[String : Any]]()
 
             if value(forKey: relationship.name) != nil {
                 setValue(nil, forKey: relationship.name)
             }
         } else {
             if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
-                children = dictionary[customRelationshipName] as? [[String : AnyObject]]
-            } else if let result = dictionary[relationship.name.hyp_remote()] as? [[String : AnyObject]] {
+                children = dictionary[customRelationshipName] as? [[String : Any]]
+            } else if let result = dictionary[relationship.name.hyp_remote()] as? [[String : Any]] {
                 children = result
-            } else if let result = dictionary[relationship.name] as? [[String : AnyObject]] {
+            } else if let result = dictionary[relationship.name] as? [[String : Any]] {
                 children = result
             }
         }
@@ -184,10 +184,10 @@ public extension NSManagedObject {
                     let localItems = localRelationship.value(forKey: entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
 
                     let deletedItems = NSMutableArray(array: localItems.allObjects)
-                    deletedItems.removeObjects(in: remoteItems as [AnyObject])
+                    deletedItems.removeObjects(in: remoteItems as [Any])
 
                     if deletedItems.count > 0 {
-                        let request = NSFetchRequest(entityName: destinationEntityName)
+                        let request = NSFetchRequest<NSFetchRequestResult>(entityName: destinationEntityName)
 
                         do {
                             let safeLocalObjects = try managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
@@ -221,7 +221,7 @@ public extension NSManagedObject {
             var childPredicate: NSPredicate?
             let manyToMany = inverseIsToMany && relationship.isToMany
             if manyToMany {
-                if (childIDs as AnyObject).count > 0 {
+                if (childIDs as Any).count > 0 {
                     guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: managedObjectContext) else { fatalError() }
                     guard let childIDsObject = childIDs as? NSObject else { fatalError() }
                     childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), childIDsObject)
@@ -257,7 +257,7 @@ public extension NSManagedObject {
      - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually a number or an integer.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toOneRelationshipUsingIDInsteadOfDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: AnyObject, dataStack: DATAStack) {
+    func sync_toOneRelationshipUsingIDInsteadOfDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: Any, dataStack: DATAStack) {
         guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
         guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
         guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
@@ -281,14 +281,14 @@ public extension NSManagedObject {
      - parameter dictionary: The JSON with the changes to be applied to the entity.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : AnyObject], dataStack: DATAStack, operations: DATAFilter.Operation) {
-        var filteredObjectDictionary: [String : AnyObject]?
+    func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], dataStack: DATAStack, operations: DATAFilter.Operation) {
+        var filteredObjectDictionary: [String : Any]?
 
         if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
-            filteredObjectDictionary = dictionary[customRelationshipName] as? [String : AnyObject]
-        } else if let result = dictionary[relationship.name.hyp_remote()] as? [String : AnyObject] {
+            filteredObjectDictionary = dictionary[customRelationshipName] as? [String : Any]
+        } else if let result = dictionary[relationship.name.hyp_remote()] as? [String : Any] {
             filteredObjectDictionary = result
-        } else if let result = dictionary[relationship.name] as? [String : AnyObject] {
+        } else if let result = dictionary[relationship.name] as? [String : Any] {
             filteredObjectDictionary = result
         }
 
