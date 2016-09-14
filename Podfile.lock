@@ -30,7 +30,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Sync:
-    :path: .
+    :path: "."
 
 SPEC CHECKSUMS:
   DATAFilter: 6f6b7de6a004bbb172b78880f72fdc7f618fc4da

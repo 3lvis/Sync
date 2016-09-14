@@ -14,7 +14,7 @@ import JSON
 
     class func dataStackWithModelName(_ modelName: String) -> DATAStack {
         let bundle = Bundle(for: Helper.self)
-        let dataStack = DATAStack(modelName: modelName, bundle: bundle, storeType: .SQLite)
+        let dataStack = DATAStack(modelName: modelName, bundle: bundle, storeType: .sqLite)
 
         return dataStack
     }
@@ -26,7 +26,7 @@ import JSON
     class func countForEntity(_ entityName: String, predicate: NSPredicate?, inContext context: NSManagedObjectContext) -> Int {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = predicate
-        let count = try! context.countForFetchRequest(fetchRequest)
+        let count = try! context.count(for: fetchRequest)
 
         return count
     }
