@@ -45,7 +45,7 @@ public extension NSManagedObject {
                 } else {
                     sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
                 }
-            } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == parent.entity.name || relationship.destinationEntity?.name == parent.entity.superentity?.name {
+            } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == relationship.name || relationship.destinationEntity?.name == parent.entity.superentity?.name {
                 setValue(parent, forKey: relationship.name)
             } else if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
                 sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
