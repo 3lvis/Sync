@@ -22,8 +22,8 @@ PODS:
   - TestCheck (1.0.0)
 
 DEPENDENCIES:
-  - DATASource
-  - JSON
+  - DATASource (~> 6)
+  - JSON (~> 5)
   - Sync (from `.`)
 
 EXTERNAL SOURCES:
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   Sync: fecde8190f793f7193c517642a81903a84566e0f
   TestCheck: af3ff0c7c7c22cc4fbcc49a7e10d4187f0cbf1b9
 
-PODFILE CHECKSUM: a4ce83b9a5d0f8218c6d94acc4cfa26b0d4000d6
+PODFILE CHECKSUM: 2f66666173c7e212ebe798fd96713dc28117babd
 
 COCOAPODS: 1.1.0.rc.2
