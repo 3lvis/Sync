@@ -1208,4 +1208,10 @@ class SyncTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    func testBug285() {
+        let dataStack = Helper.dataStackWithModelName("285")
+
+        try! dataStack.drop()
+    }
 }
