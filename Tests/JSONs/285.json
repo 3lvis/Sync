@@ -1,13 +1,15 @@
 [
   {
+    "id": 1,
+    "category": "director",
     "details": [
       {
+        "id": 1,
         "film": "xxx",
         "language": "zzz",
         "image": "yyy.jpg",
         "year": "qqqq"
       }
-    ],
-    "category": "director"
+    ]
   }
 ]
