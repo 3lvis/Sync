@@ -212,7 +212,7 @@ import TestCheck
     }
 
     open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((_ error: NSError?) -> Void)?) {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError("Couldn't load entity named \(entityName)") }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
         let remotePrimaryKey = entity.sync_remotePrimaryKey()
