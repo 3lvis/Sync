@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="FilmographyCD" syncable="YES">
-        <attribute name="category" optional="YES" attributeType="String" syncable="YES">
-            <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
-            </userInfo>
-        </attribute>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="details" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FilmographyDetailsCD" inverseName="filmography" inverseEntity="FilmographyDetailsCD" syncable="YES"/>
     </entity>
     <entity name="FilmographyDetailsCD" syncable="YES">
-        <attribute name="film" optional="YES" attributeType="String" syncable="YES">
-            <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
-            </userInfo>
-        </attribute>
+        <attribute name="film" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="filmography" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FilmographyCD" inverseName="details" inverseEntity="FilmographyCD" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FilmographyCD" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="FilmographyDetailsCD" positionX="142" positionY="-81" width="128" height="118"/>
+        <element name="FilmographyCD" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="FilmographyDetailsCD" positionX="142" positionY="-81" width="128" height="135"/>
     </elements>
 </model>
