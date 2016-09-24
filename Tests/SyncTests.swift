@@ -1217,6 +1217,13 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("TaskList", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Owner", inContext:dataStack.mainContext), 1)
 
+        let taskList = Helper.fetchEntity("TaskList", inContext: dataStack.mainContext).first!
+        let owner = taskList.value(forKey: "owner") as? NSManagedObject
+        XCTAssertNotNil(owner)
+
+        let participants = taskList.value(forKey: "participants") as? NSSet ?? NSSet()
+        XCTAssertEqual(participants.count, 0)
+
         try! dataStack.drop()
     }
 }
