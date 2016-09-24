@@ -1210,7 +1210,7 @@ class SyncTests: XCTestCase {
     }
 
     func testBug285() {
-        let dataStack = Helper.dataStackWithModelName("Bug285")
+        let dataStack = Helper.dataStackWithModelName("285")
 
         let films = Helper.objectsFromJSON("285.json") as! [[String : Any]]
         Sync.changes(films, inEntityNamed: "FilmographyCD", dataStack: dataStack, completion: nil)
