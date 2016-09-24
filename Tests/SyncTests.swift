@@ -1218,6 +1218,11 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("RoutePolylineItem", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("RouteStop", inContext:dataStack.mainContext), 1)
 
+        Sync.changes(routes, inEntityNamed: "Route", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Route", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("RoutePolylineItem", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("RouteStop", inContext:dataStack.mainContext), 1)
+
         try! dataStack.drop()
     }
 }
