@@ -83,6 +83,7 @@
 		14A644111CD77A4C00F51E23 /* Bug202.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A6440F1CD77A4C00F51E23 /* Bug202.xcdatamodeld */; };
 		14A644151CD77C7A00F51E23 /* bug-202-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644121CD77C7A00F51E23 /* bug-202-a.json */; };
 		14A644161CD77C7A00F51E23 /* bug-202-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A644131CD77C7A00F51E23 /* bug-202-b.json */; };
+		14B0EC1E1D96FC2500310711 /* 280.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14B0EC1C1D96FC2500310711 /* 280.xcdatamodeld */; };
 		14BF14DA1D6ED307008F5915 /* to-one-camelcase.json in Resources */ = {isa = PBXBuildFile; fileRef = 14BF14D81D6ED307008F5915 /* to-one-camelcase.json */; };
 		14BF14DB1D6ED307008F5915 /* to-one-snakecase.json in Resources */ = {isa = PBXBuildFile; fileRef = 14BF14D91D6ED307008F5915 /* to-one-snakecase.json */; };
 		14D16B3A1D6EE27000F63AB2 /* Bug239.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14D16B381D6EE27000F63AB2 /* Bug239.xcdatamodeld */; };
@@ -181,6 +182,7 @@
 		14A644101CD77A4C00F51E23 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		14A644121CD77C7A00F51E23 /* bug-202-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-202-a.json"; sourceTree = "<group>"; };
 		14A644131CD77C7A00F51E23 /* bug-202-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bug-202-b.json"; sourceTree = "<group>"; };
+		14B0EC1D1D96FC2500310711 /* 151-many-to-many.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "151-many-to-many.xcdatamodel"; sourceTree = "<group>"; };
 		14BF14D81D6ED307008F5915 /* to-one-camelcase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "to-one-camelcase.json"; sourceTree = "<group>"; };
 		14BF14D91D6ED307008F5915 /* to-one-snakecase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "to-one-snakecase.json"; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				14096A401CEAF483002690D6 /* 151-ordered-to-many.xcdatamodeld */,
 				14096A3A1CEAF40E002690D6 /* 151-to-many.xcdatamodeld */,
 				149112431D70279200167D26 /* 225.xcdatamodeld */,
+				14B0EC1C1D96FC2500310711 /* 280.xcdatamodeld */,
 				1418942B1BDD62F600EE52CE /* Bug84.xcdatamodeld */,
 				141894251BDD62F600EE52CE /* Bug113.xcdatamodeld */,
 				141894291BDD62F600EE52CE /* Bug125.xcdatamodeld */,
@@ -594,6 +597,7 @@
 				1418945B1BDD62F600EE52CE /* Bug125.xcdatamodeld in Sources */,
 				1418945C1BDD62F600EE52CE /* Bug84.xcdatamodeld in Sources */,
 				B0B637141C6E4F2D00229B03 /* Bug179.xcdatamodeld in Sources */,
+				14B0EC1E1D96FC2500310711 /* 280.xcdatamodeld in Sources */,
 				1418945F1BDD62F600EE52CE /* Notes.xcdatamodeld in Sources */,
 				141894641BDD62F600EE52CE /* Unique.xcdatamodeld in Sources */,
 				141D9E751CE9A4970041A7FC /* Bug157.xcdatamodeld in Sources */,
@@ -1006,6 +1010,16 @@
 			);
 			currentVersion = 14A644101CD77A4C00F51E23 /* Demo.xcdatamodel */;
 			path = Bug202.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14B0EC1C1D96FC2500310711 /* 280.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14B0EC1D1D96FC2500310711 /* 151-many-to-many.xcdatamodel */,
+			);
+			currentVersion = 14B0EC1D1D96FC2500310711 /* 151-many-to-many.xcdatamodel */;
+			path = 280.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Route" syncable="YES"/>
+    <entity name="RoutePolylineItem" syncable="YES"/>
+    <entity name="RouteStop" syncable="YES"/>
+    <elements>
+        <element name="Route" positionX="-20" positionY="-180" width="128" height="43"/>
+        <element name="RoutePolylineItem" positionX="-135" positionY="-63" width="128" height="45"/>
+        <element name="RouteStop" positionX="70" positionY="-63" width="128" height="45"/>
+    </elements>
+</model>
