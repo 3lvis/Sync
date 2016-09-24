@@ -3,10 +3,7 @@
     "category": "director",
     "details": [
       {
-        "film": "xxx",
-        "language": "zzz",
-        "image": "yyy.jpg",
-        "year": "qqqq"
+        "film": "xxx"
       }
     ]
   }
