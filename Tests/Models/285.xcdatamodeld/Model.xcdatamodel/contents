@@ -14,13 +14,10 @@
                 <entry key="hyper.isPrimaryKey" value="true"/>
             </userInfo>
         </attribute>
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="filmography" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FilmographyCD" inverseName="details" inverseEntity="FilmographyCD" syncable="YES"/>
     </entity>
     <elements>
         <element name="FilmographyCD" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="FilmographyDetailsCD" positionX="142" positionY="-81" width="128" height="120"/>
+        <element name="FilmographyDetailsCD" positionX="142" positionY="-81" width="128" height="73"/>
     </elements>
 </model>
