@@ -242,13 +242,11 @@ class SyncTests: XCTestCase {
 
     func testObjectsForParent() {
         let objects = Helper.objectsFromJSON("notes_for_user_a.json") as! [[String : Any]]
-        let dataStack = Helper.dataStackWithModelName("Notes")
+        let dataStack = Helper.dataStackWithModelName("InsertObjectsInParent")
         dataStack.performInNewBackgroundContext { backgroundContext in
             // First, we create a parent user, this user is the one that will own all the notes
             let user = NSEntityDescription.insertNewObject(forEntityName: "SuperUser", into:backgroundContext)
             user.setValue(NSNumber(value: 6), forKey: "remoteID")
-            user.setValue("Shawn Merrill", forKey: "name")
-            user.setValue("firstupdate@ovium.com", forKey: "email")
 
             try! backgroundContext.save()
         }
@@ -263,10 +261,10 @@ class SyncTests: XCTestCase {
         // Here we just make sure that the user has the notes that we just inserted
         users = Helper.fetchEntity("SuperUser", predicate: NSPredicate(format:"remoteID = %@", NSNumber(value: 6)), inContext: dataStack.mainContext)
         let user = users.first!
-        XCTAssertEqual(user.value(forKey: "name") as? String, "Shawn Merrill")
+        XCTAssertEqual(user.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 6))
 
         let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format:"superUser = %@", user), inContext:dataStack.mainContext)
-        XCTAssertEqual(notesCount, 5)
+        XCTAssertEqual(notesCount, 2)
 
         try! dataStack.drop()
     }
@@ -293,13 +291,13 @@ class SyncTests: XCTestCase {
 
     func testCustomKeysInRelationshipsToMany() {
         let objects = Helper.objectsFromJSON("custom_relationship_key_to_many.json") as! [[String : Any]]
-        let dataStack = Helper.dataStackWithModelName("Notes")
+        let dataStack = Helper.dataStackWithModelName("CustomRelationshipKey")
 
-        Sync.changes(objects, inEntityNamed: "SuperUser", dataStack: dataStack, completion: nil)
+        Sync.changes(objects, inEntityNamed: "User", dataStack: dataStack, completion: nil)
 
-        let array = Helper.fetchEntity("SuperUser", inContext:dataStack.mainContext)
+        let array = Helper.fetchEntity("User", inContext:dataStack.mainContext)
         let user = array.first!
-        XCTAssertEqual((user.value(forKey: "superNotes") as? NSSet)!.allObjects.count, 3)
+        XCTAssertEqual((user.value(forKey: "notes") as? NSSet)!.allObjects.count, 3)
 
         try! dataStack.drop()
     }
@@ -1222,6 +1220,24 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Route", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("RoutePolylineItem", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("RouteStop", inContext:dataStack.mainContext), 1)
+
+        try! dataStack.drop()
+    }
+
+    func test283() {
+        let dataStack = Helper.dataStackWithModelName("283")
+
+        let taskLists = Helper.objectsFromJSON("283.json") as! [[String : Any]]
+        Sync.changes(taskLists, inEntityNamed: "TaskList", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("TaskList", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Owner", inContext:dataStack.mainContext), 1)
+
+        let taskList = Helper.fetchEntity("TaskList", inContext: dataStack.mainContext).first!
+        let owner = taskList.value(forKey: "owner") as? NSManagedObject
+        XCTAssertNotNil(owner)
+
+        let participants = taskList.value(forKey: "participants") as? NSSet ?? NSSet()
+        XCTAssertEqual(participants.count, 0)
 
         try! dataStack.drop()
     }

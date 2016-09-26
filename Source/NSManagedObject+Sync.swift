@@ -46,12 +46,30 @@ public extension NSManagedObject {
                 } else {
                     sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
                 }
-            } else if let parent = parent , !parent.isEqual(value(forKey: relationship.name)) && relationship.destinationEntity?.name == parent.entity.name || relationship.destinationEntity?.name == parent.entity.superentity?.name {
-                setValue(parent, forKey: relationship.name)
-            } else if let localPrimaryKey = dictionary[keyName] , localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
-                sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
             } else {
-                sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack, operations: operations)
+                var destinationIsParentSuperEntity = false
+                if let parent = parent, let destinationEntityName = relationship.destinationEntity?.name {
+                    if let parentSuperEntityName = parent.entity.superentity?.name {
+                        destinationIsParentSuperEntity = destinationEntityName == parentSuperEntityName
+                    }
+                }
+
+                var parentRelationshipIsTheSameAsCurrentRelationship = false
+                if let parentRelationship = parentRelationship {
+                    parentRelationshipIsTheSameAsCurrentRelationship = parentRelationship.inverseRelationship == relationship
+                }
+
+                if let parent = parent , parentRelationshipIsTheSameAsCurrentRelationship || destinationIsParentSuperEntity {
+                    let currentValueForRelationship = self.value(forKey: relationship.name)
+                    let newParentIsDifferentThanCurrentValue = parent.isEqual(currentValueForRelationship) == false
+                    if newParentIsDifferentThanCurrentValue {
+                        self.setValue(parent, forKey: relationship.name)
+                    }
+                } else if let localPrimaryKey = dictionary[keyName] , localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
+                    sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
+                } else {
+                    sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack, operations: operations)
+                }
             }
         }
     }
@@ -301,9 +319,13 @@ public extension NSManagedObject {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedObjectContext) else { return }
 
         let localPrimaryKey = toOneObjectDictionary[entity.sync_remotePrimaryKey()]
+        print("localPrimaryKey: \(localPrimaryKey)")
         let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext)
+        print("object: \(object)")
 
         object.sync_fillWithDictionary(toOneObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
+
+        print("object after fill: \(object)")
 
         let currentRelationship = value(forKey: relationship.name)
         if currentRelationship == nil || !(currentRelationship! as AnyObject).isEqual(object) {
