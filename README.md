@@ -199,11 +199,16 @@ inEntityNamed:@"User"
 
 **Sync** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
+#### Swift 2.3
 ```ruby
-use_frameworks!
-
-pod 'Sync'
+pod 'Sync', '~> 1'
 ```
+
+#### Swift 3
+```ruby
+pod 'Sync', '~> 2'
+```
+
 
 ## Requisites
 
