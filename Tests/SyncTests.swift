@@ -1209,6 +1209,23 @@ class SyncTests: XCTestCase {
         try! dataStack.drop()
     }
 
+    func test280() {
+        let dataStack = Helper.dataStackWithModelName("280")
+
+        let routes = Helper.objectsFromJSON("280.json") as! [[String : Any]]
+        Sync.changes(routes, inEntityNamed: "Route", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Route", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("RoutePolylineItem", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("RouteStop", inContext:dataStack.mainContext), 1)
+
+        Sync.changes(routes, inEntityNamed: "Route", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Route", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("RoutePolylineItem", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("RouteStop", inContext:dataStack.mainContext), 1)
+
+        try! dataStack.drop()
+    }
+
     func test283() {
         let dataStack = Helper.dataStackWithModelName("283")
 
