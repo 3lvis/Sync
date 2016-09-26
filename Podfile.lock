@@ -13,7 +13,7 @@ PODS:
     - DateParser (~> 0.1.0)
     - NSEntityDescription-SYNCPrimaryKey (~> 1.2.6)
   - NSString-HYPNetworking (1.0.5)
-  - Sync (2.1.0):
+  - Sync (2.1.1):
     - DATAFilter (~> 1.0.0)
     - DATAStack (~> 6.0.0)
     - NSDictionary-ANDYSafeValue (~> 0.3.1)
@@ -28,7 +28,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Sync:
-    :path: "."
+    :path: .
 
 SPEC CHECKSUMS:
   DATAFilter: 6f6b7de6a004bbb172b78880f72fdc7f618fc4da
@@ -41,7 +41,7 @@ SPEC CHECKSUMS:
   NSEntityDescription-SYNCPrimaryKey: 9449ab486b46ee949421d17d11de8cd7d4c31904
   NSManagedObject-HYPPropertyMapper: 765b7b3bcbbfd4c224a2c19620e438b0da09ec64
   NSString-HYPNetworking: a42e1fddceabb89735e53cbbb4b5865edd4f2bb6
-  Sync: b44174977fae2f30de8743fcb33f151930caf36d
+  Sync: 291bf8e789cd3e540d1ae1633c8038cbdc5d157e
   TestCheck: af3ff0c7c7c22cc4fbcc49a7e10d4187f0cbf1b9
 
 PODFILE CHECKSUM: 2f66666173c7e212ebe798fd96713dc28117babd
