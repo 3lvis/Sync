@@ -293,13 +293,13 @@ class SyncTests: XCTestCase {
 
     func testCustomKeysInRelationshipsToMany() {
         let objects = Helper.objectsFromJSON("custom_relationship_key_to_many.json") as! [[String : Any]]
-        let dataStack = Helper.dataStackWithModelName("Notes")
+        let dataStack = Helper.dataStackWithModelName("CustomRelationshipKey")
 
-        Sync.changes(objects, inEntityNamed: "SuperUser", dataStack: dataStack, completion: nil)
+        Sync.changes(objects, inEntityNamed: "User", dataStack: dataStack, completion: nil)
 
-        let array = Helper.fetchEntity("SuperUser", inContext:dataStack.mainContext)
+        let array = Helper.fetchEntity("User", inContext:dataStack.mainContext)
         let user = array.first!
-        XCTAssertEqual((user.value(forKey: "superNotes") as? NSSet)!.allObjects.count, 3)
+        XCTAssertEqual((user.value(forKey: "notes") as? NSSet)!.allObjects.count, 3)
 
         try! dataStack.drop()
     }
