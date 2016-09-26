@@ -184,11 +184,12 @@ import TestCheck
             let relationships = entity.relationshipsWithDestinationEntity(parent.entity)
             var predicate: NSPredicate? = nil
 
-            if let firstRelationship = relationships.first {
+            let firstRelationship = relationships.first
+            if let firstRelationship = firstRelationship {
                 predicate = NSPredicate(format: "%K = %@", firstRelationship.name, safeParent)
             }
 
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, parentRelationship: firstRelationship?.inverseRelationship, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
         }
     }
 

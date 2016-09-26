@@ -45,31 +45,6 @@ public extension NSManagedObject {
                 } else {
                     sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
                 }
-            } else if let parent = parent where !parent.isEqual(valueForKey(relationship.name)) && relationship.destinationEntity?.name == parent.entity.name || relationship.destinationEntity?.name == parent.entity.superentity?.name {
-                setValue(parent, forKey: relationship.name)
-            } else if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
-                sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
-            } else {
-                sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack, operations: operations)
-            }
-        }
-    }
-
-    /*
-    func sync_fillWithDictionary(dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
-        hyp_fillWithDictionary(dictionary)
-
-        for relationship in entity.sync_relationships() {
-            let suffix = relationship.toMany ? "_ids" : "_id"
-            let constructedKeyName = relationship.name.hyp_remoteString() + suffix
-            let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
-
-            if relationship.toMany {
-                if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> || localPrimaryKey is NSNull {
-                    sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
-                } else {
-                    sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
-                }
             } else {
                 var destinationIsParentSuperEntity = false
                 if let parent = parent, let destinationEntityName = relationship.destinationEntity?.name {
@@ -97,7 +72,6 @@ public extension NSManagedObject {
             }
         }
     }
-    */
 
     /**
      Syncs relationships where only the ids are present, for example if your model is: User <<->> Tags (a user has many tags and a tag belongs to many users),
