@@ -183,12 +183,12 @@ import TestCheck
             guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: backgroundContext) else { fatalError("Couldn't find entity named: \(entityName)") }
             let relationships = entity.relationships(forDestination: parent.entity)
             var predicate: NSPredicate? = nil
+            let firstRelationship = relationships.first
 
-            if let firstRelationship = relationships.first {
+            if let firstRelationship = firstRelationship {
                 predicate = NSPredicate(format: "%K = %@", firstRelationship.name, safeParent)
             }
-
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, parentRelationship: firstRelationship?.inverseRelationship, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
         }
     }
 
