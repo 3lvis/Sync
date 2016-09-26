@@ -301,7 +301,6 @@
 		141894241BDD62F600EE52CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4446FAD51D99AC0900FACD63 /* CustomRelationshipKey.xcdatamodeld */,
 				14096A381CEAF40E002690D6 /* 151-many-to-many.xcdatamodeld */,
 				14096A3E1CEAF483002690D6 /* 151-ordered-many-to-many.xcdatamodeld */,
 				14096A401CEAF483002690D6 /* 151-ordered-to-many.xcdatamodeld */,
@@ -320,6 +319,7 @@
 				143753B11D6BAAAE00577EB1 /* Bug257.xcdatamodeld */,
 				140FBF1A1CB91A5D0026484E /* Camelcase.xcdatamodeld */,
 				1418942D1BDD62F600EE52CE /* Contacts.xcdatamodeld */,
+				4446FAD51D99AC0900FACD63 /* CustomRelationshipKey.xcdatamodeld */,
 				146F2EB11CE1F27200543F83 /* id.xcdatamodeld */,
 				1418942F1BDD62F600EE52CE /* Markets.xcdatamodeld */,
 				141894311BDD62F600EE52CE /* Notes.xcdatamodeld */,
