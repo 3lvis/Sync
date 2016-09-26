@@ -49,28 +49,17 @@ public extension NSManagedObject {
             } else {
                 var destinationIsParentSuperEntity = false
                 if let parent = parent, let destinationEntityName = relationship.destinationEntity?.name {
-                    print(" ")
-                    print("relationship: \(relationship)")
-                    print(" ")
-                    print("relationship.name: \(relationship.name)")
-                    print(" ")
-                    print("parent.entity.name: \(parent.entity.name)")
-                    print("destinationEntityName: \(destinationEntityName)")
-                    print("parent: \(parent)")
-                    print(" ")
-                    print("parent: \(parentRelationship)")
-
                     if let parentSuperEntityName = parent.entity.superentity?.name {
                         destinationIsParentSuperEntity = destinationEntityName == parentSuperEntityName
                     }
                 }
 
-                var destinationRelationshipMatchesParentRelationship = false
+                var parentRelationshipIsTheSameAsCurrentRelationship = false
                 if let parentRelationship = parentRelationship {
-                    destinationRelationshipMatchesParentRelationship = parentRelationship.name == relationship.name
+                    parentRelationshipIsTheSameAsCurrentRelationship = parentRelationship.inverseRelationship == relationship
                 }
 
-                if let parent = parent , destinationRelationshipMatchesParentRelationship || destinationIsParentSuperEntity {
+                if let parent = parent , parentRelationshipIsTheSameAsCurrentRelationship || destinationIsParentSuperEntity {
                     let currentValueForRelationship = self.value(forKey: relationship.name)
                     let newParentIsDifferentThanCurrentValue = parent.isEqual(currentValueForRelationship) == false
                     if newParentIsDifferentThanCurrentValue {

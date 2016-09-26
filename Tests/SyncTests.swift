@@ -242,13 +242,11 @@ class SyncTests: XCTestCase {
 
     func testObjectsForParent() {
         let objects = Helper.objectsFromJSON("notes_for_user_a.json") as! [[String : Any]]
-        let dataStack = Helper.dataStackWithModelName("Notes")
+        let dataStack = Helper.dataStackWithModelName("InsertObjectsInParent")
         dataStack.performInNewBackgroundContext { backgroundContext in
             // First, we create a parent user, this user is the one that will own all the notes
             let user = NSEntityDescription.insertNewObject(forEntityName: "SuperUser", into:backgroundContext)
             user.setValue(NSNumber(value: 6), forKey: "remoteID")
-            user.setValue("Shawn Merrill", forKey: "name")
-            user.setValue("firstupdate@ovium.com", forKey: "email")
 
             try! backgroundContext.save()
         }
@@ -263,10 +261,10 @@ class SyncTests: XCTestCase {
         // Here we just make sure that the user has the notes that we just inserted
         users = Helper.fetchEntity("SuperUser", predicate: NSPredicate(format:"remoteID = %@", NSNumber(value: 6)), inContext: dataStack.mainContext)
         let user = users.first!
-        XCTAssertEqual(user.value(forKey: "name") as? String, "Shawn Merrill")
+        XCTAssertEqual(user.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 6))
 
         let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format:"superUser = %@", user), inContext:dataStack.mainContext)
-        XCTAssertEqual(notesCount, 5)
+        XCTAssertEqual(notesCount, 2)
 
         try! dataStack.drop()
     }

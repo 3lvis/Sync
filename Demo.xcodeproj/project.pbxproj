@@ -100,6 +100,7 @@
 		14FDB4D11C511A5B0061D9FA /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D01C511A5B0061D9FA /* SyncTests.swift */; };
 		14FDB4D31C511A6F0061D9FA /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB4D21C511A6F0061D9FA /* Helper.swift */; };
 		4446FAD71D99AC0900FACD63 /* CustomRelationshipKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4446FAD51D99AC0900FACD63 /* CustomRelationshipKey.xcdatamodeld */; };
+		4446FADA1D99B0E800FACD63 /* InsertObjectsInParent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4446FAD81D99B0E800FACD63 /* InsertObjectsInParent.xcdatamodeld */; };
 		B0B637141C6E4F2D00229B03 /* Bug179.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0B637121C6E4F2D00229B03 /* Bug179.xcdatamodeld */; };
 		B0B637171C6E517F00229B03 /* bug-179-places.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B637151C6E517F00229B03 /* bug-179-places.json */; };
 		B0B637181C6E517F00229B03 /* bug-179-routes.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B637161C6E517F00229B03 /* bug-179-routes.json */; };
@@ -209,6 +210,7 @@
 		14FDB4D21C511A6F0061D9FA /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; tabWidth = 4; };
 		3009E229ED9B6FAA003C2296 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4446FAD61D99AC0900FACD63 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		4446FAD91D99B0E800FACD63 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		952F5F96D743BE94A46D9F2E /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E482492041434DB374B1948 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B637131C6E4F2D00229B03 /* Bug179.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bug179.xcdatamodel; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				1418942D1BDD62F600EE52CE /* Contacts.xcdatamodeld */,
 				4446FAD51D99AC0900FACD63 /* CustomRelationshipKey.xcdatamodeld */,
 				146F2EB11CE1F27200543F83 /* id.xcdatamodeld */,
+				4446FAD81D99B0E800FACD63 /* InsertObjectsInParent.xcdatamodeld */,
 				1418942F1BDD62F600EE52CE /* Markets.xcdatamodeld */,
 				141894311BDD62F600EE52CE /* Notes.xcdatamodeld */,
 				1469B7F71C68D7820080FD71 /* NotesB.xcdatamodeld */,
@@ -619,6 +622,7 @@
 				14E298431C563EE500B68B72 /* OrderedSocial.xcdatamodeld in Sources */,
 				149112451D70279200167D26 /* 225.xcdatamodeld in Sources */,
 				14A644111CD77A4C00F51E23 /* Bug202.xcdatamodeld in Sources */,
+				4446FADA1D99B0E800FACD63 /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				1471E05C1D970B0600753D24 /* 283.xcdatamodeld in Sources */,
 				1425D5A31CC65BEB00EC49D4 /* NSManagedObjectContext+Sync.swift in Sources */,
 				141894591BDD62F600EE52CE /* Bug113.xcdatamodeld in Sources */,
@@ -1076,6 +1080,16 @@
 			);
 			currentVersion = 4446FAD61D99AC0900FACD63 /* Demo.xcdatamodel */;
 			path = CustomRelationshipKey.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4446FAD81D99B0E800FACD63 /* InsertObjectsInParent.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4446FAD91D99B0E800FACD63 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 4446FAD91D99B0E800FACD63 /* Demo.xcdatamodel */;
+			path = InsertObjectsInParent.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
