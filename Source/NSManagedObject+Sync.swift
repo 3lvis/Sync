@@ -189,7 +189,7 @@ public extension NSManagedObject {
         guard let childEntityName = destinationEntity.name else { abort() }
 
         if let children = children {
-            let childIDs = (children as NSArray).value(forKey: entity.sync_remotePrimaryKey())
+            let childIDs = (children as NSArray).value(forKey: destinationEntity.sync_remotePrimaryKey())
 
             if childIDs is NSNull {
                 if value(forKey: relationship.name) != nil {
@@ -205,7 +205,7 @@ public extension NSManagedObject {
                     } else {
                         localRelationship = self.value(forKey: relationship.name) as? NSSet ?? NSSet()
                     }
-                    let localItems = localRelationship.value(forKey: entity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
+                    let localItems = localRelationship.value(forKey: destinationEntity.sync_localPrimaryKey()) as? NSSet ?? NSSet()
 
                     let deletedItems = NSMutableArray(array: localItems.allObjects)
                     let removedRemoteItems = remoteItems as? [Any] ?? [Any]()
@@ -217,7 +217,7 @@ public extension NSManagedObject {
                         do {
                             let safeLocalObjects = try managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
                             for safeObject in safeLocalObjects {
-                                let currentID = safeObject.value(forKey: entity.sync_localPrimaryKey())!
+                                let currentID = safeObject.value(forKey: destinationEntity.sync_localPrimaryKey())!
                                 for deleted in deletedItems {
                                     if (currentID as AnyObject).isEqual(deleted) {
                                         if relationship.isOrdered {
