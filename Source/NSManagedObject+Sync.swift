@@ -55,6 +55,50 @@ public extension NSManagedObject {
         }
     }
 
+    /*
+    func sync_fillWithDictionary(dictionary: [String : AnyObject], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
+        hyp_fillWithDictionary(dictionary)
+
+        for relationship in entity.sync_relationships() {
+            let suffix = relationship.toMany ? "_ids" : "_id"
+            let constructedKeyName = relationship.name.hyp_remoteString() + suffix
+            let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
+
+            if relationship.toMany {
+                if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> || localPrimaryKey is NSNull {
+                    sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
+                } else {
+                    sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
+                }
+            } else {
+                var destinationIsParentSuperEntity = false
+                if let parent = parent, let destinationEntityName = relationship.destinationEntity?.name {
+                    if let parentSuperEntityName = parent.entity.superentity?.name {
+                        destinationIsParentSuperEntity = destinationEntityName == parentSuperEntityName
+                    }
+                }
+
+                var parentRelationshipIsTheSameAsCurrentRelationship = false
+                if let parentRelationship = parentRelationship {
+                    parentRelationshipIsTheSameAsCurrentRelationship = parentRelationship.inverseRelationship == relationship
+                }
+
+                if let parent = parent where parentRelationshipIsTheSameAsCurrentRelationship || destinationIsParentSuperEntity {
+                    let currentValueForRelationship = self.valueForKey(relationship.name)
+                    let newParentIsDifferentThanCurrentValue = parent.isEqual(currentValueForRelationship) == false
+                    if newParentIsDifferentThanCurrentValue {
+                        self.setValue(parent, forKey: relationship.name)
+                    }
+                } else if let localPrimaryKey = dictionary[keyName] where localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
+                    sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
+                } else {
+                    sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack, operations: operations)
+                }
+            }
+        }
+    }
+    */
+
     /**
      Syncs relationships where only the ids are present, for example if your model is: User <<->> Tags (a user has many tags and a tag belongs to many users),
      and your tag has a users_ids, it will try to sync using those ID instead of requiring you to provide the entire users list inside each tag.
