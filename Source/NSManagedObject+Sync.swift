@@ -43,6 +43,8 @@ public extension NSManagedObject {
             if relationship.isToMany {
                 if let localPrimaryKey = dictionary[keyName] , localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> || localPrimaryKey is NSNull {
                     sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
+                } else if let localPrimaryKey = dictionary[keyName] , localPrimaryKey is [String:Bool] || localPrimaryKey is [Int:Bool] {
+                    sync_toManyRelationshipUsingIDsInDictionary(relationship, localPrimaryKey: localPrimaryKey)
                 } else {
                     sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
                 }
@@ -149,6 +151,27 @@ public extension NSManagedObject {
                     }
                 }
             }
+        }
+    }
+    
+    /**
+     Syncs relationships where only the ids are present in a dictionary in the form of { 'xyz': true } or  { 123: true }, for example if your model is: User <<->> Tags (a user has many tags and a tag belongs to many users),
+     and your tag has a users_ids, it will try to sync using those ID instead of requiring you to provide the entire users list inside each tag.
+     - parameter relationship: The relationship to be synced.
+     - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually an array of strings or numbers.
+     */
+    func sync_toManyRelationshipUsingIDsInDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: Any) {
+        if let dictionaryOfStringKey = localPrimaryKey as? [String:Bool] {
+            let ids = dictionaryOfStringKey.flatMap({ (key, value) -> String in
+                return key
+            })
+            sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: ids)
+        }
+        else if let dictionaryOfIntKey = localPrimaryKey as? [Int:Bool] {
+            let ids = dictionaryOfIntKey.flatMap({ (key, value) -> Int in
+                return key
+            })
+            sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: ids)
         }
     }
 

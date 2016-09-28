@@ -211,7 +211,7 @@ import TestCheck
         self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
     }
 
-    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, shouldSave save: Bool = true, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -238,18 +238,22 @@ import TestCheck
         }) { JSON, updatedObject in
             updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }
-
+        
         var syncError: NSError?
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                syncError = error
-            } catch {
-                fatalError("Fatal error")
-            }
-        }
 
+        if save {
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch let error as NSError {
+                    syncError = error
+                } catch {
+                    fatalError("Fatal error")
+                }
+            }
+
+        }
+        
         if TestCheck.isTesting {
             completion?(syncError)
         } else {
@@ -259,7 +263,7 @@ import TestCheck
         }
     }
 
-    func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, shouldSave save: Bool = true, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -290,10 +294,9 @@ import TestCheck
         }
 
         var syncError: NSError?
-        if context.hasChanges {
-            if self.isCancelled {
-                context.reset()
-            } else {
+        
+        if save {
+            if context.hasChanges {
                 do {
                     try context.save()
                 } catch let error as NSError {
@@ -302,6 +305,7 @@ import TestCheck
                     fatalError("Fatal error")
                 }
             }
+            
         }
         
         completion?(syncError)
