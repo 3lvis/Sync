@@ -230,6 +230,16 @@ You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the
 
 ![Custom primary key](https://raw.githubusercontent.com/hyperoslo/Sync/master/Images/custom-primary-key-v3.png)
 
+If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
+
+- Local primary key will be: `contractID`
+- Remote primary key will be: `contract_id`
+
+If you want to use `id` for the remote primary key you also have to add the flag `hyper.remoteKey` and write `id` as the value.
+
+- Local primary key will be: `articleBody`
+- Remote primary key will be: `id`
+
 ### Attribute Mapping
 
 Your attributes should match their JSON counterparts in `camelCase` notation instead of `snake_case`. For example `first_name` in the JSON maps to `firstName` in Core Data and `address` in the JSON maps to `address` in Core Data.
@@ -413,18 +423,6 @@ You are free to use any networking library.
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
 
 ## FAQ
-
-#### Using `hyper.isPrimaryKey` in addition to `hyper.remoteKey`
-
-If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
-
-- Local primary key will be: `contractID`
-- Remote primary key will be: `contract_id`
-
-If you want to use `id` for the remote primary key you also have to add the flag `hyper.remoteKey` and write `id` as the value.
-
-- Local primary key will be: `articleBody`
-- Remote primary key will be: `id`
 
 #### How uniquing works (many-to-many, one-to-many)?
 
