@@ -1,1 +1,1 @@
-Check https://github.com/hyperoslo/Sync/releases for more information.
+Check https://github.com/SyncDB/Sync/releases for more information.
