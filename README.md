@@ -66,7 +66,7 @@ Sync.changes(
 
 * `changes`: JSON response
 * `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [DATAStack](https://github.com/3lvis/DATAStack)
+* `dataStack`: Your [DATAStack](https://github.com/SyncDB/DATAStack)
 
 ## Example with snake_case in Swift
 
@@ -184,11 +184,11 @@ inEntityNamed:@"User"
 
 ## More Examples
 
-<a href="https://github.com/3lvis/SyncAppNetDemo">
+<a href="https://github.com/SyncDB/AppNetDemo">
   <img src="https://raw.githubusercontent.com/SyncDB/Sync/master/Images/APPNET-v3.png" />
 </a>
 
-<a href="https://github.com/3lvis/SyncDesignerNewsDemo">
+<a href="https://github.com/SyncDB/DesignerNewsDemo">
   <img src="https://raw.githubusercontent.com/SyncDB/Sync/master/Images/DN-v4.png" />
 </a>
 
@@ -214,7 +214,7 @@ pod 'Sync', '~> 2'
 
 ### Core Data Stack
 
-Replace your Core Data stack with an instance of [DATAStack](https://github.com/3lvis/DATAStack).
+Replace your Core Data stack with an instance of [DATAStack](https://github.com/SyncDB/DATAStack).
 
 ```swift
 self.dataStack = DATAStack(modelName: "Demo")
@@ -226,7 +226,7 @@ Sync requires your entities to have a primary key, this is important for diffing
 
 By default **Sync** uses `id` from the JSON and `id` (or `remoteID`) from Core Data as the primary key.
 
-You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/3lvis/SyncDesignerNewsDemo) project we have a `Comment` entity that uses `body` as the primary key.
+You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/SyncDB/DesignerNewsDemo) project we have a `Comment` entity that uses `body` as the primary key.
 
 ![Custom primary key](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/custom-primary-key-v3.png)
 
@@ -416,9 +416,9 @@ You are free to use any networking library.
 
 **Sync** wouldn’t be possible without the help of this *fully tested* components:
 
-* [**DATAStack**](https://github.com/3lvis/DATAStack): Core Data stack and thread safe saving
+* [**DATAStack**](https://github.com/SyncDB/DATAStack): Core Data stack and thread safe saving
 
-* [**DATAFilter**](https://github.com/3lvis/DATAFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
+* [**DATAFilter**](https://github.com/SyncDB/DATAFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
 
 * [**NSManagedObject-HYPPropertyMapper**](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
 
@@ -545,11 +545,11 @@ Saving to a background context or a main context could still block the UI since 
 try self.fetchedResultsController.performFetch()
 ```
 
-For a full example on how to do achieve this magic syncing check the [SyncPerformance project](https://github.com/3lvis/SyncPerformance).
+For a full example on how to do achieve this magic syncing check the [SyncPerformance project](https://github.com/SyncDB/Performance).
 
 #### Which date formats are supported by Sync?
 
-Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/3lvis/DateParser). Here are some of the supported formats, if you don't find yours, just open and issue:
+Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/SyncDB/DateParser). Here are some of the supported formats, if you don't find yours, just open and issue:
 
 ```
 2014-01-02
