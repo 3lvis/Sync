@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "Sync"
-s.version          = "1.14.3"
+s.version          = "1.14.4"
 s.summary          = "Modern Swift JSON synchronization to Core Data"
 s.description      = <<-DESC
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
@@ -13,11 +13,11 @@ s.description      = <<-DESC
 * Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
 * Uniquing, Core Data does this based on `objectID`s, we use your primary key (such as `id`) for this
 DESC
-s.homepage         = "https://github.com/hyperoslo/Sync"
+s.homepage         = "https://github.com/SyncDB/Sync"
 s.license          = 'MIT'
-s.author           = { "Hyper AS" => "iOS@hyper.no" }
-s.source           = { :git => "https://github.com/hyperoslo/Sync.git", :tag => s.version.to_s }
-s.social_media_url = 'https://twitter.com/hyperoslo'
+s.author           = { "SyncDB" => "syncdb.contact@gmail.com" }
+s.source           = { :git => "https://github.com/SyncDB/Sync.git", :tag => s.version.to_s }
+s.social_media_url = 'https://twitter.com/Sync_DB'
 
 s.ios.deployment_target = '8.0'
 s.osx.deployment_target = '10.9'
