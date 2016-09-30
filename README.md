@@ -1,3 +1,5 @@
+![Sync](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/logo-v4.png)
+
 [![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
 [![License](https://img.shields.io/cocoapods/l/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
 [![Platform](https://img.shields.io/cocoapods/p/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
