@@ -309,7 +309,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = Hyper;
+				ORGANIZATIONNAME = SyncDB;
 				TargetAttributes = {
 					14C418251A01919C00636FD6 = {
 						CreatedOnToolsVersion = 6.1;
