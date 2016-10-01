@@ -1,6 +1,5 @@
 import XCTest
 import CoreData
-import DATAObjectIDs
 import DATAStack
 import JSON
 
@@ -60,7 +59,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]            
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -89,7 +88,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("users-with-null.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -118,7 +117,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("users-with-nil.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -147,7 +146,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("users2.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -176,7 +175,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("users3.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -257,7 +256,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Insert], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -280,7 +279,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Update], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -303,7 +302,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Delete], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
@@ -331,7 +330,7 @@ class DATAFilterTests: XCTestCase {
             let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String : Any]]
             var inserted = 0
             var updated = 0
-            var deleted = before?.count ?? 0
+            var deleted = before.count
             DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: NSPredicate(format: "remoteID == \(0)"), operations: [.All], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
                 }, updated: { objectJSON, updatedObject in
