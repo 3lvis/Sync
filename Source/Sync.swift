@@ -3,7 +3,6 @@ import NSEntityDescription_SYNCPrimaryKey
 import DATAFilter
 import NSManagedObject_HYPPropertyMapper
 import DATAStack
-import TestCheck
 
 @objc open class Sync: Operation {
     var downloadFinished = false

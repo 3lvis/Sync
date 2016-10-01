@@ -30,7 +30,5 @@ s.frameworks = 'Foundation', 'CoreData'
 
 s.dependency 'DATAFilter', '~> 1.0.1'
 s.dependency 'DATAStack', '~> 6.0.1'
-s.dependency 'NSDictionary-ANDYSafeValue', '~> 0.3.1'
 s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 4.1.3'
-s.dependency 'TestCheck', '~> 1.0.1'
 end
