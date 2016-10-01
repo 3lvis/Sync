@@ -555,7 +555,7 @@ Saving to a background context or a main context could still block the UI since 
 try self.fetchedResultsController.performFetch()
 ```
 
-For a full example on how to do achieve this magic syncing check the [SyncPerformance project](https://github.com/SyncDB/Performance).
+For a full example on how to do achieve this magic syncing check the [Performance project](https://github.com/SyncDB/Performance).
 
 #### Which date formats are supported by Sync?
 
