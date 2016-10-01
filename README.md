@@ -498,7 +498,7 @@ Logging changes to Core Data is quite simple, just subscribe to changes like thi
 }
 ```
 
-Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/SyncDB/Sync/blob/master/AppNet/Networking.swift#L27-L57).
+Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/SyncDB/AppNetDemo/blob/master/SyncAppNetDemo/Networking.swift#L27-L57).
 
 If you're using Swift to be able to use `NSNotificationCenter` your class should be a subclass of `NSObject` or similar.
 
