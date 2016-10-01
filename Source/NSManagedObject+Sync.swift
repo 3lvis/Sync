@@ -2,7 +2,6 @@ import CoreData
 import NSEntityDescription_SYNCPrimaryKey
 import DATAStack
 import NSString_HYPNetworking
-import DATAFilter
 
 public extension NSManagedObject {
     /**

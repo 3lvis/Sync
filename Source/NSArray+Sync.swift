@@ -1,7 +1,6 @@
 import Foundation
 import DATAStack
 import NSManagedObject_HYPPropertyMapper
-import DATAFilter
 
 public extension NSArray {
     /**
