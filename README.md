@@ -1,8 +1,6 @@
 ![Sync](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/logo-v3.png)
 
 <div align = "center">
-<br>
-<a href="https://cocoapods.org/pods/Sync" target="blank"><img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" /></a>
 <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
 <a href="https://cocoapods.org/pods/Sync" target="blank"><img src="https://img.shields.io/cocoapods/l/Sync.svg?style=flat" /></a>
 <a href="https://cocoapods.org/pods/Sync" target="blank"><img src="https://img.shields.io/cocoapods/p/Sync.svg?style=flat" /></a>
