@@ -2,6 +2,10 @@ import Foundation
 import CoreData
 import DATAObjectIDs
 
+/**
+ Helps you filter insertions, deletions and updates by comparing your JSON dictionary with your Core Data local objects. 
+ It also provides uniquing for you locally stored objects and automatic removal of not found ones.
+ */
 public class DATAFilter: NSObject {
     public struct Operation : OptionSet {
         public let rawValue: Int
