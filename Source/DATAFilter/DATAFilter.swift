@@ -1,6 +1,5 @@
 import Foundation
 import CoreData
-import DATAObjectIDs
 
 /**
  Helps you filter insertions, deletions and updates by comparing your JSON dictionary with your Core Data local objects. 

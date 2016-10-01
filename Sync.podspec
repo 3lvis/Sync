@@ -28,7 +28,6 @@ s.source_files = 'Source/**/*'
 
 s.frameworks = 'Foundation', 'CoreData'
 
-s.dependency 'DATAObjectIDs', '~> 0.6.1'
 s.dependency 'DATAStack', '~> 6.0.1'
 s.dependency 'NSManagedObject-HYPPropertyMapper', '~> 4.1.3'
 end
