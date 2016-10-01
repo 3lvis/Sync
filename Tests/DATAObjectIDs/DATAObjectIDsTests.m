@@ -1,7 +1,7 @@
 @import XCTest;
 
 #import "Tests-Swift.h"
-#import "User.h"
+#import "User+CoreDataClass.h"
 @import DATAStack;
 
 @interface DATAObjectIDsTests : XCTestCase
