@@ -2,8 +2,8 @@
 
 <div align = "center">
 <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
-<a href="https://cocoapods.org/pods/Sync" target="blank"><img src="https://img.shields.io/cocoapods/l/Sync.svg?style=flat" /></a>
 <a href="https://cocoapods.org/pods/Sync" target="blank"><img src="https://img.shields.io/cocoapods/p/Sync.svg?style=flat" /></a>
+<a href="https://cocoapods.org/pods/Sync" target="blank"><img src="https://img.shields.io/cocoapods/l/Sync.svg?style=flat" /></a>
 <br>
 <br>
 </div>
