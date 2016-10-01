@@ -16,7 +16,6 @@
 		149E28EC1D9FC9F900E0DE0B /* DATAObjectIDsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E61D9FC9F900E0DE0B /* DATAObjectIDsTests.m */; };
 		149E28ED1D9FC9F900E0DE0B /* DATAObjectIDsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */; };
 		149E28EE1D9FC9F900E0DE0B /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */; };
-		149E28EF1D9FC9F900E0DE0B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 149E28EB1D9FC9F900E0DE0B /* User.m */; };
 		4403DC5A1D9F90B5001C8DA6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
 		4403DC5B1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */; };
 		4403DC5C1D9F90B5001C8DA6 /* 151-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */; };
@@ -137,8 +136,6 @@
 		149E28E61D9FC9F900E0DE0B /* DATAObjectIDsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DATAObjectIDsTests.m; sourceTree = "<group>"; };
 		149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATAObjectIDsTests.swift; sourceTree = "<group>"; };
 		149E28E91D9FC9F900E0DE0B /* Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tests.xcdatamodel; sourceTree = "<group>"; };
-		149E28EA1D9FC9F900E0DE0B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		149E28EB1D9FC9F900E0DE0B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -336,8 +333,6 @@
 				149E28E61D9FC9F900E0DE0B /* DATAObjectIDsTests.m */,
 				149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */,
 				149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */,
-				149E28EA1D9FC9F900E0DE0B /* User.h */,
-				149E28EB1D9FC9F900E0DE0B /* User.m */,
 			);
 			path = DATAObjectIDs;
 			sourceTree = "<group>";
@@ -718,7 +713,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				149E28EF1D9FC9F900E0DE0B /* User.m in Sources */,
 				1425D5A21CC65BEB00EC49D4 /* NSManagedObject+Sync.swift in Sources */,
 				4403DCAC1D9F90B5001C8DA6 /* Patients.xcdatamodeld in Sources */,
 				4403DCB31D9F90B5001C8DA6 /* NSManagedObject+SyncTests.swift in Sources */,
