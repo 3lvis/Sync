@@ -25,9 +25,8 @@ public extension NSArray {
 
                 guard let filteredArray = (objectChanges as NSArray).filtered(using: predicate) as? [NSManagedObject] else { fatalError("Couldn't cast filteredArray as [NSManagedObject]: \(objectChanges), predicate: \(predicate)") }
                 for filteredObject in filteredArray  {
-                    if let change = filteredObject.hyp_dictionary(using: .array) as? [String : Any] {
-                        filteredChanges.append(change)
-                    }
+                    let change = filteredObject.hyp_dictionary(using: .array)
+                    filteredChanges.append(change)
                 }
             }
         }
