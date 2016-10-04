@@ -1,5 +1,4 @@
 import CoreData
-import NSEntityDescription_SYNCPrimaryKey
 import NSManagedObject_HYPPropertyMapper
 import DATAStack
 
