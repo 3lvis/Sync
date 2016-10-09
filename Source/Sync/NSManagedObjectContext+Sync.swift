@@ -1,6 +1,4 @@
 import CoreData
-import NSEntityDescription_SYNCPrimaryKey
-import NSString_HYPNetworking
 
 public extension NSManagedObjectContext {
     /**

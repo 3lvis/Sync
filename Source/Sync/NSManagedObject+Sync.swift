@@ -1,8 +1,6 @@
 import CoreData
-import NSEntityDescription_SYNCPrimaryKey
 import DATAStack
-import NSString_HYPNetworking
-import DATAFilter
+import NSManagedObject_HYPPropertyMapper
 
 public extension NSManagedObject {
     /**
