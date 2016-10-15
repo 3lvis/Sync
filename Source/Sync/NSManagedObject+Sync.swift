@@ -1,6 +1,6 @@
 import CoreData
 import DATAStack
-import NSManagedObject_HYPPropertyMapper
+import NSManagedObject_HYPPropertyMapperLBC
 
 public extension NSManagedObject {
     /**
