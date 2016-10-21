@@ -1,6 +1,18 @@
-[![Version](https://img.shields.io/cocoapods/v/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
-[![License](https://img.shields.io/cocoapods/l/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
-[![Platform](https://img.shields.io/cocoapods/p/Sync.svg?style=flat)](https://cocoapods.org/pods/Sync)
+![Sync](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/logo-v3.png)
+
+<div align = "center">
+  <a href="https://github.com/SyncDB/Sync#installation">
+    <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
+  </a>
+  <a href="https://cocoapods.org/pods/Sync" target="blank">
+    <img src="https://img.shields.io/cocoapods/p/Sync.svg?style=flat" />
+  </a>
+  <a href="https://cocoapods.org/pods/Sync" target="blank">
+    <img src="https://img.shields.io/cocoapods/l/Sync.svg?style=flat" />
+  </a>
+  <br>
+  <br>
+</div>
 
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
@@ -47,7 +59,7 @@
 
 ```swift
 Sync.changes(
-  changes: [[String : AnyObject]],
+  changes: [[String : Any]],
   inEntityNamed: String,
   dataStack: DATAStack,
   completion: ((NSError?) -> Void)?)
@@ -64,7 +76,7 @@ Sync.changes(
 
 * `changes`: JSON response
 * `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [DATAStack](https://github.com/3lvis/DATAStack)
+* `dataStack`: Your [DATAStack](https://github.com/SyncDB/DATAStack)
 
 ## Example with snake_case in Swift
 
@@ -182,11 +194,11 @@ inEntityNamed:@"User"
 
 ## More Examples
 
-<a href="https://github.com/3lvis/SyncAppNetDemo">
+<a href="https://github.com/SyncDB/AppNetDemo">
   <img src="https://raw.githubusercontent.com/SyncDB/Sync/master/Images/APPNET-v3.png" />
 </a>
 
-<a href="https://github.com/3lvis/SyncDesignerNewsDemo">
+<a href="https://github.com/SyncDB/DesignerNewsDemo">
   <img src="https://raw.githubusercontent.com/SyncDB/Sync/master/Images/DN-v4.png" />
 </a>
 
@@ -197,17 +209,22 @@ inEntityNamed:@"User"
 
 **Sync** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
+#### Swift 2.3
 ```ruby
-use_frameworks!
-
-pod 'Sync'
+pod 'Sync', '~> 1'
 ```
+
+#### Swift 3
+```ruby
+pod 'Sync', '~> 2'
+```
+
 
 ## Requisites
 
 ### Core Data Stack
 
-Replace your Core Data stack with an instance of [DATAStack](https://github.com/3lvis/DATAStack).
+Replace your Core Data stack with an instance of [DATAStack](https://github.com/SyncDB/DATAStack).
 
 ```swift
 self.dataStack = DATAStack(modelName: "Demo")
@@ -219,9 +236,19 @@ Sync requires your entities to have a primary key, this is important for diffing
 
 By default **Sync** uses `id` from the JSON and `id` (or `remoteID`) from Core Data as the primary key.
 
-You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/SyncDB/Sync/tree/master/DesignerNews) project we have a `Comment` entity that uses `body` as the primary key.
+You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/SyncDB/DesignerNewsDemo) project we have a `Comment` entity that uses `body` as the primary key.
 
 ![Custom primary key](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/custom-primary-key-v3.png)
+
+If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
+
+- Local primary key will be: `contractID`
+- Remote primary key will be: `contract_id`
+
+If you want to use `id` for the remote primary key you also have to add the flag `hyper.remoteKey` and write `id` as the value.
+
+- Local primary key will be: `articleBody`
+- Remote primary key will be: `id`
 
 ### Attribute Mapping
 
@@ -229,7 +256,7 @@ Your attributes should match their JSON counterparts in `camelCase` notation ins
 
 There are some exception to this rule:
 
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
 * Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/NSString-HYPNetworking/blob/master/README.md#acronyms).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
@@ -278,7 +305,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 
 #### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```swift
 let values = ["created_at" : "2014-01-01T00:00:00+00:00",
@@ -288,19 +315,19 @@ let values = ["created_at" : "2014-01-01T00:00:00+00:00",
 
 managedObject.hyp_fillWithDictionary(values)
 
-let createdAt = managedObject.valueForKey("createdAt")
+let createdAt = managedObject.value(forKey: "createdAt")
 // ==> "2014-01-01 00:00:00 +00:00"
 
-let updatedAt = managedObject.valueForKey("updatedAt")
+let updatedAt = managedObject.value(forKey: "updatedAt")
 // ==> "2014-01-02 00:00:00 +00:00"
 
-let publishedAt = managedObject.valueForKey("publishedAt")
+let publishedAt = managedObject.value(forKey: "publishedAt")
 // ==> "2015-09-10 00:00:00 +00:00"
 ```
 
 #### JSON representation from a NSManagedObject
 
-**Sync**'s dependency [**NSManagedObject-HYPPropertyMapper**](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper#json-representation-from-a-nsmanagedobject)
+**Sync**'s dependency [**SYNCPropertyMapper**](https://github.com/SyncDB/SYNCPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/SYNCPropertyMapper#json-representation-from-a-nsmanagedobject)
 
 ### Relationship mapping
 
@@ -399,25 +426,13 @@ You are free to use any networking library.
 
 **Sync** wouldn’t be possible without the help of this *fully tested* components:
 
-* [**DATAStack**](https://github.com/3lvis/DATAStack): Core Data stack and thread safe saving
+* [**DATAStack**](https://github.com/SyncDB/DATAStack): Core Data stack and thread safe saving
 
-* [**DATAFilter**](https://github.com/3lvis/DATAFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
+* [**DATAFilter**](https://github.com/SyncDB/DATAFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
 
-* [**NSManagedObject-HYPPropertyMapper**](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
+* [**SYNCPropertyMapper**](https://github.com/SyncDB/SYNCPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
 
 ## FAQ
-
-#### Using `hyper.isPrimaryKey` in addition to `hyper.remoteKey`
-
-If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
-
-- Local primary key will be: `contractID`
-- Remote primary key will be: `contract_id`
-
-If you want to use `id` for the remote primary key you also have to add the flag `hyper.remoteKey` and write `id` as the value.
-
-- Local primary key will be: `articleBody`
-- Remote primary key will be: `id`
 
 #### How uniquing works (many-to-many, one-to-many)?
 
@@ -493,7 +508,7 @@ Logging changes to Core Data is quite simple, just subscribe to changes like thi
 }
 ```
 
-Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/SyncDB/Sync/blob/master/AppNet/Networking.swift#L27-L57).
+Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/SyncDB/AppNetDemo/blob/master/SyncAppNetDemo/Networking.swift#L27-L57).
 
 If you're using Swift to be able to use `NSNotificationCenter` your class should be a subclass of `NSObject` or similar.
 
@@ -540,11 +555,11 @@ Saving to a background context or a main context could still block the UI since 
 try self.fetchedResultsController.performFetch()
 ```
 
-For a full example on how to do achieve this magic syncing check the [SyncPerformance project](https://github.com/3lvis/SyncPerformance).
+For a full example on how to do achieve this magic syncing check the [Performance project](https://github.com/SyncDB/Performance).
 
 #### Which date formats are supported by Sync?
 
-Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/3lvis/DateParser). Here are some of the supported formats, if you don't find yours, just open and issue:
+Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/SyncDB/DateParser). Here are some of the supported formats, if you don't find yours, just open and issue:
 
 ```
 2014-01-02
@@ -558,11 +573,6 @@ Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/3lv
 2015-06-23T14:40:08.000+02:00
 2014-01-02T00:00:00.000000+00:00
 ```
-
-## Credits
-
-[Hyper](http://hyper.no) made this. We’re a digital communications agency with a passion for good code and delightful user experiences. If you’re using this library we probably want to [hire you](https://github.com/SyncDB/iOS-playbook/blob/master/HYPER_RECIPES.md) (we consider remote employees too, the only requirement is that you’re awesome).
-
 
 ## License
 
