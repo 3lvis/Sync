@@ -1,6 +1,6 @@
 import CoreData
 import DATAStack
-import NSManagedObject_HYPPropertyMapper
+import SYNCPropertyMapper
 
 public extension NSManagedObject {
     /**
@@ -35,7 +35,7 @@ public extension NSManagedObject {
 
         for relationship in entity.sync_relationships() {
             let suffix = relationship.isToMany ? "_ids" : "_id"
-            let constructedKeyName = relationship.name.hyp_remote() + suffix
+            let constructedKeyName = relationship.name.hyp_snakeCase() + suffix
             let keyName = relationship.userInfo?[SYNCCustomRemoteKey] as? String ?? constructedKeyName
 
             if relationship.isToMany {
@@ -159,7 +159,7 @@ public extension NSManagedObject {
      */
     func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: DATAFilter.Operation) {
         var children: [[String : Any]]?
-        let childrenIsNull = relationship.userInfo?[SYNCCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_remote()] is NSNull || dictionary[relationship.name] is NSNull
+        let childrenIsNull = relationship.userInfo?[SYNCCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
             children = [[String : Any]]()
 
@@ -169,7 +169,7 @@ public extension NSManagedObject {
         } else {
             if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
                 children = dictionary[customRelationshipName] as? [[String : Any]]
-            } else if let result = dictionary[relationship.name.hyp_remote()] as? [[String : Any]] {
+            } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [[String : Any]] {
                 children = result
             } else if let result = dictionary[relationship.name] as? [[String : Any]] {
                 children = result
@@ -304,7 +304,7 @@ public extension NSManagedObject {
 
         if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
             filteredObjectDictionary = dictionary[customRelationshipName] as? [String : Any]
-        } else if let result = dictionary[relationship.name.hyp_remote()] as? [String : Any] {
+        } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [String : Any] {
             filteredObjectDictionary = result
         } else if let result = dictionary[relationship.name] as? [String : Any] {
             filteredObjectDictionary = result

@@ -1,6 +1,6 @@
 import Foundation
 import DATAStack
-import NSManagedObject_HYPPropertyMapper
+import SYNCPropertyMapper
 
 public extension NSArray {
     /**

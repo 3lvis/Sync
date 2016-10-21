@@ -256,7 +256,7 @@ Your attributes should match their JSON counterparts in `camelCase` notation ins
 
 There are some exception to this rule:
 
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
 * Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/NSString-HYPNetworking/blob/master/README.md#acronyms).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
@@ -305,7 +305,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 
 #### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```swift
 let values = ["created_at" : "2014-01-01T00:00:00+00:00",
@@ -327,7 +327,7 @@ let publishedAt = managedObject.value(forKey: "publishedAt")
 
 #### JSON representation from a NSManagedObject
 
-**Sync**'s dependency [**NSManagedObject-HYPPropertyMapper**](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper#json-representation-from-a-nsmanagedobject)
+**Sync**'s dependency [**SYNCPropertyMapper**](https://github.com/SyncDB/SYNCPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/SYNCPropertyMapper#json-representation-from-a-nsmanagedobject)
 
 ### Relationship mapping
 
@@ -430,7 +430,7 @@ You are free to use any networking library.
 
 * [**DATAFilter**](https://github.com/SyncDB/DATAFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
 
-* [**NSManagedObject-HYPPropertyMapper**](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
+* [**SYNCPropertyMapper**](https://github.com/SyncDB/SYNCPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
 
 ## FAQ
 

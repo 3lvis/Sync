@@ -1,5 +1,5 @@
 import CoreData
-import NSManagedObject_HYPPropertyMapper
+import SYNCPropertyMapper
 import DATAStack
 
 @objc open class Sync: Operation {
