@@ -2,10 +2,10 @@ PODS:
   - DATASource (6.1.1)
   - DATAStack (6.1.0)
   - JSON (5.0.0)
-  - Sync (2.3.0):
+  - Sync (2.3.1):
     - DATAStack (~> 6.1.0)
-    - SYNCPropertyMapper (~> 5.0.0)
-  - SYNCPropertyMapper (5.0.0)
+    - SYNCPropertyMapper (~> 5.0.1)
+  - SYNCPropertyMapper (5.0.1)
 
 DEPENDENCIES:
   - DATASource (~> 6)
@@ -20,8 +20,8 @@ SPEC CHECKSUMS:
   DATASource: fa895931841523f62c1378cbc53ef2de87e5cf30
   DATAStack: 753e2b009ddb8918c6329919f09c1f9d2bcd7cc2
   JSON: 93622160a062588b4cd3497b77ccd777f1fd0587
-  Sync: 39f73ef15667fdeb87ab8f856d2dac5d29aa1b0c
-  SYNCPropertyMapper: 895eb568673f3af12d4357fa37ea88f9c411a66a
+  Sync: 6926aaf4fda1ae751591a54cff3c2d778bd821bc
+  SYNCPropertyMapper: 316eeeeaad170a7407a82b15989852fcbf1f6573
 
 PODFILE CHECKSUM: 2f66666173c7e212ebe798fd96713dc28117babd
 
