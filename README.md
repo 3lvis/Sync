@@ -27,11 +27,7 @@
 
 ## Table of Contents
 
-* [Interface](#interface)
-  * [Swift](#swift)
-  * [Objective-C](#objective-c)
-* [Example using snake_case in Swift](#example-with-snake_case-in-swift)
-* [Example using camelCase in Objective-C](#example-with-camelcase-in-objective-c)
+* [Basic example](#basic-example)
 * [More examples](#more-examples)
 * [Getting Started](#getting-started)
   * [Installation](#installation)
@@ -52,8 +48,9 @@
 * [Credits](#credits)
 * [License](#license)
 
+## Basic example
 
-## Interface
+### Interface
 
 ```swift
 Sync.changes(
@@ -218,7 +215,7 @@ let hobbies = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.hobbies)
 // ==> "football", "soccer", "code"
 ```
 
-#### Retreiving mapped dictionaries
+#### Retrieving mapped dictionaries
 ```json
 {
   "expenses" : {
