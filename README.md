@@ -240,7 +240,7 @@ let values = ["created_at" : "2014-01-01T00:00:00+00:00",
               "published_at": "1441843200"
               "number_of_attendes": 20]
 
-managedObject.hyp_fillWithDictionary(values)
+managedObject.hyp_fill(values)
 
 let createdAt = managedObject.value(forKey: "createdAt")
 // ==> "2014-01-01 00:00:00 +00:00"
