@@ -55,8 +55,6 @@
 
 ## Interface
 
-### Swift
-
 ```swift
 Sync.changes(
   changes: [[String : Any]],
@@ -65,20 +63,9 @@ Sync.changes(
   completion: ((NSError?) -> Void)?)
 ```
 
-### Objective-C
-
-```objc
-+ (void)changes:(NSArray *)changes
-  inEntityNamed:(NSString *)entityName
-      dataStack:(DATAStack *)dataStack
-     completion:(void (^)(NSError *error))completion
-```
-
 * `changes`: JSON response
 * `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
 * `dataStack`: Your [DATAStack](https://github.com/SyncDB/DATAStack)
-
-## Example with snake_case in Swift
 
 ### Model
 
@@ -133,63 +120,6 @@ Sync.changes(
   dataStack: dataStack) { error in
     //..
 }
-```
-
-## Example with camelCase in Objective-C
-
-### Model
-
-![Model](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/one-to-many-objc.png)
-
-### JSON
-
-```json
-[
-  {
-    "id": 6,
-    "name": "Shawn Merrill",
-    "email": "shawn@ovium.com",
-    "createdAt": "2014-02-14T04:30:10+00:00",
-    "updatedAt": "2014-02-17T10:01:12+00:00",
-    "notes": [
-      {
-        "id": 0,
-        "text": "Shawn Merril's diary, episode 1",
-        "createdAt": "2014-03-11T19:11:00+00:00",
-        "updatedAt": "2014-04-18T22:01:00+00:00"
-      }
-    ]
-  }
-]
-```
-
-### Sync
-
-```objc
-[Sync changes:JSON
-inEntityNamed:@"User"
-    dataStack:dataStack
-   completion:^(NSError *error) {
-       // New objects have been inserted
-       // Existing objects have been updated
-       // And not found objects have been deleted
-    }];
-```
-
-Alternatively, if you only want to sync users that have been created in the last 24 hours, you could do this by using a `NSPredicate`.
-
-```objc
-NSDate *now = [NSDate date];
-NSDate *yesterday = [now dateByAddingTimeInterval:-24*60*60];
-NSPredicate *predicate = [NSPredicate predicateWithFormat:@"createdAt > %@", yesterday];
-
-[Sync changes:JSON
-inEntityNamed:@"User"
-    predicate:predicate
-    dataStack:dataStack
-   completion:^{
-       //...
-    }];
 ```
 
 ## More Examples
@@ -496,15 +426,12 @@ For example a author can have many documents and a document can have many author
 
 Logging changes to Core Data is quite simple, just subscribe to changes like this and print the needed elements:
 
-```objc
-[[NSNotificationCenter defaultCenter] addObserver:self
-                                         selector:@selector(changeNotification:)
-                                             name:NSManagedObjectContextObjectsDidChangeNotification
-                                           object:self.dataStack.mainContext];
+```swift
+NotificationCenter.default.addObserver(self, selector: #selector(self.changeNotification), name: .NSManagedObjectContextObjectsDidChange, object: self.dataStack.mainContext)
 
-- (void)changeNotification:(NSNotification *)notification {
-    NSSet *deletedObjects   = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
-    NSSet *insertedObjects  = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
+func changeNotification(notification: NSNotification) {
+    let deletedObjects = notification.userInfo[NSDeletedObjectsKey]
+    let insertedObjects = notification.userInfo[NSInsertedObjectsKey]
 }
 ```
 
