@@ -49,6 +49,7 @@ class DATAFilterTests: XCTestCase {
      - Updated: 0, 1, 2 and 3
      - Deleted: 4
      */
+    /*
     func testMapChangesA() {
         let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
@@ -341,4 +342,5 @@ class DATAFilterTests: XCTestCase {
             XCTAssertEqual(deleted, 4)
         }
     }
+    */
 }

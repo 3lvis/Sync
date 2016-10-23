@@ -39,7 +39,7 @@ class DATAFilter: NSObject {
                                             inserted: (_ JSON: [String : Any]) -> Void,
                                             updated: (_ JSON: [String : Any], _ updatedObject: NSManagedObject) -> Void) {
         // `DATAObjectIDs.objectIDsInEntityNamed` also deletes all objects that don't have a primary key or that have the same primary key already found in the context
-        let primaryKeysAndObjectIDs = DATAObjectIDs.objectIDs(inEntityNamed: entityName, withAttributesNamed: localPrimaryKey, context: context, predicate: predicate) as [NSObject : NSManagedObjectID]
+        let primaryKeysAndObjectIDs = context.objectIDs(inEntityNamed: entityName, withAttributesNamed: localPrimaryKey, predicate: predicate) as [NSObject : NSManagedObjectID]
         let localPrimaryKeys = Array(primaryKeysAndObjectIDs.keys)
         let remotePrimaryKeys = changes.map { $0[remotePrimaryKey] }
         let remotePrimaryKeysWithoutNils = (remotePrimaryKeys.filter { (($0 as? NSObject) != NSNull()) && ($0 != nil) } as! [NSObject?]) as! [NSObject]

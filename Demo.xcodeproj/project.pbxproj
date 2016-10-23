@@ -15,13 +15,15 @@
 		14154D901DBC466200926D4D /* SYNCPropertyMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14154D8E1DBC466200926D4D /* SYNCPropertyMapper.framework */; };
 		14154D931DBC466700926D4D /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14154D911DBC466700926D4D /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14154D941DBC466700926D4D /* SYNCPropertyMapper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14154D921DBC466700926D4D /* SYNCPropertyMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1421405D1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */; };
+		1421405E1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */; };
+		1421405F1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */; };
 		14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
 		14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; };
 		14241EA31DBC3A6F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
 		14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		14241EA51DBC3A6F0042ED81 /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
-		14241EA61DBC3A6F0042ED81 /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
 		14241EA71DBC3A6F0042ED81 /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
 		14241EA81DBC3A770042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
@@ -29,7 +31,6 @@
 		14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
 		14241EAC1DBC3A770042ED81 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		14241EAD1DBC3A770042ED81 /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
-		14241EAE1DBC3A770042ED81 /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
 		14241EAF1DBC3A770042ED81 /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
 		14241EB01DBC3A7F0042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EB11DBC3A7F0042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
@@ -37,7 +38,6 @@
 		14241EB31DBC3A7F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
 		14241EB41DBC3A7F0042ED81 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		14241EB51DBC3A7F0042ED81 /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
-		14241EB61DBC3A7F0042ED81 /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
 		14241EB71DBC3A7F0042ED81 /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
 		14241EB81DBC3A880042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EB91DBC3A880042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
@@ -45,7 +45,6 @@
 		14241EBB1DBC3A880042ED81 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
 		14241EBC1DBC3A880042ED81 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		14241EBD1DBC3A880042ED81 /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
-		14241EBE1DBC3A880042ED81 /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
 		14241EBF1DBC3A880042ED81 /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
 		14241F071DBC3CDA0042ED81 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F051DBC3CDA0042ED81 /* DATAStack.framework */; };
 		14241F081DBC3CDA0042ED81 /* SYNCPropertyMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F061DBC3CDA0042ED81 /* SYNCPropertyMapper.framework */; };
@@ -69,7 +68,6 @@
 		14975BFF1DBC36F00024901A /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
 		14975C001DBC36F00024901A /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		14975C011DBC36F00024901A /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
-		14975C021DBC36F00024901A /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
 		14975C031DBC36F00024901A /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
 		14975C041DBC36F00024901A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
 		14975C051DBC36F00024901A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
@@ -111,8 +109,6 @@
 		14975C291DBC36F00024901A /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC591D9F90B5001C8DA6 /* SyncTests.swift */; };
 		14975C2A1DBC36F00024901A /* DATAFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBB1D9F9373007F9E26 /* DATAFilterTests.swift */; };
 		14975C2B1DBC36F00024901A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBC1D9F9373007F9E26 /* Model.xcdatamodeld */; };
-		14975C2D1DBC36F00024901A /* DATAObjectIDsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */; };
-		14975C2E1DBC36F00024901A /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */; };
 		14975C2F1DBC36F00024901A /* TestCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC760F1D9F9076003545A4 /* TestCheckTests.swift */; };
 		14975C301DBC37180024901A /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14975C311DBC37180024901A /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
@@ -120,7 +116,6 @@
 		14975C331DBC37180024901A /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
 		14975C341DBC37180024901A /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		14975C351DBC37180024901A /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
-		14975C361DBC37180024901A /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
 		14975C371DBC37180024901A /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
 		14975C381DBC37180024901A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
 		14975C391DBC37180024901A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
@@ -162,8 +157,6 @@
 		14975C5D1DBC37180024901A /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC591D9F90B5001C8DA6 /* SyncTests.swift */; };
 		14975C5E1DBC37180024901A /* DATAFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBB1D9F9373007F9E26 /* DATAFilterTests.swift */; };
 		14975C5F1DBC37180024901A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBC1D9F9373007F9E26 /* Model.xcdatamodeld */; };
-		14975C611DBC37180024901A /* DATAObjectIDsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */; };
-		14975C621DBC37180024901A /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */; };
 		14975C631DBC37180024901A /* TestCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC760F1D9F9076003545A4 /* TestCheckTests.swift */; };
 		14975C641DBC373A0024901A /* 151-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */; };
 		14975C651DBC373A0024901A /* 151-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */; };
@@ -289,9 +282,6 @@
 		14975CDD1DBC374C0024901A /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 445D3BC21D9F9373007F9E26 /* users.json */; };
 		14975CDE1DBC374C0024901A /* users2.json in Resources */ = {isa = PBXBuildFile; fileRef = 445D3BC31D9F9373007F9E26 /* users2.json */; };
 		14975CDF1DBC374C0024901A /* users3.json in Resources */ = {isa = PBXBuildFile; fileRef = 445D3BC41D9F9373007F9E26 /* users3.json */; };
-		149E28E41D9FC9ED00E0DE0B /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
-		149E28ED1D9FC9F900E0DE0B /* DATAObjectIDsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */; };
-		149E28EE1D9FC9F900E0DE0B /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */; };
 		14C046351DBC19D300CB6C16 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
 		14DAB3FD1DBC4620004B455F /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0D1DBC3D7D0042ED81 /* DATAStack.framework */; };
 		14DAB3FE1DBC4620004B455F /* SYNCPropertyMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0E1DBC3D7D0042ED81 /* SYNCPropertyMapper.framework */; };
@@ -493,13 +483,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		140D8D1F1DBCD25F002609A7 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		14154D891DBC465B00926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/tvOS/DATAStack.framework; sourceTree = "<group>"; };
 		14154D8A1DBC465B00926D4D /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/tvOS/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
 		14154D8D1DBC466200926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/Mac/DATAStack.framework; sourceTree = "<group>"; };
 		14154D8E1DBC466200926D4D /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/Mac/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
 		14154D911DBC466700926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/Mac/DATAStack.framework; sourceTree = "<group>"; };
 		14154D921DBC466700926D4D /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/Mac/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
+		1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tests.xcdatamodel; sourceTree = "<group>"; };
 		14241E711DBC39520042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E7E1DBC39600042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E8B1DBC39690042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,9 +513,6 @@
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14975BE81DBC368B0024901A /* tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14975BF41DBC36960024901A /* macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATAObjectIDs.swift; sourceTree = "<group>"; };
-		149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATAObjectIDsTests.swift; sourceTree = "<group>"; };
-		149E28E91D9FC9F900E0DE0B /* Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tests.xcdatamodel; sourceTree = "<group>"; };
 		14C046341DBC19D300CB6C16 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -718,7 +705,6 @@
 				14E93C431DBCCD2800E3304E /* Sync.h */,
 				44968BF41DA0021300E71A53 /* Sync */,
 				445D3BB71D9F932C007F9E26 /* DATAFilter */,
-				149E28E21D9FC9ED00E0DE0B /* DATAObjectIDs */,
 				449828021D9F8F2D00E2BCA3 /* TestCheck */,
 			);
 			path = Source;
@@ -757,10 +743,8 @@
 				14C046331DBC19D300CB6C16 /* Vendor */,
 				4403DBDB1D9F90B5001C8DA6 /* Sync */,
 				445D3BBA1D9F9373007F9E26 /* DATAFilter */,
-				149E28E51D9FC9F900E0DE0B /* DATAObjectIDs */,
 				44CC760E1D9F9076003545A4 /* TestCheck */,
 				146D72B01AB782920058798C /* Supporting Files */,
-				140D8D1F1DBCD25F002609A7 /* Bridging-Header.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -771,23 +755,6 @@
 				146D72B11AB782920058798C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		149E28E21D9FC9ED00E0DE0B /* DATAObjectIDs */ = {
-			isa = PBXGroup;
-			children = (
-				149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */,
-			);
-			path = DATAObjectIDs;
-			sourceTree = "<group>";
-		};
-		149E28E51D9FC9F900E0DE0B /* DATAObjectIDs */ = {
-			isa = PBXGroup;
-			children = (
-				149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */,
-				149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */,
-			);
-			path = DATAObjectIDs;
 			sourceTree = "<group>";
 		};
 		14C046331DBC19D300CB6C16 /* Vendor */ = {
@@ -898,6 +865,7 @@
 		4403DC161D9F90B5001C8DA6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */,
 				4403DC171D9F90B5001C8DA6 /* 151-many-to-many.xcdatamodeld */,
 				4403DC191D9F90B5001C8DA6 /* 151-ordered-many-to-many.xcdatamodeld */,
 				4403DC1B1D9F90B5001C8DA6 /* 151-ordered-to-many.xcdatamodeld */,
@@ -1497,7 +1465,6 @@
 				14241EA31DBC3A6F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */,
 				14241EA51DBC3A6F0042ED81 /* DATAFilter.swift in Sources */,
-				14241EA61DBC3A6F0042ED81 /* DATAObjectIDs.swift in Sources */,
 				14241EA71DBC3A6F0042ED81 /* TestCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1512,7 +1479,6 @@
 				14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14241EAC1DBC3A770042ED81 /* Sync.swift in Sources */,
 				14241EAD1DBC3A770042ED81 /* DATAFilter.swift in Sources */,
-				14241EAE1DBC3A770042ED81 /* DATAObjectIDs.swift in Sources */,
 				14241EAF1DBC3A770042ED81 /* TestCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1527,7 +1493,6 @@
 				14241EB31DBC3A7F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14241EB41DBC3A7F0042ED81 /* Sync.swift in Sources */,
 				14241EB51DBC3A7F0042ED81 /* DATAFilter.swift in Sources */,
-				14241EB61DBC3A7F0042ED81 /* DATAObjectIDs.swift in Sources */,
 				14241EB71DBC3A7F0042ED81 /* TestCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1542,7 +1507,6 @@
 				14241EBB1DBC3A880042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14241EBC1DBC3A880042ED81 /* Sync.swift in Sources */,
 				14241EBD1DBC3A880042ED81 /* DATAFilter.swift in Sources */,
-				14241EBE1DBC3A880042ED81 /* DATAObjectIDs.swift in Sources */,
 				14241EBF1DBC3A880042ED81 /* TestCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1570,13 +1534,12 @@
 				44968BFB1DA0021300E71A53 /* NSEntityDescription+Sync.swift in Sources */,
 				44968BFD1DA0021300E71A53 /* NSManagedObjectContext+Sync.swift in Sources */,
 				4403DC971D9F90B5001C8DA6 /* 280.xcdatamodeld in Sources */,
-				149E28EE1D9FC9F900E0DE0B /* Tests.xcdatamodeld in Sources */,
 				44968BFE1DA0021300E71A53 /* Sync.swift in Sources */,
 				4403DCA41D9F90B5001C8DA6 /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				4403DCA11D9F90B5001C8DA6 /* Bug84.xcdatamodeld in Sources */,
+				1421405D1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
 				449828041D9F8F2D00E2BCA3 /* TestCheck.swift in Sources */,
 				4403DCA81D9F90B5001C8DA6 /* Notes.xcdatamodeld in Sources */,
-				149E28ED1D9FC9F900E0DE0B /* DATAObjectIDsTests.swift in Sources */,
 				14C046351DBC19D300CB6C16 /* JSON.swift in Sources */,
 				4403DCAE1D9F90B5001C8DA6 /* Social.xcdatamodeld in Sources */,
 				445D3BC51D9F9373007F9E26 /* DATAFilterTests.swift in Sources */,
@@ -1584,7 +1547,6 @@
 				4403DC5A1D9F90B5001C8DA6 /* Helper.swift in Sources */,
 				4403DC9D1D9F90B5001C8DA6 /* Bug202.xcdatamodeld in Sources */,
 				4403DCA31D9F90B5001C8DA6 /* Contacts.xcdatamodeld in Sources */,
-				149E28E41D9FC9ED00E0DE0B /* DATAObjectIDs.swift in Sources */,
 				4403DCA91D9F90B5001C8DA6 /* NotesB.xcdatamodeld in Sources */,
 				4403DCB51D9F90B5001C8DA6 /* SyncTests.swift in Sources */,
 				44968BFA1DA0021300E71A53 /* NSArray+Sync.swift in Sources */,
@@ -1615,7 +1577,6 @@
 				14975BFF1DBC36F00024901A /* NSManagedObjectContext+Sync.swift in Sources */,
 				14975C001DBC36F00024901A /* Sync.swift in Sources */,
 				14975C011DBC36F00024901A /* DATAFilter.swift in Sources */,
-				14975C021DBC36F00024901A /* DATAObjectIDs.swift in Sources */,
 				14975C031DBC36F00024901A /* TestCheck.swift in Sources */,
 				14975C041DBC36F00024901A /* JSON.swift in Sources */,
 				14975C051DBC36F00024901A /* Helper.swift in Sources */,
@@ -1633,6 +1594,7 @@
 				14975C111DBC36F00024901A /* Bug202.xcdatamodeld in Sources */,
 				14975C121DBC36F00024901A /* Bug239.xcdatamodeld in Sources */,
 				14975C131DBC36F00024901A /* Bug254.xcdatamodeld in Sources */,
+				1421405E1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
 				14975C141DBC36F00024901A /* Bug257.xcdatamodeld in Sources */,
 				14975C151DBC36F00024901A /* Bug84.xcdatamodeld in Sources */,
 				14975C161DBC36F00024901A /* Camelcase.xcdatamodeld in Sources */,
@@ -1657,8 +1619,6 @@
 				14975C291DBC36F00024901A /* SyncTests.swift in Sources */,
 				14975C2A1DBC36F00024901A /* DATAFilterTests.swift in Sources */,
 				14975C2B1DBC36F00024901A /* Model.xcdatamodeld in Sources */,
-				14975C2D1DBC36F00024901A /* DATAObjectIDsTests.swift in Sources */,
-				14975C2E1DBC36F00024901A /* Tests.xcdatamodeld in Sources */,
 				14975C2F1DBC36F00024901A /* TestCheckTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1673,7 +1633,6 @@
 				14975C331DBC37180024901A /* NSManagedObjectContext+Sync.swift in Sources */,
 				14975C341DBC37180024901A /* Sync.swift in Sources */,
 				14975C351DBC37180024901A /* DATAFilter.swift in Sources */,
-				14975C361DBC37180024901A /* DATAObjectIDs.swift in Sources */,
 				14975C371DBC37180024901A /* TestCheck.swift in Sources */,
 				14975C381DBC37180024901A /* JSON.swift in Sources */,
 				14975C391DBC37180024901A /* Helper.swift in Sources */,
@@ -1691,6 +1650,7 @@
 				14975C451DBC37180024901A /* Bug202.xcdatamodeld in Sources */,
 				14975C461DBC37180024901A /* Bug239.xcdatamodeld in Sources */,
 				14975C471DBC37180024901A /* Bug254.xcdatamodeld in Sources */,
+				1421405F1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
 				14975C481DBC37180024901A /* Bug257.xcdatamodeld in Sources */,
 				14975C491DBC37180024901A /* Bug84.xcdatamodeld in Sources */,
 				14975C4A1DBC37180024901A /* Camelcase.xcdatamodeld in Sources */,
@@ -1715,8 +1675,6 @@
 				14975C5D1DBC37180024901A /* SyncTests.swift in Sources */,
 				14975C5E1DBC37180024901A /* DATAFilterTests.swift in Sources */,
 				14975C5F1DBC37180024901A /* Model.xcdatamodeld in Sources */,
-				14975C611DBC37180024901A /* DATAObjectIDsTests.swift in Sources */,
-				14975C621DBC37180024901A /* Tests.xcdatamodeld in Sources */,
 				14975C631DBC37180024901A /* TestCheckTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2094,7 +2052,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -2116,7 +2073,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -2142,7 +2098,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
@@ -2169,7 +2124,6 @@
 				PRODUCT_MODULE_NAME = Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -2197,7 +2151,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -2224,7 +2177,6 @@
 				PRODUCT_MODULE_NAME = Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -2307,12 +2259,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */ = {
+		1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				149E28E91D9FC9F900E0DE0B /* Tests.xcdatamodel */,
+				1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */,
 			);
-			currentVersion = 149E28E91D9FC9F900E0DE0B /* Tests.xcdatamodel */;
+			currentVersion = 1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */;
 			path = Tests.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

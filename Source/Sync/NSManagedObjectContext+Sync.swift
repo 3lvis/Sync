@@ -29,4 +29,38 @@ extension NSManagedObjectContext {
 
         return result
     }
+
+    func objectIDs(inEntityNamed entityName: String, withAttributesNamed attributeName: String, predicate: NSPredicate?) -> [AnyHashable: NSManagedObjectID] {
+        var result = [AnyHashable: NSManagedObjectID]()
+
+        self.performAndWait {
+            let expression = NSExpressionDescription()
+            expression.name = "objectID"
+            expression.expression = NSExpression.expressionForEvaluatedObject()
+            expression.expressionResultType = .objectIDAttributeType
+
+            let request = NSFetchRequest<NSDictionary>(entityName: entityName)
+            request.predicate = predicate
+            request.resultType = .dictionaryResultType
+            request.propertiesToFetch = [expression, attributeName]
+
+            do {
+                let objects = try self.fetch(request)
+                for object in objects {
+                    let fetchedID = object[attributeName] as! NSObject
+                    let objectID = object["objectID"] as! NSManagedObjectID
+
+                    if let _ = result[fetchedID] {
+                        self.delete(self.object(with: objectID))
+                    } else {
+                        result[fetchedID] = objectID
+                    }
+                }
+            } catch let error as NSError {
+                print("error: \(error)")
+            }
+        }
+        
+        return result
+    }
 }
