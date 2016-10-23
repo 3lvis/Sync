@@ -582,10 +582,6 @@
 		146D728A1AB782920058798C = {
 			isa = PBXGroup;
 			children = (
-				14975CEE1DBC378D0024901A /* DATAStack.framework */,
-				14975CEF1DBC378D0024901A /* SYNCPropertyMapper.framework */,
-				14975CE51DBC37720024901A /* DATAStack.framework */,
-				14975CE61DBC37720024901A /* SYNCPropertyMapper.framework */,
 				1425D59A1CC65BEB00EC49D4 /* Source */,
 				14C136501AB7849300B7B07A /* Metadata */,
 				146D72AF1AB782920058798C /* Tests */,
@@ -843,6 +839,10 @@
 		515545DD1958EE5C50CA007A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14975CEE1DBC378D0024901A /* DATAStack.framework */,
+				14975CEF1DBC378D0024901A /* SYNCPropertyMapper.framework */,
+				14975CE51DBC37720024901A /* DATAStack.framework */,
+				14975CE61DBC37720024901A /* SYNCPropertyMapper.framework */,
 				14975CE91DBC37830024901A /* DATAStack.framework */,
 				14975CEA1DBC37830024901A /* SYNCPropertyMapper.framework */,
 				14975CE01DBC37670024901A /* DATAStack.framework */,
@@ -1597,6 +1597,7 @@
 				14975BEF1DBC368B0024901A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14975BF91DBC36960024901A /* Build configuration list for PBXNativeTarget "macOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1605,6 +1606,7 @@
 				14975BFB1DBC36960024901A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
