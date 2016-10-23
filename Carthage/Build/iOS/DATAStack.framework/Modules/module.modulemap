@@ -1,0 +1,10 @@
+framework module DATAStack {
+  umbrella header "DATAStack.h"
+
+  export *
+  module * { export * }
+}
+
+module DATAStack.Swift {
+    header "DATAStack-Swift.h"
+}

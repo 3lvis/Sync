@@ -1,7 +1,8 @@
 osx_image: xcode8
 language: objective-c
-cache: cocoapods
-before_install: pod update
-script: xcodebuild -workspace Demo.xcworkspace -scheme Tests -sdk iphonesimulator build test -destination 'platform=iOS Simulator,name=iPhone 6' GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean test | xcpretty -c && exit ${PIPESTATUS[0]}
+script:
+  - xcodebuild -project Demo.xcodeproj -scheme iOSTests           -destination 'platform=iOS Simulator,name=iPhone 6'               test  | xcpretty
+  - xcodebuild -project Demo.xcodeproj -scheme tvOSTests          -destination 'platform=tvOS Simulator,name=Apple TV 1080p'        test  | xcpretty
+  - xcodebuild -project Demo.xcodeproj -scheme macOSTests         -destination 'platform=OS X'                                      test  | xcpretty
 notifications:
   email: false

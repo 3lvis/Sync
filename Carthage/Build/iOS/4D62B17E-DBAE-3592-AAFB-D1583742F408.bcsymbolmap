@@ -1,0 +1,107 @@
+BCSymbolMap Version: 2.0
+-[NSManagedObject(SYNCPropertyMapper) hyp_fillWithDictionary:]
+-[NSManagedObject(SYNCPropertyMapper) hyp_setDictionaryValue:forKey:attributeDescription:]
+-[NSManagedObject(SYNCPropertyMapper) hyp_dictionary]
+-[NSManagedObject(SYNCPropertyMapper) hyp_dictionaryUsingRelationshipType:]
+-[NSManagedObject(SYNCPropertyMapper) hyp_dictionaryWithDateFormatter:]
+-[NSManagedObject(SYNCPropertyMapper) hyp_dictionaryWithDateFormatter:usingRelationshipType:]
+-[NSManagedObject(SYNCPropertyMapper) hyp_dictionaryWithDateFormatter:parent:usingRelationshipType:]
+-[NSManagedObject(SYNCPropertyMapper) attributesForToOneRelationship:relationshipName:usingRelationshipType:parent:dateFormatter:]
+-[NSManagedObject(SYNCPropertyMapper) attributesForToManyRelationship:relationshipName:usingRelationshipType:parent:dateFormatter:]
+-[NSManagedObject(SYNCPropertyMapper) defaultDateFormatter]
+___59-[NSManagedObject(SYNCPropertyMapper) defaultDateFormatter]_block_invoke
+_defaultDateFormatter._dateFormatter
+_defaultDateFormatter.onceToken
+___block_descriptor_tmp
+___block_literal_global
+Apple LLVM version 8.0.0 (clang-800.0.38)
+/Users/elvis/Projects/syncdb/SYNCPropertyMapper/Sources/NSManagedObject-SYNCPropertyMapper/SYNCPropertyMapper.m
+/Users/elvis/Projects/syncdb/SYNCPropertyMapper
+__59-[NSManagedObject(SYNCPropertyMapper) defaultDateFormatter]_block_invoke
+_dispatch_once
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/usr/include/dispatch/once.h
++[SYNCInflectionsStringStorage sharedInstance]
+___46+[SYNCInflectionsStringStorage sharedInstance]_block_invoke
+___copy_helper_block_
+___destroy_helper_block_
+-[SYNCInflectionsStringStorage init]
+-[SYNCInflectionsStringStorage storage]
+-[SYNCInflectionsStringStorage performOnDictionary:]
+-[SYNCInflectionsStringStorage setStorage:]
+-[SYNCInflectionsStringStorage serialQueue]
+-[SYNCInflectionsStringStorage setSerialQueue:]
+-[SYNCInflectionsStringStorage .cxx_destruct]
+-[NSString(SYNCInflections) hyp_snakeCase]
+___Block_byref_object_copy_
+___Block_byref_object_dispose_
+___42-[NSString(SYNCInflections) hyp_snakeCase]_block_invoke
+___copy_helper_block_.28
+___destroy_helper_block_.29
+___42-[NSString(SYNCInflections) hyp_snakeCase]_block_invoke.37
+___copy_helper_block_.40
+___destroy_helper_block_.41
+-[NSString(SYNCInflections) hyp_camelCase]
+___42-[NSString(SYNCInflections) hyp_camelCase]_block_invoke
+___copy_helper_block_.43
+___destroy_helper_block_.44
+___42-[NSString(SYNCInflections) hyp_camelCase]_block_invoke.55
+___copy_helper_block_.56
+___destroy_helper_block_.57
+-[NSString(SYNCInflections) hyp_containsWord:]
+-[NSString(SYNCInflections) hyp_lowerCaseFirstLetter]
+-[NSString(SYNCInflections) hyp_replaceIdentifierWithString:]
++[NSString(SYNCInflections) acronyms]
+_sharedInstance.once
+_sharedInstance.sharedInstance
+_OBJC_IVAR_$_SYNCInflectionsStringStorage._serialQueue
+_OBJC_IVAR_$_SYNCInflectionsStringStorage._storage
+___block_descriptor_tmp.30
+___block_descriptor_tmp.42
+___block_descriptor_tmp.45
+___block_descriptor_tmp.58
+/Users/elvis/Projects/syncdb/SYNCPropertyMapper/Sources/NSString-SYNCInflections/NSString+SYNCInflections.m
+__destroy_helper_block_
+__copy_helper_block_
+__42-[NSString(SYNCInflections) hyp_camelCase]_block_invoke.55
+__42-[NSString(SYNCInflections) hyp_camelCase]_block_invoke
+__42-[NSString(SYNCInflections) hyp_snakeCase]_block_invoke.37
+__42-[NSString(SYNCInflections) hyp_snakeCase]_block_invoke
+__Block_byref_object_dispose_
+__Block_byref_object_copy_
+__46+[SYNCInflectionsStringStorage sharedInstance]_block_invoke
+-[NSManagedObject(SYNCPropertyMapperHelpers) valueForAttributeDescription:dateFormatter:relationshipType:]
+-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionForRemoteKey:]
+___79-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionForRemoteKey:]_block_invoke
+___79-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionForRemoteKey:]_block_invoke.72
+___copy_helper_block_.73
+___destroy_helper_block_.74
+-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionsForRemoteKeyPath:]
+___84-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionsForRemoteKeyPath:]_block_invoke
+___copy_helper_block_.81
+___destroy_helper_block_.82
+-[NSManagedObject(SYNCPropertyMapperHelpers) remoteKeyForAttributeDescription:]
+-[NSManagedObject(SYNCPropertyMapperHelpers) remoteKeyForAttributeDescription:usingRelationshipType:]
+-[NSManagedObject(SYNCPropertyMapperHelpers) valueForAttributeDescription:usingRemoteValue:]
+-[NSManagedObject(SYNCPropertyMapperHelpers) remotePrefix]
+-[NSManagedObject(SYNCPropertyMapperHelpers) prefixedAttribute:]
+-[NSManagedObject(SYNCPropertyMapperHelpers) reservedKeys]
++[NSManagedObject(SYNCPropertyMapperHelpers) reservedAttributes]
+___block_descriptor_tmp.75
+___block_descriptor_tmp.83
+/Users/elvis/Projects/syncdb/SYNCPropertyMapper/Sources/NSManagedObject-SYNCPropertyMapper/NSManagedObject+SYNCPropertyMapperHelpers.m
+__84-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionsForRemoteKeyPath:]_block_invoke
+__79-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionForRemoteKey:]_block_invoke.72
+__79-[NSManagedObject(SYNCPropertyMapperHelpers) attributeDescriptionForRemoteKey:]_block_invoke
++[NSDate(SYNCPropertyMapper) dateFromDateString:]
++[NSDate(SYNCPropertyMapper) dateFromISO8601String:]
++[NSDate(SYNCPropertyMapper) dateFromUnixTimestampNumber:]
++[NSDate(SYNCPropertyMapper) dateFromUnixTimestampString:]
+-[NSString(Parser) dateType]
+/Users/elvis/Projects/syncdb/SYNCPropertyMapper/Sources/DateParser/NSDate+SYNCPropertyMapper.m
+-[NSEntityDescription(SYNCPrimaryKey) sync_primaryKeyAttribute]
+___63-[NSEntityDescription(SYNCPrimaryKey) sync_primaryKeyAttribute]_block_invoke
+-[NSEntityDescription(SYNCPrimaryKey) sync_localPrimaryKey]
+-[NSEntityDescription(SYNCPrimaryKey) sync_remotePrimaryKey]
+/Users/elvis/Projects/syncdb/SYNCPropertyMapper/Sources/NSEntityDescription-SYNCPrimaryKey/NSEntityDescription+SYNCPrimaryKey.m
+__63-[NSEntityDescription(SYNCPrimaryKey) sync_primaryKeyAttribute]_block_invoke
+/Users/elvis/Library/Developer/Xcode/DerivedData/Demo-fjnypsdecdgdzzddemwcebukyngc/Build/Intermediates/Demo.build/Release-iphoneos/SYNCPropertyMapper-iOS.build/DerivedSources/SYNCPropertyMapper_vers.c

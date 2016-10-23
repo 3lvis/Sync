@@ -1,7 +1,6 @@
 import XCTest
 import CoreData
 import DATAStack
-import JSON
 
 class DATAFilterTests: XCTestCase {
     @discardableResult func user(remoteID: Int, firstName: String, lastName: String, age: Int, context: NSManagedObjectContext) -> NSManagedObject {

@@ -1,4 +1,5 @@
 import CoreData
+import SYNCPropertyMapper
 
 public extension NSManagedObjectContext {
     /**
