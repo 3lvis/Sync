@@ -28,8 +28,8 @@ DerivedData
 *.gcno
 *.gcda
 
-Carthage/Build/watchOS/Sync*
-Carthage/Build/tvOS/Sync*
-Carthage/Build/Mac/Sync*
-Carthage/Build/iOS/Sync*
+Carthage/Build/watchOS/Sync.framework*
+Carthage/Build/tvOS/Sync.framework*
+Carthage/Build/Mac/Sync.framework*
+Carthage/Build/iOS/Sync.framework*
 Sync.framework.zip
