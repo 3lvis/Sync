@@ -10,7 +10,7 @@ extension NSManagedObjectContext {
      - parameter parentRelationshipName: The name of the relationship with the parent.
      - returns: A NSManagedObject contained in the provided context.
      */
-    func sync_safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
+    func safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
         var result: NSManagedObject?
 
         if let localPrimaryKey = localPrimaryKey as? NSObject, let entity = NSEntityDescription.entity(forEntityName: entityName, in: self) {

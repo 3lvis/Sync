@@ -16,7 +16,7 @@ extension NSManagedObject {
         guard let entityName = self.entity.name else { fatalError() }
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError () }
         let localPrimaryKey = value(forKey: entity.sync_localPrimaryKey())
-        guard let copiedObject = context.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(localPrimaryKey)") }
+        guard let copiedObject = context.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(localPrimaryKey)") }
 
         return copiedObject
     }
@@ -283,7 +283,7 @@ extension NSManagedObject {
             if value(forKey: relationship.name) != nil {
                 setValue(nil, forKey: relationship.name)
             }
-        } else if let safeObject = managedObjectContext.sync_safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) {
+        } else if let safeObject = managedObjectContext.safeObject(destinationEntityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) {
             let currentRelationship = value(forKey: relationship.name)
             if currentRelationship == nil || !(currentRelationship! as AnyObject).isEqual(safeObject) {
                 setValue(safeObject, forKey: relationship.name)
@@ -317,7 +317,7 @@ extension NSManagedObject {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedObjectContext) else { return }
 
         let localPrimaryKey = toOneObjectDictionary[entity.sync_remotePrimaryKey()]
-        let object = managedObjectContext.sync_safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext)
+        let object = managedObjectContext.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext)
 
         object.sync_fillWithDictionary(toOneObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
 
