@@ -30,7 +30,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 * Thread-safe saving, we handle retrieving and storing objects in the right threads
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
-* Smart-updates, only updates your `NSManagedObject`s if the server values are different (useful when using `NSFetchedResultsController` delegates)
+* Smart-updates, only updates your `NSManagedObject`s if the server values are different from your local ones
 * Uniquing, Core Data does this based on `objectID`s, we use your primary key (such as `id`) for this
 * `NSOperation` subclass, any Sync process can be queued and cancelled at any time!
 
