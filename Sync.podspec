@@ -29,5 +29,5 @@ s.source_files = 'Source/**/*'
 s.frameworks = 'Foundation', 'CoreData'
 
 s.dependency 'DATAStack', '~> 6.1.0'
-s.dependency 'SYNCPropertyMapper', '~> 5.0.2'
+s.dependency 'SYNCPropertyMapper', '~> 5.1.1'
 end
