@@ -31,7 +31,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 * Diffing of changes, updated, inserted and deleted objects (which are automatically purged for you)
 * Auto-mapping of relationships (one-to-one, one-to-many and many-to-many)
 * Smart-updates, only updates your `NSManagedObject`s if the server values are different from your local ones
-* Uniquing, Core Data does this based on `objectID`s, we use your primary key (such as `id`) for this
+* Uniquing, one Core Data entry per primary key
 * `NSOperation` subclass, any Sync process can be queued and cancelled at any time!
 
 ## Table of Contents
