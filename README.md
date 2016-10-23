@@ -23,6 +23,8 @@
 
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
+Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot of boilerplate code, mapping attributes, mapping relationships, diffing for inserts, removals and updates are often tasks that don't change between apps. Taking this in account we took the challenge to abstract this into a library. **Sync** uses the knowledge of your Core Data model to infer all the mapping between your JSON and Core Data, once you use it, it feels so obvious that you'll wonder why you weren't doing this before.
+
 * Automatic mapping of camelCase or snake_case JSON into Core Data
 * Handles operations in safe background threads
 * Thread-safe saving, we handle retrieving and storing objects in the right threads
