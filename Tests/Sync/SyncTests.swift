@@ -1,6 +1,5 @@
 import XCTest
 import DATAStack
-import Sync
 import CoreData
 
 class SyncTests: XCTestCase {

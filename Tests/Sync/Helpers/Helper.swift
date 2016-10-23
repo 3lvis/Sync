@@ -1,8 +1,6 @@
 import XCTest
 import CoreData
 import DATAStack
-import Sync
-import JSON
 
 @objc class Helper: NSObject {
     class func objectsFromJSON(_ fileName: String) -> Any {
