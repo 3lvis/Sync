@@ -1,0 +1,1 @@
+#import "User+CoreDataClass.h"

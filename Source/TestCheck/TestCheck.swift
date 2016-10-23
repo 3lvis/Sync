@@ -28,12 +28,12 @@ Licensed under the **MIT** license
 
 import Foundation
 
-@objc public class TestCheck: NSObject {
+@objc class TestCheck: NSObject {
     /**
     Method to check wheter your on testing mode or not.
     - returns: A Bool, `true` if you're on testing mode, `false` if you're not.
     */
-    public static let isTesting: Bool = {
+    static let isTesting: Bool = {
         let enviroment = ProcessInfo().environment
         let serviceName = enviroment["XPC_SERVICE_NAME"]
         let injectBundle = enviroment["XCInjectBundle"]
