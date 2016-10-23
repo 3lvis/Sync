@@ -4,6 +4,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 static NSString * const DateParserDateNoTimestampFormat = @"YYYY-MM-DD";
 static NSString * const DateParserTimestamp = @"T00:00:00+00:00";
+static NSString * const DateParserDescriptionDate = @"0000-00-00 00:00:00";
 
 /**
  The type of date.

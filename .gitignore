@@ -27,6 +27,7 @@ DerivedData
 *.xcscmblueprint
 *.gcno
 *.gcda
+*.bcsymbolmap
 
 Carthage/Build/watchOS/Sync.framework*
 Carthage/Build/tvOS/Sync.framework*
