@@ -41,6 +41,8 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 
 ## Table of Contents
 
+[![Join the chat at https://gitter.im/SyncDB/Sync](https://badges.gitter.im/SyncDB/Sync.svg)](https://gitter.im/SyncDB/Sync?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 * [Basic example](#basic-example)
 * [More examples](#more-examples)
 * [Getting Started](#getting-started)
