@@ -1,6 +1,5 @@
 osx_image: xcode8
 language: objective-c
-before_script: rvm get head
 script:
   - xcodebuild -project Demo.xcodeproj -scheme iOSTests           -destination 'platform=iOS Simulator,name=iPhone 6'               test  | xcpretty
   - xcodebuild -project Demo.xcodeproj -scheme tvOSTests          -destination 'platform=tvOS Simulator,name=Apple TV 1080p'        test  | xcpretty
