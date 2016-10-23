@@ -2,7 +2,7 @@ import CoreData
 import DATAStack
 import SYNCPropertyMapper
 
-public extension NSManagedObject {
+extension NSManagedObject {
     /**
      Using objectID to fetch an NSManagedObject from a NSManagedContext is quite unsafe,
      and has unexpected behaviour most of the time, although it has gotten better throught

@@ -2,7 +2,7 @@ import Foundation
 import DATAStack
 import SYNCPropertyMapper
 
-public extension NSArray {
+extension NSArray {
     /**
      Filters the items using the provided predicate, useful to exclude JSON objects from a JSON array by using a predicate.
      - parameter entityName: The name of the entity to be synced.

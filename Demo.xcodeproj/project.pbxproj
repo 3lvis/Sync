@@ -296,30 +296,14 @@
 		149E28ED1D9FC9F900E0DE0B /* DATAObjectIDsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E71D9FC9F900E0DE0B /* DATAObjectIDsTests.swift */; };
 		149E28EE1D9FC9F900E0DE0B /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E81D9FC9F900E0DE0B /* Tests.xcdatamodeld */; };
 		14C046351DBC19D300CB6C16 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
-		14C458F11DBCCC430005F699 /* Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14C458F21DBCCC480005F699 /* NSArray+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458F31DBCCC480005F699 /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458F41DBCCC480005F699 /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458F51DBCCC480005F699 /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458F61DBCCC4F0005F699 /* Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14C458F71DBCCC510005F699 /* NSArray+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458F81DBCCC510005F699 /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458F91DBCCC510005F699 /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458FA1DBCCC510005F699 /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458FB1DBCCC540005F699 /* Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14C458FC1DBCCC550005F699 /* NSArray+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458FD1DBCCC550005F699 /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458FE1DBCCC550005F699 /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C458FF1DBCCC550005F699 /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C459001DBCCC580005F699 /* Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14C459011DBCCC590005F699 /* NSArray+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C459021DBCCC590005F699 /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C459031DBCCC590005F699 /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
-		14C459041DBCCC590005F699 /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Private, ); }; };
 		14DAB3FD1DBC4620004B455F /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0D1DBC3D7D0042ED81 /* DATAStack.framework */; };
 		14DAB3FE1DBC4620004B455F /* SYNCPropertyMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0E1DBC3D7D0042ED81 /* SYNCPropertyMapper.framework */; };
 		14DAB4011DBC4625004B455F /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14DAB3FF1DBC4625004B455F /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14DAB4021DBC4625004B455F /* SYNCPropertyMapper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14DAB4001DBC4625004B455F /* SYNCPropertyMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14E93C441DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E93C451DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E93C461DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E93C471DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4403DC5A1D9F90B5001C8DA6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
 		4403DC5B1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */; };
 		4403DC5C1D9F90B5001C8DA6 /* 151-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */; };
@@ -552,6 +536,7 @@
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		14DAB3FF1DBC4625004B455F /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14DAB4001DBC4625004B455F /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/iOS/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
+		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		4403DBDD1D9F90B5001C8DA6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes-update.json"; sourceTree = "<group>"; };
 		4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes.json"; sourceTree = "<group>"; };
@@ -733,6 +718,7 @@
 		1425D59A1CC65BEB00EC49D4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				14E93C431DBCCD2800E3304E /* Sync.h */,
 				44968BF41DA0021300E71A53 /* Sync */,
 				445D3BB71D9F932C007F9E26 /* DATAFilter */,
 				149E28E21D9FC9ED00E0DE0B /* DATAObjectIDs */,
@@ -1038,11 +1024,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C458F11DBCCC430005F699 /* Sync.swift in Headers */,
-				14C458F21DBCCC480005F699 /* NSArray+Sync.swift in Headers */,
-				14C458F31DBCCC480005F699 /* NSEntityDescription+Sync.swift in Headers */,
-				14C458F41DBCCC480005F699 /* NSManagedObject+Sync.swift in Headers */,
-				14C458F51DBCCC480005F699 /* NSManagedObjectContext+Sync.swift in Headers */,
+				14E93C441DBCCD2800E3304E /* Sync.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,11 +1032,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C458F61DBCCC4F0005F699 /* Sync.swift in Headers */,
-				14C458F71DBCCC510005F699 /* NSArray+Sync.swift in Headers */,
-				14C458F81DBCCC510005F699 /* NSEntityDescription+Sync.swift in Headers */,
-				14C458F91DBCCC510005F699 /* NSManagedObject+Sync.swift in Headers */,
-				14C458FA1DBCCC510005F699 /* NSManagedObjectContext+Sync.swift in Headers */,
+				14E93C451DBCCD2800E3304E /* Sync.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,11 +1040,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C458FB1DBCCC540005F699 /* Sync.swift in Headers */,
-				14C458FC1DBCCC550005F699 /* NSArray+Sync.swift in Headers */,
-				14C458FD1DBCCC550005F699 /* NSEntityDescription+Sync.swift in Headers */,
-				14C458FE1DBCCC550005F699 /* NSManagedObject+Sync.swift in Headers */,
-				14C458FF1DBCCC550005F699 /* NSManagedObjectContext+Sync.swift in Headers */,
+				14E93C461DBCCD2800E3304E /* Sync.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1074,11 +1048,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C459001DBCCC580005F699 /* Sync.swift in Headers */,
-				14C459011DBCCC590005F699 /* NSArray+Sync.swift in Headers */,
-				14C459021DBCCC590005F699 /* NSEntityDescription+Sync.swift in Headers */,
-				14C459031DBCCC590005F699 /* NSManagedObject+Sync.swift in Headers */,
-				14C459041DBCCC590005F699 /* NSManagedObjectContext+Sync.swift in Headers */,
+				14E93C471DBCCD2800E3304E /* Sync.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
