@@ -19,7 +19,7 @@
   <a href="https://cocoapods.org/pods/Sync" target="blank">
     <img src="https://img.shields.io/cocoapods/l/Sync.svg?style=flat" />
   </a>
-  <a href="https://gitter.im/SyncDB/project-sync?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+  <a href="https://gitter.im/SyncDB/Sync?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
     <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
   </a>
   <br>
@@ -40,8 +40,6 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 * `NSOperation` subclass, any Sync process can be queued and cancelled at any time!
 
 ## Table of Contents
-
-[![Join the chat at https://gitter.im/SyncDB/Sync](https://badges.gitter.im/SyncDB/Sync.svg)](https://gitter.im/SyncDB/Sync?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 * [Basic example](#basic-example)
 * [More examples](#more-examples)
