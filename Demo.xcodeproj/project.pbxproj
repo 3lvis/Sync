@@ -15,6 +15,7 @@
 		14241EA51DBC3A6F0042ED81 /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
 		14241EA61DBC3A6F0042ED81 /* DATAObjectIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149E28E31D9FC9ED00E0DE0B /* DATAObjectIDs.swift */; };
 		14241EA71DBC3A6F0042ED81 /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
+		14241EA81DBC3A770042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
 		14241EAA1DBC3A770042ED81 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; };
 		14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
