@@ -1,6 +1,12 @@
 ![Sync](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/logo-v3.png)
 
 <div align = "center">
+  <a href="https://cocoapods.org/pods/Sync">
+    <img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
+  </a>
+  <a href="https://github.com/SyncDB/Sync">
+    <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
+  </a>
   <a href="https://github.com/SyncDB/Sync#installation">
     <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
   </a>
@@ -13,6 +19,7 @@
   <br>
   <br>
 </div>
+
 
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
