@@ -155,6 +155,12 @@ pod 'Sync', '~> 1'
 pod 'Sync', '~> 2'
 ```
 
+**Sync** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
+it, simply add the following line to your Cartfile:
+
+```ruby
+github "SyncDB/Sync" ~> 2.0
+```
 
 ## Requisites
 
