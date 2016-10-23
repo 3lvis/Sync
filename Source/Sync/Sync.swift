@@ -3,6 +3,19 @@ import SYNCPropertyMapper
 import DATAStack
 
 @objc open class Sync: Operation {
+    public struct Operation : OptionSet {
+        public let rawValue: Int
+
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+
+        static let Insert = Operation(rawValue: 1 << 0)
+        static let Update = Operation(rawValue: 1 << 1)
+        static let Delete = Operation(rawValue: 1 << 2)
+        static let All: Operation = [.Insert, .Update, .Delete]
+    }
+
     var downloadFinished = false
     var downloadExecuting = false
     var downloadCancelled = false
@@ -26,12 +39,12 @@ import DATAStack
     var changes: [[String : Any]]
     var entityName: String
     var predicate: NSPredicate?
-    var filterOperations = DATAFilter.Operation.All
+    var filterOperations = Sync.Operation.All
     var parent: NSManagedObject?
     var context: NSManagedObjectContext?
     unowned var dataStack: DATAStack
 
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: DATAFilter.Operation = .All) {
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.Operation = .All) {
         self.changes = changes
         self.entityName = entityName
         self.predicate = predicate
@@ -41,7 +54,7 @@ import DATAStack
         self.filterOperations = operations
     }
 
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: DATAFilter.Operation = .All) {
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.Operation = .All) {
         self.changes = changes
         self.entityName = entityName
         self.predicate = predicate
@@ -120,7 +133,7 @@ import DATAStack
      - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
         self.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: dataStack, operations: operations, completion: completion)
     }
 
@@ -155,7 +168,7 @@ import DATAStack
      - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: operations, completion: completion)
         }
@@ -208,7 +221,7 @@ import DATAStack
         self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
     }
 
-    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    open class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -228,7 +241,8 @@ import DATAStack
             fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
         }
 
-        DATAFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
+        let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
+        DATAFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
 
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
             created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
@@ -256,7 +270,7 @@ import DATAStack
         }
     }
 
-    func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: DATAFilter.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -276,7 +290,8 @@ import DATAStack
             fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
         }
 
-        DATAFilter.changes(changes as [[String : Any]], inEntityNamed: entityName, predicate: finalPredicate, operations: operations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
+        let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
+        DATAFilter.changes(changes as [[String : Any]], inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
             guard self.isCancelled == false else { return }
 
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)

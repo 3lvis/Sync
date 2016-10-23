@@ -10,7 +10,7 @@ extension NSManagedObjectContext {
      - parameter parentRelationshipName: The name of the relationship with the parent.
      - returns: A NSManagedObject contained in the provided context.
      */
-    func sync_safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
+    func safeObject(_ entityName: String, localPrimaryKey: Any?, parent: NSManagedObject?, parentRelationshipName: String?) -> NSManagedObject? {
         var result: NSManagedObject?
 
         if let localPrimaryKey = localPrimaryKey as? NSObject, let entity = NSEntityDescription.entity(forEntityName: entityName, in: self) {
@@ -27,6 +27,40 @@ extension NSManagedObjectContext {
             result = parent?.value(forKey: parentRelationshipName) as? NSManagedObject
         }
 
+        return result
+    }
+
+    func managedObjectIDs(in entityName: String, usingAsKey attributeName: String, predicate: NSPredicate?) -> [AnyHashable: NSManagedObjectID] {
+        var result = [AnyHashable: NSManagedObjectID]()
+
+        self.performAndWait {
+            let expression = NSExpressionDescription()
+            expression.name = "objectID"
+            expression.expression = NSExpression.expressionForEvaluatedObject()
+            expression.expressionResultType = .objectIDAttributeType
+
+            let request = NSFetchRequest<NSDictionary>(entityName: entityName)
+            request.predicate = predicate
+            request.resultType = .dictionaryResultType
+            request.propertiesToFetch = [expression, attributeName]
+
+            do {
+                let objects = try self.fetch(request)
+                for object in objects {
+                    let fetchedID = object[attributeName] as! NSObject
+                    let objectID = object["objectID"] as! NSManagedObjectID
+
+                    if let _ = result[fetchedID] {
+                        self.delete(self.object(with: objectID))
+                    } else {
+                        result[fetchedID] = objectID
+                    }
+                }
+            } catch let error as NSError {
+                print("error: \(error)")
+            }
+        }
+        
         return result
     }
 }

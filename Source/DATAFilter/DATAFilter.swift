@@ -5,21 +5,21 @@ import CoreData
  Helps you filter insertions, deletions and updates by comparing your JSON dictionary with your Core Data local objects. 
  It also provides uniquing for you locally stored objects and automatic removal of not found ones.
  */
-public class DATAFilter: NSObject {
-    public struct Operation : OptionSet {
-        public let rawValue: Int
+class DATAFilter: NSObject {
+    struct Operation : OptionSet {
+        let rawValue: Int
 
-        public init(rawValue: Int) {
+        init(rawValue: Int) {
             self.rawValue = rawValue
         }
 
-        public static let Insert = Operation(rawValue: 1 << 0)
-        public static let Update = Operation(rawValue: 1 << 1)
-        public static let Delete = Operation(rawValue: 1 << 2)
-        public static let All: Operation = [.Insert, .Update, .Delete]
+        static let Insert = Operation(rawValue: 1 << 0)
+        static let Update = Operation(rawValue: 1 << 1)
+        static let Delete = Operation(rawValue: 1 << 2)
+        static let All: Operation = [.Insert, .Update, .Delete]
     }
 
-    public class func changes(_ changes: [[String : Any]],
+    class func changes(_ changes: [[String : Any]],
                               inEntityNamed entityName: String,
                                             localPrimaryKey: String,
                                             remotePrimaryKey: String,
@@ -29,7 +29,7 @@ public class DATAFilter: NSObject {
         self.changes(changes, inEntityNamed: entityName, predicate: nil, operations: .All, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: inserted, updated: updated)
     }
 
-    public class func changes(_ changes: [[String : Any]],
+    class func changes(_ changes: [[String : Any]],
                               inEntityNamed entityName: String,
                                             predicate: NSPredicate?,
                                             operations: Operation,
@@ -39,7 +39,7 @@ public class DATAFilter: NSObject {
                                             inserted: (_ JSON: [String : Any]) -> Void,
                                             updated: (_ JSON: [String : Any], _ updatedObject: NSManagedObject) -> Void) {
         // `DATAObjectIDs.objectIDsInEntityNamed` also deletes all objects that don't have a primary key or that have the same primary key already found in the context
-        let primaryKeysAndObjectIDs = DATAObjectIDs.objectIDs(inEntityNamed: entityName, withAttributesNamed: localPrimaryKey, context: context, predicate: predicate) as! [NSObject : NSManagedObjectID]
+        let primaryKeysAndObjectIDs = context.managedObjectIDs(in: entityName, usingAsKey: localPrimaryKey, predicate: predicate) as [NSObject : NSManagedObjectID]
         let localPrimaryKeys = Array(primaryKeysAndObjectIDs.keys)
         let remotePrimaryKeys = changes.map { $0[remotePrimaryKey] }
         let remotePrimaryKeysWithoutNils = (remotePrimaryKeys.filter { (($0 as? NSObject) != NSNull()) && ($0 != nil) } as! [NSObject?]) as! [NSObject]
