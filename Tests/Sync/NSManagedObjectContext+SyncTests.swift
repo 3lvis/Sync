@@ -20,7 +20,7 @@ class NSManagedObjectContext_SyncTests: XCTestCase {
 
     func testDictionary() {
         self.configureUserWithRemoteID(remoteID: 1, localID: nil, name: "Joshua") { user, context in
-            let dictionary = context.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", predicate: nil)
+            let dictionary = context.managedObjectIDs(in: "User", usingAsKey: "remoteID", predicate: nil)
             XCTAssertNotNil(dictionary)
             XCTAssertTrue(dictionary.count == 1)
             XCTAssertEqual(dictionary[NSNumber(value: 1)], user.objectID)
@@ -34,7 +34,7 @@ class NSManagedObjectContext_SyncTests: XCTestCase {
 
     func testDictionaryStringLocalKey() {
         self.configureUserWithRemoteID(remoteID: nil, localID: "100", name: "Joshua") { user, context in
-            let dictionary = context.objectIDs(inEntityNamed: "User", withAttributesNamed: "localID", predicate: nil)
+            let dictionary = context.managedObjectIDs(in: "User", usingAsKey: "localID", predicate: nil)
             XCTAssertNotNil(dictionary)
             XCTAssertTrue(dictionary.count == 1)
             XCTAssertEqual(dictionary["100"], user.objectID);

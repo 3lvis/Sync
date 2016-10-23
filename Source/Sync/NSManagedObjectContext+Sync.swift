@@ -30,7 +30,7 @@ extension NSManagedObjectContext {
         return result
     }
 
-    func objectIDs(inEntityNamed entityName: String, withAttributesNamed attributeName: String, predicate: NSPredicate?) -> [AnyHashable: NSManagedObjectID] {
+    func managedObjectIDs(in entityName: String, usingAsKey attributeName: String, predicate: NSPredicate?) -> [AnyHashable: NSManagedObjectID] {
         var result = [AnyHashable: NSManagedObjectID]()
 
         self.performAndWait {
