@@ -10,16 +10,21 @@
   <a href="https://github.com/SyncDB/Sync#installation">
     <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
   </a>
+</div>
+
+<div align = "center">
   <a href="https://cocoapods.org/pods/Sync" target="blank">
     <img src="https://img.shields.io/cocoapods/p/Sync.svg?style=flat" />
   </a>
   <a href="https://cocoapods.org/pods/Sync" target="blank">
     <img src="https://img.shields.io/cocoapods/l/Sync.svg?style=flat" />
   </a>
+  <a href="https://gitter.im/SyncDB/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+    <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
+  </a>
   <br>
   <br>
 </div>
-
 
 **Sync** eases your everyday job of parsing a JSON response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
 
