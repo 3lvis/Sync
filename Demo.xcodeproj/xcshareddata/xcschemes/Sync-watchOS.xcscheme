@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "14241E7D1DBC39600042ED81"
-               BuildableName = "Sync-watchOS.framework"
+               BuildableName = "Sync.framework"
                BlueprintName = "Sync-watchOS"
                ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14241E7D1DBC39600042ED81"
-            BuildableName = "Sync-watchOS.framework"
+            BuildableName = "Sync.framework"
             BlueprintName = "Sync-watchOS"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14241E7D1DBC39600042ED81"
-            BuildableName = "Sync-watchOS.framework"
+            BuildableName = "Sync.framework"
             BlueprintName = "Sync-watchOS"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>

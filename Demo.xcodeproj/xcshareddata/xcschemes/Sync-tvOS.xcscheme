@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-               BuildableName = "Sync-tvOS.framework"
+               BuildableName = "Sync.framework"
                BlueprintName = "Sync-tvOS"
                ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-            BuildableName = "Sync-tvOS.framework"
+            BuildableName = "Sync.framework"
             BlueprintName = "Sync-tvOS"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-            BuildableName = "Sync-tvOS.framework"
+            BuildableName = "Sync.framework"
             BlueprintName = "Sync-tvOS"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
