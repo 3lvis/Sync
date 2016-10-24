@@ -29,7 +29,7 @@ DerivedData
 *.gcda
 *.bcsymbolmap
 
-Carthage/Build/watchOS/Sync.framework*
+Carthage/Build/watchOS
 Carthage/Build/tvOS/Sync.framework*
 Carthage/Build/Mac/Sync.framework*
 Carthage/Build/iOS/Sync.framework*
