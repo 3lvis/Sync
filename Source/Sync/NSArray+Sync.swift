@@ -10,7 +10,7 @@ extension NSArray {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func preprocessForEntityNamed(_ entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack, operations: Sync.Operation) -> [[String : Any]] {
+    func preprocessForEntityNamed(_ entityName: String, predicate: NSPredicate, parent: NSManagedObject?, dataStack: DATAStack, operations: Sync.OperationOptions) -> [[String : Any]] {
         var filteredChanges = [[String : Any]]()
         let validClasses = [NSDate.classForCoder(), NSNumber.classForCoder(), NSString.classForCoder()]
         if let predicate = predicate as? NSComparisonPredicate, let selfArray = self as? [[String : Any]] , validClasses.contains(where: { $0 == predicate.rightExpression.classForCoder }) {

@@ -30,7 +30,7 @@ extension NSManagedObject {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_fillWithDictionary(_ dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: Sync.Operation) {
+    func sync_fillWithDictionary(_ dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: Sync.OperationOptions) {
         hyp_fill(with: dictionary)
 
         for relationship in entity.sync_relationships() {
@@ -157,7 +157,7 @@ extension NSManagedObject {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: Sync.Operation) {
+    func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: Sync.OperationOptions) {
         var children: [[String : Any]]?
         let childrenIsNull = relationship.userInfo?[SYNCCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
@@ -299,7 +299,7 @@ extension NSManagedObject {
      - parameter dictionary: The JSON with the changes to be applied to the entity.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], dataStack: DATAStack, operations: Sync.Operation) {
+    func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], dataStack: DATAStack, operations: Sync.OperationOptions) {
         var filteredObjectDictionary: [String : Any]?
 
         if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {

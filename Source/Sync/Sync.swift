@@ -3,17 +3,17 @@ import SYNCPropertyMapper
 import DATAStack
 
 @objc public class Sync: Operation {
-    public struct Operation : OptionSet {
+    public struct OperationOptions : OptionSet {
         public let rawValue: Int
 
         public init(rawValue: Int) {
             self.rawValue = rawValue
         }
 
-        public static let Insert = Operation(rawValue: 1 << 0)
-        public static let Update = Operation(rawValue: 1 << 1)
-        public static let Delete = Operation(rawValue: 1 << 2)
-        public static let All: Operation = [.Insert, .Update, .Delete]
+        public static let Insert = OperationOptions(rawValue: 1 << 0)
+        public static let Update = OperationOptions(rawValue: 1 << 1)
+        public static let Delete = OperationOptions(rawValue: 1 << 2)
+        public static let All: OperationOptions = [.Insert, .Update, .Delete]
     }
 
     var downloadFinished = false
@@ -39,12 +39,12 @@ import DATAStack
     var changes: [[String : Any]]
     var entityName: String
     var predicate: NSPredicate?
-    var filterOperations = Sync.Operation.All
+    var filterOperations = Sync.OperationOptions.All
     var parent: NSManagedObject?
     var context: NSManagedObjectContext?
     unowned var dataStack: DATAStack
 
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.Operation = .All) {
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
         self.changes = changes
         self.entityName = entityName
         self.predicate = predicate
@@ -54,7 +54,7 @@ import DATAStack
         self.filterOperations = operations
     }
 
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.Operation = .All) {
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
         self.changes = changes
         self.entityName = entityName
         self.predicate = predicate
@@ -133,7 +133,7 @@ import DATAStack
      - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, dataStack: DATAStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         self.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: dataStack, operations: operations, completion: completion)
     }
 
@@ -168,7 +168,7 @@ import DATAStack
      - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: operations, completion: completion)
         }
@@ -221,7 +221,7 @@ import DATAStack
         self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
     }
 
-    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -270,7 +270,7 @@ import DATAStack
         }
     }
 
-    func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.Operation, completion: ((_ error: NSError?) -> Void)?) {
+    func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
