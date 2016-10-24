@@ -10,10 +10,10 @@ import DATAStack
             self.rawValue = rawValue
         }
 
-        static let Insert = Operation(rawValue: 1 << 0)
-        static let Update = Operation(rawValue: 1 << 1)
-        static let Delete = Operation(rawValue: 1 << 2)
-        static let All: Operation = [.Insert, .Update, .Delete]
+        public static let Insert = Operation(rawValue: 1 << 0)
+        public static let Update = Operation(rawValue: 1 << 1)
+        public static let Delete = Operation(rawValue: 1 << 2)
+        public static let All: Operation = [.Insert, .Update, .Delete]
     }
 
     var downloadFinished = false
