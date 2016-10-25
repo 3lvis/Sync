@@ -2,7 +2,13 @@ import CoreData
 import SYNCPropertyMapper
 import DATAStack
 
+public protocol SyncDelegate: class {
+    func sync(_ sync: Sync, willInsert json: [String: Any]) -> [String: Any]
+}
+
 @objc public class Sync: Operation {
+    public weak var delegate: SyncDelegate?
+
     public struct OperationOptions : OptionSet {
         public let rawValue: Int
 
@@ -33,7 +39,7 @@ import DATAStack
     }
 
     public override var isAsynchronous: Bool {
-        return true
+        return !TestCheck.isTesting
     }
 
     var changes: [[String : Any]]
@@ -50,6 +56,13 @@ import DATAStack
         self.predicate = predicate
         self.parent = parent
         self.context = context
+        self.dataStack = dataStack
+        self.filterOperations = operations
+    }
+
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
+        self.changes = changes
+        self.entityName = entityName
         self.dataStack = dataStack
         self.filterOperations = operations
     }
@@ -243,7 +256,6 @@ import DATAStack
 
         let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
         DATAFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
-
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
             created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
@@ -295,7 +307,8 @@ import DATAStack
             guard self.isCancelled == false else { return }
 
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
+            let interceptedJSON = self.delegate?.sync(self, willInsert: JSON) ?? JSON
+            created.sync_fillWithDictionary(interceptedJSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
             guard self.isCancelled == false else { return }
             updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
