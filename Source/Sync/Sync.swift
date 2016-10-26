@@ -3,7 +3,7 @@ import SYNCPropertyMapper
 import DATAStack
 
 public protocol SyncDelegate: class {
-    func sync(_ sync: Sync, willInsert json: [String: Any]) -> [String: Any]
+    func sync(_ sync: Sync, willInsert json: [String: Any], in entityNamed: String) -> [String: Any]
 }
 
 @objc public class Sync: Operation {
@@ -307,7 +307,7 @@ public protocol SyncDelegate: class {
             guard self.isCancelled == false else { return }
 
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            let interceptedJSON = self.delegate?.sync(self, willInsert: JSON) ?? JSON
+            let interceptedJSON = self.delegate?.sync(self, willInsert: JSON, in: entityName) ?? JSON
             created.sync_fillWithDictionary(interceptedJSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
             guard self.isCancelled == false else { return }
