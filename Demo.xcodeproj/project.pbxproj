@@ -290,6 +290,9 @@
 		14DAB3FE1DBC4620004B455F /* SYNCPropertyMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0E1DBC3D7D0042ED81 /* SYNCPropertyMapper.framework */; };
 		14DAB4011DBC4625004B455F /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14DAB3FF1DBC4625004B455F /* DATAStack.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14DAB4021DBC4625004B455F /* SYNCPropertyMapper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14DAB4001DBC4625004B455F /* SYNCPropertyMapper.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		14E2852F1DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */; };
+		14E285301DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */; };
+		14E285311DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */; };
 		14E93C441DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C451DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C461DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -524,6 +527,7 @@
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		14DAB3FF1DBC4625004B455F /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14DAB4001DBC4625004B455F /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/iOS/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
+		14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerTests.swift; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		4403DBDD1D9F90B5001C8DA6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes-update.json"; sourceTree = "<group>"; };
@@ -793,6 +797,7 @@
 				4403DC581D9F90B5001C8DA6 /* NSManagedObjectContext+SyncTests.swift */,
 				4403DC591D9F90B5001C8DA6 /* SyncTests.swift */,
 				14BA60E81DC0247700C97D6F /* SyncDelegateTests.swift */,
+				14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -1546,6 +1551,7 @@
 				1421405D1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
 				449828041D9F8F2D00E2BCA3 /* TestCheck.swift in Sources */,
 				4403DCA81D9F90B5001C8DA6 /* Notes.xcdatamodeld in Sources */,
+				14E2852F1DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */,
 				14C046351DBC19D300CB6C16 /* JSON.swift in Sources */,
 				4403DCAE1D9F90B5001C8DA6 /* Social.xcdatamodeld in Sources */,
 				445D3BC51D9F9373007F9E26 /* DATAFilterTests.swift in Sources */,
@@ -1603,6 +1609,7 @@
 				14975C131DBC36F00024901A /* Bug254.xcdatamodeld in Sources */,
 				1421405E1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
 				14975C141DBC36F00024901A /* Bug257.xcdatamodeld in Sources */,
+				14E285301DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */,
 				14975C151DBC36F00024901A /* Bug84.xcdatamodeld in Sources */,
 				14975C161DBC36F00024901A /* Camelcase.xcdatamodeld in Sources */,
 				14975C171DBC36F00024901A /* Contacts.xcdatamodeld in Sources */,
@@ -1660,6 +1667,7 @@
 				14975C471DBC37180024901A /* Bug254.xcdatamodeld in Sources */,
 				1421405F1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
 				14975C481DBC37180024901A /* Bug257.xcdatamodeld in Sources */,
+				14E285311DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */,
 				14975C491DBC37180024901A /* Bug84.xcdatamodeld in Sources */,
 				14975C4A1DBC37180024901A /* Camelcase.xcdatamodeld in Sources */,
 				14975C4B1DBC37180024901A /* Contacts.xcdatamodeld in Sources */,
@@ -2056,6 +2064,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = Tests;
@@ -2077,6 +2086,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_MODULE_NAME = Tests;
