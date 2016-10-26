@@ -3,7 +3,15 @@ import SYNCPropertyMapper
 import DATAStack
 
 public protocol SyncDelegate: class {
-    func sync(_ sync: Sync, willInsert json: [String: Any], in entityNamed: String) -> [String: Any]
+    /// Called before the JSON is used to create a new NSManagedObject.
+    ///
+    /// - parameter sync:        The Sync operation.
+    /// - parameter json:        The JSON used for filling the contents of the NSManagedObject.
+    /// - parameter entityNamed: The name of the entity to be created.
+    /// - parameter parent:      The new item's parent. Do not mutate the contents of this element.
+    ///
+    /// - returns: The JSON used to create the new NSManagedObject.
+    func sync(_ sync: Sync, willInsert json: [String: Any], in entityNamed: String, parent: NSManagedObject?) -> [String: Any]
 }
 
 @objc public class Sync: Operation {
@@ -307,7 +315,7 @@ public protocol SyncDelegate: class {
             guard self.isCancelled == false else { return }
 
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            let interceptedJSON = self.delegate?.sync(self, willInsert: JSON, in: entityName) ?? JSON
+            let interceptedJSON = self.delegate?.sync(self, willInsert: JSON, in: entityName, parent: parent) ?? JSON
             created.sync_fillWithDictionary(interceptedJSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
         }) { JSON, updatedObject in
             guard self.isCancelled == false else { return }

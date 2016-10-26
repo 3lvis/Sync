@@ -22,7 +22,7 @@ class SyncDelegateTests: XCTestCase {
 }
 
 extension SyncDelegateTests: SyncDelegate {
-    func sync(_ sync: Sync, willInsert json: [String: Any], in entityNamed: String) -> [String: Any] {
+    func sync(_ sync: Sync, willInsert json: [String: Any], in entityNamed: String, parent: NSManagedObject?) -> [String: Any] {
         var newJSON = json
         newJSON["localID"] = "local"
 
