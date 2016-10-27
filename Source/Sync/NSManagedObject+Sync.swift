@@ -30,7 +30,7 @@ extension NSManagedObject {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_fillWithDictionary(_ dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: Sync.OperationOptions) {
+    func sync_fillWithDictionary(_ dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions) {
         hyp_fill(with: dictionary)
 
         for relationship in entity.sync_relationships() {
@@ -42,7 +42,7 @@ extension NSManagedObject {
                 if let localPrimaryKey = dictionary[keyName] , localPrimaryKey is Array<String> || localPrimaryKey is Array<Int> || localPrimaryKey is NSNull {
                     sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
                 } else {
-                    sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
+                    sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
                 }
             } else {
                 var destinationIsParentSuperEntity = false
@@ -64,9 +64,9 @@ extension NSManagedObject {
                         self.setValue(parent, forKey: relationship.name)
                     }
                 } else if let localPrimaryKey = dictionary[keyName] , localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
-                    sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey, dataStack: dataStack)
+                    sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
                 } else {
-                    sync_toOneRelationship(relationship, dictionary: dictionary, dataStack: dataStack, operations: operations)
+                    sync_toOneRelationship(relationship, dictionary: dictionary, context: context, operations: operations)
                 }
             }
         }
@@ -157,7 +157,7 @@ extension NSManagedObject {
      - parameter parent: The parent of the entity, optional since many entities are orphans.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, dataStack: DATAStack, operations: Sync.OperationOptions) {
+    func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions) {
         var children: [[String : Any]]?
         let childrenIsNull = relationship.userInfo?[SYNCCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
@@ -249,7 +249,7 @@ extension NSManagedObject {
                 childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
             }
 
-            Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, parentRelationship: relationship, inContext: managedObjectContext, dataStack: dataStack, operations: operations, completion: nil)
+            Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, parentRelationship: relationship, inContext: managedObjectContext, operations: operations, completion: nil)
         } else if let parent = parent, let entityName = parent.entity.name , inverseIsToMany && entityName == childEntityName && parentRelationship?.inverseRelationship == relationship {
             if relationship.isOrdered {
                 let relatedObjects = mutableOrderedSetValue(forKey: relationship.name)
@@ -275,8 +275,8 @@ extension NSManagedObject {
      - parameter localPrimaryKey: The localPrimaryKey of the relationship to be synced, usually a number or an integer.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toOneRelationshipUsingIDInsteadOfDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: Any, dataStack: DATAStack) {
-        guard let managedObjectContext = managedObjectContext else { fatalError("managedObjectContext not found") }
+    func sync_toOneRelationshipUsingIDInsteadOfDictionary(_ relationship: NSRelationshipDescription, localPrimaryKey: Any) {
+        guard let managedObjectContext = self.managedObjectContext else { fatalError("managedObjectContext not found") }
         guard let destinationEntity = relationship.destinationEntity else { fatalError("destinationEntity not found in relationship: \(relationship)") }
         guard let destinationEntityName = destinationEntity.name else { fatalError("entityName not found in entity: \(destinationEntity)") }
         if localPrimaryKey is NSNull {
@@ -299,7 +299,7 @@ extension NSManagedObject {
      - parameter dictionary: The JSON with the changes to be applied to the entity.
      - parameter dataStack: The DATAStack instance.
      */
-    func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], dataStack: DATAStack, operations: Sync.OperationOptions) {
+    func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String : Any], context: NSManagedObjectContext, operations: Sync.OperationOptions) {
         var filteredObjectDictionary: [String : Any]?
 
         if let customRelationshipName = relationship.userInfo?[SYNCCustomRemoteKey] as? String {
@@ -319,7 +319,7 @@ extension NSManagedObject {
         let localPrimaryKey = toOneObjectDictionary[entity.sync_remotePrimaryKey()]
         let object = managedObjectContext.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext)
 
-        object.sync_fillWithDictionary(toOneObjectDictionary, parent: self, parentRelationship: relationship, dataStack: dataStack, operations: operations)
+        object.sync_fillWithDictionary(toOneObjectDictionary, parent: self, parentRelationship: relationship, context: context, operations: operations)
 
         let currentRelationship = value(forKey: relationship.name)
         if currentRelationship == nil || !(currentRelationship! as AnyObject).isEqual(object) {

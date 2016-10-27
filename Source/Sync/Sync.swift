@@ -136,6 +136,25 @@ public protocol SyncDelegate: class {
      entire company object inside the employees dictionary.
      - parameter changes: The array of dictionaries used in the sync process.
      - parameter entityName: The name of the entity to be synced.
+     - parameter predicate: The predicate used to filter out changes, if you want to exclude some local items to be taken in
+     account in the Sync process, you just need to provide this predicate.
+     - parameter dataStack: The DATAStack instance.
+     - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
+     */
+    @available(iOS 10, *)
+    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, persistentContainer: NSPersistentContainer, completion: ((_ error: NSError?) -> Void)?) {
+        persistentContainer.performBackgroundTask { backgroundContext in
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: .All, completion: completion)
+        }
+    }
+
+    /**
+     Syncs the entity using the received array of dictionaries, maps one-to-many, many-to-many and one-to-one relationships.
+     It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
+     and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
+     entire company object inside the employees dictionary.
+     - parameter changes: The array of dictionaries used in the sync process.
+     - parameter entityName: The name of the entity to be synced.
      - parameter dataStack: The DATAStack instance.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
@@ -172,7 +191,7 @@ public protocol SyncDelegate: class {
      */
     public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: .All, completion: completion)
         }
     }
 
@@ -191,7 +210,7 @@ public protocol SyncDelegate: class {
      */
     public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, dataStack: dataStack, operations: operations, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: operations, completion: completion)
         }
     }
 
@@ -219,7 +238,7 @@ public protocol SyncDelegate: class {
             if let firstRelationship = firstRelationship {
                 predicate = NSPredicate(format: "%K = %@", firstRelationship.name, safeParent)
             }
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, parentRelationship: firstRelationship?.inverseRelationship, inContext: backgroundContext, dataStack: dataStack, operations: .All, completion: completion)
+            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: safeParent, parentRelationship: firstRelationship?.inverseRelationship, inContext: backgroundContext, operations: .All, completion: completion)
         }
     }
 
@@ -239,10 +258,10 @@ public protocol SyncDelegate: class {
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
     public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((_ error: NSError?) -> Void)?) {
-        self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: context, dataStack: dataStack, operations: .All, completion: completion)
+        self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: context, operations: .All, completion: completion)
     }
 
-    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -265,9 +284,9 @@ public protocol SyncDelegate: class {
         let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
         DATAFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
+            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }) { JSON, updatedObject in
-            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
+            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }
 
         var syncError: NSError?
@@ -316,10 +335,10 @@ public protocol SyncDelegate: class {
 
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
             let interceptedJSON = self.delegate?.sync(self, willInsert: JSON, in: entityName, parent: parent) ?? JSON
-            created.sync_fillWithDictionary(interceptedJSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
+            created.sync_fillWithDictionary(interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }) { JSON, updatedObject in
             guard self.isCancelled == false else { return }
-            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, dataStack: dataStack, operations: operations)
+            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }
 
         var syncError: NSError?
