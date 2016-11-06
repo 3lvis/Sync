@@ -39,7 +39,7 @@ class ViewController: UITableViewController {
 
     func fetchCurrentObjects() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "displayName", ascending: true)]
         self.items = (try! dataStack.mainContext.fetch(request)) as! [NSManagedObject]
         self.tableView.reloadData()
     }
@@ -53,7 +53,7 @@ extension ViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))
         let data = self.items[indexPath.row]
-        cell?.textLabel?.text = data.value(forKey: "id") as? String
+        cell?.textLabel?.text = data.value(forKey: "displayName") as? String
 
         return cell!
     }

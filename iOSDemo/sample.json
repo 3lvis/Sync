@@ -1,11 +1,15 @@
-[
+ [
   {
-    "id": 1
-  },
-  {
-    "id": 2
-  },
-  {
-    "id": 3
+  "user_pass" : "$P$BTZLth9PaRednztX3vLMKj6ZDZvhK11",
+  "user_registered" : "2016-09-19 20:27:07",
+  "user_activation_key" : "",
+  "user_nicename" : "utilisateurtest",
+  "user_status" : "0",
+  "user_url" : "",
+  "user_email" : "test@test.com",
+  "user_identifier" : "dsa",
+  "display_name" : "Utilisateur Test",
+  "ID" : "5",
+  "user_login" : "utilisateurtest"
   }
 ]
