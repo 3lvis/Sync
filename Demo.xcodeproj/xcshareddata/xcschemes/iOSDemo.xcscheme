@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-               BuildableName = "Sync.framework"
-               BlueprintName = "Sync-tvOS"
+               BlueprintIdentifier = "44B547F41DCF27FF009215FA"
+               BuildableName = "iOSDemo.app"
+               BlueprintName = "iOSDemo"
                ReferencedContainer = "container:Demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "44B547F41DCF27FF009215FA"
+            BuildableName = "iOSDemo.app"
+            BlueprintName = "iOSDemo"
+            ReferencedContainer = "container:Demo.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-            BuildableName = "Sync.framework"
-            BlueprintName = "Sync-tvOS"
+            BlueprintIdentifier = "44B547F41DCF27FF009215FA"
+            BuildableName = "iOSDemo.app"
+            BlueprintName = "iOSDemo"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-            BuildableName = "Sync.framework"
-            BlueprintName = "Sync-tvOS"
+            BlueprintIdentifier = "44B547F41DCF27FF009215FA"
+            BuildableName = "iOSDemo.app"
+            BlueprintName = "iOSDemo"
             ReferencedContainer = "container:Demo.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

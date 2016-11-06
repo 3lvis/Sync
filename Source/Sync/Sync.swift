@@ -141,7 +141,7 @@ public protocol SyncDelegate: class {
      - parameter dataStack: The DATAStack instance.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    @available(iOS 10, *)
+    @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
     public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, persistentContainer: NSPersistentContainer, completion: ((_ error: NSError?) -> Void)?) {
         persistentContainer.performBackgroundTask { backgroundContext in
             self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: .All, completion: completion)
