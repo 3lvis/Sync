@@ -40,19 +40,21 @@ class DATAFilter: NSObject {
                                             updated: (_ JSON: [String : Any], _ updatedObject: NSManagedObject) -> Void) {
         // `DATAObjectIDs.objectIDsInEntityNamed` also deletes all objects that don't have a primary key or that have the same primary key already found in the context
         var changes = changes
-        if let predicate = predicate{
-            let format = "!(" + predicate.predicateFormat + ")"
-            let inversePredicate = NSPredicate(format: format, argumentArray: nil)
-            let inversedPredicateResults = context.managedObjectIDs(in: entityName, usingAsKey: localPrimaryKey, predicate: inversePredicate) as [NSObject : NSManagedObjectID]
-            
-            let inversedPredicatePrimaryKeysArray = Array(inversedPredicateResults.keys)
-            changes = changes.filter({ change in
-                return !inversedPredicatePrimaryKeysArray.contains(change[localPrimaryKey] as! NSObject)
-            })
-        }
-
+        
+        let fullPrimaryKeysAndObjectObjectIDs =  context.managedObjectIDs(in: entityName, usingAsKey: localPrimaryKey, predicate: nil) as [NSObject : NSManagedObjectID]
+        let fullLocalPrimaryKeys = Array(fullPrimaryKeysAndObjectObjectIDs.keys)
+        
         let primaryKeysAndObjectIDs = context.managedObjectIDs(in: entityName, usingAsKey: localPrimaryKey, predicate: predicate) as [NSObject : NSManagedObjectID]
         let localPrimaryKeys = Array(primaryKeysAndObjectIDs.keys)
+        
+        let localPrimaryKeysSet = Set(localPrimaryKeys)
+        var inversedPredicatePrimaryKeys = Set(fullLocalPrimaryKeys)
+        inversedPredicatePrimaryKeys.subtract(localPrimaryKeysSet)
+        
+        changes = changes.filter({ change in
+            return !inversedPredicatePrimaryKeys.contains(change[localPrimaryKey] as! NSObject)
+        })
+        
         let remotePrimaryKeys = changes.map { $0[remotePrimaryKey] }
         let remotePrimaryKeysWithoutNils = (remotePrimaryKeys.filter { (($0 as? NSObject) != NSNull()) && ($0 != nil) } as! [NSObject?]) as! [NSObject]
 
