@@ -1206,6 +1206,33 @@ class SyncTests: XCTestCase {
         try! dataStack.drop()
     }
 
+    func test233() {
+        let dataStack = Helper.dataStackWithModelName("233")
+
+        // load order a
+        let presentationOrderA = Helper.objectsFromJSON("233-order-a.json") as! [[String : Any]]
+        Sync.changes(presentationOrderA, inEntityNamed: "Presentation", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Presentation", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Slide", inContext:dataStack.mainContext), 3)
+
+        let lastSlideA = Helper.fetchEntity("Slide", inContext: dataStack.mainContext).last!
+        let lastSlideAId = lastSlideA.value(forKey: "id") as! Int16
+
+        // load order b
+        let presentationOrderB = Helper.objectsFromJSON("233-order-b.json") as! [[String : Any]]
+        Sync.changes(presentationOrderB, inEntityNamed: "Presentation", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Presentation", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Slide", inContext:dataStack.mainContext), 3)
+
+        let firstSlideB = Helper.fetchEntity("Slide", inContext: dataStack.mainContext).first!
+        let firstSlideBId = firstSlideB.value(forKey: "id") as! Int16
+
+        // check if order is properly updated
+        XCTAssertEqual(lastSlideAId, firstSlideBId)
+    }
+
     func test280() {
         let dataStack = Helper.dataStackWithModelName("280")
 
