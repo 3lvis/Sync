@@ -432,6 +432,9 @@
 		4E2F71F41DD60115003F0108 /* 233-order-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F21DD60110003F0108 /* 233-order-b.json */; };
 		4E2F71F51DD60116003F0108 /* 233-order-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F21DD60110003F0108 /* 233-order-b.json */; };
 		4E2F71F61DD60116003F0108 /* 233-order-b.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F21DD60110003F0108 /* 233-order-b.json */; };
+		4E2F71F91DD611EB003F0108 /* 233-slides.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F71DD611E4003F0108 /* 233-slides.json */; };
+		4E2F71FA1DD611EB003F0108 /* 233-slides.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F71DD611E4003F0108 /* 233-slides.json */; };
+		4E2F71FB1DD611EC003F0108 /* 233-slides.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F71DD611E4003F0108 /* 233-slides.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -689,6 +692,7 @@
 		4E2F71E81DD3DD56003F0108 /* 233.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 233.xcdatamodel; sourceTree = "<group>"; };
 		4E2F71EA1DD3E1B6003F0108 /* 233-order-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "233-order-a.json"; sourceTree = "<group>"; };
 		4E2F71F21DD60110003F0108 /* 233-order-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "233-order-b.json"; sourceTree = "<group>"; };
+		4E2F71F71DD611E4003F0108 /* 233-slides.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "233-slides.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -898,6 +902,7 @@
 				4403DBE91D9F90B5001C8DA6 /* 225-a-null.json */,
 				4403DBEA1D9F90B5001C8DA6 /* 225-a-replaced.json */,
 				4403DBEB1D9F90B5001C8DA6 /* 225-a.json */,
+				4E2F71F71DD611E4003F0108 /* 233-slides.json */,
 				4E2F71EA1DD3E1B6003F0108 /* 233-order-a.json */,
 				4E2F71F21DD60110003F0108 /* 233-order-b.json */,
 				4403DBF71D9F90B5001C8DA6 /* bug-239.json */,
@@ -1401,6 +1406,7 @@
 				4403DC5E1D9F90B5001C8DA6 /* 151-to-many-notes.json in Resources */,
 				4403DC7E1D9F90B5001C8DA6 /* notes_for_user_a.json in Resources */,
 				4403DC8D1D9F90B5001C8DA6 /* users_a.json in Resources */,
+				4E2F71F91DD611EB003F0108 /* 233-slides.json in Resources */,
 				4403DC5B1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json in Resources */,
 				4403DC5F1D9F90B5001C8DA6 /* 151-to-many-users-update.json in Resources */,
 				4403DC6E1D9F90B5001C8DA6 /* bug-125.json in Resources */,
@@ -1472,6 +1478,7 @@
 				14975C7F1DBC373A0024901A /* bug-number-84.json in Resources */,
 				14975C801DBC373A0024901A /* camelcase.json in Resources */,
 				14975C811DBC373A0024901A /* comments-no-id.json in Resources */,
+				4E2F71FA1DD611EB003F0108 /* 233-slides.json in Resources */,
 				14975C821DBC373A0024901A /* custom_relationship_key_to_many.json in Resources */,
 				14975C831DBC373A0024901A /* custom_relationship_key_to_one.json in Resources */,
 				14975C841DBC373A0024901A /* id.json in Resources */,
@@ -1543,6 +1550,7 @@
 				14975CBD1DBC374C0024901A /* bug-number-84.json in Resources */,
 				14975CBE1DBC374C0024901A /* camelcase.json in Resources */,
 				14975CBF1DBC374C0024901A /* comments-no-id.json in Resources */,
+				4E2F71FB1DD611EC003F0108 /* 233-slides.json in Resources */,
 				14975CC01DBC374C0024901A /* custom_relationship_key_to_many.json in Resources */,
 				14975CC11DBC374C0024901A /* custom_relationship_key_to_one.json in Resources */,
 				14975CC21DBC374C0024901A /* id.json in Resources */,

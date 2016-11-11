@@ -2,6 +2,6 @@
  {
     "id": 1,
     "name": "My Presentation - Order A",
-    "slide_ids": [ 1, 2, 3 ]
-  }
+    "slides_ids": [ 1, 2, 3 ]
+ }
 ]
