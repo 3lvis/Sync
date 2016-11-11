@@ -8,7 +8,7 @@
     <entity name="Slide" representedClassName="Slide" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="text" attributeType="String" syncable="YES"/>
-        <relationship name="presentation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Presentation" inverseName="slides" inverseEntity="Presentation" syncable="YES"/>
+        <relationship name="presentation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Presentation" inverseName="slides" inverseEntity="Presentation" syncable="YES"/>
     </entity>
     <elements>
         <element name="Presentation" positionX="-54" positionY="-9" width="128" height="90"/>
