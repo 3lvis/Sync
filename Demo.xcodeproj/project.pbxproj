@@ -423,6 +423,15 @@
 		44B5481B1DCF3DED009215FA /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B5481A1DCF3DED009215FA /* sample.json */; };
 		44B5481E1DCF3E18009215FA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B5481C1DCF3E18009215FA /* Model.xcdatamodeld */; };
 		44CC76101D9F9076003545A4 /* TestCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC760F1D9F9076003545A4 /* TestCheckTests.swift */; };
+		CCC6F68E1DD76028003DF833 /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCC6F68C1DD76028003DF833 /* 320.xcdatamodeld */; };
+		CCC6F68F1DD76028003DF833 /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCC6F68C1DD76028003DF833 /* 320.xcdatamodeld */; };
+		CCC6F6901DD76028003DF833 /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCC6F68C1DD76028003DF833 /* 320.xcdatamodeld */; };
+		CCC6F6921DD760EF003DF833 /* 320-a.json in Resources */ = {isa = PBXBuildFile; fileRef = CCC6F6911DD760EF003DF833 /* 320-a.json */; };
+		CCC6F6931DD760EF003DF833 /* 320-a.json in Resources */ = {isa = PBXBuildFile; fileRef = CCC6F6911DD760EF003DF833 /* 320-a.json */; };
+		CCC6F6941DD760EF003DF833 /* 320-a.json in Resources */ = {isa = PBXBuildFile; fileRef = CCC6F6911DD760EF003DF833 /* 320-a.json */; };
+		CCC6F6961DD76164003DF833 /* 320-a-null.json in Resources */ = {isa = PBXBuildFile; fileRef = CCC6F6951DD76164003DF833 /* 320-a-null.json */; };
+		CCC6F6971DD76164003DF833 /* 320-a-null.json in Resources */ = {isa = PBXBuildFile; fileRef = CCC6F6951DD76164003DF833 /* 320-a-null.json */; };
+		CCC6F6981DD76164003DF833 /* 320-a-null.json in Resources */ = {isa = PBXBuildFile; fileRef = CCC6F6951DD76164003DF833 /* 320-a-null.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -677,6 +686,9 @@
 		44B5481A1DCF3DED009215FA /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
 		44B5481D1DCF3E18009215FA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		44CC760F1D9F9076003545A4 /* TestCheckTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCheckTests.swift; sourceTree = "<group>"; };
+		CCC6F68D1DD76028003DF833 /* 320.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 320.xcdatamodel; sourceTree = "<group>"; };
+		CCC6F6911DD760EF003DF833 /* 320-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "320-a.json"; sourceTree = "<group>"; };
+		CCC6F6951DD76164003DF833 /* 320-a-null.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "320-a-null.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -878,6 +890,8 @@
 				4403DBEB1D9F90B5001C8DA6 /* 225-a.json */,
 				4403DBEC1D9F90B5001C8DA6 /* 280.json */,
 				4403DBED1D9F90B5001C8DA6 /* 283.json */,
+				CCC6F6911DD760EF003DF833 /* 320-a.json */,
+				CCC6F6951DD76164003DF833 /* 320-a-null.json */,
 				4403DBEE1D9F90B5001C8DA6 /* bug-113-comments-no-id.json */,
 				4403DBEF1D9F90B5001C8DA6 /* bug-113-custom_relationship_key_to_one.json */,
 				4403DBF01D9F90B5001C8DA6 /* bug-113-stories-comments-no-ids.json */,
@@ -933,6 +947,7 @@
 				4403DC1F1D9F90B5001C8DA6 /* 225.xcdatamodeld */,
 				4403DC211D9F90B5001C8DA6 /* 280.xcdatamodeld */,
 				4403DC231D9F90B5001C8DA6 /* 283.xcdatamodeld */,
+				CCC6F68C1DD76028003DF833 /* 320.xcdatamodeld */,
 				4403DC251D9F90B5001C8DA6 /* Bug113.xcdatamodeld */,
 				4403DC271D9F90B5001C8DA6 /* Bug125.xcdatamodeld */,
 				4403DC291D9F90B5001C8DA6 /* Bug157.xcdatamodeld */,
@@ -1358,6 +1373,7 @@
 			files = (
 				445D3BCB1D9F9373007F9E26 /* users.json in Resources */,
 				4403DC611D9F90B5001C8DA6 /* 157-cities.json in Resources */,
+				CCC6F6961DD76164003DF833 /* 320-a-null.json in Resources */,
 				4403DC641D9F90B5001C8DA6 /* 225-a-empty.json in Resources */,
 				4403DC681D9F90B5001C8DA6 /* 280.json in Resources */,
 				4403DC881D9F90B5001C8DA6 /* story-summarize.json in Resources */,
@@ -1375,6 +1391,7 @@
 				4403DC701D9F90B5001C8DA6 /* bug-179-routes.json in Resources */,
 				4403DC671D9F90B5001C8DA6 /* 225-a.json in Resources */,
 				4403DC6C1D9F90B5001C8DA6 /* bug-113-stories-comments-no-ids.json in Resources */,
+				CCC6F6921DD760EF003DF833 /* 320-a.json in Resources */,
 				445D3BC91D9F9373007F9E26 /* users-with-nil.json in Resources */,
 				4403DC861D9F90B5001C8DA6 /* patients.json in Resources */,
 				4403DC7F1D9F90B5001C8DA6 /* notes_with_user_id.json in Resources */,
@@ -1427,6 +1444,7 @@
 			files = (
 				14975C641DBC373A0024901A /* 151-many-to-many-notes-update.json in Resources */,
 				14975C651DBC373A0024901A /* 151-many-to-many-notes.json in Resources */,
+				CCC6F6971DD76164003DF833 /* 320-a-null.json in Resources */,
 				14975C661DBC373A0024901A /* 151-many-to-many-tags.json in Resources */,
 				14975C671DBC373A0024901A /* 151-to-many-notes.json in Resources */,
 				14975C681DBC373A0024901A /* 151-to-many-users-update.json in Resources */,
@@ -1444,6 +1462,7 @@
 				14975C741DBC373A0024901A /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				14975C751DBC373A0024901A /* bug-113-stories-comments-no-ids.json in Resources */,
 				14975C761DBC373A0024901A /* bug-125-light.json in Resources */,
+				CCC6F6931DD760EF003DF833 /* 320-a.json in Resources */,
 				14975C771DBC373A0024901A /* bug-125.json in Resources */,
 				14975C781DBC373A0024901A /* bug-179-places.json in Resources */,
 				14975C791DBC373A0024901A /* bug-179-routes.json in Resources */,
@@ -1496,6 +1515,7 @@
 			files = (
 				14975CA21DBC374C0024901A /* 151-many-to-many-notes-update.json in Resources */,
 				14975CA31DBC374C0024901A /* 151-many-to-many-notes.json in Resources */,
+				CCC6F6981DD76164003DF833 /* 320-a-null.json in Resources */,
 				14975CA41DBC374C0024901A /* 151-many-to-many-tags.json in Resources */,
 				14975CA51DBC374C0024901A /* 151-to-many-notes.json in Resources */,
 				14975CA61DBC374C0024901A /* 151-to-many-users-update.json in Resources */,
@@ -1513,6 +1533,7 @@
 				14975CB21DBC374C0024901A /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				14975CB31DBC374C0024901A /* bug-113-stories-comments-no-ids.json in Resources */,
 				14975CB41DBC374C0024901A /* bug-125-light.json in Resources */,
+				CCC6F6941DD760EF003DF833 /* 320-a.json in Resources */,
 				14975CB51DBC374C0024901A /* bug-125.json in Resources */,
 				14975CB61DBC374C0024901A /* bug-179-places.json in Resources */,
 				14975CB71DBC374C0024901A /* bug-179-routes.json in Resources */,
@@ -1692,6 +1713,7 @@
 				445D3BC61D9F9373007F9E26 /* Model.xcdatamodeld in Sources */,
 				4403DC9E1D9F90B5001C8DA6 /* Bug239.xcdatamodeld in Sources */,
 				4403DC9C1D9F90B5001C8DA6 /* Bug179.xcdatamodeld in Sources */,
+				CCC6F68E1DD76028003DF833 /* 320.xcdatamodeld in Sources */,
 				4403DCAB1D9F90B5001C8DA6 /* Organizations.xcdatamodeld in Sources */,
 				4403DCA21D9F90B5001C8DA6 /* Camelcase.xcdatamodeld in Sources */,
 				4403DCAA1D9F90B5001C8DA6 /* OrderedSocial.xcdatamodeld in Sources */,
@@ -1750,6 +1772,7 @@
 				14975C201DBC36F00024901A /* Patients.xcdatamodeld in Sources */,
 				14975C211DBC36F00024901A /* Recursive.xcdatamodeld in Sources */,
 				14975C221DBC36F00024901A /* Social.xcdatamodeld in Sources */,
+				CCC6F68F1DD76028003DF833 /* 320.xcdatamodeld in Sources */,
 				14975C231DBC36F00024901A /* ToOne.xcdatamodeld in Sources */,
 				14975C241DBC36F00024901A /* Unique.xcdatamodeld in Sources */,
 				14975C251DBC36F00024901A /* NSArray+SyncTests.swift in Sources */,
@@ -1808,6 +1831,7 @@
 				14975C541DBC37180024901A /* Patients.xcdatamodeld in Sources */,
 				14975C551DBC37180024901A /* Recursive.xcdatamodeld in Sources */,
 				14975C561DBC37180024901A /* Social.xcdatamodeld in Sources */,
+				CCC6F6901DD76028003DF833 /* 320.xcdatamodeld in Sources */,
 				14975C571DBC37180024901A /* ToOne.xcdatamodeld in Sources */,
 				14975C581DBC37180024901A /* Unique.xcdatamodeld in Sources */,
 				14975C591DBC37180024901A /* NSArray+SyncTests.swift in Sources */,
@@ -2823,6 +2847,16 @@
 			);
 			currentVersion = 44B5481D1DCF3E18009215FA /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		CCC6F68C1DD76028003DF833 /* 320.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CCC6F68D1DD76028003DF833 /* 320.xcdatamodel */,
+			);
+			currentVersion = CCC6F68D1DD76028003DF833 /* 320.xcdatamodel */;
+			path = 320.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
