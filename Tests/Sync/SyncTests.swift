@@ -1212,7 +1212,7 @@ class SyncTests: XCTestCase {
         let slides = Helper.objectsFromJSON("233-slides.json") as! [[String : Any]]
         Sync.changes(slides, inEntityNamed: "Slide", dataStack: dataStack, completion: nil)
 
-        XCTAssertEqual(Helper.countForEntity("Slide", inContext:dataStack.mainContext), 3)
+        XCTAssertEqual(Helper.countForEntity("Slide", inContext:dataStack.mainContext), 4)
 
         // load order a
         let presentationOrderA = Helper.objectsFromJSON("233-order-a.json") as! [[String : Any]]

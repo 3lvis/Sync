@@ -105,7 +105,7 @@ extension NSManagedObject {
             let insertedItems = remoteItems.mutableCopy() as? NSMutableArray ?? NSMutableArray()
             insertedItems.removeObjects(in: localItems.allObjects)
 
-            guard insertedItems.count > 0 || deletedItems.count > 0 else { return }
+            guard insertedItems.count > 0 || deletedItems.count > 0 || (insertedItems.count == 0 && deletedItems.count == 0 && relationship.isOrdered) else { return }
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: destinationEntityName)
             let fetchedObjects = try? managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
             guard let objects = fetchedObjects else { return }
@@ -144,6 +144,20 @@ extension NSManagedObject {
                                 setValue(relatedObjects, forKey: relationship.name)
                             }
                         }
+                    }
+                }
+            }
+
+            for safeObject in objects {
+                let currentID = safeObject.value(forKey: entity.sync_localPrimaryKey())!
+
+                if (relationship.isOrdered) {
+                    let remoteIndex = remoteItems.index(of: currentID)
+                    let relatedObjects = mutableOrderedSetValue(forKey: relationship.name)
+
+                    let currentIndex = relatedObjects.index(of: safeObject)
+                    if (currentIndex != remoteIndex) {
+                        relatedObjects.moveObjects(at: IndexSet.init(integer: currentIndex), to: remoteIndex)
                     }
                 }
             }
