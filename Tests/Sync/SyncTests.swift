@@ -1206,6 +1206,36 @@ class SyncTests: XCTestCase {
         try! dataStack.drop()
     }
 
+    func test233() {
+        let dataStack = Helper.dataStackWithModelName("233")
+
+        let slides = Helper.objectsFromJSON("233-slides.json") as! [[String : Any]]
+        Sync.changes(slides, inEntityNamed: "Slide", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Slide", inContext:dataStack.mainContext), 4)
+
+        // load order a
+        let presentationOrderA = Helper.objectsFromJSON("233-order-a.json") as! [[String : Any]]
+        Sync.changes(presentationOrderA, inEntityNamed: "Presentation", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Presentation", inContext:dataStack.mainContext), 1)
+
+        let lastSlideA = Helper.fetchEntity("Presentation", inContext: dataStack.mainContext).first!.mutableOrderedSetValue(forKey: "slides").lastObject as! NSManagedObject
+        let lastSlideAText = lastSlideA.value(forKey: "text") as! String
+
+        // load order b
+        let presentationOrderB = Helper.objectsFromJSON("233-order-b.json") as! [[String : Any]]
+        Sync.changes(presentationOrderB, inEntityNamed: "Presentation", dataStack: dataStack, completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Presentation", inContext:dataStack.mainContext), 1)
+
+        let firstSlideB = Helper.fetchEntity("Presentation", inContext: dataStack.mainContext).first!.mutableOrderedSetValue(forKey: "slides").firstObject as! NSManagedObject
+        let firstSlideBText = firstSlideB.value(forKey: "text") as! String
+
+        // check if order is properly updated
+        XCTAssertEqual(lastSlideAText, firstSlideBText)
+    }
+
     func test280() {
         let dataStack = Helper.dataStackWithModelName("280")
 
