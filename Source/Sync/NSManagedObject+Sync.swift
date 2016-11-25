@@ -148,16 +148,15 @@ extension NSManagedObject {
                 }
             }
 
-            for safeObject in objects {
-                let currentID = safeObject.value(forKey: entity.sync_localPrimaryKey())!
-
-                if (relationship.isOrdered) {
+            if relationship.isOrdered {
+                for safeObject in objects {
+                    let currentID = safeObject.value(forKey: entity.sync_localPrimaryKey())!
                     let remoteIndex = remoteItems.index(of: currentID)
-                    let relatedObjects = mutableOrderedSetValue(forKey: relationship.name)
+                    let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
 
                     let currentIndex = relatedObjects.index(of: safeObject)
-                    if (currentIndex != remoteIndex) {
-                        relatedObjects.moveObjects(at: IndexSet.init(integer: currentIndex), to: remoteIndex)
+                    if currentIndex != remoteIndex {
+                        relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
                     }
                 }
             }
