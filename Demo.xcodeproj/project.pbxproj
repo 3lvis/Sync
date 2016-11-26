@@ -300,12 +300,9 @@
 		14E9C13B1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
 		14E9C13C1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
 		14E9C13D1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
-		14E9C1401DEA2EE100A21B9E /* 320-a-null.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320-a-null.json */; };
-		14E9C1411DEA2EE100A21B9E /* 320-a-null.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320-a-null.json */; };
-		14E9C1421DEA2EE100A21B9E /* 320-a-null.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320-a-null.json */; };
-		14E9C1431DEA2EE100A21B9E /* 320-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13F1DEA2EE100A21B9E /* 320-a.json */; };
-		14E9C1441DEA2EE100A21B9E /* 320-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13F1DEA2EE100A21B9E /* 320-a.json */; };
-		14E9C1451DEA2EE100A21B9E /* 320-a.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13F1DEA2EE100A21B9E /* 320-a.json */; };
+		14E9C1401DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
+		14E9C1411DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
+		14E9C1421DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
 		4403DC5A1D9F90B5001C8DA6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
 		4403DC5B1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */; };
 		4403DC5C1D9F90B5001C8DA6 /* 151-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */; };
@@ -580,8 +577,7 @@
 		14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerTests.swift; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		14E9C13A1DEA2ECD00A21B9E /* 320.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 320.xcdatamodel; sourceTree = "<group>"; };
-		14E9C13E1DEA2EE100A21B9E /* 320-a-null.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "320-a-null.json"; sourceTree = "<group>"; };
-		14E9C13F1DEA2EE100A21B9E /* 320-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "320-a.json"; sourceTree = "<group>"; };
+		14E9C13E1DEA2EE100A21B9E /* 320.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 320.json; sourceTree = "<group>"; };
 		4403DBDD1D9F90B5001C8DA6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes-update.json"; sourceTree = "<group>"; };
 		4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes.json"; sourceTree = "<group>"; };
@@ -909,8 +905,7 @@
 				4E2F71F71DD611E4003F0108 /* 233-slides.json */,
 				4403DBEC1D9F90B5001C8DA6 /* 280.json */,
 				4403DBED1D9F90B5001C8DA6 /* 283.json */,
-				14E9C13E1DEA2EE100A21B9E /* 320-a-null.json */,
-				14E9C13F1DEA2EE100A21B9E /* 320-a.json */,
+				14E9C13E1DEA2EE100A21B9E /* 320.json */,
 				4403DBEE1D9F90B5001C8DA6 /* bug-113-comments-no-id.json */,
 				4403DBEF1D9F90B5001C8DA6 /* bug-113-custom_relationship_key_to_one.json */,
 				4403DBF01D9F90B5001C8DA6 /* bug-113-stories-comments-no-ids.json */,
@@ -1451,11 +1446,10 @@
 				4403DC791D9F90B5001C8DA6 /* custom_relationship_key_to_many.json in Resources */,
 				4403DC8A1D9F90B5001C8DA6 /* to-one-camelcase.json in Resources */,
 				4403DC731D9F90B5001C8DA6 /* bug-239.json in Resources */,
-				14E9C1401DEA2EE100A21B9E /* 320-a-null.json in Resources */,
+				14E9C1401DEA2EE100A21B9E /* 320.json in Resources */,
 				4403DC5D1D9F90B5001C8DA6 /* 151-many-to-many-tags.json in Resources */,
 				4403DC631D9F90B5001C8DA6 /* 157-locations.json in Resources */,
 				4403DC891D9F90B5001C8DA6 /* tagged_notes.json in Resources */,
-				14E9C1431DEA2EE100A21B9E /* 320-a.json in Resources */,
 				4403DC621D9F90B5001C8DA6 /* 157-locations-update.json in Resources */,
 				445D3BC71D9F9373007F9E26 /* note.json in Resources */,
 			);
@@ -1525,11 +1519,10 @@
 				14975C9A1DBC373A0024901A /* users_notes.json in Resources */,
 				14975C9B1DBC373A0024901A /* note.json in Resources */,
 				14975C9C1DBC373A0024901A /* simple.json in Resources */,
-				14E9C1411DEA2EE100A21B9E /* 320-a-null.json in Resources */,
+				14E9C1411DEA2EE100A21B9E /* 320.json in Resources */,
 				14975C9D1DBC373A0024901A /* users-with-nil.json in Resources */,
 				14975C9E1DBC373A0024901A /* users-with-null.json in Resources */,
 				14975C9F1DBC373A0024901A /* users.json in Resources */,
-				14E9C1441DEA2EE100A21B9E /* 320-a.json in Resources */,
 				14975CA01DBC373A0024901A /* users2.json in Resources */,
 				14975CA11DBC373A0024901A /* users3.json in Resources */,
 			);
@@ -1599,11 +1592,10 @@
 				14975CD81DBC374C0024901A /* users_notes.json in Resources */,
 				14975CD91DBC374C0024901A /* note.json in Resources */,
 				14975CDA1DBC374C0024901A /* simple.json in Resources */,
-				14E9C1421DEA2EE100A21B9E /* 320-a-null.json in Resources */,
+				14E9C1421DEA2EE100A21B9E /* 320.json in Resources */,
 				14975CDB1DBC374C0024901A /* users-with-nil.json in Resources */,
 				14975CDC1DBC374C0024901A /* users-with-null.json in Resources */,
 				14975CDD1DBC374C0024901A /* users.json in Resources */,
-				14E9C1451DEA2EE100A21B9E /* 320-a.json in Resources */,
 				14975CDE1DBC374C0024901A /* users2.json in Resources */,
 				14975CDF1DBC374C0024901A /* users3.json in Resources */,
 			);

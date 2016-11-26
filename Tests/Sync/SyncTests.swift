@@ -1286,7 +1286,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
         
-        let usersB = Helper.objectsFromJSON("320-a-null.json") as! [[String : Any]]
+        let usersB = Helper.objectsFromJSON("320.json") as! [[String : Any]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
