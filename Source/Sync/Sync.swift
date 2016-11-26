@@ -284,9 +284,9 @@ public protocol SyncDelegate: class {
         let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
         DATAFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            created.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
+            created.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }) { JSON, updatedObject in
-            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
+            updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }
 
         var syncError: NSError?
@@ -335,10 +335,10 @@ public protocol SyncDelegate: class {
 
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
             let interceptedJSON = self.delegate?.sync(self, willInsert: JSON, in: entityName, parent: parent) ?? JSON
-            created.sync_fillWithDictionary(interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
+            created.sync_fill(with: interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }) { JSON, updatedObject in
             guard self.isCancelled == false else { return }
-            updatedObject.sync_fillWithDictionary(JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
+            updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
         }
 
         var syncError: NSError?

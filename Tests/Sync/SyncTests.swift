@@ -1273,14 +1273,19 @@ class SyncTests: XCTestCase {
     
     func test320RemoveOneToToneWithNull() {
         let dataStack = Helper.dataStackWithModelName("320")
-        
-        let usersA = Helper.objectsFromJSON("320-a.json") as! [[String : Any]]
-        Sync.changes(usersA, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+
+        let tagA = NSEntityDescription.insertNewObject(forEntityName: "Tag", into: dataStack.mainContext)
+        tagA.setValue(10, forKey: "remoteID")
+
+        let userA = NSEntityDescription.insertNewObject(forEntityName: "User", into: dataStack.mainContext)
+        userA.setValue(1, forKey: "remoteID")
+        userA.setValue(tagA, forKey: "tag")
+
+        try! dataStack.mainContext.save()
+
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
         
-        // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
-        // object, but instead, it should just remove the reference.
         let usersB = Helper.objectsFromJSON("320-a-null.json") as! [[String : Any]]
         Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
