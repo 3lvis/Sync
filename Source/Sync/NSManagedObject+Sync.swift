@@ -323,20 +323,26 @@ extension NSManagedObject {
             filteredObjectDictionary = result
         }
 
-        guard let toOneObjectDictionary = filteredObjectDictionary else { return }
-        guard let managedObjectContext = self.managedObjectContext else { return }
-        guard let destinationEntity = relationship.destinationEntity else { return }
-        guard let entityName = destinationEntity.name else { return }
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedObjectContext) else { return }
+        if let toOneObjectDictionary = filteredObjectDictionary {
+            guard let managedObjectContext = self.managedObjectContext else { return }
+            guard let destinationEntity = relationship.destinationEntity else { return }
+            guard let entityName = destinationEntity.name else { return }
+            guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedObjectContext) else { return }
 
-        let localPrimaryKey = toOneObjectDictionary[entity.sync_remotePrimaryKey()]
-        let object = managedObjectContext.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext)
+            let localPrimaryKey = toOneObjectDictionary[entity.sync_remotePrimaryKey()]
+            let object = managedObjectContext.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: self, parentRelationshipName: relationship.name) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext)
 
-        object.sync_fill(with: toOneObjectDictionary, parent: self, parentRelationship: relationship, context: context, operations: operations)
+            object.sync_fill(with: toOneObjectDictionary, parent: self, parentRelationship: relationship, context: context, operations: operations)
 
-        let currentRelationship = value(forKey: relationship.name)
-        if currentRelationship == nil || !(currentRelationship! as AnyObject).isEqual(object) {
-            setValue(object, forKey: relationship.name)
+            let currentRelationship = self.value(forKey: relationship.name)
+            if currentRelationship == nil || !(currentRelationship! as AnyObject).isEqual(object) {
+                setValue(object, forKey: relationship.name)
+            }
+        } else {
+            let currentRelationship = self.value(forKey: relationship.name)
+            if currentRelationship != nil {
+                setValue(nil, forKey: relationship.name)
+            }
         }
     }
 }
