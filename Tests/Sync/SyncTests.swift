@@ -1270,4 +1270,32 @@ class SyncTests: XCTestCase {
 
         try! dataStack.drop()
     }
+    
+    func test320RemoveOneToToneWithNull() {
+        let dataStack = Helper.dataStackWithModelName("320")
+
+        let tagA = NSEntityDescription.insertNewObject(forEntityName: "Tag", into: dataStack.mainContext)
+        tagA.setValue(10, forKey: "remoteID")
+
+        let userA = NSEntityDescription.insertNewObject(forEntityName: "User", into: dataStack.mainContext)
+        userA.setValue(1, forKey: "remoteID")
+        userA.setValue(tagA, forKey: "tag")
+
+        try! dataStack.mainContext.save()
+
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+        
+        let usersB = Helper.objectsFromJSON("320.json") as! [[String : Any]]
+        Sync.changes(usersB, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext:dataStack.mainContext), 1)
+        
+        let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
+        let predicate = NSPredicate(format: "ANY user = %@", user)
+        let tag = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
+        XCTAssertEqual(tag.count, 0)
+        
+        try! dataStack.drop()
+    }
 }

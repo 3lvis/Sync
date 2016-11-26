@@ -297,6 +297,12 @@
 		14E93C451DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C461DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C471DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E9C13B1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
+		14E9C13C1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
+		14E9C13D1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
+		14E9C1401DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
+		14E9C1411DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
+		14E9C1421DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
 		4403DC5A1D9F90B5001C8DA6 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
 		4403DC5B1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */; };
 		4403DC5C1D9F90B5001C8DA6 /* 151-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */; };
@@ -570,6 +576,8 @@
 		14DAB4001DBC4625004B455F /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/iOS/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
 		14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerTests.swift; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
+		14E9C13A1DEA2ECD00A21B9E /* 320.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 320.xcdatamodel; sourceTree = "<group>"; };
+		14E9C13E1DEA2EE100A21B9E /* 320.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 320.json; sourceTree = "<group>"; };
 		4403DBDD1D9F90B5001C8DA6 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes-update.json"; sourceTree = "<group>"; };
 		4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "151-many-to-many-notes.json"; sourceTree = "<group>"; };
@@ -897,6 +905,7 @@
 				4E2F71F71DD611E4003F0108 /* 233-slides.json */,
 				4403DBEC1D9F90B5001C8DA6 /* 280.json */,
 				4403DBED1D9F90B5001C8DA6 /* 283.json */,
+				14E9C13E1DEA2EE100A21B9E /* 320.json */,
 				4403DBEE1D9F90B5001C8DA6 /* bug-113-comments-no-id.json */,
 				4403DBEF1D9F90B5001C8DA6 /* bug-113-custom_relationship_key_to_one.json */,
 				4403DBF01D9F90B5001C8DA6 /* bug-113-stories-comments-no-ids.json */,
@@ -952,6 +961,7 @@
 				4E2F71E71DD3DD56003F0108 /* 233.xcdatamodeld */,
 				4403DC211D9F90B5001C8DA6 /* 280.xcdatamodeld */,
 				4403DC231D9F90B5001C8DA6 /* 283.xcdatamodeld */,
+				14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */,
 				4403DC351D9F90B5001C8DA6 /* Bug84.xcdatamodeld */,
 				4403DC251D9F90B5001C8DA6 /* Bug113.xcdatamodeld */,
 				4403DC271D9F90B5001C8DA6 /* Bug125.xcdatamodeld */,
@@ -1436,6 +1446,7 @@
 				4403DC791D9F90B5001C8DA6 /* custom_relationship_key_to_many.json in Resources */,
 				4403DC8A1D9F90B5001C8DA6 /* to-one-camelcase.json in Resources */,
 				4403DC731D9F90B5001C8DA6 /* bug-239.json in Resources */,
+				14E9C1401DEA2EE100A21B9E /* 320.json in Resources */,
 				4403DC5D1D9F90B5001C8DA6 /* 151-many-to-many-tags.json in Resources */,
 				4403DC631D9F90B5001C8DA6 /* 157-locations.json in Resources */,
 				4403DC891D9F90B5001C8DA6 /* tagged_notes.json in Resources */,
@@ -1508,6 +1519,7 @@
 				14975C9A1DBC373A0024901A /* users_notes.json in Resources */,
 				14975C9B1DBC373A0024901A /* note.json in Resources */,
 				14975C9C1DBC373A0024901A /* simple.json in Resources */,
+				14E9C1411DEA2EE100A21B9E /* 320.json in Resources */,
 				14975C9D1DBC373A0024901A /* users-with-nil.json in Resources */,
 				14975C9E1DBC373A0024901A /* users-with-null.json in Resources */,
 				14975C9F1DBC373A0024901A /* users.json in Resources */,
@@ -1580,6 +1592,7 @@
 				14975CD81DBC374C0024901A /* users_notes.json in Resources */,
 				14975CD91DBC374C0024901A /* note.json in Resources */,
 				14975CDA1DBC374C0024901A /* simple.json in Resources */,
+				14E9C1421DEA2EE100A21B9E /* 320.json in Resources */,
 				14975CDB1DBC374C0024901A /* users-with-nil.json in Resources */,
 				14975CDC1DBC374C0024901A /* users-with-null.json in Resources */,
 				14975CDD1DBC374C0024901A /* users.json in Resources */,
@@ -1693,6 +1706,7 @@
 				4403DCA71D9F90B5001C8DA6 /* Markets.xcdatamodeld in Sources */,
 				4403DC951D9F90B5001C8DA6 /* 151-to-many.xcdatamodeld in Sources */,
 				44CC76101D9F9076003545A4 /* TestCheckTests.swift in Sources */,
+				14E9C13B1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */,
 				4403DCA01D9F90B5001C8DA6 /* Bug257.xcdatamodeld in Sources */,
 				4403DCB41D9F90B5001C8DA6 /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				4403DCB11D9F90B5001C8DA6 /* NSArray+SyncTests.swift in Sources */,
@@ -1752,6 +1766,7 @@
 				14975C051DBC36F00024901A /* Helper.swift in Sources */,
 				14975C061DBC36F00024901A /* 151-many-to-many.xcdatamodeld in Sources */,
 				14975C071DBC36F00024901A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
+				14E9C13C1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */,
 				14975C081DBC36F00024901A /* 151-ordered-to-many.xcdatamodeld in Sources */,
 				14975C091DBC36F00024901A /* 151-to-many.xcdatamodeld in Sources */,
 				14975C0A1DBC36F00024901A /* 225.xcdatamodeld in Sources */,
@@ -1811,6 +1826,7 @@
 				14975C391DBC37180024901A /* Helper.swift in Sources */,
 				14975C3A1DBC37180024901A /* 151-many-to-many.xcdatamodeld in Sources */,
 				14975C3B1DBC37180024901A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
+				14E9C13D1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */,
 				14975C3C1DBC37180024901A /* 151-ordered-to-many.xcdatamodeld in Sources */,
 				14975C3D1DBC37180024901A /* 151-to-many.xcdatamodeld in Sources */,
 				14975C3E1DBC37180024901A /* 225.xcdatamodeld in Sources */,
@@ -2525,6 +2541,16 @@
 			);
 			currentVersion = 1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */;
 			path = Tests.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14E9C13A1DEA2ECD00A21B9E /* 320.xcdatamodel */,
+			);
+			currentVersion = 14E9C13A1DEA2ECD00A21B9E /* 320.xcdatamodel */;
+			path = 320.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
