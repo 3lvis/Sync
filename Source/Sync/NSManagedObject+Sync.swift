@@ -217,12 +217,13 @@ extension NSManagedObject {
                     let removedRemoteItems = remoteItems as? [Any] ?? [Any]()
                     deletedItems.removeObjects(in: removedRemoteItems)
 
-                    if deletedItems.count > 0 {
-                        let request = NSFetchRequest<NSFetchRequestResult>(entityName: destinationEntityName)
+                    let request = NSFetchRequest<NSFetchRequestResult>(entityName: destinationEntityName)
+                    var safeLocalObjects: [NSManagedObject]?
 
+                    if deletedItems.count > 0 {
                         do {
-                            let safeLocalObjects = try managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
-                            for safeObject in safeLocalObjects {
+                            safeLocalObjects = try managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
+                            for safeObject in safeLocalObjects! {
                                 let currentID = safeObject.value(forKey: destinationEntity.sync_localPrimaryKey())!
                                 for deleted in deletedItems {
                                     if (currentID as AnyObject).isEqual(deleted) {
@@ -242,8 +243,31 @@ extension NSManagedObject {
                                     }
                                 }
                             }
-                        } catch {
-                            fatalError()
+                        } catch let error as NSError {
+                            fatalError("Couldn't fetch objects for entity named: \(destinationEntityName). \(error)")
+                        }
+                    }
+
+                    if relationship.isOrdered {
+                        do {
+                            let objects: [NSManagedObject]
+                            if let safeLocalObjects = safeLocalObjects {
+                                objects = safeLocalObjects
+                            } else {
+                                objects = try managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
+                            }
+                            for safeObject in objects {
+                                let currentID = safeObject.value(forKey: entity.sync_localPrimaryKey())!
+                                let remoteIndex = remoteItems.index(of: currentID)
+                                let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
+
+                                let currentIndex = relatedObjects.index(of: safeObject)
+                                if currentIndex != remoteIndex {
+                                    relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
+                                }
+                            }
+                        } catch let error as NSError {
+                            fatalError("Couldn't fetch objects for entity named: \(destinationEntityName). \(error)")
                         }
                     }
                 }
