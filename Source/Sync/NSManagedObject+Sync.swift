@@ -153,7 +153,7 @@ extension NSManagedObject {
                     let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
 
                     let currentIndex = relatedObjects.index(of: safeObject)
-                    if currentIndex != remoteIndex {
+                    if (currentIndex != remoteIndex) {
                         relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
                     }
                 }
@@ -260,7 +260,7 @@ extension NSManagedObject {
                                 let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
 
                                 let currentIndex = relatedObjects.index(of: safeObject)
-                                if currentIndex != remoteIndex {
+                                if (currentIndex != remoteIndex && currentIndex != NSNotFound) {
                                     relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
                                 }
                             }
