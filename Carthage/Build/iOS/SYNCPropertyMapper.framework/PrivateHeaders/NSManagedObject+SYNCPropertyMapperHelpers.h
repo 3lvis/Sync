@@ -16,7 +16,11 @@ static NSString * const SYNCPropertyMapperNonExportableKey = @"hyper.nonExportab
                      dateFormatter:(NSDateFormatter *)dateFormatter
                   relationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
-- (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)key;
+- (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey;
+
+- (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey
+                                         usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
+
 - (NSArray *)attributeDescriptionsForRemoteKeyPath:(NSString *)key;
 
 - (id)valueForAttributeDescription:(id)attributeDescription
@@ -24,10 +28,19 @@ static NSString * const SYNCPropertyMapperNonExportableKey = @"hyper.nonExportab
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription;
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                                inflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
+
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                         usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                         usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType
+                                inflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
 
 + (NSArray *)reservedAttributes;
 
-- (NSString *)prefixedAttribute:(NSString *)attribute;
+- (NSString *)prefixedAttribute:(NSString *)attribute
+            usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
 
 @end
