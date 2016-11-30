@@ -143,9 +143,7 @@ public protocol SyncDelegate: class {
      */
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
     public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, persistentContainer: NSPersistentContainer, completion: ((_ error: NSError?) -> Void)?) {
-        persistentContainer.performBackgroundTask { backgroundContext in
-            self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: .All, completion: completion)
-        }
+        self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, persistentContainer: persistentContainer, operations: .All, completion: completion)
     }
 
     /**
