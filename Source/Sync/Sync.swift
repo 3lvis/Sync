@@ -83,48 +83,45 @@ public protocol SyncDelegate: class {
         self.filterOperations = operations
     }
 
+    func updateExecuting(_ isExecuting: Bool) {
+        self.willChangeValue(forKey: "isExecuting")
+        self.downloadExecuting = isExecuting
+        self.didChangeValue(forKey: "isExecuting")
+    }
+
+    func updateFinished(_ isFinished: Bool) {
+        self.willChangeValue(forKey: "isFinished")
+        self.downloadFinished = isFinished
+        self.didChangeValue(forKey: "isFinished")
+    }
+
     public override func start() {
-        func updateExecuting(_ isExecuting: Bool) {
-            self.willChangeValue(forKey: "isExecuting")
-            self.downloadExecuting = isExecuting
-            self.didChangeValue(forKey: "isExecuting")
-        }
-
-        func updateFinished(_ isFinished: Bool) {
-            self.willChangeValue(forKey: "isFinished")
-            self.downloadFinished = isFinished
-            self.didChangeValue(forKey: "isFinished")
-        }
-
         if self.isCancelled {
-            updateExecuting(false)
-            updateFinished(true)
+            self.updateExecuting(false)
+            self.updateFinished(true)
         } else {
-            updateExecuting(true)
+            self.updateExecuting(true)
             if let context = self.context {
                 context.perform {
-                    Sync.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: context, operations: self.filterOperations, shouldContinueBlock: { () -> Bool in
-                        return !self.isCancelled
-                    }, objectJSONBlock: { objectJSON -> [String : Any] in
-                        return self.delegate?.sync(self, willInsert: objectJSON, in: self.entityName, parent: self.parent) ?? objectJSON
-                    }, completion: { (error) in
-                        updateExecuting(false)
-                        updateFinished(true)
-                    })
+                    self.perform(using: context)
                 }
             } else {
-                dataStack.performInNewBackgroundContext { backgroundContext in
-                    Sync.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: backgroundContext, operations: self.filterOperations, shouldContinueBlock: { () -> Bool in
-                        return !self.isCancelled
-                    }, objectJSONBlock: { objectJSON -> [String : Any] in
-                        return self.delegate?.sync(self, willInsert: objectJSON, in: self.entityName, parent: self.parent) ?? objectJSON
-                    }, completion: { (error) in
-                        updateExecuting(false)
-                        updateFinished(true)
-                    })
+                self.dataStack.performInNewBackgroundContext { backgroundContext in
+                    self.perform(using: backgroundContext)
                 }
             }
         }
+    }
+
+    func perform(using context: NSManagedObjectContext) {
+        Sync.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: context, operations: self.filterOperations, shouldContinueBlock: { () -> Bool in
+            return !self.isCancelled
+        }, objectJSONBlock: { objectJSON -> [String : Any] in
+            return self.delegate?.sync(self, willInsert: objectJSON, in: self.entityName, parent: self.parent) ?? objectJSON
+        }, completion: { (error) in
+            self.updateExecuting(false)
+            self.updateFinished(true)
+        })
     }
 
     public override func cancel() {
