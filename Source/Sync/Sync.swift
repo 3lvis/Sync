@@ -187,11 +187,11 @@ public protocol SyncDelegate: class {
 
     public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, in context: NSManagedObjectContext, completion: ((_ error: NSError?) -> Void)?) {
         if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
-            fatalError("Background context used in the main thread. Use context's `performBlock`")
+            fatalError("Background context used in the main thread. Use context's `perform` method")
         }
 
         if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
-            fatalError("Main context used in a background thread. Use context's `performBlock`")
+            fatalError("Main context used in a background thread. Use context's `perform` method.")
         }
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
