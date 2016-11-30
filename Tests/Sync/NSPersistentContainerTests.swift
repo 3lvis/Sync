@@ -17,7 +17,7 @@ class NSPersistentContainerTests: XCTestCase {
                 let result = Helper.fetchEntity("NormalUser", inContext: persistentContainer.viewContext)
                 XCTAssertEqual(result.count, 1)
 
-                let first = result.first!
+                guard let first = result.first else { XCTFail(); return}
                 XCTAssertEqual(first.value(forKey: "etternavn") as? String, "Nuñez")
                 XCTAssertEqual(first.value(forKey: "firstName") as? String, "Elvis")
                 XCTAssertEqual(first.value(forKey: "fullName") as? String, "Elvis Nuñez")

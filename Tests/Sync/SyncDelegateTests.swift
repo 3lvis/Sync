@@ -13,7 +13,7 @@ class SyncDelegateTests: XCTestCase {
         syncOperation.start()
         XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
 
-        let task = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
+        guard let task = Helper.fetchEntity("User", inContext: dataStack.mainContext).first else { XCTFail(); return }
         XCTAssertEqual(task.value(forKey: "remoteID") as? Int, 9)
         XCTAssertEqual(task.value(forKey: "localID") as? String, "local")
 
