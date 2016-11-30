@@ -184,4 +184,101 @@ public protocol SyncDelegate: class {
             }
         }
     }
+
+    public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext, completion: ((_ error: NSError?) -> Void)?) {
+        if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
+            fatalError("Background context used in the main thread. Use context's `perform` method")
+        }
+
+        if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
+            fatalError("Main context used in a background thread. Use context's `perform` method.")
+        }
+
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
+        let localPrimaryKey = entity.sync_localPrimaryKey()
+        let remotePrimaryKey = entity.sync_remotePrimaryKey()
+        guard let id = changes[remotePrimaryKey] as? NSObject else { fatalError("Couldn't find primary key \(remotePrimaryKey) in JSON for object in entity \(entityName)") }
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id)
+
+        do {
+            let objects = try context.fetch(fetchRequest)
+            let insertedOrUpdated: NSManagedObject
+            if objects.count > 0 {
+                insertedOrUpdated = objects.first!
+            } else {
+                insertedOrUpdated = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+            }
+            insertedOrUpdated.hyp_fill(with: changes)
+
+            var saveError: NSError?
+            do {
+                try context.save()
+            } catch let error as NSError {
+                saveError = error
+            }
+
+            if TestCheck.isTesting {
+                completion?(saveError)
+            } else {
+                DispatchQueue.main.async {
+                    completion?(saveError)
+                }
+            }
+        } catch let error as NSError {
+            if TestCheck.isTesting {
+                completion?(error)
+            } else {
+                DispatchQueue.main.async {
+                    completion?(error)
+                }
+            }
+        }
+    }
+
+    public class func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext, completion: ((_ error: NSError?) -> Void)?) {
+        if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
+            fatalError("Background context used in the main thread. Use context's `perform` method")
+        }
+
+        if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
+            fatalError("Main context used in a background thread. Use context's `perform` method.")
+        }
+
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
+        let localPrimaryKey = entity.sync_localPrimaryKey()
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
+
+        do {
+            let objects = try context.fetch(fetchRequest)
+            guard objects.count > 0 else { return }
+
+            let deletedObject = objects.first!
+            context.delete(deletedObject)
+
+            var saveError: NSError?
+            do {
+                try context.save()
+            } catch let error as NSError {
+                saveError = error
+            }
+
+            if TestCheck.isTesting {
+                completion?(saveError)
+            } else {
+                DispatchQueue.main.async {
+                    completion?(saveError)
+                }
+            }
+        } catch let error as NSError {
+            if TestCheck.isTesting {
+                completion?(error)
+            } else {
+                DispatchQueue.main.async {
+                    completion?(error)
+                }
+            }
+        }
+    }
 }
