@@ -55,8 +55,20 @@ public protocol SyncDelegate: class {
     var predicate: NSPredicate?
     var filterOperations = Sync.OperationOptions.All
     var parent: NSManagedObject?
+    var parentRelationship: NSRelationshipDescription?
     var context: NSManagedObjectContext?
     unowned var dataStack: DATAStack
+
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
+        self.changes = changes
+        self.entityName = entityName
+        self.predicate = predicate
+        self.parent = parent
+        self.parentRelationship = parentRelationship
+        self.context = context
+        self.dataStack = dataStack
+        self.filterOperations = operations
+    }
 
     public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
         self.changes = changes
@@ -114,11 +126,11 @@ public protocol SyncDelegate: class {
     }
 
     func perform(using context: NSManagedObjectContext) {
-        Sync.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: context, operations: self.filterOperations, shouldContinueBlock: { () -> Bool in
+        Sync.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: self.parentRelationship, inContext: context, operations: self.filterOperations, shouldContinueBlock: { () -> Bool in
             return !self.isCancelled
         }, objectJSONBlock: { objectJSON -> [String : Any] in
             return self.delegate?.sync(self, willInsert: objectJSON, in: self.entityName, parent: self.parent) ?? objectJSON
-        }, completion: { (error) in
+        }, completion: { error in
             self.updateExecuting(false)
             self.updateFinished(true)
         })
