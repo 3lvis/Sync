@@ -59,38 +59,13 @@ public protocol SyncDelegate: class {
     var context: NSManagedObjectContext?
     unowned var dataStack: DATAStack
 
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate? = nil, parent: NSManagedObject? = nil, parentRelationship: NSRelationshipDescription? = nil, context: NSManagedObjectContext? = nil, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
         self.changes = changes
         self.entityName = entityName
         self.predicate = predicate
         self.parent = parent
         self.parentRelationship = parentRelationship
         self.context = context
-        self.dataStack = dataStack
-        self.filterOperations = operations
-    }
-
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
-        self.changes = changes
-        self.entityName = entityName
-        self.predicate = predicate
-        self.parent = parent
-        self.context = context
-        self.dataStack = dataStack
-        self.filterOperations = operations
-    }
-
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
-        self.changes = changes
-        self.entityName = entityName
-        self.dataStack = dataStack
-        self.filterOperations = operations
-    }
-
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
-        self.changes = changes
-        self.entityName = entityName
-        self.predicate = predicate
         self.dataStack = dataStack
         self.filterOperations = operations
     }
