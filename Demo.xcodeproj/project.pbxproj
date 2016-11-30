@@ -1031,13 +1031,13 @@
 		44968BF41DA0021300E71A53 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
+				44968BF91DA0021300E71A53 /* Sync.swift */,
+				142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */,
+				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
 				44968BF51DA0021300E71A53 /* NSArray+Sync.swift */,
 				44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */,
 				44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */,
 				44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */,
-				44968BF91DA0021300E71A53 /* Sync.swift */,
-				142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */,
-				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";

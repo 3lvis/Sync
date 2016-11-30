@@ -55,8 +55,20 @@ public protocol SyncDelegate: class {
     var predicate: NSPredicate?
     var filterOperations = Sync.OperationOptions.All
     var parent: NSManagedObject?
+    var parentRelationship: NSRelationshipDescription?
     var context: NSManagedObjectContext?
     unowned var dataStack: DATAStack
+
+    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
+        self.changes = changes
+        self.entityName = entityName
+        self.predicate = predicate
+        self.parent = parent
+        self.parentRelationship = parentRelationship
+        self.context = context
+        self.dataStack = dataStack
+        self.filterOperations = operations
+    }
 
     public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
         self.changes = changes
@@ -83,40 +95,45 @@ public protocol SyncDelegate: class {
         self.filterOperations = operations
     }
 
+    func updateExecuting(_ isExecuting: Bool) {
+        self.willChangeValue(forKey: "isExecuting")
+        self.downloadExecuting = isExecuting
+        self.didChangeValue(forKey: "isExecuting")
+    }
+
+    func updateFinished(_ isFinished: Bool) {
+        self.willChangeValue(forKey: "isFinished")
+        self.downloadFinished = isFinished
+        self.didChangeValue(forKey: "isFinished")
+    }
+
     public override func start() {
-        func updateExecuting(_ isExecuting: Bool) {
-            self.willChangeValue(forKey: "isExecuting")
-            self.downloadExecuting = isExecuting
-            self.didChangeValue(forKey: "isExecuting")
-        }
-
-        func updateFinished(_ isFinished: Bool) {
-            self.willChangeValue(forKey: "isFinished")
-            self.downloadFinished = isFinished
-            self.didChangeValue(forKey: "isFinished")
-        }
-
         if self.isCancelled {
-            updateExecuting(false)
-            updateFinished(true)
+            self.updateExecuting(false)
+            self.updateFinished(true)
         } else {
-            updateExecuting(true)
+            self.updateExecuting(true)
             if let context = self.context {
                 context.perform {
-                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: context, dataStack: self.dataStack, operations: self.filterOperations) { error in
-                        updateExecuting(false)
-                        updateFinished(true)
-                    }
+                    self.perform(using: context)
                 }
             } else {
-                dataStack.performInNewBackgroundContext { backgroundContext in
-                    self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations) { error in
-                        updateExecuting(false)
-                        updateFinished(true)
-                    }
+                self.dataStack.performInNewBackgroundContext { backgroundContext in
+                    self.perform(using: backgroundContext)
                 }
             }
         }
+    }
+
+    func perform(using context: NSManagedObjectContext) {
+        Sync.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: self.parentRelationship, inContext: context, operations: self.filterOperations, shouldContinueBlock: { () -> Bool in
+            return !self.isCancelled
+        }, objectJSONBlock: { objectJSON -> [String : Any] in
+            return self.delegate?.sync(self, willInsert: objectJSON, in: self.entityName, parent: self.parent) ?? objectJSON
+        }, completion: { error in
+            self.updateExecuting(false)
+            self.updateFinished(true)
+        })
     }
 
     public override func cancel() {
@@ -130,6 +147,10 @@ public protocol SyncDelegate: class {
     }
 
     public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+        self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: parentRelationship, inContext: context, operations: operations, shouldContinueBlock: nil, objectJSONBlock: nil, completion: completion)
+    }
+
+    class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String : Any]) -> [String : Any])?, completion: ((_ error: NSError?) -> Void)?) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -151,20 +172,32 @@ public protocol SyncDelegate: class {
 
         let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
         DATAFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
+            let shouldContinue = shouldContinueBlock?() ?? true
+            guard shouldContinue else { return }
+
             let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            created.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
+            let interceptedJSON = objectJSONBlock?(JSON) ?? JSON
+            created.sync_fill(with: interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock, completion: completion)
         }) { JSON, updatedObject in
-            updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
+            let shouldContinue = shouldContinueBlock?() ?? true
+            guard shouldContinue else { return }
+
+            updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock, completion: completion)
         }
 
         var syncError: NSError?
         if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                syncError = error
-            } catch {
-                fatalError("Fatal error")
+            let shouldContinue = shouldContinueBlock?() ?? true
+            if shouldContinue {
+                do {
+                    try context.save()
+                } catch let error as NSError {
+                    syncError = error
+                } catch {
+                    fatalError("Fatal error")
+                }
+            } else {
+                context.reset()
             }
         }
 
@@ -175,55 +208,5 @@ public protocol SyncDelegate: class {
                 completion?(syncError)
             }
         }
-    }
-
-    func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, dataStack: DATAStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
-
-        let localPrimaryKey = entity.sync_localPrimaryKey()
-        let remotePrimaryKey = entity.sync_remotePrimaryKey()
-        let shouldLookForParent = parent == nil && predicate == nil
-
-        var finalPredicate = predicate
-        if let parentEntity = entity.sync_parentEntity() , shouldLookForParent {
-            finalPredicate = NSPredicate(format: "%K = nil", parentEntity.name)
-        }
-
-        if localPrimaryKey.isEmpty {
-            fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using hyper.isPrimaryKey")
-        }
-
-        if remotePrimaryKey.isEmpty {
-            fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
-        }
-
-        let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
-        DATAFilter.changes(changes as [[String : Any]], inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
-            guard self.isCancelled == false else { return }
-
-            let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            let interceptedJSON = self.delegate?.sync(self, willInsert: JSON, in: entityName, parent: parent) ?? JSON
-            created.sync_fill(with: interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
-        }) { JSON, updatedObject in
-            guard self.isCancelled == false else { return }
-            updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations)
-        }
-
-        var syncError: NSError?
-        if context.hasChanges {
-            if self.isCancelled {
-                context.reset()
-            } else {
-                do {
-                    try context.save()
-                } catch let error as NSError {
-                    syncError = error
-                } catch {
-                    fatalError("Fatal error")
-                }
-            }
-        }
-        
-        completion?(syncError)
     }
 }
