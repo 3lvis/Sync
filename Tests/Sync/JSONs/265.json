@@ -7,13 +7,19 @@
         "id": 1
       },
       "player_group": {
-        "id": 1
+        "id": 1,
+        "owner": {
+          "id": 1,
+          "game": {
+            "id": 1
+          }
+        },
         "players": [
           {
+            "id": 1
+          },
+          {
             "id": 2
-            "game": {
-              "id": 1
-            }
           }
         ],
         "game": {
@@ -27,7 +33,7 @@
         "id": 1
       },
       "player_group": {
-        "id": 1
+        "id": 1,
         "owner": {
           "id": 1,
           "game": {
@@ -37,9 +43,9 @@
         "players": [
           {
             "id": 1
-            "game": {
-              "id": 1
-            }
+          },
+          {
+            "id": 2
           }
         ],
         "game": {
