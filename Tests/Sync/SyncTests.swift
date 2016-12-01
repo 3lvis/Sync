@@ -1392,25 +1392,11 @@ class SyncTests: XCTestCase {
         let players = Helper.objectsFromJSON("265-isolated.json") as! [[String : Any]]
         Sync.changes(players, inEntityNamed: "Player", dataStack: dataStack, completion: nil)
 
-        // There's one user: 1
-        // There are two players: [1, 2]
-
         // Player 1
-        // Has one game: 1
         // Has one player group: 1
-
-        // Player 2
-        // Has one game: 1
-        // Has one player group: 1
-
-        // Game 1
-        // This game has two players: [1, 2]
-        // This game has one player group: 1
 
         // Player group 1
-        // This player group has one owner: 1
-        // This owner has one game: 1
-        // This player group has two players: [1, 2]
+        // This player group has two players: [1]
 
         XCTAssertEqual(Helper.countForEntity("Player", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("PlayerGroup", inContext: dataStack.mainContext), 1)
