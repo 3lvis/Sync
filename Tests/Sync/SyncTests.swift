@@ -1380,7 +1380,7 @@ class SyncTests: XCTestCase {
         // This player group has two players: [1, 2]
 
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Player", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Player", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Game", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("PlayerGroup", inContext: dataStack.mainContext), 1)
 
