@@ -1352,4 +1352,13 @@ class SyncTests: XCTestCase {
         
         try! dataStack.drop()
     }
+
+    // https://github.com/SyncDB/Sync/issues/265
+    func test265() {
+        let dataStack = Helper.dataStackWithModelName("265")
+        let users = Helper.objectsFromJSON("265.json") as! [[String : Any]]
+        Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+
+        try! dataStack.drop()
+    }
 }

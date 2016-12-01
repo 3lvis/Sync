@@ -2,13 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Game" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="playerGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerGroup" inverseName="game" inverseEntity="PlayerGroup" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="game" inverseEntity="Player" syncable="YES"/>
     </entity>
     <entity name="Player" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="players" inverseEntity="Game" syncable="YES"/>
         <relationship name="ownedPlayerGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerGroup" inverseName="owner" inverseEntity="PlayerGroup" syncable="YES"/>
         <relationship name="playerGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerGroup" inverseName="players" inverseEntity="PlayerGroup" syncable="YES"/>
@@ -16,20 +14,18 @@
     </entity>
     <entity name="PlayerGroup" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="playerGroups" inverseEntity="Game" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="ownedPlayerGroups" inverseEntity="Player" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="playerGroup" inverseEntity="Player" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="user" inverseEntity="Player" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Game" positionX="250" positionY="-168" width="128" height="105"/>
-        <element name="User" positionX="-227" positionY="36" width="128" height="90"/>
-        <element name="Player" positionX="-27" positionY="18" width="128" height="135"/>
-        <element name="PlayerGroup" positionX="268" positionY="18" width="128" height="120"/>
+        <element name="Game" positionX="250" positionY="-168" width="128" height="90"/>
+        <element name="Player" positionX="-27" positionY="18" width="128" height="120"/>
+        <element name="PlayerGroup" positionX="268" positionY="18" width="128" height="105"/>
+        <element name="User" positionX="-227" positionY="36" width="128" height="75"/>
     </elements>
 </model>
