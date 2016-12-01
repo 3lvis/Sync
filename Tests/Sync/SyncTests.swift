@@ -366,10 +366,13 @@ class SyncTests: XCTestCase {
 
         comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format:"body = %@ AND story = %@", "comment 1", story), inContext:dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
-        let comment = comments.first!
-        XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
-        XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
-        XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "title") as? String, "story 1")
+        if let comment = comments.first {
+            XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
+            XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
+            XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "title") as? String, "story 1")
+        } else {
+            XCTFail()
+        }
 
         try! dataStack.drop()
     }
@@ -528,11 +531,14 @@ class SyncTests: XCTestCase {
 
         comments = Helper.fetchEntity("AwesomeComment", predicate: NSPredicate(format:"body = %@ AND awesomeStory = %@", "comment 1", story), inContext: dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
-        let comment = comments.first!
-        XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
-        let awesomeStory = comment.value(forKey: "awesomeStory") as! NSManagedObject
-        XCTAssertEqual(awesomeStory.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
-        XCTAssertEqual(awesomeStory.value(forKey: "title") as? String, "story 1")
+        if let comment = comments.first {
+            XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
+            let awesomeStory = comment.value(forKey: "awesomeStory") as! NSManagedObject
+            XCTAssertEqual(awesomeStory.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
+            XCTAssertEqual(awesomeStory.value(forKey: "title") as? String, "story 1")
+        } else {
+            XCTFail()
+        }
 
         try! dataStack.drop()
     }
