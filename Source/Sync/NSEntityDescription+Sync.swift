@@ -13,7 +13,7 @@ extension NSEntityDescription {
             }
         }
 
-        return relationships
+        return relationships.reversed()
     }
 
     /**

@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "name": "PS",
+  "teams": [
+    {
+      "name": "Pro Sprots",
+      "id": 5
+    }
+  ],
+  "memberships": [
+    {
+      "id": 3,
+      "team_id": 5,
+      "name": "bob"
+    }
+  ]
+}
