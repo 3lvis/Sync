@@ -211,6 +211,30 @@ public protocol SyncDelegate: class {
         return id as Any
     }
 
+    @discardableResult
+    public class func update(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any? {
+        if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
+            fatalError("Background context used in the main thread. Use context's `perform` method")
+        }
+
+        if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
+            fatalError("Main context used in a background thread. Use context's `perform` method.")
+        }
+
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError("Couldn't find an entity named \(entityName)") }
+        let localPrimaryKey = entity.sync_localPrimaryKey()
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
+
+        let objects = try context.fetch(fetchRequest)
+        guard let updated = objects.first else { return nil }
+        updated.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil)
+
+        try context.save()
+        
+        return updated.value(forKey: localPrimaryKey)
+    }
+
     public class func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws {
         if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
             fatalError("Background context used in the main thread. Use context's `perform` method")
