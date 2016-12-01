@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140944AB1DF0B9840037F85A /* 265.json in Resources */ = {isa = PBXBuildFile; fileRef = 140944AA1DF0B9840037F85A /* 265.json */; };
+		140944AC1DF0B9840037F85A /* 265.json in Resources */ = {isa = PBXBuildFile; fileRef = 140944AA1DF0B9840037F85A /* 265.json */; };
+		140944AD1DF0B9840037F85A /* 265.json in Resources */ = {isa = PBXBuildFile; fileRef = 140944AA1DF0B9840037F85A /* 265.json */; };
+		140944B01DF0BC280037F85A /* 265.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140944AE1DF0BC280037F85A /* 265.xcdatamodeld */; };
+		140944B11DF0BC280037F85A /* 265.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140944AE1DF0BC280037F85A /* 265.xcdatamodeld */; };
+		140944B21DF0BC280037F85A /* 265.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140944AE1DF0BC280037F85A /* 265.xcdatamodeld */; };
 		14154D871DBC465700926D4D /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F151DBC3DE60042ED81 /* DATAStack.framework */; };
 		14154D881DBC465700926D4D /* SYNCPropertyMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F161DBC3DE60042ED81 /* SYNCPropertyMapper.framework */; };
 		14154D8B1DBC465B00926D4D /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14154D891DBC465B00926D4D /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -558,6 +564,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		140944AA1DF0B9840037F85A /* 265.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 265.json; sourceTree = "<group>"; };
+		140944AF1DF0BC280037F85A /* 265.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 265.xcdatamodel; sourceTree = "<group>"; };
 		14154D891DBC465B00926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/tvOS/DATAStack.framework; sourceTree = "<group>"; };
 		14154D8A1DBC465B00926D4D /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/tvOS/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
 		14154D8D1DBC466200926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/Mac/DATAStack.framework; sourceTree = "<group>"; };
@@ -931,6 +939,7 @@
 				4403DBEB1D9F90B5001C8DA6 /* 225-a.json */,
 				4E2F71F21DD60110003F0108 /* 233.json */,
 				44CA3F691DEB349100F242D0 /* 237.json */,
+				140944AA1DF0B9840037F85A /* 265.json */,
 				4403DBEC1D9F90B5001C8DA6 /* 280.json */,
 				4403DBED1D9F90B5001C8DA6 /* 283.json */,
 				14E9C13E1DEA2EE100A21B9E /* 320.json */,
@@ -987,6 +996,7 @@
 				4403DC1D1D9F90B5001C8DA6 /* 151-to-many.xcdatamodeld */,
 				4403DC1F1D9F90B5001C8DA6 /* 225.xcdatamodeld */,
 				4E2F71E71DD3DD56003F0108 /* 233.xcdatamodeld */,
+				140944AE1DF0BC280037F85A /* 265.xcdatamodeld */,
 				4403DC211D9F90B5001C8DA6 /* 280.xcdatamodeld */,
 				4403DC231D9F90B5001C8DA6 /* 283.xcdatamodeld */,
 				14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */,
@@ -1419,6 +1429,7 @@
 				445D3BCB1D9F9373007F9E26 /* users.json in Resources */,
 				4403DC611D9F90B5001C8DA6 /* 157-cities.json in Resources */,
 				4403DC641D9F90B5001C8DA6 /* 225-a-empty.json in Resources */,
+				140944AB1DF0B9840037F85A /* 265.json in Resources */,
 				4403DC681D9F90B5001C8DA6 /* 280.json in Resources */,
 				4403DC881D9F90B5001C8DA6 /* story-summarize.json in Resources */,
 				4403DC771D9F90B5001C8DA6 /* camelcase.json in Resources */,
@@ -1491,6 +1502,7 @@
 				14975C641DBC373A0024901A /* 151-many-to-many-notes-update.json in Resources */,
 				14975C651DBC373A0024901A /* 151-many-to-many-notes.json in Resources */,
 				14975C661DBC373A0024901A /* 151-many-to-many-tags.json in Resources */,
+				140944AC1DF0B9840037F85A /* 265.json in Resources */,
 				14975C671DBC373A0024901A /* 151-to-many-notes.json in Resources */,
 				14975C681DBC373A0024901A /* 151-to-many-users-update.json in Resources */,
 				14975C691DBC373A0024901A /* 151-to-many-users.json in Resources */,
@@ -1563,6 +1575,7 @@
 				14975CA21DBC374C0024901A /* 151-many-to-many-notes-update.json in Resources */,
 				14975CA31DBC374C0024901A /* 151-many-to-many-notes.json in Resources */,
 				14975CA41DBC374C0024901A /* 151-many-to-many-tags.json in Resources */,
+				140944AD1DF0B9840037F85A /* 265.json in Resources */,
 				14975CA51DBC374C0024901A /* 151-to-many-notes.json in Resources */,
 				14975CA61DBC374C0024901A /* 151-to-many-users-update.json in Resources */,
 				14975CA71DBC374C0024901A /* 151-to-many-users.json in Resources */,
@@ -1781,6 +1794,7 @@
 				4403DCAA1D9F90B5001C8DA6 /* OrderedSocial.xcdatamodeld in Sources */,
 				4403DC991D9F90B5001C8DA6 /* Bug113.xcdatamodeld in Sources */,
 				4403DCB01D9F90B5001C8DA6 /* Unique.xcdatamodeld in Sources */,
+				140944B01DF0BC280037F85A /* 265.xcdatamodeld in Sources */,
 				4403DCAF1D9F90B5001C8DA6 /* ToOne.xcdatamodeld in Sources */,
 				4403DC9A1D9F90B5001C8DA6 /* Bug125.xcdatamodeld in Sources */,
 				4403DC9B1D9F90B5001C8DA6 /* Bug157.xcdatamodeld in Sources */,
@@ -1846,6 +1860,7 @@
 				14975C251DBC36F00024901A /* NSArray+SyncTests.swift in Sources */,
 				14975C261DBC36F00024901A /* NSEntityDescription+SyncTests.swift in Sources */,
 				14975C271DBC36F00024901A /* NSManagedObject+SyncTests.swift in Sources */,
+				140944B11DF0BC280037F85A /* 265.xcdatamodeld in Sources */,
 				14975C281DBC36F00024901A /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				14975C291DBC36F00024901A /* SyncTests.swift in Sources */,
 				14975C2A1DBC36F00024901A /* DATAFilterTests.swift in Sources */,
@@ -1911,6 +1926,7 @@
 				14975C591DBC37180024901A /* NSArray+SyncTests.swift in Sources */,
 				14975C5A1DBC37180024901A /* NSEntityDescription+SyncTests.swift in Sources */,
 				14975C5B1DBC37180024901A /* NSManagedObject+SyncTests.swift in Sources */,
+				140944B21DF0BC280037F85A /* 265.xcdatamodeld in Sources */,
 				14975C5C1DBC37180024901A /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				14975C5D1DBC37180024901A /* SyncTests.swift in Sources */,
 				14975C5E1DBC37180024901A /* DATAFilterTests.swift in Sources */,
@@ -2586,6 +2602,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		140944AE1DF0BC280037F85A /* 265.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				140944AF1DF0BC280037F85A /* 265.xcdatamodel */,
+			);
+			currentVersion = 140944AF1DF0BC280037F85A /* 265.xcdatamodel */;
+			path = 265.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

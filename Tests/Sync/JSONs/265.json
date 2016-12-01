@@ -1,0 +1,66 @@
+{
+  "id": 1,
+  "email": "my@email.com",
+  "players": [
+    {
+      "id": 1,
+      "name": "Player 1",
+      "game": {
+        "id": 1,
+        "name": "Game 1"
+      },
+      "player_group": {
+        "id": 1,
+        "name": "PlayerGroup 1",
+        "players": [
+          {
+            "id": 2,
+            "name": "Player 2",
+            "game": {
+              "id": 1,
+              "name": "Game 1"
+            }
+          }
+        ],
+        "game": {
+          "id": 1,
+          "name": "Game 1"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Player 2",
+      "game": {
+        "id": 1,
+        "name": "Game 1"
+      },
+      "player_group": {
+        "id": 1,
+        "name": "PlayerGroup 1",
+        "owner": {
+          "id": 1,
+          "name": "Player 1",
+          "game": {
+            "id": 1,
+            "name": "Game 1"
+          }
+        },
+        "players": [
+          {
+            "id": 1,
+            "name": "Player 1",
+            "game": {
+              "id": 1,
+              "name": "Game 1"
+            }
+          }
+        ],
+        "game": {
+          "id": 1,
+          "name": "Game 1"
+        }
+      }
+    }
+  ]
+}
