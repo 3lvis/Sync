@@ -10,7 +10,7 @@ class DeleteTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
-        Sync.delete("id", inEntityNamed: "User", using: dataStack.mainContext, completion: nil)
+        try! Sync.delete("id", inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertEqual(0, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
         try! dataStack.drop()
@@ -23,7 +23,7 @@ class DeleteTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
-        Sync.delete(1, inEntityNamed: "User", using: dataStack.mainContext, completion: nil)
+        try! Sync.delete(1, inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertEqual(0, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
         try! dataStack.drop()

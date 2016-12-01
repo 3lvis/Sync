@@ -185,7 +185,8 @@ public protocol SyncDelegate: class {
         }
     }
 
-    public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext, completion: ((_ error: NSError?) -> Void)?) {
+    @discardableResult
+    public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any {
         if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
             fatalError("Background context used in the main thread. Use context's `perform` method")
         }
@@ -201,42 +202,21 @@ public protocol SyncDelegate: class {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id)
 
-        do {
-            let objects = try context.fetch(fetchRequest)
-            let insertedOrUpdated: NSManagedObject
-            if objects.count > 0 {
-                insertedOrUpdated = objects.first!
-            } else {
-                insertedOrUpdated = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            }
-            insertedOrUpdated.hyp_fill(with: changes)
-
-            var saveError: NSError?
-            do {
-                try context.save()
-            } catch let error as NSError {
-                saveError = error
-            }
-
-            if TestCheck.isTesting {
-                completion?(saveError)
-            } else {
-                DispatchQueue.main.async {
-                    completion?(saveError)
-                }
-            }
-        } catch let error as NSError {
-            if TestCheck.isTesting {
-                completion?(error)
-            } else {
-                DispatchQueue.main.async {
-                    completion?(error)
-                }
-            }
+        let objects = try context.fetch(fetchRequest)
+        let insertedOrUpdated: NSManagedObject
+        if objects.count > 0 {
+            insertedOrUpdated = objects.first!
+        } else {
+            insertedOrUpdated = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
         }
+        insertedOrUpdated.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil, completion: nil)
+
+        try context.save()
+
+        return id as Any
     }
 
-    public class func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext, completion: ((_ error: NSError?) -> Void)?) {
+    public class func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws {
         if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
             fatalError("Background context used in the main thread. Use context's `perform` method")
         }
@@ -250,35 +230,12 @@ public protocol SyncDelegate: class {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
 
-        do {
-            let objects = try context.fetch(fetchRequest)
-            guard objects.count > 0 else { return }
+        let objects = try context.fetch(fetchRequest)
+        guard objects.count > 0 else { return }
 
-            let deletedObject = objects.first!
-            context.delete(deletedObject)
+        let deletedObject = objects.first!
+        context.delete(deletedObject)
 
-            var saveError: NSError?
-            do {
-                try context.save()
-            } catch let error as NSError {
-                saveError = error
-            }
-
-            if TestCheck.isTesting {
-                completion?(saveError)
-            } else {
-                DispatchQueue.main.async {
-                    completion?(saveError)
-                }
-            }
-        } catch let error as NSError {
-            if TestCheck.isTesting {
-                completion?(error)
-            } else {
-                DispatchQueue.main.async {
-                    completion?(error)
-                }
-            }
-        }
+        try context.save()
     }
 }
