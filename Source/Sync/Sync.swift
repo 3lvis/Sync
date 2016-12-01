@@ -127,11 +127,19 @@ public protocol SyncDelegate: class {
 
     public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
 
+        var error: NSError?
         do {
             try self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: parentRelationship, inContext: context, operations: operations, shouldContinueBlock: nil, objectJSONBlock: nil)
-            completion?(nil)
-        } catch let error as NSError {
+        } catch let syncError as NSError {
+            error = syncError
+        }
+
+        if TestCheck.isTesting {
             completion?(error)
+        } else {
+            DispatchQueue.main.async {
+                completion?(error)
+            }
         }
     }
 
