@@ -366,10 +366,13 @@ class SyncTests: XCTestCase {
 
         comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format:"body = %@ AND story = %@", "comment 1", story), inContext:dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
-        let comment = comments.first!
-        XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
-        XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
-        XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "title") as? String, "story 1")
+        if let comment = comments.first {
+            XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
+            XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
+            XCTAssertEqual((comment.value(forKey: "story") as? NSManagedObject)!.value(forKey: "title") as? String, "story 1")
+        } else {
+            XCTFail()
+        }
 
         try! dataStack.drop()
     }
@@ -528,11 +531,14 @@ class SyncTests: XCTestCase {
 
         comments = Helper.fetchEntity("AwesomeComment", predicate: NSPredicate(format:"body = %@ AND awesomeStory = %@", "comment 1", story), inContext: dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
-        let comment = comments.first!
-        XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
-        let awesomeStory = comment.value(forKey: "awesomeStory") as! NSManagedObject
-        XCTAssertEqual(awesomeStory.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
-        XCTAssertEqual(awesomeStory.value(forKey: "title") as? String, "story 1")
+        if let comment = comments.first {
+            XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
+            let awesomeStory = comment.value(forKey: "awesomeStory") as! NSManagedObject
+            XCTAssertEqual(awesomeStory.value(forKey: "remoteID") as? NSNumber, NSNumber(value: 0))
+            XCTAssertEqual(awesomeStory.value(forKey: "title") as? String, "story 1")
+        } else {
+            XCTFail()
+        }
 
         try! dataStack.drop()
     }
@@ -1353,7 +1359,24 @@ class SyncTests: XCTestCase {
         try! dataStack.drop()
     }
 
-    // test case for commit 3ca82a0
+    // https://github.com/SyncDB/Sync/issues/265
+
+    func test265() {
+        let dataStack = Helper.dataStackWithModelName("265")
+        let players = Helper.objectsFromJSON("265.json") as! [[String : Any]]
+        Sync.changes(players, inEntityNamed: "Player", dataStack: dataStack, completion: nil)
+
+        // Player 1
+        // Has one player group: 1
+
+        // Player group 1
+        // This player group has two players: [1]
+
+        // This should be 1, but sadly it's two :(
+        XCTAssertEqual(Helper.countForEntity("Player", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("PlayerGroup", inContext: dataStack.mainContext), 1)
+        try! dataStack.drop()
+    }
 
     func test3ca82a0() {
         let dataStack = Helper.dataStackWithModelName("3ca82a0")

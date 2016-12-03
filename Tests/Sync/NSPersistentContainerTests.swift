@@ -17,12 +17,15 @@ class NSPersistentContainerTests: XCTestCase {
                 let result = Helper.fetchEntity("NormalUser", inContext: persistentContainer.viewContext)
                 XCTAssertEqual(result.count, 1)
 
-                guard let first = result.first else { XCTFail(); return}
-                XCTAssertEqual(first.value(forKey: "etternavn") as? String, "Nuñez")
-                XCTAssertEqual(first.value(forKey: "firstName") as? String, "Elvis")
-                XCTAssertEqual(first.value(forKey: "fullName") as? String, "Elvis Nuñez")
-                XCTAssertEqual(first.value(forKey: "numberOfChildren") as? Int, 1)
-                XCTAssertEqual(first.value(forKey: "remoteID") as? String, "1")
+                if let first = result.first {
+                    XCTAssertEqual(first.value(forKey: "etternavn") as? String, "Nuñez")
+                    XCTAssertEqual(first.value(forKey: "firstName") as? String, "Elvis")
+                    XCTAssertEqual(first.value(forKey: "fullName") as? String, "Elvis Nuñez")
+                    XCTAssertEqual(first.value(forKey: "numberOfChildren") as? Int, 1)
+                    XCTAssertEqual(first.value(forKey: "remoteID") as? String, "1")
+                } else {
+                    XCTFail()
+                }
 
                 expectation.fulfill()
             }
