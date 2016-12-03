@@ -216,7 +216,7 @@ public protocol SyncDelegate: class {
     ///   - changes: The dictionary to be used to update or create the object.
     ///   - entityName: The name of the entity.
     ///   - context: The context to be used, make sure that this method gets called in the same thread as the context using `perform` or `performAndWait`.
-    /// - Returns: The ID of the inserted or updated object.
+    /// - Returns: The inserted or updated object. If you call this method from a background context, make sure to not use this on the main thread.
     /// - Throws: Core Data related issues.
     @discardableResult
     public class func insertOrUpdate<ResultType : NSManagedObject>(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType {
@@ -256,7 +256,7 @@ public protocol SyncDelegate: class {
     ///   - changes: The dictionary to be used to update the object.
     ///   - entityName: The name of the entity.
     ///   - context: The context to be used, make sure that this method gets called in the same thread as the context using `perform` or `performAndWait`.
-    /// - Returns: The ID of the updated object, if not found it returns nil.
+    /// - Returns: The updated object, if not found it returns nil. If you call this method from a background context, make sure to not use this on the main thread.
     /// - Throws: Core Data related issues.
     @discardableResult
     public class func update<ResultType : NSManagedObject>(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
