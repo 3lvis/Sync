@@ -205,16 +205,21 @@ public protocol SyncDelegate: class {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id)
 
-        let objects = try context.fetch(fetchRequest)
-        let insertedOrUpdated: NSManagedObject
-        if objects.count > 0 {
-            insertedOrUpdated = objects.first!
+        let fetchedObjects = try context.fetch(fetchRequest)
+        let insertedOrUpdatedObjects: [NSManagedObject]
+        if fetchedObjects.count > 0 {
+            insertedOrUpdatedObjects = fetchedObjects
         } else {
-            insertedOrUpdated = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+            insertedOrUpdatedObjects = [NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)]
         }
-        insertedOrUpdated.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil)
 
-        try context.save()
+        for object in insertedOrUpdatedObjects {
+            object.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil)
+        }
+
+        if context.hasChanges {
+            try context.save()
+        }
 
         return id as Any
     }
@@ -235,12 +240,15 @@ public protocol SyncDelegate: class {
         fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
 
         let objects = try context.fetch(fetchRequest)
-        guard let updated = objects.first else { return nil }
-        updated.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil)
+        for updated in objects {
+            updated.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil)
+        }
 
-        try context.save()
-        
-        return updated.value(forKey: localPrimaryKey)
+        if context.hasChanges {
+            try context.save()
+        }
+
+        return objects.first?.value(forKey: localPrimaryKey)
     }
 
     public class func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws {
@@ -259,10 +267,13 @@ public protocol SyncDelegate: class {
 
         let objects = try context.fetch(fetchRequest)
         guard objects.count > 0 else { return }
-
-        let deletedObject = objects.first!
-        context.delete(deletedObject)
-
-        try context.save()
+        
+        for deletedObject in objects {
+            context.delete(deletedObject)
+        }
+        
+        if context.hasChanges {
+            try context.save()
+        }
     }
 }
