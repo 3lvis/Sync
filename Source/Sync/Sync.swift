@@ -188,6 +188,14 @@ public protocol SyncDelegate: class {
         }
     }
 
+    /// Fetches a managed object for the provided primary key in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - id: The primary key.
+    ///   - entityName: The name of the entity.
+    ///   - context: The context to be used, make sure that this method gets called in the same thread as the context using `perform` or `performAndWait`.
+    /// - Returns: A managed object for a provided primary key in an specific entity.
+    /// - Throws: Core Data related issues.
     @discardableResult
     public class func fetch(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> NSManagedObject? { Sync.verifyContextSafety(context: context)
 
@@ -201,6 +209,14 @@ public protocol SyncDelegate: class {
         return objects.first
     }
 
+    /// Inserts or updates an object using the given changes dictionary in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - changes: The dictionary to be used to update or create the object.
+    ///   - entityName: The name of the entity.
+    ///   - context: The context to be used, make sure that this method gets called in the same thread as the context using `perform` or `performAndWait`.
+    /// - Returns: The ID of the inserted or updated object.
+    /// - Throws: Core Data related issues.
     @discardableResult
     public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any {
         Sync.verifyContextSafety(context: context)
@@ -231,6 +247,15 @@ public protocol SyncDelegate: class {
         return id as Any
     }
 
+    /// Updates an object using the given changes dictionary for the provided primary key in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - id: The primary key.
+    ///   - changes: The dictionary to be used to update the object.
+    ///   - entityName: The name of the entity.
+    ///   - context: The context to be used, make sure that this method gets called in the same thread as the context using `perform` or `performAndWait`.
+    /// - Returns: The ID of the updated object, if not found it returns nil.
+    /// - Throws: Core Data related issues.
     @discardableResult
     public class func update(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any? {
         Sync.verifyContextSafety(context: context)
@@ -252,6 +277,13 @@ public protocol SyncDelegate: class {
         return objects.first?.value(forKey: localPrimaryKey)
     }
 
+    /// Deletes a managed object for the provided primary key in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - id: The primary key.
+    ///   - entityName: The name of the entity.
+    ///   - context: The context to be used, make sure that this method gets called in the same thread as the context using `perform` or `performAndWait`.
+    /// - Throws: Core Data related issues.
     public class func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws {
         Sync.verifyContextSafety(context: context)
 
