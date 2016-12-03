@@ -1406,7 +1406,17 @@ class SyncTests: XCTestCase {
 
         XCTAssertEqual(Helper.countForEntity("Player", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("PlayerGroup", inContext: dataStack.mainContext), 1)
-        
+        try! dataStack.drop()
+    }
+
+    func test3ca82a0() {
+        let dataStack = Helper.dataStackWithModelName("3ca82a0")
+
+        let taskLists = Helper.objectsFromJSON("3ca82a0.json") as! [[String : Any]]
+        Sync.changes(taskLists, inEntityNamed: "Article", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Article", inContext:dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("ArticleTag", inContext:dataStack.mainContext), 1)
+
         try! dataStack.drop()
     }
 }
