@@ -24,8 +24,8 @@ class UpdateTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
-        let id = try! Sync.update("id", with: ["name": "bossy"], inEntityNamed: "User", using: dataStack.mainContext) as? String
-        XCTAssertEqual(id, "id")
+        let updatedObject = try! Sync.update("id", with: ["name": "bossy"], inEntityNamed: "User", using: dataStack.mainContext)
+        XCTAssertEqual(updatedObject?.value(forKey: "id") as? String, "id")
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
         dataStack.mainContext.refresh(user, mergeChanges: false)
@@ -42,8 +42,8 @@ class UpdateTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
-        let id = try! Sync.update("id", with: ["id": "someid"], inEntityNamed: "User", using: dataStack.mainContext) as? String
-        XCTAssertEqual(id, "someid")
+        let updatedObject = try! Sync.update("id", with: ["id": "someid"], inEntityNamed: "User", using: dataStack.mainContext)
+        XCTAssertEqual(updatedObject?.value(forKey: "id") as? String, "someid")
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
         try! dataStack.drop()

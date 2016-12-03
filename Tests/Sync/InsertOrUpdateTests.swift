@@ -6,8 +6,12 @@ class InsertOrUpdateTests: XCTestCase {
     func testInsertOrUpdateWithStringID() {
         let dataStack = Helper.dataStackWithModelName("id")
         let json = ["id": "id", "name": "name"]
-        try! Sync.insertOrUpdate(json, inEntityNamed: "User", using: dataStack.mainContext)
+        let insertedObject = try! Sync.insertOrUpdate(json, inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
+
+        XCTAssertEqual(insertedObject.value(forKey: "id") as? String, "id")
+        XCTAssertEqual(insertedObject.value(forKey: "name") as? String, "name")
+
         if let object = Helper.fetchEntity("User", inContext: dataStack.mainContext).first {
             XCTAssertEqual(object.value(forKey: "id") as? String, "id")
             XCTAssertEqual(object.value(forKey: "name") as? String, "name")
@@ -33,7 +37,10 @@ class InsertOrUpdateTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         let json = ["id": "id", "name": "new"]
-        try! Sync.insertOrUpdate(json, inEntityNamed: "User", using: dataStack.mainContext)
+        let updatedObject = try! Sync.insertOrUpdate(json, inEntityNamed: "User", using: dataStack.mainContext)
+        XCTAssertEqual(updatedObject.value(forKey: "id") as? String, "id")
+        XCTAssertEqual(updatedObject.value(forKey: "name") as? String, "new")
+
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
         if let object = Helper.fetchEntity("User", inContext: dataStack.mainContext).first {
             XCTAssertEqual(object.value(forKey: "id") as? String, "id")

@@ -197,11 +197,12 @@ public protocol SyncDelegate: class {
     /// - Returns: A managed object for a provided primary key in an specific entity.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public class func fetch(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> NSManagedObject? { Sync.verifyContextSafety(context: context)
+    public class func fetch<ResultType : NSManagedObject>(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
+        Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
         let localPrimaryKey = entity.sync_localPrimaryKey()
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        let fetchRequest = NSFetchRequest<ResultType>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
 
         let objects = try context.fetch(fetchRequest)
@@ -218,22 +219,23 @@ public protocol SyncDelegate: class {
     /// - Returns: The ID of the inserted or updated object.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any {
+    public class func insertOrUpdate<ResultType : NSManagedObject>(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType {
         Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
         let localPrimaryKey = entity.sync_localPrimaryKey()
         let remotePrimaryKey = entity.sync_remotePrimaryKey()
         guard let id = changes[remotePrimaryKey] as? NSObject else { fatalError("Couldn't find primary key \(remotePrimaryKey) in JSON for object in entity \(entityName)") }
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        let fetchRequest = NSFetchRequest<ResultType>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id)
 
         let fetchedObjects = try context.fetch(fetchRequest)
-        let insertedOrUpdatedObjects: [NSManagedObject]
+        let insertedOrUpdatedObjects: [ResultType]
         if fetchedObjects.count > 0 {
             insertedOrUpdatedObjects = fetchedObjects
         } else {
-            insertedOrUpdatedObjects = [NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)]
+            let inserted = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context) as! ResultType
+            insertedOrUpdatedObjects = [inserted]
         }
 
         for object in insertedOrUpdatedObjects {
@@ -244,7 +246,7 @@ public protocol SyncDelegate: class {
             try context.save()
         }
 
-        return id as Any
+        return insertedOrUpdatedObjects.first!
     }
 
     /// Updates an object using the given changes dictionary for the provided primary key in an specific entity.
@@ -257,12 +259,12 @@ public protocol SyncDelegate: class {
     /// - Returns: The ID of the updated object, if not found it returns nil.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public class func update(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any? {
+    public class func update<ResultType : NSManagedObject>(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
         Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError("Couldn't find an entity named \(entityName)") }
         let localPrimaryKey = entity.sync_localPrimaryKey()
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        let fetchRequest = NSFetchRequest<ResultType>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
 
         let objects = try context.fetch(fetchRequest)
@@ -274,7 +276,7 @@ public protocol SyncDelegate: class {
             try context.save()
         }
 
-        return objects.first?.value(forKey: localPrimaryKey)
+        return objects.first
     }
 
     /// Deletes a managed object for the provided primary key in an specific entity.
