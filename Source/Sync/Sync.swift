@@ -189,14 +189,21 @@ public protocol SyncDelegate: class {
     }
 
     @discardableResult
-    public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any {
-        if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
-            fatalError("Background context used in the main thread. Use context's `perform` method")
-        }
+    public class func fetch(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> NSManagedObject? { Sync.verifyContextSafety(context: context)
 
-        if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
-            fatalError("Main context used in a background thread. Use context's `perform` method.")
-        }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
+        let localPrimaryKey = entity.sync_localPrimaryKey()
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
+
+        let objects = try context.fetch(fetchRequest)
+
+        return objects.first
+    }
+
+    @discardableResult
+    public class func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any {
+        Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -226,13 +233,7 @@ public protocol SyncDelegate: class {
 
     @discardableResult
     public class func update(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> Any? {
-        if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
-            fatalError("Background context used in the main thread. Use context's `perform` method")
-        }
-
-        if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
-            fatalError("Main context used in a background thread. Use context's `perform` method.")
-        }
+        Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError("Couldn't find an entity named \(entityName)") }
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -252,13 +253,7 @@ public protocol SyncDelegate: class {
     }
 
     public class func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws {
-        if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
-            fatalError("Background context used in the main thread. Use context's `perform` method")
-        }
-
-        if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
-            fatalError("Main context used in a background thread. Use context's `perform` method.")
-        }
+        Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -274,6 +269,16 @@ public protocol SyncDelegate: class {
         
         if context.hasChanges {
             try context.save()
+        }
+    }
+
+    fileprivate class func verifyContextSafety(context: NSManagedObjectContext) {
+        if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
+            fatalError("Background context used in the main thread. Use context's `perform` method")
+        }
+
+        if !Thread.isMainThread && context.concurrencyType == .mainQueueConcurrencyType {
+            fatalError("Main context used in a background thread. Use context's `perform` method.")
         }
     }
 }
