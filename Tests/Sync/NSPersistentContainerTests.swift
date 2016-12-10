@@ -38,10 +38,7 @@ class NSPersistentContainerTests: XCTestCase {
         if #available(iOS 10, *) {
             let expectation = self.expectation(description: "testSkipTestMode")
 
-            let momdModelURL = Bundle(for: NSPersistentContainerTests.self).url(forResource: "Camelcase", withExtension: "momd")!
-            let model = NSManagedObjectModel(contentsOf: momdModelURL)!
-            let persistentContainer = NSPersistentContainer(name: "Camelcase", managedObjectModel: model)
-            try! persistentContainer.persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+            let persistentContainer = Helper.persistentStoreWithModelName("Camelcase")            
             let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : Any]]
 
             persistentContainer.sync(objects, inEntityNamed: "NormalUser") { error in
@@ -63,5 +60,58 @@ class NSPersistentContainerTests: XCTestCase {
 
             self.waitForExpectations(timeout: 150.0, handler: nil)
         }
+    }
+
+    func testInsertOrUpdate() {
+        if #available(iOS 10, *) {
+            let expectation = self.expectation(description: "testSkipTestMode")
+            let persistentContainer = Helper.persistentStoreWithModelName("Tests")
+            let json = ["id": 1]
+            persistentContainer.insertOrUpdate(json, inEntityNamed: "User") { id, error in
+                XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+                expectation.fulfill()
+            }
+            self.waitForExpectations(timeout: 150.0, handler: nil)
+        }
+    }
+
+    func testUpdate() {
+        if #available(iOS 10, *) {
+            let expectation = self.expectation(description: "testSkipTestMode")
+            let persistentContainer = Helper.persistentStoreWithModelName("id")
+            let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: persistentContainer.viewContext)
+            user.setValue("id", forKey: "id")
+            try! persistentContainer.viewContext.save()
+
+            XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+            persistentContainer.update("id", with: ["name": "bossy"], inEntityNamed: "User") { id, error in
+                XCTAssertEqual(id as? String, "id")
+                XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+
+                persistentContainer.viewContext.refresh(user, mergeChanges: false)
+
+                XCTAssertEqual(user.value(forKey: "name") as? String, "bossy")
+
+                expectation.fulfill()
+            }
+
+            self.waitForExpectations(timeout: 150.0, handler: nil)
+        }
+    }
+
+    func testDelete() {
+        let expectation = self.expectation(description: "testSkipTestMode")
+        let persistentContainer = Helper.persistentStoreWithModelName("id")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: persistentContainer.viewContext)
+        user.setValue("id", forKey: "id")
+        try! persistentContainer.viewContext.save()
+
+        XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+        persistentContainer.delete("id", inEntityNamed: "User") { error in
+            XCTAssertEqual(0, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+            expectation.fulfill()
+        }
+
+        self.waitForExpectations(timeout: 150.0, handler: nil)
     }
 }
