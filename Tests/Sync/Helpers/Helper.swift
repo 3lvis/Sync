@@ -17,6 +17,16 @@ import DATAStack
         return dataStack
     }
 
+    @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
+    class func persistentStoreWithModelName(_ modelName: String) -> NSPersistentContainer {
+        let momdModelURL = Bundle(for: NSPersistentContainerTests.self).url(forResource: modelName, withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOf: momdModelURL)!
+        let persistentContainer = NSPersistentContainer(name: modelName, managedObjectModel: model)
+        try! persistentContainer.persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+
+        return persistentContainer
+    }
+
     class func countForEntity(_ entityName: String, inContext context: NSManagedObjectContext) -> Int {
         return self.countForEntity(entityName, predicate: nil, inContext: context)
     }

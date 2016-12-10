@@ -3,7 +3,7 @@ import DATAStack
 import CoreData
 
 class FetchTests: XCTestCase {
-    func testDeleteWithStringID() {
+    func testFetch() {
         let dataStack = Helper.dataStackWithModelName("id")
         let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: dataStack.mainContext)
         user.setValue("id", forKey: "id")
