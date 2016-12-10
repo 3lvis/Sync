@@ -10,7 +10,7 @@ class UpdateTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
-        let id = try! Sync.update("someotherid", with: [String : Any](), inEntityNamed: "User", using: dataStack.mainContext)
+        let id = try! Sync.update("someotherid", with: [String: Any](), inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertNil(id)
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
 

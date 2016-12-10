@@ -60,7 +60,7 @@ extension NSManagedObjectContext {
                 print("error: \(error)")
             }
         }
-        
+
         return result
     }
 }

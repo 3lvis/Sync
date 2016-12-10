@@ -17,7 +17,7 @@ public protocol SyncDelegate: class {
 @objc public class Sync: Operation {
     public weak var delegate: SyncDelegate?
 
-    public struct OperationOptions : OptionSet {
+    public struct OperationOptions: OptionSet {
         public let rawValue: Int
 
         public init(rawValue: Int) {
@@ -50,7 +50,7 @@ public protocol SyncDelegate: class {
         return !TestCheck.isTesting
     }
 
-    var changes: [[String : Any]]
+    var changes: [[String: Any]]
     var entityName: String
     var predicate: NSPredicate?
     var filterOperations = Sync.OperationOptions.All
@@ -59,7 +59,7 @@ public protocol SyncDelegate: class {
     var context: NSManagedObjectContext?
     unowned var dataStack: DATAStack
 
-    public init(changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate? = nil, parent: NSManagedObject? = nil, parentRelationship: NSRelationshipDescription? = nil, context: NSManagedObjectContext? = nil, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
+    public init(changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate? = nil, parent: NSManagedObject? = nil, parentRelationship: NSRelationshipDescription? = nil, context: NSManagedObjectContext? = nil, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
         self.changes = changes
         self.entityName = entityName
         self.predicate = predicate
@@ -104,7 +104,7 @@ public protocol SyncDelegate: class {
         do {
             try Sync.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: self.parentRelationship, inContext: context, operations: self.filterOperations, shouldContinueBlock: { () -> Bool in
                 return !self.isCancelled
-            }, objectJSONBlock: { objectJSON -> [String : Any] in
+            }, objectJSONBlock: { objectJSON -> [String: Any] in
                 return self.delegate?.sync(self, willInsert: objectJSON, in: self.entityName, parent: self.parent) ?? objectJSON
             })
         } catch let error as NSError {
@@ -125,7 +125,7 @@ public protocol SyncDelegate: class {
         updateCancelled(true)
     }
 
-    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
 
         var error: NSError?
         do {
@@ -143,7 +143,7 @@ public protocol SyncDelegate: class {
         }
     }
 
-    class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String : Any]) -> [String : Any])?) throws {
+    class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) throws {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError("Entity named \(entityName) not found.") }
 
         let localPrimaryKey = entity.sync_localPrimaryKey()
@@ -151,7 +151,7 @@ public protocol SyncDelegate: class {
         let shouldLookForParent = parent == nil && predicate == nil
 
         var finalPredicate = predicate
-        if let parentEntity = entity.sync_parentEntity() , shouldLookForParent {
+        if let parentEntity = entity.sync_parentEntity(), shouldLookForParent {
             finalPredicate = NSPredicate(format: "%K = nil", parentEntity.name)
         }
 
@@ -197,7 +197,7 @@ public protocol SyncDelegate: class {
     /// - Returns: A managed object for a provided primary key in an specific entity.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public class func fetch<ResultType : NSManagedObject>(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
+    public class func fetch<ResultType: NSManagedObject>(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
         Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
@@ -219,7 +219,7 @@ public protocol SyncDelegate: class {
     /// - Returns: The inserted or updated object. If you call this method from a background context, make sure to not use this on the main thread.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public class func insertOrUpdate<ResultType : NSManagedObject>(_ changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType {
+    public class func insertOrUpdate<ResultType: NSManagedObject>(_ changes: [String: Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType {
         Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
@@ -259,7 +259,7 @@ public protocol SyncDelegate: class {
     /// - Returns: The updated object, if not found it returns nil. If you call this method from a background context, make sure to not use this on the main thread.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public class func update<ResultType : NSManagedObject>(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
+    public class func update<ResultType: NSManagedObject>(_ id: Any, with changes: [String: Any], inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
         Sync.verifyContextSafety(context: context)
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { fatalError("Couldn't find an entity named \(entityName)") }
@@ -296,11 +296,11 @@ public protocol SyncDelegate: class {
 
         let objects = try context.fetch(fetchRequest)
         guard objects.count > 0 else { return }
-        
+
         for deletedObject in objects {
             context.delete(deletedObject)
         }
-        
+
         if context.hasChanges {
             try context.save()
         }

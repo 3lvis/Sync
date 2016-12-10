@@ -3,7 +3,6 @@ import DATAStack
 
 class NSManagedObjectContext_SyncTests: XCTestCase {
     func testSafeObjectInContext() {
-
     }
 
     func configureUserWithRemoteID(remoteID: NSNumber?, localID: String?, name: String, block: @escaping (_ user: NSManagedObject, _ context: NSManagedObjectContext) -> Void) {
@@ -27,8 +26,8 @@ class NSManagedObjectContext_SyncTests: XCTestCase {
 
             let objectID = dictionary[NSNumber(value: 1)]!
             let retreivedUser = context.object(with: objectID)
-            XCTAssertEqual(retreivedUser.value(forKey: "remoteID") as? Int, 1);
-            XCTAssertEqual(retreivedUser.value(forKey: "name") as? String, "Joshua");
+            XCTAssertEqual(retreivedUser.value(forKey: "remoteID") as? Int, 1)
+            XCTAssertEqual(retreivedUser.value(forKey: "name") as? String, "Joshua")
         }
     }
 
@@ -37,7 +36,7 @@ class NSManagedObjectContext_SyncTests: XCTestCase {
             let dictionary = context.managedObjectIDs(in: "User", usingAsKey: "localID", predicate: nil)
             XCTAssertNotNil(dictionary)
             XCTAssertTrue(dictionary.count == 1)
-            XCTAssertEqual(dictionary["100"], user.objectID);
+            XCTAssertEqual(dictionary["100"], user.objectID)
 
             let objectID = dictionary["100"]!
             let retreivedUser = context.object(with: objectID)

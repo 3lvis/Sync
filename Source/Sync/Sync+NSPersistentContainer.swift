@@ -12,7 +12,7 @@ public extension NSPersistentContainer {
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public func sync(_ changes: [[String : Any]], inEntityNamed entityName: String, completion: ((_ error: NSError?) -> Void)?) {
+    public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, completion: ((_ error: NSError?) -> Void)?) {
         self.sync(changes, inEntityNamed: entityName, predicate: nil, parent: nil, parentRelationship: nil, operations: .All, completion: completion)
     }
 
@@ -30,7 +30,7 @@ public extension NSPersistentContainer {
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public func sync(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         self.performBackgroundTask { backgroundContext in
             Sync.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: parentRelationship, inContext: backgroundContext, operations: operations, completion: completion)
         }
@@ -44,7 +44,7 @@ public extension NSPersistentContainer {
     ///   - id: The primary key.
     ///   - error: The Core Data error.
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
+    public func insertOrUpdate(_ changes: [String: Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
         self.performBackgroundTask { backgroundContext in
             do {
                 let result = try Sync.insertOrUpdate(changes, inEntityNamed: entityName, using: backgroundContext)
@@ -69,7 +69,7 @@ public extension NSPersistentContainer {
     ///   - entityName: The name of the entity.
     ///   - error: The Core Data error.
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public func update(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
+    public func update(_ id: Any, with changes: [String: Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
         self.performBackgroundTask { backgroundContext in
             do {
                 var updatedID: Any?
@@ -125,7 +125,7 @@ public extension Sync {
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, persistentContainer: NSPersistentContainer, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, persistentContainer: NSPersistentContainer, completion: ((_ error: NSError?) -> Void)?) {
         self.changes(changes, inEntityNamed: entityName, predicate: predicate, persistentContainer: persistentContainer, operations: .All, completion: completion)
     }
 
@@ -143,7 +143,7 @@ public extension Sync {
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public class func changes(_ changes: [[String : Any]], inEntityNamed entityName: String, predicate: NSPredicate?, persistentContainer: NSPersistentContainer, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, persistentContainer: NSPersistentContainer, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         persistentContainer.performBackgroundTask { backgroundContext in
             self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: operations, completion: completion)
         }

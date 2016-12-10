@@ -9,9 +9,9 @@ class SyncDelegateTests: XCTestCase {
         let json = [["id": 9, "completed": false]]
         let syncOperation = Sync(changes: json, inEntityNamed: "User", dataStack: dataStack)
         syncOperation.delegate = self
-        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 0)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 0)
         syncOperation.start()
-        XCTAssertEqual(Helper.countForEntity("User", inContext:dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
 
         if let task = Helper.fetchEntity("User", inContext: dataStack.mainContext).first {
             XCTAssertEqual(task.value(forKey: "remoteID") as? Int, 9)

@@ -8,7 +8,7 @@ class ViewController: UITableViewController {
 
     required init(dataStack: DATAStack) {
         self.dataStack = dataStack
-        super.init(nibName: nil, bundle: nil);
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init!(coder aDecoder: NSCoder) {

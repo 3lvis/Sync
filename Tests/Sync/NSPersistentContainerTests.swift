@@ -11,7 +11,7 @@ class NSPersistentContainerTests: XCTestCase {
             let model = NSManagedObjectModel(contentsOf: momdModelURL)!
             let persistentContainer = NSPersistentContainer(name: "Camelcase", managedObjectModel: model)
             try! persistentContainer.persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
-            let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : Any]]
+            let objects = Helper.objectsFromJSON("camelcase.json") as! [[String: Any]]
 
             Sync.changes(objects, inEntityNamed: "NormalUser", predicate: nil, persistentContainer: persistentContainer) { error in
                 let result = Helper.fetchEntity("NormalUser", inContext: persistentContainer.viewContext)
@@ -29,17 +29,17 @@ class NSPersistentContainerTests: XCTestCase {
 
                 expectation.fulfill()
             }
-            
+
             self.waitForExpectations(timeout: 150.0, handler: nil)
         }
-   }
+    }
 
     func testPersistentContainerExtension() {
         if #available(iOS 10, *) {
             let expectation = self.expectation(description: "testSkipTestMode")
 
-            let persistentContainer = Helper.persistentStoreWithModelName("Camelcase")            
-            let objects = Helper.objectsFromJSON("camelcase.json") as! [[String : Any]]
+            let persistentContainer = Helper.persistentStoreWithModelName("Camelcase")
+            let objects = Helper.objectsFromJSON("camelcase.json") as! [[String: Any]]
 
             persistentContainer.sync(objects, inEntityNamed: "NormalUser") { error in
                 let result = Helper.fetchEntity("NormalUser", inContext: persistentContainer.viewContext)

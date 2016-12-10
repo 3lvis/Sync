@@ -7,11 +7,11 @@ public enum ParsingError: Error {
 
 public class JSON {
     /**
-    Returns a JSON object from a file.
-    - parameter fileName: The name of the file, the expected extension is `.json`.
-    - parameter bundle:  The NSBundle where the file is located, by default is the main bundle.
-    - returns: A JSON object, it can be either a Dictionary or an Array.
-    */
+     Returns a JSON object from a file.
+     - parameter fileName: The name of the file, the expected extension is `.json`.
+     - parameter bundle:  The NSBundle where the file is located, by default is the main bundle.
+     - returns: A JSON object, it can be either a Dictionary or an Array.
+     */
     public class func from(_ fileName: String, bundle: Bundle = Bundle.main) throws -> Any? {
         var JSON: Any?
 
@@ -27,9 +27,9 @@ public class JSON {
 
 public extension Data {
     /**
-    Converts NSData to a JSON object.
-    - returns: A JSON object, it can be either a Dictionary or an Array.
-    */
+     Converts NSData to a JSON object.
+     - returns: A JSON object, it can be either a Dictionary or an Array.
+     */
     public func toJSON() throws -> Any? {
         var JSON: Any?
         do {
@@ -37,7 +37,7 @@ public extension Data {
         } catch {
             throw ParsingError.failed
         }
-        
+
         return JSON
     }
 }
