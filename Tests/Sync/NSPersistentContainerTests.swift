@@ -67,8 +67,14 @@ class NSPersistentContainerTests: XCTestCase {
             let expectation = self.expectation(description: "testSkipTestMode")
             let persistentContainer = Helper.persistentStoreWithModelName("Tests")
             let json = ["id": 1]
-            persistentContainer.insertOrUpdate(json, inEntityNamed: "User") { id, error in
-                XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+            persistentContainer.insertOrUpdate(json, inEntityNamed: "User") { result in
+                switch result {
+                case .success:
+                    XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+                case .failure:
+                    XCTFail()
+                }
+
                 expectation.fulfill()
             }
             self.waitForExpectations(timeout: 150.0, handler: nil)
@@ -84,13 +90,18 @@ class NSPersistentContainerTests: XCTestCase {
             try! persistentContainer.viewContext.save()
 
             XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
-            persistentContainer.update("id", with: ["name": "bossy"], inEntityNamed: "User") { id, error in
-                XCTAssertEqual(id as? String, "id")
-                XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
+            persistentContainer.update("id", with: ["name": "bossy"], inEntityNamed: "User") { result in
+                switch result {
+                case .success(let id):
+                    XCTAssertEqual(id as? String, "id")
+                    XCTAssertEqual(1, Helper.countForEntity("User", inContext: persistentContainer.viewContext))
 
-                persistentContainer.viewContext.refresh(user, mergeChanges: false)
+                    persistentContainer.viewContext.refresh(user, mergeChanges: false)
 
-                XCTAssertEqual(user.value(forKey: "name") as? String, "bossy")
+                    XCTAssertEqual(user.value(forKey: "name") as? String, "bossy")
+                case .failure:
+                    XCTFail()
+                }
 
                 expectation.fulfill()
             }

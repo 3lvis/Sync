@@ -44,18 +44,18 @@ public extension NSPersistentContainer {
     ///   - id: The primary key.
     ///   - error: The Core Data error.
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, completion: @escaping (_ id: Any?, _ error: NSError?) -> Void) {
+    public func insertOrUpdate(_ changes: [String : Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
         self.performBackgroundTask { backgroundContext in
             do {
                 let result = try Sync.insertOrUpdate(changes, inEntityNamed: entityName, using: backgroundContext)
                 let localPrimaryKey = result.entity.sync_localPrimaryKey()
                 let id = result.value(forKey: localPrimaryKey)
                 DispatchQueue.main.async {
-                    completion(id, nil)
+                    completion(Result.success(id!))
                 }
             } catch let error as NSError {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(Result.failure(error))
                 }
             }
         }
@@ -69,7 +69,7 @@ public extension NSPersistentContainer {
     ///   - entityName: The name of the entity.
     ///   - error: The Core Data error.
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
-    public func update(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, completion: @escaping (_ id: Any?, _ error: NSError?) -> Void) {
+    public func update(_ id: Any, with changes: [String : Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
         self.performBackgroundTask { backgroundContext in
             do {
                 var updatedID: Any?
@@ -78,11 +78,11 @@ public extension NSPersistentContainer {
                     updatedID = result.value(forKey: localPrimaryKey)
                 }
                 DispatchQueue.main.async {
-                    completion(updatedID, nil)
+                    completion(Result.success(updatedID!))
                 }
             } catch let error as NSError {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(Result.failure(error))
                 }
             }
         }
