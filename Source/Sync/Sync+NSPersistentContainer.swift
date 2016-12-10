@@ -1,5 +1,6 @@
 import CoreData
 
+@available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
 public extension NSPersistentContainer {
     /**
      Syncs the entity using the received array of dictionaries, maps one-to-many, many-to-many and one-to-one relationships.
