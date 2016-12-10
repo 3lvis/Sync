@@ -1,5 +1,21 @@
 import CoreData
 
+public extension NSPersistentContainer {
+    /**
+     Syncs the entity using the received array of dictionaries, maps one-to-many, many-to-many and one-to-one relationships.
+     It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
+     and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
+     entire company object inside the employees dictionary.
+     - parameter changes: The array of dictionaries used in the sync process.
+     - parameter entityName: The name of the entity to be synced.
+     - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
+     */
+    @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
+    public func sync(_ changes: [[String : Any]], inEntityNamed entityName: String, completion: ((_ error: NSError?) -> Void)?) {
+        Sync.changes(changes, inEntityNamed: entityName, predicate: nil, persistentContainer: self, operations: .All, completion: completion)
+    }
+}
+
 public extension Sync {
     /**
      Syncs the entity using the received array of dictionaries, maps one-to-many, many-to-many and one-to-one relationships.
