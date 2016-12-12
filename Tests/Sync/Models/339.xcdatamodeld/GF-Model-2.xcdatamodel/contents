@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="1.0" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
+    <entity name="Brand" representedClassName="Brand" syncable="YES">
+        <attribute name="avoid" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="brandDesc" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="deleteYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="extId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="productCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionKey" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LocatorStore" representedClassName="LocatorStore" syncable="YES">
+        <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="extId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="inListCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="locatorStoreProducts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LocatorStoreProduct" inverseName="locatorStore" inverseEntity="LocatorStoreProduct" syncable="YES"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="locatorStores" inverseEntity="Store" syncable="YES"/>
+    </entity>
+    <entity name="LocatorStoreProduct" representedClassName="LocatorStoreProduct" syncable="YES">
+        <attribute name="brand" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="purchased" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="qty" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="storeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="upcCode" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="locatorStore" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocatorStore" inverseName="locatorStoreProducts" inverseEntity="LocatorStore" syncable="YES"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="locatorStoreProducts" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Manufacturer" representedClassName="Manufacturer" syncable="YES">
+        <attribute name="avoid" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="extId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="manufacturerName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="News" representedClassName="News" syncable="YES">
+        <attribute name="deleteYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="extId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="newsDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="newsDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionKey" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="seq" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <attribute name="announcements" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="annualFee" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="avoid" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="brand" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="categoryDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dairyFreeYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="deleteYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="directions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drugInteractions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="extId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="glutenFreeYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="gmoFreeYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="imageLargeUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageSmallUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="indications" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ingredients" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inventoryType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isInShoppingList" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isInShoppingListOpen" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lactoseFreeYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="manufacturer" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="naturalYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="organicYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="packaging" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="packagingSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="packagingType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paidDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="peanutFreeYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="productCompany" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="productDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productDislikeCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productLikeCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="productName" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="productUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registerDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sectionKey" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="shelfDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unitCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="unitMeasurement" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="upcCode" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="veganYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="vegetarianYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="vitaminsAndMinerals" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="warning" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="locatorStoreProducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LocatorStoreProduct" inverseName="product" inverseEntity="LocatorStoreProduct" syncable="YES"/>
+        <relationship name="storeProducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoreProduct" inverseName="product" inverseEntity="StoreProduct" syncable="YES"/>
+    </entity>
+    <entity name="ProductCategory" representedClassName="ProductCategory" syncable="YES">
+        <attribute name="categoryDesc" attributeType="String" syncable="YES"/>
+        <attribute name="deleteYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="extId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="foodYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sectionKey" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubCategory" inverseName="productCategory" inverseEntity="SubCategory" syncable="YES"/>
+    </entity>
+    <entity name="Store" representedClassName="Store" syncable="YES">
+        <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="annualFee" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="avoid" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="extId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="gfCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="orCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="paidDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="registerDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sectionKey" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeDislikeCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="storeEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeHours" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeLatitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeLikeCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="storeLogoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeLongitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeNotes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storePhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="locatorStores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LocatorStore" inverseName="store" inverseEntity="LocatorStore" syncable="YES"/>
+        <relationship name="storeProducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoreProduct" inverseName="store" inverseEntity="StoreProduct" syncable="YES"/>
+    </entity>
+    <entity name="StoreProduct" representedClassName="StoreProduct" syncable="YES">
+        <attribute name="brand" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drugInteractions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageLargeUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageSmallUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ingredients" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="packagingSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="packagingType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="productName" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="sectionKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="upcCode" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="vitaminsAndMinerals" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="storeProducts" inverseEntity="Product" syncable="YES"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeProducts" inverseEntity="Store" syncable="YES"/>
+    </entity>
+    <entity name="SubCategory" representedClassName="SubCategory" syncable="YES">
+        <attribute name="catId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="deleteYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="foodYN" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="productCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectionKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subcatDescription" attributeType="String" syncable="YES"/>
+        <relationship name="productCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductCategory" inverseName="subCategories" inverseEntity="ProductCategory" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Brand" positionX="-45" positionY="117" width="128" height="165"/>
+        <element name="LocatorStore" positionX="-279" positionY="9" width="128" height="240"/>
+        <element name="LocatorStoreProduct" positionX="-270" positionY="18" width="128" height="180"/>
+        <element name="Manufacturer" positionX="-279" positionY="9" width="128" height="120"/>
+        <element name="News" positionX="-162" positionY="-135" width="128" height="180"/>
+        <element name="Product" positionX="-423" positionY="144" width="128" height="810"/>
+        <element name="ProductCategory" positionX="-423" positionY="-147" width="128" height="150"/>
+        <element name="Store" positionX="-126" positionY="372" width="128" height="510"/>
+        <element name="StoreProduct" positionX="-279" positionY="9" width="128" height="300"/>
+        <element name="SubCategory" positionX="-234" positionY="9" width="128" height="165"/>
+    </elements>
+</model>
