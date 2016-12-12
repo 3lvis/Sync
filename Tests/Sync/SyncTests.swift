@@ -1387,4 +1387,20 @@ class SyncTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    // MARK: Bug 277 => https://github.com/SyncDB/Sync/pull/277
+
+    func test277() {
+        let carsObject = Helper.objectsFromJSON("277.json") as! [[String: Any]]
+        let dataStack = Helper.dataStackWithModelName("277")
+        Sync.changes(carsObject, inEntityNamed: "Racecar", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Racecar", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Passenger", inContext: dataStack.mainContext), 1)
+
+        let racecars = Helper.fetchEntity("Racecar", predicate: nil, inContext: dataStack.mainContext)
+        let racecar = racecars.first!
+        XCTAssertEqual((racecar.value(forKey: "passengers") as? NSSet)!.allObjects.count, 1)
+
+        try! dataStack.drop()
+    }
 }
