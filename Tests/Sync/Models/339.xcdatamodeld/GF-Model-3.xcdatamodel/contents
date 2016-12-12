@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="3.0">
+    <entity name="Brand" representedClassName="Brand" syncable="YES">
+        <attribute name="remoteID" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="brand" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <attribute name="remoteID" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="brand" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Brand" inverseName="products" inverseEntity="Brand" syncable="YES"/>
+        <relationship name="shelfCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShelfCategory" inverseName="products" inverseEntity="ShelfCategory" syncable="YES"/>
+    </entity>
+    <entity name="ShelfCategory" representedClassName="ShelfCategory" syncable="YES">
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="shelfCategory" inverseEntity="Product" syncable="YES"/>
+        <relationship name="shelf" optional="YES" maxCount="1" deletionRule="Nullify" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Brand" positionX="-605" positionY="125" width="128" height="73"/>
+        <element name="Product" positionX="-774" positionY="126" width="128" height="88"/>
+        <element name="ShelfCategory" positionX="-963" positionY="119" width="128" height="88"/>
+    </elements>
+</model>

@@ -1,0 +1,22 @@
+{
+  "resource": [
+    {
+      "id": "2148",
+      "shelfCategory": {
+        "id": "413"
+      },
+      "brand": {
+        "id": "167"
+      }
+    },
+    {
+      "id": "2149",
+      "shelfCategory": {
+        "id": "524"
+      },
+      "brand": {
+        "id": "167"
+      }
+    }
+  ]
+}
