@@ -12,11 +12,10 @@
     <entity name="ShelfCategory" representedClassName="ShelfCategory" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="shelfCategory" inverseEntity="Product" syncable="YES"/>
-        <relationship name="shelf" optional="YES" maxCount="1" deletionRule="Nullify" syncable="YES"/>
     </entity>
     <elements>
         <element name="Brand" positionX="-605" positionY="125" width="128" height="73"/>
         <element name="Product" positionX="-774" positionY="126" width="128" height="88"/>
-        <element name="ShelfCategory" positionX="-963" positionY="119" width="128" height="88"/>
+        <element name="ShelfCategory" positionX="-963" positionY="119" width="128" height="75"/>
     </elements>
 </model>
