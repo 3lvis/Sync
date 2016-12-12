@@ -1,0 +1,20 @@
+[
+  {
+    "id": "0",
+    "user_owned_account": {
+      "id": "1",
+      "second_owner": {
+        "id": "3"
+      }
+    }
+  },
+  {
+    "id": "1",
+    "user_owned_account": {
+      "id": "2",
+      "second_owner": {
+        "id": "4"
+      }
+    }
+  }
+]

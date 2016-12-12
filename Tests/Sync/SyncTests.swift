@@ -1380,8 +1380,8 @@ class SyncTests: XCTestCase {
     func test3ca82a0() {
         let dataStack = Helper.dataStackWithModelName("3ca82a0")
 
-        let taskLists = Helper.objectsFromJSON("3ca82a0.json") as! [[String: Any]]
-        Sync.changes(taskLists, inEntityNamed: "Article", dataStack: dataStack, completion: nil)
+        let items = Helper.objectsFromJSON("3ca82a0.json") as! [[String: Any]]
+        Sync.changes(items, inEntityNamed: "Article", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Article", inContext: dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("ArticleTag", inContext: dataStack.mainContext), 1)
 
@@ -1406,6 +1406,21 @@ class SyncTests: XCTestCase {
         racecar = racecars.last!
         XCTAssertEqual(racecar.value(forKey: "remoteID") as? Int, 32)
         XCTAssertEqual((racecar.value(forKey: "passengers") as? NSSet)!.allObjects.count, 1)
+
+        try! dataStack.drop()
+    }
+
+    func test271() {
+        let dataStack = Helper.dataStackWithModelName("271")
+
+        let items = Helper.objectsFromJSON("271.json") as! [[String: Any]]
+        Sync.changes(items, inEntityNamed: "UserModel", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("UserModel", inContext: dataStack.mainContext), 4)
+        XCTAssertEqual(Helper.countForEntity("AccountModel", inContext: dataStack.mainContext), 2)
+
+        let users = Helper.fetchEntity("UserModel", inContext: dataStack.mainContext)
+        let userIDs = users.flatMap { $0.value(forKey: "id") as? String }
+        XCTAssertEqual(["0", "1", "3", "4"], userIDs.sorted())
 
         try! dataStack.drop()
     }
