@@ -473,7 +473,7 @@ class SyncTests: XCTestCase {
 
     func testStaffAndfulfillers() {
         let objects = Helper.objectsFromJSON("bug-number-84.json") as! [[String: Any]]
-        let dataStack = Helper.dataStackWithModelName("Bug84")
+        let dataStack = Helper.dataStackWithModelName("84")
 
         Sync.changes(objects, inEntityNamed: "MSStaff", dataStack: dataStack, completion: nil)
 
@@ -499,7 +499,7 @@ class SyncTests: XCTestCase {
 
     func testCustomPrimaryKeyBug113() {
         let objects = Helper.objectsFromJSON("bug-113-comments-no-id.json") as! [[String: Any]]
-        let dataStack = Helper.dataStackWithModelName("Bug113")
+        let dataStack = Helper.dataStackWithModelName("113")
 
         Sync.changes(objects, inEntityNamed: "AwesomeComment", dataStack: dataStack, completion: nil)
 
@@ -516,7 +516,7 @@ class SyncTests: XCTestCase {
 
     func testCustomPrimaryKeyInsideToManyRelationshipBug113() {
         let objects = Helper.objectsFromJSON("bug-113-stories-comments-no-ids.json") as! [[String: Any]]
-        let dataStack = Helper.dataStackWithModelName("Bug113")
+        let dataStack = Helper.dataStackWithModelName("113")
 
         Sync.changes(objects, inEntityNamed: "AwesomeStory", dataStack: dataStack, completion: nil)
 
@@ -545,7 +545,7 @@ class SyncTests: XCTestCase {
 
     func testCustomKeysInRelationshipsToOneBug113() {
         let objects = Helper.objectsFromJSON("bug-113-custom_relationship_key_to_one.json") as! [[String: Any]]
-        let dataStack = Helper.dataStackWithModelName("Bug113")
+        let dataStack = Helper.dataStackWithModelName("113")
 
         Sync.changes(objects, inEntityNamed: "AwesomeStory", dataStack: dataStack, completion: nil)
 
@@ -561,7 +561,7 @@ class SyncTests: XCTestCase {
     func testNilRelationshipsAfterUpdating_Sync_1_0_10() {
         let formDictionary = Helper.objectsFromJSON("bug-125.json") as! [String: Any]
         let uri = formDictionary["uri"] as! String
-        let dataStack = Helper.dataStackWithModelName("Bug125")
+        let dataStack = Helper.dataStackWithModelName("125")
 
         Sync.changes([formDictionary], inEntityNamed: "Form", predicate: NSPredicate(format: "uri == %@", uri), dataStack: dataStack, completion: nil)
 
@@ -697,7 +697,7 @@ class SyncTests: XCTestCase {
     func testConnectMultipleRelationships() {
         let places = Helper.objectsFromJSON("bug-179-places.json") as! [[String: Any]]
         let routes = Helper.objectsFromJSON("bug-179-routes.json") as! [String: Any]
-        let dataStack = Helper.dataStackWithModelName("Bug179")
+        let dataStack = Helper.dataStackWithModelName("179")
 
         Sync.changes(places, inEntityNamed: "Place", dataStack: dataStack, completion: nil)
         Sync.changes([routes], inEntityNamed: "Route", dataStack: dataStack, completion: nil)
@@ -720,7 +720,7 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 202 => https://github.com/SyncDB/Sync/issues/202
 
     func testManyToManyKeyNotAllowedHere() {
-        let dataStack = Helper.dataStackWithModelName("Bug202")
+        let dataStack = Helper.dataStackWithModelName("202")
 
         let initialInsert = Helper.objectsFromJSON("bug-202-a.json") as! [[String: Any]]
         Sync.changes(initialInsert, inEntityNamed: "User", dataStack: dataStack, completion: nil)
@@ -748,7 +748,7 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 157 => https://github.com/SyncDB/Sync/issues/157
 
     func testBug157() {
-        let dataStack = Helper.dataStackWithModelName("Bug157")
+        let dataStack = Helper.dataStackWithModelName("157")
 
         // 3 locations get synced, their references get ignored since no cities are found
         let locations = Helper.objectsFromJSON("157-locations.json") as! [[String: Any]]
@@ -1062,7 +1062,7 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 257 => https://github.com/SyncDB/Sync/issues/257
 
     func testBug257() {
-        let dataStack = Helper.dataStackWithModelName("Bug257")
+        let dataStack = Helper.dataStackWithModelName("257")
 
         let JSON = Helper.objectsFromJSON("bug-257.json") as! [String: Any]
         Sync.changes([JSON], inEntityNamed: "Workout", dataStack: dataStack, completion: nil)
@@ -1075,7 +1075,7 @@ class SyncTests: XCTestCase {
     // MARK: - Bug 254 => https://github.com/SyncDB/Sync/issues/254
 
     func testBug254() {
-        let dataStack = Helper.dataStackWithModelName("Bug254")
+        let dataStack = Helper.dataStackWithModelName("254")
 
         let JSON = Helper.objectsFromJSON("bug-254.json") as! [String: Any]
         Sync.changes([JSON], inEntityNamed: "House", dataStack: dataStack, completion: nil)
@@ -1127,7 +1127,7 @@ class SyncTests: XCTestCase {
 
     func testBug239() {
         let carsObject = Helper.objectsFromJSON("bug-239.json") as! [[String: Any]]
-        let dataStack = Helper.dataStackWithModelName("Bug239")
+        let dataStack = Helper.dataStackWithModelName("239")
         Sync.changes(carsObject, inEntityNamed: "Racecar", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Racecar", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Passenger", inContext: dataStack.mainContext), 2)
