@@ -277,18 +277,32 @@ extension NSManagedObject {
             }
 
             try Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, parentRelationship: relationship, inContext: managedObjectContext, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
-        } else if let parent = parent, let entityName = parent.entity.name, inverseIsToMany && entityName == childEntityName && parentRelationship?.inverseRelationship == relationship {
-            if relationship.isOrdered {
-                let relatedObjects = mutableOrderedSetValue(forKey: relationship.name)
-                if !relatedObjects.contains(parent) {
-                    relatedObjects.add(parent)
-                    setValue(relatedObjects, forKey: relationship.name)
+        } else {
+            var destinationIsParentSuperEntity = false
+            if let parent = parent, let destinationEntityName = relationship.destinationEntity?.name {
+                if let parentSuperEntityName = parent.entity.superentity?.name {
+                    destinationIsParentSuperEntity = destinationEntityName == parentSuperEntityName
                 }
-            } else {
-                let relatedObjects = mutableSetValue(forKey: relationship.name)
-                if !relatedObjects.contains(parent) {
-                    relatedObjects.add(parent)
-                    setValue(relatedObjects, forKey: relationship.name)
+            }
+
+            var parentRelationshipIsTheSameAsCurrentRelationship = false
+            if let parentRelationship = parentRelationship {
+                parentRelationshipIsTheSameAsCurrentRelationship = parentRelationship.inverseRelationship == relationship
+            }
+
+            if let parent = parent, parentRelationshipIsTheSameAsCurrentRelationship || destinationIsParentSuperEntity {
+                if relationship.isOrdered {
+                    let relatedObjects = mutableOrderedSetValue(forKey: relationship.name)
+                    if !relatedObjects.contains(parent) {
+                        relatedObjects.add(parent)
+                        setValue(relatedObjects, forKey: relationship.name)
+                    }
+                } else {
+                    let relatedObjects = mutableSetValue(forKey: relationship.name)
+                    if !relatedObjects.contains(parent) {
+                        relatedObjects.add(parent)
+                        setValue(relatedObjects, forKey: relationship.name)
+                    }
                 }
             }
         }

@@ -1397,8 +1397,14 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Racecar", inContext: dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("Passenger", inContext: dataStack.mainContext), 1)
 
-        let racecars = Helper.fetchEntity("Racecar", predicate: nil, inContext: dataStack.mainContext)
-        let racecar = racecars.first!
+        var racecars = Helper.fetchEntity("Racecar", predicate: nil, inContext: dataStack.mainContext)
+        var racecar = racecars.first!
+        XCTAssertEqual(racecar.value(forKey: "remoteID") as? Int, 31)
+        XCTAssertEqual((racecar.value(forKey: "passengers") as? NSSet)!.allObjects.count, 1)
+
+        racecars = Helper.fetchEntity("Racecar", predicate: nil, inContext: dataStack.mainContext)
+        racecar = racecars.last!
+        XCTAssertEqual(racecar.value(forKey: "remoteID") as? Int, 32)
         XCTAssertEqual((racecar.value(forKey: "passengers") as? NSSet)!.allObjects.count, 1)
 
         try! dataStack.drop()
