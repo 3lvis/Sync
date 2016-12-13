@@ -31,6 +31,11 @@ import DATAStack
     var context: NSManagedObjectContext?
     unowned var dataStack: DATAStack
 
+    private var changesError: NSError?
+    public var error: NSError? {
+        return changesError
+    }
+
     public init(changes: [[String : AnyObject]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, context: NSManagedObjectContext?, dataStack: DATAStack, operations: DATAFilter.Operation = .All) {
         self.changes = changes
         self.entityName = entityName
@@ -70,6 +75,7 @@ import DATAStack
             if let context = self.context {
                 context.performBlock {
                     self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: context, dataStack: self.dataStack, operations: self.filterOperations) { error in
+                        self.changesError = error
                         updateExecuting(false)
                         updateFinished(true)
                     }
@@ -77,6 +83,7 @@ import DATAStack
             } else {
                 dataStack.performInNewBackgroundContext { backgroundContext in
                     self.changes(self.changes, inEntityNamed: self.entityName, predicate: self.predicate, parent: self.parent, parentRelationship: nil, inContext: backgroundContext, dataStack: self.dataStack, operations: self.filterOperations) { error in
+                        self.changesError = error
                         updateExecuting(false)
                         updateFinished(true)
                     }
