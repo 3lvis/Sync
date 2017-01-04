@@ -107,10 +107,9 @@ public extension Sync {
      - parameter parent: The parent of the synced items, useful if you are syncing the childs of an object, for example
      an Album has many photos, if this photos don't incldue the album's JSON object, syncing the photos JSON requires
      - parameter context: The context where the items will be created, in general this should be a background context.
-     - parameter dataStack: The DATAStack instance.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, dataStack: DATAStack, completion: ((_ error: NSError?) -> Void)?) {
+    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, inContext context: NSManagedObjectContext, completion: ((_ error: NSError?) -> Void)?) {
         self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: context, operations: .All, completion: completion)
     }
 }
