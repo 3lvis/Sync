@@ -11,7 +11,7 @@ class SyncTests: XCTestCase {
             synchronous = true
         }
         XCTAssertTrue(synchronous)
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Camelcase
@@ -30,7 +30,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(first.value(forKey: "numberOfChildren") as? Int, 1)
         XCTAssertEqual(first.value(forKey: "remoteID") as? String, "1")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Contacts
@@ -59,7 +59,7 @@ class SyncTests: XCTestCase {
         let updatedDate = dateFormat.date(from: "2014-02-17")
         XCTAssertEqual(result.value(forKey: "updatedAt") as? Date, updatedDate)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testUsersAndCompanies() {
@@ -76,7 +76,7 @@ class SyncTests: XCTestCase {
         let company = Helper.fetchEntity("Company", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 1)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
         XCTAssertEqual(company.value(forKey: "name") as? String, "Facebook")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testCustomMappingAndCustomPrimaryKey() {
@@ -89,7 +89,7 @@ class SyncTests: XCTestCase {
         let image = array.first
         XCTAssertEqual(image!.value(forKey: "url") as? String, "http://sample.com/sample0.png")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testRelationshipsB() {
@@ -111,7 +111,7 @@ class SyncTests: XCTestCase {
         let profilePicturesCount = Helper.countForEntity("Image", predicate: NSPredicate(format: "user = %@", user), inContext: dataStack.mainContext)
         XCTAssertEqual(profilePicturesCount, 3)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
@@ -131,7 +131,7 @@ class SyncTests: XCTestCase {
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
         XCTAssertEqual(result.value(forKey: "email") as? String, "melisawhite@ovium.com")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
@@ -154,7 +154,7 @@ class SyncTests: XCTestCase {
         Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 3)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
@@ -174,7 +174,7 @@ class SyncTests: XCTestCase {
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
         XCTAssertEqual(result.value(forKey: "email") as? String, "updated@ovium.com")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
@@ -194,7 +194,7 @@ class SyncTests: XCTestCase {
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
         XCTAssertEqual(result.value(forKey: "email") as? String, "melisawhite@ovium.com")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // If all operations where enabled in the first sync, 2 users would be inserted, in the second sync 1 user would be updated
@@ -217,7 +217,7 @@ class SyncTests: XCTestCase {
         let user1 = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 1)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
         XCTAssertNotNil(user1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Notes
@@ -236,7 +236,7 @@ class SyncTests: XCTestCase {
         let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format: "superUser = %@", user), inContext: dataStack.mainContext)
         XCTAssertEqual(notesCount, 5)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testObjectsForParent() {
@@ -265,7 +265,7 @@ class SyncTests: XCTestCase {
         let notesCount = Helper.countForEntity("SuperNote", predicate: NSPredicate(format: "superUser = %@", user), inContext: dataStack.mainContext)
         XCTAssertEqual(notesCount, 2)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testTaggedNotesForUser() {
@@ -285,7 +285,7 @@ class SyncTests: XCTestCase {
 
         let tag = tags.first!
         XCTAssertEqual((tag.value(forKey: "superNotes") as? NSSet)!.allObjects.count, 2)
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testCustomKeysInRelationshipsToMany() {
@@ -298,7 +298,7 @@ class SyncTests: XCTestCase {
         let user = array.first!
         XCTAssertEqual((user.value(forKey: "notes") as? NSSet)!.allObjects.count, 3)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Recursive
@@ -310,7 +310,7 @@ class SyncTests: XCTestCase {
         Sync.changes(objects, inEntityNamed: "Number", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Number", inContext: dataStack.mainContext), 6)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testRelationshipName() {
@@ -326,7 +326,7 @@ class SyncTests: XCTestCase {
         XCTAssertNotNil(number.value(forKey: "parent"))
         XCTAssertEqual((number.value(forKey: "parent") as! NSManagedObject).value(forKey: "name") as? String, "Collection 1")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Social
@@ -345,7 +345,7 @@ class SyncTests: XCTestCase {
         let comment = comments.first!
         XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testCustomPrimaryKeyInsideToManyRelationship() {
@@ -374,7 +374,7 @@ class SyncTests: XCTestCase {
             XCTFail()
         }
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testCustomKeysInRelationshipsToOne() {
@@ -387,7 +387,7 @@ class SyncTests: XCTestCase {
         let story = array.first!
         XCTAssertNotNil(story.value(forKey: "summarize"))
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Markets
@@ -410,7 +410,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(item.value(forKey: "otherAttribute") as? String, "Item 1")
         XCTAssertEqual((item.value(forKey: "markets") as? NSSet)!.allObjects.count, 2)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Organization
@@ -425,7 +425,7 @@ class SyncTests: XCTestCase {
         Sync.changes(json, inEntityNamed: "OrganizationUnit", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("OrganizationUnit", inContext: dataStack.mainContext), 7)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Unique
@@ -449,7 +449,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("B", inContext: dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("C", inContext: dataStack.mainContext), 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Patients => https://github.com/SyncDB/Sync/issues/121
@@ -466,7 +466,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Weight", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Measure", inContext: dataStack.mainContext), 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 84 => https://github.com/SyncDB/Sync/issues/84
@@ -492,7 +492,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(fullfiller.value(forKey: "name") as? String, "New York")
         XCTAssertEqual((fullfiller.value(forKey: "staff") as? NSSet)!.allObjects.count, 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 113 => https://github.com/SyncDB/Sync/issues/113
@@ -511,7 +511,7 @@ class SyncTests: XCTestCase {
         let comment = comments.first!
         XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testCustomPrimaryKeyInsideToManyRelationshipBug113() {
@@ -540,7 +540,7 @@ class SyncTests: XCTestCase {
             XCTFail()
         }
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testCustomKeysInRelationshipsToOneBug113() {
@@ -553,7 +553,7 @@ class SyncTests: XCTestCase {
         let story = array.first!
         XCTAssertNotNil(story.value(forKey: "awesomeSummarize"))
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 125 => https://github.com/SyncDB/Sync/issues/125
@@ -584,7 +584,7 @@ class SyncTests: XCTestCase {
         XCTAssertNotNil(element)
         XCTAssertNotNil(model)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testStoryToSummarize() {
@@ -604,7 +604,7 @@ class SyncTests: XCTestCase {
         let comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format: "body = %@", "Hi"), inContext: dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     /**
@@ -637,7 +637,7 @@ class SyncTests: XCTestCase {
         let user = note.value(forKey: "superUser")!
         XCTAssertEqual((user as AnyObject).value(forKey: "name") as? String, "Melisa White")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     /**
@@ -670,7 +670,7 @@ class SyncTests: XCTestCase {
         let user = note.value(forKey: "superUser")!
         XCTAssertEqual((user as AnyObject).value(forKey: "name") as? String, "Melisa White")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Ordered Social
@@ -689,7 +689,7 @@ class SyncTests: XCTestCase {
         let comment = comments.first!
         XCTAssertEqual(comment.value(forKey: "body") as? String, "comment 1")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 179 => https://github.com/SyncDB/Sync/issues/179
@@ -714,7 +714,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(startPlace.value(forKey: "name") as? String, "Here")
         XCTAssertEqual(endPlace.value(forKey: "name") as? String, "There")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 202 => https://github.com/SyncDB/Sync/issues/202
@@ -730,7 +730,7 @@ class SyncTests: XCTestCase {
         Sync.changes(removeAll, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Automatic use of id as remoteID
@@ -742,7 +742,7 @@ class SyncTests: XCTestCase {
         Sync.changes(users, inEntityNamed: "User", dataStack: dataStack, completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 157 => https://github.com/SyncDB/Sync/issues/157
@@ -787,7 +787,7 @@ class SyncTests: XCTestCase {
         location3City = location3?.value(forKey: "city") as? NSManagedObject
         XCTAssertEqual(location3City?.value(forKey: "name") as? String, "Paris")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Add support for cancellable sync processes https://github.com/SyncDB/Sync/pull/216
@@ -800,7 +800,7 @@ class SyncTests: XCTestCase {
         operation.start()
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/SyncDB/Sync/issues/151
@@ -875,7 +875,7 @@ class SyncTests: XCTestCase {
         note2User = note2?.value(forKey: "user") as? NSManagedObject
         XCTAssertEqual(note2User?.value(forKey: "userID") as? Int, 11)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/SyncDB/Sync/issues/151
@@ -932,7 +932,7 @@ class SyncTests: XCTestCase {
         user12Notes = user12?.value(forKey: "notes") as? NSOrderedSet
         XCTAssertEqual(user12Notes?.set.count, 2)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/SyncDB/Sync/issues/151
@@ -994,7 +994,7 @@ class SyncTests: XCTestCase {
         note3Tags = note3?.value(forKey: "tags") as? Set<NSManagedObject>
         XCTAssertEqual(note3Tags?.count, 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/SyncDB/Sync/issues/151
@@ -1056,7 +1056,7 @@ class SyncTests: XCTestCase {
         note3Tags = note3?.value(forKey: "tags") as? NSOrderedSet
         XCTAssertEqual(note3Tags?.count, 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 257 => https://github.com/SyncDB/Sync/issues/257
@@ -1069,7 +1069,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Workout", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Exercise", inContext: dataStack.mainContext), 2)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - Bug 254 => https://github.com/SyncDB/Sync/issues/254
@@ -1096,7 +1096,7 @@ class SyncTests: XCTestCase {
         let ownhouses = human?.value(forKey: "ownhouses") as? Set<NSManagedObject>
         XCTAssertEqual(ownhouses?.count, 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: Bug 260 => https://github.com/SyncDB/Sync/issues/260
@@ -1109,7 +1109,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("RentedHome", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("LegalPerson", inContext: dataStack.mainContext), 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testBug260SnakeCase() {
@@ -1120,7 +1120,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("RentedHome", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("LegalPerson", inContext: dataStack.mainContext), 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: Bug 239 => https://github.com/SyncDB/Sync/pull/239
@@ -1136,7 +1136,7 @@ class SyncTests: XCTestCase {
         let racecar = racecars.first!
         XCTAssertEqual((racecar.value(forKey: "passengers") as? NSSet)!.allObjects.count, 2)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: - https://github.com/SyncDB/Sync/issues/225
@@ -1160,7 +1160,7 @@ class SyncTests: XCTestCase {
         let tags = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
         XCTAssertEqual(tags.count, 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func test225RemovedTagsWithEmptyArray() {
@@ -1185,7 +1185,7 @@ class SyncTests: XCTestCase {
         let tags = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
         XCTAssertEqual(tags.count, 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func test225RemovedTagsWithNull() {
@@ -1208,7 +1208,7 @@ class SyncTests: XCTestCase {
         let tags = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
         XCTAssertEqual(tags.count, 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func test280() {
@@ -1225,7 +1225,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("RoutePolylineItem", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("RouteStop", inContext: dataStack.mainContext), 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func test283() {
@@ -1243,7 +1243,7 @@ class SyncTests: XCTestCase {
         let participants = taskList.value(forKey: "participants") as? NSSet ?? NSSet()
         XCTAssertEqual(participants.count, 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func test320RemoveOneToToneWithNull() {
@@ -1271,7 +1271,7 @@ class SyncTests: XCTestCase {
         let tag = Helper.fetchEntity("Tag", predicate: predicate, inContext: dataStack.mainContext)
         XCTAssertEqual(tag.count, 0)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func test233() {
@@ -1312,7 +1312,7 @@ class SyncTests: XCTestCase {
         // check if order is properly updated
         XCTAssertEqual(firstSlideID, lastSlideID)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // https://github.com/SyncDB/Sync/issues/327
@@ -1355,7 +1355,7 @@ class SyncTests: XCTestCase {
         // check if order is properly updated
         XCTAssertEqual(firstSlideID, lastSlideID)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // https://github.com/SyncDB/Sync/issues/265
@@ -1374,7 +1374,7 @@ class SyncTests: XCTestCase {
         // This should be 1, but sadly it's two :(
         XCTAssertEqual(Helper.countForEntity("Player", inContext: dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("PlayerGroup", inContext: dataStack.mainContext), 1)
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func test3ca82a0() {
@@ -1385,7 +1385,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Article", inContext: dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("ArticleTag", inContext: dataStack.mainContext), 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     // MARK: Bug 277 => https://github.com/SyncDB/Sync/pull/277
@@ -1407,6 +1407,6 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(racecar.value(forKey: "remoteID") as? Int, 32)
         XCTAssertEqual((racecar.value(forKey: "passengers") as? NSSet)!.allObjects.count, 1)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 }

@@ -19,7 +19,7 @@ class SyncDelegateTests: XCTestCase {
         } else {
             XCTFail()
         }
-        try! dataStack.drop()
+        dataStack.drop()
     }
 }
 

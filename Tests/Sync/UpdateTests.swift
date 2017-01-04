@@ -14,7 +14,7 @@ class UpdateTests: XCTestCase {
         XCTAssertNil(id)
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testUpdateWhileMaintainingTheSameID() {
@@ -32,7 +32,7 @@ class UpdateTests: XCTestCase {
 
         XCTAssertEqual(user.value(forKey: "name") as? String, "bossy")
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testUpdateWithJSONThatHasNewID() {
@@ -46,6 +46,6 @@ class UpdateTests: XCTestCase {
         XCTAssertEqual(updatedObject?.value(forKey: "id") as? String, "someid")
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 }

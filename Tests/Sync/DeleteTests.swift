@@ -13,7 +13,7 @@ class DeleteTests: XCTestCase {
         try! Sync.delete("id", inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertEqual(0, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testDeleteWithNumberID() {
@@ -26,6 +26,6 @@ class DeleteTests: XCTestCase {
         try! Sync.delete(1, inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertEqual(0, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 }

@@ -21,6 +21,6 @@ class FetchTests: XCTestCase {
         let newFetched = try! Sync.fetch("id", inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertNil(newFetched)
 
-        try! dataStack.drop()
+        dataStack.drop()
     }
 }

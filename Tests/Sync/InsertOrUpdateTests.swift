@@ -18,7 +18,7 @@ class InsertOrUpdateTests: XCTestCase {
         } else {
             XCTFail()
         }
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testInsertOrUpdateWithNumberID() {
@@ -26,7 +26,7 @@ class InsertOrUpdateTests: XCTestCase {
         let json = ["id": 1]
         try! Sync.insertOrUpdate(json, inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
-        try! dataStack.drop()
+        dataStack.drop()
     }
 
     func testInsertOrUpdateUpdate() {
@@ -48,6 +48,6 @@ class InsertOrUpdateTests: XCTestCase {
         } else {
             XCTFail()
         }
-        try! dataStack.drop()
+        dataStack.drop()
     }
 }
