@@ -252,7 +252,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 
 #### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/DateParser/NSDate%2BSYNCPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```swift
 let values = ["created_at" : "2014-01-01T00:00:00+00:00",
