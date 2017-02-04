@@ -458,6 +458,7 @@
 		44968BFD1DA0021300E71A53 /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
 		44968BFE1DA0021300E71A53 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		449828041D9F8F2D00E2BCA3 /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
+		4499A2D51E45CA550096AB42 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		44B547F81DCF27FF009215FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B547F71DCF27FF009215FA /* AppDelegate.swift */; };
 		44B547FA1DCF27FF009215FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B547F91DCF27FF009215FA /* ViewController.swift */; };
 		44B548011DCF27FF009215FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B548001DCF27FF009215FA /* Assets.xcassets */; };
@@ -1996,6 +1997,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				142CD2A41DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
+				4499A2D51E45CA550096AB42 /* Result.swift in Sources */,
 				44B548131DCF3D66009215FA /* NSArray+Sync.swift in Sources */,
 				44B547FA1DCF27FF009215FA /* ViewController.swift in Sources */,
 				44B547F81DCF27FF009215FA /* AppDelegate.swift in Sources */,
