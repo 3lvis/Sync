@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Product" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="storeProducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoreProduct" inverseName="product" inverseEntity="StoreProduct" syncable="YES"/>
+    </entity>
+    <entity name="Store" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="storeProducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoreProduct" inverseName="store" inverseEntity="StoreProduct" syncable="YES"/>
+    </entity>
+    <entity name="StoreProduct" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="storeProducts" inverseEntity="Product" syncable="YES"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeProducts" inverseEntity="Store" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Product" positionX="-207" positionY="54" width="128" height="73"/>
+        <element name="StoreProduct" positionX="-27" positionY="54" width="128" height="90"/>
+        <element name="Store" positionX="151" positionY="54" width="128" height="73"/>
+    </elements>
+</model>
