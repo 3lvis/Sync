@@ -1,0 +1,12 @@
+[
+  {
+    "id": "store_1",
+    "store_products": [
+      {
+        "id": "store_product_1",
+        "store_id": "store_1",
+        "product_id": "product_1"
+      }
+    ]
+  }
+]

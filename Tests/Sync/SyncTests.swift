@@ -1409,4 +1409,28 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    func test356() {
+        let dataStack = Helper.dataStackWithModelName("356")
+        let storedProduct = NSEntityDescription.insertNewObject(forEntityName: "Product", into: dataStack.mainContext)
+        storedProduct.setValue("product_1", forKey: "id")
+        try! dataStack.mainContext.save()
+
+        let storesJSON = Helper.objectsFromJSON("356.json") as! [[String: Any]]
+        Sync.changes(storesJSON, inEntityNamed: "Store", dataStack: dataStack, completion: nil)
+
+        let stores = Helper.fetchEntity("Store", inContext: dataStack.mainContext)
+        XCTAssertEqual(stores.count, 1)
+        guard let store = stores.first else { XCTFail(); return }
+        XCTAssertEqual(store.value(forKey: "id") as? String, "store_1")
+
+        guard let storeProducts = store.value(forKey: "storeProducts") as? Set<NSManagedObject> else { XCTFail(); return }
+        XCTAssertEqual(storeProducts.count, 1)
+
+        guard let storeProduct = storeProducts.first else { XCTFail(); return }
+        XCTAssertEqual(storeProduct.value(forKey: "id") as? String, "store_product_1")
+
+        guard let product = storeProduct.value(forKey: "product") as? NSManagedObject else { XCTFail(); return }
+        XCTAssertEqual(product.value(forKey: "id") as? String, "product_1")
+    }
 }
