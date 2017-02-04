@@ -1411,11 +1411,14 @@ class SyncTests: XCTestCase {
     }
 
     func test356() {
+        // The Product table gets populated with the product "product_1".
         let dataStack = Helper.dataStackWithModelName("356")
         let storedProduct = NSEntityDescription.insertNewObject(forEntityName: "Product", into: dataStack.mainContext)
         storedProduct.setValue("product_1", forKey: "id")
         try! dataStack.mainContext.save()
 
+        // We get an array of stores where the only entry is "store_1" this store has an array of store products,
+        // the only store product references to the "store_1" and the "product_1".
         let storesJSON = Helper.objectsFromJSON("356.json") as! [[String: Any]]
         Sync.changes(storesJSON, inEntityNamed: "Store", dataStack: dataStack, completion: nil)
 
@@ -1432,5 +1435,7 @@ class SyncTests: XCTestCase {
 
         guard let product = storeProduct.value(forKey: "product") as? NSManagedObject else { XCTFail(); return }
         XCTAssertEqual(product.value(forKey: "id") as? String, "product_1")
+
+        XCTAssertEqual(Helper.countForEntity("Product", inContext: dataStack.mainContext), 1)
     }
 }
