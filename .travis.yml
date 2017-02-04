@@ -1,8 +1,0 @@
-osx_image: xcode8.1
-language: objective-c
-script:
-  - xcodebuild -project Demo.xcodeproj -scheme iOSTests           -destination 'platform=iOS Simulator,name=iPhone 6'               test  | xcpretty
-  - xcodebuild -project Demo.xcodeproj -scheme tvOSTests          -destination 'platform=tvOS Simulator,name=Apple TV 1080p'        test  | xcpretty
-  - xcodebuild -project Demo.xcodeproj -scheme macOSTests         -destination 'platform=OS X'                                      test  | xcpretty
-notifications:
-  email: false
