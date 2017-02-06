@@ -439,6 +439,12 @@
 		444546D61DF06E2600CC7928 /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444546D51DF06E2600CC7928 /* UpdateTests.swift */; };
 		444546D71DF06E2600CC7928 /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444546D51DF06E2600CC7928 /* UpdateTests.swift */; };
 		444546D81DF06E2600CC7928 /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444546D51DF06E2600CC7928 /* UpdateTests.swift */; };
+		44503D4C1E46777400C177E9 /* 356.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44503D4A1E46777400C177E9 /* 356.xcdatamodeld */; };
+		44503D4D1E46777400C177E9 /* 356.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44503D4A1E46777400C177E9 /* 356.xcdatamodeld */; };
+		44503D4E1E46777400C177E9 /* 356.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44503D4A1E46777400C177E9 /* 356.xcdatamodeld */; };
+		44503D501E46794200C177E9 /* 356.json in Resources */ = {isa = PBXBuildFile; fileRef = 44503D4F1E46794200C177E9 /* 356.json */; };
+		44503D511E46794200C177E9 /* 356.json in Resources */ = {isa = PBXBuildFile; fileRef = 44503D4F1E46794200C177E9 /* 356.json */; };
+		44503D521E46794200C177E9 /* 356.json in Resources */ = {isa = PBXBuildFile; fileRef = 44503D4F1E46794200C177E9 /* 356.json */; };
 		44584FDC1DF2EE550082D7A0 /* FetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44584FDB1DF2EE550082D7A0 /* FetchTests.swift */; };
 		44584FDD1DF2EE550082D7A0 /* FetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44584FDB1DF2EE550082D7A0 /* FetchTests.swift */; };
 		44584FDE1DF2EE550082D7A0 /* FetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44584FDB1DF2EE550082D7A0 /* FetchTests.swift */; };
@@ -731,6 +737,8 @@
 		4403DC581D9F90B5001C8DA6 /* NSManagedObjectContext+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SyncTests.swift"; sourceTree = "<group>"; };
 		4403DC591D9F90B5001C8DA6 /* SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTests.swift; sourceTree = "<group>"; };
 		444546D51DF06E2600CC7928 /* UpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTests.swift; sourceTree = "<group>"; };
+		44503D4B1E46777400C177E9 /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		44503D4F1E46794200C177E9 /* 356.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 356.json; sourceTree = "<group>"; };
 		44584FDB1DF2EE550082D7A0 /* FetchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchTests.swift; sourceTree = "<group>"; };
 		445D3BB81D9F932C007F9E26 /* DATAFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATAFilter.swift; sourceTree = "<group>"; };
 		445D3BBB1D9F9373007F9E26 /* DATAFilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATAFilterTests.swift; sourceTree = "<group>"; };
@@ -975,6 +983,7 @@
 				4403DBEC1D9F90B5001C8DA6 /* 280.json */,
 				4403DBED1D9F90B5001C8DA6 /* 283.json */,
 				14E9C13E1DEA2EE100A21B9E /* 320.json */,
+				44503D4F1E46794200C177E9 /* 356.json */,
 				4403DBEE1D9F90B5001C8DA6 /* bug-113-comments-no-id.json */,
 				4403DBEF1D9F90B5001C8DA6 /* bug-113-custom_relationship_key_to_one.json */,
 				4403DBF01D9F90B5001C8DA6 /* bug-113-stories-comments-no-ids.json */,
@@ -1043,6 +1052,7 @@
 				4403DC211D9F90B5001C8DA6 /* 280.xcdatamodeld */,
 				4403DC231D9F90B5001C8DA6 /* 283.xcdatamodeld */,
 				14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */,
+				44503D4A1E46777400C177E9 /* 356.xcdatamodeld */,
 				4403DC371D9F90B5001C8DA6 /* Camelcase.xcdatamodeld */,
 				4403DC391D9F90B5001C8DA6 /* Contacts.xcdatamodeld */,
 				4403DC3B1D9F90B5001C8DA6 /* CustomRelationshipKey.xcdatamodeld */,
@@ -1515,6 +1525,7 @@
 				4403DC661D9F90B5001C8DA6 /* 225-a-replaced.json in Resources */,
 				140D43281DFF4DBC00E3B159 /* 277.json in Resources */,
 				4403DC601D9F90B5001C8DA6 /* 151-to-many-users.json in Resources */,
+				44503D501E46794200C177E9 /* 356.json in Resources */,
 				445D3BCD1D9F9373007F9E26 /* users3.json in Resources */,
 				4403DC721D9F90B5001C8DA6 /* bug-202-b.json in Resources */,
 				4403DC871D9F90B5001C8DA6 /* stories-comments-no-ids.json in Resources */,
@@ -1590,6 +1601,7 @@
 				14975C941DBC373A0024901A /* to-one-snakecase.json in Resources */,
 				140D43291DFF4DBC00E3B159 /* 277.json in Resources */,
 				14975C951DBC373A0024901A /* unique.json in Resources */,
+				44503D511E46794200C177E9 /* 356.json in Resources */,
 				14975C961DBC373A0024901A /* users_a.json in Resources */,
 				14975C971DBC373A0024901A /* users_b.json in Resources */,
 				14975C981DBC373A0024901A /* users_c.json in Resources */,
@@ -1665,6 +1677,7 @@
 				14975CD21DBC374C0024901A /* to-one-snakecase.json in Resources */,
 				140D432A1DFF4DBC00E3B159 /* 277.json in Resources */,
 				14975CD31DBC374C0024901A /* unique.json in Resources */,
+				44503D521E46794200C177E9 /* 356.json in Resources */,
 				14975CD41DBC374C0024901A /* users_a.json in Resources */,
 				14975CD51DBC374C0024901A /* users_b.json in Resources */,
 				14975CD61DBC374C0024901A /* users_c.json in Resources */,
@@ -1792,6 +1805,7 @@
 				142CD2A51DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
 				4403DC931D9F90B5001C8DA6 /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				4403DCA61D9F90B5001C8DA6 /* InsertObjectsInParent.xcdatamodeld in Sources */,
+				44503D4C1E46777400C177E9 /* 356.xcdatamodeld in Sources */,
 				4403DC921D9F90B5001C8DA6 /* 151-many-to-many.xcdatamodeld in Sources */,
 				4403DCAD1D9F90B5001C8DA6 /* Recursive.xcdatamodeld in Sources */,
 				4403DCA51D9F90B5001C8DA6 /* id.xcdatamodeld in Sources */,
@@ -1862,6 +1876,7 @@
 				142CD2A61DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
 				14975BFE1DBC36F00024901A /* NSManagedObject+Sync.swift in Sources */,
 				14975BFF1DBC36F00024901A /* NSManagedObjectContext+Sync.swift in Sources */,
+				44503D4D1E46777400C177E9 /* 356.xcdatamodeld in Sources */,
 				14975C001DBC36F00024901A /* Sync.swift in Sources */,
 				14975C011DBC36F00024901A /* DATAFilter.swift in Sources */,
 				14975C031DBC36F00024901A /* TestCheck.swift in Sources */,
@@ -1932,6 +1947,7 @@
 				142CD2A71DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
 				14975C321DBC37180024901A /* NSManagedObject+Sync.swift in Sources */,
 				14975C331DBC37180024901A /* NSManagedObjectContext+Sync.swift in Sources */,
+				44503D4E1E46777400C177E9 /* 356.xcdatamodeld in Sources */,
 				14975C341DBC37180024901A /* Sync.swift in Sources */,
 				14975C351DBC37180024901A /* DATAFilter.swift in Sources */,
 				14975C371DBC37180024901A /* TestCheck.swift in Sources */,
@@ -3009,6 +3025,16 @@
 			);
 			currentVersion = 4403DC541D9F90B5001C8DA6 /* Unique.xcdatamodel */;
 			path = Unique.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44503D4A1E46777400C177E9 /* 356.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44503D4B1E46777400C177E9 /* Demo.xcdatamodel */,
+			);
+			currentVersion = 44503D4B1E46777400C177E9 /* Demo.xcdatamodel */;
+			path = 356.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
