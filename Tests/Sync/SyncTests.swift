@@ -1409,4 +1409,16 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // MARK: Bug 367 https://github.com/SyncDB/Sync/issues/367
+
+    func test367() {
+        let dataStack = Helper.dataStackWithModelName("367")
+        let changes: [[String : Any]] = [["id": 1, "first_name": "Daniel", "timestamp": 1486756142]]
+
+        Sync.changes(changes, inEntityNamed: "User", dataStack: dataStack, completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+
+        dataStack.drop()
+    }
 }
