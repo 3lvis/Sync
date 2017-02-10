@@ -1,6 +1,5 @@
 import CoreData
 import DATAStack
-import SYNCPropertyMapper
 
 extension NSManagedObject {
     /**

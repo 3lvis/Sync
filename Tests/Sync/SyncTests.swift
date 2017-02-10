@@ -1,6 +1,7 @@
 import XCTest
 import DATAStack
 import CoreData
+import Sync
 
 class SyncTests: XCTestCase {
     func testSynchronous() {

@@ -1,5 +1,4 @@
 import CoreData
-import SYNCPropertyMapper
 import DATAStack
 
 public protocol SyncDelegate: class {

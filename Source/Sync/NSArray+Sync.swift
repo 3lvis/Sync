@@ -1,6 +1,5 @@
 import Foundation
 import DATAStack
-import SYNCPropertyMapper
 
 extension NSArray {
     /**
