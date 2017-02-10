@@ -305,6 +305,69 @@
 		14A84E9B1E4E70B900701B8A /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A84E9C1E4E70B900701B8A /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A84E9D1E4E70CD00701B8A /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E8B1DBC39690042ED81 /* Sync.framework */; };
+		14A84EC61E4E748000701B8A /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84E9F1E4E748000701B8A /* DateTests.swift */; };
+		14A84EC71E4E748000701B8A /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84E9F1E4E748000701B8A /* DateTests.swift */; };
+		14A84EC81E4E748000701B8A /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84E9F1E4E748000701B8A /* DateTests.swift */; };
+		14A84EC91E4E748000701B8A /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA11E4E748000701B8A /* Pod.xcdatamodeld */; };
+		14A84ECA1E4E748000701B8A /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA11E4E748000701B8A /* Pod.xcdatamodeld */; };
+		14A84ECB1E4E748000701B8A /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA11E4E748000701B8A /* Pod.xcdatamodeld */; };
+		14A84ECC1E4E748000701B8A /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */; };
+		14A84ECD1E4E748000701B8A /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */; };
+		14A84ECE1E4E748000701B8A /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */; };
+		14A84ECF1E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */; };
+		14A84ED01E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */; };
+		14A84ED11E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */; };
+		14A84ED21E4E748000701B8A /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA71E4E748000701B8A /* DictionaryTests.swift */; };
+		14A84ED31E4E748000701B8A /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA71E4E748000701B8A /* DictionaryTests.swift */; };
+		14A84ED41E4E748000701B8A /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA71E4E748000701B8A /* DictionaryTests.swift */; };
+		14A84ED51E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */; };
+		14A84ED61E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */; };
+		14A84ED71E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */; };
+		14A84EDB1E4E748000701B8A /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAA1E4E748000701B8A /* HelperTests.m */; };
+		14A84EDC1E4E748000701B8A /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAA1E4E748000701B8A /* HelperTests.m */; };
+		14A84EDD1E4E748000701B8A /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAA1E4E748000701B8A /* HelperTests.m */; };
+		14A84EDE1E4E748000701B8A /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */; };
+		14A84EDF1E4E748000701B8A /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */; };
+		14A84EE01E4E748000701B8A /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */; };
+		14A84EE11E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */; };
+		14A84EE21E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */; };
+		14A84EE31E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */; };
+		14A84EE41E4E748000701B8A /* 112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */; };
+		14A84EE51E4E748000701B8A /* 112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */; };
+		14A84EE61E4E748000701B8A /* 112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */; };
+		14A84EE71E4E748000701B8A /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB01E4E748000701B8A /* 121.xcdatamodeld */; };
+		14A84EE81E4E748000701B8A /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB01E4E748000701B8A /* 121.xcdatamodeld */; };
+		14A84EE91E4E748000701B8A /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB01E4E748000701B8A /* 121.xcdatamodeld */; };
+		14A84EEA1E4E748000701B8A /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB21E4E748000701B8A /* 123.xcdatamodeld */; };
+		14A84EEB1E4E748000701B8A /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB21E4E748000701B8A /* 123.xcdatamodeld */; };
+		14A84EEC1E4E748000701B8A /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB21E4E748000701B8A /* 123.xcdatamodeld */; };
+		14A84EED1E4E748000701B8A /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB41E4E748000701B8A /* 129.xcdatamodeld */; };
+		14A84EEE1E4E748000701B8A /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB41E4E748000701B8A /* 129.xcdatamodeld */; };
+		14A84EEF1E4E748000701B8A /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB41E4E748000701B8A /* 129.xcdatamodeld */; };
+		14A84EF01E4E748000701B8A /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB61E4E748000701B8A /* 137.xcdatamodeld */; };
+		14A84EF11E4E748000701B8A /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB61E4E748000701B8A /* 137.xcdatamodeld */; };
+		14A84EF21E4E748000701B8A /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB61E4E748000701B8A /* 137.xcdatamodeld */; };
+		14A84EF31E4E748000701B8A /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB81E4E748000701B8A /* 140.xcdatamodeld */; };
+		14A84EF41E4E748000701B8A /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB81E4E748000701B8A /* 140.xcdatamodeld */; };
+		14A84EF51E4E748000701B8A /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB81E4E748000701B8A /* 140.xcdatamodeld */; };
+		14A84EF61E4E748000701B8A /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */; };
+		14A84EF71E4E748000701B8A /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */; };
+		14A84EF81E4E748000701B8A /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */; };
+		14A84EF91E4E748000701B8A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */; };
+		14A84EFA1E4E748000701B8A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */; };
+		14A84EFB1E4E748000701B8A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */; };
+		14A84EFC1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */; };
+		14A84EFD1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */; };
+		14A84EFE1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */; };
+		14A84EFF1E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */; };
+		14A84F001E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */; };
+		14A84F011E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */; };
+		14A84F021E4E748000701B8A /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC31E4E748000701B8A /* DateStringTransformer.m */; };
+		14A84F031E4E748000701B8A /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC31E4E748000701B8A /* DateStringTransformer.m */; };
+		14A84F041E4E748000701B8A /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC31E4E748000701B8A /* DateStringTransformer.m */; };
+		14A84F051E4E748000701B8A /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */; };
+		14A84F061E4E748000701B8A /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */; };
+		14A84F071E4E748000701B8A /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */; };
 		14AF6AFD1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6AFE1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6AFF1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
@@ -639,10 +702,32 @@
 		146EB24D1DEF75D70068EDC3 /* InsertOrUpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertOrUpdateTests.swift; sourceTree = "<group>"; };
 		14975BE81DBC368B0024901A /* tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14975BF41DBC36960024901A /* macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14A84E9F1E4E748000701B8A /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		14A84EA21E4E748000701B8A /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
+		14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryKeyTests.m; sourceTree = "<group>"; };
+		14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_SYNCInflectionsTests.m; sourceTree = "<group>"; };
+		14A84EA71E4E748000701B8A /* DictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTests.swift; sourceTree = "<group>"; };
+		14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillWithDictionaryTests.swift; sourceTree = "<group>"; };
+		14A84EAA1E4E748000701B8A /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
+		14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPDictionaryTests.m; sourceTree = "<group>"; };
+		14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPFillWithDictionaryTests.m; sourceTree = "<group>"; };
+		14A84EAF1E4E748000701B8A /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
+		14A84EB11E4E748000701B8A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		14A84EB31E4E748000701B8A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		14A84EB51E4E748000701B8A /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
+		14A84EB71E4E748000701B8A /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
+		14A84EB91E4E748000701B8A /* smartworkout.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = smartworkout.xcdatamodel; sourceTree = "<group>"; };
+		14A84EBB1E4E748000701B8A /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
+		14A84EBD1E4E748000701B8A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		14A84EBF1E4E748000701B8A /* Ordered.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ordered.xcdatamodel; sourceTree = "<group>"; };
+		14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadAPIValueTransformer.swift; sourceTree = "<group>"; };
+		14A84EC21E4E748000701B8A /* DateStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateStringTransformer.h; sourceTree = "<group>"; };
+		14A84EC31E4E748000701B8A /* DateStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateStringTransformer.m; sourceTree = "<group>"; };
+		14A84EC41E4E748000701B8A /* HYPTestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPTestValueTransformer.h; sourceTree = "<group>"; };
+		14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPTestValueTransformer.m; sourceTree = "<group>"; };
 		14AF6AFA1DFC3D88009E5BC4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		14BA60E81DC0247700C97D6F /* SyncDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDelegateTests.swift; sourceTree = "<group>"; };
 		14C046341DBC19D300CB6C16 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -905,6 +990,10 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				14A84E9E1E4E748000701B8A /* DateParser */,
+				14A84EA01E4E748000701B8A /* NSEntityDescription-SYNCPrimaryKey */,
+				14A84EA41E4E748000701B8A /* NSString-SYNCInflections */,
+				14A84EA61E4E748000701B8A /* SYNCPropertyMapper */,
 				14C046331DBC19D300CB6C16 /* Vendor */,
 				4403DBDB1D9F90B5001C8DA6 /* Sync */,
 				445D3BBA1D9F9373007F9E26 /* DATAFilter */,
@@ -922,6 +1011,73 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		14A84E9E1E4E748000701B8A /* DateParser */ = {
+			isa = PBXGroup;
+			children = (
+				14A84E9F1E4E748000701B8A /* DateTests.swift */,
+			);
+			path = DateParser;
+			sourceTree = "<group>";
+		};
+		14A84EA01E4E748000701B8A /* NSEntityDescription-SYNCPrimaryKey */ = {
+			isa = PBXGroup;
+			children = (
+				14A84EA11E4E748000701B8A /* Pod.xcdatamodeld */,
+				14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */,
+			);
+			path = "NSEntityDescription-SYNCPrimaryKey";
+			sourceTree = "<group>";
+		};
+		14A84EA41E4E748000701B8A /* NSString-SYNCInflections */ = {
+			isa = PBXGroup;
+			children = (
+				14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */,
+			);
+			path = "NSString-SYNCInflections";
+			sourceTree = "<group>";
+		};
+		14A84EA61E4E748000701B8A /* SYNCPropertyMapper */ = {
+			isa = PBXGroup;
+			children = (
+				14A84EA71E4E748000701B8A /* DictionaryTests.swift */,
+				14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */,
+				14A84EAA1E4E748000701B8A /* HelperTests.m */,
+				14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */,
+				14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */,
+				14A84EAD1E4E748000701B8A /* Models */,
+				14A84EC01E4E748000701B8A /* Transformers */,
+			);
+			path = SYNCPropertyMapper;
+			sourceTree = "<group>";
+		};
+		14A84EAD1E4E748000701B8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */,
+				14A84EB01E4E748000701B8A /* 121.xcdatamodeld */,
+				14A84EB21E4E748000701B8A /* 123.xcdatamodeld */,
+				14A84EB41E4E748000701B8A /* 129.xcdatamodeld */,
+				14A84EB61E4E748000701B8A /* 137.xcdatamodeld */,
+				14A84EB81E4E748000701B8A /* 140.xcdatamodeld */,
+				14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */,
+				14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */,
+				14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		14A84EC01E4E748000701B8A /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */,
+				14A84EC21E4E748000701B8A /* DateStringTransformer.h */,
+				14A84EC31E4E748000701B8A /* DateStringTransformer.m */,
+				14A84EC41E4E748000701B8A /* HYPTestValueTransformer.h */,
+				14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */,
+			);
+			path = Transformers;
+			sourceTree = "<group>";
+		};
 		14C046331DBC19D300CB6C16 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,7 +1090,6 @@
 			isa = PBXGroup;
 			children = (
 				14241EC01DBC3AAA0042ED81 /* Info.plist */,
-				14C0AF801BD6D4230009ECBE /* .travis.yml */,
 				14C0AF811BD6D4230009ECBE /* CHANGELOG.md */,
 				14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */,
 				14C0AF831BD6D4230009ECBE /* README.md */,
@@ -1893,23 +2048,34 @@
 				14D93C5F1E4E68BA00DED595 /* 113.xcdatamodeld in Sources */,
 				14D93C601E4E68BA00DED595 /* 125.xcdatamodeld in Sources */,
 				14D93C611E4E68BA00DED595 /* 151-many-to-many.xcdatamodeld in Sources */,
+				14A84EF61E4E748000701B8A /* 142.xcdatamodeld in Sources */,
+				14A84EED1E4E748000701B8A /* 129.xcdatamodeld in Sources */,
 				14D93C621E4E68BA00DED595 /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				14D93C631E4E68BA00DED595 /* 151-ordered-to-many.xcdatamodeld in Sources */,
 				14D93C641E4E68BA00DED595 /* 151-to-many.xcdatamodeld in Sources */,
 				14D93C651E4E68BA00DED595 /* 157.xcdatamodeld in Sources */,
 				14D93C661E4E68BA00DED595 /* 179.xcdatamodeld in Sources */,
+				14A84EEA1E4E748000701B8A /* 123.xcdatamodeld in Sources */,
+				14A84EFF1E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */,
 				14D93C671E4E68BA00DED595 /* 202.xcdatamodeld in Sources */,
 				14D93C681E4E68BA00DED595 /* 225.xcdatamodeld in Sources */,
 				14D93C691E4E68BA00DED595 /* 233.xcdatamodeld in Sources */,
 				14D93C6A1E4E68BA00DED595 /* 239.xcdatamodeld in Sources */,
+				14A84EFC1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */,
 				14D93C6B1E4E68BA00DED595 /* 254.xcdatamodeld in Sources */,
+				14A84ED21E4E748000701B8A /* DictionaryTests.swift in Sources */,
+				14A84EDB1E4E748000701B8A /* HelperTests.m in Sources */,
+				14A84EF31E4E748000701B8A /* 140.xcdatamodeld in Sources */,
 				14D93C6C1E4E68BA00DED595 /* 257.xcdatamodeld in Sources */,
 				14D93C6D1E4E68BA00DED595 /* 265.xcdatamodeld in Sources */,
 				14D93C6E1E4E68BA00DED595 /* 277.xcdatamodeld in Sources */,
 				14D93C6F1E4E68BA00DED595 /* 280.xcdatamodeld in Sources */,
 				14D93C701E4E68BA00DED595 /* 283.xcdatamodeld in Sources */,
+				14A84ECC1E4E748000701B8A /* PrimaryKeyTests.m in Sources */,
 				14D93C711E4E68BA00DED595 /* 320.xcdatamodeld in Sources */,
 				14D93C721E4E68BA00DED595 /* Camelcase.xcdatamodeld in Sources */,
+				14A84F051E4E748000701B8A /* HYPTestValueTransformer.m in Sources */,
+				14A84EF01E4E748000701B8A /* 137.xcdatamodeld in Sources */,
 				14D93C731E4E68BA00DED595 /* Contacts.xcdatamodeld in Sources */,
 				14D93C741E4E68BA00DED595 /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14D93C751E4E68BA00DED595 /* id.xcdatamodeld in Sources */,
@@ -1917,10 +2083,14 @@
 				14D93C771E4E68BA00DED595 /* Markets.xcdatamodeld in Sources */,
 				14D93C781E4E68BA00DED595 /* Notes.xcdatamodeld in Sources */,
 				14D93C791E4E68BA00DED595 /* NotesB.xcdatamodeld in Sources */,
+				14A84ECF1E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */,
+				14A84EC91E4E748000701B8A /* Pod.xcdatamodeld in Sources */,
 				14D93C7A1E4E68BA00DED595 /* OrderedSocial.xcdatamodeld in Sources */,
 				14D93C7B1E4E68BA00DED595 /* Organizations.xcdatamodeld in Sources */,
 				14D93C7C1E4E68BA00DED595 /* Patients.xcdatamodeld in Sources */,
 				14D93C7D1E4E68BA00DED595 /* Recursive.xcdatamodeld in Sources */,
+				14A84ED51E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */,
+				14A84EE11E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */,
 				14D93C7E1E4E68BA00DED595 /* Social.xcdatamodeld in Sources */,
 				14D93C7F1E4E68BA00DED595 /* Tests.xcdatamodeld in Sources */,
 				14D93C801E4E68BA00DED595 /* ToOne.xcdatamodeld in Sources */,
@@ -1935,12 +2105,18 @@
 				14D93C541E4E689F00DED595 /* SyncTests.swift in Sources */,
 				14D93C551E4E689F00DED595 /* SyncDelegateTests.swift in Sources */,
 				14D93C561E4E689F00DED595 /* NSPersistentContainerTests.swift in Sources */,
+				14A84F021E4E748000701B8A /* DateStringTransformer.m in Sources */,
 				14D93C571E4E689F00DED595 /* InsertOrUpdateTests.swift in Sources */,
 				14D93C581E4E689F00DED595 /* UpdateTests.swift in Sources */,
+				14A84EC61E4E748000701B8A /* DateTests.swift in Sources */,
 				14D93C591E4E689F00DED595 /* DeleteTests.swift in Sources */,
+				14A84EF91E4E748000701B8A /* Model.xcdatamodeld in Sources */,
 				14D93C5A1E4E689F00DED595 /* FetchTests.swift in Sources */,
+				14A84EE41E4E748000701B8A /* 112.xcdatamodeld in Sources */,
 				14D93C5B1E4E68A400DED595 /* DATAFilterTests.swift in Sources */,
 				14D93C5C1E4E68AF00DED595 /* TestCheckTests.swift in Sources */,
+				14A84EE71E4E748000701B8A /* 121.xcdatamodeld in Sources */,
+				14A84EDE1E4E748000701B8A /* HYPDictionaryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1953,23 +2129,34 @@
 				14A84E601E4E6B2800701B8A /* NSArray+SyncTests.swift in Sources */,
 				14A84E611E4E6B2800701B8A /* NSEntityDescription+SyncTests.swift in Sources */,
 				14A84E621E4E6B2800701B8A /* NSManagedObject+SyncTests.swift in Sources */,
+				14A84EF71E4E748000701B8A /* 142.xcdatamodeld in Sources */,
+				14A84EEE1E4E748000701B8A /* 129.xcdatamodeld in Sources */,
 				14A84E631E4E6B2800701B8A /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				14A84E641E4E6B2800701B8A /* SyncTests.swift in Sources */,
 				14A84E651E4E6B2800701B8A /* SyncDelegateTests.swift in Sources */,
 				14A84E661E4E6B2800701B8A /* NSPersistentContainerTests.swift in Sources */,
 				14A84E671E4E6B2800701B8A /* InsertOrUpdateTests.swift in Sources */,
+				14A84EEB1E4E748000701B8A /* 123.xcdatamodeld in Sources */,
+				14A84F001E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */,
 				14A84E681E4E6B2800701B8A /* UpdateTests.swift in Sources */,
 				14A84E691E4E6B2800701B8A /* DeleteTests.swift in Sources */,
 				14A84E6A1E4E6B2800701B8A /* FetchTests.swift in Sources */,
 				14A84E6B1E4E6B2F00701B8A /* DATAFilterTests.swift in Sources */,
+				14A84EFD1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */,
 				14A84E6C1E4E6B2F00701B8A /* TestCheckTests.swift in Sources */,
+				14A84ED31E4E748000701B8A /* DictionaryTests.swift in Sources */,
+				14A84EDC1E4E748000701B8A /* HelperTests.m in Sources */,
+				14A84EF41E4E748000701B8A /* 140.xcdatamodeld in Sources */,
 				14A84E6D1E4E6B3400701B8A /* Model.xcdatamodeld in Sources */,
 				14A84E6E1E4E6B4100701B8A /* 3ca82a0.xcdatamodeld in Sources */,
 				14A84E6F1E4E6B4100701B8A /* 84.xcdatamodeld in Sources */,
 				14A84E701E4E6B4100701B8A /* 113.xcdatamodeld in Sources */,
 				14A84E711E4E6B4100701B8A /* 125.xcdatamodeld in Sources */,
+				14A84ECD1E4E748000701B8A /* PrimaryKeyTests.m in Sources */,
 				14A84E721E4E6B4100701B8A /* 151-many-to-many.xcdatamodeld in Sources */,
 				14A84E731E4E6B4100701B8A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
+				14A84F061E4E748000701B8A /* HYPTestValueTransformer.m in Sources */,
+				14A84EF11E4E748000701B8A /* 137.xcdatamodeld in Sources */,
 				14A84E741E4E6B4100701B8A /* 151-ordered-to-many.xcdatamodeld in Sources */,
 				14A84E751E4E6B4100701B8A /* 151-to-many.xcdatamodeld in Sources */,
 				14A84E761E4E6B4100701B8A /* 157.xcdatamodeld in Sources */,
@@ -1977,10 +2164,14 @@
 				14A84E781E4E6B4100701B8A /* 202.xcdatamodeld in Sources */,
 				14A84E791E4E6B4100701B8A /* 225.xcdatamodeld in Sources */,
 				14A84E7A1E4E6B4100701B8A /* 233.xcdatamodeld in Sources */,
+				14A84ED01E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */,
+				14A84ECA1E4E748000701B8A /* Pod.xcdatamodeld in Sources */,
 				14A84E7B1E4E6B4100701B8A /* 239.xcdatamodeld in Sources */,
 				14A84E7C1E4E6B4100701B8A /* 254.xcdatamodeld in Sources */,
 				14A84E7D1E4E6B4100701B8A /* 257.xcdatamodeld in Sources */,
 				14A84E7E1E4E6B4100701B8A /* 265.xcdatamodeld in Sources */,
+				14A84ED61E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */,
+				14A84EE21E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */,
 				14A84E7F1E4E6B4100701B8A /* 277.xcdatamodeld in Sources */,
 				14A84E801E4E6B4100701B8A /* 280.xcdatamodeld in Sources */,
 				14A84E811E4E6B4100701B8A /* 283.xcdatamodeld in Sources */,
@@ -1995,12 +2186,18 @@
 				14A84E8A1E4E6B4100701B8A /* NotesB.xcdatamodeld in Sources */,
 				14A84E8B1E4E6B4100701B8A /* OrderedSocial.xcdatamodeld in Sources */,
 				14A84E8C1E4E6B4100701B8A /* Organizations.xcdatamodeld in Sources */,
+				14A84F031E4E748000701B8A /* DateStringTransformer.m in Sources */,
 				14A84E8D1E4E6B4100701B8A /* Patients.xcdatamodeld in Sources */,
 				14A84E8E1E4E6B4100701B8A /* Recursive.xcdatamodeld in Sources */,
+				14A84EC71E4E748000701B8A /* DateTests.swift in Sources */,
 				14A84E8F1E4E6B4100701B8A /* Social.xcdatamodeld in Sources */,
+				14A84EFA1E4E748000701B8A /* Model.xcdatamodeld in Sources */,
 				14A84E901E4E6B4100701B8A /* Tests.xcdatamodeld in Sources */,
+				14A84EE51E4E748000701B8A /* 112.xcdatamodeld in Sources */,
 				14A84E911E4E6B4100701B8A /* ToOne.xcdatamodeld in Sources */,
 				14A84E921E4E6B4100701B8A /* Unique.xcdatamodeld in Sources */,
+				14A84EE81E4E748000701B8A /* 121.xcdatamodeld in Sources */,
+				14A84EDF1E4E748000701B8A /* HYPDictionaryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2015,26 +2212,36 @@
 				142CD2A71DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
 				14D93C2A1E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14975C321DBC37180024901A /* NSManagedObject+Sync.swift in Sources */,
+				14A84EC81E4E748000701B8A /* DateTests.swift in Sources */,
 				14975C331DBC37180024901A /* NSManagedObjectContext+Sync.swift in Sources */,
+				14A84EFB1E4E748000701B8A /* Model.xcdatamodeld in Sources */,
+				14A84ECB1E4E748000701B8A /* Pod.xcdatamodeld in Sources */,
 				14975C341DBC37180024901A /* Sync.swift in Sources */,
 				14D93C121E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */,
 				14975C351DBC37180024901A /* DATAFilter.swift in Sources */,
 				14975C371DBC37180024901A /* TestCheck.swift in Sources */,
 				14BA60EB1DC0247700C97D6F /* SyncDelegateTests.swift in Sources */,
+				14A84ED41E4E748000701B8A /* DictionaryTests.swift in Sources */,
 				14D93C361E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */,
+				14A84EE61E4E748000701B8A /* 112.xcdatamodeld in Sources */,
 				14975C381DBC37180024901A /* JSON.swift in Sources */,
 				14975C391DBC37180024901A /* Helper.swift in Sources */,
 				14975C3A1DBC37180024901A /* 151-many-to-many.xcdatamodeld in Sources */,
 				14975C3B1DBC37180024901A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				14E9C13D1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */,
 				14975C3C1DBC37180024901A /* 151-ordered-to-many.xcdatamodeld in Sources */,
+				14A84EEF1E4E748000701B8A /* 129.xcdatamodeld in Sources */,
 				14D93C1E1E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 				14975C3D1DBC37180024901A /* 151-to-many.xcdatamodeld in Sources */,
 				14975C3E1DBC37180024901A /* 225.xcdatamodeld in Sources */,
 				14975C3F1DBC37180024901A /* 280.xcdatamodeld in Sources */,
+				14A84EE91E4E748000701B8A /* 121.xcdatamodeld in Sources */,
+				14A84F071E4E748000701B8A /* HYPTestValueTransformer.m in Sources */,
+				14A84ECE1E4E748000701B8A /* PrimaryKeyTests.m in Sources */,
 				146EB2501DEF75D70068EDC3 /* DeleteTests.swift in Sources */,
 				44584FDE1DF2EE550082D7A0 /* FetchTests.swift in Sources */,
 				140D43261DFF4D3A00E3B159 /* 277.xcdatamodeld in Sources */,
+				14A84EDD1E4E748000701B8A /* HelperTests.m in Sources */,
 				444546D81DF06E2600CC7928 /* UpdateTests.swift in Sources */,
 				14975C401DBC37180024901A /* 283.xcdatamodeld in Sources */,
 				14975C411DBC37180024901A /* 113.xcdatamodeld in Sources */,
@@ -2044,21 +2251,30 @@
 				14975C451DBC37180024901A /* 202.xcdatamodeld in Sources */,
 				14975C461DBC37180024901A /* 239.xcdatamodeld in Sources */,
 				14975C471DBC37180024901A /* 254.xcdatamodeld in Sources */,
+				14A84F041E4E748000701B8A /* DateStringTransformer.m in Sources */,
+				14A84EEC1E4E748000701B8A /* 123.xcdatamodeld in Sources */,
 				1421405F1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
 				146EB2531DEF75D70068EDC3 /* InsertOrUpdateTests.swift in Sources */,
+				14A84ED71E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */,
+				14A84EF21E4E748000701B8A /* 137.xcdatamodeld in Sources */,
 				14975C481DBC37180024901A /* 257.xcdatamodeld in Sources */,
 				14E285311DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */,
 				14975C491DBC37180024901A /* 84.xcdatamodeld in Sources */,
 				4E28B5A21DEE43F8007FED27 /* 3ca82a0.xcdatamodeld in Sources */,
 				14975C4A1DBC37180024901A /* Camelcase.xcdatamodeld in Sources */,
+				14A84F011E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */,
 				14975C4B1DBC37180024901A /* Contacts.xcdatamodeld in Sources */,
 				14975C4C1DBC37180024901A /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				142CD2B01DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14975C4D1DBC37180024901A /* id.xcdatamodeld in Sources */,
+				14A84EE01E4E748000701B8A /* HYPDictionaryTests.m in Sources */,
 				14975C4E1DBC37180024901A /* InsertObjectsInParent.xcdatamodeld in Sources */,
+				14A84EF51E4E748000701B8A /* 140.xcdatamodeld in Sources */,
 				14975C4F1DBC37180024901A /* Markets.xcdatamodeld in Sources */,
 				14975C501DBC37180024901A /* Notes.xcdatamodeld in Sources */,
+				14A84EFE1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */,
 				14975C511DBC37180024901A /* NotesB.xcdatamodeld in Sources */,
+				14A84EF81E4E748000701B8A /* 142.xcdatamodeld in Sources */,
 				14975C521DBC37180024901A /* OrderedSocial.xcdatamodeld in Sources */,
 				14975C531DBC37180024901A /* Organizations.xcdatamodeld in Sources */,
 				14975C541DBC37180024901A /* Patients.xcdatamodeld in Sources */,
@@ -2068,9 +2284,11 @@
 				14975C581DBC37180024901A /* Unique.xcdatamodeld in Sources */,
 				14975C591DBC37180024901A /* NSArray+SyncTests.swift in Sources */,
 				14975C5A1DBC37180024901A /* NSEntityDescription+SyncTests.swift in Sources */,
+				14A84ED11E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */,
 				14AF6AFD1DFC3D88009E5BC4 /* Result.swift in Sources */,
 				14975C5B1DBC37180024901A /* NSManagedObject+SyncTests.swift in Sources */,
 				140944B21DF0BC280037F85A /* 265.xcdatamodeld in Sources */,
+				14A84EE31E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */,
 				14975C5C1DBC37180024901A /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				14975C5D1DBC37180024901A /* SyncTests.swift in Sources */,
 				14975C5E1DBC37180024901A /* DATAFilterTests.swift in Sources */,
@@ -2781,6 +2999,106 @@
 			);
 			currentVersion = 1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */;
 			path = Tests.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EA11E4E748000701B8A /* Pod.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EA21E4E748000701B8A /* Demo.xcdatamodel */,
+			);
+			currentVersion = 14A84EA21E4E748000701B8A /* Demo.xcdatamodel */;
+			path = Pod.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EAF1E4E748000701B8A /* hypbug.xcdatamodel */,
+			);
+			currentVersion = 14A84EAF1E4E748000701B8A /* hypbug.xcdatamodel */;
+			path = 112.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EB01E4E748000701B8A /* 121.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EB11E4E748000701B8A /* Model.xcdatamodel */,
+			);
+			currentVersion = 14A84EB11E4E748000701B8A /* Model.xcdatamodel */;
+			path = 121.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EB21E4E748000701B8A /* 123.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EB31E4E748000701B8A /* Model.xcdatamodel */,
+			);
+			currentVersion = 14A84EB31E4E748000701B8A /* Model.xcdatamodel */;
+			path = 123.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EB41E4E748000701B8A /* 129.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EB51E4E748000701B8A /* hypbug.xcdatamodel */,
+			);
+			currentVersion = 14A84EB51E4E748000701B8A /* hypbug.xcdatamodel */;
+			path = 129.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EB61E4E748000701B8A /* 137.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EB71E4E748000701B8A /* hypbug.xcdatamodel */,
+			);
+			currentVersion = 14A84EB71E4E748000701B8A /* hypbug.xcdatamodel */;
+			path = 137.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EB81E4E748000701B8A /* 140.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EB91E4E748000701B8A /* smartworkout.xcdatamodel */,
+			);
+			currentVersion = 14A84EB91E4E748000701B8A /* smartworkout.xcdatamodel */;
+			path = 140.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EBB1E4E748000701B8A /* hypbug.xcdatamodel */,
+			);
+			currentVersion = 14A84EBB1E4E748000701B8A /* hypbug.xcdatamodel */;
+			path = 142.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EBD1E4E748000701B8A /* Model.xcdatamodel */,
+			);
+			currentVersion = 14A84EBD1E4E748000701B8A /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14A84EBF1E4E748000701B8A /* Ordered.xcdatamodel */,
+			);
+			currentVersion = 14A84EBF1E4E748000701B8A /* Ordered.xcdatamodel */;
+			path = Ordered.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

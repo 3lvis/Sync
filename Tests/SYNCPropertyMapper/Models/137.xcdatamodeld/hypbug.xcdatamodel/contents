@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16C32f" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="InflectionCompany" representedClassName="" syncable="YES">
+        <attribute name="inflectionID" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="camelCaseUser" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="InflectionUser" inverseName="camelCaseCompany" inverseEntity="InflectionUser" syncable="YES">
+            <userInfo>
+                <entry key="hyper.nonExportable" value="value"/>
+            </userInfo>
+        </relationship>
+    </entity>
+    <entity name="InflectionUser" representedClassName="" syncable="YES">
+        <attribute name="customRemoteKey" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="randomRemoteKey"/>
+            </userInfo>
+        </attribute>
+        <attribute name="ignoredParameter" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.nonExportable" value="true"/>
+            </userInfo>
+        </attribute>
+        <attribute name="ignoreTransformable" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="inflectionBinaryData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="inflectionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inflectionID" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inflectionInteger" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inflectionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inflectionUserDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="camelCaseCompany" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InflectionCompany" inverseName="camelCaseUser" inverseEntity="InflectionCompany" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="InflectionCompany" positionX="-54" positionY="126" width="128" height="73"/>
+        <element name="InflectionUser" positionX="-263" positionY="36" width="128" height="195"/>
+    </elements>
+</model>

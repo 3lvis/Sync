@@ -59,4 +59,16 @@ import DATAStack
 
         return objects
     }
+
+    class func dataStackWithModelName(_ modelName: String, storeType: DATAStackStoreType = .sqLite) -> DATAStack {
+        let bundle = Bundle(for: Helper.self)
+        let dataStack = DATAStack(modelName: modelName, bundle: bundle, storeType: storeType)
+        return dataStack
+    }
+
+    class func insertEntity(_ name: String, dataStack: DATAStack) -> NSManagedObject {
+        let entity = NSEntityDescription.entity(forEntityName: name, in: dataStack.mainContext)!
+        return NSManagedObject(entity: entity, insertInto: dataStack.mainContext)
+    }
+
 }
