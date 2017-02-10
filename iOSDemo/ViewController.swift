@@ -1,6 +1,7 @@
 import UIKit
 import DATAStack
 import CoreData
+import Sync
 
 class ViewController: UITableViewController {
     unowned var dataStack: DATAStack
