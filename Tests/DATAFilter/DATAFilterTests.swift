@@ -34,7 +34,7 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testUsersCount() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         self.createUsers(context: dataStack.mainContext)
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -51,7 +51,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testMapChangesA() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
@@ -80,7 +80,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testMapChangesAWitNull() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
@@ -109,7 +109,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testMapChangesAWithNil() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
@@ -138,7 +138,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: None
      */
     func testMapChangesB() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
@@ -167,7 +167,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: None
      */
     func testMapChangesC() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
@@ -197,7 +197,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testUniquing() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
@@ -228,7 +228,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 0
      */
     func testStringID() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.note(remoteID: "123", text: "text", context: backgroundContext)
             try! backgroundContext.save()
@@ -247,7 +247,7 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testInsertOnly() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.user(remoteID: 0, firstName: "Amy", lastName: "Juergens", age: 21, context: backgroundContext)
             self.user(remoteID: 1, firstName: "Ben", lastName: "Boykewich", age: 23, context: backgroundContext)
@@ -270,7 +270,7 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testUpdateOnly() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.user(remoteID: 0, firstName: "Amy", lastName: "Juergens", age: 21, context: backgroundContext)
             self.user(remoteID: 1, firstName: "Ben", lastName: "Boykewich", age: 23, context: backgroundContext)
@@ -293,7 +293,7 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testDeleteOnly() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.user(remoteID: 0, firstName: "Amy", lastName: "Juergens", age: 21, context: backgroundContext)
             self.user(remoteID: 1, firstName: "Ben", lastName: "Boykewich", age: 23, context: backgroundContext)
@@ -321,7 +321,7 @@ class DATAFilterTests: XCTestCase {
      the set existing ID: 1, meaning that if an item with ID: 2 appears, then this item will be inserted.
      */
     func testPredicate() {
-        let dataStack = DATAStack(modelName: "Model", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 

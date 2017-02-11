@@ -11,7 +11,7 @@
 @implementation PrimaryKeyTests
 
 - (NSEntityDescription *)entityForName:(NSString *)name {
-    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Pod"
+    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"SYNCPrimaryKey"
                                                          bundle:[NSBundle bundleForClass:[self class]]
                                                       storeType:DATAStackStoreTypeInMemory];
 
