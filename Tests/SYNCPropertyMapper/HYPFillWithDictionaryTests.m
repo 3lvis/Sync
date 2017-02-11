@@ -2,19 +2,6 @@
 @import XCTest;
 
 #import "SYNCPropertyMapper.h"
-#import "OrderedUser+CoreDataClass.h"
-#import "OrderedNote+CoreDataClass.h"
-#import "Company+CoreDataClass.h"
-#import "Market+CoreDataClass.h"
-#import "Attribute+CoreDataClass.h"
-#import "Apartment+CoreDataClass.h"
-#import "Building+CoreDataClass.h"
-#import "Room+CoreDataClass.h"
-#import "Park+CoreDataClass.h"
-#import "Recursive+CoreDataClass.h"
-#import "User+CoreDataClass.h"
-#import "Note+CoreDataClass.h"
-#import "KeyPath+CoreDataClass.h"
 #import "HYPTestValueTransformer.h"
 
 @import DATAStack;
@@ -48,59 +35,64 @@
                                          inManagedObjectContext:context];
 }
 
-- (User *)userUsingDataStack:(DATAStack *)dataStack {
-    User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
-    user.age = @25;
-    user.birthDate = self.testDate;
-    user.contractID = @235;
-    user.driverIdentifier = @"ABC8283";
-    user.firstName = @"John";
-    user.lastName = @"Hyperseed";
-    user.userDescription = @"John Description";
-    user.remoteID = @111;
-    user.userType = @"Manager";
-    user.createdAt = self.testDate;
-    user.updatedAt = self.testDate;
-    user.numberOfAttendes = @30;
-    user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
-                                                                 @"Soccer",
-                                                                 @"Code",
-                                                                 @"More code"]];
-    user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                  @"juice" : @0.50}];
+- (NSManagedObject *)userUsingDataStack:(DATAStack *)dataStack {
+    NSManagedObject *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
+    [user setValue:@25 forKey:@"age"];
+    [user setValue:self.testDate forKey:@"birthDate"];
+    [user setValue:@235 forKey:@"contractID"];
+    [user setValue:@"ABC8283" forKey:@"driverIdentifier"];
+    [user setValue:@"John" forKey:@"firstName"];
+    [user setValue:@"Hyperseed" forKey:@"lastName"];
+    [user setValue:@"John Description" forKey:@"userDescription"];
+    [user setValue:@111 forKey:@"remoteID"];
+    [user setValue:@"Manager" forKey:@"userType"];
+    [user setValue:self.testDate forKey:@"createdAt"];
+    [user setValue:self.testDate forKey:@"updatedAt"];
+    [user setValue:@30 forKey:@"numberOfAttendes"];
+    [user setValue:@"raw" forKey:@"rawSigned"];
 
-    Note *note = [self noteWithID:@1 inContext:dataStack.mainContext];
-    note.user = user;
+    NSData *hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
+                                                                    @"Soccer",
+                                                                    @"Code",
+                                                                    @"More code"]];
+    [user setValue:hobbies forKey:@"hobbies"];
+
+    NSData *expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
+                                                                     @"juice" : @0.50}];
+    [user setValue:expenses forKey:@"expenses"];
+
+    NSManagedObject *note = [self noteWithID:@1 inContext:dataStack.mainContext];
+    [note setValue:user forKey:@"user"];
 
     note = [self noteWithID:@14 inContext:dataStack.mainContext];
-    note.user = user;
-    note.destroy = @YES;
+    [note setValue:user forKey:@"user"];
+    [note setValue:@YES forKey:@"destroy"];
 
     note = [self noteWithID:@7 inContext:dataStack.mainContext];
-    note.user = user;
+    [note setValue:user forKey:@"user"];
 
-    Company *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
-    company.user = user;
-
+    NSManagedObject *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
+    [company setValue:user forKey:@"user"];
+    
     return user;
 }
 
-- (Note *)noteWithID:(NSNumber *)remoteID
-           inContext:(NSManagedObjectContext *)context {
-    Note *note = [self entityNamed:@"Note" inContext:context];
-    note.remoteID = remoteID;
-    note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
+- (NSManagedObject *)noteWithID:(NSNumber *)remoteID
+                      inContext:(NSManagedObjectContext *)context {
+    NSManagedObject *note = [self entityNamed:@"Note" inContext:context];
+    [note setValue:remoteID forKey:@"remoteID"];
+    [note setValue:[NSString stringWithFormat:@"This is the text for the note %@", remoteID] forKey:@"text"];
 
     return note;
 }
 
-- (Company *)companyWithID:(NSNumber *)remoteID
-                   andName:(NSString *)name
-                 inContext:(NSManagedObjectContext *)context {
-    Company *company = [self entityNamed:@"Company" inContext:context];
-    company.remoteID = remoteID;
-    company.name = name;
-
+- (NSManagedObject *)companyWithID:(NSNumber *)remoteID
+                           andName:(NSString *)name
+                         inContext:(NSManagedObjectContext *)context {
+    NSManagedObject *company = [self entityNamed:@"Company" inContext:context];
+    [company setValue:remoteID forKey:@"remoteID"];
+    [company setValue:name forKey:@"name"];
+    
     return company;
 }
 
@@ -126,31 +118,31 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attribute *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
+    NSManagedObject *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects(attributes.integerString, @16);
-    XCTAssertEqualObjects(attributes.integer16, @16);
-    XCTAssertEqualObjects(attributes.integer32, @32);
-    XCTAssertEqualObjects(attributes.integer64, @64);
+    XCTAssertEqualObjects([attributes valueForKey:@"integerString"], @16);
+    XCTAssertEqualObjects([attributes valueForKey:@"integer16"], @16);
+    XCTAssertEqualObjects([attributes valueForKey:@"integer32"], @32);
+    XCTAssertEqualObjects([attributes valueForKey:@"integer64"], @64);
 
-    XCTAssertEqualObjects(attributes.decimalString, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
-    XCTAssertEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSDecimalNumber class]));
-    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSNumber class]));
+    XCTAssertEqualObjects([attributes valueForKey:@"decimalString"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimalString"] class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimalString"] class]), NSStringFromClass([NSNumber class]));
 
-    XCTAssertEqualObjects(attributes.decimal, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
-    XCTAssertEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSDecimalNumber class]));
-    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSNumber class]));
+    XCTAssertEqualObjects([attributes valueForKey:@"decimal"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimal"] class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimal"] class]), NSStringFromClass([NSNumber class]));
 
-    XCTAssertEqualObjects(attributes.doubleValueString, @12.2);
-    XCTAssertEqualObjects(attributes.doubleValue, @12.2);
-    XCTAssertEqualWithAccuracy(attributes.floatValueString.longValue, [@12 longValue], 1.0);
-    XCTAssertEqualWithAccuracy(attributes.floatValue.longValue, [@12 longValue], 1.0);
-    XCTAssertEqualObjects(attributes.string, @"string");
-    XCTAssertEqualObjects(attributes.boolean, @YES);
-    XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
-    XCTAssertNil(attributes.transformable);
-    XCTAssertEqualObjects(attributes.customTransformerString, @"Foo & bar");
+    XCTAssertEqualObjects([attributes valueForKey:@"doubleValueString"], @12.2);
+    XCTAssertEqualObjects([attributes valueForKey:@"doubleValue"], @12.2);
+    XCTAssertEqualWithAccuracy([[attributes valueForKey:@"floatValueString"] longValue], [@12 longValue], 1.0);
+    XCTAssertEqualWithAccuracy([[attributes valueForKey:@"floatValue"] longValue], [@12 longValue], 1.0);
+    XCTAssertEqualObjects([attributes valueForKey:@"string"], @"string");
+    XCTAssertEqualObjects([attributes valueForKey:@"boolean"], @YES);
+    XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
+    XCTAssertNil([attributes valueForKey:@"transformable"]);
+    XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
 }
 
 - (void)testAllAttributesInCamelCase {
@@ -173,31 +165,31 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attribute *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
+    NSManagedObject *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
     
-    XCTAssertEqualObjects(attributes.integerString, @16);
-    XCTAssertEqualObjects(attributes.integer16, @16);
-    XCTAssertEqualObjects(attributes.integer32, @32);
-    XCTAssertEqualObjects(attributes.integer64, @64);
-    
-    XCTAssertEqualObjects(attributes.decimalString, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
-    XCTAssertEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSDecimalNumber class]));
-    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSNumber class]));
-    
-    XCTAssertEqualObjects(attributes.decimal, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
-    XCTAssertEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSDecimalNumber class]));
-    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSNumber class]));
-    
-    XCTAssertEqualObjects(attributes.doubleValueString, @12.2);
-    XCTAssertEqualObjects(attributes.doubleValue, @12.2);
-    XCTAssertEqualWithAccuracy(attributes.floatValueString.longValue, [@12 longValue], 1.0);
-    XCTAssertEqualWithAccuracy(attributes.floatValue.longValue, [@12 longValue], 1.0);
-    XCTAssertEqualObjects(attributes.string, @"string");
-    XCTAssertEqualObjects(attributes.boolean, @YES);
-    XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
-    XCTAssertNil(attributes.transformable);
-    XCTAssertEqualObjects(attributes.customTransformerString, @"Foo & bar");
+    XCTAssertEqualObjects([attributes valueForKey:@"integerString"], @16);
+    XCTAssertEqualObjects([attributes valueForKey:@"integer16"], @16);
+    XCTAssertEqualObjects([attributes valueForKey:@"integer32"], @32);
+    XCTAssertEqualObjects([attributes valueForKey:@"integer64"], @64);
+
+    XCTAssertEqualObjects([attributes valueForKey:@"decimalString"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimalString"] class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimalString"] class]), NSStringFromClass([NSNumber class]));
+
+    XCTAssertEqualObjects([attributes valueForKey:@"decimal"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimal"] class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([[attributes valueForKey:@"decimal"] class]), NSStringFromClass([NSNumber class]));
+
+    XCTAssertEqualObjects([attributes valueForKey:@"doubleValueString"], @12.2);
+    XCTAssertEqualObjects([attributes valueForKey:@"doubleValue"], @12.2);
+    XCTAssertEqualWithAccuracy([[attributes valueForKey:@"floatValueString"] longValue], [@12 longValue], 1.0);
+    XCTAssertEqualWithAccuracy([[attributes valueForKey:@"floatValue"] longValue], [@12 longValue], 1.0);
+    XCTAssertEqualObjects([attributes valueForKey:@"string"], @"string");
+    XCTAssertEqualObjects([attributes valueForKey:@"boolean"], @YES);
+    XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
+    XCTAssertNil([attributes valueForKey:@"transformable"]);
+    XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
 }
 
 - (void)testFillManagedObjectWithDictionary {
@@ -205,7 +197,7 @@
                              @"last_name"  : @"Hyperseed"};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([user valueForKey:@"firstName"], values[@"first_name"]);
@@ -216,7 +208,7 @@
                              @"last_name"  : @"Hyperseed"};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{@"first_name" : [NSNull new],
@@ -231,7 +223,7 @@
     NSDictionary *values = @{@"age" : @24};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([user valueForKey:@"age"], values[@"age"]);
@@ -241,7 +233,7 @@
     NSDictionary *values = @{@"age" : @"24"};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     NSNumberFormatter *formatter = [NSNumberFormatter new];
@@ -254,7 +246,7 @@
     NSDictionary *values = @{@"birth_date" : @"1989-02-14T00:00:00+00:00"};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -271,7 +263,7 @@
                              @"age" : @30};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{@"first_name" : @"Jeanet"};
@@ -289,7 +281,7 @@
                              @"age" : @30};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     [user.managedObjectContext save:nil];
@@ -307,7 +299,7 @@
     NSDictionary *values = @{@"contract_id" : @100};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([user valueForKey:@"contractID"], @100);
@@ -319,14 +311,14 @@
                                             @"code"]};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][0], @"football");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"hobbies"]][0], @"football");
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][1], @"soccer");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"hobbies"]][1], @"soccer");
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][2], @"code");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"hobbies"]][2], @"code");
 }
 
 - (void)testDictionaryStorage {
@@ -334,12 +326,12 @@
                                              @"juice" : @0.50}};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.expenses][@"cake"], @12.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"expenses"]][@"cake"], @12.50);
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.expenses][@"juice"], @0.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"expenses"]][@"juice"], @0.50);
 }
 
 - (void)testReservedWords {
@@ -347,7 +339,7 @@
                              @"description": @"This is the description?",
                              @"type": @"user type"};
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([user valueForKey:@"remoteID"], @100);
@@ -361,7 +353,7 @@
                              @"number_of_attendes": @20};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -383,38 +375,38 @@
                              @"signed" : @"salesman"};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects(user.age, @20);
-    XCTAssertEqualObjects(user.driverIdentifier, @"123");
-    XCTAssertEqualObjects(user.rawSigned, @"salesman");
+    XCTAssertEqualObjects([user valueForKey:@"age"], @20);
+    XCTAssertEqualObjects([user valueForKey:@"driverIdentifier"], @"123");
+    XCTAssertEqualObjects([user valueForKey:@"rawSigned"], @"salesman");
 }
 
 - (void)testIgnoredTransformables {
     NSDictionary *values = @{@"ignoreTransformable" : @"I'm going to be ignored"};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
-    XCTAssertNil(user.ignoreTransformable);
+    XCTAssertNil([user valueForKey:@"ignoreTransformable"]);
 }
 
 - (void)testRegisteredTransformables {
     NSDictionary *values = @{@"registeredTransformable" : @"/Date(1451606400000)/"};
    
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *date = [dateFormat dateFromString:@"2016-01-01"];
-    XCTAssertNotNil(user.registeredTransformable);
-    XCTAssertEqualObjects(user.registeredTransformable, date);
-    XCTAssertTrue([user.registeredTransformable isKindOfClass:[NSDate class]]);
+    XCTAssertNotNil([user valueForKey:@"registeredTransformable"]);
+    XCTAssertEqualObjects([user valueForKey:@"registeredTransformable"], date);
+    XCTAssertTrue([[user valueForKey:@"registeredTransformable"] isKindOfClass:[NSDate class]]);
 }
 
 - (void)testCustomKey {
@@ -423,12 +415,12 @@
     NSDictionary *values = @{@"id": @"1",
                              @"other_attribute": @"Market 1"};
     
-    Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
+    NSManagedObject *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
 
     [market hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects(market.uniqueId, @"1");
-    XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
+    XCTAssertEqualObjects([market valueForKey:@"uniqueId"], @"1");
+    XCTAssertEqualObjects([market valueForKey:@"otherAttribute"], @"Market 1");
 }
 
 - (void)testCustomKeyPathSnakeCase {
@@ -441,12 +433,12 @@
                                      }
                              };
 
-    KeyPath *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
+    NSManagedObject *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
 
     [keyPaths hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects(keyPaths.snakeCaseDepthOne, @"Value 1");
-    XCTAssertEqualObjects(keyPaths.snakeCaseDepthTwo, @"Value 2");
+    XCTAssertEqualObjects([keyPaths valueForKey:@"snakeCaseDepthOne"], @"Value 1");
+    XCTAssertEqualObjects([keyPaths valueForKey:@"snakeCaseDepthTwo"], @"Value 2");
 }
 
 - (void)testCustomKeyPathCamelCase {
@@ -459,12 +451,12 @@
                                      }
                              };
 
-    KeyPath *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
+    NSManagedObject *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
 
     [keyPaths hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects(keyPaths.camelCaseDepthOne, @"Value 1");
-    XCTAssertEqualObjects(keyPaths.camelCaseDepthTwo, @"Value 2");
+    XCTAssertEqualObjects([keyPaths valueForKey:@"camelCaseDepthOne"], @"Value 1");
+    XCTAssertEqualObjects([keyPaths valueForKey:@"camelCaseDepthTwo"], @"Value 2");
 }
 
 @end

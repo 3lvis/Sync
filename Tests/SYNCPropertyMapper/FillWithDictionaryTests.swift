@@ -42,7 +42,7 @@ class FillWithDictionaryTests: XCTestCase {
     func testBug121() {
         let dataStack = Helper.dataStackWithModelName("121")
 
-        let album = Helper.insertEntity("Album", dataStack: dataStack) as! Album
+        let album = Helper.insertEntity("Album", dataStack: dataStack)
         let json = [
             "id": "a",
             "coverPhoto": ["id": "b"],

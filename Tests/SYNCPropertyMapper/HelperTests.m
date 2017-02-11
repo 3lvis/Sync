@@ -2,11 +2,6 @@
 @import XCTest;
 
 #import "NSManagedObject+SYNCPropertyMapperHelpers.h"
-#import "Company+CoreDataClass.h"
-#import "Market+CoreDataClass.h"
-#import "User+CoreDataClass.h"
-#import "Note+CoreDataClass.h"
-#import "KeyPath+CoreDataClass.h"
 
 @import DATAStack;
 
@@ -29,7 +24,7 @@
 }
 
 - (void)testAttributeDescriptionForKeyA {
-    Company *company = [self entityNamed:@"Company"];
+    NSManagedObject *company = [self entityNamed:@"Company"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = [company attributeDescriptionForRemoteKey:@"name"];
@@ -40,7 +35,7 @@
 }
 
 - (void)testAttributeDescriptionForKeyB {
-    Market *market = [self entityNamed:@"Market"];
+    NSManagedObject *market = [self entityNamed:@"Market"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = [market attributeDescriptionForRemoteKey:@"id"];
@@ -51,7 +46,7 @@
 }
 
 - (void)testAttributeDescriptionForKeyC {
-    User *user = [self entityNamed:@"User"];
+    NSManagedObject *user = [self entityNamed:@"User"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = [user attributeDescriptionForRemoteKey:@"age_of_person"];
@@ -65,7 +60,7 @@
 }
 
 - (void)testAttributeDescriptionForKeyD {
-    KeyPath *keyPath = [self entityNamed:@"KeyPath"];
+    NSManagedObject *keyPath = [self entityNamed:@"KeyPath"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = [keyPath attributeDescriptionForRemoteKey:@"snake_parent.value_one"];
@@ -82,7 +77,7 @@
 }
 
 - (void)testRemoteKeyForAttributeDescriptionA {
-    Company *company = [self entityNamed:@"Company"];
+    NSManagedObject *company = [self entityNamed:@"Company"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = company.entity.propertiesByName[@"name"];
@@ -93,7 +88,7 @@
 }
 
 - (void)testRemoteKeyForAttributeDescriptionB {
-    Market *market = [self entityNamed:@"Market"];
+    NSManagedObject *market = [self entityNamed:@"Market"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = market.entity.propertiesByName[@"uniqueId"];
@@ -104,7 +99,7 @@
 }
 
 - (void)testRemoteKeyForAttributeDescriptionC {
-    User *user = [self entityNamed:@"User"];
+    NSManagedObject *user = [self entityNamed:@"User"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = user.entity.propertiesByName[@"age"];    ;
@@ -117,7 +112,7 @@
 }
 
 - (void)testRemoteKeyForAttributeDescriptionD {
-    KeyPath *keyPath = [self entityNamed:@"KeyPath"];
+    NSManagedObject *keyPath = [self entityNamed:@"KeyPath"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = keyPath.entity.propertiesByName[@"snakeCaseDepthOne"];
@@ -134,7 +129,7 @@
 }
 
 - (void)testDestroyKey {
-    Note *note = [self entityNamed:@"Note"];
+    NSManagedObject *note = [self entityNamed:@"Note"];
     NSAttributeDescription *attributeDescription;
 
     attributeDescription = note.entity.propertiesByName[@"destroy"];    ;

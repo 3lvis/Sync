@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="Apartment" representedClassName="Apartment" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Apartment" representedClassName="Apartment" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="apartments" inverseEntity="Building" syncable="YES"/>
         <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Room" inverseName="apartment" inverseEntity="Room" syncable="YES"/>
     </entity>
-    <entity name="Attribute" representedClassName="Attribute" syncable="YES" codeGenerationType="class">
+    <entity name="Attribute" representedClassName="Attribute" syncable="YES">
         <attribute name="attributeType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="binaryData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="boolean" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
@@ -27,17 +27,17 @@
         <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transformable" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
-    <entity name="Building" representedClassName="Building" syncable="YES" codeGenerationType="class">
+    <entity name="Building" representedClassName="Building" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="apartments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Apartment" inverseName="building" inverseEntity="Apartment" syncable="YES"/>
         <relationship name="parks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Park" inverseName="building" inverseEntity="Park" syncable="YES"/>
     </entity>
-    <entity name="Company" representedClassName="Company" syncable="YES" codeGenerationType="class">
+    <entity name="Company" representedClassName="Company" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="KeyPath" representedClassName="KeyPath" syncable="YES" codeGenerationType="class">
+    <entity name="KeyPath" representedClassName="KeyPath" syncable="YES">
         <attribute name="camelCaseDepthOne" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.remoteKey" value="camelParent.valueOne"/>
@@ -59,7 +59,7 @@
             </userInfo>
         </attribute>
     </entity>
-    <entity name="Market" representedClassName="Market" syncable="YES" codeGenerationType="class">
+    <entity name="Market" representedClassName="Market" syncable="YES">
         <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
@@ -68,26 +68,26 @@
             </userInfo>
         </attribute>
     </entity>
-    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+    <entity name="Note" representedClassName="Note" syncable="YES">
         <attribute name="destroy" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notes" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Park" representedClassName="Park" syncable="YES" codeGenerationType="class">
+    <entity name="Park" representedClassName="Park" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="parks" inverseEntity="Building" syncable="YES"/>
     </entity>
-    <entity name="Recursive" representedClassName="Recursive" syncable="YES" codeGenerationType="class">
+    <entity name="Recursive" representedClassName="Recursive" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recursive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recursive" inverseName="recursives" inverseEntity="Recursive" syncable="YES"/>
         <relationship name="recursives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recursive" inverseName="recursive" inverseEntity="Recursive" syncable="YES"/>
     </entity>
-    <entity name="Room" representedClassName="Room" syncable="YES" codeGenerationType="class">
+    <entity name="Room" representedClassName="Room" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="apartment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Apartment" inverseName="rooms" inverseEntity="Apartment" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
             <userInfo>
                 <entry key="hyper.remoteKey" value="age_of_person"/>

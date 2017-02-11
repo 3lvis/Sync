@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="Owner" representedClassName="Owner" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Owner" representedClassName="Owner" syncable="YES">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="owner" inverseEntity="Task" syncable="YES">
             <userInfo>
@@ -13,12 +13,12 @@
             </userInfo>
         </relationship>
     </entity>
-    <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+    <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Owner" inverseName="task" inverseEntity="Owner" syncable="YES"/>
         <relationship name="taskList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskList" inverseName="tasks" inverseEntity="TaskList" syncable="YES"/>
     </entity>
-    <entity name="TaskList" representedClassName="TaskList" syncable="YES" codeGenerationType="class">
+    <entity name="TaskList" representedClassName="TaskList" syncable="YES">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Owner" inverseName="taskList" inverseEntity="Owner" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="taskList" inverseEntity="Task" syncable="YES"/>

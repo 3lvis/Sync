@@ -2,18 +2,6 @@
 @import XCTest;
 
 #import "SYNCPropertyMapper.h"
-#import "OrderedUser+CoreDataClass.h"
-#import "OrderedNote+CoreDataClass.h"
-#import "Company+CoreDataClass.h"
-#import "Market+CoreDataClass.h"
-#import "Attribute+CoreDataClass.h"
-#import "Apartment+CoreDataClass.h"
-#import "Building+CoreDataClass.h"
-#import "Room+CoreDataClass.h"
-#import "Park+CoreDataClass.h"
-#import "Recursive+CoreDataClass.h"
-#import "User+CoreDataClass.h"
-#import "Note+CoreDataClass.h"
 #import "HYPTestValueTransformer.h"
 
 @import DATAStack;
@@ -47,68 +35,72 @@
                                          inManagedObjectContext:context];
 }
 
-- (User *)userUsingDataStack:(DATAStack *)dataStack {
-    User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
-    user.age = @25;
-    user.birthDate = self.testDate;
-    user.contractID = @235;
-    user.driverIdentifier = @"ABC8283";
-    user.firstName = @"John";
-    user.lastName = @"Hyperseed";
-    user.userDescription = @"John Description";
-    user.remoteID = @111;
-    user.userType = @"Manager";
-    user.createdAt = self.testDate;
-    user.updatedAt = self.testDate;
-    user.numberOfAttendes = @30;
-    user.rawSigned = @"raw";
-    user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
-                                                                 @"Soccer",
-                                                                 @"Code",
-                                                                 @"More code"]];
-    user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                  @"juice" : @0.50}];
+- (NSManagedObject *)userUsingDataStack:(DATAStack *)dataStack {
+    NSManagedObject *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
+    [user setValue:@25 forKey:@"age"];
+    [user setValue:self.testDate forKey:@"birthDate"];
+    [user setValue:@235 forKey:@"contractID"];
+    [user setValue:@"ABC8283" forKey:@"driverIdentifier"];
+    [user setValue:@"John" forKey:@"firstName"];
+    [user setValue:@"Hyperseed" forKey:@"lastName"];
+    [user setValue:@"John Description" forKey:@"userDescription"];
+    [user setValue:@111 forKey:@"remoteID"];
+    [user setValue:@"Manager" forKey:@"userType"];
+    [user setValue:self.testDate forKey:@"createdAt"];
+    [user setValue:self.testDate forKey:@"updatedAt"];
+    [user setValue:@30 forKey:@"numberOfAttendes"];
+    [user setValue:@"raw" forKey:@"rawSigned"];
 
-    Note *note = [self noteWithID:@1 inContext:dataStack.mainContext];
-    note.user = user;
+    NSData *hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
+                                                                    @"Soccer",
+                                                                    @"Code",
+                                                                    @"More code"]];
+    [user setValue:hobbies forKey:@"hobbies"];
+
+    NSData *expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
+                                                                     @"juice" : @0.50}];
+    [user setValue:expenses forKey:@"expenses"];
+
+    NSManagedObject *note = [self noteWithID:@1 inContext:dataStack.mainContext];
+    [note setValue:user forKey:@"user"];
 
     note = [self noteWithID:@14 inContext:dataStack.mainContext];
-    note.user = user;
-    note.destroy = @YES;
+    [note setValue:user forKey:@"user"];
+    [note setValue:@YES forKey:@"destroy"];
 
     note = [self noteWithID:@7 inContext:dataStack.mainContext];
-    note.user = user;
+    [note setValue:user forKey:@"user"];
 
-    Company *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
-    company.user = user;
+    NSManagedObject *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
+    [company setValue:user forKey:@"user"];
 
     return user;
 }
 
-- (Note *)noteWithID:(NSNumber *)remoteID
+- (NSManagedObject *)noteWithID:(NSNumber *)remoteID
            inContext:(NSManagedObjectContext *)context {
-    Note *note = [self entityNamed:@"Note" inContext:context];
-    note.remoteID = remoteID;
-    note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
+    NSManagedObject *note = [self entityNamed:@"Note" inContext:context];
+    [note setValue:remoteID forKey:@"remoteID"];
+    [note setValue:[NSString stringWithFormat:@"This is the text for the note %@", remoteID] forKey:@"text"];
 
     return note;
 }
 
-- (OrderedNote *)orderedNoteWithID:(NSNumber *)remoteID
+- (NSManagedObject *)orderedNoteWithID:(NSNumber *)remoteID
            inContext:(NSManagedObjectContext *)context {
-    OrderedNote *note = [self entityNamed:@"OrderedNote" inContext:context];
-    note.remoteID = remoteID;
-    note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
+    NSManagedObject *note = [self entityNamed:@"OrderedNote" inContext:context];
+    [note setValue:remoteID forKey:@"remoteID"];
+    [note setValue:[NSString stringWithFormat:@"This is the text for the note %@", remoteID] forKey:@"text"];
 
     return note;
 }
 
-- (Company *)companyWithID:(NSNumber *)remoteID
+- (NSManagedObject *)companyWithID:(NSNumber *)remoteID
                    andName:(NSString *)name
                  inContext:(NSManagedObjectContext *)context {
-    Company *company = [self entityNamed:@"Company" inContext:context];
-    company.remoteID = remoteID;
-    company.name = name;
+    NSManagedObject *company = [self entityNamed:@"Company" inContext:context];
+    [company setValue:remoteID forKey:@"remoteID"];
+    [company setValue:name forKey:@"name"];
 
     return company;
 }
@@ -148,7 +140,7 @@
 
 - (void)testDictionaryNoRelationships {
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeNone];
     NSDictionary *comparedDictionary = [self userDictionaryWithNoRelationships];
     XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
@@ -156,7 +148,7 @@
 
 - (void)testDictionaryArrayRelationships {
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
     comparedDictionary[@"company"] = @{@"id" : @1,
@@ -188,36 +180,42 @@
                                                          bundle:[NSBundle bundleForClass:[self class]]
                                                       storeType:DATAStackStoreTypeInMemory];
 
-    OrderedUser *user = [self entityNamed:@"OrderedUser" inContext:dataStack.mainContext];
-    user.rawSigned = @"raw";
-    user.age = @25;
-    user.birthDate = self.testDate;
-    user.contractID = @235;
-    user.driverIdentifier = @"ABC8283";
-    user.firstName = @"John";
-    user.lastName = @"Hyperseed";
-    user.orderedUserDescription = @"John Description";
-    user.remoteID = @111;
-    user.orderedUserType = @"Manager";
-    user.createdAt = self.testDate;
-    user.updatedAt = self.testDate;
-    user.numberOfAttendes = @30;
-    user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
-                                                                 @"Soccer",
-                                                                 @"Code",
-                                                                 @"More code"]];
-    user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                  @"juice" : @0.50}];
+    NSManagedObject *user = [self entityNamed:@"OrderedUser" inContext:dataStack.mainContext];
+    [user setValue:@"raw" forKey:@"rawSigned"];
 
-    OrderedNote *note = [self orderedNoteWithID:@1 inContext:dataStack.mainContext];
-    note.user = user;
+    [user setValue:@"raw" forKey:@"rawSigned"];
+    [user setValue:@25 forKey:@"age"];
+    [user setValue:self.testDate forKey:@"birthDate"];
+    [user setValue:@235 forKey:@"contractID"];
+    [user setValue:@"ABC8283" forKey:@"driverIdentifier"];
+    [user setValue:@"John" forKey:@"firstName"];
+    [user setValue:@"Hyperseed" forKey:@"lastName"];
+    [user setValue:@"John Description" forKey:@"orderedUserDescription"];
+    [user setValue:@111 forKey:@"remoteID"];
+    [user setValue:@"Manager" forKey:@"orderedUserType"];
+    [user setValue:self.testDate forKey:@"createdAt"];
+    [user setValue:self.testDate forKey:@"updatedAt"];
+    [user setValue:@30 forKey:@"numberOfAttendes"];
+
+    NSData *hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
+                                                                    @"Soccer",
+                                                                    @"Code",
+                                                                    @"More code"]];
+    [user setValue:hobbies forKey:@"hobbies"];
+
+    NSData *expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
+                                                                     @"juice" : @0.50}];
+    [user setValue:expenses forKey:@"expenses"];
+
+    NSManagedObject *note = [self orderedNoteWithID:@1 inContext:dataStack.mainContext];
+    [note setValue:user forKey:@"user"];
 
     note = [self orderedNoteWithID:@14 inContext:dataStack.mainContext];
-    note.user = user;
-    note.destroy = @YES;
+    [note setValue:user forKey:@"user"];
+    [note setValue:@YES forKey:@"destroy"];
 
     note = [self orderedNoteWithID:@7 inContext:dataStack.mainContext];
-    note.user = user;
+    [note setValue:user forKey:@"user"];
 
     NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
@@ -251,7 +249,7 @@
 
 - (void)testDictionaryNestedRelationships {
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionary];
     NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
     comparedDictionary[@"company_attributes"] = @{@"id" : @1,
@@ -282,38 +280,46 @@
 - (void)testDictionaryDeepRelationships {
     DATAStack *dataStack = [self dataStack];
 
-    Building *building = [self entityNamed:@"Building" inContext:dataStack.mainContext];
-    building.remoteID = @1;
+    NSManagedObject *building = [self entityNamed:@"Building" inContext:dataStack.mainContext];
+    [building setValue:@1 forKey:@"remoteID"];
 
-    Park *park = [self entityNamed:@"Park" inContext:dataStack.mainContext];
-    park.remoteID = @1;
-    [building addParksObject:park];
+    NSManagedObject *park = [self entityNamed:@"Park" inContext:dataStack.mainContext];
+    [park setValue:@1 forKey:@"remoteID"];
 
-    Apartment *apartment = [self entityNamed:@"Apartment" inContext:dataStack.mainContext];
-    apartment.remoteID = @1;
+    NSMutableSet *parks = [building valueForKey:@"parks"];
+    [parks addObject:park];
+    [building setValue:parks forKey:@"parks"];
 
-    Room *room = [self entityNamed:@"Room" inContext:dataStack.mainContext];
-    room.remoteID = @1;
-    [apartment addRoomsObject:room];
+    NSManagedObject *apartment = [self entityNamed:@"Apartment" inContext:dataStack.mainContext];
+    [apartment setValue:@1 forKey:@"remoteID"];
 
-    [building addApartmentsObject:apartment];
+    NSManagedObject *room = [self entityNamed:@"Room" inContext:dataStack.mainContext];
+    [room setValue:@1 forKey:@"remoteID"];
+
+    NSMutableSet *rooms = [apartment valueForKey:@"rooms"];
+    [rooms addObject:room];
+    [apartment setValue:rooms forKey:@"rooms"];
+
+    NSMutableSet *apartments = [building valueForKey:@"apartments"];
+    [apartments addObject:apartment];
+    [building setValue:apartments forKey:@"apartments"];
 
     NSDictionary *buildingDictionary = [building hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSMutableDictionary *compared = [NSMutableDictionary new];
-    NSArray *rooms = @[@{@"id" : @1}];
-    NSArray *apartments = @[@{@"id" : @1,
-                              @"rooms" : rooms}];
-    NSArray *parks = @[@{@"id" : @1}];
+    NSArray *roomsArray = @[@{@"id" : @1}];
+    NSArray *apartmentsArray = @[@{@"id" : @1,
+                              @"rooms" : roomsArray}];
+    NSArray *parksArray = @[@{@"id" : @1}];
     compared[@"id"] = @1;
-    compared[@"apartments"] = apartments;
-    compared[@"parks"] = parks;
+    compared[@"apartments"] = apartmentsArray;
+    compared[@"parks"] = parksArray;
 
     XCTAssertEqualObjects(buildingDictionary, compared);
 }
 
 - (void)testDictionaryValuesKindOfClass {
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    NSManagedObject *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionary];
 
     XCTAssertTrue([dictionary[@"age_of_person"] isKindOfClass:[NSNumber class]]);
@@ -354,23 +360,32 @@
 - (void)testRecursive {
     DATAStack *dataStack = [self dataStack];
 
-    Recursive *megachild = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
-    megachild.remoteID = @"megachild";
+    NSManagedObject *megachild = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    [megachild setValue:@"megachild" forKey:@"remoteID"];
 
-    Recursive *grandchild = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
-    grandchild.remoteID = @"grandchild";
-    [grandchild addRecursivesObject:megachild];
-    megachild.recursive = grandchild;
+    NSManagedObject *grandchild = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    [grandchild setValue:@"grandchild" forKey:@"remoteID"];
 
-    Recursive *child = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
-    child.remoteID = @"child";
-    [child addRecursivesObject:grandchild];
-    grandchild.recursive = child;
+    NSMutableSet *recursives = [grandchild valueForKey:@"recursives"];
+    [recursives addObject:megachild];
+    [grandchild setValue:recursives forKey:@"recursives"];
+    [megachild setValue:grandchild forKey:@"recursive"];
 
-    Recursive *parent = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
-    parent.remoteID = @"Parent";
-    [parent addRecursivesObject:child];
-    child.recursive = parent;
+    NSManagedObject *child = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    [child setValue:@"child" forKey:@"remoteID"];
+
+    recursives = [child valueForKey:@"recursives"];
+    [recursives addObject:grandchild];
+    [child setValue:recursives forKey:@"recursives"];
+    [grandchild setValue:child forKey:@"recursive"];
+
+    NSManagedObject *parent = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    [parent setValue:@"Parent" forKey:@"remoteID"];
+
+    recursives = [parent valueForKey:@"recursives"];
+    [recursives addObject:child];
+    [parent setValue:recursives forKey:@"recursives"];
+    [child setValue:parent forKey:@"recursive"];
 
     NSDictionary *dictionary = [parent hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSArray *megachildArray = @[@{@"id" : @"megachild", @"recursives": @[]}];
