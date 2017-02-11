@@ -7,3 +7,4 @@ FOUNDATION_EXPORT const unsigned char SyncVersionString[];
 
 #import <Sync/SYNCPropertyMapper.h>
 #import <Sync/NSEntityDescription+SYNCPrimaryKey.h>
+#import <Sync/NSManagedObject+SYNCPropertyMapperHelpers.h>
