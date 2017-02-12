@@ -33,7 +33,12 @@ class DictionaryTests: XCTestCase {
             ] as [String : Any]
 
         let result = user.hyp_dictionary(using: .snakeCase)
-        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
+
+        for (key, value) in compared {
+            if let comparedValue = result[key] {
+                XCTAssertEqual(value as? NSObject, comparedValue as? NSObject)
+            }
+        }
 
         dataStack.drop()
     }
