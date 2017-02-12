@@ -1567,7 +1567,6 @@
 				44B547F21DCF27FF009215FA /* Frameworks */,
 				44B547F31DCF27FF009215FA /* Resources */,
 				44B548111DCF3B82009215FA /* Embed Frameworks */,
-				44B548121DCF3BBF009215FA /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -1921,24 +1920,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		44B548121DCF3BBF009215FA /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/DATAStack.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14241E6C1DBC39520042ED81 /* Sources */ = {
