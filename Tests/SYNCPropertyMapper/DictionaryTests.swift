@@ -24,7 +24,7 @@ class DictionaryTests: XCTestCase {
 
         let compared = [
             "description": "reserved",
-            "inflection_binary_data": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]),
+            "inflection_binary_data": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]) as NSData,
             "inflection_date": "1970-01-01T01:00:00+01:00",
             "randomRemoteKey": "randomRemoteKey",
             "inflection_id": 1,
@@ -47,7 +47,7 @@ class DictionaryTests: XCTestCase {
 
         let compared = [
             "description": "reserved",
-            "inflectionBinaryData": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]),
+            "inflectionBinaryData": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]) as NSData,
             "inflectionDate": "1970-01-01T01:00:00+01:00",
             "randomRemoteKey": "randomRemoteKey",
             "inflectionID": 1,
