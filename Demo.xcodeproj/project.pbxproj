@@ -327,6 +327,12 @@
 		14BA60EA1DC0247700C97D6F /* SyncDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA60E81DC0247700C97D6F /* SyncDelegateTests.swift */; };
 		14BA60EB1DC0247700C97D6F /* SyncDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA60E81DC0247700C97D6F /* SyncDelegateTests.swift */; };
 		14C046351DBC19D300CB6C16 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
+		14DAA1961DFF532900EF1FB1 /* 271.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14DAA1941DFF532900EF1FB1 /* 271.xcdatamodeld */; };
+		14DAA1971DFF532900EF1FB1 /* 271.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14DAA1941DFF532900EF1FB1 /* 271.xcdatamodeld */; };
+		14DAA1981DFF532900EF1FB1 /* 271.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14DAA1941DFF532900EF1FB1 /* 271.xcdatamodeld */; };
+		14DAA19A1DFF536700EF1FB1 /* 271.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DAA1991DFF536700EF1FB1 /* 271.json */; };
+		14DAA19B1DFF536700EF1FB1 /* 271.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DAA1991DFF536700EF1FB1 /* 271.json */; };
+		14DAA19C1DFF536700EF1FB1 /* 271.json in Resources */ = {isa = PBXBuildFile; fileRef = 14DAA1991DFF536700EF1FB1 /* 271.json */; };
 		14DAB3FD1DBC4620004B455F /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0D1DBC3D7D0042ED81 /* DATAStack.framework */; };
 		14DAB3FE1DBC4620004B455F /* SYNCPropertyMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0E1DBC3D7D0042ED81 /* SYNCPropertyMapper.framework */; };
 		14DAB4011DBC4625004B455F /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14DAB3FF1DBC4625004B455F /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -632,6 +638,8 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14DAA1951DFF532900EF1FB1 /* HyperExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyperExample.xcdatamodel; sourceTree = "<group>"; };
+		14DAA1991DFF536700EF1FB1 /* 271.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 271.json; sourceTree = "<group>"; };
 		14DAB3FF1DBC4625004B455F /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14DAB4001DBC4625004B455F /* SYNCPropertyMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SYNCPropertyMapper.framework; path = Carthage/Build/iOS/SYNCPropertyMapper.framework; sourceTree = "<group>"; };
 		14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerTests.swift; sourceTree = "<group>"; };
@@ -971,6 +979,7 @@
 				4E2F71F21DD60110003F0108 /* 233.json */,
 				44CA3F691DEB349100F242D0 /* 237.json */,
 				140944AA1DF0B9840037F85A /* 265.json */,
+				14DAA1991DFF536700EF1FB1 /* 271.json */,
 				140D43271DFF4DBC00E3B159 /* 277.json */,
 				4403DBEC1D9F90B5001C8DA6 /* 280.json */,
 				4403DBED1D9F90B5001C8DA6 /* 283.json */,
@@ -1039,6 +1048,7 @@
 				4403DC311D9F90B5001C8DA6 /* 254.xcdatamodeld */,
 				4403DC331D9F90B5001C8DA6 /* 257.xcdatamodeld */,
 				140944AE1DF0BC280037F85A /* 265.xcdatamodeld */,
+				14DAA1941DFF532900EF1FB1 /* 271.xcdatamodeld */,
 				140D43221DFF4D3A00E3B159 /* 277.xcdatamodeld */,
 				4403DC211D9F90B5001C8DA6 /* 280.xcdatamodeld */,
 				4403DC231D9F90B5001C8DA6 /* 283.xcdatamodeld */,
@@ -1524,6 +1534,7 @@
 				4403DC731D9F90B5001C8DA6 /* bug-239.json in Resources */,
 				14E9C1401DEA2EE100A21B9E /* 320.json in Resources */,
 				4403DC5D1D9F90B5001C8DA6 /* 151-many-to-many-tags.json in Resources */,
+				14DAA19A1DFF536700EF1FB1 /* 271.json in Resources */,
 				4403DC631D9F90B5001C8DA6 /* 157-locations.json in Resources */,
 				4403DC891D9F90B5001C8DA6 /* tagged_notes.json in Resources */,
 				4403DC621D9F90B5001C8DA6 /* 157-locations-update.json in Resources */,
@@ -1599,6 +1610,7 @@
 				14975C9C1DBC373A0024901A /* simple.json in Resources */,
 				14E9C1411DEA2EE100A21B9E /* 320.json in Resources */,
 				14975C9D1DBC373A0024901A /* users-with-nil.json in Resources */,
+				14DAA19B1DFF536700EF1FB1 /* 271.json in Resources */,
 				14975C9E1DBC373A0024901A /* users-with-null.json in Resources */,
 				14975C9F1DBC373A0024901A /* users.json in Resources */,
 				14975CA01DBC373A0024901A /* users2.json in Resources */,
@@ -1674,6 +1686,7 @@
 				14975CDA1DBC374C0024901A /* simple.json in Resources */,
 				14E9C1421DEA2EE100A21B9E /* 320.json in Resources */,
 				14975CDB1DBC374C0024901A /* users-with-nil.json in Resources */,
+				14DAA19C1DFF536700EF1FB1 /* 271.json in Resources */,
 				14975CDC1DBC374C0024901A /* users-with-null.json in Resources */,
 				14975CDD1DBC374C0024901A /* users.json in Resources */,
 				14975CDE1DBC374C0024901A /* users2.json in Resources */,
@@ -1788,6 +1801,7 @@
 			files = (
 				4E2F71EF1DD5FEFD003F0108 /* 233.xcdatamodeld in Sources */,
 				4403DCAC1D9F90B5001C8DA6 /* Patients.xcdatamodeld in Sources */,
+				14DAA1961DFF532900EF1FB1 /* 271.xcdatamodeld in Sources */,
 				4403DCB31D9F90B5001C8DA6 /* NSManagedObject+SyncTests.swift in Sources */,
 				142CD2A51DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
 				4403DC931D9F90B5001C8DA6 /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
@@ -1858,6 +1872,7 @@
 			files = (
 				4E2F71F01DD5FEFD003F0108 /* 233.xcdatamodeld in Sources */,
 				14975BFC1DBC36F00024901A /* NSArray+Sync.swift in Sources */,
+				14DAA1971DFF532900EF1FB1 /* 271.xcdatamodeld in Sources */,
 				14975BFD1DBC36F00024901A /* NSEntityDescription+Sync.swift in Sources */,
 				142CD2A61DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
 				14975BFE1DBC36F00024901A /* NSManagedObject+Sync.swift in Sources */,
@@ -1928,6 +1943,7 @@
 			files = (
 				4E2F71F11DD5FEFE003F0108 /* 233.xcdatamodeld in Sources */,
 				14975C301DBC37180024901A /* NSArray+Sync.swift in Sources */,
+				14DAA1981DFF532900EF1FB1 /* 271.xcdatamodeld in Sources */,
 				14975C311DBC37180024901A /* NSEntityDescription+Sync.swift in Sources */,
 				142CD2A71DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
 				14975C321DBC37180024901A /* NSManagedObject+Sync.swift in Sources */,
@@ -2689,6 +2705,16 @@
 			);
 			currentVersion = 1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */;
 			path = Tests.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14DAA1941DFF532900EF1FB1 /* 271.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14DAA1951DFF532900EF1FB1 /* HyperExample.xcdatamodel */,
+			);
+			currentVersion = 14DAA1951DFF532900EF1FB1 /* HyperExample.xcdatamodel */;
+			path = 271.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
