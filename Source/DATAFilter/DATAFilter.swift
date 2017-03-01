@@ -43,27 +43,18 @@ class DATAFilter: NSObject {
         let localPrimaryKeys = Array(primaryKeysAndObjectIDs.keys)
         let remotePrimaryKeys = changes.map { $0[remotePrimaryKey] }
         let remotePrimaryKeysWithoutNils = (remotePrimaryKeys.filter { (($0 as? NSObject) != NSNull()) && ($0 != nil) } as! [NSObject?]) as! [NSObject]
-
+        
         var remotePrimaryKeysAndChanges = [NSObject: [String: Any]]()
         for (primaryKey, change) in zip(remotePrimaryKeysWithoutNils, changes) {
             remotePrimaryKeysAndChanges[primaryKey] = change
         }
-
-        var intersection = Set(remotePrimaryKeysWithoutNils)
-        intersection.formIntersection(Set(localPrimaryKeys))
-        let updatedObjectIDs = Array(intersection)
-
-        var deletedObjectIDs = localPrimaryKeys
-        deletedObjectIDs = deletedObjectIDs.filter { value in
-            !remotePrimaryKeysWithoutNils.contains { $0.isEqual(value) }
-        }
-
-        var insertedObjectIDs = remotePrimaryKeysWithoutNils
-        insertedObjectIDs = insertedObjectIDs.filter { value in
-            !localPrimaryKeys.contains { $0.isEqual(value) }
-        }
+        
+        let remotePrimaryKeysSet = Set(remotePrimaryKeysWithoutNils)
+        let localPrimaryKeysSet = Set(localPrimaryKeys)
 
         if operations.contains(.Delete) {
+            var deletedObjectIDs = Array(localPrimaryKeysSet.subtracting(remotePrimaryKeysSet))
+            
             for fetchedID in deletedObjectIDs {
                 let objectID = primaryKeysAndObjectIDs[fetchedID]!
                 let object = context.object(with: objectID)
@@ -72,6 +63,8 @@ class DATAFilter: NSObject {
         }
 
         if operations.contains(.Insert) {
+            var insertedObjectIDs = Array(remotePrimaryKeysSet.subtracting(localPrimaryKeys))
+            
             for fetchedID in insertedObjectIDs {
                 let objectDictionary = remotePrimaryKeysAndChanges[fetchedID]!
                 inserted(objectDictionary)
@@ -79,6 +72,8 @@ class DATAFilter: NSObject {
         }
 
         if operations.contains(.Update) {
+            let updatedObjectIDs = Array(remotePrimaryKeysSet.intersection(localPrimaryKeysSet))
+            
             for fetchedID in updatedObjectIDs {
                 let JSON = remotePrimaryKeysAndChanges[fetchedID]!
                 let objectID = primaryKeysAndObjectIDs[fetchedID]!
