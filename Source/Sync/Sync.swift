@@ -23,10 +23,10 @@ public protocol SyncDelegate: class {
             self.rawValue = rawValue
         }
 
-        public static let Insert = OperationOptions(rawValue: 1 << 0)
-        public static let Update = OperationOptions(rawValue: 1 << 1)
-        public static let Delete = OperationOptions(rawValue: 1 << 2)
-        public static let All: OperationOptions = [.Insert, .Update, .Delete]
+        public static let insert = OperationOptions(rawValue: 1 << 0)
+        public static let update = OperationOptions(rawValue: 1 << 1)
+        public static let delete = OperationOptions(rawValue: 1 << 2)
+        public static let all: OperationOptions = [.insert, .update, .delete]
     }
 
     var downloadFinished = false
@@ -52,13 +52,13 @@ public protocol SyncDelegate: class {
     var changes: [[String: Any]]
     var entityName: String
     var predicate: NSPredicate?
-    var filterOperations = Sync.OperationOptions.All
+    var filterOperations = Sync.OperationOptions.all
     var parent: NSManagedObject?
     var parentRelationship: NSRelationshipDescription?
     var context: NSManagedObjectContext?
-    unowned var dataStack: DATAStack
+    unowned var dataStack: DataStack
 
-    public init(changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate? = nil, parent: NSManagedObject? = nil, parentRelationship: NSRelationshipDescription? = nil, context: NSManagedObjectContext? = nil, dataStack: DATAStack, operations: Sync.OperationOptions = .All) {
+    public init(changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate? = nil, parent: NSManagedObject? = nil, parentRelationship: NSRelationshipDescription? = nil, context: NSManagedObjectContext? = nil, dataStack: DataStack, operations: Sync.OperationOptions = .all) {
         self.changes = changes
         self.entityName = entityName
         self.predicate = predicate
@@ -162,8 +162,8 @@ public protocol SyncDelegate: class {
             fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
         }
 
-        let dataFilterOperations = DATAFilter.Operation(rawValue: operations.rawValue)
-        DATAFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
+        let dataFilterOperations = DataFilter.Operation(rawValue: operations.rawValue)
+        DataFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
             let shouldContinue = shouldContinueBlock?() ?? true
             guard shouldContinue else { return }
 
@@ -238,7 +238,7 @@ public protocol SyncDelegate: class {
         }
 
         for object in insertedOrUpdatedObjects {
-            object.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil)
+            object.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.all], shouldContinueBlock: nil, objectJSONBlock: nil)
         }
 
         if context.hasChanges {
@@ -268,7 +268,7 @@ public protocol SyncDelegate: class {
 
         let objects = try context.fetch(fetchRequest)
         for updated in objects {
-            updated.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.All], shouldContinueBlock: nil, objectJSONBlock: nil)
+            updated.sync_fill(with: changes, parent: nil, parentRelationship: nil, context: context, operations: [.all], shouldContinueBlock: nil, objectJSONBlock: nil)
         }
 
         if context.hasChanges {

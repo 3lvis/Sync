@@ -1,5 +1,5 @@
 import CoreData
-import Sync.NSEntityDescription_SYNCPrimaryKey
+import Sync.NSEntityDescription_SyncPrimaryKey
 
 public extension NSManagedObjectContext {
     /**
