@@ -64,7 +64,8 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]
-                                          parent:nil usingInflectionType:inflectionType
+                                          parent:nil
+                             usingInflectionType:inflectionType
                              andRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
 }
 
@@ -100,6 +101,23 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
     return [self hyp_dictionaryWithDateFormatter:dateFormatter
                                           parent:nil
                            usingRelationshipType:relationshipType];
+}
+
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
+                                              usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+    return [self hyp_dictionaryWithDateFormatter:dateFormatter
+                                          parent:nil
+                             usingInflectionType:inflectionType
+                             andRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
+}
+
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
+                                              usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType
+                                              andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+    return [self hyp_dictionaryWithDateFormatter:dateFormatter
+                                          parent:nil
+                             usingInflectionType:inflectionType
+                             andRelationshipType:relationshipType];
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter

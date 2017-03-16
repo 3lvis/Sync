@@ -25,14 +25,18 @@ class DictionaryTests: XCTestCase {
         let compared = [
             "description": "reserved",
             "inflection_binary_data": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]) as NSData,
-            "inflection_date": "1970-01-01T01:00:00+01:00",
+            "inflection_date": "1970-01-01",
             "randomRemoteKey": "randomRemoteKey",
             "inflection_id": 1,
             "inflection_string": "string",
             "inflection_integer": 1
             ] as [String : Any]
 
-        let result = user.hyp_dictionary(using: .snakeCase)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(identifier: "GMT")
+
+        let result = user.hyp_dictionary(with: formatter, using: .snakeCase)
 
         for (key, value) in compared {
             if let comparedValue = result[key] {
@@ -53,14 +57,18 @@ class DictionaryTests: XCTestCase {
         let compared = [
             "description": "reserved",
             "inflectionBinaryData": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]) as NSData,
-            "inflectionDate": "1970-01-01T01:00:00+01:00",
+            "inflectionDate": "1970-01-01",
             "randomRemoteKey": "randomRemoteKey",
             "inflectionID": 1,
             "inflectionString": "string",
             "inflectionInteger": 1
             ] as [String : Any]
 
-        let result = user.hyp_dictionary(using: .camelCase)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(identifier: "GMT")
+
+        let result = user.hyp_dictionary(with: formatter, using: .camelCase)
         print(result)
         XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
 
