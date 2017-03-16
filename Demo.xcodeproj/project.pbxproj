@@ -10,16 +10,9 @@
 		140944AB1DF0B9840037F85A /* 265.json in Resources */ = {isa = PBXBuildFile; fileRef = 140944AA1DF0B9840037F85A /* 265.json */; };
 		140944AC1DF0B9840037F85A /* 265.json in Resources */ = {isa = PBXBuildFile; fileRef = 140944AA1DF0B9840037F85A /* 265.json */; };
 		140944AD1DF0B9840037F85A /* 265.json in Resources */ = {isa = PBXBuildFile; fileRef = 140944AA1DF0B9840037F85A /* 265.json */; };
-		140944B21DF0BC280037F85A /* 265.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140944AE1DF0BC280037F85A /* 265.xcdatamodeld */; };
-		140D43261DFF4D3A00E3B159 /* 277.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140D43221DFF4D3A00E3B159 /* 277.xcdatamodeld */; };
 		140D43281DFF4DBC00E3B159 /* 277.json in Resources */ = {isa = PBXBuildFile; fileRef = 140D43271DFF4DBC00E3B159 /* 277.json */; };
 		140D43291DFF4DBC00E3B159 /* 277.json in Resources */ = {isa = PBXBuildFile; fileRef = 140D43271DFF4DBC00E3B159 /* 277.json */; };
 		140D432A1DFF4DBC00E3B159 /* 277.json in Resources */ = {isa = PBXBuildFile; fileRef = 140D43271DFF4DBC00E3B159 /* 277.json */; };
-		14154D871DBC465700926D4D /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F151DBC3DE60042ED81 /* DATAStack.framework */; };
-		14154D8B1DBC465B00926D4D /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14154D891DBC465B00926D4D /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14154D8F1DBC466200926D4D /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14154D8D1DBC466200926D4D /* DATAStack.framework */; };
-		14154D931DBC466700926D4D /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14154D911DBC466700926D4D /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1421405F1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */; };
 		14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
 		14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; };
@@ -48,74 +41,26 @@
 		14241EBC1DBC3A880042ED81 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
 		14241EBD1DBC3A880042ED81 /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
 		14241EBF1DBC3A880042ED81 /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
-		14241F071DBC3CDA0042ED81 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F051DBC3CDA0042ED81 /* DATAStack.framework */; };
-		14241F0B1DBC3CDF0042ED81 /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14241F091DBC3CDF0042ED81 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14241F0F1DBC3D7D0042ED81 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0D1DBC3D7D0042ED81 /* DATAStack.framework */; };
-		14241F131DBC3D820042ED81 /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14241F111DBC3D820042ED81 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14241F171DBC3DE60042ED81 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F151DBC3DE60042ED81 /* DATAStack.framework */; };
-		14241F1B1DBC3DEB0042ED81 /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14241F191DBC3DEB0042ED81 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14241F1D1DBC3E100042ED81 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F091DBC3CDF0042ED81 /* DATAStack.framework */; };
-		14241F211DBC3E140042ED81 /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14241F1F1DBC3E140042ED81 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142CD2A71DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */; };
 		142CD2A81DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */; };
 		142CD2A91DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */; };
 		142CD2AA1DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */; };
 		142CD2AB1DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */; };
-		142CD2B01DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B11DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B21DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B31DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B41DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
-		146EB2501DEF75D70068EDC3 /* DeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EB24C1DEF75D70068EDC3 /* DeleteTests.swift */; };
-		146EB2531DEF75D70068EDC3 /* InsertOrUpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EB24D1DEF75D70068EDC3 /* InsertOrUpdateTests.swift */; };
-		14975C301DBC37180024901A /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
-		14975C311DBC37180024901A /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
-		14975C321DBC37180024901A /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; };
-		14975C331DBC37180024901A /* NSManagedObjectContext+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; };
-		14975C341DBC37180024901A /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF91DA0021300E71A53 /* Sync.swift */; };
-		14975C351DBC37180024901A /* DATAFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BB81D9F932C007F9E26 /* DATAFilter.swift */; };
-		14975C371DBC37180024901A /* TestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449828031D9F8F2D00E2BCA3 /* TestCheck.swift */; };
-		14975C381DBC37180024901A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
-		14975C391DBC37180024901A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
-		14975C3A1DBC37180024901A /* 151-many-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC171D9F90B5001C8DA6 /* 151-many-to-many.xcdatamodeld */; };
-		14975C3B1DBC37180024901A /* 151-ordered-many-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC191D9F90B5001C8DA6 /* 151-ordered-many-to-many.xcdatamodeld */; };
-		14975C3C1DBC37180024901A /* 151-ordered-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC1B1D9F90B5001C8DA6 /* 151-ordered-to-many.xcdatamodeld */; };
-		14975C3D1DBC37180024901A /* 151-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC1D1D9F90B5001C8DA6 /* 151-to-many.xcdatamodeld */; };
-		14975C3E1DBC37180024901A /* 225.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC1F1D9F90B5001C8DA6 /* 225.xcdatamodeld */; };
-		14975C3F1DBC37180024901A /* 280.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC211D9F90B5001C8DA6 /* 280.xcdatamodeld */; };
-		14975C401DBC37180024901A /* 283.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC231D9F90B5001C8DA6 /* 283.xcdatamodeld */; };
-		14975C411DBC37180024901A /* 113.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC251D9F90B5001C8DA6 /* 113.xcdatamodeld */; };
-		14975C421DBC37180024901A /* 125.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC271D9F90B5001C8DA6 /* 125.xcdatamodeld */; };
-		14975C431DBC37180024901A /* 157.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC291D9F90B5001C8DA6 /* 157.xcdatamodeld */; };
-		14975C441DBC37180024901A /* 179.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC2B1D9F90B5001C8DA6 /* 179.xcdatamodeld */; };
-		14975C451DBC37180024901A /* 202.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC2D1D9F90B5001C8DA6 /* 202.xcdatamodeld */; };
-		14975C461DBC37180024901A /* 239.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC2F1D9F90B5001C8DA6 /* 239.xcdatamodeld */; };
-		14975C471DBC37180024901A /* 254.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC311D9F90B5001C8DA6 /* 254.xcdatamodeld */; };
-		14975C481DBC37180024901A /* 257.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC331D9F90B5001C8DA6 /* 257.xcdatamodeld */; };
-		14975C491DBC37180024901A /* 84.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC351D9F90B5001C8DA6 /* 84.xcdatamodeld */; };
-		14975C4A1DBC37180024901A /* Camelcase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC371D9F90B5001C8DA6 /* Camelcase.xcdatamodeld */; };
-		14975C4B1DBC37180024901A /* Contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC391D9F90B5001C8DA6 /* Contacts.xcdatamodeld */; };
-		14975C4C1DBC37180024901A /* CustomRelationshipKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC3B1D9F90B5001C8DA6 /* CustomRelationshipKey.xcdatamodeld */; };
-		14975C4D1DBC37180024901A /* id.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC3D1D9F90B5001C8DA6 /* id.xcdatamodeld */; };
-		14975C4E1DBC37180024901A /* InsertObjectsInParent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC3F1D9F90B5001C8DA6 /* InsertObjectsInParent.xcdatamodeld */; };
-		14975C4F1DBC37180024901A /* Markets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC411D9F90B5001C8DA6 /* Markets.xcdatamodeld */; };
-		14975C501DBC37180024901A /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC431D9F90B5001C8DA6 /* Notes.xcdatamodeld */; };
-		14975C511DBC37180024901A /* NotesB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC451D9F90B5001C8DA6 /* NotesB.xcdatamodeld */; };
-		14975C521DBC37180024901A /* OrderedSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC471D9F90B5001C8DA6 /* OrderedSocial.xcdatamodeld */; };
-		14975C531DBC37180024901A /* Organizations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC491D9F90B5001C8DA6 /* Organizations.xcdatamodeld */; };
-		14975C541DBC37180024901A /* Patients.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC4B1D9F90B5001C8DA6 /* Patients.xcdatamodeld */; };
-		14975C551DBC37180024901A /* Recursive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC4D1D9F90B5001C8DA6 /* Recursive.xcdatamodeld */; };
-		14975C561DBC37180024901A /* Social.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC4F1D9F90B5001C8DA6 /* Social.xcdatamodeld */; };
-		14975C571DBC37180024901A /* ToOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC511D9F90B5001C8DA6 /* ToOne.xcdatamodeld */; };
-		14975C581DBC37180024901A /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC531D9F90B5001C8DA6 /* Unique.xcdatamodeld */; };
-		14975C591DBC37180024901A /* NSArray+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC551D9F90B5001C8DA6 /* NSArray+SyncTests.swift */; };
-		14975C5A1DBC37180024901A /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC561D9F90B5001C8DA6 /* NSEntityDescription+SyncTests.swift */; };
-		14975C5B1DBC37180024901A /* NSManagedObject+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC571D9F90B5001C8DA6 /* NSManagedObject+SyncTests.swift */; };
-		14975C5C1DBC37180024901A /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC581D9F90B5001C8DA6 /* NSManagedObjectContext+SyncTests.swift */; };
-		14975C5D1DBC37180024901A /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC591D9F90B5001C8DA6 /* SyncTests.swift */; };
-		14975C5E1DBC37180024901A /* DATAFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBB1D9F9373007F9E26 /* DATAFilterTests.swift */; };
-		14975C5F1DBC37180024901A /* DATAFilter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBC1D9F9373007F9E26 /* DATAFilter.xcdatamodeld */; };
-		14975C631DBC37180024901A /* TestCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC760F1D9F9076003545A4 /* TestCheckTests.swift */; };
+		1467388C1E7ADBA700913C8E /* DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DATAStack.swift */; };
+		1467388D1E7ADBA700913C8E /* DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DATAStack.swift */; };
+		1467388E1E7ADBA700913C8E /* DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DATAStack.swift */; };
+		1467388F1E7ADBA700913C8E /* DATAStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DATAStack.swift */; };
+		146738961E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 146738911E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel */; };
+		146738971E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 146738911E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel */; };
+		146738991E7ADC1900913C8E /* ModelGroup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146738921E7ADC1900913C8E /* ModelGroup.xcdatamodeld */; };
+		1467389A1E7ADC1900913C8E /* ModelGroup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146738921E7ADC1900913C8E /* ModelGroup.xcdatamodeld */; };
+		1467389C1E7ADC1900913C8E /* SimpleModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 146738941E7ADC1900913C8E /* SimpleModel.xcdatamodel */; };
+		1467389D1E7ADC1900913C8E /* SimpleModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 146738941E7ADC1900913C8E /* SimpleModel.xcdatamodel */; };
+		1467389F1E7ADC1900913C8E /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146738951E7ADC1900913C8E /* Tests.swift */; };
+		146738A01E7ADC1900913C8E /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146738951E7ADC1900913C8E /* Tests.swift */; };
 		14975C641DBC373A0024901A /* 151-many-to-many-notes-update.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBDF1D9F90B5001C8DA6 /* 151-many-to-many-notes-update.json */; };
 		14975C651DBC373A0024901A /* 151-many-to-many-notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBE01D9F90B5001C8DA6 /* 151-many-to-many-notes.json */; };
 		14975C661DBC373A0024901A /* 151-many-to-many-tags.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DBE11D9F90B5001C8DA6 /* 151-many-to-many-tags.json */; };
@@ -302,78 +247,54 @@
 		14A84E9A1E4E70B900701B8A /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A84E9B1E4E70B900701B8A /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A84E9C1E4E70B900701B8A /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14A84E9D1E4E70CD00701B8A /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E8B1DBC39690042ED81 /* Sync.framework */; };
 		14A84EC61E4E748000701B8A /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84E9F1E4E748000701B8A /* DateTests.swift */; };
 		14A84EC71E4E748000701B8A /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84E9F1E4E748000701B8A /* DateTests.swift */; };
-		14A84EC81E4E748000701B8A /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84E9F1E4E748000701B8A /* DateTests.swift */; };
 		14A84ECC1E4E748000701B8A /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */; };
 		14A84ECD1E4E748000701B8A /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */; };
-		14A84ECE1E4E748000701B8A /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */; };
 		14A84ECF1E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */; };
 		14A84ED01E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */; };
-		14A84ED11E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */; };
 		14A84ED21E4E748000701B8A /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA71E4E748000701B8A /* DictionaryTests.swift */; };
 		14A84ED31E4E748000701B8A /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA71E4E748000701B8A /* DictionaryTests.swift */; };
-		14A84ED41E4E748000701B8A /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA71E4E748000701B8A /* DictionaryTests.swift */; };
 		14A84ED51E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */; };
 		14A84ED61E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */; };
-		14A84ED71E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */; };
 		14A84EDB1E4E748000701B8A /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAA1E4E748000701B8A /* HelperTests.m */; };
 		14A84EDC1E4E748000701B8A /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAA1E4E748000701B8A /* HelperTests.m */; };
-		14A84EDD1E4E748000701B8A /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAA1E4E748000701B8A /* HelperTests.m */; };
 		14A84EDE1E4E748000701B8A /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */; };
 		14A84EDF1E4E748000701B8A /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */; };
-		14A84EE01E4E748000701B8A /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */; };
 		14A84EE11E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */; };
 		14A84EE21E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */; };
-		14A84EE31E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */; };
 		14A84EE41E4E748000701B8A /* 112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */; };
 		14A84EE51E4E748000701B8A /* 112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */; };
-		14A84EE61E4E748000701B8A /* 112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */; };
 		14A84EE71E4E748000701B8A /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB01E4E748000701B8A /* 121.xcdatamodeld */; };
 		14A84EE81E4E748000701B8A /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB01E4E748000701B8A /* 121.xcdatamodeld */; };
-		14A84EE91E4E748000701B8A /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB01E4E748000701B8A /* 121.xcdatamodeld */; };
 		14A84EEA1E4E748000701B8A /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB21E4E748000701B8A /* 123.xcdatamodeld */; };
 		14A84EEB1E4E748000701B8A /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB21E4E748000701B8A /* 123.xcdatamodeld */; };
-		14A84EEC1E4E748000701B8A /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB21E4E748000701B8A /* 123.xcdatamodeld */; };
 		14A84EED1E4E748000701B8A /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB41E4E748000701B8A /* 129.xcdatamodeld */; };
 		14A84EEE1E4E748000701B8A /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB41E4E748000701B8A /* 129.xcdatamodeld */; };
-		14A84EEF1E4E748000701B8A /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB41E4E748000701B8A /* 129.xcdatamodeld */; };
 		14A84EF01E4E748000701B8A /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB61E4E748000701B8A /* 137.xcdatamodeld */; };
 		14A84EF11E4E748000701B8A /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB61E4E748000701B8A /* 137.xcdatamodeld */; };
-		14A84EF21E4E748000701B8A /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB61E4E748000701B8A /* 137.xcdatamodeld */; };
 		14A84EF31E4E748000701B8A /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB81E4E748000701B8A /* 140.xcdatamodeld */; };
 		14A84EF41E4E748000701B8A /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB81E4E748000701B8A /* 140.xcdatamodeld */; };
-		14A84EF51E4E748000701B8A /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB81E4E748000701B8A /* 140.xcdatamodeld */; };
 		14A84EF61E4E748000701B8A /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */; };
 		14A84EF71E4E748000701B8A /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */; };
-		14A84EF81E4E748000701B8A /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */; };
 		14A84EF91E4E748000701B8A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */; };
 		14A84EFA1E4E748000701B8A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */; };
-		14A84EFB1E4E748000701B8A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */; };
 		14A84EFC1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */; };
 		14A84EFD1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */; };
-		14A84EFE1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */; };
 		14A84EFF1E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */; };
 		14A84F001E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */; };
-		14A84F011E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */; };
 		14A84F021E4E748000701B8A /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC31E4E748000701B8A /* DateStringTransformer.m */; };
 		14A84F031E4E748000701B8A /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC31E4E748000701B8A /* DateStringTransformer.m */; };
-		14A84F041E4E748000701B8A /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC31E4E748000701B8A /* DateStringTransformer.m */; };
 		14A84F051E4E748000701B8A /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */; };
 		14A84F061E4E748000701B8A /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */; };
-		14A84F071E4E748000701B8A /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */; };
-		14AF6AFD1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6AFE1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6AFF1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6B001DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6B011DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
-		14BA60EB1DC0247700C97D6F /* SyncDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA60E81DC0247700C97D6F /* SyncDelegateTests.swift */; };
 		14D93C0B1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93BFE1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C0C1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93BFE1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C0D1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93BFE1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C0E1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93BFE1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14D93C121E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93BFF1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m */; };
 		14D93C131E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93BFF1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m */; };
 		14D93C141E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93BFF1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m */; };
 		14D93C151E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93BFF1E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m */; };
@@ -382,7 +303,6 @@
 		14D93C181E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C011E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C191E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C011E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C1A1E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C011E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14D93C1E1E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C021E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m */; };
 		14D93C1F1E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C021E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m */; };
 		14D93C201E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C021E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m */; };
 		14D93C211E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C021E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m */; };
@@ -391,7 +311,6 @@
 		14D93C241E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C041E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C251E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C041E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C261E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C041E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14D93C2A1E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C051E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
 		14D93C2B1E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C051E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
 		14D93C2C1E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C051E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
 		14D93C2D1E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C051E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
@@ -400,7 +319,6 @@
 		14D93C301E4E65C700DED595 /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C061E4E65C700DED595 /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C311E4E65C700DED595 /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C061E4E65C700DED595 /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C321E4E65C700DED595 /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C061E4E65C700DED595 /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14D93C361E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C071E4E65C700DED595 /* SYNCPropertyMapper.m */; };
 		14D93C371E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C071E4E65C700DED595 /* SYNCPropertyMapper.m */; };
 		14D93C381E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C071E4E65C700DED595 /* SYNCPropertyMapper.m */; };
 		14D93C391E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C071E4E65C700DED595 /* SYNCPropertyMapper.m */; };
@@ -409,7 +327,6 @@
 		14D93C3C1E4E65C700DED595 /* NSString+SYNCInflections.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C091E4E65C700DED595 /* NSString+SYNCInflections.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C3D1E4E65C700DED595 /* NSString+SYNCInflections.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C091E4E65C700DED595 /* NSString+SYNCInflections.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C3E1E4E65C700DED595 /* NSString+SYNCInflections.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93C091E4E65C700DED595 /* NSString+SYNCInflections.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14D93C421E4E65C700DED595 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C0A1E4E65C700DED595 /* NSString+SYNCInflections.m */; };
 		14D93C431E4E65C700DED595 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C0A1E4E65C700DED595 /* NSString+SYNCInflections.m */; };
 		14D93C441E4E65C700DED595 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C0A1E4E65C700DED595 /* NSString+SYNCInflections.m */; };
 		14D93C451E4E65C700DED595 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93C0A1E4E65C700DED595 /* NSString+SYNCInflections.m */; };
@@ -473,17 +390,93 @@
 		14D93C7F1E4E68BA00DED595 /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */; };
 		14D93C801E4E68BA00DED595 /* ToOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC511D9F90B5001C8DA6 /* ToOne.xcdatamodeld */; };
 		14D93C811E4E68BA00DED595 /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC531D9F90B5001C8DA6 /* Unique.xcdatamodeld */; };
-		14D93C821E4E68C500DED595 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E711DBC39520042ED81 /* Sync.framework */; };
 		14D93C831E4E68FA00DED595 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
 		14D93C841E4E690A00DED595 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
-		14DAB3FD1DBC4620004B455F /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241F0D1DBC3D7D0042ED81 /* DATAStack.framework */; };
-		14DAB4011DBC4625004B455F /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14DAB3FF1DBC4625004B455F /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14E285311DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */; };
+		14E2F0A11E7ADE0E00DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E981DBC39730042ED81 /* Sync.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		14E2F0A21E7ADE1400DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E8B1DBC39690042ED81 /* Sync.framework */; };
+		14E2F0A31E7ADFB500DF1776 /* LightweightMigrationModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 146738911E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel */; };
+		14E2F0A41E7ADFB500DF1776 /* ModelGroup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146738921E7ADC1900913C8E /* ModelGroup.xcdatamodeld */; };
+		14E2F0A51E7ADFB500DF1776 /* SimpleModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 146738941E7ADC1900913C8E /* SimpleModel.xcdatamodel */; };
+		14E2F0A61E7ADFB500DF1776 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146738951E7ADC1900913C8E /* Tests.swift */; };
+		14E2F0A71E7ADFBA00DF1776 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84E9F1E4E748000701B8A /* DateTests.swift */; };
+		14E2F0A81E7ADFC100DF1776 /* SYNCPrimaryKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7AE1E4EFF4E00023821 /* SYNCPrimaryKey.xcdatamodeld */; };
+		14E2F0A91E7ADFC100DF1776 /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA31E4E748000701B8A /* PrimaryKeyTests.m */; };
+		14E2F0AA1E7ADFC600DF1776 /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA51E4E748000701B8A /* NSString_SYNCInflectionsTests.m */; };
+		14E2F0AB1E7ADFD200DF1776 /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA71E4E748000701B8A /* DictionaryTests.swift */; };
+		14E2F0AC1E7ADFD200DF1776 /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EA81E4E748000701B8A /* FillWithDictionaryTests.swift */; };
+		14E2F0AD1E7ADFD200DF1776 /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAA1E4E748000701B8A /* HelperTests.m */; };
+		14E2F0AE1E7ADFD200DF1776 /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAB1E4E748000701B8A /* HYPDictionaryTests.m */; };
+		14E2F0AF1E7ADFD200DF1776 /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAC1E4E748000701B8A /* HYPFillWithDictionaryTests.m */; };
+		14E2F0B01E7ADFE000DF1776 /* 112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EAE1E4E748000701B8A /* 112.xcdatamodeld */; };
+		14E2F0B11E7ADFE000DF1776 /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB01E4E748000701B8A /* 121.xcdatamodeld */; };
+		14E2F0B21E7ADFE000DF1776 /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB21E4E748000701B8A /* 123.xcdatamodeld */; };
+		14E2F0B31E7ADFE000DF1776 /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB41E4E748000701B8A /* 129.xcdatamodeld */; };
+		14E2F0B41E7ADFE000DF1776 /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB61E4E748000701B8A /* 137.xcdatamodeld */; };
+		14E2F0B51E7ADFE000DF1776 /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EB81E4E748000701B8A /* 140.xcdatamodeld */; };
+		14E2F0B61E7ADFE000DF1776 /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBA1E4E748000701B8A /* 142.xcdatamodeld */; };
+		14E2F0B71E7ADFE000DF1776 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBC1E4E748000701B8A /* Model.xcdatamodeld */; };
+		14E2F0B81E7ADFE000DF1776 /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EBE1E4E748000701B8A /* Ordered.xcdatamodeld */; };
+		14E2F0B91E7ADFE700DF1776 /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC11E4E748000701B8A /* BadAPIValueTransformer.swift */; };
+		14E2F0BB1E7ADFE700DF1776 /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC31E4E748000701B8A /* DateStringTransformer.m */; };
+		14E2F0BD1E7ADFE700DF1776 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A84EC51E4E748000701B8A /* HYPTestValueTransformer.m */; };
+		14E2F0BE1E7ADFEC00DF1776 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C046341DBC19D300CB6C16 /* JSON.swift */; };
+		14E2F0BF1E7ADFF900DF1776 /* NSArray+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC551D9F90B5001C8DA6 /* NSArray+SyncTests.swift */; };
+		14E2F0C01E7ADFF900DF1776 /* NSEntityDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC561D9F90B5001C8DA6 /* NSEntityDescription+SyncTests.swift */; };
+		14E2F0C11E7ADFF900DF1776 /* NSManagedObject+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC571D9F90B5001C8DA6 /* NSManagedObject+SyncTests.swift */; };
+		14E2F0C21E7ADFF900DF1776 /* NSManagedObjectContext+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC581D9F90B5001C8DA6 /* NSManagedObjectContext+SyncTests.swift */; };
+		14E2F0C31E7ADFF900DF1776 /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC591D9F90B5001C8DA6 /* SyncTests.swift */; };
+		14E2F0C41E7ADFF900DF1776 /* SyncDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BA60E81DC0247700C97D6F /* SyncDelegateTests.swift */; };
+		14E2F0C51E7ADFF900DF1776 /* NSPersistentContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */; };
+		14E2F0C61E7ADFF900DF1776 /* InsertOrUpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EB24D1DEF75D70068EDC3 /* InsertOrUpdateTests.swift */; };
+		14E2F0C71E7ADFF900DF1776 /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444546D51DF06E2600CC7928 /* UpdateTests.swift */; };
+		14E2F0C81E7ADFF900DF1776 /* DeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146EB24C1DEF75D70068EDC3 /* DeleteTests.swift */; };
+		14E2F0C91E7ADFF900DF1776 /* FetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44584FDB1DF2EE550082D7A0 /* FetchTests.swift */; };
+		14E2F0CA1E7AE00200DF1776 /* 3ca82a0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B59E1DEE43F8007FED27 /* 3ca82a0.xcdatamodeld */; };
+		14E2F0CB1E7AE00200DF1776 /* 84.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC351D9F90B5001C8DA6 /* 84.xcdatamodeld */; };
+		14E2F0CC1E7AE00200DF1776 /* 113.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC251D9F90B5001C8DA6 /* 113.xcdatamodeld */; };
+		14E2F0CD1E7AE00200DF1776 /* 125.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC271D9F90B5001C8DA6 /* 125.xcdatamodeld */; };
+		14E2F0CE1E7AE00200DF1776 /* 151-many-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC171D9F90B5001C8DA6 /* 151-many-to-many.xcdatamodeld */; };
+		14E2F0CF1E7AE00200DF1776 /* 151-ordered-many-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC191D9F90B5001C8DA6 /* 151-ordered-many-to-many.xcdatamodeld */; };
+		14E2F0D01E7AE00200DF1776 /* 151-ordered-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC1B1D9F90B5001C8DA6 /* 151-ordered-to-many.xcdatamodeld */; };
+		14E2F0D11E7AE00200DF1776 /* 151-to-many.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC1D1D9F90B5001C8DA6 /* 151-to-many.xcdatamodeld */; };
+		14E2F0D21E7AE00200DF1776 /* 157.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC291D9F90B5001C8DA6 /* 157.xcdatamodeld */; };
+		14E2F0D31E7AE00200DF1776 /* 179.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC2B1D9F90B5001C8DA6 /* 179.xcdatamodeld */; };
+		14E2F0D41E7AE00200DF1776 /* 202.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC2D1D9F90B5001C8DA6 /* 202.xcdatamodeld */; };
+		14E2F0D51E7AE00200DF1776 /* 225.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC1F1D9F90B5001C8DA6 /* 225.xcdatamodeld */; };
+		14E2F0D61E7AE00200DF1776 /* 233.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F71E71DD3DD56003F0108 /* 233.xcdatamodeld */; };
+		14E2F0D71E7AE00200DF1776 /* 239.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC2F1D9F90B5001C8DA6 /* 239.xcdatamodeld */; };
+		14E2F0D81E7AE00200DF1776 /* 254.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC311D9F90B5001C8DA6 /* 254.xcdatamodeld */; };
+		14E2F0D91E7AE00200DF1776 /* 257.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC331D9F90B5001C8DA6 /* 257.xcdatamodeld */; };
+		14E2F0DA1E7AE00200DF1776 /* 265.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140944AE1DF0BC280037F85A /* 265.xcdatamodeld */; };
+		14E2F0DB1E7AE00200DF1776 /* 277.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140D43221DFF4D3A00E3B159 /* 277.xcdatamodeld */; };
+		14E2F0DC1E7AE00200DF1776 /* 280.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC211D9F90B5001C8DA6 /* 280.xcdatamodeld */; };
+		14E2F0DD1E7AE00200DF1776 /* 283.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC231D9F90B5001C8DA6 /* 283.xcdatamodeld */; };
+		14E2F0DE1E7AE00200DF1776 /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
+		14E2F0DF1E7AE00200DF1776 /* Camelcase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC371D9F90B5001C8DA6 /* Camelcase.xcdatamodeld */; };
+		14E2F0E01E7AE00200DF1776 /* Contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC391D9F90B5001C8DA6 /* Contacts.xcdatamodeld */; };
+		14E2F0E11E7AE00200DF1776 /* CustomRelationshipKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC3B1D9F90B5001C8DA6 /* CustomRelationshipKey.xcdatamodeld */; };
+		14E2F0E21E7AE00200DF1776 /* id.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC3D1D9F90B5001C8DA6 /* id.xcdatamodeld */; };
+		14E2F0E31E7AE00200DF1776 /* InsertObjectsInParent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC3F1D9F90B5001C8DA6 /* InsertObjectsInParent.xcdatamodeld */; };
+		14E2F0E41E7AE00200DF1776 /* Markets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC411D9F90B5001C8DA6 /* Markets.xcdatamodeld */; };
+		14E2F0E51E7AE00200DF1776 /* Notes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC431D9F90B5001C8DA6 /* Notes.xcdatamodeld */; };
+		14E2F0E61E7AE00200DF1776 /* NotesB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC451D9F90B5001C8DA6 /* NotesB.xcdatamodeld */; };
+		14E2F0E71E7AE00200DF1776 /* OrderedSocial.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC471D9F90B5001C8DA6 /* OrderedSocial.xcdatamodeld */; };
+		14E2F0E81E7AE00200DF1776 /* Organizations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC491D9F90B5001C8DA6 /* Organizations.xcdatamodeld */; };
+		14E2F0E91E7AE00200DF1776 /* Patients.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC4B1D9F90B5001C8DA6 /* Patients.xcdatamodeld */; };
+		14E2F0EA1E7AE00200DF1776 /* Recursive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC4D1D9F90B5001C8DA6 /* Recursive.xcdatamodeld */; };
+		14E2F0EB1E7AE00200DF1776 /* Social.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC4F1D9F90B5001C8DA6 /* Social.xcdatamodeld */; };
+		14E2F0EC1E7AE00200DF1776 /* Tests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1421405B1DBCDD52000FF107 /* Tests.xcdatamodeld */; };
+		14E2F0ED1E7AE00200DF1776 /* ToOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC511D9F90B5001C8DA6 /* ToOne.xcdatamodeld */; };
+		14E2F0EE1E7AE00200DF1776 /* Unique.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4403DC531D9F90B5001C8DA6 /* Unique.xcdatamodeld */; };
+		14E2F0EF1E7AE01600DF1776 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4403DBDD1D9F90B5001C8DA6 /* Helper.swift */; };
+		14E2F0F01E7AE02F00DF1776 /* DATAFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBB1D9F9373007F9E26 /* DATAFilterTests.swift */; };
+		14E2F0F11E7AE02F00DF1776 /* DATAFilter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445D3BBC1D9F9373007F9E26 /* DATAFilter.xcdatamodeld */; };
+		14E2F0F21E7AE03400DF1776 /* TestCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CC760F1D9F9076003545A4 /* TestCheckTests.swift */; };
+		14E2F0F31E7AE12200DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E711DBC39520042ED81 /* Sync.framework */; };
 		14E93C441DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C451DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C461DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C471DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9C13D1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E9C1391DEA2ECD00A21B9E /* 320.xcdatamodeld */; };
 		14E9C1401DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
 		14E9C1411DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
 		14E9C1421DEA2EE100A21B9E /* 320.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C13E1DEA2EE100A21B9E /* 320.json */; };
@@ -544,11 +537,8 @@
 		4403DC911D9F90B5001C8DA6 /* users_notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4403DC151D9F90B5001C8DA6 /* users_notes.json */; };
 		441FA7B41E4EFF7C00023821 /* SYNCPrimaryKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7AE1E4EFF4E00023821 /* SYNCPrimaryKey.xcdatamodeld */; };
 		441FA7B51E4EFF7D00023821 /* SYNCPrimaryKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7AE1E4EFF4E00023821 /* SYNCPrimaryKey.xcdatamodeld */; };
-		441FA7B61E4EFF7D00023821 /* SYNCPrimaryKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7AE1E4EFF4E00023821 /* SYNCPrimaryKey.xcdatamodeld */; };
 		441FA7B91E4F00D300023821 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7B71E4F00D300023821 /* User+CoreDataClass.swift */; };
 		441FA7BA1E4F00D300023821 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7B81E4F00D300023821 /* User+CoreDataProperties.swift */; };
-		444546D81DF06E2600CC7928 /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444546D51DF06E2600CC7928 /* UpdateTests.swift */; };
-		44584FDE1DF2EE550082D7A0 /* FetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44584FDB1DF2EE550082D7A0 /* FetchTests.swift */; };
 		445D3BC71D9F9373007F9E26 /* note.json in Resources */ = {isa = PBXBuildFile; fileRef = 445D3BBE1D9F9373007F9E26 /* note.json */; };
 		445D3BC81D9F9373007F9E26 /* simple.json in Resources */ = {isa = PBXBuildFile; fileRef = 445D3BBF1D9F9373007F9E26 /* simple.json */; };
 		445D3BC91D9F9373007F9E26 /* users-with-nil.json in Resources */ = {isa = PBXBuildFile; fileRef = 445D3BC01D9F9373007F9E26 /* users-with-nil.json */; };
@@ -560,17 +550,14 @@
 		44B547FA1DCF27FF009215FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B547F91DCF27FF009215FA /* ViewController.swift */; };
 		44B548011DCF27FF009215FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B548001DCF27FF009215FA /* Assets.xcassets */; };
 		44B548041DCF27FF009215FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B548021DCF27FF009215FA /* LaunchScreen.storyboard */; };
-		44B5480E1DCF3B82009215FA /* DATAStack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44B5480B1DCF3B82009215FA /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44B5481B1DCF3DED009215FA /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B5481A1DCF3DED009215FA /* sample.json */; };
 		44B5481E1DCF3E18009215FA /* iOSDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B5481C1DCF3E18009215FA /* iOSDemo.xcdatamodeld */; };
 		44CA3F6A1DEB349100F242D0 /* 237.json in Resources */ = {isa = PBXBuildFile; fileRef = 44CA3F691DEB349100F242D0 /* 237.json */; };
 		44CA3F6B1DEB349100F242D0 /* 237.json in Resources */ = {isa = PBXBuildFile; fileRef = 44CA3F691DEB349100F242D0 /* 237.json */; };
 		44CA3F6C1DEB349100F242D0 /* 237.json in Resources */ = {isa = PBXBuildFile; fileRef = 44CA3F691DEB349100F242D0 /* 237.json */; };
-		4E28B5A21DEE43F8007FED27 /* 3ca82a0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E28B59E1DEE43F8007FED27 /* 3ca82a0.xcdatamodeld */; };
 		4E28B5A31DEE446D007FED27 /* 3ca82a0.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E3DF6BC1DEE39F6007BD598 /* 3ca82a0.json */; };
 		4E28B5A41DEE446D007FED27 /* 3ca82a0.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E3DF6BC1DEE39F6007BD598 /* 3ca82a0.json */; };
 		4E28B5A51DEE446E007FED27 /* 3ca82a0.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E3DF6BC1DEE39F6007BD598 /* 3ca82a0.json */; };
-		4E2F71F11DD5FEFE003F0108 /* 233.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E2F71E71DD3DD56003F0108 /* 233.xcdatamodeld */; };
 		4E2F71F41DD60115003F0108 /* 233.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F21DD60110003F0108 /* 233.json */; };
 		4E2F71F51DD60116003F0108 /* 233.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F21DD60110003F0108 /* 233.json */; };
 		4E2F71F61DD60116003F0108 /* 233.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F71F21DD60110003F0108 /* 233.json */; };
@@ -583,7 +570,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				14241F131DBC3D820042ED81 /* DATAStack.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +579,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				14241F211DBC3E140042ED81 /* DATAStack.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,7 +588,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				14241F1B1DBC3DEB0042ED81 /* DATAStack.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,7 +597,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				14241F0B1DBC3CDF0042ED81 /* DATAStack.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,7 +606,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				14154D8B1DBC465B00926D4D /* DATAStack.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,7 +615,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				14154D931DBC466700926D4D /* DATAStack.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,7 +624,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				14DAB4011DBC4625004B455F /* DATAStack.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,7 +633,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				44B5480E1DCF3B82009215FA /* DATAStack.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,24 +644,19 @@
 		140944AF1DF0BC280037F85A /* 265.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 265.xcdatamodel; sourceTree = "<group>"; };
 		140D43231DFF4D3A00E3B159 /* 239.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 239.xcdatamodel; sourceTree = "<group>"; };
 		140D43271DFF4DBC00E3B159 /* 277.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 277.json; sourceTree = "<group>"; };
-		14154D891DBC465B00926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/tvOS/DATAStack.framework; sourceTree = "<group>"; };
-		14154D8D1DBC466200926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/Mac/DATAStack.framework; sourceTree = "<group>"; };
-		14154D911DBC466700926D4D /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/Mac/DATAStack.framework; sourceTree = "<group>"; };
 		1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tests.xcdatamodel; sourceTree = "<group>"; };
 		14241E711DBC39520042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E7E1DBC39600042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E8B1DBC39690042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E981DBC39730042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241EC01DBC3AAA0042ED81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14241F051DBC3CDA0042ED81 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/watchOS/DATAStack.framework; sourceTree = "<group>"; };
-		14241F091DBC3CDF0042ED81 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/watchOS/DATAStack.framework; sourceTree = "<group>"; };
-		14241F0D1DBC3D7D0042ED81 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14241F111DBC3D820042ED81 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
-		14241F151DBC3DE60042ED81 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/tvOS/DATAStack.framework; sourceTree = "<group>"; };
-		14241F191DBC3DEB0042ED81 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/tvOS/DATAStack.framework; sourceTree = "<group>"; };
-		14241F1F1DBC3E140042ED81 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/watchOS/DATAStack.framework; sourceTree = "<group>"; };
 		142CD2A31DEF39AE002FDABE /* Sync+DATAStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+DATAStack.swift"; sourceTree = "<group>"; };
 		142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+NSPersistentContainer.swift"; sourceTree = "<group>"; };
+		1467388B1E7ADBA700913C8E /* DATAStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DATAStack.swift; sourceTree = "<group>"; };
+		146738911E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LightweightMigrationModel.xcdatamodel; sourceTree = "<group>"; };
+		146738931E7ADC1900913C8E /* ModelGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelGroup.xcdatamodel; sourceTree = "<group>"; };
+		146738941E7ADC1900913C8E /* SimpleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleModel.xcdatamodel; sourceTree = "<group>"; };
+		146738951E7ADC1900913C8E /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146EB24C1DEF75D70068EDC3 /* DeleteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteTests.swift; sourceTree = "<group>"; };
@@ -727,7 +701,6 @@
 		14D93C071E4E65C700DED595 /* SYNCPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYNCPropertyMapper.m; sourceTree = "<group>"; };
 		14D93C091E4E65C700DED595 /* NSString+SYNCInflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SYNCInflections.h"; sourceTree = "<group>"; };
 		14D93C0A1E4E65C700DED595 /* NSString+SYNCInflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SYNCInflections.m"; sourceTree = "<group>"; };
-		14DAB3FF1DBC4625004B455F /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14E2852E1DC173A800C4E461 /* NSPersistentContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerTests.swift; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		14E9C13A1DEA2ECD00A21B9E /* 320.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 320.xcdatamodel; sourceTree = "<group>"; };
@@ -851,7 +824,6 @@
 		44B548001DCF27FF009215FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44B548031DCF27FF009215FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44B548051DCF27FF009215FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		44B5480B1DCF3B82009215FA /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		44B5481A1DCF3DED009215FA /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
 		44B5481D1DCF3E18009215FA /* iOSDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSDemo.xcdatamodel; sourceTree = "<group>"; };
 		44CA3F691DEB349100F242D0 /* 237.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 237.json; sourceTree = "<group>"; };
@@ -867,7 +839,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14241F0F1DBC3D7D0042ED81 /* DATAStack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,7 +846,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14241F071DBC3CDA0042ED81 /* DATAStack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,7 +853,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14241F171DBC3DE60042ED81 /* DATAStack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,7 +860,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14241F1D1DBC3E100042ED81 /* DATAStack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,8 +867,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14D93C821E4E68C500DED595 /* Sync.framework in Frameworks */,
-				14DAB3FD1DBC4620004B455F /* DATAStack.framework in Frameworks */,
+				14E2F0F31E7AE12200DF1776 /* Sync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,8 +875,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A84E9D1E4E70CD00701B8A /* Sync.framework in Frameworks */,
-				14154D871DBC465700926D4D /* DATAStack.framework in Frameworks */,
+				14E2F0A21E7ADE1400DF1776 /* Sync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,7 +883,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14154D8F1DBC466200926D4D /* DATAStack.framework in Frameworks */,
+				14E2F0A11E7ADE0E00DF1776 /* Sync.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,6 +901,7 @@
 		1425D59A1CC65BEB00EC49D4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1467388A1E7ADBA700913C8E /* DATAStack */,
 				14D93BFD1E4E65C700DED595 /* DateParser */,
 				14D93C001E4E65C700DED595 /* NSEntityDescription-SYNCPrimaryKey */,
 				14D93C031E4E65C700DED595 /* NSManagedObject-SYNCPropertyMapper */,
@@ -945,6 +912,25 @@
 				449828021D9F8F2D00E2BCA3 /* TestCheck */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		1467388A1E7ADBA700913C8E /* DATAStack */ = {
+			isa = PBXGroup;
+			children = (
+				1467388B1E7ADBA700913C8E /* DATAStack.swift */,
+			);
+			path = DATAStack;
+			sourceTree = "<group>";
+		};
+		146738901E7ADC1900913C8E /* DATAStack */ = {
+			isa = PBXGroup;
+			children = (
+				146738911E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel */,
+				146738921E7ADC1900913C8E /* ModelGroup.xcdatamodeld */,
+				146738941E7ADC1900913C8E /* SimpleModel.xcdatamodel */,
+				146738951E7ADC1900913C8E /* Tests.swift */,
+			);
+			path = DATAStack;
 			sourceTree = "<group>";
 		};
 		146D728A1AB782920058798C = {
@@ -979,6 +965,7 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				146738901E7ADC1900913C8E /* DATAStack */,
 				14A84E9E1E4E748000701B8A /* DateParser */,
 				14A84EA01E4E748000701B8A /* NSEntityDescription-SYNCPrimaryKey */,
 				14A84EA41E4E748000701B8A /* NSString-SYNCInflections */,
@@ -1339,18 +1326,6 @@
 		515545DD1958EE5C50CA007A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44B5480B1DCF3B82009215FA /* DATAStack.framework */,
-				14154D911DBC466700926D4D /* DATAStack.framework */,
-				14154D891DBC465B00926D4D /* DATAStack.framework */,
-				14DAB3FF1DBC4625004B455F /* DATAStack.framework */,
-				14154D8D1DBC466200926D4D /* DATAStack.framework */,
-				14241F1F1DBC3E140042ED81 /* DATAStack.framework */,
-				14241F191DBC3DEB0042ED81 /* DATAStack.framework */,
-				14241F151DBC3DE60042ED81 /* DATAStack.framework */,
-				14241F111DBC3D820042ED81 /* DATAStack.framework */,
-				14241F0D1DBC3D7D0042ED81 /* DATAStack.framework */,
-				14241F091DBC3CDF0042ED81 /* DATAStack.framework */,
-				14241F051DBC3CDA0042ED81 /* DATAStack.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1936,6 +1911,7 @@
 				14241EA51DBC3A6F0042ED81 /* DATAFilter.swift in Sources */,
 				14241EA71DBC3A6F0042ED81 /* TestCheck.swift in Sources */,
 				142CD2A81DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
+				1467388C1E7ADBA700913C8E /* DATAStack.swift in Sources */,
 				14D93C2B1E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14D93C431E4E65C700DED595 /* NSString+SYNCInflections.m in Sources */,
 				14D93C1F1E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
@@ -1958,6 +1934,7 @@
 				142CD2B21DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14D93C201E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 				14D93C381E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */,
+				1467388F1E7ADBA700913C8E /* DATAStack.swift in Sources */,
 				14AF6AFF1DFC3D88009E5BC4 /* Result.swift in Sources */,
 				14D93C141E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */,
 				14241EAD1DBC3A770042ED81 /* DATAFilter.swift in Sources */,
@@ -1980,6 +1957,7 @@
 				142CD2B31DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14D93C211E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 				14D93C391E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */,
+				1467388D1E7ADBA700913C8E /* DATAStack.swift in Sources */,
 				14AF6B001DFC3D88009E5BC4 /* Result.swift in Sources */,
 				14D93C151E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */,
 				14241EB51DBC3A7F0042ED81 /* DATAFilter.swift in Sources */,
@@ -2002,6 +1980,7 @@
 				142CD2B41DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14D93C221E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 				14D93C3A1E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */,
+				1467388E1E7ADBA700913C8E /* DATAStack.swift in Sources */,
 				14AF6B011DFC3D88009E5BC4 /* Result.swift in Sources */,
 				14D93C161E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */,
 				14241EBD1DBC3A880042ED81 /* DATAFilter.swift in Sources */,
@@ -2018,10 +1997,12 @@
 				14D93C5E1E4E68BA00DED595 /* 84.xcdatamodeld in Sources */,
 				14D93C5F1E4E68BA00DED595 /* 113.xcdatamodeld in Sources */,
 				14D93C601E4E68BA00DED595 /* 125.xcdatamodeld in Sources */,
+				1467389C1E7ADC1900913C8E /* SimpleModel.xcdatamodel in Sources */,
 				14D93C611E4E68BA00DED595 /* 151-many-to-many.xcdatamodeld in Sources */,
 				14A84EF61E4E748000701B8A /* 142.xcdatamodeld in Sources */,
 				14A84EED1E4E748000701B8A /* 129.xcdatamodeld in Sources */,
 				14D93C621E4E68BA00DED595 /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
+				146738961E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel in Sources */,
 				14D93C631E4E68BA00DED595 /* 151-ordered-to-many.xcdatamodeld in Sources */,
 				14D93C641E4E68BA00DED595 /* 151-to-many.xcdatamodeld in Sources */,
 				14D93C651E4E68BA00DED595 /* 157.xcdatamodeld in Sources */,
@@ -2049,6 +2030,7 @@
 				14A84F051E4E748000701B8A /* HYPTestValueTransformer.m in Sources */,
 				14A84EF01E4E748000701B8A /* 137.xcdatamodeld in Sources */,
 				14D93C731E4E68BA00DED595 /* Contacts.xcdatamodeld in Sources */,
+				1467389F1E7ADC1900913C8E /* Tests.swift in Sources */,
 				14D93C741E4E68BA00DED595 /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14D93C751E4E68BA00DED595 /* id.xcdatamodeld in Sources */,
 				14D93C761E4E68BA00DED595 /* InsertObjectsInParent.xcdatamodeld in Sources */,
@@ -2086,6 +2068,7 @@
 				14A84EE41E4E748000701B8A /* 112.xcdatamodeld in Sources */,
 				14D93C5B1E4E68A400DED595 /* DATAFilterTests.swift in Sources */,
 				14D93C5C1E4E68AF00DED595 /* TestCheckTests.swift in Sources */,
+				146738991E7ADC1900913C8E /* ModelGroup.xcdatamodeld in Sources */,
 				14A84EE71E4E748000701B8A /* 121.xcdatamodeld in Sources */,
 				14A84EDE1E4E748000701B8A /* HYPDictionaryTests.m in Sources */,
 			);
@@ -2099,10 +2082,12 @@
 				14A84E5F1E4E6B2300701B8A /* Helper.swift in Sources */,
 				14A84E601E4E6B2800701B8A /* NSArray+SyncTests.swift in Sources */,
 				14A84E611E4E6B2800701B8A /* NSEntityDescription+SyncTests.swift in Sources */,
+				1467389D1E7ADC1900913C8E /* SimpleModel.xcdatamodel in Sources */,
 				14A84E621E4E6B2800701B8A /* NSManagedObject+SyncTests.swift in Sources */,
 				14A84EF71E4E748000701B8A /* 142.xcdatamodeld in Sources */,
 				14A84EEE1E4E748000701B8A /* 129.xcdatamodeld in Sources */,
 				14A84E631E4E6B2800701B8A /* NSManagedObjectContext+SyncTests.swift in Sources */,
+				146738971E7ADC1900913C8E /* LightweightMigrationModel.xcdatamodel in Sources */,
 				14A84E641E4E6B2800701B8A /* SyncTests.swift in Sources */,
 				14A84E651E4E6B2800701B8A /* SyncDelegateTests.swift in Sources */,
 				14A84E661E4E6B2800701B8A /* NSPersistentContainerTests.swift in Sources */,
@@ -2130,6 +2115,7 @@
 				14A84F061E4E748000701B8A /* HYPTestValueTransformer.m in Sources */,
 				14A84EF11E4E748000701B8A /* 137.xcdatamodeld in Sources */,
 				14A84E741E4E6B4100701B8A /* 151-ordered-to-many.xcdatamodeld in Sources */,
+				146738A01E7ADC1900913C8E /* Tests.swift in Sources */,
 				14A84E751E4E6B4100701B8A /* 151-to-many.xcdatamodeld in Sources */,
 				14A84E761E4E6B4100701B8A /* 157.xcdatamodeld in Sources */,
 				14A84E771E4E6B4100701B8A /* 179.xcdatamodeld in Sources */,
@@ -2167,6 +2153,7 @@
 				14A84EE51E4E748000701B8A /* 112.xcdatamodeld in Sources */,
 				14A84E911E4E6B4100701B8A /* ToOne.xcdatamodeld in Sources */,
 				14A84E921E4E6B4100701B8A /* Unique.xcdatamodeld in Sources */,
+				1467389A1E7ADC1900913C8E /* ModelGroup.xcdatamodeld in Sources */,
 				14A84EE81E4E748000701B8A /* 121.xcdatamodeld in Sources */,
 				14A84EDF1E4E748000701B8A /* HYPDictionaryTests.m in Sources */,
 			);
@@ -2176,95 +2163,84 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E2F71F11DD5FEFE003F0108 /* 233.xcdatamodeld in Sources */,
-				14975C301DBC37180024901A /* NSArray+Sync.swift in Sources */,
-				14975C311DBC37180024901A /* NSEntityDescription+Sync.swift in Sources */,
-				14D93C421E4E65C700DED595 /* NSString+SYNCInflections.m in Sources */,
-				142CD2A71DEF39AE002FDABE /* Sync+DATAStack.swift in Sources */,
-				14D93C2A1E4E65C700DED595 /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
-				14975C321DBC37180024901A /* NSManagedObject+Sync.swift in Sources */,
-				14A84EC81E4E748000701B8A /* DateTests.swift in Sources */,
-				14975C331DBC37180024901A /* NSManagedObjectContext+Sync.swift in Sources */,
-				14A84EFB1E4E748000701B8A /* Model.xcdatamodeld in Sources */,
-				14975C341DBC37180024901A /* Sync.swift in Sources */,
-				14D93C121E4E65C700DED595 /* NSDate+SYNCPropertyMapper.m in Sources */,
-				14975C351DBC37180024901A /* DATAFilter.swift in Sources */,
-				14975C371DBC37180024901A /* TestCheck.swift in Sources */,
-				14BA60EB1DC0247700C97D6F /* SyncDelegateTests.swift in Sources */,
-				14A84ED41E4E748000701B8A /* DictionaryTests.swift in Sources */,
-				14D93C361E4E65C700DED595 /* SYNCPropertyMapper.m in Sources */,
-				14A84EE61E4E748000701B8A /* 112.xcdatamodeld in Sources */,
-				14975C381DBC37180024901A /* JSON.swift in Sources */,
-				14975C391DBC37180024901A /* Helper.swift in Sources */,
-				14975C3A1DBC37180024901A /* 151-many-to-many.xcdatamodeld in Sources */,
-				14975C3B1DBC37180024901A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
-				14E9C13D1DEA2ECD00A21B9E /* 320.xcdatamodeld in Sources */,
-				14975C3C1DBC37180024901A /* 151-ordered-to-many.xcdatamodeld in Sources */,
-				14A84EEF1E4E748000701B8A /* 129.xcdatamodeld in Sources */,
-				14D93C1E1E4E65C700DED595 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
-				14975C3D1DBC37180024901A /* 151-to-many.xcdatamodeld in Sources */,
-				14975C3E1DBC37180024901A /* 225.xcdatamodeld in Sources */,
-				14975C3F1DBC37180024901A /* 280.xcdatamodeld in Sources */,
-				14A84EE91E4E748000701B8A /* 121.xcdatamodeld in Sources */,
-				14A84F071E4E748000701B8A /* HYPTestValueTransformer.m in Sources */,
-				14A84ECE1E4E748000701B8A /* PrimaryKeyTests.m in Sources */,
-				146EB2501DEF75D70068EDC3 /* DeleteTests.swift in Sources */,
-				44584FDE1DF2EE550082D7A0 /* FetchTests.swift in Sources */,
-				140D43261DFF4D3A00E3B159 /* 277.xcdatamodeld in Sources */,
-				14A84EDD1E4E748000701B8A /* HelperTests.m in Sources */,
-				444546D81DF06E2600CC7928 /* UpdateTests.swift in Sources */,
-				14975C401DBC37180024901A /* 283.xcdatamodeld in Sources */,
-				14975C411DBC37180024901A /* 113.xcdatamodeld in Sources */,
-				14975C421DBC37180024901A /* 125.xcdatamodeld in Sources */,
-				14975C431DBC37180024901A /* 157.xcdatamodeld in Sources */,
-				14975C441DBC37180024901A /* 179.xcdatamodeld in Sources */,
-				14975C451DBC37180024901A /* 202.xcdatamodeld in Sources */,
-				14975C461DBC37180024901A /* 239.xcdatamodeld in Sources */,
-				14975C471DBC37180024901A /* 254.xcdatamodeld in Sources */,
-				14A84F041E4E748000701B8A /* DateStringTransformer.m in Sources */,
-				14A84EEC1E4E748000701B8A /* 123.xcdatamodeld in Sources */,
-				1421405F1DBCDD52000FF107 /* Tests.xcdatamodeld in Sources */,
-				441FA7B61E4EFF7D00023821 /* SYNCPrimaryKey.xcdatamodeld in Sources */,
-				146EB2531DEF75D70068EDC3 /* InsertOrUpdateTests.swift in Sources */,
-				14A84ED71E4E748000701B8A /* FillWithDictionaryTests.swift in Sources */,
-				14A84EF21E4E748000701B8A /* 137.xcdatamodeld in Sources */,
-				14975C481DBC37180024901A /* 257.xcdatamodeld in Sources */,
-				14E285311DC173A800C4E461 /* NSPersistentContainerTests.swift in Sources */,
-				14975C491DBC37180024901A /* 84.xcdatamodeld in Sources */,
-				4E28B5A21DEE43F8007FED27 /* 3ca82a0.xcdatamodeld in Sources */,
-				14975C4A1DBC37180024901A /* Camelcase.xcdatamodeld in Sources */,
-				14A84F011E4E748000701B8A /* BadAPIValueTransformer.swift in Sources */,
-				14975C4B1DBC37180024901A /* Contacts.xcdatamodeld in Sources */,
-				14975C4C1DBC37180024901A /* CustomRelationshipKey.xcdatamodeld in Sources */,
-				142CD2B01DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
-				14975C4D1DBC37180024901A /* id.xcdatamodeld in Sources */,
-				14A84EE01E4E748000701B8A /* HYPDictionaryTests.m in Sources */,
-				14975C4E1DBC37180024901A /* InsertObjectsInParent.xcdatamodeld in Sources */,
-				14A84EF51E4E748000701B8A /* 140.xcdatamodeld in Sources */,
-				14975C4F1DBC37180024901A /* Markets.xcdatamodeld in Sources */,
-				14975C501DBC37180024901A /* Notes.xcdatamodeld in Sources */,
-				14A84EFE1E4E748000701B8A /* Ordered.xcdatamodeld in Sources */,
-				14975C511DBC37180024901A /* NotesB.xcdatamodeld in Sources */,
-				14A84EF81E4E748000701B8A /* 142.xcdatamodeld in Sources */,
-				14975C521DBC37180024901A /* OrderedSocial.xcdatamodeld in Sources */,
-				14975C531DBC37180024901A /* Organizations.xcdatamodeld in Sources */,
-				14975C541DBC37180024901A /* Patients.xcdatamodeld in Sources */,
-				14975C551DBC37180024901A /* Recursive.xcdatamodeld in Sources */,
-				14975C561DBC37180024901A /* Social.xcdatamodeld in Sources */,
-				14975C571DBC37180024901A /* ToOne.xcdatamodeld in Sources */,
-				14975C581DBC37180024901A /* Unique.xcdatamodeld in Sources */,
-				14975C591DBC37180024901A /* NSArray+SyncTests.swift in Sources */,
-				14975C5A1DBC37180024901A /* NSEntityDescription+SyncTests.swift in Sources */,
-				14A84ED11E4E748000701B8A /* NSString_SYNCInflectionsTests.m in Sources */,
-				14AF6AFD1DFC3D88009E5BC4 /* Result.swift in Sources */,
-				14975C5B1DBC37180024901A /* NSManagedObject+SyncTests.swift in Sources */,
-				140944B21DF0BC280037F85A /* 265.xcdatamodeld in Sources */,
-				14A84EE31E4E748000701B8A /* HYPFillWithDictionaryTests.m in Sources */,
-				14975C5C1DBC37180024901A /* NSManagedObjectContext+SyncTests.swift in Sources */,
-				14975C5D1DBC37180024901A /* SyncTests.swift in Sources */,
-				14975C5E1DBC37180024901A /* DATAFilterTests.swift in Sources */,
-				14975C5F1DBC37180024901A /* DATAFilter.xcdatamodeld in Sources */,
-				14975C631DBC37180024901A /* TestCheckTests.swift in Sources */,
+				14E2F0AA1E7ADFC600DF1776 /* NSString_SYNCInflectionsTests.m in Sources */,
+				14E2F0A31E7ADFB500DF1776 /* LightweightMigrationModel.xcdatamodel in Sources */,
+				14E2F0A41E7ADFB500DF1776 /* ModelGroup.xcdatamodeld in Sources */,
+				14E2F0A51E7ADFB500DF1776 /* SimpleModel.xcdatamodel in Sources */,
+				14E2F0A61E7ADFB500DF1776 /* Tests.swift in Sources */,
+				14E2F0EF1E7AE01600DF1776 /* Helper.swift in Sources */,
+				14E2F0A71E7ADFBA00DF1776 /* DateTests.swift in Sources */,
+				14E2F0A81E7ADFC100DF1776 /* SYNCPrimaryKey.xcdatamodeld in Sources */,
+				14E2F0A91E7ADFC100DF1776 /* PrimaryKeyTests.m in Sources */,
+				14E2F0AB1E7ADFD200DF1776 /* DictionaryTests.swift in Sources */,
+				14E2F0AC1E7ADFD200DF1776 /* FillWithDictionaryTests.swift in Sources */,
+				14E2F0AD1E7ADFD200DF1776 /* HelperTests.m in Sources */,
+				14E2F0AE1E7ADFD200DF1776 /* HYPDictionaryTests.m in Sources */,
+				14E2F0AF1E7ADFD200DF1776 /* HYPFillWithDictionaryTests.m in Sources */,
+				14E2F0B01E7ADFE000DF1776 /* 112.xcdatamodeld in Sources */,
+				14E2F0B11E7ADFE000DF1776 /* 121.xcdatamodeld in Sources */,
+				14E2F0B21E7ADFE000DF1776 /* 123.xcdatamodeld in Sources */,
+				14E2F0B31E7ADFE000DF1776 /* 129.xcdatamodeld in Sources */,
+				14E2F0B41E7ADFE000DF1776 /* 137.xcdatamodeld in Sources */,
+				14E2F0B51E7ADFE000DF1776 /* 140.xcdatamodeld in Sources */,
+				14E2F0B61E7ADFE000DF1776 /* 142.xcdatamodeld in Sources */,
+				14E2F0B71E7ADFE000DF1776 /* Model.xcdatamodeld in Sources */,
+				14E2F0B81E7ADFE000DF1776 /* Ordered.xcdatamodeld in Sources */,
+				14E2F0B91E7ADFE700DF1776 /* BadAPIValueTransformer.swift in Sources */,
+				14E2F0BB1E7ADFE700DF1776 /* DateStringTransformer.m in Sources */,
+				14E2F0BD1E7ADFE700DF1776 /* HYPTestValueTransformer.m in Sources */,
+				14E2F0BE1E7ADFEC00DF1776 /* JSON.swift in Sources */,
+				14E2F0BF1E7ADFF900DF1776 /* NSArray+SyncTests.swift in Sources */,
+				14E2F0C01E7ADFF900DF1776 /* NSEntityDescription+SyncTests.swift in Sources */,
+				14E2F0C11E7ADFF900DF1776 /* NSManagedObject+SyncTests.swift in Sources */,
+				14E2F0C21E7ADFF900DF1776 /* NSManagedObjectContext+SyncTests.swift in Sources */,
+				14E2F0C31E7ADFF900DF1776 /* SyncTests.swift in Sources */,
+				14E2F0C41E7ADFF900DF1776 /* SyncDelegateTests.swift in Sources */,
+				14E2F0C51E7ADFF900DF1776 /* NSPersistentContainerTests.swift in Sources */,
+				14E2F0C61E7ADFF900DF1776 /* InsertOrUpdateTests.swift in Sources */,
+				14E2F0C71E7ADFF900DF1776 /* UpdateTests.swift in Sources */,
+				14E2F0C81E7ADFF900DF1776 /* DeleteTests.swift in Sources */,
+				14E2F0C91E7ADFF900DF1776 /* FetchTests.swift in Sources */,
+				14E2F0CA1E7AE00200DF1776 /* 3ca82a0.xcdatamodeld in Sources */,
+				14E2F0CB1E7AE00200DF1776 /* 84.xcdatamodeld in Sources */,
+				14E2F0CC1E7AE00200DF1776 /* 113.xcdatamodeld in Sources */,
+				14E2F0CD1E7AE00200DF1776 /* 125.xcdatamodeld in Sources */,
+				14E2F0CE1E7AE00200DF1776 /* 151-many-to-many.xcdatamodeld in Sources */,
+				14E2F0CF1E7AE00200DF1776 /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
+				14E2F0D01E7AE00200DF1776 /* 151-ordered-to-many.xcdatamodeld in Sources */,
+				14E2F0D11E7AE00200DF1776 /* 151-to-many.xcdatamodeld in Sources */,
+				14E2F0D21E7AE00200DF1776 /* 157.xcdatamodeld in Sources */,
+				14E2F0D31E7AE00200DF1776 /* 179.xcdatamodeld in Sources */,
+				14E2F0D41E7AE00200DF1776 /* 202.xcdatamodeld in Sources */,
+				14E2F0D51E7AE00200DF1776 /* 225.xcdatamodeld in Sources */,
+				14E2F0D61E7AE00200DF1776 /* 233.xcdatamodeld in Sources */,
+				14E2F0D71E7AE00200DF1776 /* 239.xcdatamodeld in Sources */,
+				14E2F0D81E7AE00200DF1776 /* 254.xcdatamodeld in Sources */,
+				14E2F0D91E7AE00200DF1776 /* 257.xcdatamodeld in Sources */,
+				14E2F0DA1E7AE00200DF1776 /* 265.xcdatamodeld in Sources */,
+				14E2F0DB1E7AE00200DF1776 /* 277.xcdatamodeld in Sources */,
+				14E2F0DC1E7AE00200DF1776 /* 280.xcdatamodeld in Sources */,
+				14E2F0DD1E7AE00200DF1776 /* 283.xcdatamodeld in Sources */,
+				14E2F0DE1E7AE00200DF1776 /* 320.xcdatamodeld in Sources */,
+				14E2F0DF1E7AE00200DF1776 /* Camelcase.xcdatamodeld in Sources */,
+				14E2F0E01E7AE00200DF1776 /* Contacts.xcdatamodeld in Sources */,
+				14E2F0E11E7AE00200DF1776 /* CustomRelationshipKey.xcdatamodeld in Sources */,
+				14E2F0E21E7AE00200DF1776 /* id.xcdatamodeld in Sources */,
+				14E2F0E31E7AE00200DF1776 /* InsertObjectsInParent.xcdatamodeld in Sources */,
+				14E2F0E41E7AE00200DF1776 /* Markets.xcdatamodeld in Sources */,
+				14E2F0E51E7AE00200DF1776 /* Notes.xcdatamodeld in Sources */,
+				14E2F0E61E7AE00200DF1776 /* NotesB.xcdatamodeld in Sources */,
+				14E2F0E71E7AE00200DF1776 /* OrderedSocial.xcdatamodeld in Sources */,
+				14E2F0E81E7AE00200DF1776 /* Organizations.xcdatamodeld in Sources */,
+				14E2F0E91E7AE00200DF1776 /* Patients.xcdatamodeld in Sources */,
+				14E2F0EA1E7AE00200DF1776 /* Recursive.xcdatamodeld in Sources */,
+				14E2F0EB1E7AE00200DF1776 /* Social.xcdatamodeld in Sources */,
+				14E2F0EC1E7AE00200DF1776 /* Tests.xcdatamodeld in Sources */,
+				14E2F0ED1E7AE00200DF1776 /* ToOne.xcdatamodeld in Sources */,
+				14E2F0EE1E7AE00200DF1776 /* Unique.xcdatamodeld in Sources */,
+				14E2F0F01E7AE02F00DF1776 /* DATAFilterTests.swift in Sources */,
+				14E2F0F11E7AE02F00DF1776 /* DATAFilter.xcdatamodeld in Sources */,
+				14E2F0F21E7AE03400DF1776 /* TestCheckTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2307,10 +2283,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2340,10 +2312,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2373,10 +2341,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2409,10 +2373,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2441,10 +2401,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2475,10 +2431,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2508,10 +2460,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2543,10 +2491,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2655,10 +2599,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2681,10 +2621,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2698,17 +2634,14 @@
 		14975BEE1DBC368B0024901A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = demo.tvOSTests;
@@ -2725,6 +2658,7 @@
 		14975BEF1DBC368B0024901A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -2732,10 +2666,6 @@
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = demo.tvOSTests;
@@ -2757,10 +2687,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
@@ -2784,10 +2710,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
@@ -2807,10 +2729,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = iOSDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2830,10 +2748,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = iOSDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2957,6 +2871,16 @@
 			);
 			currentVersion = 1421405C1DBCDD52000FF107 /* Tests.xcdatamodel */;
 			path = Tests.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		146738921E7ADC1900913C8E /* ModelGroup.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				146738931E7ADC1900913C8E /* ModelGroup.xcdatamodel */,
+			);
+			currentVersion = 146738931E7ADC1900913C8E /* ModelGroup.xcdatamodel */;
+			path = ModelGroup.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

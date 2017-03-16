@@ -1,7 +1,7 @@
 @import CoreData;
 @import XCTest;
+@import Sync;
 
-@import DATAStack;
 #import "NSEntityDescription+SYNCPrimaryKey.h"
 
 @interface PrimaryKeyTests : XCTestCase

@@ -1,10 +1,10 @@
 @import CoreData;
 @import XCTest;
+@import Sync;
 
 #import "SYNCPropertyMapper.h"
 #import "HYPTestValueTransformer.h"
 
-@import DATAStack;
 
 @interface HYPDictionaryTests : XCTestCase
 

@@ -1,6 +1,6 @@
 import UIKit
 import CoreData
-import DATAStack
+import Sync
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -1,6 +1,6 @@
 import CoreData
 import XCTest
-import DATAStack
+import Sync
 
 class DictionaryTests: XCTestCase {
     let sampleSnakeCaseJSON = [

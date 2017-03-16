@@ -1,5 +1,5 @@
 import CoreData
-import DATAStack
+
 
 extension NSManagedObject {
     /**

@@ -1,9 +1,8 @@
 @import CoreData;
 @import XCTest;
+@import Sync;
 
 #import "NSManagedObject+SYNCPropertyMapperHelpers.h"
-
-@import DATAStack;
 
 @interface PrivateTests : XCTestCase
 
