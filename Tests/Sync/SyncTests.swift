@@ -122,11 +122,11 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
         let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String: Any]]
-        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
+        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.all], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
         let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String: Any]]
-        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
+        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.insert], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 3)
 
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
@@ -142,17 +142,17 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
         let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String: Any]]
-        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
+        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.all], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
         let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String: Any]]
-        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
+        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.insert], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 3)
 
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
         XCTAssertEqual(result.value(forKey: "email") as? String, "melisawhite@ovium.com")
 
-        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert], completion: nil)
+        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.insert], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 3)
 
         dataStack.drop()
@@ -165,11 +165,11 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
         let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String: Any]]
-        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
+        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.all], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
         let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String: Any]]
-        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Update], completion: nil)
+        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.update], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
@@ -185,11 +185,11 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
         let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String: Any]]
-        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
+        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.all], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
         let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String: Any]]
-        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Delete], completion: nil)
+        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.delete], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
 
         let result = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!
@@ -205,11 +205,11 @@ class SyncTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Contacts")
 
         let objectsA = Helper.objectsFromJSON("operation-types-users-a.json") as! [[String: Any]]
-        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.All], completion: nil)
+        Sync.changes(objectsA, inEntityNamed: "User", dataStack: dataStack, operations: [.all], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
 
         let objectsB = Helper.objectsFromJSON("operation-types-users-b.json") as! [[String: Any]]
-        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert, .Update], completion: nil)
+        Sync.changes(objectsB, inEntityNamed: "User", dataStack: dataStack, operations: [.insert, .update], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 3)
 
         let user0 = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = %@", NSNumber(value: 0)), sortDescriptors: [NSSortDescriptor(key: "remoteID", ascending: true)], inContext: dataStack.mainContext).first!

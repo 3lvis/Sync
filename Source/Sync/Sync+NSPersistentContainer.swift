@@ -42,7 +42,7 @@ public extension NSPersistentContainer {
     ///   - changes: The dictionary to be used to update or create the object.
     ///   - entityName: The name of the entity.
     ///   - id: The primary key.
-    ///   - error: The Core Data error.
+    ///   - completion: The completion block.
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
     public func insertOrUpdate(_ changes: [String: Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
         self.performBackgroundTask { backgroundContext in
@@ -67,7 +67,7 @@ public extension NSPersistentContainer {
     ///   - id: The primary key.
     ///   - changes: The dictionary to be used to update the object.
     ///   - entityName: The name of the entity.
-    ///   - error: The Core Data error.
+    ///   - completion: The completion block.
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
     public func update(_ id: Any, with changes: [String: Any], inEntityNamed entityName: String, completion: @escaping (_ result: Result<Any>) -> Void) {
         self.performBackgroundTask { backgroundContext in
@@ -93,7 +93,7 @@ public extension NSPersistentContainer {
     /// - Parameters:
     ///   - id: The primary key.
     ///   - entityName: The name of the entity.
-    ///   - error: The Core Data error.
+    ///   - completion: The completion block.
     @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
     public func delete(_ id: Any, inEntityNamed entityName: String, completion: @escaping (_ error: NSError?) -> Void) {
         self.performBackgroundTask { backgroundContext in
