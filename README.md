@@ -385,7 +385,7 @@ You are free to use any networking library.
 
 In a `one-to-many` relationship IDs are unique for a parent, but not between parents. For example in this example we have a list of posts where each post has many comments. When syncing posts 2 comment entries will be created:
 
-````json
+```json
 [
   {
     "id": 0,
