@@ -2,7 +2,7 @@
 @import XCTest;
 @import Sync;
 
-#import "NSManagedObject+SYNCPropertyMapperHelpers.h"
+#import "NSManagedObject+SyncPropertyMapperHelpers.h"
 
 @interface PrivateTests : XCTestCase
 
@@ -16,9 +16,9 @@
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
-    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Model"
+    DataStack *dataStack = [[DataStack alloc] initWithModelName:@"Model"
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackStoreTypeInMemory];
+                                                      storeType:DataStackStoreTypeInMemory];
     return dataStack.mainContext;
 }
 
@@ -135,7 +135,7 @@
     XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription], @"_destroy");
 
     attributeDescription = note.entity.propertiesByName[@"destroy"];
-    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeArray], @"destroy");
+    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SyncPropertyMapperRelationshipTypeArray], @"destroy");
 }
 
 @end

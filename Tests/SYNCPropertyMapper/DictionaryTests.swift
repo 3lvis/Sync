@@ -220,7 +220,7 @@ class DictionaryTests: XCTestCase {
         dataStack.drop()
     }
 
-    func setUpWorkout(dataStack: DATAStack) -> NSManagedObject {
+    func setUpWorkout(dataStack: DataStack) -> NSManagedObject {
         let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: dataStack.mainContext)
         workout.setValue(UUID().uuidString, forKey: "id")
         workout.setValue(UUID().uuidString, forKey: "workoutDesc")

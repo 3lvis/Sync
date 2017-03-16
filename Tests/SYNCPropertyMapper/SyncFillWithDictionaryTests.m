@@ -2,16 +2,16 @@
 @import XCTest;
 @import Sync;
 
-#import "SYNCPropertyMapper.h"
-#import "HYPTestValueTransformer.h"
+#import "SyncPropertyMapper.h"
+#import "SyncTestValueTransformer.h"
 
-@interface HYPFillWithDictionaryTests : XCTestCase
+@interface SyncFillWithDictionaryTests : XCTestCase
 
 @property (nonatomic) NSDate *testDate;
 
 @end
 
-@implementation HYPFillWithDictionaryTests
+@implementation SyncFillWithDictionaryTests
 
 - (NSDate *)testDate {
     if (!_testDate) {
@@ -23,10 +23,10 @@
 
 #pragma mark - Set up
 
-- (DATAStack *)dataStack {
-    return [[DATAStack alloc] initWithModelName:@"Model"
+- (DataStack *)dataStack {
+    return [[DataStack alloc] initWithModelName:@"Model"
                                          bundle:[NSBundle bundleForClass:[self class]]
-                                      storeType:DATAStackStoreTypeInMemory];
+                                      storeType:DataStackStoreTypeInMemory];
 }
 
 - (id)entityNamed:(NSString *)entityName inContext:(NSManagedObjectContext *)context {
@@ -34,7 +34,7 @@
                                          inManagedObjectContext:context];
 }
 
-- (NSManagedObject *)userUsingDataStack:(DATAStack *)dataStack {
+- (NSManagedObject *)userUsingDataStack:(DataStack *)dataStack {
     NSManagedObject *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
     [user setValue:@25 forKey:@"age"];
     [user setValue:self.testDate forKey:@"birthDate"];
@@ -114,9 +114,9 @@
                              @"transformable" : @"Ignore me, too",
                              @"custom_transformer_string" : @"Foo &amp; bar"};
     
-    [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
+    [NSValueTransformer setValueTransformer:[[SyncTestValueTransformer alloc] init] forName:@"SyncTestValueTransformer"];
     
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
 
@@ -161,9 +161,9 @@
                              @"transformable" : @"Ignore me, too",
                              @"customTransformerString" : @"Foo &amp; bar"};
     
-    [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
+    [NSValueTransformer setValueTransformer:[[SyncTestValueTransformer alloc] init] forName:@"SyncTestValueTransformer"];
     
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
     
@@ -195,7 +195,7 @@
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed"};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -206,7 +206,7 @@
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed"};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -221,7 +221,7 @@
 - (void)testAgeNumber {
     NSDictionary *values = @{@"age" : @24};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -231,7 +231,7 @@
 - (void)testAgeString {
     NSDictionary *values = @{@"age" : @"24"};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -244,7 +244,7 @@
 - (void)testBornDate {
     NSDictionary *values = @{@"birth_date" : @"1989-02-14T00:00:00+00:00"};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -261,7 +261,7 @@
                              @"last_name"  : @"Hyperseed",
                              @"age" : @30};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -279,7 +279,7 @@
                              @"last_name"  : @"Hyperseed",
                              @"age" : @30};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -297,7 +297,7 @@
 - (void)testAcronyms {
     NSDictionary *values = @{@"contract_id" : @100};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -309,7 +309,7 @@
                                             @"soccer",
                                             @"code"]};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -324,7 +324,7 @@
     NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
                                              @"juice" : @0.50}};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -337,7 +337,7 @@
     NSDictionary *values = @{@"id": @100,
                              @"description": @"This is the description?",
                              @"type": @"user type"};
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -351,7 +351,7 @@
                              @"updated_at" : @"2014-01-02",
                              @"number_of_attendes": @20};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -373,7 +373,7 @@
                              @"driver_identifier_str" : @"123",
                              @"signed" : @"salesman"};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -385,7 +385,7 @@
 - (void)testIgnoredTransformables {
     NSDictionary *values = @{@"ignoreTransformable" : @"I'm going to be ignored"};
 
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -395,7 +395,7 @@
 - (void)testRegisteredTransformables {
     NSDictionary *values = @{@"registeredTransformable" : @"/Date(1451606400000)/"};
    
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
@@ -409,7 +409,7 @@
 }
 
 - (void)testCustomKey {
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
 
     NSDictionary *values = @{@"id": @"1",
                              @"other_attribute": @"Market 1"};
@@ -423,7 +423,7 @@
 }
 
 - (void)testCustomKeyPathSnakeCase {
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
 
     NSDictionary *values = @{@"snake_parent": @{
                                      @"value_one": @"Value 1",
@@ -441,7 +441,7 @@
 }
 
 - (void)testCustomKeyPathCamelCase {
-    DATAStack *dataStack = [self dataStack];
+    DataStack *dataStack = [self dataStack];
 
     NSDictionary *values = @{@"camelParent": @{
                                      @"valueOne": @"Value 1",

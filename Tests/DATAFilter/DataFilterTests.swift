@@ -2,7 +2,7 @@ import XCTest
 import CoreData
 import Sync
 
-class DATAFilterTests: XCTestCase {
+class DataFilterTests: XCTestCase {
     @discardableResult func user(remoteID: Int, firstName: String, lastName: String, age: Int, context: NSManagedObjectContext) -> NSManagedObject {
         let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
         user.setValue(remoteID, forKey: "remoteID")
@@ -34,7 +34,7 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testUsersCount() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         self.createUsers(context: dataStack.mainContext)
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -51,16 +51,16 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testMapChangesA() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -80,16 +80,16 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testMapChangesAWitNull() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("users-with-null.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("users-with-null.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -109,16 +109,16 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testMapChangesAWithNil() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("users-with-nil.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("users-with-nil.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -138,16 +138,16 @@ class DATAFilterTests: XCTestCase {
      - Deleted: None
      */
     func testMapChangesB() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("users2.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("users2.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -167,16 +167,16 @@ class DATAFilterTests: XCTestCase {
      - Deleted: None
      */
     func testMapChangesC() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("users3.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("users3.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -197,7 +197,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 4
      */
     func testUniquing() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
@@ -210,8 +210,8 @@ class DATAFilterTests: XCTestCase {
             let numberOfUsers = try! backgroundContext.count(for: request)
             XCTAssertEqual(numberOfUsers, 8)
 
-            let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
             }, updated: { objectJSON, updatedObject in
             })
 
@@ -228,7 +228,7 @@ class DATAFilterTests: XCTestCase {
      - Deleted: 0
      */
     func testStringID() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.note(remoteID: "123", text: "text", context: backgroundContext)
             try! backgroundContext.save()
@@ -237,8 +237,8 @@ class DATAFilterTests: XCTestCase {
             let count = try! backgroundContext.count(for: request)
             XCTAssertEqual(count, 1)
 
-            let JSONObjects = try! JSON.from("note.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
-            DATAFilter.changes(JSONObjects, inEntityNamed: "Note", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            let JSONObjects = try! JSON.from("note.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
+            DataFilter.changes(JSONObjects, inEntityNamed: "Note", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 XCTAssertFalse(true)
             }, updated: { objectJSON, updatedObject in
                 XCTAssertEqual(objectJSON["id"] as? String, "123")
@@ -247,17 +247,17 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testInsertOnly() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.user(remoteID: 0, firstName: "Amy", lastName: "Juergens", age: 21, context: backgroundContext)
             self.user(remoteID: 1, firstName: "Ben", lastName: "Boykewich", age: 23, context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Insert], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Insert], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -270,17 +270,17 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testUpdateOnly() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.user(remoteID: 0, firstName: "Amy", lastName: "Juergens", age: 21, context: backgroundContext)
             self.user(remoteID: 1, firstName: "Ben", lastName: "Boykewich", age: 23, context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Update], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Update], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -293,17 +293,17 @@ class DATAFilterTests: XCTestCase {
     }
 
     func testDeleteOnly() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.user(remoteID: 0, firstName: "Amy", lastName: "Juergens", age: 21, context: backgroundContext)
             self.user(remoteID: 1, firstName: "Ben", lastName: "Boykewich", age: 23, context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("simple.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Delete], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.Delete], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1
@@ -321,16 +321,16 @@ class DATAFilterTests: XCTestCase {
      the set existing ID: 1, meaning that if an item with ID: 2 appears, then this item will be inserted.
      */
     func testPredicate() {
-        let dataStack = DATAStack(modelName: "DATAFilter", bundle: Bundle(for: DATAFilterTests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "DataFilter", bundle: Bundle(for: DataFilterTests.self), storeType: .inMemory)
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.createUsers(context: backgroundContext)
 
-            let before = DATAObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
-            let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DATAFilterTests.self)) as! [[String: Any]]
+            let before = DataObjectIDs.objectIDs(inEntityNamed: "User", withAttributesNamed: "remoteID", context: backgroundContext)
+            let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DATAFilter.changes(JSONObjects, inEntityNamed: "User", predicate: NSPredicate(format: "remoteID == \(0)"), operations: [.All], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: NSPredicate(format: "remoteID == \(0)"), operations: [.All], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
                 inserted += 1
             }, updated: { objectJSON, updatedObject in
                 updated += 1

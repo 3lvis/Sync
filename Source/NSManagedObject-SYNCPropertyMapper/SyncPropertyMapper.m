@@ -1,12 +1,12 @@
-#import "SYNCPropertyMapper.h"
+#import "SyncPropertyMapper.h"
 
-#import "NSString+SYNCInflections.h"
-#import "NSManagedObject+SYNCPropertyMapperHelpers.h"
-#import "NSDate+SYNCPropertyMapper.h"
+#import "NSString+SyncInflections.h"
+#import "NSManagedObject+SyncPropertyMapperHelpers.h"
+#import "NSDate+SyncPropertyMapper.h"
 
-static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
+static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
 
-@implementation NSManagedObject (SYNCPropertyMapper)
+@implementation NSManagedObject (SyncPropertyMapper)
 
 #pragma mark - Public methods
 
@@ -19,13 +19,13 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
             BOOL valueExists = (value && ![value isKindOfClass:[NSNull class]]);
             if (valueExists && [value isKindOfClass:[NSDictionary class]] && attributeDescription.attributeType != NSBinaryDataAttributeType) {
                 NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription
-                                                              inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
+                                                              inflectionType:SyncPropertyMapperInflectionTypeSnakeCase];
                 BOOL hasCustomKeyPath = remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound;
                 if (hasCustomKeyPath) {
                     NSArray *keyPathAttributeDescriptions = [self attributeDescriptionsForRemoteKeyPath:remoteKey];
                     for (NSAttributeDescription *keyPathAttributeDescription in keyPathAttributeDescriptions) {
                         NSString *remoteKey = [self remoteKeyForAttributeDescription:keyPathAttributeDescription
-                                                                      inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
+                                                                      inflectionType:SyncPropertyMapperInflectionTypeSnakeCase];
                         NSString *localKey = keyPathAttributeDescription.name;
                         [self hyp_setDictionaryValue:[dictionary valueForKeyPath:remoteKey]
                                               forKey:localKey
@@ -59,31 +59,31 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionary {
-    return [self hyp_dictionaryUsingInflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
+    return [self hyp_dictionaryUsingInflectionType:SyncPropertyMapperInflectionTypeSnakeCase];
 }
 
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SyncPropertyMapperInflectionType)inflectionType {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]
                                           parent:nil
                              usingInflectionType:inflectionType
-                             andRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
+                             andRelationshipType:SyncPropertyMapperRelationshipTypeNested];
 }
 
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsinginflectionType:(SYNCPropertyMapperInflectionType)inflectionType
-                                                andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsinginflectionType:(SyncPropertyMapperInflectionType)inflectionType
+                                                andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]
                                           parent:nil
                              usingInflectionType:inflectionType
                              andRelationshipType:relationshipType];
 }
 
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]
                            usingRelationshipType:relationshipType];
 }
 
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType
-                                                andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
+                                                andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]
                                           parent:nil
                              usingInflectionType:inflectionType
@@ -93,27 +93,27 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter
                                           parent:nil
-                           usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
+                           usingRelationshipType:SyncPropertyMapperRelationshipTypeNested];
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
-                                            usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+                                            usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter
                                           parent:nil
                            usingRelationshipType:relationshipType];
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
-                                              usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+                                              usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter
                                           parent:nil
                              usingInflectionType:inflectionType
-                             andRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
+                             andRelationshipType:SyncPropertyMapperRelationshipTypeNested];
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
-                                              usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType
-                                              andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+                                              usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
+                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter
                                           parent:nil
                              usingInflectionType:inflectionType
@@ -122,23 +122,23 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
                                                            parent:( NSManagedObject * _Nullable )parent
-                                            usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+                                            usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter
                                           parent:parent
-                             usingInflectionType:SYNCPropertyMapperInflectionTypeSnakeCase
+                             usingInflectionType:SyncPropertyMapperInflectionTypeSnakeCase
                              andRelationshipType:relationshipType];
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
                                                            parent:( NSManagedObject * _Nullable )parent
-                                              usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType
-                                              andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+                                              usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
+                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSDictionary *userInfo = [propertyDescription userInfo];
-            NSString *nonExportableKey = userInfo[SYNCPropertyMapperNonExportableKey];
+            NSString *nonExportableKey = userInfo[SyncPropertyMapperNonExportableKey];
             BOOL shouldExportAttribute = (nonExportableKey == nil);
             if (shouldExportAttribute) {
                 id value = [self valueForAttributeDescription:propertyDescription
@@ -152,10 +152,10 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
                 }
             }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&
-                   relationshipType != SYNCPropertyMapperRelationshipTypeNone) {
+                   relationshipType != SyncPropertyMapperRelationshipTypeNone) {
             NSRelationshipDescription *relationshipDescription = (NSRelationshipDescription *)propertyDescription;
             NSDictionary *userInfo = relationshipDescription.userInfo;
-            NSString *nonExportableKey = userInfo[SYNCPropertyMapperNonExportableKey];
+            NSString *nonExportableKey = userInfo[SyncPropertyMapperNonExportableKey];
             if (nonExportableKey == nil) {
                 BOOL isValidRelationship = !(parent && [parent.entity isEqual:relationshipDescription.destinationEntity] && !relationshipDescription.isToMany);
                 if (isValidRelationship) {
@@ -191,10 +191,10 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 
 - (NSDictionary *)attributesForToOneRelationship:(NSManagedObject *)relationship
                                 relationshipName:(NSString *)relationshipName
-                           usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType
+                           usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
                                           parent:(NSManagedObject *)parent
                                    dateFormatter:(NSDateFormatter *)dateFormatter
-                                  inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+                                  inflectionType:(SyncPropertyMapperInflectionType)inflectionType {
 
     NSMutableDictionary *attributesForToOneRelationship = [NSMutableDictionary new];
     NSDictionary *attributes = [relationship hyp_dictionaryWithDateFormatter:dateFormatter
@@ -204,20 +204,20 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
     if (attributes.count > 0) {
         NSString *key;
         switch (inflectionType) {
-            case SYNCPropertyMapperInflectionTypeSnakeCase:
+            case SyncPropertyMapperInflectionTypeSnakeCase:
                 key = [relationshipName hyp_snakeCase];
                 break;
-            case SYNCPropertyMapperInflectionTypeCamelCase:
+            case SyncPropertyMapperInflectionTypeCamelCase:
                 key = relationshipName;
                 break;
         }
-        if (relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
+        if (relationshipType == SyncPropertyMapperRelationshipTypeNested) {
             switch (inflectionType) {
-                case SYNCPropertyMapperInflectionTypeSnakeCase:
-                    key = [NSString stringWithFormat:@"%@_%@", key, SYNCPropertyMapperNestedAttributesKey];
+                case SyncPropertyMapperInflectionTypeSnakeCase:
+                    key = [NSString stringWithFormat:@"%@_%@", key, SyncPropertyMapperNestedAttributesKey];
                     break;
-                case SYNCPropertyMapperInflectionTypeCamelCase:
-                    key = [NSString stringWithFormat:@"%@%@", key, [SYNCPropertyMapperNestedAttributesKey capitalizedString]];
+                case SyncPropertyMapperInflectionTypeCamelCase:
+                    key = [NSString stringWithFormat:@"%@%@", key, [SyncPropertyMapperNestedAttributesKey capitalizedString]];
                     break;
             }
         }
@@ -230,10 +230,10 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 
 - (NSDictionary *)attributesForToManyRelationship:(NSSet *)relationships
                                  relationshipName:(NSString *)relationshipName
-                            usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType
+                            usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
                                            parent:(NSManagedObject *)parent
                                     dateFormatter:(NSDateFormatter *)dateFormatter
-                                   inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+                                   inflectionType:(SyncPropertyMapperInflectionType)inflectionType {
 
     NSMutableDictionary *attributesForToManyRelationship = [NSMutableDictionary new];
     NSUInteger relationIndex = 0;
@@ -245,9 +245,9 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
                                                              usingInflectionType:inflectionType
                                                              andRelationshipType:relationshipType];
         if (attributes.count > 0) {
-            if (relationshipType == SYNCPropertyMapperRelationshipTypeArray) {
+            if (relationshipType == SyncPropertyMapperRelationshipTypeArray) {
                 [relationsArray addObject:attributes];
-            } else if (relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
+            } else if (relationshipType == SyncPropertyMapperRelationshipTypeNested) {
                 NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                 relationsDictionary[relationIndexString] = attributes;
                 relationIndex++;
@@ -257,17 +257,17 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 
     NSString *key;
     switch (inflectionType) {
-        case SYNCPropertyMapperInflectionTypeSnakeCase: {
+        case SyncPropertyMapperInflectionTypeSnakeCase: {
             key = [relationshipName hyp_snakeCase];
         } break;
-        case SYNCPropertyMapperInflectionTypeCamelCase: {
+        case SyncPropertyMapperInflectionTypeCamelCase: {
             key = [relationshipName hyp_camelCase];
         } break;
     }
-    if (relationshipType == SYNCPropertyMapperRelationshipTypeArray) {
+    if (relationshipType == SyncPropertyMapperRelationshipTypeArray) {
         [attributesForToManyRelationship setValue:relationsArray forKey:key];
-    } else if (relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
-        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", key, SYNCPropertyMapperNestedAttributesKey];
+    } else if (relationshipType == SyncPropertyMapperRelationshipTypeNested) {
+        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", key, SyncPropertyMapperNestedAttributesKey];
         [attributesForToManyRelationship setValue:relationsDictionary forKey:nestedAttributesPrefix];
     }
 

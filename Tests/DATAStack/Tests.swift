@@ -3,8 +3,8 @@ import CoreData
 @testable import Sync
 
 extension XCTestCase {
-    func createDataStack(_ storeType: DATAStackStoreType = .inMemory) -> DATAStack {
-        let dataStack = DATAStack(modelName: "ModelGroup", bundle: Bundle(for: Tests.self), storeType: storeType)
+    func createDataStack(_ storeType: DataStackStoreType = .inMemory) -> DataStack {
+        let dataStack = DataStack(modelName: "ModelGroup", bundle: Bundle(for: Tests.self), storeType: storeType)
 
         return dataStack
     }
@@ -29,7 +29,7 @@ extension XCTestCase {
 
 class InitializerTests: XCTestCase {
     func testInitializeUsingXCDataModel() {
-        let dataStack = DATAStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .inMemory)
+        let dataStack = DataStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .inMemory)
 
         self.insertUser(in: dataStack.mainContext)
         let objects = self.fetch(in: dataStack.mainContext)
@@ -48,7 +48,7 @@ class InitializerTests: XCTestCase {
 
     func testInitializingUsingNSManagedObjectModel() {
         let model = NSManagedObjectModel(bundle: Bundle(for: Tests.self), name: "ModelGroup")
-        let dataStack = DATAStack(model: model, storeType: .inMemory)
+        let dataStack = DataStack(model: model, storeType: .inMemory)
 
         self.insertUser(in: dataStack.mainContext)
         let objects = self.fetch(in: dataStack.mainContext)
@@ -155,13 +155,13 @@ class Tests: XCTestCase {
     }
 
     func testAutomaticMigration() {
-        let firstDataStack = DATAStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
+        let firstDataStack = DataStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
         self.insertUser(in: firstDataStack.mainContext)
         let objects = self.fetch(in: firstDataStack.mainContext)
         XCTAssertEqual(objects.count, 1)
 
         // LightweightMigrationModel is a copy of DataModel with the main difference that adds the updatedDate attribute.
-        let secondDataStack = DATAStack(modelName: "LightweightMigrationModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
+        let secondDataStack = DataStack(modelName: "LightweightMigrationModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         fetchRequest.predicate = NSPredicate(format: "remoteID = %@", NSNumber(value: 1))
         let user = try! secondDataStack.mainContext.fetch(fetchRequest).first

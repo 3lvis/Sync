@@ -2,18 +2,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString * const SYNCDefaultLocalPrimaryKey = @"id";
-static NSString * const SYNCDefaultLocalCompatiblePrimaryKey = @"remoteID";
+static NSString * const SyncDefaultLocalPrimaryKey = @"id";
+static NSString * const SyncDefaultLocalCompatiblePrimaryKey = @"remoteID";
 
-static NSString * const SYNCDefaultRemotePrimaryKey = @"id";
+static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 
-static NSString * const SYNCCustomLocalPrimaryKey = @"hyper.isPrimaryKey";
-static NSString * const SYNCCustomLocalPrimaryKeyValue = @"YES";
-static NSString * const SYNCCustomLocalPrimaryKeyAlternativeValue = @"true";
+static NSString * const SyncCustomLocalPrimaryKey = @"hyper.isPrimaryKey";
+static NSString * const SyncCustomLocalPrimaryKeyValue = @"YES";
+static NSString * const SyncCustomLocalPrimaryKeyAlternativeValue = @"true";
 
-static NSString * const SYNCCustomRemoteKey = @"hyper.remoteKey";
+static NSString * const SyncCustomRemoteKey = @"hyper.remoteKey";
 
-@interface NSEntityDescription (SYNCPrimaryKey)
+@interface NSEntityDescription (SyncPrimaryKey)
 
 /**
  Returns the Core Data attribute used as the primary key. By default it will look for the attribute named `id`.

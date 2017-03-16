@@ -1,8 +1,8 @@
-#import "NSString+SYNCInflections.h"
+#import "NSString+SyncInflections.h"
 
-typedef void (^SYNCInflectionsStringStorageBlock)(void);
+typedef void (^SyncInflectionsStringStorageBlock)(void);
 
-@interface SYNCInflectionsStringStorage : NSObject
+@interface SyncInflectionsStringStorage : NSObject
 
 @property (nonatomic, strong) NSMutableDictionary *snakeCaseStorage;
 @property (nonatomic, strong) NSMutableDictionary *camelCaseStorage;
@@ -10,11 +10,11 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 
 @end
 
-@implementation SYNCInflectionsStringStorage
+@implementation SyncInflectionsStringStorage
 
 + (instancetype)sharedInstance {
     static dispatch_once_t once;
-    static SYNCInflectionsStringStorage *sharedInstance;
+    static SyncInflectionsStringStorage *sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [self new];
     });
@@ -24,7 +24,7 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 - (instancetype)init {
     self = [super init];
 	if (self) {
-		_serialQueue = dispatch_queue_create("com.syncdb.NSString_SYNCInflections.serialQueue", DISPATCH_QUEUE_SERIAL);
+		_serialQueue = dispatch_queue_create("com.syncdb.NSString_SyncInflections.serialQueue", DISPATCH_QUEUE_SERIAL);
 	}
 
 	return self;
@@ -47,7 +47,7 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
     return _camelCaseStorage;
 }
 
-- (void)performOnDictionary:(SYNCInflectionsStringStorageBlock)block {
+- (void)performOnDictionary:(SyncInflectionsStringStorageBlock)block {
 	dispatch_sync(_serialQueue, block);
 
 }
@@ -62,12 +62,12 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 
 @end
 
-@implementation NSString (SYNCInflections)
+@implementation NSString (SyncInflections)
 
 #pragma mark - Private methods
 
 - (nonnull NSString *)hyp_snakeCase {
-	SYNCInflectionsStringStorage *const stringStorage = [SYNCInflectionsStringStorage sharedInstance];
+	SyncInflectionsStringStorage *const stringStorage = [SyncInflectionsStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{
@@ -89,7 +89,7 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 }
 
 - (nullable NSString *)hyp_camelCase {
-	SYNCInflectionsStringStorage *const stringStorage = [SYNCInflectionsStringStorage sharedInstance];
+	SyncInflectionsStringStorage *const stringStorage = [SyncInflectionsStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{

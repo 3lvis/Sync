@@ -10,9 +10,9 @@ import Sync
         return objects
     }
 
-    class func dataStackWithModelName(_ modelName: String) -> DATAStack {
+    class func dataStackWithModelName(_ modelName: String) -> DataStack {
         let bundle = Bundle(for: Helper.self)
-        let dataStack = DATAStack(modelName: modelName, bundle: bundle, storeType: .sqLite)
+        let dataStack = DataStack(modelName: modelName, bundle: bundle, storeType: .sqLite)
 
         return dataStack
     }
@@ -60,13 +60,13 @@ import Sync
         return objects
     }
 
-    class func dataStackWithModelName(_ modelName: String, storeType: DATAStackStoreType = .sqLite) -> DATAStack {
+    class func dataStackWithModelName(_ modelName: String, storeType: DataStackStoreType = .sqLite) -> DataStack {
         let bundle = Bundle(for: Helper.self)
-        let dataStack = DATAStack(modelName: modelName, bundle: bundle, storeType: storeType)
+        let dataStack = DataStack(modelName: modelName, bundle: bundle, storeType: storeType)
         return dataStack
     }
 
-    class func insertEntity(_ name: String, dataStack: DATAStack) -> NSManagedObject {
+    class func insertEntity(_ name: String, dataStack: DataStack) -> NSManagedObject {
         let entity = NSEntityDescription.entity(forEntityName: name, in: dataStack.mainContext)!
         return NSManagedObject(entity: entity, insertInto: dataStack.mainContext)
     }

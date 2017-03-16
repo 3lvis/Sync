@@ -70,13 +70,13 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 Sync.changes(
   changes: [[String : Any]],
   inEntityNamed: String,
-  dataStack: DATAStack,
+  dataStack: DataStack,
   completion: ((NSError?) -> Void)?)
 ```
 
 * `changes`: JSON response
 * `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [DATAStack](https://github.com/SyncDB/DATAStack)
+* `dataStack`: Your [DataStack](https://github.com/SyncDB/DataStack)
 
 ### Model
 
@@ -171,10 +171,10 @@ github "SyncDB/Sync" ~> 2.0
 
 ### Core Data Stack
 
-Replace your Core Data stack with an instance of [DATAStack](https://github.com/SyncDB/DATAStack).
+Replace your Core Data stack with an instance of [DataStack](https://github.com/SyncDB/DataStack).
 
 ```swift
-self.dataStack = DATAStack(modelName: "Demo")
+self.dataStack = DataStack(modelName: "Demo")
 ```
 
 ### Primary key
@@ -203,8 +203,8 @@ Your attributes should match their JSON counterparts in `camelCase` notation ins
 
 There are some exception to this rule:
 
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/NSManagedObject-SYNCPropertyMapper/NSManagedObject%2BSYNCPropertyMapperHelpers.m#L282-L284)
-* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/NSString-SYNCInflections/NSString%2BSYNCInflections.m#L204-L206).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/NSManagedObject-SyncPropertyMapper/NSManagedObject%2BSyncPropertyMapperHelpers.m#L282-L284)
+* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/NSString-SyncInflections/NSString%2BSyncInflections.m#L204-L206).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
@@ -252,7 +252,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 
 #### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/DateParser/NSDate%2BSYNCPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/DateParser/NSDate%2BSyncPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```swift
 let values = ["created_at" : "2014-01-01T00:00:00+00:00",
@@ -274,7 +274,7 @@ let publishedAt = managedObject.value(forKey: "publishedAt")
 
 #### JSON representation from a NSManagedObject
 
-**Sync**'s dependency [**SYNCPropertyMapper**](https://github.com/SyncDB/SYNCPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/SYNCPropertyMapper#json-representation-from-a-nsmanagedobject)
+**Sync**'s dependency [**SyncPropertyMapper**](https://github.com/SyncDB/SyncPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/SyncPropertyMapper#json-representation-from-a-nsmanagedobject)
 
 ### Relationship mapping
 
@@ -373,11 +373,11 @@ You are free to use any networking library.
 
 **Sync** wouldn’t be possible without the help of this *fully tested* components:
 
-* [**DATAStack**](https://github.com/SyncDB/DATAStack): Core Data stack and thread safe saving
+* [**DataStack**](https://github.com/SyncDB/DataStack): Core Data stack and thread safe saving
 
-* [**DATAFilter**](https://github.com/SyncDB/DATAFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DATAFilter uses your remote keys (such as id) for this
+* [**DataFilter**](https://github.com/SyncDB/DataFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DataFilter uses your remote keys (such as id) for this
 
-* [**SYNCPropertyMapper**](https://github.com/SyncDB/SYNCPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
+* [**SyncPropertyMapper**](https://github.com/SyncDB/SyncPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
 
 ## FAQ
 
@@ -493,7 +493,7 @@ Sync.changes(secondImport, inEntityNamed: "User", dataStack: dataStack, operatio
 
 #### How can I load tens of thousands of objects without blocking my UI?
 
-Saving to a background context or a main context could still block the UI since merging to the main thread is a task that of course is done in the main thread. Luckily `DATAStack` has a `newNonMergingBackgroundContext` context that helps us to perform saves without hitting the main thread and any point. If you want to load new items, let's say using a `NSFetchedResultController` you can do it like this:
+Saving to a background context or a main context could still block the UI since merging to the main thread is a task that of course is done in the main thread. Luckily `DataStack` has a `newNonMergingBackgroundContext` context that helps us to perform saves without hitting the main thread and any point. If you want to load new items, let's say using a `NSFetchedResultController` you can do it like this:
 
 ```swift
 try self.fetchedResultsController.performFetch()
@@ -520,9 +520,9 @@ Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/Syn
 
 #### Infinite loop in hyp_dictionary() with relationships
 
-If you're using hyp_dictionary() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `SYNCPropertyMapper` doesn't know when to stop. For this reason we've introduced `hyper.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
+If you're using hyp_dictionary() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `SyncPropertyMapper` doesn't know when to stop. For this reason we've introduced `hyper.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
 
-[More information here.](https://github.com/SyncDB/SYNCPropertyMapper#excluding)
+[More information here.](https://github.com/SyncDB/SyncPropertyMapper#excluding)
 
 ## License
 

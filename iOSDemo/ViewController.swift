@@ -3,10 +3,10 @@ import CoreData
 import Sync
 
 class ViewController: UITableViewController {
-    unowned var dataStack: DATAStack
+    unowned var dataStack: DataStack
     var items = [NSManagedObject]()
 
-    required init(dataStack: DATAStack) {
+    required init(dataStack: DataStack) {
         self.dataStack = dataStack
         super.init(nibName: nil, bundle: nil)
     }

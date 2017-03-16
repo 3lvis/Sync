@@ -1,44 +1,44 @@
 @import CoreData;
 @import Foundation;
 
-#import "NSDate+SYNCPropertyMapper.h"
-#import "NSEntityDescription+SYNCPrimaryKey.h"
-#import "NSString+SYNCInflections.h"
+#import "NSDate+SyncPropertyMapper.h"
+#import "NSEntityDescription+SyncPrimaryKey.h"
+#import "NSString+SyncInflections.h"
 
-FOUNDATION_EXPORT double SYNCPropertyMapperVersionNumber;
-FOUNDATION_EXPORT const unsigned char SYNCPropertyMapperVersionString[];
+FOUNDATION_EXPORT double SyncPropertyMapperVersionNumber;
+FOUNDATION_EXPORT const unsigned char SyncPropertyMapperVersionString[];
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  The relationship type used to export the NSManagedObject as JSON.
 
- - SYNCPropertyMapperRelationshipTypeNone:   Skip all relationships.
- - SYNCPropertyMapperRelationshipTypeArray:  Normal JSON representation of relationships.
- - SYNCPropertyMapperRelationshipTypeNested: Uses Ruby on Rails's accepts_nested_attributes_for notation to represent relationships.
+ - SyncPropertyMapperRelationshipTypeNone:   Skip all relationships.
+ - SyncPropertyMapperRelationshipTypeArray:  Normal JSON representation of relationships.
+ - SyncPropertyMapperRelationshipTypeNested: Uses Ruby on Rails's accepts_nested_attributes_for notation to represent relationships.
  */
-typedef NS_ENUM(NSInteger, SYNCPropertyMapperRelationshipType) {
-    SYNCPropertyMapperRelationshipTypeNone = 0,
-    SYNCPropertyMapperRelationshipTypeArray,
-    SYNCPropertyMapperRelationshipTypeNested
+typedef NS_ENUM(NSInteger, SyncPropertyMapperRelationshipType) {
+    SyncPropertyMapperRelationshipTypeNone = 0,
+    SyncPropertyMapperRelationshipTypeArray,
+    SyncPropertyMapperRelationshipTypeNested
 };
 
 /**
  The relationship type used to export the NSManagedObject as JSON.
 
- - SYNCPropertyMapperRelationshipTypeNone:   Skip all relationships.
- - SYNCPropertyMapperRelationshipTypeArray:  Normal JSON representation of relationships.
- - SYNCPropertyMapperRelationshipTypeNested: Uses Ruby on Rails's accepts_nested_attributes_for notation to represent relationships.
+ - SyncPropertyMapperRelationshipTypeNone:   Skip all relationships.
+ - SyncPropertyMapperRelationshipTypeArray:  Normal JSON representation of relationships.
+ - SyncPropertyMapperRelationshipTypeNested: Uses Ruby on Rails's accepts_nested_attributes_for notation to represent relationships.
  */
-typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
-    SYNCPropertyMapperInflectionTypeSnakeCase = 0,
-    SYNCPropertyMapperInflectionTypeCamelCase
+typedef NS_ENUM(NSInteger, SyncPropertyMapperInflectionType) {
+    SyncPropertyMapperInflectionTypeSnakeCase = 0,
+    SyncPropertyMapperInflectionTypeCamelCase
 };
 
 /**
  Collection of helper methods to facilitate mapping JSON to NSManagedObject.
  */
-@interface NSManagedObject (SYNCPropertyMapper)
+@interface NSManagedObject (SyncPropertyMapper)
 
 /**
  Fills the @c NSManagedObject with the contents of the dictionary using a convention-over-configuration paradigm mapping the Core Data attributes to their conterparts in JSON using snake_case.
@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
 
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SyncPropertyMapperInflectionType)inflectionType;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Could include relationships to other models.
@@ -73,7 +73,7 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
 
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
 
 
 /**
@@ -84,8 +84,8 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
  @param relationshipType It indicates wheter the result dictionary should include no relationships, nested attributes or normal attributes.
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType
-                                                andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
+                                                andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Includes relationships to other models using Ruby on Rail's nested attributes model.
@@ -105,7 +105,7 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
-                                            usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+                                            usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.
@@ -116,7 +116,7 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
-                                            usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
+                                            usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.
@@ -128,8 +128,8 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
-                                              usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType
-                                              andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+                                              usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
+                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.
@@ -142,7 +142,7 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
  */
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
                                                            parent:( NSManagedObject * _Nullable)parent
-                                            usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+                                            usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
 
 @end
 

@@ -2,7 +2,7 @@
 @import XCTest;
 @import Sync;
 
-#import "NSEntityDescription+SYNCPrimaryKey.h"
+#import "NSEntityDescription+SyncPrimaryKey.h"
 
 @interface PrimaryKeyTests : XCTestCase
 
@@ -11,9 +11,9 @@
 @implementation PrimaryKeyTests
 
 - (NSEntityDescription *)entityForName:(NSString *)name {
-    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"SYNCPrimaryKey"
+    DataStack *dataStack = [[DataStack alloc] initWithModelName:@"SyncPrimaryKey"
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackStoreTypeInMemory];
+                                                      storeType:DataStackStoreTypeInMemory];
 
     return  [NSEntityDescription entityForName:name
                         inManagedObjectContext:dataStack.mainContext];

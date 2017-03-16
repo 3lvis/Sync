@@ -1,6 +1,6 @@
 @import XCTest;
 
-#import "NSString+SYNCInflections.h"
+#import "NSString+SyncInflections.h"
 
 @interface NSString (PrivateInflections)
 
@@ -10,11 +10,11 @@
 
 @end
 
-@interface NSString_SYNCInflectionsTests : XCTestCase
+@interface NSString_SyncInflectionsTests : XCTestCase
 
 @end
 
-@implementation NSString_SYNCInflectionsTests
+@implementation NSString_SyncInflectionsTests
 
 #pragma mark - Inflections
 

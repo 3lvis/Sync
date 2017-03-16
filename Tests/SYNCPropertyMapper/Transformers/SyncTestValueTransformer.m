@@ -1,6 +1,6 @@
-#import "HYPTestValueTransformer.h"
+#import "SyncTestValueTransformer.h"
 
-@implementation HYPTestValueTransformer
+@implementation SyncTestValueTransformer
 
 + (Class)transformedValueClass {
     return [NSString class];
