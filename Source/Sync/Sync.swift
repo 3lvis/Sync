@@ -1,6 +1,5 @@
 import CoreData
-import SYNCPropertyMapper
-import DATAStack
+
 
 public protocol SyncDelegate: class {
     /// Called before the JSON is used to create a new NSManagedObject.

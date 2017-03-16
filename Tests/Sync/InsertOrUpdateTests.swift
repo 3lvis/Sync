@@ -1,6 +1,7 @@
 import XCTest
-import DATAStack
+
 import CoreData
+import Sync
 
 class InsertOrUpdateTests: XCTestCase {
     func testInsertOrUpdateWithStringID() {

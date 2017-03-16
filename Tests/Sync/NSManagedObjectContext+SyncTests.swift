@@ -1,5 +1,6 @@
 import XCTest
-import DATAStack
+
+import Sync
 
 class NSManagedObjectContext_SyncTests: XCTestCase {
     func testSafeObjectInContext() {
