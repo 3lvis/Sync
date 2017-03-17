@@ -142,7 +142,7 @@ public extension DataStack {
     ///   - id: The primary key.
     ///   - entityName: The name of the entity.
     /// - Throws: Core Data related issues.
-    public func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws {
+    public func delete(_ id: Any, inEntityNamed entityName: String) throws {
         Sync.verifyContextSafety(context: self.mainContext)
 
         return try Sync.delete(id, inEntityNamed: entityName, using: self.mainContext)

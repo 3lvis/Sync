@@ -1063,8 +1063,8 @@
 			children = (
 				14867D1A1E7AF4D2001D228A /* DeleteTests.swift */,
 				14867D1B1E7AF4D2001D228A /* FetchTests.swift */,
-				14867D1C1E7AF4D2001D228A /* Helpers */,
 				14867D1E1E7AF4D2001D228A /* InsertOrUpdateTests.swift */,
+				14867D1C1E7AF4D2001D228A /* Helpers */,
 				14867D1F1E7AF4D2001D228A /* JSONs */,
 				14867D5D1E7AF4D2001D228A /* Models */,
 				14867DA81E7AF4D2001D228A /* NSArray+SyncTests.swift */,
