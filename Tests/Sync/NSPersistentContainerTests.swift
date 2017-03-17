@@ -14,7 +14,7 @@ class NSPersistentContainerTests: XCTestCase {
             try! persistentContainer.persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
             let objects = Helper.objectsFromJSON("camelcase.json") as! [[String: Any]]
 
-            Sync.changes(objects, inEntityNamed: "NormalUser", predicate: nil, persistentContainer: persistentContainer) { error in
+            persistentContainer.sync(objects, inEntityNamed: "NormalUser", predicate: nil) { error in
                 let result = Helper.fetchEntity("NormalUser", inContext: persistentContainer.viewContext)
                 XCTAssertEqual(result.count, 1)
 

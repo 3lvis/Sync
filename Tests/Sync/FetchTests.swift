@@ -12,14 +12,14 @@ class FetchTests: XCTestCase {
         try! dataStack.mainContext.save()
         XCTAssertEqual(1, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
-        let fetched = try! Sync.fetch("id", inEntityNamed: "User", using: dataStack.mainContext)
+        let fetched = try! dataStack.fetch("id", inEntityNamed: "User")
         XCTAssertEqual(fetched?.value(forKey: "id") as? String, "id")
         XCTAssertEqual(fetched?.value(forKey: "name") as? String, "dada")
 
         try! Sync.delete("id", inEntityNamed: "User", using: dataStack.mainContext)
         XCTAssertEqual(0, Helper.countForEntity("User", inContext: dataStack.mainContext))
 
-        let newFetched = try! Sync.fetch("id", inEntityNamed: "User", using: dataStack.mainContext)
+        let newFetched = try! dataStack.fetch("id", inEntityNamed: "User")
         XCTAssertNil(newFetched)
 
         dataStack.drop()

@@ -43,6 +43,10 @@
 		142CD2B21DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B31DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B41DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
+		14549A0B1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
+		14549A0C1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
+		14549A0D1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
+		14549A0E1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
 		1467388C1E7ADBA700913C8E /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; };
 		1467388D1E7ADBA700913C8E /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; };
 		1467388E1E7ADBA700913C8E /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; };
@@ -497,6 +501,10 @@
 		14AF6AFF1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6B001DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
 		14AF6B011DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
+		14D5255F1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */; };
+		14D525601E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */; };
+		14D525611E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */; };
+		14D525621E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */; };
 		14D93C0B1E4E65C700DED595 /* NSDate+SyncPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93BFE1E4E65C700DED595 /* NSDate+SyncPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C0D1E4E65C700DED595 /* NSDate+SyncPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93BFE1E4E65C700DED595 /* NSDate+SyncPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C131E4E65C700DED595 /* NSDate+SyncPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D93BFF1E4E65C700DED595 /* NSDate+SyncPropertyMapper.m */; };
@@ -667,6 +675,7 @@
 		14241EC01DBC3AAA0042ED81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		142CD2A31DEF39AE002FDABE /* Sync+DataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+DataStack.swift"; sourceTree = "<group>"; };
 		142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+NSPersistentContainer.swift"; sourceTree = "<group>"; };
+		14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+Helpers.swift"; sourceTree = "<group>"; };
 		1467388B1E7ADBA700913C8E /* DataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStack.swift; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -824,6 +833,7 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+NSManagedObjectContext.swift"; sourceTree = "<group>"; };
 		14D93BFE1E4E65C700DED595 /* NSDate+SyncPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SyncPropertyMapper.h"; sourceTree = "<group>"; };
 		14D93BFF1E4E65C700DED595 /* NSDate+SyncPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SyncPropertyMapper.m"; sourceTree = "<group>"; };
 		14D93C011E4E65C700DED595 /* NSEntityDescription+SyncPrimaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+SyncPrimaryKey.h"; sourceTree = "<group>"; };
@@ -1053,8 +1063,8 @@
 			children = (
 				14867D1A1E7AF4D2001D228A /* DeleteTests.swift */,
 				14867D1B1E7AF4D2001D228A /* FetchTests.swift */,
-				14867D1C1E7AF4D2001D228A /* Helpers */,
 				14867D1E1E7AF4D2001D228A /* InsertOrUpdateTests.swift */,
+				14867D1C1E7AF4D2001D228A /* Helpers */,
 				14867D1F1E7AF4D2001D228A /* JSONs */,
 				14867D5D1E7AF4D2001D228A /* Models */,
 				14867DA81E7AF4D2001D228A /* NSArray+SyncTests.swift */,
@@ -1308,6 +1318,8 @@
 			isa = PBXGroup;
 			children = (
 				44968BF91DA0021300E71A53 /* Sync.swift */,
+				14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */,
+				14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */,
 				142CD2A31DEF39AE002FDABE /* Sync+DataStack.swift */,
 				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
 				44968BF51DA0021300E71A53 /* NSArray+Sync.swift */,
@@ -1945,9 +1957,11 @@
 				14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14241EA31DBC3A6F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
+				14549A0B1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */,
 				142CD2B11DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14AF6AFE1DFC3D88009E5BC4 /* Result.swift in Sources */,
+				14D5255F1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */,
 				14241EA51DBC3A6F0042ED81 /* DataFilter.swift in Sources */,
 				14241EA71DBC3A6F0042ED81 /* TestCheck.swift in Sources */,
 				142CD2A81DEF39AE002FDABE /* Sync+DataStack.swift in Sources */,
@@ -1968,9 +1982,11 @@
 				14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2C1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EAA1DBC3A770042ED81 /* NSManagedObject+Sync.swift in Sources */,
+				14549A0E1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C441E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EAC1DBC3A770042ED81 /* Sync.swift in Sources */,
+				14D525621E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */,
 				142CD2B21DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14D93C201E4E65C700DED595 /* NSEntityDescription+SyncPrimaryKey.m in Sources */,
 				14D93C381E4E65C700DED595 /* SyncPropertyMapper.m in Sources */,
@@ -1991,9 +2007,11 @@
 				14241EB11DBC3A7F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2D1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EB21DBC3A7F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
+				14549A0C1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EB31DBC3A7F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C451E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EB41DBC3A7F0042ED81 /* Sync.swift in Sources */,
+				14D525601E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */,
 				142CD2B31DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14D93C211E4E65C700DED595 /* NSEntityDescription+SyncPrimaryKey.m in Sources */,
 				14D93C391E4E65C700DED595 /* SyncPropertyMapper.m in Sources */,
@@ -2014,9 +2032,11 @@
 				14241EB91DBC3A880042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2E1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EBA1DBC3A880042ED81 /* NSManagedObject+Sync.swift in Sources */,
+				14549A0D1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EBB1DBC3A880042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C461E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EBC1DBC3A880042ED81 /* Sync.swift in Sources */,
+				14D525611E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */,
 				142CD2B41DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14D93C221E4E65C700DED595 /* NSEntityDescription+SyncPrimaryKey.m in Sources */,
 				14D93C3A1E4E65C700DED595 /* SyncPropertyMapper.m in Sources */,
