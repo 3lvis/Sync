@@ -43,6 +43,10 @@
 		142CD2B21DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B31DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
 		142CD2B41DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */; };
+		14549A0B1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
+		14549A0C1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
+		14549A0D1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
+		14549A0E1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */; };
 		1467388C1E7ADBA700913C8E /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; };
 		1467388D1E7ADBA700913C8E /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; };
 		1467388E1E7ADBA700913C8E /* DataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; };
@@ -671,6 +675,7 @@
 		14241EC01DBC3AAA0042ED81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		142CD2A31DEF39AE002FDABE /* Sync+DataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+DataStack.swift"; sourceTree = "<group>"; };
 		142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+NSPersistentContainer.swift"; sourceTree = "<group>"; };
+		14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+Helpers.swift"; sourceTree = "<group>"; };
 		1467388B1E7ADBA700913C8E /* DataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStack.swift; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1313,6 +1318,7 @@
 			isa = PBXGroup;
 			children = (
 				44968BF91DA0021300E71A53 /* Sync.swift */,
+				14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */,
 				14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */,
 				142CD2A31DEF39AE002FDABE /* Sync+DataStack.swift */,
 				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
@@ -1951,6 +1957,7 @@
 				14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14241EA31DBC3A6F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
+				14549A0B1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */,
 				142CD2B11DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14AF6AFE1DFC3D88009E5BC4 /* Result.swift in Sources */,
@@ -1975,6 +1982,7 @@
 				14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2C1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EAA1DBC3A770042ED81 /* NSManagedObject+Sync.swift in Sources */,
+				14549A0E1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C441E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EAC1DBC3A770042ED81 /* Sync.swift in Sources */,
@@ -1999,6 +2007,7 @@
 				14241EB11DBC3A7F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2D1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EB21DBC3A7F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
+				14549A0C1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EB31DBC3A7F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C451E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EB41DBC3A7F0042ED81 /* Sync.swift in Sources */,
@@ -2023,6 +2032,7 @@
 				14241EB91DBC3A880042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2E1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EBA1DBC3A880042ED81 /* NSManagedObject+Sync.swift in Sources */,
+				14549A0D1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EBB1DBC3A880042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C461E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EBC1DBC3A880042ED81 /* Sync.swift in Sources */,

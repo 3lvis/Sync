@@ -46,6 +46,61 @@ extension NSManagedObjectContext {
     public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, completion: ((_ error: NSError?) -> Void)?) {
         Sync.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: parent, parentRelationship: nil, inContext: self, operations: .all, completion: completion)
     }
+
+    /// Fetches a managed object for the provided primary key in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - id: The primary key.
+    ///   - entityName: The name of the entity.
+    /// - Returns: A managed object for a provided primary key in an specific entity.
+    /// - Throws: Core Data related issues.
+    @discardableResult
+    public func fetch<ResultType: NSManagedObject>(_ id: Any, inEntityNamed entityName: String) throws -> ResultType? {
+        Sync.verifyContextSafety(context: self)
+
+        return try Sync.fetch(id, inEntityNamed: entityName, using: self)
+    }
+
+    /// Inserts or updates an object using the given changes dictionary in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - changes: The dictionary to be used to update or create the object.
+    ///   - entityName: The name of the entity.
+    /// - Returns: The inserted or updated object. If you call this method from a background context, make sure to not use this on the main thread.
+    /// - Throws: Core Data related issues.
+    @discardableResult
+    public func insertOrUpdate<ResultType: NSManagedObject>(_ changes: [String: Any], inEntityNamed entityName: String) throws -> ResultType {
+        Sync.verifyContextSafety(context: self)
+
+        return try Sync.insertOrUpdate(changes, inEntityNamed: entityName, using: self)
+    }
+
+    /// Updates an object using the given changes dictionary for the provided primary key in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - id: The primary key.
+    ///   - changes: The dictionary to be used to update the object.
+    ///   - entityName: The name of the entity.
+    /// - Returns: The updated object, if not found it returns nil. If you call this method from a background context, make sure to not use this on the main thread.
+    /// - Throws: Core Data related issues.
+    @discardableResult
+    public func update<ResultType: NSManagedObject>(_ id: Any, with changes: [String: Any], inEntityNamed entityName: String) throws -> ResultType? {
+        Sync.verifyContextSafety(context: self)
+
+        return try Sync.update(id, with: changes, inEntityNamed: entityName, using: self)
+    }
+
+    /// Deletes a managed object for the provided primary key in an specific entity.
+    ///
+    /// - Parameters:
+    ///   - id: The primary key.
+    ///   - entityName: The name of the entity.
+    /// - Throws: Core Data related issues.
+    public func delete(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws {
+        Sync.verifyContextSafety(context: self)
+
+        return try Sync.delete(id, inEntityNamed: entityName, using: self)
+    }
 }
 
 extension Sync {
