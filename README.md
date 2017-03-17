@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
   </a>
   <a href="https://github.com/SyncDB/Sync#installation">
-    <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
+    <img src="https://img.shields.io/badge/compatible-swift%203.0-orange.svg" />
   </a>
 </div>
 
