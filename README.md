@@ -41,12 +41,12 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 
 ## Table of Contents
 
-* [Basic example](#basic-example)
+* [Simple example](#simple-example)
 * [Installation](#installation)
 * [Credits](#credits)
 * [License](#license)
 
-## Basic example
+## Simple example
 
 ### Model
 
@@ -87,21 +87,7 @@ Sync.changes(
 }
 ```
 
-Alternatively, if you only want to sync users that have been created in the last 24 hours, you could do this by using a `NSPredicate`.
-
-```swift
-let now = NSDate()
-let yesterday = now.dateByAddingTimeInterval(-24*60*60)
-let predicate = NSPredicate(format:@"createdAt > %@", yesterday)
-
-Sync.changes(
-  changes: JSON,
-  inEntityNamed: "User",
-  predicate: predicate
-  dataStack: dataStack) { error in
-    //...
-}
-```
+**Sync** of course does much more than this, it supports a lot of customization and mapping between one-to-one, one-to-many, many-to-many, also mapping JSONs where you only reference the ID instead of the full object of your relationship. Check out the docs for more.
 
 ## Installation
 
