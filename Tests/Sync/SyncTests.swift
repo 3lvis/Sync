@@ -1410,4 +1410,15 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // https://github.com/SyncDB/Sync/issues/375
+    func test375() {
+        let speeches = Helper.objectsFromJSON("375.json") as! [[String: Any]]
+        let dataStack = Helper.dataStackWithModelName("375")
+        dataStack.sync(speeches, inEntityNamed: "Speech", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Speech", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 1)
+
+        dataStack.drop()
+    }
 }
