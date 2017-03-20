@@ -49,21 +49,12 @@ class DataFilter: NSObject {
             remotePrimaryKeysAndChanges[primaryKey] = change
         }
 
-        var intersection = Set(remotePrimaryKeysWithoutNils)
-        intersection.formIntersection(Set(localPrimaryKeys))
-        let updatedObjectIDs = Array(intersection)
-
-        var deletedObjectIDs = localPrimaryKeys
-        deletedObjectIDs = deletedObjectIDs.filter { value in
-            !remotePrimaryKeysWithoutNils.contains { $0.isEqual(value) }
-        }
-
-        var insertedObjectIDs = remotePrimaryKeysWithoutNils
-        insertedObjectIDs = insertedObjectIDs.filter { value in
-            !localPrimaryKeys.contains { $0.isEqual(value) }
-        }
+        let remotePrimaryKeysSet = Set(remotePrimaryKeysWithoutNils)
+        let localPrimaryKeysSet = Set(localPrimaryKeys)
 
         if operations.contains(.delete) {
+            let deletedObjectIDs = Array(localPrimaryKeysSet.subtracting(remotePrimaryKeysSet))
+
             for fetchedID in deletedObjectIDs {
                 let objectID = primaryKeysAndObjectIDs[fetchedID]!
                 let object = context.object(with: objectID)
@@ -72,6 +63,8 @@ class DataFilter: NSObject {
         }
 
         if operations.contains(.insert) {
+            let insertedObjectIDs = Array(remotePrimaryKeysSet.subtracting(localPrimaryKeys))
+
             for fetchedID in insertedObjectIDs {
                 let objectDictionary = remotePrimaryKeysAndChanges[fetchedID]!
                 inserted(objectDictionary)
@@ -79,6 +72,8 @@ class DataFilter: NSObject {
         }
 
         if operations.contains(.update) {
+            let updatedObjectIDs = Array(remotePrimaryKeysSet.intersection(localPrimaryKeysSet))
+
             for fetchedID in updatedObjectIDs {
                 let JSON = remotePrimaryKeysAndChanges[fetchedID]!
                 let objectID = primaryKeysAndObjectIDs[fetchedID]!
