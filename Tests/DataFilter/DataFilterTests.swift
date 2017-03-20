@@ -340,6 +340,31 @@ class DataFilterTests: XCTestCase {
             XCTAssertEqual(deleted, 4)
         }
     }
+
+    func testFilteringElementPositioning() {
+        let carsObject = Helper.objectsFromJSON("277.json") as! [[String: Any]]
+        let dataStack = Helper.dataStackWithModelName("277")
+
+        var inserted = 0
+        var updated = 0
+        var ids = [Int]()
+        dataStack.performInNewBackgroundContext { backgroundContext in
+            DataFilter.changes(carsObject, inEntityNamed: "Racecar", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { insertedJSON in
+                if let id = insertedJSON["id"] as? Int {
+                    ids.append(id)
+                }
+
+                inserted += 1
+            }, updated: { updatedJSON, updatedObject in
+                updated += 1
+            })
+            XCTAssertEqual(inserted, 2)
+            XCTAssertEqual(updated, 0)
+            XCTAssertEqual(ids, [31, 32])
+        }
+
+        dataStack.drop()
+    }
 }
 
 extension NSManagedObjectContext {
