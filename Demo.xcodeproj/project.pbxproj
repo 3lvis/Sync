@@ -553,6 +553,19 @@
 		14E2F0A11E7ADE0E00DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E981DBC39730042ED81 /* Sync.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		14E2F0A21E7ADE1400DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E8B1DBC39690042ED81 /* Sync.framework */; };
 		14E2F0F31E7AE12200DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E711DBC39520042ED81 /* Sync.framework */; };
+		14E6522A1E809A68000E7CC6 /* hyper_remote_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E652291E809A68000E7CC6 /* hyper_remote_key.json */; };
+		14E6522B1E809A68000E7CC6 /* hyper_remote_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E652291E809A68000E7CC6 /* hyper_remote_key.json */; };
+		14E6522C1E809A68000E7CC6 /* hyper_remote_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E652291E809A68000E7CC6 /* hyper_remote_key.json */; };
+		14E652341E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
+		14E652351E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
+		14E652361E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
+		14E652381E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
+		14E652391E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
+		14E6523A1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
+		14E6523B1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
+		14E6523D1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift */; };
+		14E6523E1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift */; };
+		14E6523F1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift */; };
 		14E93C441DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E93C461DBCCD2800E3304E /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F6275B1E7AE6B2001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -852,6 +865,10 @@
 		14D93C071E4E65C700DED595 /* SyncPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPropertyMapper.m; sourceTree = "<group>"; };
 		14D93C091E4E65C700DED595 /* NSString+SyncInflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SyncInflections.h"; sourceTree = "<group>"; };
 		14D93C0A1E4E65C700DED595 /* NSString+SyncInflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SyncInflections.m"; sourceTree = "<group>"; };
+		14E652291E809A68000E7CC6 /* hyper_remote_key.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hyper_remote_key.json; sourceTree = "<group>"; };
+		14E652331E809B75000E7CC6 /* HyperRemoteKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyperRemoteKey.xcdatamodel; sourceTree = "<group>"; };
+		14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPropertyDescription+Sync.swift"; sourceTree = "<group>"; };
+		14E6523C1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRelationshipDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		441FA7B71E4F00D300023821 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		441FA7B81E4F00D300023821 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1083,6 +1100,7 @@
 				14867DAD1E7AF4D2001D228A /* SyncDelegateTests.swift */,
 				14867DAE1E7AF4D2001D228A /* SyncTests.swift */,
 				14867DAF1E7AF4D2001D228A /* UpdateTests.swift */,
+				14E6523C1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -1140,6 +1158,7 @@
 				14867D461E7AF4D2001D228A /* id.json */,
 				14867D471E7AF4D2001D228A /* images.json */,
 				14867D481E7AF4D2001D228A /* markets_items.json */,
+				14E652291E809A68000E7CC6 /* hyper_remote_key.json */,
 				14867D491E7AF4D2001D228A /* notes_for_user_a.json */,
 				14867D4B1E7AF4D2001D228A /* notes_with_user_id_custom.json */,
 				14867D4A1E7AF4D2001D228A /* notes_with_user_id.json */,
@@ -1205,6 +1224,7 @@
 				14867DA21E7AF4D2001D228A /* Tests.xcdatamodeld */,
 				14867DA41E7AF4D2001D228A /* ToOne.xcdatamodeld */,
 				14867DA61E7AF4D2001D228A /* Unique.xcdatamodeld */,
+				14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1337,6 +1357,7 @@
 				44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */,
 				44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */,
 				14AF6AFA1DFC3D88009E5BC4 /* Result.swift */,
+				14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -1729,6 +1750,7 @@
 				14867E601E7AF4D2001D228A /* bug-179-places.json in Resources */,
 				14867E691E7AF4D2001D228A /* bug-202-b.json in Resources */,
 				14867EA81E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
+				14E6522A1E809A68000E7CC6 /* hyper_remote_key.json in Resources */,
 				14867EC01E7AF4D2001D228A /* users_c.json in Resources */,
 				14867E751E7AF4D2001D228A /* bug-number-84.json in Resources */,
 				14867E421E7AF4D2001D228A /* 277.json in Resources */,
@@ -1805,6 +1827,7 @@
 				14867E611E7AF4D2001D228A /* bug-179-places.json in Resources */,
 				14867E6A1E7AF4D2001D228A /* bug-202-b.json in Resources */,
 				14867EA91E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
+				14E6522B1E809A68000E7CC6 /* hyper_remote_key.json in Resources */,
 				14867EC11E7AF4D2001D228A /* users_c.json in Resources */,
 				14867E761E7AF4D2001D228A /* bug-number-84.json in Resources */,
 				14867E431E7AF4D2001D228A /* 277.json in Resources */,
@@ -1881,6 +1904,7 @@
 				14867E621E7AF4D2001D228A /* bug-179-places.json in Resources */,
 				14867E6B1E7AF4D2001D228A /* bug-202-b.json in Resources */,
 				14867EAA1E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
+				14E6522C1E809A68000E7CC6 /* hyper_remote_key.json in Resources */,
 				14867EC21E7AF4D2001D228A /* users_c.json in Resources */,
 				14867E771E7AF4D2001D228A /* bug-number-84.json in Resources */,
 				14867E441E7AF4D2001D228A /* 277.json in Resources */,
@@ -1969,6 +1993,7 @@
 				14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
+				14E652381E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EA31DBC3A6F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14549A0B1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */,
@@ -1994,6 +2019,7 @@
 				14241EA81DBC3A770042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2C1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
+				14E6523B1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EAA1DBC3A770042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0E1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
@@ -2019,6 +2045,7 @@
 				14241EB01DBC3A7F0042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EB11DBC3A7F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2D1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
+				14E652391E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EB21DBC3A7F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0C1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EB31DBC3A7F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
@@ -2044,6 +2071,7 @@
 				14241EB81DBC3A880042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EB91DBC3A880042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2E1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
+				14E6523A1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EBA1DBC3A880042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0D1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EBB1DBC3A880042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
@@ -2078,6 +2106,7 @@
 				14867F651E7AF4D2001D228A /* 137.xcdatamodeld in Sources */,
 				14867F501E7AF4D2001D228A /* DictionaryTests.swift in Sources */,
 				14867F771E7AF4D2001D228A /* SyncFillWithDictionaryTests.m in Sources */,
+				14E6523D1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift in Sources */,
 				14867F621E7AF4D2001D228A /* 129.xcdatamodeld in Sources */,
 				14867F321E7AF4D2001D228A /* ToOne.xcdatamodeld in Sources */,
 				14867F081E7AF4D2001D228A /* Camelcase.xcdatamodeld in Sources */,
@@ -2098,6 +2127,7 @@
 				14867EFF1E7AF4D2001D228A /* 320.xcdatamodeld in Sources */,
 				14867F5F1E7AF4D2001D228A /* 123.xcdatamodeld in Sources */,
 				14867E0F1E7AF4D2001D228A /* InsertOrUpdateTests.swift in Sources */,
+				14E652341E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */,
 				14867E091E7AF4D2001D228A /* FetchTests.swift in Sources */,
 				14867DD31E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				14867F021E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
@@ -2164,6 +2194,7 @@
 				14867F661E7AF4D2001D228A /* 137.xcdatamodeld in Sources */,
 				14867F511E7AF4D2001D228A /* DictionaryTests.swift in Sources */,
 				14867F781E7AF4D2001D228A /* SyncFillWithDictionaryTests.m in Sources */,
+				14E6523E1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift in Sources */,
 				14867F631E7AF4D2001D228A /* 129.xcdatamodeld in Sources */,
 				14867F331E7AF4D2001D228A /* ToOne.xcdatamodeld in Sources */,
 				14867F091E7AF4D2001D228A /* Camelcase.xcdatamodeld in Sources */,
@@ -2184,6 +2215,7 @@
 				14867F001E7AF4D2001D228A /* 320.xcdatamodeld in Sources */,
 				14867F601E7AF4D2001D228A /* 123.xcdatamodeld in Sources */,
 				14867E101E7AF4D2001D228A /* InsertOrUpdateTests.swift in Sources */,
+				14E652351E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */,
 				14867E0A1E7AF4D2001D228A /* FetchTests.swift in Sources */,
 				14867DD41E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				14867F031E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
@@ -2250,6 +2282,7 @@
 				14867F671E7AF4D2001D228A /* 137.xcdatamodeld in Sources */,
 				14867F521E7AF4D2001D228A /* DictionaryTests.swift in Sources */,
 				14867F791E7AF4D2001D228A /* SyncFillWithDictionaryTests.m in Sources */,
+				14E6523F1E809E9C000E7CC6 /* NSRelationshipDescription+SyncTests.swift in Sources */,
 				14867F641E7AF4D2001D228A /* 129.xcdatamodeld in Sources */,
 				14867F341E7AF4D2001D228A /* ToOne.xcdatamodeld in Sources */,
 				14867F0A1E7AF4D2001D228A /* Camelcase.xcdatamodeld in Sources */,
@@ -2270,6 +2303,7 @@
 				14867F011E7AF4D2001D228A /* 320.xcdatamodeld in Sources */,
 				14867F611E7AF4D2001D228A /* 123.xcdatamodeld in Sources */,
 				14867E111E7AF4D2001D228A /* InsertOrUpdateTests.swift in Sources */,
+				14E652361E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */,
 				14867E0B1E7AF4D2001D228A /* FetchTests.swift in Sources */,
 				14867DD51E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				14867F041E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
@@ -3417,6 +3451,16 @@
 			);
 			currentVersion = 149FF9E91E808C4400617A63 /* 113.xcdatamodel */;
 			path = 375.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14E652331E809B75000E7CC6 /* HyperRemoteKey.xcdatamodel */,
+			);
+			currentVersion = 14E652331E809B75000E7CC6 /* HyperRemoteKey.xcdatamodel */;
+			path = HyperRemoteKey.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

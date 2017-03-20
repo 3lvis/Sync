@@ -16,6 +16,20 @@ extension NSEntityDescription {
         return relationships
     }
 
+    /// Finds the attributes for the current entity.
+    ///
+    /// - Returns: An array of attributes for the current entity.
+    func sync_attributes() -> [NSAttributeDescription] {
+        var attributes = [NSAttributeDescription]()
+        for propertyDescription in properties {
+            if let attributeDescription = propertyDescription as? NSAttributeDescription {
+                attributes.append(attributeDescription)
+            }
+        }
+
+        return attributes
+    }
+
     /**
      Finds the parent for the current entity, if there are many parents nil will be returned.
      - returns The parent relationship for the current entity
