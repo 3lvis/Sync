@@ -178,7 +178,17 @@ extension NSManagedObject {
             }
         } else {
             if let customRelationshipName = relationship.userInfo?[SyncCustomRemoteKey] as? String {
-                children = dictionary[customRelationshipName] as? [[String: Any]]
+                if customRelationshipName.contains(".") {
+                    if let deepMapingRootKey = customRelationshipName.components(separatedBy: ".").first {
+                        if let rootObject = dictionary[deepMapingRootKey] as? [String: Any] {
+                            if let deepMapingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
+                                children = rootObject[deepMapingLeaveKey] as? [[String: Any]]
+                            }
+                        }
+                    }
+                } else {
+                    children = dictionary[customRelationshipName] as? [[String: Any]]
+                }
             } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [[String: Any]] {
                 children = result
             } else if let result = dictionary[relationship.name] as? [[String: Any]] {
