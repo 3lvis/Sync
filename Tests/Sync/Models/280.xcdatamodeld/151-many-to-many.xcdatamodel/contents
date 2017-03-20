@@ -4,7 +4,7 @@
         <attribute name="busID" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="true"/>
-                <entry key="hyper.remoteKey" value="busID"/>
+                <entry key="sync.remoteKey" value="busID"/>
             </userInfo>
         </attribute>
         <relationship name="polyline" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RoutePolylineItem" inverseName="route" inverseEntity="RoutePolylineItem" syncable="YES"/>

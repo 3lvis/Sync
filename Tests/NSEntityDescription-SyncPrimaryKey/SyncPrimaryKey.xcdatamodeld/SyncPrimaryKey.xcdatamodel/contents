@@ -27,7 +27,7 @@
         <attribute name="randomId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="YES"/>
-                <entry key="hyper.remoteKey" value="id"/>
+                <entry key="sync.remoteKey" value="id"/>
             </userInfo>
         </attribute>
     </entity>

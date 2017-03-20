@@ -17,12 +17,12 @@
         </attribute>
         <relationship name="endPlace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="endRoutes" inverseEntity="Place" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="end"/>
+                <entry key="sync.remoteKey" value="end"/>
             </userInfo>
         </relationship>
         <relationship name="startPlace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="startRoutes" inverseEntity="Place" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="start"/>
+                <entry key="sync.remoteKey" value="start"/>
             </userInfo>
         </relationship>
     </entity>

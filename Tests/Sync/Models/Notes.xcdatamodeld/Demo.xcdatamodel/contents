@@ -19,7 +19,7 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="superNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SuperNote" inverseName="superUser" inverseEntity="SuperNote" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="annotations"/>
+                <entry key="sync.remoteKey" value="annotations"/>
             </userInfo>
         </relationship>
     </entity>
