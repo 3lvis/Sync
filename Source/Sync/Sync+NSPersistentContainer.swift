@@ -41,7 +41,6 @@ public extension NSPersistentContainer {
      - parameter entityName: The name of the entity to be synced.
      - parameter predicate: The predicate used to filter out changes, if you want to exclude some local items to be taken in
      account in the Sync process, you just need to provide this predicate.
-     - parameter persistentContainer: The NSPersistentContainer instance.
      - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
