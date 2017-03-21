@@ -137,7 +137,7 @@ public protocol SyncDelegate: class {
         }
 
         if localPrimaryKey.isEmpty {
-            fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using hyper.isPrimaryKey")
+            fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using sync.isPrimaryKey")
         }
 
         if remotePrimaryKey.isEmpty {

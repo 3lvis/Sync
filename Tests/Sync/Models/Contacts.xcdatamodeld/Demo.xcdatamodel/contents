@@ -8,7 +8,7 @@
     <entity name="Image" syncable="YES">
         <attribute name="imageId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
                 <entry key="sync.remoteKey" value="ImageId"/>
             </userInfo>
         </attribute>

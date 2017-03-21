@@ -3,7 +3,7 @@
     <entity name="AlternativeID" syncable="YES">
         <attribute name="alternativeID" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
+                <entry key="sync.isPrimaryKey" value="true"/>
             </userInfo>
         </attribute>
     </entity>
@@ -21,7 +21,7 @@
         <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
     </entity>
@@ -33,7 +33,7 @@
         <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="randomId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
                 <entry key="sync.remoteKey" value="id"/>
             </userInfo>
         </attribute>

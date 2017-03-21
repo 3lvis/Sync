@@ -20,7 +20,7 @@
         <attribute name="exerciseName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
+                <entry key="sync.isPrimaryKey" value="true"/>
                 <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
@@ -31,7 +31,7 @@
     <entity name="ExerciseSet" representedClassName="" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
+                <entry key="sync.isPrimaryKey" value="true"/>
                 <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
@@ -44,7 +44,7 @@
     <entity name="Workout" representedClassName="" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
+                <entry key="sync.isPrimaryKey" value="true"/>
                 <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>

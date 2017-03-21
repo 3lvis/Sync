@@ -7,7 +7,7 @@ static NSString * const SyncDefaultLocalCompatiblePrimaryKey = @"remoteID";
 
 static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 
-static NSString * const SyncCustomLocalPrimaryKey = @"hyper.isPrimaryKey";
+static NSString * const SyncCustomLocalPrimaryKey = @"sync.isPrimaryKey";
 static NSString * const SyncCustomLocalPrimaryKeyValue = @"YES";
 static NSString * const SyncCustomLocalPrimaryKeyAlternativeValue = @"true";
 
@@ -18,7 +18,7 @@ static NSString * const SyncCompatibilityCustomRemoteKey = @"hyper.remoteKey";
 
 /**
  Returns the Core Data attribute used as the primary key. By default it will look for the attribute named `id`.
- You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES` to the Core Data model userInfo.
+ You can mark any attribute as primary key by adding `sync.isPrimaryKey` and the value `YES` to the Core Data model userInfo.
 
  @return The attribute description that represents the primary key.
  */
