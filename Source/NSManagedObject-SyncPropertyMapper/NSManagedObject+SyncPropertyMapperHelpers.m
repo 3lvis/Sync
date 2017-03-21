@@ -44,7 +44,8 @@
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
             NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            NSString *customRemoteKey = userInfo[SyncPropertyMapperCustomRemoteKey];
+            // TODO: Add compatibility
+            NSString *customRemoteKey = userInfo[SyncCustomRemoteKey];
             BOOL currentAttributeHasTheSameRemoteKey = (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]);
             if (currentAttributeHasTheSameRemoteKey) {
                 foundAttributeDescription = attributeDescription;
@@ -105,7 +106,8 @@
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             
             NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            NSString *customRemoteKeyPath = userInfo[SyncPropertyMapperCustomRemoteKey];
+            // TODO: Add compatibility
+            NSString *customRemoteKeyPath = userInfo[SyncCustomRemoteKey];
             NSString *customRootRemoteKey = [[customRemoteKeyPath componentsSeparatedByString:@"."] firstObject];
             NSString *rootRemoteKey = [[remoteKey componentsSeparatedByString:@"."] firstObject];
             BOOL currentAttributeHasTheSameRootRemoteKey = (customRootRemoteKey.length > 0 && [customRootRemoteKey isEqualToString:rootRemoteKey]);
@@ -139,7 +141,8 @@
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
 
-    NSString *customRemoteKey = userInfo[SyncPropertyMapperCustomRemoteKey];
+    // TODO: Add compatibility
+    NSString *customRemoteKey = userInfo[SyncCustomRemoteKey];
     if (customRemoteKey) {
         remoteKey = customRemoteKey;
     } else if ([localKey isEqualToString:SyncDefaultLocalPrimaryKey] || [localKey isEqualToString:SyncDefaultLocalCompatiblePrimaryKey]) {

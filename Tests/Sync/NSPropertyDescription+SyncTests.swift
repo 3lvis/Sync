@@ -2,7 +2,7 @@ import XCTest
 import CoreData
 @testable import Sync
 
-class NSRelationshipDescription_SyncTests: XCTestCase {
+class NSPropertyDescription_SyncTests: XCTestCase {
     func testOldCustomKey() {
         let dataStack = Helper.dataStackWithModelName("HyperRemoteKey")
 

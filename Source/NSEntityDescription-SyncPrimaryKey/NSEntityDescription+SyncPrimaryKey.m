@@ -35,6 +35,7 @@
 
 - (nonnull NSString *)sync_remotePrimaryKey {
     NSAttributeDescription *primaryKeyAttribute = [self sync_primaryKeyAttribute];
+    // TODO: Add compatibility
     NSString *remoteKey = primaryKeyAttribute.userInfo[SyncCustomRemoteKey];
 
     if (!remoteKey) {
