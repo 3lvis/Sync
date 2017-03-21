@@ -9,7 +9,7 @@ class NSPropertyDescription_SyncTests: XCTestCase {
         if let entity = NSEntityDescription.entity(forEntityName: "Entity", in: dataStack.mainContext) {
             let dayAttribute = entity.sync_attributes().filter { $0.name == "old" }.first
             if let dayAttribute = dayAttribute {
-                XCTAssertEqual(dayAttribute.customKey, "custom")
+                XCTAssertEqual(dayAttribute.customKey, "custom_old")
             } else {
                 XCTFail()
             }
@@ -26,7 +26,7 @@ class NSPropertyDescription_SyncTests: XCTestCase {
         if let entity = NSEntityDescription.entity(forEntityName: "Entity", in: dataStack.mainContext) {
             let dayAttribute = entity.sync_attributes().filter { $0.name == "current" }.first
             if let dayAttribute = dayAttribute {
-                XCTAssertEqual(dayAttribute.customKey, "custom")
+                XCTAssertEqual(dayAttribute.customKey, "custom_current")
             } else {
                 XCTFail()
             }
