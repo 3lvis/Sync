@@ -37,6 +37,18 @@
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Compatibility" representedClassName="Compatibility" syncable="YES" codeGenerationType="class">
+        <attribute name="current" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="sync.remoteKey" value="customCurrent"/>
+            </userInfo>
+        </attribute>
+        <attribute name="old" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="customOld"/>
+            </userInfo>
+        </attribute>
+    </entity>
     <entity name="KeyPath" representedClassName="KeyPath" syncable="YES">
         <attribute name="camelCaseDepthOne" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
@@ -133,5 +145,6 @@
         <element name="Recursive" positionX="45" positionY="90" width="128" height="90"/>
         <element name="Room" positionX="27" positionY="72" width="128" height="75"/>
         <element name="User" positionX="9" positionY="54" width="128" height="345"/>
+        <element name="Compatibility" positionX="9" positionY="153" width="128" height="75"/>
     </elements>
 </model>

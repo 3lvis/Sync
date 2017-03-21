@@ -4,6 +4,7 @@
 #import "NSString+SyncInflections.h"
 #import "NSEntityDescription+SyncPrimaryKey.h"
 #import "NSDate+SyncPropertyMapper.h"
+#import "NSPropertyDescription+Sync.h"
 
 @implementation NSManagedObject (SyncPropertyMapperHelpers)
 
@@ -43,9 +44,8 @@
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
-            NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            // TODO: Add compatibility
-            NSString *customRemoteKey = userInfo[SyncCustomRemoteKey];
+            NSString *customRemoteKey = [self.entity.propertiesByName[attributeDescription.name] customKey];
+
             BOOL currentAttributeHasTheSameRemoteKey = (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]);
             if (currentAttributeHasTheSameRemoteKey) {
                 foundAttributeDescription = attributeDescription;
