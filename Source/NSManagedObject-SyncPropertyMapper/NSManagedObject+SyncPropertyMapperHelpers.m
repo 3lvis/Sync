@@ -105,9 +105,7 @@
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             
-            NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            // TODO: Add compatibility
-            NSString *customRemoteKeyPath = userInfo[SyncCustomRemoteKey];
+            NSString *customRemoteKeyPath = self.entity.propertiesByName[attributeDescription.name].customKey;
             NSString *customRootRemoteKey = [[customRemoteKeyPath componentsSeparatedByString:@"."] firstObject];
             NSString *rootRemoteKey = [[remoteKey componentsSeparatedByString:@"."] firstObject];
             BOOL currentAttributeHasTheSameRootRemoteKey = (customRootRemoteKey.length > 0 && [customRootRemoteKey isEqualToString:rootRemoteKey]);
@@ -137,12 +135,10 @@
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
                          usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
                                 inflectionType:(SyncPropertyMapperInflectionType)inflectionType {
-    NSDictionary *userInfo = attributeDescription.userInfo;
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
 
-    // TODO: Add compatibility
-    NSString *customRemoteKey = userInfo[SyncCustomRemoteKey];
+    NSString *customRemoteKey = attributeDescription.customKey;
     if (customRemoteKey) {
         remoteKey = customRemoteKey;
     } else if ([localKey isEqualToString:SyncDefaultLocalPrimaryKey] || [localKey isEqualToString:SyncDefaultLocalCompatiblePrimaryKey]) {
