@@ -8,8 +8,9 @@
         </attribute>
     </entity>
     <entity name="Compatibility" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES">
+        <attribute name="custom" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
+                <entry key="hyper.isPrimaryKey" value="true"/>
                 <entry key="hyper.remoteKey" value="greeting"/>
             </userInfo>
         </attribute>
@@ -44,11 +45,11 @@
     </entity>
     <elements>
         <element name="AlternativeID" positionX="-27" positionY="18" width="128" height="60"/>
+        <element name="Compatibility" positionX="-27" positionY="18" width="128" height="60"/>
         <element name="NoID" positionX="-27" positionY="18" width="128" height="60"/>
         <element name="Note" positionX="-20" positionY="18" width="128" height="75"/>
         <element name="SimpleID" positionX="-27" positionY="18" width="128" height="75"/>
         <element name="Tag" positionX="160" positionY="0" width="128" height="75"/>
         <element name="User" positionX="-207" positionY="-15" width="128" height="73"/>
-        <element name="Compatibility" positionX="-27" positionY="18" width="128" height="60"/>
     </elements>
 </model>
