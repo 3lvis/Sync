@@ -15,7 +15,7 @@
         <relationship name="awesomeComments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AwesomeComment" inverseName="awesomeStory" inverseEntity="AwesomeComment" syncable="YES"/>
         <relationship name="awesomeSummarize" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AwesomeSummarize" inverseName="awesomeStory" inverseEntity="AwesomeSummarize" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="summarize_text"/>
+                <entry key="sync.remoteKey" value="summarize_text"/>
             </userInfo>
         </relationship>
     </entity>

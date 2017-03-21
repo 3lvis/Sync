@@ -5,7 +5,7 @@
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="superUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SuperUserB" inverseName="superNotes" inverseEntity="SuperUserB" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="super_user"/>
+                <entry key="sync.remoteKey" value="super_user"/>
             </userInfo>
         </relationship>
     </entity>
@@ -17,7 +17,7 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="superNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SuperNoteB" inverseName="superUser" inverseEntity="SuperNoteB" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="annotations"/>
+                <entry key="sync.remoteKey" value="annotations"/>
             </userInfo>
         </relationship>
     </entity>

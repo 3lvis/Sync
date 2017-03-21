@@ -37,25 +37,37 @@
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Compatibility" representedClassName="" syncable="YES">
+        <attribute name="current" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="sync.remoteKey" value="customCurrent"/>
+            </userInfo>
+        </attribute>
+        <attribute name="old" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="customOld"/>
+            </userInfo>
+        </attribute>
+    </entity>
     <entity name="KeyPath" representedClassName="KeyPath" syncable="YES">
         <attribute name="camelCaseDepthOne" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="camelParent.valueOne"/>
+                <entry key="sync.remoteKey" value="camelParent.valueOne"/>
             </userInfo>
         </attribute>
         <attribute name="camelCaseDepthTwo" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="camelParent.depthOne.depthTwo"/>
+                <entry key="sync.remoteKey" value="camelParent.depthOne.depthTwo"/>
             </userInfo>
         </attribute>
         <attribute name="snakeCaseDepthOne" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="snake_parent.value_one"/>
+                <entry key="sync.remoteKey" value="snake_parent.value_one"/>
             </userInfo>
         </attribute>
         <attribute name="snakeCaseDepthTwo" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="snake_parent.depth_one.depth_two"/>
+                <entry key="sync.remoteKey" value="snake_parent.depth_one.depth_two"/>
             </userInfo>
         </attribute>
     </entity>
@@ -64,7 +76,7 @@
         <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="YES"/>
-                <entry key="hyper.remoteKey" value="id"/>
+                <entry key="sync.remoteKey" value="id"/>
             </userInfo>
         </attribute>
     </entity>
@@ -90,7 +102,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="age_of_person"/>
+                <entry key="sync.remoteKey" value="age_of_person"/>
             </userInfo>
         </attribute>
         <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -98,7 +110,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="driverIdentifier" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="driver_identifier_str"/>
+                <entry key="sync.remoteKey" value="driver_identifier_str"/>
             </userInfo>
         </attribute>
         <attribute name="expenses" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -110,7 +122,7 @@
         <attribute name="numberOfAttendes" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="rawSigned" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="signed"/>
+                <entry key="sync.remoteKey" value="signed"/>
             </userInfo>
         </attribute>
         <attribute name="registeredTransformable" optional="YES" attributeType="Transformable" valueTransformerName="DateStringTransformer" syncable="YES"/>
@@ -133,5 +145,6 @@
         <element name="Recursive" positionX="45" positionY="90" width="128" height="90"/>
         <element name="Room" positionX="27" positionY="72" width="128" height="75"/>
         <element name="User" positionX="9" positionY="54" width="128" height="345"/>
+        <element name="Compatibility" positionX="9" positionY="153" width="128" height="75"/>
     </elements>
 </model>

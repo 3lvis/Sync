@@ -4,14 +4,14 @@
         <attribute name="eventSourceType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="_id"/>
+                <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="start" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="eventSourceID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="plannedToIDs" inverseEntity="Workout" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="eventSourceId"/>
+                <entry key="sync.remoteKey" value="eventSourceId"/>
             </userInfo>
         </relationship>
     </entity>
@@ -21,7 +21,7 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="true"/>
-                <entry key="hyper.remoteKey" value="_id"/>
+                <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
         <attribute name="mainMuscle" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,7 +32,7 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="true"/>
-                <entry key="hyper.remoteKey" value="_id"/>
+                <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -45,7 +45,7 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="true"/>
-                <entry key="hyper.remoteKey" value="_id"/>
+                <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
         <attribute name="workoutDesc" optional="YES" attributeType="String" syncable="YES"/>

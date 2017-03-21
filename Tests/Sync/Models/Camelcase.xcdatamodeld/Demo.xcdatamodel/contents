@@ -3,7 +3,7 @@
     <entity name="NormalUser" syncable="YES">
         <attribute name="etternavn" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="last_name"/>
+                <entry key="sync.remoteKey" value="last_name"/>
             </userInfo>
         </attribute>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>

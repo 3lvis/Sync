@@ -34,7 +34,7 @@ extension NSManagedObject {
         for relationship in entity.sync_relationships() {
             let suffix = relationship.isToMany ? "_ids" : "_id"
             let constructedKeyName = relationship.name.hyp_snakeCase() + suffix
-            let keyName = relationship.userInfo?[SyncCustomRemoteKey] as? String ?? constructedKeyName
+            let keyName = relationship.customKey ?? constructedKeyName
 
             if relationship.isToMany {
                 if let localPrimaryKey = dictionary[keyName], localPrimaryKey is Array < String> || localPrimaryKey is Array < Int> || localPrimaryKey is NSNull {
@@ -169,7 +169,7 @@ extension NSManagedObject {
      */
     func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) throws {
         var children: [[String: Any]]?
-        let childrenIsNull = relationship.userInfo?[SyncCustomRemoteKey] is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
+        let childrenIsNull = (relationship.customKey as Any?) is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
             children = [[String: Any]]()
 
@@ -177,7 +177,7 @@ extension NSManagedObject {
                 setValue(nil, forKey: relationship.name)
             }
         } else {
-            if let customRelationshipName = relationship.userInfo?[SyncCustomRemoteKey] as? String {
+            if let customRelationshipName = relationship.customKey {
                 if customRelationshipName.contains(".") {
                     if let deepMapingRootKey = customRelationshipName.components(separatedBy: ".").first {
                         if let rootObject = dictionary[deepMapingRootKey] as? [String: Any] {
@@ -352,7 +352,7 @@ extension NSManagedObject {
     func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) {
         var filteredObjectDictionary: [String: Any]?
 
-        if let customRelationshipName = relationship.userInfo?[SyncCustomRemoteKey] as? String {
+        if let customRelationshipName = relationship.customKey {
             filteredObjectDictionary = dictionary[customRelationshipName] as? [String: Any]
         } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [String: Any] {
             filteredObjectDictionary = result

@@ -5,7 +5,7 @@
         <attribute name="exerciseName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="_id"/>
+                <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
         <attribute name="mainMuscle" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,7 +14,7 @@
     <entity name="Workout" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="_id"/>
+                <entry key="sync.remoteKey" value="_id"/>
             </userInfo>
         </attribute>
         <attribute name="workoutDesc" optional="YES" attributeType="String" syncable="YES"/>

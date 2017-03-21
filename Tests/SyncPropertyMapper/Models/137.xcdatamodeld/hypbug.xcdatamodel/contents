@@ -11,7 +11,7 @@
     <entity name="InflectionUser" representedClassName="" syncable="YES">
         <attribute name="customRemoteKey" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="randomRemoteKey"/>
+                <entry key="sync.remoteKey" value="randomRemoteKey"/>
             </userInfo>
         </attribute>
         <attribute name="ignoredParameter" optional="YES" attributeType="String" syncable="YES">

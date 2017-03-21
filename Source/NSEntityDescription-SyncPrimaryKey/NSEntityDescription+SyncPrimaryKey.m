@@ -1,6 +1,7 @@
 #import "NSEntityDescription+SyncPrimaryKey.h"
 
 #import "NSString+SyncInflections.h"
+#import "NSPropertyDescription+Sync.h"
 
 @implementation NSEntityDescription (SyncPrimaryKey)
 
@@ -35,7 +36,7 @@
 
 - (nonnull NSString *)sync_remotePrimaryKey {
     NSAttributeDescription *primaryKeyAttribute = [self sync_primaryKeyAttribute];
-    NSString *remoteKey = primaryKeyAttribute.userInfo[SyncCustomRemoteKey];
+    NSString *remoteKey = primaryKeyAttribute.customKey;
 
     if (!remoteKey) {
         if ([primaryKeyAttribute.name isEqualToString:SyncDefaultLocalPrimaryKey] || [primaryKeyAttribute.name isEqualToString:SyncDefaultLocalCompatiblePrimaryKey]) {

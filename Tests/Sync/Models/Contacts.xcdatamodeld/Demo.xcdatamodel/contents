@@ -9,7 +9,7 @@
         <attribute name="imageId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="YES"/>
-                <entry key="hyper.remoteKey" value="ImageId"/>
+                <entry key="sync.remoteKey" value="ImageId"/>
             </userInfo>
         </attribute>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>

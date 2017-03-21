@@ -4,7 +4,7 @@
         <attribute name="cityID" attributeType="Integer 16" defaultValueString="0" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="YES"/>
-                <entry key="hyper.remoteKey" value="id"/>
+                <entry key="sync.remoteKey" value="id"/>
             </userInfo>
         </attribute>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,7 +14,7 @@
         <attribute name="locationID" attributeType="Integer 16" defaultValueString="0" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="YES"/>
-                <entry key="hyper.remoteKey" value="id"/>
+                <entry key="sync.remoteKey" value="id"/>
             </userInfo>
         </attribute>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>

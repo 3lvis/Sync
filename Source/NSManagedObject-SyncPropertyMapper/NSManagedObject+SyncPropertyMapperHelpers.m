@@ -4,6 +4,7 @@
 #import "NSString+SyncInflections.h"
 #import "NSEntityDescription+SyncPrimaryKey.h"
 #import "NSDate+SyncPropertyMapper.h"
+#import "NSPropertyDescription+Sync.h"
 
 @implementation NSManagedObject (SyncPropertyMapperHelpers)
 
@@ -43,8 +44,8 @@
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
-            NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            NSString *customRemoteKey = userInfo[SyncPropertyMapperCustomRemoteKey];
+            NSString *customRemoteKey = [self.entity.propertiesByName[attributeDescription.name] customKey];
+
             BOOL currentAttributeHasTheSameRemoteKey = (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]);
             if (currentAttributeHasTheSameRemoteKey) {
                 foundAttributeDescription = attributeDescription;
@@ -104,8 +105,7 @@
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             
-            NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            NSString *customRemoteKeyPath = userInfo[SyncPropertyMapperCustomRemoteKey];
+            NSString *customRemoteKeyPath = self.entity.propertiesByName[attributeDescription.name].customKey;
             NSString *customRootRemoteKey = [[customRemoteKeyPath componentsSeparatedByString:@"."] firstObject];
             NSString *rootRemoteKey = [[remoteKey componentsSeparatedByString:@"."] firstObject];
             BOOL currentAttributeHasTheSameRootRemoteKey = (customRootRemoteKey.length > 0 && [customRootRemoteKey isEqualToString:rootRemoteKey]);
@@ -135,11 +135,10 @@
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
                          usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
                                 inflectionType:(SyncPropertyMapperInflectionType)inflectionType {
-    NSDictionary *userInfo = attributeDescription.userInfo;
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
 
-    NSString *customRemoteKey = userInfo[SyncPropertyMapperCustomRemoteKey];
+    NSString *customRemoteKey = attributeDescription.customKey;
     if (customRemoteKey) {
         remoteKey = customRemoteKey;
     } else if ([localKey isEqualToString:SyncDefaultLocalPrimaryKey] || [localKey isEqualToString:SyncDefaultLocalCompatiblePrimaryKey]) {

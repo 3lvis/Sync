@@ -141,7 +141,7 @@ public protocol SyncDelegate: class {
         }
 
         if remotePrimaryKey.isEmpty {
-            fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
+            fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using sync.remoteKey to map to the right value")
         }
 
         let dataFilterOperations = DataFilter.Operation(rawValue: operations.rawValue)

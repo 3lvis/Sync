@@ -11,7 +11,8 @@ static NSString * const SyncCustomLocalPrimaryKey = @"hyper.isPrimaryKey";
 static NSString * const SyncCustomLocalPrimaryKeyValue = @"YES";
 static NSString * const SyncCustomLocalPrimaryKeyAlternativeValue = @"true";
 
-static NSString * const SyncCustomRemoteKey = @"hyper.remoteKey";
+static NSString * const SyncCustomRemoteKey = @"sync.remoteKey";
+static NSString * const SyncCompatibilityCustomRemoteKey = @"hyper.remoteKey";
 
 @interface NSEntityDescription (SyncPrimaryKey)
 

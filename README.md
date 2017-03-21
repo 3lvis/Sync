@@ -191,7 +191,7 @@ If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
 - Local primary key will be: `contractID`
 - Remote primary key will be: `contract_id`
 
-If you want to use `id` for the remote primary key you also have to add the flag `hyper.remoteKey` and write `id` as the value.
+If you want to use `id` for the remote primary key you also have to add the flag `sync.remoteKey` and write `id` as the value.
 
 - Local primary key will be: `articleBody`
 - Remote primary key will be: `id`
@@ -205,7 +205,7 @@ There are some exception to this rule:
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/NSManagedObject-SyncPropertyMapper/NSManagedObject%2BSyncPropertyMapperHelpers.m#L282-L284)
 * Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/NSString-SyncInflections/NSString%2BSyncInflections.m#L204-L206).
 
-If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
+If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `sync.remoteKey` in the user info box with the value you want to map.
 
 ![Custom remote key](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/custom-remote-key-v2.png)
 
