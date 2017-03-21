@@ -74,6 +74,9 @@
 
     entity = [self entityForName:@"AlternativeID"];
     XCTAssertEqualObjects([entity sync_localPrimaryKey], @"alternativeID");
+
+    entity = [self entityForName:@"Compatibility"];
+    XCTAssertEqualObjects([entity sync_localPrimaryKey], @"id");
 }
 
 - (void)testRemotePrimaryKey {
@@ -94,6 +97,9 @@
 
     entity = [self entityForName:@"AlternativeID"];
     XCTAssertEqualObjects([entity sync_remotePrimaryKey], @"alternative_id");
+
+    entity = [self entityForName:@"Compatibility"];
+    XCTAssertEqualObjects([entity sync_remotePrimaryKey], @"greeting");
 }
 
 @end

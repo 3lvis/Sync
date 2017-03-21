@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AlternativeID" syncable="YES">
         <attribute name="alternativeID" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="true"/>
+            </userInfo>
+        </attribute>
+    </entity>
+    <entity name="Compatibility" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="greeting"/>
             </userInfo>
         </attribute>
     </entity>
@@ -12,7 +19,7 @@
     </entity>
     <entity name="Note" syncable="YES">
         <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uniqueID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+        <attribute name="uniqueID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
             <userInfo>
                 <entry key="hyper.isPrimaryKey" value="YES"/>
             </userInfo>
@@ -33,14 +40,15 @@
     </entity>
     <entity name="User" representedClassName="" syncable="YES">
         <attribute name="attribute" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="remoteID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="remoteID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
+        <element name="AlternativeID" positionX="-27" positionY="18" width="128" height="60"/>
         <element name="NoID" positionX="-27" positionY="18" width="128" height="60"/>
         <element name="Note" positionX="-20" positionY="18" width="128" height="75"/>
         <element name="SimpleID" positionX="-27" positionY="18" width="128" height="75"/>
         <element name="Tag" positionX="160" positionY="0" width="128" height="75"/>
         <element name="User" positionX="-207" positionY="-15" width="128" height="73"/>
-        <element name="AlternativeID" positionX="-27" positionY="18" width="128" height="60"/>
+        <element name="Compatibility" positionX="-27" positionY="18" width="128" height="60"/>
     </elements>
 </model>

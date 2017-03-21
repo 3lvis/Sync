@@ -489,6 +489,14 @@
 		14867F861E7AF4D2001D228A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14867DD21E7AF4D2001D228A /* JSON.swift */; };
 		14867F871E7AF4D2001D228A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14867DD21E7AF4D2001D228A /* JSON.swift */; };
 		14867F881E7AF4D2001D228A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14867DD21E7AF4D2001D228A /* JSON.swift */; };
+		149CC25F1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 149CC25D1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		149CC2601E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 149CC25D1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		149CC2611E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 149CC25D1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		149CC2621E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 149CC25D1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		149CC2631E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 149CC25E1E81DBF2004D1B76 /* NSPropertyDescription+Sync.m */; };
+		149CC2641E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 149CC25E1E81DBF2004D1B76 /* NSPropertyDescription+Sync.m */; };
+		149CC2651E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 149CC25E1E81DBF2004D1B76 /* NSPropertyDescription+Sync.m */; };
+		149CC2661E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 149CC25E1E81DBF2004D1B76 /* NSPropertyDescription+Sync.m */; };
 		149FF9EA1E808C4400617A63 /* 375.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149FF9E81E808C4400617A63 /* 375.xcdatamodeld */; };
 		149FF9EB1E808C4400617A63 /* 375.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149FF9E81E808C4400617A63 /* 375.xcdatamodeld */; };
 		149FF9EC1E808C4400617A63 /* 375.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149FF9E81E808C4400617A63 /* 375.xcdatamodeld */; };
@@ -559,10 +567,6 @@
 		14E652341E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
 		14E652351E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
 		14E652361E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
-		14E652381E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
-		14E652391E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
-		14E6523A1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
-		14E6523B1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */; };
 		14E6523D1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */; };
 		14E6523E1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */; };
 		14E6523F1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */; };
@@ -848,6 +852,8 @@
 		14867DD21E7AF4D2001D228A /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		14975BE81DBC368B0024901A /* tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14975BF41DBC36960024901A /* macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		149CC25D1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPropertyDescription+Sync.h"; sourceTree = "<group>"; };
+		149CC25E1E81DBF2004D1B76 /* NSPropertyDescription+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPropertyDescription+Sync.m"; sourceTree = "<group>"; };
 		149FF9E91E808C4400617A63 /* 113.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 113.xcdatamodel; sourceTree = "<group>"; };
 		149FF9ED1E808DFB00617A63 /* 375.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 375.json; sourceTree = "<group>"; };
 		14AF6AFA1DFC3D88009E5BC4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -867,7 +873,6 @@
 		14D93C0A1E4E65C700DED595 /* NSString+SyncInflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SyncInflections.m"; sourceTree = "<group>"; };
 		14E652291E809A68000E7CC6 /* hyper_remote_key.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hyper_remote_key.json; sourceTree = "<group>"; };
 		14E652331E809B75000E7CC6 /* HyperRemoteKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyperRemoteKey.xcdatamodel; sourceTree = "<group>"; };
-		14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPropertyDescription+Sync.swift"; sourceTree = "<group>"; };
 		14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPropertyDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		441FA7B71E4F00D300023821 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -956,6 +961,7 @@
 		1425D59A1CC65BEB00EC49D4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				149CC25C1E81DBC4004D1B76 /* NSPropertyDescription-Sync */,
 				1467388A1E7ADBA700913C8E /* DataStack */,
 				14D93BFD1E4E65C700DED595 /* DateParser */,
 				14D93C001E4E65C700DED595 /* NSEntityDescription-SyncPrimaryKey */,
@@ -1287,6 +1293,15 @@
 			path = Vendor;
 			sourceTree = "<group>";
 		};
+		149CC25C1E81DBC4004D1B76 /* NSPropertyDescription-Sync */ = {
+			isa = PBXGroup;
+			children = (
+				149CC25D1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h */,
+				149CC25E1E81DBF2004D1B76 /* NSPropertyDescription+Sync.m */,
+			);
+			path = "NSPropertyDescription-Sync";
+			sourceTree = "<group>";
+		};
 		14C136501AB7849300B7B07A /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -1357,7 +1372,6 @@
 				44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */,
 				44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */,
 				14AF6AFA1DFC3D88009E5BC4 /* Result.swift */,
-				14E652371E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -1405,6 +1419,7 @@
 				14E93C441DBCCD2800E3304E /* Sync.h in Headers */,
 				14D93C171E4E65C700DED595 /* NSEntityDescription+SyncPrimaryKey.h in Headers */,
 				14D93C3B1E4E65C700DED595 /* NSString+SyncInflections.h in Headers */,
+				149CC25F1E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */,
 				14D93C231E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.h in Headers */,
 				14D93C481E4E67A200DED595 /* Sync.swift in Headers */,
 				14D93C491E4E67A200DED595 /* Sync+DataStack.swift in Headers */,
@@ -1428,6 +1443,7 @@
 				14F6276D1E7AE6B5001C2EA0 /* NSManagedObject+SyncPropertyMapperHelpers.h in Headers */,
 				14F6276E1E7AE6B5001C2EA0 /* SyncPropertyMapper.h in Headers */,
 				14F6276F1E7AE6B5001C2EA0 /* NSString+SyncInflections.h in Headers */,
+				149CC2621E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */,
 				14F627701E7AE6B5001C2EA0 /* Sync.h in Headers */,
 				14F627711E7AE6B5001C2EA0 /* Sync.swift in Headers */,
 				14F627721E7AE6B5001C2EA0 /* Sync+DataStack.swift in Headers */,
@@ -1449,6 +1465,7 @@
 				14D93C0D1E4E65C700DED595 /* NSDate+SyncPropertyMapper.h in Headers */,
 				14D93C191E4E65C700DED595 /* NSEntityDescription+SyncPrimaryKey.h in Headers */,
 				14D93C3D1E4E65C700DED595 /* NSString+SyncInflections.h in Headers */,
+				149CC2601E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */,
 				14D93C251E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.h in Headers */,
 				14A84E951E4E70B900701B8A /* Sync.swift in Headers */,
 				14A84E961E4E70B900701B8A /* Sync+DataStack.swift in Headers */,
@@ -1472,6 +1489,7 @@
 				14F6275E1E7AE6B2001C2EA0 /* NSManagedObject+SyncPropertyMapperHelpers.h in Headers */,
 				14F6275F1E7AE6B2001C2EA0 /* SyncPropertyMapper.h in Headers */,
 				14F627601E7AE6B2001C2EA0 /* NSString+SyncInflections.h in Headers */,
+				149CC2611E81DBF2004D1B76 /* NSPropertyDescription+Sync.h in Headers */,
 				14F627611E7AE6B2001C2EA0 /* Sync.h in Headers */,
 				14F627621E7AE6B2001C2EA0 /* Sync.swift in Headers */,
 				14F627631E7AE6B2001C2EA0 /* Sync+DataStack.swift in Headers */,
@@ -1993,7 +2011,6 @@
 				14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
-				14E652381E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EA31DBC3A6F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14549A0B1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */,
@@ -2008,6 +2025,7 @@
 				14D93C431E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14D93C1F1E4E65C700DED595 /* NSEntityDescription+SyncPrimaryKey.m in Sources */,
 				14D93C371E4E65C700DED595 /* SyncPropertyMapper.m in Sources */,
+				149CC2631E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */,
 				14D93C131E4E65C700DED595 /* NSDate+SyncPropertyMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2019,7 +2037,6 @@
 				14241EA81DBC3A770042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2C1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
-				14E6523B1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EAA1DBC3A770042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0E1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
@@ -2034,6 +2051,7 @@
 				14D93C141E4E65C700DED595 /* NSDate+SyncPropertyMapper.m in Sources */,
 				14241EAD1DBC3A770042ED81 /* DataFilter.swift in Sources */,
 				14241EAF1DBC3A770042ED81 /* TestCheck.swift in Sources */,
+				149CC2661E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */,
 				142CD2A91DEF39AE002FDABE /* Sync+DataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2045,7 +2063,6 @@
 				14241EB01DBC3A7F0042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EB11DBC3A7F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2D1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
-				14E652391E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EB21DBC3A7F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0C1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EB31DBC3A7F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
@@ -2060,6 +2077,7 @@
 				14D93C151E4E65C700DED595 /* NSDate+SyncPropertyMapper.m in Sources */,
 				14241EB51DBC3A7F0042ED81 /* DataFilter.swift in Sources */,
 				14241EB71DBC3A7F0042ED81 /* TestCheck.swift in Sources */,
+				149CC2641E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */,
 				142CD2AA1DEF39AE002FDABE /* Sync+DataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2071,7 +2089,6 @@
 				14241EB81DBC3A880042ED81 /* NSArray+Sync.swift in Sources */,
 				14241EB91DBC3A880042ED81 /* NSEntityDescription+Sync.swift in Sources */,
 				14D93C2E1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
-				14E6523A1E809D2C000E7CC6 /* NSPropertyDescription+Sync.swift in Sources */,
 				14241EBA1DBC3A880042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0D1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
 				14241EBB1DBC3A880042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
@@ -2086,6 +2103,7 @@
 				14D93C161E4E65C700DED595 /* NSDate+SyncPropertyMapper.m in Sources */,
 				14241EBD1DBC3A880042ED81 /* DataFilter.swift in Sources */,
 				14241EBF1DBC3A880042ED81 /* TestCheck.swift in Sources */,
+				149CC2651E81DBF2004D1B76 /* NSPropertyDescription+Sync.m in Sources */,
 				142CD2AB1DEF39AE002FDABE /* Sync+DataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
