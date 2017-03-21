@@ -1431,7 +1431,8 @@ class SyncTests: XCTestCase {
 
         let entity = Helper.fetchEntity("Entity", inContext: dataStack.mainContext).first!
         XCTAssertEqual(entity.value(forKey: "id") as? Int, 1)
-        XCTAssertEqual(entity.value(forKey: "old") as? String, "monday")
+        XCTAssertEqual(entity.value(forKey: "old") as? String, "old")
+        XCTAssertEqual(entity.value(forKey: "current") as? String, "current")
 
         dataStack.drop()
     }

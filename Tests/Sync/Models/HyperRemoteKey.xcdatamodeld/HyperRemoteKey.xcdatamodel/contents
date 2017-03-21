@@ -3,13 +3,13 @@
     <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="current" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="sync.remoteKey" value="custom"/>
+                <entry key="sync.remoteKey" value="custom_current"/>
             </userInfo>
         </attribute>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="old" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="custom"/>
+                <entry key="hyper.remoteKey" value="custom_old"/>
             </userInfo>
         </attribute>
     </entity>
