@@ -76,7 +76,7 @@
     XCTAssertEqualObjects([entity sync_localPrimaryKey], @"alternativeID");
 
     entity = [self entityForName:@"Compatibility"];
-    XCTAssertEqualObjects([entity sync_localPrimaryKey], @"id");
+    XCTAssertEqualObjects([entity sync_localPrimaryKey], @"custom");
 }
 
 - (void)testRemotePrimaryKey {

@@ -182,11 +182,11 @@ Sync requires your entities to have a primary key, this is important for diffing
 
 By default **Sync** uses `id` from the JSON and `id` (or `remoteID`) from Core Data as the primary key.
 
-You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/SyncDB/DesignerNewsDemo) project we have a `Comment` entity that uses `body` as the primary key.
+You can mark any attribute as primary key by adding `sync.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/SyncDB/DesignerNewsDemo) project we have a `Comment` entity that uses `body` as the primary key.
 
 ![Custom primary key](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/custom-primary-key-v3.png)
 
-If you add the flag `hyper.isPrimaryKey` to the attribute `contractID` then:
+If you add the flag `sync.isPrimaryKey` to the attribute `contractID` then:
 
 - Local primary key will be: `contractID`
 - Remote primary key will be: `contract_id`
@@ -457,7 +457,7 @@ If you're using Swift to be able to use `NSNotificationCenter` your class should
 
 #### Crash on NSParameterAssert
 
-This means that the local primary key was not found, Sync uses `id` (or `remoteID`) by default, but if you have another local primary key make sure to mark it with `"hyper.isPrimaryKey" : "true"` in your attribute's user info. For more information check the [Primary Key](https://github.com/SyncDB/Sync#primary-key) section.
+This means that the local primary key was not found, Sync uses `id` (or `remoteID`) by default, but if you have another local primary key make sure to mark it with `"sync.isPrimaryKey" : "true"` in your attribute's user info. For more information check the [Primary Key](https://github.com/SyncDB/Sync#primary-key) section.
 
 ```swift
 let localKey = entity.sync_localPrimaryKey()

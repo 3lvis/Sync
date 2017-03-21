@@ -3,7 +3,7 @@
     <entity name="AwesomeComment" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="awesomeComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AwesomeComment" inverseName="awesomeComments" inverseEntity="AwesomeComment" syncable="YES"/>

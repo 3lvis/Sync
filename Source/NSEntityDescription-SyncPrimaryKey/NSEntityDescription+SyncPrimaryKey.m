@@ -11,10 +11,7 @@
     [self.propertiesByName enumerateKeysAndObjectsUsingBlock:^(NSString *key,
                                                                NSAttributeDescription *attributeDescription,
                                                                BOOL *stop) {
-        NSString *isPrimaryKey = attributeDescription.userInfo[SyncCustomLocalPrimaryKey];
-        BOOL hasCustomPrimaryKey = (isPrimaryKey &&
-                                    ([isPrimaryKey isEqualToString:SyncCustomLocalPrimaryKeyValue] || [isPrimaryKey isEqualToString:SyncCustomLocalPrimaryKeyAlternativeValue]) );
-        if (hasCustomPrimaryKey) {
+        if (attributeDescription.isCustomPrimaryKey) {
             primaryKeyAttribute = attributeDescription;
             *stop = YES;
         }

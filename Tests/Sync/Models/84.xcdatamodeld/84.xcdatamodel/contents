@@ -4,7 +4,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="xid" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="staff" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MSStaff" inverseName="fulfillers" inverseEntity="MSStaff" syncable="YES"/>
@@ -13,7 +13,7 @@
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="xid" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="fulfillers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MSFulfiller" inverseName="staff" inverseEntity="MSFulfiller" syncable="YES"/>

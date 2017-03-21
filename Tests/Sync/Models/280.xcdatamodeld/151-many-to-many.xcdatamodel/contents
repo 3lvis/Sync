@@ -3,7 +3,7 @@
     <entity name="Route" syncable="YES">
         <attribute name="busID" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
+                <entry key="sync.isPrimaryKey" value="true"/>
                 <entry key="sync.remoteKey" value="busID"/>
             </userInfo>
         </attribute>
@@ -13,7 +13,7 @@
     <entity name="RoutePolylineItem" syncable="YES">
         <attribute name="index" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
+                <entry key="sync.isPrimaryKey" value="true"/>
             </userInfo>
         </attribute>
         <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="polyline" inverseEntity="Route" syncable="YES"/>
@@ -21,7 +21,7 @@
     <entity name="RouteStop" syncable="YES">
         <attribute name="index" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="true"/>
+                <entry key="sync.isPrimaryKey" value="true"/>
             </userInfo>
         </attribute>
         <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Route" inverseName="stops" inverseEntity="Route" syncable="YES"/>

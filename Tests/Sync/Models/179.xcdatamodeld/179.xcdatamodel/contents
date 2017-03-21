@@ -3,7 +3,7 @@
     <entity name="Place" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="endRoutes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Route" inverseName="endPlace" inverseEntity="Route" syncable="YES"/>
@@ -12,7 +12,7 @@
     <entity name="Route" syncable="YES">
         <attribute name="ident" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="endPlace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="endRoutes" inverseEntity="Place" syncable="YES">

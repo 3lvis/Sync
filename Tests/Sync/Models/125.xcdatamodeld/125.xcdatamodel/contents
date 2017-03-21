@@ -3,7 +3,7 @@
     <entity name="Element" syncable="YES">
         <attribute name="label" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="element" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="elements" inverseEntity="Element" syncable="YES"/>
@@ -14,7 +14,7 @@
     <entity name="Form" syncable="YES">
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="element" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="form" inverseEntity="Element" syncable="YES"/>
@@ -23,7 +23,7 @@
     <entity name="Model" syncable="YES">
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="model" inverseEntity="Form" syncable="YES"/>
@@ -37,7 +37,7 @@
     <entity name="Restriction" syncable="YES">
         <attribute name="restriction" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="property" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModelProperty" inverseName="restrictions" inverseEntity="ModelProperty" syncable="YES"/>
@@ -45,7 +45,7 @@
     <entity name="SelectionItem" syncable="YES">
         <attribute name="value" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="element" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Element" inverseName="items" inverseEntity="Element" syncable="YES"/>
