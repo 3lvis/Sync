@@ -56,7 +56,7 @@
     XCTAssertEqualObjects(attribute.name, @"alternativeID");
 }
 
-- (void)testLocalKey {
+- (void)testLocalPrimaryKey {
     NSEntityDescription *entity = [self entityForName:@"User"];
     XCTAssertEqualObjects([entity sync_localPrimaryKey], @"remoteID");
 
@@ -76,7 +76,7 @@
     XCTAssertEqualObjects([entity sync_localPrimaryKey], @"alternativeID");
 }
 
-- (void)testRemoteKey {
+- (void)testRemotePrimaryKey {
     NSEntityDescription *entity = [self entityForName:@"User"];
     XCTAssertEqualObjects([entity sync_remotePrimaryKey], @"id");
 
