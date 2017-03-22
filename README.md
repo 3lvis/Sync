@@ -54,6 +54,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
     * [One-to-many (simplified)](#one-to-many-simplified)
     * [One-to-one](#one-to-one)
     * [One-to-one (simplified)](#one-to-one-simplified)
+  * [Mapping objects from Core Data to JSON](#mapping-objects-from-core-data-to-json)
   * [Networking](#networking)
   * [Supported iOS, OS X, watchOS and tvOS Versions](#supported-ios-os-x-watchos-and-tvos-versions)
 * [Components](#components)
@@ -355,6 +356,89 @@ For example, in the one-to-one example, you have a user, that has one company. I
     "company_id": 0
   }
 ]
+```
+
+### Mapping objects from Core Data to JSON
+
+One of the options is to use [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper).
+
+Here's an example:
+```
+import Foundation
+import ObjectMapper
+import CoreData
+import DATAStack
+
+class MyObject: NSManagedObject, Mappable {
+    class var entityName: String {return "MyObjects"}
+
+    @NSManaged var remoteID: String
+    @NSManaged var name: String
+    @NSManaged var groups: NSSet
+    
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    required init?(_ map: Map) {
+        let ctx = DATAStack(modelName: "MyApp").mainContext
+        let entity = NSEntityDescription.entityForName("MyObjects", inManagedObjectContext: ctx)
+        super.init(entity: entity!, insertIntoManagedObjectContext: ctx)
+        
+        mapping(map)
+    }
+    
+    func mapping(map: Map) {
+        remoteID <- map["id"]
+        name     <- map["name"]
+        groups <- map["groups"]
+    }
+}
+```
+
+Making a PATCH request:
+```
+import Foundation
+import SwiftyJSON
+import ObjectMapper
+import Sync
+import DATAStack
+
+func updateObject(myobject: MyObject, completion: (NSError?) -> Void) {
+    let session = NSURLSession.sharedSession()
+    let request = NSMutableURLRequest(URL: NSURL(string: "https://mywebsite.com/path/to/api")!)
+    request.HTTPMethod = "PATCH"
+ 
+    let JSONString = Mapper().toJSON(myobject)
+    let json = JSON(JSONString)
+    
+    do {
+        let jsonData = try json.rawData()
+        request.HTTPBody = jsonData
+        
+    } catch let error as NSError {
+            print(error.description)
+    }
+    
+    headers = [
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    ]
+    
+    for (header, value) in self.headers {
+        request.setValue(value, forHTTPHeaderField: header)
+    }
+    
+    session.dataTaskWithRequest(request, completionHandler: { data, response, error in
+        if let data = data, json = (try? NSJSONSerialization.JSONObjectWithData(data, options: [])) as? [AnyObject] {
+            Sync.changes(json, inEntityNamed: "MyObjects", dataStack: self.dataStack, completion: { error in
+                completion(error)
+            })
+        } else {
+            completion(error)
+        }
+    }).resume()
+}
 ```
 
 ### Networking
