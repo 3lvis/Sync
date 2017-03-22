@@ -1,32 +1,32 @@
-![SYNCPropertyMapper](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/logo-v2.png)
+![SyncPropertyMapper](https://raw.githubusercontent.com/SyncDB/SyncPropertyMapper/master/GitHub/logo-v2.png)
 
 <div align = "center">
-  <a href="https://cocoapods.org/pods/SYNCPropertyMapper">
-    <img src="https://img.shields.io/cocoapods/v/SYNCPropertyMapper.svg?style=flat" />
+  <a href="https://cocoapods.org/pods/SyncPropertyMapper">
+    <img src="https://img.shields.io/cocoapods/v/SyncPropertyMapper.svg?style=flat" />
   </a>
-  <a href="https://github.com/SyncDB/SYNCPropertyMapper">
+  <a href="https://github.com/SyncDB/SyncPropertyMapper">
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
   </a>
-  <a href="https://github.com/SyncDB/SYNCPropertyMapper#installation">
+  <a href="https://github.com/SyncDB/SyncPropertyMapper#installation">
     <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
   </a>
 </div>
 
 <div align = "center">
-  <a href="https://cocoapods.org/pods/SYNCPropertyMapper" target="blank">
-    <img src="https://img.shields.io/cocoapods/p/SYNCPropertyMapper.svg?style=flat" />
+  <a href="https://cocoapods.org/pods/SyncPropertyMapper" target="blank">
+    <img src="https://img.shields.io/cocoapods/p/SyncPropertyMapper.svg?style=flat" />
   </a>
-  <a href="https://cocoapods.org/pods/SYNCPropertyMapper" target="blank">
-    <img src="https://img.shields.io/cocoapods/l/SYNCPropertyMapper.svg?style=flat" />
+  <a href="https://cocoapods.org/pods/SyncPropertyMapper" target="blank">
+    <img src="https://img.shields.io/cocoapods/l/SyncPropertyMapper.svg?style=flat" />
   </a>
-  <a href="https://gitter.im/SyncDB/SYNCPropertyMapper">
+  <a href="https://gitter.im/SyncDB/SyncPropertyMapper">
     <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
   </a>
   <br>
   <br>
 </div>
 
-**SYNCPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
+**SyncPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
 # Table of Contents
 
@@ -126,9 +126,9 @@ NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
 
 If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
 
-![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/date-transformable.png)
+![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SyncPropertyMapper/master/GitHub/date-transformable.png)
 
-You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Tests/NSManagedObject%2BSYNCPropertyMapper/Transformers/DateStringTransformer.m).
+You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Tests/NSManagedObject%2BSyncPropertyMapper/Transformers/DateStringTransformer.m).
 
 ### Array
 
@@ -161,11 +161,11 @@ let expenses = NSKeyedUnarchiver.unarchiveObject(with: managedObject.expenses) a
 There are two exceptions to this rules:
 
 * `id`s should match `remoteID`
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/NSManagedObject%2BSYNCPropertyMapper/NSManagedObject%2BSYNCPropertyMapperHelpers.m#L240).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/NSManagedObject%2BSyncPropertyMapper/NSManagedObject%2BSyncPropertyMapperHelpers.m#L240).
 
 ## Custom
 
-![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/userInfo_documentation.png)
+![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/SyncPropertyMapper/master/GitHub/userInfo_documentation.png)
 
 * If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
@@ -189,7 +189,7 @@ hyper.remoteKey = company.name
 
 ## Dealing with bad APIs
 
-Sometimes values in a REST API are not formatted in the way you want them, resulting in you having to extend your model classes with methods and/or properties for transformed values. You might even have to pre-process the JSON so you can use it with **SYNCPropertyMapper**, luckily most of this cases could be solved by using a `ValueTransformer`.
+Sometimes values in a REST API are not formatted in the way you want them, resulting in you having to extend your model classes with methods and/or properties for transformed values. You might even have to pre-process the JSON so you can use it with **SyncPropertyMapper**, luckily most of this cases could be solved by using a `ValueTransformer`.
 
 For example, in my user model instead of getting this:
 
@@ -209,7 +209,7 @@ Our backend developer decided he likes arrays, so we're getting this:
 }
 ```
 
-Since **SYNCPropertyMapper** expects just a `name` with value `Bob Dylan`, we have to pre-process this value before getting it into Core Data. For this, first we'll create a subclass of `ValueTransformer`.
+Since **SyncPropertyMapper** expects just a `name` with value `Bob Dylan`, we have to pre-process this value before getting it into Core Data. For this, first we'll create a subclass of `ValueTransformer`.
 
 ```swift
 import Foundation
@@ -243,7 +243,7 @@ class BadAPIValueTransformer : ValueTransformer {
 
 Then we'll add another item in the user key of our Core Data attribute. The key will be `hyper.valueTransformer` and the value `BadAPIValueTransformer`.
 
-![value-transformer](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/value-transformer-v2.png)
+![value-transformer](https://raw.githubusercontent.com/SyncDB/SyncPropertyMapper/master/GitHub/value-transformer-v2.png)
 
 Then before `hyp_fill(with:)` we'll do
 
@@ -278,7 +278,7 @@ That's it, that's all you have to do, the keys will be magically transformed int
 
 If you don't want to export attribute / relationship, you can prohibit exporting by adding `hyper.nonExportable` in the user info of the excluded attribute or relationship.
 
-![non-exportable](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/non-exportable.png)
+![non-exportable](https://raw.githubusercontent.com/SyncDB/SyncPropertyMapper/master/GitHub/non-exportable.png)
 
 ## Relationships
 
@@ -334,19 +334,19 @@ let dictionary = user.hyp_dictionary(using: .array)
 
 ## Installation
 
-**SYNCPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+**SyncPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
 use_frameworks!
 
-pod 'SYNCPropertyMapper', '~> 5'
+pod 'SyncPropertyMapper', '~> 5'
 ```
 
-**SYNCPropertyMapper** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
+**SyncPropertyMapper** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
 it, simply add the following line to your Cartfile:
 
 ```ruby
-github "SyncDB/SYNCPropertyMapper" ~> 5.0
+github "SyncDB/SyncPropertyMapper" ~> 5.0
 ```
 
 ## Contributing
@@ -360,4 +360,4 @@ and if you're using this library we probably want to [hire you](http://www.hyper
 
 ## License
 
-SYNCPropertyMapper is available under the MIT license. See the [LICENSE](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/LICENSE.md) file for more info.
+SyncPropertyMapper is available under the MIT license. See the [LICENSE](https://raw.githubusercontent.com/SyncDB/SyncPropertyMapper/master/LICENSE.md) file for more info.
