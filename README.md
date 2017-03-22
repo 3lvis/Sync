@@ -75,7 +75,7 @@ Sync.changes(
 
 * `changes`: JSON response
 * `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [DataStack](https://github.com/SyncDB/DataStack)
+* `dataStack`: Your [DataStack](https://github.com/SyncDB/Sync/tree/master/Source/DataStack)
 
 ### Model
 
@@ -170,7 +170,7 @@ github "SyncDB/Sync" ~> 2.0
 
 ### Core Data Stack
 
-Replace your Core Data stack with an instance of [DataStack](https://github.com/SyncDB/DataStack).
+Replace your Core Data stack with an instance of [DataStack](https://github.com/SyncDB/Sync/tree/master/Source/DataStack).
 
 ```swift
 self.dataStack = DataStack(modelName: "Demo")
@@ -251,7 +251,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 
 #### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/DateParser/NSDate%2BSyncPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/Sync/blob/master/Source/DateParser/NSDate%2BSyncPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```swift
 let values = ["created_at" : "2014-01-01T00:00:00+00:00",
@@ -273,7 +273,7 @@ let publishedAt = managedObject.value(forKey: "publishedAt")
 
 #### JSON representation from a NSManagedObject
 
-**Sync**'s dependency [**SyncPropertyMapper**](https://github.com/SyncDB/SyncPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/SyncPropertyMapper#json-representation-from-a-nsmanagedobject)
+**Sync**'s dependency [**SyncPropertyMapper**](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper#json-representation-from-a-nsmanagedobject)
 
 ### Relationship mapping
 
@@ -372,11 +372,11 @@ You are free to use any networking library.
 
 **Sync** wouldn’t be possible without the help of this *fully tested* components:
 
-* [**DataStack**](https://github.com/SyncDB/DataStack): Core Data stack and thread safe saving
+* [**DataStack**](https://github.com/SyncDB/Sync/tree/master/Source/DataStack): Core Data stack and thread safe saving
 
-* [**DataFilter**](https://github.com/SyncDB/DataFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DataFilter uses your remote keys (such as id) for this
+* [**DataFilter**](https://github.com/SyncDB/Sync/tree/master/Source/DataFilter): Helps you purge deleted objects. Internally we use it to diff inserts, updates and deletes. Also it’s used for uniquing Core Data does this based on objectIDs, DataFilter uses your remote keys (such as id) for this
 
-* [**SyncPropertyMapper**](https://github.com/SyncDB/SyncPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
+* [**SyncPropertyMapper**](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper): Maps JSON fields with their Core Data counterparts, it does most of it’s job using the paradigm “_convention over configuration_”
 
 ## FAQ
 
@@ -521,7 +521,7 @@ Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/Syn
 
 If you're using hyp_dictionary() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `SyncPropertyMapper` doesn't know when to stop. For this reason we've introduced `hyper.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
 
-[More information here.](https://github.com/SyncDB/SyncPropertyMapper#excluding)
+[More information here.](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper#excluding)
 
 ## License
 
