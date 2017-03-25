@@ -519,7 +519,7 @@ Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/Syn
 
 #### Infinite loop in hyp_dictionary() with relationships
 
-If you're using hyp_dictionary() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `SyncPropertyMapper` doesn't know when to stop. For this reason we've introduced `hyper.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
+If you're using hyp_dictionary() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `SyncPropertyMapper` doesn't know when to stop. For this reason we've introduced `sync.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
 
 [More information here.](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper#excluding)
 
