@@ -250,7 +250,7 @@ That's it, that's all you have to do, the keys will be magically transformed int
 
 ## Excluding
 
-If you don't want to export attribute / relationship, you can prohibit exporting by adding `hyper.nonExportable` in the user info of the excluded attribute or relationship.
+If you don't want to export attribute / relationship, you can prohibit exporting by adding `sync.nonExportable` in the user info of the excluded attribute or relationship.
 
 ![non-exportable](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-non-exportable.png)
 

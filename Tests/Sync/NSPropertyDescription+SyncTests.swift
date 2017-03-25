@@ -36,4 +36,12 @@ class NSPropertyDescription_SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    func testIsCustomPrimaryKey() {
+        // TODO
+    }
+
+    func testShouldExportAttribute() {
+        // TODO
+    }
 }
