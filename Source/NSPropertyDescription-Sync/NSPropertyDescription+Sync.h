@@ -8,4 +8,6 @@
 
 @property (readonly) BOOL shouldExportAttribute;
 
+@property (nonatomic, nullable, readonly) NSString *customTransformerName;
+
 @end
