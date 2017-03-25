@@ -11,7 +11,7 @@
         <attribute name="boolean" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="customTransformerString" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.valueTransformer" value="SyncTestValueTransformer"/>
+                <entry key="sync.valueTransformer" value="SyncTestValueTransformer"/>
             </userInfo>
         </attribute>
         <attribute name="decimal" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>

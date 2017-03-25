@@ -44,4 +44,8 @@ class NSPropertyDescription_SyncTests: XCTestCase {
     func testShouldExportAttribute() {
         // TODO
     }
+
+    func testCustomTransformerName() {
+        // TODO
+    }
 }

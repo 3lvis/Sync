@@ -215,7 +215,7 @@ class BadAPIValueTransformer : ValueTransformer {
 }
 ```
 
-Then we'll add another item in the user key of our Core Data attribute. The key will be `hyper.valueTransformer` and the value `BadAPIValueTransformer`.
+Then we'll add another item in the user key of our Core Data attribute. The key will be `sync.valueTransformer` and the value `BadAPIValueTransformer`.
 
 ![value-transformer](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-value-transformer-v2.png)
 

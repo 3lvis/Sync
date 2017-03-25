@@ -14,6 +14,9 @@ static NSString * const SyncCompatibilityCustomRemoteKey = @"hyper.remoteKey";
 static NSString * const SyncPropertyMapperNonExportableKey = @"sync.nonExportable";
 static NSString * const SyncPropertyMapperCompatibilityNonExportableKey = @"hyper.nonExportable";
 
+static NSString * const SyncPropertyMapperCustomValueTransformerKey = @"sync.valueTransformer";
+static NSString * const SyncPropertyMapperCompatibilityCustomValueTransformerKey = @"hyper.valueTransformer";
+
 @implementation NSPropertyDescription (Sync)
 
 - (BOOL)isCustomPrimaryKey {
@@ -46,6 +49,15 @@ static NSString * const SyncPropertyMapperCompatibilityNonExportableKey = @"hype
     BOOL shouldExportAttribute = (nonExportableKey == nil);
 
     return shouldExportAttribute;
+}
+
+- (NSString *)customTransformerName {
+    NSString *keyName = self.userInfo[SyncPropertyMapperCustomValueTransformerKey];
+    if (keyName == nil) {
+        keyName = self.userInfo[SyncPropertyMapperCompatibilityCustomValueTransformerKey];
+    }
+
+    return keyName;
 }
 
 @end

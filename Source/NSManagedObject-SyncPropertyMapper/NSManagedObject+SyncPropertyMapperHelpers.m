@@ -16,7 +16,7 @@
         value = [self valueForKey:attributeDescription.name];
         BOOL nilOrNullValue = (!value ||
                                [value isKindOfClass:[NSNull class]]);
-        NSString *customTransformerName = attributeDescription.userInfo[SyncPropertyMapperCustomValueTransformerKey];
+        NSString *customTransformerName = [attributeDescription customTransformerName];
         if (nilOrNullValue) {
             value = [NSNull null];
         } else if ([value isKindOfClass:[NSDate class]]) {
@@ -183,7 +183,7 @@
         value = remoteValue;
     }
 
-    NSString *customTransformerName = attributeDescription.userInfo[SyncPropertyMapperCustomValueTransformerKey];
+    NSString *customTransformerName = [attributeDescription customTransformerName];
     if (customTransformerName) {
         NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
         if (transformer) {
