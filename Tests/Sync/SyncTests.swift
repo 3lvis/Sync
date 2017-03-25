@@ -1424,7 +1424,7 @@ class SyncTests: XCTestCase {
 
     // https://github.com/SyncDB/Sync/pull/388
     func testHyperRemoteKeyCompatibility() {
-        let entititesJSON = Helper.objectsFromJSON("hyper_remote_key.json") as! [[String: Any]]
+        let entititesJSON = Helper.objectsFromJSON("remote_key.json") as! [[String: Any]]
         let dataStack = Helper.dataStackWithModelName("HyperRemoteKey")
         dataStack.sync(entititesJSON, inEntityNamed: "Entity", completion: nil)
         XCTAssertEqual(Helper.countForEntity("Entity", inContext: dataStack.mainContext), 1)

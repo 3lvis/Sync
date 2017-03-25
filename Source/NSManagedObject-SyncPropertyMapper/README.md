@@ -141,7 +141,7 @@ There are two exceptions to this rules:
 
 ![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-userInfo_documentation.png)
 
-* If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
+* If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `sync.remoteKey` in the user info box with the value you want to map.
 
 ## Deep mapping
 
@@ -158,7 +158,7 @@ There are two exceptions to this rules:
 In this example, if you want to avoid creating a Core Data entity for the company, you could map straight to the company's name. By adding this to the *User Info* of your `companyName` field:
 
 ```
-hyper.remoteKey = company.name
+sync.remoteKey = company.name
 ```
 
 ## Dealing with bad APIs
