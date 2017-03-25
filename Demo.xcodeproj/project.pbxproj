@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1400BF2C1E87308200CE406F /* RemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1400BF2A1E87308200CE406F /* RemoteKey.xcdatamodeld */; };
+		1400BF2D1E87308200CE406F /* RemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1400BF2A1E87308200CE406F /* RemoteKey.xcdatamodeld */; };
+		1400BF2E1E87308200CE406F /* RemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1400BF2A1E87308200CE406F /* RemoteKey.xcdatamodeld */; };
 		14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
 		14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; };
@@ -564,9 +567,6 @@
 		14E6522A1E809A68000E7CC6 /* remote_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E652291E809A68000E7CC6 /* remote_key.json */; };
 		14E6522B1E809A68000E7CC6 /* remote_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E652291E809A68000E7CC6 /* remote_key.json */; };
 		14E6522C1E809A68000E7CC6 /* remote_key.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E652291E809A68000E7CC6 /* remote_key.json */; };
-		14E652341E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
-		14E652351E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
-		14E652361E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */; };
 		14E6523D1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */; };
 		14E6523E1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */; };
 		14E6523F1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */; };
@@ -691,6 +691,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1400BF2B1E87308200CE406F /* HyperRemoteKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyperRemoteKey.xcdatamodel; sourceTree = "<group>"; };
 		14241E711DBC39520042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E7E1DBC39600042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E8B1DBC39690042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -872,7 +873,6 @@
 		14D93C091E4E65C700DED595 /* NSString+SyncInflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SyncInflections.h"; sourceTree = "<group>"; };
 		14D93C0A1E4E65C700DED595 /* NSString+SyncInflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SyncInflections.m"; sourceTree = "<group>"; };
 		14E652291E809A68000E7CC6 /* remote_key.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = remote_key.json; sourceTree = "<group>"; };
-		14E652331E809B75000E7CC6 /* HyperRemoteKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HyperRemoteKey.xcdatamodel; sourceTree = "<group>"; };
 		14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPropertyDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
 		441FA7B71E4F00D300023821 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -1226,11 +1226,11 @@
 				14867D9A1E7AF4D2001D228A /* Organizations.xcdatamodeld */,
 				14867D9C1E7AF4D2001D228A /* Patients.xcdatamodeld */,
 				14867D9E1E7AF4D2001D228A /* Recursive.xcdatamodeld */,
+				1400BF2A1E87308200CE406F /* RemoteKey.xcdatamodeld */,
 				14867DA01E7AF4D2001D228A /* Social.xcdatamodeld */,
 				14867DA21E7AF4D2001D228A /* Tests.xcdatamodeld */,
 				14867DA41E7AF4D2001D228A /* ToOne.xcdatamodeld */,
 				14867DA61E7AF4D2001D228A /* Unique.xcdatamodeld */,
-				14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2145,7 +2145,6 @@
 				14867EFF1E7AF4D2001D228A /* 320.xcdatamodeld in Sources */,
 				14867F5F1E7AF4D2001D228A /* 123.xcdatamodeld in Sources */,
 				14867E0F1E7AF4D2001D228A /* InsertOrUpdateTests.swift in Sources */,
-				14E652341E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */,
 				14867E091E7AF4D2001D228A /* FetchTests.swift in Sources */,
 				14867DD31E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				14867F021E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
@@ -2155,6 +2154,7 @@
 				14867EF91E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F111E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				14867F411E7AF4D2001D228A /* NSManagedObjectContext+SyncTests.swift in Sources */,
+				1400BF2C1E87308200CE406F /* RemoteKey.xcdatamodeld in Sources */,
 				14867F531E7AF4D2001D228A /* FillWithDictionaryTests.swift in Sources */,
 				14867DFA1E7AF4D2001D228A /* DateTests.swift in Sources */,
 				14867F591E7AF4D2001D228A /* 112.xcdatamodeld in Sources */,
@@ -2233,7 +2233,6 @@
 				14867F001E7AF4D2001D228A /* 320.xcdatamodeld in Sources */,
 				14867F601E7AF4D2001D228A /* 123.xcdatamodeld in Sources */,
 				14867E101E7AF4D2001D228A /* InsertOrUpdateTests.swift in Sources */,
-				14E652351E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */,
 				14867E0A1E7AF4D2001D228A /* FetchTests.swift in Sources */,
 				14867DD41E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				14867F031E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
@@ -2243,6 +2242,7 @@
 				14867EFA1E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F121E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				14867F421E7AF4D2001D228A /* NSManagedObjectContext+SyncTests.swift in Sources */,
+				1400BF2D1E87308200CE406F /* RemoteKey.xcdatamodeld in Sources */,
 				14867F541E7AF4D2001D228A /* FillWithDictionaryTests.swift in Sources */,
 				14867DFB1E7AF4D2001D228A /* DateTests.swift in Sources */,
 				14867F5A1E7AF4D2001D228A /* 112.xcdatamodeld in Sources */,
@@ -2321,7 +2321,6 @@
 				14867F011E7AF4D2001D228A /* 320.xcdatamodeld in Sources */,
 				14867F611E7AF4D2001D228A /* 123.xcdatamodeld in Sources */,
 				14867E111E7AF4D2001D228A /* InsertOrUpdateTests.swift in Sources */,
-				14E652361E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld in Sources */,
 				14867E0B1E7AF4D2001D228A /* FetchTests.swift in Sources */,
 				14867DD51E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				14867F041E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
@@ -2331,6 +2330,7 @@
 				14867EFB1E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F131E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				14867F431E7AF4D2001D228A /* NSManagedObjectContext+SyncTests.swift in Sources */,
+				1400BF2E1E87308200CE406F /* RemoteKey.xcdatamodeld in Sources */,
 				14867F551E7AF4D2001D228A /* FillWithDictionaryTests.swift in Sources */,
 				14867DFC1E7AF4D2001D228A /* DateTests.swift in Sources */,
 				14867F5B1E7AF4D2001D228A /* 112.xcdatamodeld in Sources */,
@@ -2972,6 +2972,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		1400BF2A1E87308200CE406F /* RemoteKey.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1400BF2B1E87308200CE406F /* HyperRemoteKey.xcdatamodel */,
+			);
+			currentVersion = 1400BF2B1E87308200CE406F /* HyperRemoteKey.xcdatamodel */;
+			path = RemoteKey.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		14867D011E7AF4D1001D228A /* DataFilter.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
@@ -3469,16 +3479,6 @@
 			);
 			currentVersion = 149FF9E91E808C4400617A63 /* 113.xcdatamodel */;
 			path = 375.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		14E652321E809B75000E7CC6 /* HyperRemoteKey.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				14E652331E809B75000E7CC6 /* HyperRemoteKey.xcdatamodel */,
-			);
-			currentVersion = 14E652331E809B75000E7CC6 /* HyperRemoteKey.xcdatamodel */;
-			path = HyperRemoteKey.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

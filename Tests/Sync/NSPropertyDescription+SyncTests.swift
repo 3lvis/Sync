@@ -4,7 +4,7 @@ import CoreData
 
 class NSPropertyDescription_SyncTests: XCTestCase {
     func testOldCustomKey() {
-        let dataStack = Helper.dataStackWithModelName("HyperRemoteKey")
+        let dataStack = Helper.dataStackWithModelName("RemoteKey")
 
         if let entity = NSEntityDescription.entity(forEntityName: "Entity", in: dataStack.mainContext) {
             let dayAttribute = entity.sync_attributes().filter { $0.name == "old" }.first
@@ -21,7 +21,7 @@ class NSPropertyDescription_SyncTests: XCTestCase {
     }
 
     func testCurrentCustomKey() {
-        let dataStack = Helper.dataStackWithModelName("HyperRemoteKey")
+        let dataStack = Helper.dataStackWithModelName("RemoteKey")
 
         if let entity = NSEntityDescription.entity(forEntityName: "Entity", in: dataStack.mainContext) {
             let dayAttribute = entity.sync_attributes().filter { $0.name == "current" }.first
