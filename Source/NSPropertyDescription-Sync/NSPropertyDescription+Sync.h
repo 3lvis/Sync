@@ -6,4 +6,6 @@
 
 @property (nonatomic, nullable, readonly) NSString *customKey;
 
+@property (readonly) BOOL shouldExportAttribute;
+
 @end

@@ -3,6 +3,7 @@
 #import "NSString+SyncInflections.h"
 #import "NSManagedObject+SyncPropertyMapperHelpers.h"
 #import "NSDate+SyncPropertyMapper.h"
+#import "NSPropertyDescription+Sync.h"
 
 static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
 
@@ -137,10 +138,7 @@ static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
 
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            NSDictionary *userInfo = [propertyDescription userInfo];
-            NSString *nonExportableKey = userInfo[SyncPropertyMapperNonExportableKey];
-            BOOL shouldExportAttribute = (nonExportableKey == nil);
-            if (shouldExportAttribute) {
+            if ([propertyDescription shouldExportAttribute]) {
                 id value = [self valueForAttributeDescription:propertyDescription
                                                 dateFormatter:dateFormatter
                                              relationshipType:relationshipType];
@@ -154,9 +152,7 @@ static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&
                    relationshipType != SyncPropertyMapperRelationshipTypeNone) {
             NSRelationshipDescription *relationshipDescription = (NSRelationshipDescription *)propertyDescription;
-            NSDictionary *userInfo = relationshipDescription.userInfo;
-            NSString *nonExportableKey = userInfo[SyncPropertyMapperNonExportableKey];
-            if (nonExportableKey == nil) {
+            if ([relationshipDescription shouldExportAttribute]) {
                 BOOL isValidRelationship = !(parent && [parent.entity isEqual:relationshipDescription.destinationEntity] && !relationshipDescription.isToMany);
                 if (isValidRelationship) {
                     NSString *relationshipName = [relationshipDescription name];
