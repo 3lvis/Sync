@@ -39,6 +39,10 @@ static NSString * const SyncPropertyMapperCompatibilityNonExportableKey = @"hype
 
 - (BOOL)shouldExportAttribute {
     NSString *nonExportableKey = self.userInfo[SyncPropertyMapperNonExportableKey];
+    if (nonExportableKey == nil) {
+        nonExportableKey = self.userInfo[SyncPropertyMapperCompatibilityNonExportableKey];
+    }
+
     BOOL shouldExportAttribute = (nonExportableKey == nil);
 
     return shouldExportAttribute;
