@@ -3,7 +3,7 @@
     <entity name="User" representedClassName="" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.valueTransformer" value="BadAPIValueTransformer"/>
+                <entry key="sync.valueTransformer" value="BadAPIValueTransformer"/>
             </userInfo>
         </attribute>
     </entity>
