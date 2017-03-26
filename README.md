@@ -155,7 +155,7 @@ Your attributes should match their JSON counterparts in `camelCase` notation ins
 There are some exception to this rule:
 
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/PropertyMapper/blob/master/Sources/NSManagedObject-PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L282-L284)
-* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/PropertyMapper/blob/master/Sources/NSString-SyncInflections/NSString%2BSyncInflections.m#L204-L206).
+* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/PropertyMapper/blob/master/Sources/NSString-Inflections/NSString%2BInflections.m#L204-L206).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `sync.remoteKey` in the user info box with the value you want to map.
 

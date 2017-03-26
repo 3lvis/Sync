@@ -1,6 +1,6 @@
 #import "PropertyMapper.h"
 
-#import "NSString+SyncInflections.h"
+#import "Inflections.h"
 #import "NSManagedObject+PropertyMapperHelpers.h"
 #import "NSDate+PropertyMapper.h"
 #import "NSPropertyDescription+Sync.h"

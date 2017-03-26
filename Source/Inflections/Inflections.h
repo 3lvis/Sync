@@ -1,6 +1,6 @@
 @import Foundation;
 
-@interface NSString (SyncInflections)
+@interface NSString (Inflections)
 
 - (nonnull NSString *)hyp_snakeCase;
 

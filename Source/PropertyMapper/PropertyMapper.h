@@ -3,7 +3,7 @@
 
 #import "NSDate+PropertyMapper.h"
 #import "NSEntityDescription+PrimaryKey.h"
-#import "NSString+SyncInflections.h"
+#import "Inflections.h"
 
 FOUNDATION_EXPORT double PropertyMapperVersionNumber;
 FOUNDATION_EXPORT const unsigned char PropertyMapperVersionString[];
