@@ -2,7 +2,7 @@
 @import XCTest;
 @import Sync;
 
-#import "SyncPropertyMapper.h"
+#import "PropertyMapper.h"
 #import "SyncTestValueTransformer.h"
 
 

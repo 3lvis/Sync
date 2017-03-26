@@ -1,12 +1,12 @@
 @import CoreData;
 @import Foundation;
 
-#import "NSDate+SyncPropertyMapper.h"
-#import "NSEntityDescription+SyncPrimaryKey.h"
-#import "NSString+SyncInflections.h"
+#import "NSDate+PropertyMapper.h"
+#import "NSEntityDescription+PrimaryKey.h"
+#import "Inflections.h"
 
-FOUNDATION_EXPORT double SyncPropertyMapperVersionNumber;
-FOUNDATION_EXPORT const unsigned char SyncPropertyMapperVersionString[];
+FOUNDATION_EXPORT double PropertyMapperVersionNumber;
+FOUNDATION_EXPORT const unsigned char PropertyMapperVersionString[];
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, SyncPropertyMapperInflectionType) {
 /**
  Collection of helper methods to facilitate mapping JSON to NSManagedObject.
  */
-@interface NSManagedObject (SyncPropertyMapper)
+@interface NSManagedObject (PropertyMapper)
 
 /**
  Fills the @c NSManagedObject with the contents of the dictionary using a convention-over-configuration paradigm mapping the Core Data attributes to their conterparts in JSON using snake_case.

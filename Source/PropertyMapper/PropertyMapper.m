@@ -1,13 +1,13 @@
-#import "SyncPropertyMapper.h"
+#import "PropertyMapper.h"
 
-#import "NSString+SyncInflections.h"
-#import "NSManagedObject+SyncPropertyMapperHelpers.h"
-#import "NSDate+SyncPropertyMapper.h"
+#import "Inflections.h"
+#import "NSManagedObject+PropertyMapperHelpers.h"
+#import "NSDate+PropertyMapper.h"
 #import "NSPropertyDescription+Sync.h"
 
-static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
+static NSString * const PropertyMapperNestedAttributesKey = @"attributes";
 
-@implementation NSManagedObject (SyncPropertyMapper)
+@implementation NSManagedObject (PropertyMapper)
 
 #pragma mark - Public methods
 
@@ -214,10 +214,10 @@ static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
         if (relationshipType == SyncPropertyMapperRelationshipTypeNested) {
             switch (inflectionType) {
                 case SyncPropertyMapperInflectionTypeSnakeCase:
-                    key = [NSString stringWithFormat:@"%@_%@", key, SyncPropertyMapperNestedAttributesKey];
+                    key = [NSString stringWithFormat:@"%@_%@", key, PropertyMapperNestedAttributesKey];
                     break;
                 case SyncPropertyMapperInflectionTypeCamelCase:
-                    key = [NSString stringWithFormat:@"%@%@", key, [SyncPropertyMapperNestedAttributesKey capitalizedString]];
+                    key = [NSString stringWithFormat:@"%@%@", key, [PropertyMapperNestedAttributesKey capitalizedString]];
                     break;
             }
         }
@@ -267,7 +267,7 @@ static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
     if (relationshipType == SyncPropertyMapperRelationshipTypeArray) {
         [attributesForToManyRelationship setValue:relationsArray forKey:key];
     } else if (relationshipType == SyncPropertyMapperRelationshipTypeNested) {
-        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", key, SyncPropertyMapperNestedAttributesKey];
+        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", key, PropertyMapperNestedAttributesKey];
         [attributesForToManyRelationship setValue:relationsDictionary forKey:nestedAttributesPrefix];
     }
 

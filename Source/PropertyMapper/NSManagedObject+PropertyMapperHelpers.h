@@ -1,13 +1,11 @@
 @import CoreData;
 
-#import "SyncPropertyMapper.h"
-
-static NSString * const SyncPropertyMapperDestroyKey = @"destroy";
+#import "PropertyMapper.h"
 
 /**
  Internal helpers, not meant to be included in the public APIs.
  */
-@interface NSManagedObject (SyncPropertyMapperHelpers)
+@interface NSManagedObject (PropertyMapperHelpers)
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
                      dateFormatter:(NSDateFormatter *)dateFormatter

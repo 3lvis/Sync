@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, DateType) {
     unixTimestamp
 };
 
-@interface NSDate (SyncPropertyMapper)
+@interface NSDate (PropertyMapper)
 
 /**
  Converts the provided string into a NSDate object.

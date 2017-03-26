@@ -154,8 +154,8 @@ Your attributes should match their JSON counterparts in `camelCase` notation ins
 
 There are some exception to this rule:
 
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/NSManagedObject-SyncPropertyMapper/NSManagedObject%2BSyncPropertyMapperHelpers.m#L282-L284)
-* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/SyncPropertyMapper/blob/master/Sources/NSString-SyncInflections/NSString%2BSyncInflections.m#L204-L206).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/PropertyMapper/blob/master/Sources/NSManagedObject-PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L282-L284)
+* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/PropertyMapper/blob/master/Sources/NSString-Inflections/NSString%2BInflections.m#L204-L206).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `sync.remoteKey` in the user info box with the value you want to map.
 
@@ -203,7 +203,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 
 #### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/Sync/blob/master/Source/DateParser/NSDate%2BSyncPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/Sync/blob/master/Source/DateParser/NSDate%2BPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```swift
 let values = ["created_at" : "2014-01-01T00:00:00+00:00",

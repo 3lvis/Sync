@@ -2,7 +2,7 @@
 @import XCTest;
 @import Sync;
 
-#import "NSManagedObject+SyncPropertyMapperHelpers.h"
+#import "NSManagedObject+PropertyMapperHelpers.h"
 
 @interface PrivateTests : XCTestCase
 

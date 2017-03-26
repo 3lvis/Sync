@@ -1,12 +1,14 @@
-#import "NSManagedObject+SyncPropertyMapperHelpers.h"
+#import "NSManagedObject+PropertyMapperHelpers.h"
 
-#import "SyncPropertyMapper.h"
-#import "NSString+SyncInflections.h"
-#import "NSEntityDescription+SyncPrimaryKey.h"
-#import "NSDate+SyncPropertyMapper.h"
+#import "PropertyMapper.h"
+#import "Inflections.h"
+#import "NSEntityDescription+PrimaryKey.h"
+#import "NSDate+PropertyMapper.h"
 #import "NSPropertyDescription+Sync.h"
 
-@implementation NSManagedObject (SyncPropertyMapperHelpers)
+static NSString * const PropertyMapperDestroyKey = @"destroy";
+
+@implementation NSManagedObject (PropertyMapperHelpers)
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
                      dateFormatter:(NSDateFormatter *)dateFormatter
@@ -143,9 +145,9 @@
         remoteKey = customRemoteKey;
     } else if ([localKey isEqualToString:SyncDefaultLocalPrimaryKey] || [localKey isEqualToString:SyncDefaultLocalCompatiblePrimaryKey]) {
         remoteKey = SyncDefaultRemotePrimaryKey;
-    } else if ([localKey isEqualToString:SyncPropertyMapperDestroyKey] &&
+    } else if ([localKey isEqualToString:PropertyMapperDestroyKey] &&
                relationshipType == SyncPropertyMapperRelationshipTypeNested) {
-        remoteKey = [NSString stringWithFormat:@"_%@", SyncPropertyMapperDestroyKey];
+        remoteKey = [NSString stringWithFormat:@"_%@", PropertyMapperDestroyKey];
     } else {
         switch (inflectionType) {
             case SyncPropertyMapperInflectionTypeSnakeCase:
