@@ -63,7 +63,7 @@ public extension NSManagedObject {
     /// - Parameter options: The options used to export the JSON, such as inflection type, relationship type and date formatting.
     /// - Returns: The JSON dictionary to be used to fill the values of your `NSManagedObject`.
     public func export(using options: ExportOptions) -> [String: Any] {
-        let inflectionType: SyncPropertyMapperInflectionType
+        let inflectionType: PropertyMapperInflectionType
         switch options.inflectionType {
         case .camelCase:
             inflectionType = .camelCase
@@ -71,7 +71,7 @@ public extension NSManagedObject {
             inflectionType = .snakeCase
         }
 
-        let relationshipType: SyncPropertyMapperRelationshipType
+        let relationshipType: PropertyMapperRelationshipType
         switch options.relationshipType {
         case .array:
             relationshipType = .array

@@ -1,7 +1,7 @@
 #import "NSPropertyDescription+Sync.h"
 
 #import "NSEntityDescription+SyncPrimaryKey.h"
-#import "NSManagedObject+SyncPropertyMapperHelpers.h"
+#import "NSManagedObject+PropertyMapperHelpers.h"
 
 static NSString * const SyncCustomLocalPrimaryKey = @"sync.isPrimaryKey";
 static NSString * const SyncCompatibilityCustomLocalPrimaryKey = @"hyper.isPrimaryKey";
@@ -11,11 +11,11 @@ static NSString * const SyncCustomLocalPrimaryKeyAlternativeValue = @"true";
 static NSString * const SyncCustomRemoteKey = @"sync.remoteKey";
 static NSString * const SyncCompatibilityCustomRemoteKey = @"hyper.remoteKey";
 
-static NSString * const SyncPropertyMapperNonExportableKey = @"sync.nonExportable";
-static NSString * const SyncPropertyMapperCompatibilityNonExportableKey = @"hyper.nonExportable";
+static NSString * const PropertyMapperNonExportableKey = @"sync.nonExportable";
+static NSString * const PropertyMapperCompatibilityNonExportableKey = @"hyper.nonExportable";
 
-static NSString * const SyncPropertyMapperCustomValueTransformerKey = @"sync.valueTransformer";
-static NSString * const SyncPropertyMapperCompatibilityCustomValueTransformerKey = @"hyper.valueTransformer";
+static NSString * const PropertyMapperCustomValueTransformerKey = @"sync.valueTransformer";
+static NSString * const PropertyMapperCompatibilityCustomValueTransformerKey = @"hyper.valueTransformer";
 
 @implementation NSPropertyDescription (Sync)
 
@@ -41,9 +41,9 @@ static NSString * const SyncPropertyMapperCompatibilityCustomValueTransformerKey
 }
 
 - (BOOL)shouldExportAttribute {
-    NSString *nonExportableKey = self.userInfo[SyncPropertyMapperNonExportableKey];
+    NSString *nonExportableKey = self.userInfo[PropertyMapperNonExportableKey];
     if (nonExportableKey == nil) {
-        nonExportableKey = self.userInfo[SyncPropertyMapperCompatibilityNonExportableKey];
+        nonExportableKey = self.userInfo[PropertyMapperCompatibilityNonExportableKey];
     }
 
     BOOL shouldExportAttribute = (nonExportableKey == nil);
@@ -52,9 +52,9 @@ static NSString * const SyncPropertyMapperCompatibilityCustomValueTransformerKey
 }
 
 - (NSString *)customTransformerName {
-    NSString *keyName = self.userInfo[SyncPropertyMapperCustomValueTransformerKey];
+    NSString *keyName = self.userInfo[PropertyMapperCustomValueTransformerKey];
     if (keyName == nil) {
-        keyName = self.userInfo[SyncPropertyMapperCompatibilityCustomValueTransformerKey];
+        keyName = self.userInfo[PropertyMapperCompatibilityCustomValueTransformerKey];
     }
 
     return keyName;

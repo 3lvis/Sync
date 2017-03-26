@@ -5,7 +5,7 @@ FOUNDATION_EXPORT double SyncVersionNumber;
 
 FOUNDATION_EXPORT const unsigned char SyncVersionString[];
 
-#import "SyncPropertyMapper.h"
+#import "PropertyMapper.h"
 #import "NSEntityDescription+SyncPrimaryKey.h"
-#import "NSManagedObject+SyncPropertyMapperHelpers.h"
+#import "NSManagedObject+PropertyMapperHelpers.h"
 #import "NSPropertyDescription+Sync.h"

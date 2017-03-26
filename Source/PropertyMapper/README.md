@@ -1,6 +1,6 @@
-![SyncPropertyMapper](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-logo-v2.png)
+![PropertyMapper](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-logo-v2.png)
 
-**SyncPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
+**PropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
 # Table of Contents
 
@@ -92,7 +92,7 @@ If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant,
 
 ![transformable-attribute](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-date-transformable.png)
 
-You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/Sync/blob/master/Tests/SyncPropertyMapper/Transformers/DateStringTransformer.m).
+You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/Sync/blob/master/Tests/PropertyMapper/Transformers/DateStringTransformer.m).
 
 ### Array
 
@@ -125,7 +125,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObject(with: managedObject.expenses) a
 There are two exceptions to this rules:
 
 * `id`s should match `remoteID`
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/Sync/blob/master/Source/NSManagedObject-SyncPropertyMapper/NSManagedObject%2BSyncPropertyMapperHelpers.m#L281-L283).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/Sync/blob/master/Source/NSManagedObject-PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L281-L283).
 
 ## Custom
 
@@ -153,7 +153,7 @@ sync.remoteKey = company.name
 
 ## Dealing with bad APIs
 
-Sometimes values in a REST API are not formatted in the way you want them, resulting in you having to extend your model classes with methods and/or properties for transformed values. You might even have to pre-process the JSON so you can use it with **SyncPropertyMapper**, luckily most of this cases could be solved by using a `ValueTransformer`.
+Sometimes values in a REST API are not formatted in the way you want them, resulting in you having to extend your model classes with methods and/or properties for transformed values. You might even have to pre-process the JSON so you can use it with **PropertyMapper**, luckily most of this cases could be solved by using a `ValueTransformer`.
 
 For example, in my user model instead of getting this:
 
@@ -173,7 +173,7 @@ Our backend developer decided he likes arrays, so we're getting this:
 }
 ```
 
-Since **SyncPropertyMapper** expects just a `name` with value `Bob Dylan`, we have to pre-process this value before getting it into Core Data. For this, first we'll create a subclass of `ValueTransformer`.
+Since **PropertyMapper** expects just a `name` with value `Bob Dylan`, we have to pre-process this value before getting it into Core Data. For this, first we'll create a subclass of `ValueTransformer`.
 
 ```swift
 import Foundation

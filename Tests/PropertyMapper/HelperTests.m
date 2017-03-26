@@ -2,7 +2,7 @@
 @import XCTest;
 @import Sync;
 
-#import "NSManagedObject+SyncPropertyMapperHelpers.h"
+#import "NSManagedObject+PropertyMapperHelpers.h"
 
 @interface PrivateTests : XCTestCase
 
@@ -146,7 +146,7 @@
     XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription], @"_destroy");
 
     attributeDescription = note.entity.propertiesByName[@"destroy"];
-    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SyncPropertyMapperRelationshipTypeArray], @"destroy");
+    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:PropertyMapperRelationshipTypeArray], @"destroy");
 }
 
 @end
