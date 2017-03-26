@@ -305,7 +305,7 @@ For example, in the one-to-one example, you have a user, that has one company. I
 ]
 ```
 
-### JSON Exporting
+## JSON Exporting
 
 Sync provides an easy way to convert your NSManagedObject back into JSON. Just use the `export()` method.
 
@@ -326,13 +326,13 @@ That's it, that's all you have to do, the keys will be magically transformed int
 }
 ```
 
-## Excluding
+### Excluding
 
 If you don't want to export certain attribute or relationship, you can prohibit exporting by adding `sync.nonExportable` in the user info of the excluded attribute or relationship.
 
 ![non-exportable](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-non-exportable.png)
 
-## Relationships
+### Relationships
 
 It supports exporting relationships too.
 
