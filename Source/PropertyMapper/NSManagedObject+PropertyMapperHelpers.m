@@ -2,7 +2,7 @@
 
 #import "PropertyMapper.h"
 #import "NSString+SyncInflections.h"
-#import "NSEntityDescription+SyncPrimaryKey.h"
+#import "NSEntityDescription+PrimaryKey.h"
 #import "NSDate+PropertyMapper.h"
 #import "NSPropertyDescription+Sync.h"
 

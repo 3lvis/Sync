@@ -1,9 +1,9 @@
-#import "NSEntityDescription+SyncPrimaryKey.h"
+#import "NSEntityDescription+PrimaryKey.h"
 
 #import "NSString+SyncInflections.h"
 #import "NSPropertyDescription+Sync.h"
 
-@implementation NSEntityDescription (SyncPrimaryKey)
+@implementation NSEntityDescription (PrimaryKey)
 
 - (nonnull NSAttributeDescription *)sync_primaryKeyAttribute {
     __block NSAttributeDescription *primaryKeyAttribute;

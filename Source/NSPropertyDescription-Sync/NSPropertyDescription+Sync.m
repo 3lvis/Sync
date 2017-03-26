@@ -1,6 +1,6 @@
 #import "NSPropertyDescription+Sync.h"
 
-#import "NSEntityDescription+SyncPrimaryKey.h"
+#import "NSEntityDescription+PrimaryKey.h"
 #import "NSManagedObject+PropertyMapperHelpers.h"
 
 static NSString * const SyncCustomLocalPrimaryKey = @"sync.isPrimaryKey";

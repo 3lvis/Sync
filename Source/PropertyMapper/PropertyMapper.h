@@ -2,7 +2,7 @@
 @import Foundation;
 
 #import "NSDate+PropertyMapper.h"
-#import "NSEntityDescription+SyncPrimaryKey.h"
+#import "NSEntityDescription+PrimaryKey.h"
 #import "NSString+SyncInflections.h"
 
 FOUNDATION_EXPORT double PropertyMapperVersionNumber;

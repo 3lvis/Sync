@@ -7,7 +7,7 @@ static NSString * const SyncDefaultLocalCompatiblePrimaryKey = @"remoteID";
 
 static NSString * const SyncDefaultRemotePrimaryKey = @"id";
 
-@interface NSEntityDescription (SyncPrimaryKey)
+@interface NSEntityDescription (PrimaryKey)
 
 /**
  Returns the Core Data attribute used as the primary key. By default it will look for the attribute named `id`.
