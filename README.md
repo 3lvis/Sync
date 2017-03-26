@@ -52,6 +52,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
     * [One-to-many (simplified)](#one-to-many-simplified)
     * [One-to-one](#one-to-one)
     * [One-to-one (simplified)](#one-to-one-simplified)
+  * [JSON Exporting](#json-exporting)
 * [FAQ](#faq)
 * [Installation](#installation)
 * [License](#license)
@@ -317,6 +318,8 @@ For example, in the one-to-one example, you have a user, that has one company. I
   }
 ]
 ```
+
+### JSON Exporting
 
 ## FAQ
 
