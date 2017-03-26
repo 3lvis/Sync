@@ -99,12 +99,12 @@ This is how setting operations should work:
 
 ```swift
 let firstImport = // First import of users
-Sync.changes(firstBatch, inEntityNamed: "User", dataStack: dataStack, operations: [.All]) {
+Sync.changes(firstBatch, inEntityNamed: "User", dataStack: dataStack, operations: [.all]) {
     // All users have been imported, they are happy
 }
 
 let secondImport = // Second import of users
-Sync.changes(secondImport, inEntityNamed: "User", dataStack: dataStack, operations: [.Insert, .Update]) {
+Sync.changes(secondImport, inEntityNamed: "User", dataStack: dataStack, operations: [.insert, .update]) {
     // Likely after some changes have happened, here usually Sync would remove the not found items but this time
     // new users have been imported, existing users have been updated, and not found users have been ignored
 }
@@ -137,8 +137,8 @@ Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/Syn
 2014-01-02T00:00:00.000000+00:00
 ```
 
-#### Infinite loop in hyp_dictionary() with relationships
+#### Infinite loop in export() with relationships
 
-If you're using hyp_dictionary() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `SyncPropertyMapper` doesn't know when to stop. For this reason we've introduced `sync.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
+If you're using export() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `SyncPropertyMapper` doesn't know when to stop. For this reason we've introduced `sync.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
 
 [More information here.](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper#excluding)
