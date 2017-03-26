@@ -2,8 +2,6 @@
 
 #import "PropertyMapper.h"
 
-static NSString * const PropertyMapperDestroyKey = @"destroy";
-
 /**
  Internal helpers, not meant to be included in the public APIs.
  */
@@ -11,12 +9,12 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
                      dateFormatter:(NSDateFormatter *)dateFormatter
-                  relationshipType:(PropertyMapperRelationshipType)relationshipType;
+                  relationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
 
 - (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey;
 
 - (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey
-                                         usingInflectionType:(PropertyMapperInflectionType)inflectionType;
+                                         usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType;
 
 - (NSArray *)attributeDescriptionsForRemoteKeyPath:(NSString *)key;
 
@@ -26,18 +24,18 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription;
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
-                                inflectionType:(PropertyMapperInflectionType)inflectionType;
+                                inflectionType:(SyncPropertyMapperInflectionType)inflectionType;
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
-                         usingRelationshipType:(PropertyMapperRelationshipType)relationshipType;
+                         usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
-                         usingRelationshipType:(PropertyMapperRelationshipType)relationshipType
-                                inflectionType:(PropertyMapperInflectionType)inflectionType;
+                         usingRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
+                                inflectionType:(SyncPropertyMapperInflectionType)inflectionType;
 
 + (NSArray *)reservedAttributes;
 
 - (NSString *)prefixedAttribute:(NSString *)attribute
-            usingInflectionType:(PropertyMapperInflectionType)inflectionType;
+            usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType;
 
 @end

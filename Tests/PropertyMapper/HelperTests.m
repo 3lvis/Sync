@@ -146,7 +146,7 @@
     XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription], @"_destroy");
 
     attributeDescription = note.entity.propertiesByName[@"destroy"];
-    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:PropertyMapperRelationshipTypeArray], @"destroy");
+    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SyncPropertyMapperRelationshipTypeArray], @"destroy");
 }
 
 @end
