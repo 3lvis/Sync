@@ -7,7 +7,7 @@ We've authored a series of documents that will help you get the most out of **Sy
 * [How it works](/docs/how-it-works.md)
 * [Core Data Stack](/docs/core-data-stack.md)
   * [Sync's DataStack](/docs/core-data-stack.md#sync-data-stack)
-  * [NSPersistentContainer](/docs/core-data-stack.md#nspersistentContainer)
+  * [NSPersistentContainer](/docs/core-data-stack.md#nspersistentcontainer)
   * [Your own](/docs/core-data-stack.md#your-own)
 * [Primary key or uniquing](/docs/primary-key.md)
 * [Attribute mapping](/docs/attribute-mapping.md)
