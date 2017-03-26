@@ -33,7 +33,7 @@ Mapping your Core Data objects with your JSON providing backend has never been t
 ```json
 {
   "firstName": "John",
-  "lastName": "Hyperseed"
+  "lastName": "Sid"
 }
 ```
 
@@ -54,7 +54,7 @@ Your Core Data entities should match your backend models. Your attributes should
 ```json
 {
   "first_name": "John",
-  "last_name": "Hyperseed"
+  "last_name": "Sid"
 }
 ```
 
@@ -234,7 +234,7 @@ By the way, it works the other way as well! So using `hyp_dictionary` will retur
 ``` objc
 UserManagedObject *user;
 [user setValue:@"John" forKey:@"firstName"];
-[user setValue:@"Hyperseed" forKey:@"lastName"];
+[user setValue:@"Sid" forKey:@"lastName"];
 
 NSDictionary *userValues = [user hyp_dictionary];
 ```
@@ -244,7 +244,7 @@ That's it, that's all you have to do, the keys will be magically transformed int
 ```json
 {
   "first_name": "John",
-  "last_name": "Hyperseed"
+  "last_name": "Sid"
 }
 ```
 
@@ -260,7 +260,7 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 
 ```json
 "first_name": "John",
-"last_name": "Hyperseed",
+"last_name": "Sid",
 "notes_attributes": [
   {
     "0": {
@@ -283,7 +283,7 @@ let dictionary = user.hyp_dictionary(using: .none)
 
 ```json
 "first_name": "John",
-"last_name": "Hyperseed"
+"last_name": "Sid"
 ```
 
 Or get them as an array:
@@ -293,7 +293,7 @@ let dictionary = user.hyp_dictionary(using: .array)
 ```
 ```json
 "first_name": "John",
-"last_name": "Hyperseed",
+"last_name": "Sid",
 "notes": [
   {
     "id": 0,
