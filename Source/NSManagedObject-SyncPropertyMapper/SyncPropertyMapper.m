@@ -11,6 +11,10 @@ static NSString * const SyncPropertyMapperNestedAttributesKey = @"attributes";
 
 #pragma mark - Public methods
 
+- (void)fillWithDictionary:(NSDictionary<NSString *, id> *)dictionary {
+    [self hyp_fillWithDictionary:dictionary];
+}
+
 - (void)hyp_fillWithDictionary:(NSDictionary<NSString *, id> *)dictionary {
     for (__strong NSString *key in dictionary) {
         id value = [dictionary objectForKey:key];
