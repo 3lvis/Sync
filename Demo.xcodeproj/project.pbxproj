@@ -1091,18 +1091,18 @@
 				14867D1A1E7AF4D2001D228A /* DeleteTests.swift */,
 				14867D1B1E7AF4D2001D228A /* FetchTests.swift */,
 				14867D1E1E7AF4D2001D228A /* InsertOrUpdateTests.swift */,
-				14867D1C1E7AF4D2001D228A /* Helpers */,
-				14867D1F1E7AF4D2001D228A /* JSONs */,
-				14867D5D1E7AF4D2001D228A /* Models */,
 				14867DA81E7AF4D2001D228A /* NSArray+SyncTests.swift */,
 				14867DA91E7AF4D2001D228A /* NSEntityDescription+SyncTests.swift */,
 				14867DAA1E7AF4D2001D228A /* NSManagedObject+SyncTests.swift */,
 				14867DAB1E7AF4D2001D228A /* NSManagedObjectContext+SyncTests.swift */,
 				14867DAC1E7AF4D2001D228A /* NSPersistentContainerTests.swift */,
+				14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */,
 				14867DAD1E7AF4D2001D228A /* SyncDelegateTests.swift */,
 				14867DAE1E7AF4D2001D228A /* SyncTests.swift */,
 				14867DAF1E7AF4D2001D228A /* UpdateTests.swift */,
-				14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */,
+				14867D1C1E7AF4D2001D228A /* Helpers */,
+				14867D1F1E7AF4D2001D228A /* JSONs */,
+				14867D5D1E7AF4D2001D228A /* Models */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -1343,18 +1343,18 @@
 		44968BF41DA0021300E71A53 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				44968BF91DA0021300E71A53 /* Sync.swift */,
-				14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */,
-				14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */,
-				142CD2A31DEF39AE002FDABE /* Sync+DataStack.swift */,
-				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
 				44968BF51DA0021300E71A53 /* NSArray+Sync.swift */,
 				44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */,
 				44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */,
 				44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */,
-				14AF6AFA1DFC3D88009E5BC4 /* Result.swift */,
 				44B212F21E87BD5D00C81949 /* NSPropertyDescription+Sync.h */,
 				44B212F31E87BD5D00C81949 /* NSPropertyDescription+Sync.m */,
+				14AF6AFA1DFC3D88009E5BC4 /* Result.swift */,
+				44968BF91DA0021300E71A53 /* Sync.swift */,
+				142CD2A31DEF39AE002FDABE /* Sync+DataStack.swift */,
+				14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */,
+				14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */,
+				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
