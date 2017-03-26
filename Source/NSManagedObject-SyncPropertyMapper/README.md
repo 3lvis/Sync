@@ -37,14 +37,9 @@ Mapping your Core Data objects with your JSON providing backend has never been t
 }
 ```
 
-``` objc
-NSDictionary *values = [JSON valueForKey:@"user"];
-[user hyp_fillWithDictionary:values];
-```
-
 ```swift
 let userJSON = JSON["user"]
-user.hyp_fill(with: userJSON)
+user.fill(with: userJSON)
 ```
 
 Your Core Data entities should match your backend models. Your attributes should match their JSON counterparts. For example `firstName` maps to `firstName`, `address` to `address`.
@@ -58,14 +53,9 @@ Your Core Data entities should match your backend models. Your attributes should
 }
 ```
 
-``` objc
-NSDictionary *values = [JSON valueForKey:@"user"];
-[user hyp_fillWithDictionary:values];
-```
-
 ```swift
-let userJSON = JSON["user"]
-user.hyp_fill(with: userJSON)
+let userJSON = json["user"]
+user.fill(with: userJSON)
 ```
 
 Your Core Data entities should match your backend models but in `camelCase`. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
@@ -80,21 +70,21 @@ This is pretty straightforward and should work as you would expect it. A JSON st
 
 We went for supporting [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/3lvis/DateParser) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
-```objc
-NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
-                         @"updated_at" : @"2014-01-02",
-                         @"published_at": @"1441843200"
-                         @"number_of_attendes": @20};
+```swift
+let values = ["created_at" : @"2014-01-01T00:00:00+00:00",
+              "updated_at" : @"2014-01-02",
+              "published_at": @"1441843200",
+              "number_of_attendes": 20]
 
-[managedObject hyp_fillWithDictionary:values];
+managedObject.fill(with: values)
 
-NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
+let createdAt = managedObject.value(forKey: "createdAt")
 // ==> "2014-01-01 00:00:00 +00:00"
 
-NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
+let updatedAt = managedObject.value(forKey: "updatedAt")
 // ==> "2014-01-02 00:00:00 +00:00"
 
-NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
+let publishedAt = managedObject.value(forKey: "publishedAt")
 // ==> "2015-09-10 00:00:00 +00:00"
 ```
 
@@ -112,7 +102,7 @@ For mapping for arrays first set attributes as `Binary Data` on the Core Data mo
 
 ```objc
 let values = ["hobbies" : ["football", "soccer", "code"]]
-managedObject.hyp_fill(with: values)
+managedObject.fill(with: values)
 let hobbies = NSKeyedUnarchiver.unarchiveObject(with: managedObject.hobbies) as! [String]
 // ==> "football", "soccer", "code"
 ```
@@ -125,7 +115,7 @@ For mapping for dictionaries first set attributes as `Binary Data` on the Core D
 
 ```objc
 let values = ["expenses" : ["cake" : 12.50, "juice" : 0.50]]
-managedObject.hyp_fill(with: values)
+managedObject.fill(with: values)
 let expenses = NSKeyedUnarchiver.unarchiveObject(with: managedObject.expenses) as! [String: Any]
 // ==> "cake" : 12.50, "juice" : 0.50
 ```
@@ -197,7 +187,7 @@ class BadAPIValueTransformer : ValueTransformer {
         return true
     }
 
-    // Used to transform before inserting into Core Data using `hyp_fill(with:)
+    // Used to transform before inserting into Core Data using `fill(with:)
     override func transformedValue(_ value: Any?) -> Any? {
         guard let valueToTransform = value as? Array<String> else {
             return value
@@ -206,7 +196,7 @@ class BadAPIValueTransformer : ValueTransformer {
         return valueToTransform.first!
     }
 
-    // Used to transform before exporting into JSON using `hyp_dictionary`
+    // Used to transform before exporting into JSON using `export`
     override func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let stringValue = value as? String else { return value }
 
@@ -219,7 +209,7 @@ Then we'll add another item in the user key of our Core Data attribute. The key 
 
 ![value-transformer](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-value-transformer-v2.png)
 
-Then before `hyp_fill(with:)` we'll do
+Then before `fill(with:)` we'll do
 
 ```swift
 ValueTransformer.setValueTransformer(BadAPIValueTransformer(), forName: NSValueTransformerName(rawValue: "BadAPIValueTransformer"))
@@ -227,16 +217,16 @@ ValueTransformer.setValueTransformer(BadAPIValueTransformer(), forName: NSValueT
 
 That's it! Then your name will be `Bob Dylan`, congrats with the Peace Nobel Prize.
 
-By the way, it works the other way as well! So using `hyp_dictionary` will return `["Bob Dylan"]`.
+By the way, it works the other way as well! So using `export()` will return `["Bob Dylan"]`.
 
 # JSON representation from a NSManagedObject
 
 ``` objc
-UserManagedObject *user;
-[user setValue:@"John" forKey:@"firstName"];
-[user setValue:@"Sid" forKey:@"lastName"];
+let user = //...
+user.set(value: "John" for: "firstName")
+user.set(value: "Sid" for: "lastName")
 
-NSDictionary *userValues = [user hyp_dictionary];
+let userValues = user.export()
 ```
 
 That's it, that's all you have to do, the keys will be magically transformed into a `snake_case` convention.
@@ -250,13 +240,47 @@ That's it, that's all you have to do, the keys will be magically transformed int
 
 ## Excluding
 
-If you don't want to export attribute / relationship, you can prohibit exporting by adding `sync.nonExportable` in the user info of the excluded attribute or relationship.
+If you don't want to export certain attribute or relationship, you can prohibit exporting by adding `sync.nonExportable` in the user info of the excluded attribute or relationship.
 
 ![non-exportable](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-non-exportable.png)
 
 ## Relationships
 
-It supports relationships too, and we complain to the Rails rule `accepts_nested_attributes_for`, for example for a user that has many notes:
+It supports exporting relationships too.
+
+```json
+"first_name": "John",
+"last_name": "Sid",
+"notes": [
+  {
+    "id": 0,
+    "text": "This is the text for the note A"
+  },
+  {
+    "id": 1,
+    "text": "This is the text for the note B"
+  }
+]
+```
+
+If you don't want relationships you can also ignore relationships:
+
+```swift
+let dictionary = user.export(using: .excludedRelationships)
+```
+
+```json
+"first_name": "John",
+"last_name": "Sid"
+```
+
+Or get them as nested attributes, something that Ruby on Rails uses (`accepts_nested_attributes_for`), for example for a user that has many notes:
+
+```swift
+var exportOptions = ExportOptions()
+exportOptions.relationshipType = .nested
+let dictionary = user.export(using: exportOptions)
+```
 
 ```json
 "first_name": "John",
@@ -271,37 +295,6 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
       "id": 1,
       "text": "This is the text for the note B"
     }
-  }
-]
-```
-
-If you don't want to get nested relationships you can also ignore relationships:
-
-```swift
-let dictionary = user.hyp_dictionary(using: .none)
-```
-
-```json
-"first_name": "John",
-"last_name": "Sid"
-```
-
-Or get them as an array:
-
-```swift
-let dictionary = user.hyp_dictionary(using: .array)
-```
-```json
-"first_name": "John",
-"last_name": "Sid",
-"notes": [
-  {
-    "id": 0,
-    "text": "This is the text for the note A"
-  },
-  {
-    "id": 1,
-    "text": "This is the text for the note B"
   }
 ]
 ```

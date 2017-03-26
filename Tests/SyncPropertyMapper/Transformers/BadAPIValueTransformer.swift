@@ -18,7 +18,7 @@ class BadAPIValueTransformer : ValueTransformer {
         return valueToTransform.first!
     }
 
-    // Used to transform before exporting into JSON using `hyp_dictionary`
+    // Used to transform before exporting into JSON using `export()`
     override func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let stringValue = value as? String else { return value }
 

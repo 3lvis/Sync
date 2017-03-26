@@ -59,16 +59,6 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 
 ## Basic example
 
-### Interface
-
-```swift
-Sync.changes(changes: [[String : Any]], inEntityNamed: String, dataStack: DataStack, completion: ((NSError?) -> Void)?)
-```
-
-* `changes`: JSON response
-* `entityName`: Core Data’s Model Entity Name (such as User, Note, Task)
-* `dataStack`: Your [DataStack](https://github.com/SyncDB/Sync/tree/master/Source/DataStack)
-
 ### Model
 
 ![Model](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/one-to-many-swift.png)
@@ -98,7 +88,7 @@ Sync.changes(changes: [[String : Any]], inEntityNamed: String, dataStack: DataSt
 ### Sync
 
 ```swift
-Sync.changes(changes: JSON, inEntityNamed: "User", dataStack: dataStack) { error in
+dataStack.sync(JSON, inEntityNamed: "User") { error in
     // New objects have been inserted
     // Existing objects have been updated
     // And not found objects have been deleted
@@ -112,7 +102,7 @@ let now = NSDate()
 let yesterday = now.dateByAddingTimeInterval(-24*60*60)
 let predicate = NSPredicate(format:@"createdAt > %@", yesterday)
 
-Sync.changes(changes: JSON, inEntityNamed: "User", predicate: predicate, dataStack: dataStack) { error in
+dataStack.sync(JSON, inEntityNamed: "User", predicate: predicate) { error in
     //..
 }
 ```
@@ -221,7 +211,7 @@ let values = ["created_at" : "2014-01-01T00:00:00+00:00",
               "published_at": "1441843200"
               "number_of_attendes": 20]
 
-managedObject.hyp_fill(values)
+managedObject.fill(values)
 
 let createdAt = managedObject.value(forKey: "createdAt")
 // ==> "2014-01-01 00:00:00 +00:00"
@@ -232,10 +222,6 @@ let updatedAt = managedObject.value(forKey: "updatedAt")
 let publishedAt = managedObject.value(forKey: "publishedAt")
 // ==> "2015-09-10 00:00:00 +00:00"
 ```
-
-#### JSON representation from a NSManagedObject
-
-**Sync**'s dependency [**SyncPropertyMapper**](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper) provides a method to generate a JSON object from any NSManagedObject instance. [More information here.](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-SyncPropertyMapper#json-representation-from-a-nsmanagedobject)
 
 ### Relationship mapping
 

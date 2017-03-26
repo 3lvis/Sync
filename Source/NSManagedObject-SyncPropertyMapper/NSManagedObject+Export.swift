@@ -39,6 +39,14 @@ public struct ExportOptions {
 
         return exportOptions
     }
+
+    /// Convenience initalizer for exporting without relationships.
+    public static var excludedRelationships: ExportOptions {
+        var exportOptions = ExportOptions()
+        exportOptions.relationshipType = .none
+
+        return exportOptions
+    }
 }
 
 public extension NSManagedObject {
