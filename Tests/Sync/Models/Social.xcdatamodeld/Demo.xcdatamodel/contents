@@ -3,7 +3,7 @@
     <entity name="SocialComment" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SocialComment" inverseName="comments" inverseEntity="SocialComment" syncable="YES"/>
@@ -15,7 +15,7 @@
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SocialComment" inverseName="story" inverseEntity="SocialComment" syncable="YES"/>
         <relationship name="summarize" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Summarize" inverseName="story" inverseEntity="Summarize" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="summarize_text"/>
+                <entry key="sync.remoteKey" value="summarize_text"/>
             </userInfo>
         </relationship>
     </entity>

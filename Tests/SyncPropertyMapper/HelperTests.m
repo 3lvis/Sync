@@ -75,6 +75,17 @@
     XCTAssertEqualObjects(attributeDescription.name, @"camelCaseDepthTwo");
 }
 
+- (void)testAttributeDescriptionForKeyCompatibility {
+    NSManagedObject *keyPath = [self entityNamed:@"Compatibility"];
+    NSAttributeDescription *attributeDescription;
+
+    attributeDescription = [keyPath attributeDescriptionForRemoteKey:@"customCurrent"];
+    XCTAssertEqualObjects(attributeDescription.name, @"current");
+
+    attributeDescription = [keyPath attributeDescriptionForRemoteKey:@"customOld"];
+    XCTAssertEqualObjects(attributeDescription.name, @"old");
+}
+
 - (void)testRemoteKeyForAttributeDescriptionA {
     NSManagedObject *company = [self entityNamed:@"Company"];
     NSAttributeDescription *attributeDescription;

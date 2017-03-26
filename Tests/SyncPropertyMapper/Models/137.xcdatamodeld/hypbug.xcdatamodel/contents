@@ -4,19 +4,19 @@
         <attribute name="inflectionID" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="camelCaseUser" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="InflectionUser" inverseName="camelCaseCompany" inverseEntity="InflectionUser" syncable="YES">
             <userInfo>
-                <entry key="hyper.nonExportable" value="value"/>
+                <entry key="sync.nonExportable" value="value"/>
             </userInfo>
         </relationship>
     </entity>
     <entity name="InflectionUser" representedClassName="" syncable="YES">
         <attribute name="customRemoteKey" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.remoteKey" value="randomRemoteKey"/>
+                <entry key="sync.remoteKey" value="randomRemoteKey"/>
             </userInfo>
         </attribute>
         <attribute name="ignoredParameter" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
-                <entry key="hyper.nonExportable" value="true"/>
+                <entry key="sync.nonExportable" value="true"/>
             </userInfo>
         </attribute>
         <attribute name="ignoreTransformable" optional="YES" attributeType="Transformable" syncable="YES"/>

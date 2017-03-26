@@ -6,7 +6,7 @@
     <entity name="Passenger" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
         <relationship name="cars" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Car" inverseName="passengers" inverseEntity="Car" syncable="YES"/>
@@ -14,7 +14,7 @@
     <entity name="Racecar" parentEntity="Car" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
             <userInfo>
-                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="sync.isPrimaryKey" value="YES"/>
             </userInfo>
         </attribute>
     </entity>

@@ -1410,4 +1410,30 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // https://github.com/SyncDB/Sync/issues/375
+    func test375() {
+        let speeches = Helper.objectsFromJSON("375.json") as! [[String: Any]]
+        let dataStack = Helper.dataStackWithModelName("375")
+        dataStack.sync(speeches, inEntityNamed: "Speech", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Speech", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 1)
+
+        dataStack.drop()
+    }
+
+    // https://github.com/SyncDB/Sync/pull/388
+    func testRemoteKeyCompatibility() {
+        let entititesJSON = Helper.objectsFromJSON("remote_key.json") as! [[String: Any]]
+        let dataStack = Helper.dataStackWithModelName("RemoteKey")
+        dataStack.sync(entititesJSON, inEntityNamed: "Entity", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Entity", inContext: dataStack.mainContext), 1)
+
+        let entity = Helper.fetchEntity("Entity", inContext: dataStack.mainContext).first!
+        XCTAssertEqual(entity.value(forKey: "id") as? Int, 1)
+        XCTAssertEqual(entity.value(forKey: "old") as? String, "old")
+        XCTAssertEqual(entity.value(forKey: "current") as? String, "current")
+
+        dataStack.drop()
+    }
 }

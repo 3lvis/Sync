@@ -41,7 +41,7 @@
     [user setValue:@235 forKey:@"contractID"];
     [user setValue:@"ABC8283" forKey:@"driverIdentifier"];
     [user setValue:@"John" forKey:@"firstName"];
-    [user setValue:@"Hyperseed" forKey:@"lastName"];
+    [user setValue:@"Sid" forKey:@"lastName"];
     [user setValue:@"John Description" forKey:@"userDescription"];
     [user setValue:@111 forKey:@"remoteID"];
     [user setValue:@"Manager" forKey:@"userType"];
@@ -193,7 +193,7 @@
 
 - (void)testFillManagedObjectWithDictionary {
     NSDictionary *values = @{@"first_name" : @"Jane",
-                             @"last_name"  : @"Hyperseed"};
+                             @"last_name"  : @"Sid"};
 
     DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
@@ -204,14 +204,14 @@
 
 - (void)testUpdatingExistingValueWithNull {
     NSDictionary *values = @{@"first_name" : @"Jane",
-                             @"last_name"  : @"Hyperseed"};
+                             @"last_name"  : @"Sid"};
 
     DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{@"first_name" : [NSNull new],
-                                    @"last_name"  : @"Hyperseed"};
+                                    @"last_name"  : @"Sid"};
 
     [user hyp_fillWithDictionary:updatedValues];
 
@@ -258,7 +258,7 @@
 
 - (void)testUpdate {
     NSDictionary *values = @{@"first_name" : @"Jane",
-                             @"last_name"  : @"Hyperseed",
+                             @"last_name"  : @"Sid",
                              @"age" : @30};
 
     DataStack *dataStack = [self dataStack];
@@ -276,7 +276,7 @@
 
 - (void)testUpdateIgnoringEqualValues {
     NSDictionary *values = @{@"first_name" : @"Jane",
-                             @"last_name"  : @"Hyperseed",
+                             @"last_name"  : @"Sid",
                              @"age" : @30};
 
     DataStack *dataStack = [self dataStack];
@@ -286,7 +286,7 @@
     [user.managedObjectContext save:nil];
 
     NSDictionary *updatedValues = @{@"first_name" : @"Jane",
-                                    @"last_name"  : @"Hyperseed",
+                                    @"last_name"  : @"Sid",
                                     @"age" : @30};
 
     [user hyp_fillWithDictionary:updatedValues];

@@ -24,11 +24,10 @@ typedef NS_ENUM(NSInteger, SyncPropertyMapperRelationshipType) {
 };
 
 /**
- The relationship type used to export the NSManagedObject as JSON.
+ The inflection type used to export the NSManagedObject as JSON.
 
- - SyncPropertyMapperRelationshipTypeNone:   Skip all relationships.
- - SyncPropertyMapperRelationshipTypeArray:  Normal JSON representation of relationships.
- - SyncPropertyMapperRelationshipTypeNested: Uses Ruby on Rails's accepts_nested_attributes_for notation to represent relationships.
+ - SyncPropertyMapperInflectionTypeSnakeCase: Uses snake_case notation.
+ - SyncPropertyMapperInflectionTypeCamelCase: Uses camelCase notation.
  */
 typedef NS_ENUM(NSInteger, SyncPropertyMapperInflectionType) {
     SyncPropertyMapperInflectionTypeSnakeCase = 0,
@@ -46,6 +45,13 @@ typedef NS_ENUM(NSInteger, SyncPropertyMapperInflectionType) {
  @param dictionary The JSON dictionary to be used to fill the values of your @c NSManagedObject.
  */
 - (void)hyp_fillWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
+
+/**
+ Fills the @c NSManagedObject with the contents of the dictionary using a convention-over-configuration paradigm mapping the Core Data attributes to their conterparts in JSON using snake_case.
+
+ @param dictionary The JSON dictionary to be used to fill the values of your @c NSManagedObject.
+ */
+- (void)fillWithDictionary:(NSDictionary<NSString *, id> *)dictionary;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Includes relationships to other models using Ruby on Rail's nested attributes model.

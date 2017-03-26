@@ -42,7 +42,7 @@
     [user setValue:@235 forKey:@"contractID"];
     [user setValue:@"ABC8283" forKey:@"driverIdentifier"];
     [user setValue:@"John" forKey:@"firstName"];
-    [user setValue:@"Hyperseed" forKey:@"lastName"];
+    [user setValue:@"Sid" forKey:@"lastName"];
     [user setValue:@"John Description" forKey:@"userDescription"];
     [user setValue:@111 forKey:@"remoteID"];
     [user setValue:@"Manager" forKey:@"userType"];
@@ -129,7 +129,7 @@
                                                                                    @"More code"]];
     comparedDictionary[@"id"] = @111;
     comparedDictionary[@"ignored_parameter"] = [NSNull null];
-    comparedDictionary[@"last_name"] = @"Hyperseed";
+    comparedDictionary[@"last_name"] = @"Sid";
     comparedDictionary[@"number_of_attendes"] = @30;
     comparedDictionary[@"type"] = @"Manager";
     comparedDictionary[@"updated_at"] = resultDateString;
@@ -189,7 +189,7 @@
     [user setValue:@235 forKey:@"contractID"];
     [user setValue:@"ABC8283" forKey:@"driverIdentifier"];
     [user setValue:@"John" forKey:@"firstName"];
-    [user setValue:@"Hyperseed" forKey:@"lastName"];
+    [user setValue:@"Sid" forKey:@"lastName"];
     [user setValue:@"John Description" forKey:@"orderedUserDescription"];
     [user setValue:@111 forKey:@"remoteID"];
     [user setValue:@"Manager" forKey:@"orderedUserType"];

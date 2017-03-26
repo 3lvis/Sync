@@ -3,9 +3,6 @@
 #import "SyncPropertyMapper.h"
 
 static NSString * const SyncPropertyMapperDestroyKey = @"destroy";
-static NSString * const SyncPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
-static NSString * const SyncPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
-static NSString * const SyncPropertyMapperNonExportableKey = @"hyper.nonExportable";
 
 /**
  Internal helpers, not meant to be included in the public APIs.

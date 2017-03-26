@@ -137,11 +137,11 @@ public protocol SyncDelegate: class {
         }
 
         if localPrimaryKey.isEmpty {
-            fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using hyper.isPrimaryKey")
+            fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using sync.isPrimaryKey")
         }
 
         if remotePrimaryKey.isEmpty {
-            fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using hyper.remoteKey to map to the right value")
+            fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using sync.remoteKey to map to the right value")
         }
 
         let dataFilterOperations = DataFilter.Operation(rawValue: operations.rawValue)

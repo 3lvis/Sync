@@ -56,7 +56,7 @@
     XCTAssertEqualObjects(attribute.name, @"alternativeID");
 }
 
-- (void)testLocalKey {
+- (void)testLocalPrimaryKey {
     NSEntityDescription *entity = [self entityForName:@"User"];
     XCTAssertEqualObjects([entity sync_localPrimaryKey], @"remoteID");
 
@@ -74,9 +74,12 @@
 
     entity = [self entityForName:@"AlternativeID"];
     XCTAssertEqualObjects([entity sync_localPrimaryKey], @"alternativeID");
+
+    entity = [self entityForName:@"Compatibility"];
+    XCTAssertEqualObjects([entity sync_localPrimaryKey], @"custom");
 }
 
-- (void)testRemoteKey {
+- (void)testRemotePrimaryKey {
     NSEntityDescription *entity = [self entityForName:@"User"];
     XCTAssertEqualObjects([entity sync_remotePrimaryKey], @"id");
 
@@ -94,6 +97,9 @@
 
     entity = [self entityForName:@"AlternativeID"];
     XCTAssertEqualObjects([entity sync_remotePrimaryKey], @"alternative_id");
+
+    entity = [self entityForName:@"Compatibility"];
+    XCTAssertEqualObjects([entity sync_remotePrimaryKey], @"greeting");
 }
 
 @end
