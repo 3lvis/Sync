@@ -320,7 +320,7 @@ For example, in the one-to-one example, you have a user, that has one company. I
 
 ## FAQ
 
-Check our FAQ document.
+[Check our FAQ document.](https://github.com/SyncDB/Sync/blob/master/docs/faq.md)
 
 ## Installation
 
