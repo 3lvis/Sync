@@ -975,15 +975,15 @@
 		1425D59A1CC65BEB00EC49D4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				44CFE6841E87BC650068185B /* Inflections */,
-				445851F11E87BB590025434E /* PrimaryKey */,
-				447409281E87BA4E0035B8DC /* PropertyMapper */,
-				149CC25C1E81DBC4004D1B76 /* NSPropertyDescription-Sync */,
+				445D3BB71D9F932C007F9E26 /* DataFilter */,
 				1467388A1E7ADBA700913C8E /* DataStack */,
 				14D93BFD1E4E65C700DED595 /* DateParser */,
-				14E93C431DBCCD2800E3304E /* Sync.h */,
+				44CFE6841E87BC650068185B /* Inflections */,
+				149CC25C1E81DBC4004D1B76 /* NSPropertyDescription-Sync */,
+				445851F11E87BB590025434E /* PrimaryKey */,
+				447409281E87BA4E0035B8DC /* PropertyMapper */,
 				44968BF41DA0021300E71A53 /* Sync */,
-				445D3BB71D9F932C007F9E26 /* DataFilter */,
+				14E93C431DBCCD2800E3304E /* Sync.h */,
 				449828021D9F8F2D00E2BCA3 /* TestCheck */,
 			);
 			path = Source;
@@ -1029,16 +1029,16 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				44B212ED1E87BCBD00C81949 /* Inflections */,
-				44CFE67A1E87BBE60068185B /* PrimaryKey */,
-				4458519B1E87BAF50025434E /* PropertyMapper */,
 				14867D001E7AF4D1001D228A /* DataFilter */,
 				14867D0B1E7AF4D2001D228A /* DataStack */,
 				14867D111E7AF4D2001D228A /* DateParser */,
+				44B212ED1E87BCBD00C81949 /* Inflections */,
+				44CFE67A1E87BBE60068185B /* PrimaryKey */,
+				4458519B1E87BAF50025434E /* PropertyMapper */,
+				146D72B01AB782920058798C /* Supporting Files */,
 				14867D191E7AF4D2001D228A /* Sync */,
 				14867DCF1E7AF4D2001D228A /* TestCheck */,
 				14867DD11E7AF4D2001D228A /* Vendor */,
-				146D72B01AB782920058798C /* Supporting Files */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
