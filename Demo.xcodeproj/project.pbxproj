@@ -612,6 +612,13 @@
 		44B548041DCF27FF009215FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B548021DCF27FF009215FA /* LaunchScreen.storyboard */; };
 		44B5481B1DCF3DED009215FA /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B5481A1DCF3DED009215FA /* sample.json */; };
 		44B5481E1DCF3E18009215FA /* iOSDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B5481C1DCF3E18009215FA /* iOSDemo.xcdatamodeld */; };
+		44F5E55A1E8766C300E17DA0 /* ExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5E5591E8766C300E17DA0 /* ExportTests.swift */; };
+		44F5E55B1E8766C300E17DA0 /* ExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5E5591E8766C300E17DA0 /* ExportTests.swift */; };
+		44F5E55C1E8766C300E17DA0 /* ExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5E5591E8766C300E17DA0 /* ExportTests.swift */; };
+		44F5E55E1E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5E55D1E87671E00E17DA0 /* NSManagedObject+Export.swift */; };
+		44F5E55F1E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5E55D1E87671E00E17DA0 /* NSManagedObject+Export.swift */; };
+		44F5E5601E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5E55D1E87671E00E17DA0 /* NSManagedObject+Export.swift */; };
+		44F5E5611E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F5E55D1E87671E00E17DA0 /* NSManagedObject+Export.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -892,6 +899,8 @@
 		44B548051DCF27FF009215FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44B5481A1DCF3DED009215FA /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
 		44B5481D1DCF3E18009215FA /* iOSDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSDemo.xcdatamodel; sourceTree = "<group>"; };
+		44F5E5591E8766C300E17DA0 /* ExportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportTests.swift; sourceTree = "<group>"; };
+		44F5E55D1E87671E00E17DA0 /* NSManagedObject+Export.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Export.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1245,6 +1254,7 @@
 				14867DC71E7AF4D2001D228A /* SyncDictionaryTests.m */,
 				14867DC81E7AF4D2001D228A /* SyncFillWithDictionaryTests.m */,
 				14867DC91E7AF4D2001D228A /* Transformers */,
+				44F5E5591E8766C300E17DA0 /* ExportTests.swift */,
 			);
 			path = SyncPropertyMapper;
 			sourceTree = "<group>";
@@ -1338,6 +1348,7 @@
 				14D93C051E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m */,
 				14D93C061E4E65C700DED595 /* SyncPropertyMapper.h */,
 				14D93C071E4E65C700DED595 /* SyncPropertyMapper.m */,
+				44F5E55D1E87671E00E17DA0 /* NSManagedObject+Export.swift */,
 			);
 			path = "NSManagedObject-SyncPropertyMapper";
 			sourceTree = "<group>";
@@ -2013,6 +2024,7 @@
 				14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14241EA31DBC3A6F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14549A0B1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
+				44F5E55E1E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */,
 				14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */,
 				142CD2B11DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				14AF6AFE1DFC3D88009E5BC4 /* Result.swift in Sources */,
@@ -2039,6 +2051,7 @@
 				14D93C2C1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EAA1DBC3A770042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0E1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
+				44F5E5611E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */,
 				14241EAB1DBC3A770042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C441E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EAC1DBC3A770042ED81 /* Sync.swift in Sources */,
@@ -2065,6 +2078,7 @@
 				14D93C2D1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EB21DBC3A7F0042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0C1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
+				44F5E55F1E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */,
 				14241EB31DBC3A7F0042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C451E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EB41DBC3A7F0042ED81 /* Sync.swift in Sources */,
@@ -2091,6 +2105,7 @@
 				14D93C2E1E4E65C700DED595 /* NSManagedObject+SyncPropertyMapperHelpers.m in Sources */,
 				14241EBA1DBC3A880042ED81 /* NSManagedObject+Sync.swift in Sources */,
 				14549A0D1E7C2E1000A77F2E /* Sync+Helpers.swift in Sources */,
+				44F5E5601E87671E00E17DA0 /* NSManagedObject+Export.swift in Sources */,
 				14241EBB1DBC3A880042ED81 /* NSManagedObjectContext+Sync.swift in Sources */,
 				14D93C461E4E65C700DED595 /* NSString+SyncInflections.m in Sources */,
 				14241EBC1DBC3A880042ED81 /* Sync.swift in Sources */,
@@ -2171,6 +2186,7 @@
 				14867F0E1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14867F471E7AF4D2001D228A /* SyncDelegateTests.swift in Sources */,
 				14867F1A1E7AF4D2001D228A /* Notes.xcdatamodeld in Sources */,
+				44F5E55A1E8766C300E17DA0 /* ExportTests.swift in Sources */,
 				14867EE71E7AF4D2001D228A /* 233.xcdatamodeld in Sources */,
 				14867F0B1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
 				14867F3B1E7AF4D2001D228A /* NSEntityDescription+SyncTests.swift in Sources */,
@@ -2259,6 +2275,7 @@
 				14867F0F1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14867F481E7AF4D2001D228A /* SyncDelegateTests.swift in Sources */,
 				14867F1B1E7AF4D2001D228A /* Notes.xcdatamodeld in Sources */,
+				44F5E55B1E8766C300E17DA0 /* ExportTests.swift in Sources */,
 				14867EE81E7AF4D2001D228A /* 233.xcdatamodeld in Sources */,
 				14867F0C1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
 				14867F3C1E7AF4D2001D228A /* NSEntityDescription+SyncTests.swift in Sources */,
@@ -2347,6 +2364,7 @@
 				14867F101E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14867F491E7AF4D2001D228A /* SyncDelegateTests.swift in Sources */,
 				14867F1C1E7AF4D2001D228A /* Notes.xcdatamodeld in Sources */,
+				44F5E55C1E8766C300E17DA0 /* ExportTests.swift in Sources */,
 				14867EE91E7AF4D2001D228A /* 233.xcdatamodeld in Sources */,
 				14867F0D1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
 				14867F3D1E7AF4D2001D228A /* NSEntityDescription+SyncTests.swift in Sources */,
