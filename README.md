@@ -88,7 +88,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 ### Sync
 
 ```swift
-dataStack.sync(JSON, inEntityNamed: "User") { error in
+dataStack.sync(json, inEntityNamed: "User") { error in
     // New objects have been inserted
     // Existing objects have been updated
     // And not found objects have been deleted
@@ -102,7 +102,7 @@ let now = NSDate()
 let yesterday = now.dateByAddingTimeInterval(-24*60*60)
 let predicate = NSPredicate(format:@"createdAt > %@", yesterday)
 
-dataStack.sync(JSON, inEntityNamed: "User", predicate: predicate) { error in
+dataStack.sync(json, inEntityNamed: "User", predicate: predicate) { error in
     //..
 }
 ```
@@ -122,7 +122,7 @@ dataStack.sync(JSON, inEntityNamed: "User", predicate: predicate) { error in
 
 ### Core Data Stack
 
-Replace your Core Data stack with an instance of [DataStack](https://github.com/SyncDB/Sync/tree/master/Source/DataStack).
+Replace your Core Data stack with an instance of [DataStack](https://github.com/SyncDB/Sync/blob/master/docs/DataStack.md).
 
 ```swift
 self.dataStack = DataStack(modelName: "Demo")
@@ -154,8 +154,8 @@ Your attributes should match their JSON counterparts in `camelCase` notation ins
 
 There are some exception to this rule:
 
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/PropertyMapper/blob/master/Sources/NSManagedObject-PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L282-L284)
-* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/PropertyMapper/blob/master/Sources/NSString-Inflections/NSString%2BInflections.m#L204-L206).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/Sync/blob/master/Source/PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L282-L284)
+* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/Sync/blob/master/Source/Inflections/Inflections.m#L204-L206).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `sync.remoteKey` in the user info box with the value you want to map.
 
@@ -256,7 +256,7 @@ So when Sync, looks into the following JSON, it will sync all the notes for that
 
 As you can see this procedures require the full JSON object to be included, but when working with APIs, sometimes you already have synced all the required items. Sync supports this too.
 
-For example, in the one-to-many example, you have a user, that has many notes. If you already have synced all the notes then your JSON would only need the `notes_ids`, this can be an array of strings or integers. As a sidenote only do this if you are 100% sure that all the required items (notes) have been synced, otherwise this relationships will get ignored and an error will be logged. Also if you want to remove all the notes from a user, just provide `"notes_ids": null` and **Sync** will do the clean up for you.
+For example, in the one-to-many example, you have a user, that has many notes. If you already have synced all the notes then your JSON would only need the `notes_ids`, this can be an array of strings or integers. As a side-note only do this if you are 100% sure that all the required items (notes) have been synced, otherwise this relationships will get ignored and an error will be logged. Also if you want to remove all the notes from a user, just provide `"notes_ids": null` and **Sync** will do the clean up for you.
 
 ```json
 [
