@@ -90,15 +90,14 @@ Sync.changes(
 
 ## Installation
 
-**Sync** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+### CocoaPods
 
 #### Swift
 ```ruby
 pod 'Sync', '~> 3'
 ```
 
-**Sync** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
-it, simply add the following line to your Cartfile:
+### Carthage
 
 ```ruby
 github "SyncDB/Sync" ~> 3.0
