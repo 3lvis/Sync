@@ -307,6 +307,86 @@ For example, in the one-to-one example, you have a user, that has one company. I
 
 ### JSON Exporting
 
+Sync provides an easy way to convert your NSManagedObject back into JSON. Just use the `export()` method.
+
+``` objc
+let user = //...
+user.set(value: "John" for: "firstName")
+user.set(value: "Sid" for: "lastName")
+
+let userValues = user.export()
+```
+
+That's it, that's all you have to do, the keys will be magically transformed into a `snake_case` convention.
+
+```json
+{
+  "first_name": "John",
+  "last_name": "Sid"
+}
+```
+
+## Excluding
+
+If you don't want to export certain attribute or relationship, you can prohibit exporting by adding `sync.nonExportable` in the user info of the excluded attribute or relationship.
+
+![non-exportable](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-non-exportable.png)
+
+## Relationships
+
+It supports exporting relationships too.
+
+```json
+"first_name": "John",
+"last_name": "Sid",
+"notes": [
+  {
+    "id": 0,
+    "text": "This is the text for the note A"
+  },
+  {
+    "id": 1,
+    "text": "This is the text for the note B"
+  }
+]
+```
+
+If you don't want relationships you can also ignore relationships:
+
+```swift
+let dictionary = user.export(using: .excludedRelationships)
+```
+
+```json
+"first_name": "John",
+"last_name": "Sid"
+```
+
+Or get them as nested attributes, something that Ruby on Rails uses (`accepts_nested_attributes_for`), for example for a user that has many notes:
+
+```swift
+var exportOptions = ExportOptions()
+exportOptions.relationshipType = .nested
+let dictionary = user.export(using: exportOptions)
+```
+
+```json
+"first_name": "John",
+"last_name": "Sid",
+"notes_attributes": [
+  {
+    "0": {
+      "id": 0,
+      "text": "This is the text for the note A"
+    },
+    "1": {
+      "id": 1,
+      "text": "This is the text for the note B"
+    }
+  }
+]
+```
+
 ## FAQ
 
 [Check our FAQ document.](https://github.com/SyncDB/Sync/blob/master/docs/faq.md)
