@@ -14,7 +14,7 @@ extension NSManagedObject {
     func sync_copyInContext(_ context: NSManagedObjectContext) -> NSManagedObject {
         guard let entityName = self.entity.name else { fatalError("Couldn't find entity name") }
         let localPrimaryKey = value(forKey: self.entity.sync_localPrimaryKey())
-        guard let copiedObject = context.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(localPrimaryKey)") }
+        guard let copiedObject = context.safeObject(entityName, localPrimaryKey: localPrimaryKey, parent: nil, parentRelationshipName: nil) else { fatalError("Couldn't fetch a safe object from entityName: \(entityName) localPrimaryKey: \(String(describing: localPrimaryKey))") }
 
         return copiedObject
     }
