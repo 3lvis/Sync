@@ -407,8 +407,8 @@ github "SyncDB/Sync" ~> 3.0
 
 ### Supported iOS, OS X, watchOS and tvOS Versions
 
-- iOS 9 or above
-- OS X 10.9 or above
+- iOS 8 or above
+- OS X 10.10 or above
 - watchOS 2.0 or above
 - tvOS 9.0 or above
 
