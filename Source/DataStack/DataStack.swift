@@ -288,9 +288,7 @@ import CoreData
         self.mainContext.perform(DataStack.performSelectorForBackgroundContext(), with: mainContextBlockObject)
     }
 
-    /**
-     Drops the database.
-     */
+    // Drops the database.
     public func drop(completion: ((_ error: NSError?) -> Void)? = nil) {
         self.writerContext.performAndWait {
             self.writerContext.reset()
@@ -303,8 +301,12 @@ import CoreData
                         guard let storeURL = store.url else { continue }
 
                         do {
-                            try self.persistentStoreCoordinator.destroyPersistentStore(at: storeURL, ofType: self.storeType.type, options: store.options)
-                            try! self.persistentStoreCoordinator.addPersistentStore(storeType: self.storeType, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
+                            if #available(iOS 9, OSX 10.11, tvOS 9, watchOS 2, *) {
+                                try self.persistentStoreCoordinator.destroyPersistentStore(at: storeURL, ofType: self.storeType.type, options: store.options)
+                                try! self.persistentStoreCoordinator.addPersistentStore(storeType: self.storeType, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
+                            } else {
+                                try! self.oldDrop(storeURL: storeURL)
+                            }
 
                             DispatchQueue.main.async {
                                 completion?(nil)
@@ -316,6 +318,42 @@ import CoreData
                         }
                     }
                 }
+            }
+        }
+    }
+
+    // Required for iOS 8 Compatibility.
+    func oldDrop(storeURL: URL) throws {
+        let storePath = storeURL.path
+        let sqliteFile = (storePath as NSString).deletingPathExtension
+        let fileManager = FileManager.default
+
+        self.writerContext.reset()
+        self.mainContext.reset()
+
+        let shm = sqliteFile + ".sqlite-shm"
+        if fileManager.fileExists(atPath: shm) {
+            do {
+                try fileManager.removeItem(at: NSURL.fileURL(withPath: shm))
+            } catch let error as NSError {
+                throw NSError(info: "Could not delete persistent store shm", previousError: error)
+            }
+        }
+
+        let wal = sqliteFile + ".sqlite-wal"
+        if fileManager.fileExists(atPath: wal) {
+            do {
+                try fileManager.removeItem(at: NSURL.fileURL(withPath: wal))
+            } catch let error as NSError {
+                throw NSError(info: "Could not delete persistent store wal", previousError: error)
+            }
+        }
+
+        if fileManager.fileExists(atPath: storePath) {
+            do {
+                try fileManager.removeItem(at: storeURL)
+            } catch let error as NSError {
+                throw NSError(info: "Could not delete sqlite file", previousError: error)
             }
         }
     }
