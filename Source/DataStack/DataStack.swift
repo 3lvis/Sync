@@ -61,7 +61,7 @@ import CoreData
         return context
     }()
 
-    private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+    public private(set) lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
         try! persistentStoreCoordinator.addPersistentStore(storeType: self.storeType, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
 
