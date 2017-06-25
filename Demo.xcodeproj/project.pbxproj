@@ -901,6 +901,7 @@
 		44CFE67D1E87BBE60068185B /* PrimaryKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrimaryKey.xcdatamodel; sourceTree = "<group>"; };
 		44CFE6851E87BC650068185B /* Inflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflections.h; sourceTree = "<group>"; };
 		44CFE6861E87BC650068185B /* Inflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflections.m; sourceTree = "<group>"; };
+		E47FF6201F0002A3004A923A /* Sync+ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+ObjC.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1349,6 +1350,7 @@
 				14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */,
 				14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */,
 				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
+				E47FF6201F0002A3004A923A /* Sync+ObjC.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
