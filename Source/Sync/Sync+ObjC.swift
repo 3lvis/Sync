@@ -1,5 +1,7 @@
-import Foundation
-
+/**
+ The enum for Objective-C, equals to Sync.OperationOptions in Swift.
+ Objective-C does not support array of enum as parameter, thus we have listed all possible combinations in this enum.
+ */
 @objc public enum ObjcOperationOptions: Int {
     case insert = 0
     case update = 1
@@ -12,16 +14,45 @@ import Foundation
 
 public extension Sync {
     
+    /**
+     Objective-C Edition
+     Syncs the entity using the received array of dictionaries, maps one-to-many, many-to-many and one-to-one relationships.
+     It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
+     and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
+     entire company object inside the employees dictionary.
+     - parameter changes: The array of dictionaries used in the sync process.
+     - parameter entityName: The name of the entity to be synced.
+     - parameter dataStack: The DataStack instance.
+     - parameter operations: The type of operations to be applied to the data, it should be a value of ObjcOperationOptions.
+     - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
+     */
     public class func objc_changes(_ changes: [[String: Any]], inEntityNamed entityName: String, dataStack: DataStack, operations: ObjcOperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         self.changes(changes, inEntityNamed: entityName, dataStack: dataStack, operations: self.operationOptionsFrom(operations), completion: completion)
     }
     
+    /**
+     Objective-C Edition
+     Syncs the entity using the received array of dictionaries, maps one-to-many, many-to-many and one-to-one relationships.
+     It also syncs relationships where only the id is present, for example if your model is: Company -> Employee,
+     and your employee has a company_id, it will try to sync using that ID instead of requiring you to provide the
+     entire company object inside the employees dictionary.
+     - parameter changes: The array of dictionaries used in the sync process.
+     - parameter entityName: The name of the entity to be synced.
+     - parameter predicate: The predicate used to filter out changes, if you want to exclude some local items to be taken in
+     account in the Sync process, you just need to provide this predicate.
+     - parameter dataStack: The DataStack instance.
+     - parameter operations: The type of operations to be applied to the data, it should be a value of ObjcOperationOptions.
+     - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
+     */
     public class func objc_changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DataStack, operations: ObjcOperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.changes(changes, inEntityNamed: entityName, predicate: predicate, dataStack: dataStack, operations: self.operationOptionsFrom(operations), completion: completion)
         }
     }
     
+    /**
+     Transfer Objective-C enum to Sync.OperationOptions in Swift
+     */
     private class func operationOptionsFrom(_ objcOperationOptions: ObjcOperationOptions) -> Sync.OperationOptions {
         switch objcOperationOptions {
         case .insert:
