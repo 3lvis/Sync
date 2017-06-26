@@ -501,6 +501,10 @@
 		14F627781E7AE6B5001C2EA0 /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627791E7AE6CF001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F6277A1E7AE6E1001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		25A89F821F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
+		25A89F831F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
+		25A89F841F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
+		25A89F851F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
 		441FA7B91E4F00D300023821 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7B71E4F00D300023821 /* User+CoreDataClass.swift */; };
 		441FA7BA1E4F00D300023821 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441FA7B81E4F00D300023821 /* User+CoreDataProperties.swift */; };
 		445851BB1E87BAF50025434E /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458519C1E87BAF50025434E /* DictionaryTests.swift */; };
@@ -2013,6 +2017,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A89F821F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212F81E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
@@ -2040,6 +2045,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A89F851F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EA81DBC3A770042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212FB1E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */,
@@ -2067,6 +2073,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A89F831F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EB01DBC3A7F0042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212F91E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EB11DBC3A7F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
@@ -2094,6 +2101,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A89F841F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EB81DBC3A880042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212FA1E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EB91DBC3A880042ED81 /* NSEntityDescription+Sync.swift in Sources */,
