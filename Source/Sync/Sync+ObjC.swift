@@ -34,6 +34,20 @@
     }
 }
 
+public extension DataStack {
+
+    public func compatibleSync(_ changes: [[String: Any]], inEntityNamed entityName: String, operations: CompatibleOperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+        Sync.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: self, operations: operations.operationOptions, completion: completion)
+    }
+    
+    public func compatibleSync(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, operations: CompatibleOperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+        self.performInNewBackgroundContext { backgroundContext in
+            Sync.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: operations.operationOptions, completion: completion)
+        }
+    }
+    
+}
+
 public extension Sync {
     
     /**
