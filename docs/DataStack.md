@@ -1,6 +1,6 @@
-![DataStack](https://raw.githubusercontent.com/SyncDB/DataStack/master/Images/datastack-logo2.png)
+![DataStack](https://raw.githubusercontent.com/3lvis/DataStack/master/Images/datastack-logo2.png)
 
-**DataStack** helps you to alleviate the Core Data boilerplate. Now you can go to your AppDelegate remove all the Core Data related code and replace it with an instance of DataStack ([ObjC](https://github.com/SyncDB/DATAStack/blob/master/DemoObjectiveC/AppDelegate.m), [Swift](https://github.com/SyncDB/DATAStack/blob/master/DemoSwift/AppDelegate.swift)).
+**DataStack** helps you to alleviate the Core Data boilerplate. Now you can go to your AppDelegate remove all the Core Data related code and replace it with an instance of DataStack ([ObjC](https://github.com/3lvis/DATAStack/blob/master/DemoObjectiveC/AppDelegate.m), [Swift](https://github.com/3lvis/DATAStack/blob/master/DemoSwift/AppDelegate.swift)).
 
 - Easier thread safety
 - Runs synchronously when using unit tests
@@ -155,7 +155,7 @@ DataStack *dataStack = [[DataStack alloc] initWithModelName:@"MyAppModel"
                                                   storeType:DataStackStoreTypeInMemory];
 ```
 
-_(Hint: Maybe you haven't found the best way to use NSFetchedResultsController, well [here it is](https://github.com/SyncDB/DATASource).)_
+_(Hint: Maybe you haven't found the best way to use NSFetchedResultsController, well [here it is](https://github.com/3lvis/DATASource).)_
 
 ## Migrations
 

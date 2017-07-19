@@ -23,7 +23,7 @@ public extension NSManagedObjectContext {
                 fatalError("Failed to fetch request for entityName: \(entityName), predicate: \(String(describing: request.predicate))")
             }
         } else if let parentRelationshipName = parentRelationshipName {
-            // More info: https://github.com/SyncDB/Sync/pull/72
+            // More info: https://github.com/3lvis/Sync/pull/72
             result = parent?.value(forKey: parentRelationshipName) as? NSManagedObject
         }
 

@@ -1,4 +1,4 @@
-![PropertyMapper](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-logo-v2.png)
+![PropertyMapper](https://raw.githubusercontent.com/3lvis/Sync/master/Images/pm-logo-v2.png)
 
 **PropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
@@ -90,9 +90,9 @@ let publishedAt = managedObject.value(forKey: "publishedAt")
 
 If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
 
-![transformable-attribute](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-date-transformable.png)
+![transformable-attribute](https://raw.githubusercontent.com/3lvis/Sync/master/Images/pm-date-transformable.png)
 
-You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/Sync/blob/master/Tests/PropertyMapper/Transformers/DateStringTransformer.m).
+You can find an example of date transformer in [DateStringTransformer](https://github.com/3lvis/Sync/blob/master/Tests/PropertyMapper/Transformers/DateStringTransformer.m).
 
 ### Array
 
@@ -125,11 +125,11 @@ let expenses = NSKeyedUnarchiver.unarchiveObject(with: managedObject.expenses) a
 There are two exceptions to this rules:
 
 * `id`s should match `remoteID`
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/Sync/blob/master/Source/NSManagedObject-PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L281-L283).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/3lvis/Sync/blob/master/Source/NSManagedObject-PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L281-L283).
 
 ## Custom
 
-![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-userInfo_documentation.png)
+![Remote mapping documentation](https://raw.githubusercontent.com/3lvis/Sync/master/Images/pm-userInfo_documentation.png)
 
 * If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `sync.remoteKey` in the user info box with the value you want to map.
 
@@ -207,7 +207,7 @@ class BadAPIValueTransformer : ValueTransformer {
 
 Then we'll add another item in the user key of our Core Data attribute. The key will be `sync.valueTransformer` and the value `BadAPIValueTransformer`.
 
-![value-transformer](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-value-transformer-v2.png)
+![value-transformer](https://raw.githubusercontent.com/3lvis/Sync/master/Images/pm-value-transformer-v2.png)
 
 Then before `fill(with:)` we'll do
 
@@ -242,7 +242,7 @@ That's it, that's all you have to do, the keys will be magically transformed int
 
 If you don't want to export certain attribute or relationship, you can prohibit exporting by adding `sync.nonExportable` in the user info of the excluded attribute or relationship.
 
-![non-exportable](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-non-exportable.png)
+![non-exportable](https://raw.githubusercontent.com/3lvis/Sync/master/Images/pm-non-exportable.png)
 
 ## Relationships
 

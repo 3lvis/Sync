@@ -453,7 +453,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Patients => https://github.com/SyncDB/Sync/issues/121
+    // MARK: - Patients => https://github.com/3lvis/Sync/issues/121
 
     func testPatients() {
         let objects = Helper.objectsFromJSON("patients.json") as! [[String: Any]]
@@ -470,7 +470,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 84 => https://github.com/SyncDB/Sync/issues/84
+    // MARK: - Bug 84 => https://github.com/3lvis/Sync/issues/84
 
     func testStaffAndfulfillers() {
         let objects = Helper.objectsFromJSON("bug-number-84.json") as! [[String: Any]]
@@ -496,7 +496,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 113 => https://github.com/SyncDB/Sync/issues/113
+    // MARK: - Bug 113 => https://github.com/3lvis/Sync/issues/113
 
     func testCustomPrimaryKeyBug113() {
         let objects = Helper.objectsFromJSON("bug-113-comments-no-id.json") as! [[String: Any]]
@@ -557,7 +557,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 125 => https://github.com/SyncDB/Sync/issues/125
+    // MARK: - Bug 125 => https://github.com/3lvis/Sync/issues/125
 
     func testNilRelationshipsAfterUpdating_Sync_1_0_10() {
         let formDictionary = Helper.objectsFromJSON("bug-125.json") as! [String: Any]
@@ -693,7 +693,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 179 => https://github.com/SyncDB/Sync/issues/179
+    // MARK: - Bug 179 => https://github.com/3lvis/Sync/issues/179
 
     func testConnectMultipleRelationships() {
         let places = Helper.objectsFromJSON("bug-179-places.json") as! [[String: Any]]
@@ -718,7 +718,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 202 => https://github.com/SyncDB/Sync/issues/202
+    // MARK: - Bug 202 => https://github.com/3lvis/Sync/issues/202
 
     func testManyToManyKeyNotAllowedHere() {
         let dataStack = Helper.dataStackWithModelName("202")
@@ -746,7 +746,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 157 => https://github.com/SyncDB/Sync/issues/157
+    // MARK: - Bug 157 => https://github.com/3lvis/Sync/issues/157
 
     func testBug157() {
         let dataStack = Helper.dataStackWithModelName("157")
@@ -791,7 +791,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Add support for cancellable sync processes https://github.com/SyncDB/Sync/pull/216
+    // MARK: - Add support for cancellable sync processes https://github.com/3lvis/Sync/pull/216
 
     func testOperation() {
         let dataStack = Helper.dataStackWithModelName("id")
@@ -804,7 +804,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/SyncDB/Sync/issues/151
+    // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/3lvis/Sync/issues/151
     // Notes have to be unique, two users can't have the same note.
 
     func testMultipleIDRelationshipToMany() {
@@ -879,7 +879,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/SyncDB/Sync/issues/151
+    // MARK: - Support multiple ids to set a relationship (to-many) => https://github.com/3lvis/Sync/issues/151
     // Notes have to be unique, two users can't have the same note.
 
     func testOrderedMultipleIDRelationshipToMany() {
@@ -936,7 +936,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/SyncDB/Sync/issues/151
+    // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/3lvis/Sync/issues/151
 
     func testMultipleIDRelationshipManyToMany() {
         let dataStack = Helper.dataStackWithModelName("151-many-to-many")
@@ -998,7 +998,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/SyncDB/Sync/issues/151
+    // MARK: - Support multiple ids to set a relationship (many-to-many) => https://github.com/3lvis/Sync/issues/151
 
     func testOrderedMultipleIDRelationshipManyToMany() {
         let dataStack = Helper.dataStackWithModelName("151-ordered-many-to-many")
@@ -1060,7 +1060,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 257 => https://github.com/SyncDB/Sync/issues/257
+    // MARK: - Bug 257 => https://github.com/3lvis/Sync/issues/257
 
     func testBug257() {
         let dataStack = Helper.dataStackWithModelName("257")
@@ -1073,7 +1073,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - Bug 254 => https://github.com/SyncDB/Sync/issues/254
+    // MARK: - Bug 254 => https://github.com/3lvis/Sync/issues/254
 
     func testBug254() {
         let dataStack = Helper.dataStackWithModelName("254")
@@ -1100,7 +1100,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: Bug 260 => https://github.com/SyncDB/Sync/issues/260
+    // MARK: Bug 260 => https://github.com/3lvis/Sync/issues/260
 
     func testBug260CamelCase() {
         let dataStack = Helper.dataStackWithModelName("ToOne")
@@ -1124,7 +1124,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: Bug 239 => https://github.com/SyncDB/Sync/pull/239
+    // MARK: Bug 239 => https://github.com/3lvis/Sync/pull/239
 
     func testBug239() {
         let carsObject = Helper.objectsFromJSON("bug-239.json") as! [[String: Any]]
@@ -1140,7 +1140,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: - https://github.com/SyncDB/Sync/issues/225
+    // MARK: - https://github.com/3lvis/Sync/issues/225
 
     func test225ReplacedTag() {
         let dataStack = Helper.dataStackWithModelName("225")
@@ -1316,7 +1316,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // https://github.com/SyncDB/Sync/issues/327
+    // https://github.com/3lvis/Sync/issues/327
 
     func test327OrderedToMany() {
         let dataStack = Helper.dataStackWithModelName("233")
@@ -1359,7 +1359,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // https://github.com/SyncDB/Sync/issues/265
+    // https://github.com/3lvis/Sync/issues/265
 
     func test265() {
         let dataStack = Helper.dataStackWithModelName("265")
@@ -1389,7 +1389,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // MARK: Bug 277 => https://github.com/SyncDB/Sync/pull/277
+    // MARK: Bug 277 => https://github.com/3lvis/Sync/pull/277
 
     func test277() {
         let carsObject = Helper.objectsFromJSON("277.json") as! [[String: Any]]
@@ -1411,7 +1411,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // https://github.com/SyncDB/Sync/issues/375
+    // https://github.com/3lvis/Sync/issues/375
     func test375() {
         let speeches = Helper.objectsFromJSON("375.json") as! [[String: Any]]
         let dataStack = Helper.dataStackWithModelName("375")
@@ -1422,7 +1422,7 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // https://github.com/SyncDB/Sync/pull/388
+    // https://github.com/3lvis/Sync/pull/388
     func testRemoteKeyCompatibility() {
         let entititesJSON = Helper.objectsFromJSON("remote_key.json") as! [[String: Any]]
         let dataStack = Helper.dataStackWithModelName("RemoteKey")

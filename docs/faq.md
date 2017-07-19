@@ -71,13 +71,13 @@ func changeNotification(notification: NSNotification) {
 }
 ```
 
-Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/SyncDB/AppNetDemo/blob/master/SyncAppNetDemo/Networking.swift#L27-L57).
+Logging updates is a bit more complicated since this changes don't get propagated to the main context. But if you want an example on how to do this, you can check the AppNet example, [the change notifications demo is in the Networking file](https://github.com/3lvis/AppNetDemo/blob/master/SyncAppNetDemo/Networking.swift#L27-L57).
 
 If you're using Swift to be able to use `NSNotificationCenter` your class should be a subclass of `NSObject` or similar.
 
 #### Crash on NSParameterAssert
 
-This means that the local primary key was not found, Sync uses `id` (or `remoteID`) by default, but if you have another local primary key make sure to mark it with `"sync.isPrimaryKey" : "true"` in your attribute's user info. For more information check the [Primary Key](https://github.com/SyncDB/Sync#primary-key) section.
+This means that the local primary key was not found, Sync uses `id` (or `remoteID`) by default, but if you have another local primary key make sure to mark it with `"sync.isPrimaryKey" : "true"` in your attribute's user info. For more information check the [Primary Key](https://github.com/3lvis/Sync#primary-key) section.
 
 ```swift
 let localKey = entity.sync_localPrimaryKey()
@@ -89,7 +89,7 @@ assert(remoteKey != nil, "nil value")
 
 #### How to map relationships that don't have IDs?
 
-There are two ways you can sync a JSON object that doesn't have an `id`. You can either set one of it's [attributes as the primary key](https://github.com/SyncDB/Sync#primary-key), or you can store the JSON object as NSData, I have done this myself in a couple of apps works pretty well. You can find more information on how to store dictionaries using Sync [here](https://github.com/SyncDB/Sync#arraydictionary).
+There are two ways you can sync a JSON object that doesn't have an `id`. You can either set one of it's [attributes as the primary key](https://github.com/3lvis/Sync#primary-key), or you can store the JSON object as NSData, I have done this myself in a couple of apps works pretty well. You can find more information on how to store dictionaries using Sync [here](https://github.com/3lvis/Sync#arraydictionary).
 
 #### What if I only want inserts and updates?
 
@@ -118,11 +118,11 @@ Saving to a background context or a main context could still block the UI since 
 try self.fetchedResultsController.performFetch()
 ```
 
-For a full example on how to do achieve this magic syncing check the [Performance project](https://github.com/SyncDB/Performance).
+For a full example on how to do achieve this magic syncing check the [Performance project](https://github.com/3lvis/Performance).
 
 #### Which date formats are supported by Sync?
 
-Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/SyncDB/DateParser). Here are some of the supported formats, if you don't find yours, just open and issue:
+Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/3lvis/DateParser). Here are some of the supported formats, if you don't find yours, just open and issue:
 
 ```
 2014-01-02
@@ -141,4 +141,4 @@ Sync uses an extensive and [blazing fast ISO 8601 parser](https://github.com/Syn
 
 If you're using export() and you get a stack overflow because of recursive calls, then is probably because somewhere in your relationships, your model is referencing a model that it's referencing the previous model and so on, then `PropertyMapper` doesn't know when to stop. For this reason we've introduced `sync.nonExportable`, this flag can be used for both fields and relationships. To fix your issue you need to add the flag to the relationship that shouldn't be exported.
 
-[More information about excluding here.](https://github.com/SyncDB/Sync/tree/master/Source/NSManagedObject-PropertyMapper#excluding)
+[More information about excluding here.](https://github.com/3lvis/Sync/tree/master/Source/NSManagedObject-PropertyMapper#excluding)

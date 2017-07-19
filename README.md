@@ -1,13 +1,13 @@
-![Sync](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/logo-v3.png)
+![Sync](https://raw.githubusercontent.com/3lvis/Sync/master/Images/logo-v3.png)
 
 <div align = "center">
   <a href="https://cocoapods.org/pods/Sync">
     <img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
   </a>
-  <a href="https://github.com/SyncDB/Sync">
+  <a href="https://github.com/3lvis/Sync">
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
   </a>
-  <a href="https://github.com/SyncDB/Sync#installation">
+  <a href="https://github.com/3lvis/Sync#installation">
     <img src="https://img.shields.io/badge/compatible-swift%203.0-orange.svg" />
   </a>
 </div>
@@ -19,7 +19,7 @@
   <a href="https://cocoapods.org/pods/Sync" target="blank">
     <img src="https://img.shields.io/cocoapods/l/Sync.svg?style=flat" />
   </a>
-  <a href="https://gitter.im/SyncDB/Sync">
+  <a href="https://gitter.im/3lvis/Sync">
     <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
   </a>
   <br>
@@ -61,7 +61,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 
 ### Model
 
-![Model](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/one-to-many-swift.png)
+![Model](https://raw.githubusercontent.com/3lvis/Sync/master/Images/one-to-many-swift.png)
 
 ### JSON
 
@@ -109,12 +109,12 @@ dataStack.sync(json, inEntityNamed: "User", predicate: predicate) { error in
 
 ## More Examples
 
-<a href="https://github.com/SyncDB/AppNetDemo">
-  <img src="https://raw.githubusercontent.com/SyncDB/Sync/master/Images/APPNET-v3.png" />
+<a href="https://github.com/3lvis/AppNetDemo">
+  <img src="https://raw.githubusercontent.com/3lvis/Sync/master/Images/APPNET-v3.png" />
 </a>
 
-<a href="https://github.com/SyncDB/DesignerNewsDemo">
-  <img src="https://raw.githubusercontent.com/SyncDB/Sync/master/Images/DN-v4.png" />
+<a href="https://github.com/3lvis/DesignerNewsDemo">
+  <img src="https://raw.githubusercontent.com/3lvis/Sync/master/Images/DN-v4.png" />
 </a>
 
 
@@ -122,7 +122,7 @@ dataStack.sync(json, inEntityNamed: "User", predicate: predicate) { error in
 
 ### Core Data Stack
 
-Replace your Core Data stack with an instance of [DataStack](https://github.com/SyncDB/Sync/blob/master/docs/DataStack.md).
+Replace your Core Data stack with an instance of [DataStack](https://github.com/3lvis/Sync/blob/master/docs/DataStack.md).
 
 ```swift
 self.dataStack = DataStack(modelName: "Demo")
@@ -134,9 +134,9 @@ Sync requires your entities to have a primary key, this is important for diffing
 
 By default **Sync** uses `id` from the JSON and `id` (or `remoteID`) from Core Data as the primary key.
 
-You can mark any attribute as primary key by adding `sync.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/SyncDB/DesignerNewsDemo) project we have a `Comment` entity that uses `body` as the primary key.
+You can mark any attribute as primary key by adding `sync.isPrimaryKey` and the value `true` (or `YES`). For example, in our [Designer News](https://github.com/3lvis/DesignerNewsDemo) project we have a `Comment` entity that uses `body` as the primary key.
 
-![Custom primary key](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/custom-primary-key-v3.png)
+![Custom primary key](https://raw.githubusercontent.com/3lvis/Sync/master/Images/custom-primary-key-v3.png)
 
 If you add the flag `sync.isPrimaryKey` to the attribute `contractID` then:
 
@@ -154,12 +154,12 @@ Your attributes should match their JSON counterparts in `camelCase` notation ins
 
 There are some exception to this rule:
 
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/Sync/blob/master/Source/PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L282-L284)
-* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/SyncDB/Sync/blob/master/Source/Inflections/Inflections.m#L204-L206).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/3lvis/Sync/blob/master/Source/PropertyMapper/NSManagedObject%2BPropertyMapperHelpers.m#L282-L284)
+* Attributes with acronyms will be normalized (`id`, `pdf`, `url`, `png`, `jpg`, `uri`, `json`, `xml`). For example `user_id` will be mapped to `userID` and so on. You can find the entire list of supported acronyms [here](https://github.com/3lvis/Sync/blob/master/Source/Inflections/Inflections.m#L204-L206).
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `sync.remoteKey` in the user info box with the value you want to map.
 
-![Custom remote key](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/custom-remote-key-v2.png)
+![Custom remote key](https://raw.githubusercontent.com/3lvis/Sync/master/Images/custom-remote-key-v2.png)
 
 ### Attribute Types
 
@@ -203,7 +203,7 @@ let expenses = NSKeyedUnarchiver.unarchiveObjectWithData(managedObject.expenses)
 
 #### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/SyncDB/Sync/blob/master/Source/DateParser/NSDate%2BPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/3lvis/Sync/blob/master/Source/DateParser/NSDate%2BPropertyMapper.m) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```swift
 let values = ["created_at" : "2014-01-01T00:00:00+00:00",
@@ -231,7 +231,7 @@ let publishedAt = managedObject.value(forKey: "publishedAt")
 
 Lets consider the following Core Data model.
 
-![One-to-many](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/one-to-many-swift.png)
+![One-to-many](https://raw.githubusercontent.com/3lvis/Sync/master/Images/one-to-many-swift.png)
 
 This model has a one-to-many relationship between `User` and `Note`, so in other words a user has many notes. Here can also find an inverse relationship to user on the Note model. This is required for Sync to have more context on how your models are presented. Finally, in the Core Data model there is a cascade relationship between user and note, so when a user is deleted all the notes linked to that user are also removed (you can specify any delete rule).
 
@@ -272,7 +272,7 @@ For example, in the one-to-many example, you have a user, that has many notes. I
 
 A similar procedure is applied to one-to-one relationships. For example lets say you have the following model:
 
-![one-to-one](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/one-to-one-v2.png)
+![one-to-one](https://raw.githubusercontent.com/3lvis/Sync/master/Images/one-to-one-v2.png)
 
 This model is simple, a user as a company. A compatible JSON would look like this:
 
@@ -330,7 +330,7 @@ That's it, that's all you have to do, the keys will be magically transformed int
 
 If you don't want to export certain attribute or relationship, you can prohibit exporting by adding `sync.nonExportable` in the user info of the excluded attribute or relationship.
 
-![non-exportable](https://raw.githubusercontent.com/SyncDB/Sync/master/Images/pm-non-exportable.png)
+![non-exportable](https://raw.githubusercontent.com/3lvis/Sync/master/Images/pm-non-exportable.png)
 
 ### Relationships
 
@@ -389,7 +389,7 @@ let dictionary = user.export(using: exportOptions)
 
 ## FAQ
 
-[Check our FAQ document.](https://github.com/SyncDB/Sync/blob/master/docs/faq.md)
+[Check our FAQ document.](https://github.com/3lvis/Sync/blob/master/docs/faq.md)
 
 ## Installation
 
@@ -402,7 +402,7 @@ pod 'Sync', '~> 3'
 ### Carthage
 
 ```ruby
-github "SyncDB/Sync" ~> 3.0
+github "3lvis/Sync" ~> 3.0
 ```
 
 ### Supported iOS, OS X, watchOS and tvOS Versions
@@ -414,4 +414,4 @@ github "SyncDB/Sync" ~> 3.0
 
 ## License
 
-**Sync** is available under the MIT license. See the [LICENSE](https://github.com/SyncDB/Sync/blob/master/LICENSE.md) file for more info.
+**Sync** is available under the MIT license. See the [LICENSE](https://github.com/3lvis/Sync/blob/master/LICENSE.md) file for more info.
