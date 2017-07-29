@@ -59,12 +59,18 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+
+            }
+
             XCTAssertEqual(inserted, 2)
             XCTAssertEqual(updated, 4)
             XCTAssertEqual(deleted, 1)
@@ -88,12 +94,18 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+
+            }
+
             XCTAssertEqual(inserted, 2)
             XCTAssertEqual(updated, 4)
             XCTAssertEqual(deleted, 1)
@@ -117,12 +129,19 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+
+            }
+
             XCTAssertEqual(inserted, 2)
             XCTAssertEqual(updated, 3)
             XCTAssertEqual(deleted, 2)
@@ -146,12 +165,19 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+
+            }
+
             XCTAssertEqual(inserted, 0)
             XCTAssertEqual(updated, 5)
             XCTAssertEqual(deleted, 0)
@@ -175,12 +201,19 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+
+            }
+
             XCTAssertEqual(inserted, 0)
             XCTAssertEqual(updated, 0)
             XCTAssertEqual(deleted, 5)
@@ -210,9 +243,8 @@ class DataFilterTests: XCTestCase {
             XCTAssertEqual(numberOfUsers, 8)
 
             let JSONObjects = try! JSON.from("users.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
-            }, updated: { objectJSON, updatedObject in
-            })
+
+            _ = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
 
             let deletedNumberOfUsers = try! backgroundContext.count(for: request)
             XCTAssertEqual(deletedNumberOfUsers, 4)
@@ -237,11 +269,16 @@ class DataFilterTests: XCTestCase {
             XCTAssertEqual(count, 1)
 
             let JSONObjects = try! JSON.from("note.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
-            DataFilter.changes(JSONObjects, inEntityNamed: "Note", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 XCTAssertFalse(true)
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (objectJSON, _) in updatedObjects {
                 XCTAssertEqual(objectJSON["id"] as? String, "123")
-            })
+            }
         }
     }
 
@@ -256,12 +293,18 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.insert], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.insert], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+            }
+
             XCTAssertEqual(inserted, 1)
             XCTAssertEqual(updated, 0)
             XCTAssertEqual(deleted, 2)
@@ -279,12 +322,18 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.update], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.update], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+            }
+
             XCTAssertEqual(inserted, 0)
             XCTAssertEqual(updated, 1)
             XCTAssertEqual(deleted, 1)
@@ -302,12 +351,18 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.delete], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: nil, operations: [.delete], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+            }
+
             XCTAssertEqual(inserted, 0)
             XCTAssertEqual(updated, 0)
             XCTAssertEqual(deleted, 2)
@@ -329,12 +384,18 @@ class DataFilterTests: XCTestCase {
             var inserted = 0
             var updated = 0
             var deleted = before.count
-            DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: NSPredicate(format: "remoteID == \(0)"), operations: [.all], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { objectJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", predicate: NSPredicate(format: "remoteID == \(0)"), operations: [.all], localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for _ in insertedObjects {
                 inserted += 1
-            }, updated: { objectJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
                 deleted -= 1
-            })
+            }
+
             XCTAssertEqual(inserted, 5)
             XCTAssertEqual(updated, 1)
             XCTAssertEqual(deleted, 4)
@@ -349,15 +410,21 @@ class DataFilterTests: XCTestCase {
         var updated = 0
         var ids = [Int]()
         dataStack.performInNewBackgroundContext { backgroundContext in
-            DataFilter.changes(carsObject, inEntityNamed: "Racecar", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext, inserted: { insertedJSON in
+
+            let (insertedObjects, updatedObjects) = DataFilter.changes(carsObject, inEntityNamed: "Racecar", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+
+            for insertedJSON in insertedObjects {
                 if let id = insertedJSON["id"] as? Int {
                     ids.append(id)
                 }
 
                 inserted += 1
-            }, updated: { updatedJSON, updatedObject in
+            }
+
+            for (_, _) in updatedObjects {
                 updated += 1
-            })
+            }
+
             XCTAssertEqual(inserted, 2)
             XCTAssertEqual(updated, 0)
             XCTAssertEqual(ids, [31, 32])

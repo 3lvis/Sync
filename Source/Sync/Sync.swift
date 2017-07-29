@@ -14,6 +14,8 @@ public protocol SyncDelegate: class {
 }
 
 @objc public class Sync: Operation {
+    static let domain = "net.3lvis.sync"
+
     public weak var delegate: SyncDelegate?
 
     public struct OperationOptions: OptionSet {
@@ -137,26 +139,30 @@ public protocol SyncDelegate: class {
         }
 
         if localPrimaryKey.isEmpty {
-            fatalError("Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using sync.isPrimaryKey")
+            throw NSError(domain: Sync.domain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Local primary key not found for entity: \(entityName), add a primary key named id or mark an existing attribute using sync.isPrimaryKey"])
         }
 
         if remotePrimaryKey.isEmpty {
-            fatalError("Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using sync.remoteKey to map to the right value")
+            throw NSError(domain: Sync.domain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Remote primary key not found for entity: \(entityName), we were looking for id, if your remote ID has a different name consider using sync.remoteKey to map to the right value"])
         }
 
         let dataFilterOperations = DataFilter.Operation(rawValue: operations.rawValue)
-        DataFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: { JSON in
+        let (inserted, updated) = DataFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context)
+
+        for JSON in inserted {
+        let shouldContinue = shouldContinueBlock?() ?? true
+        guard shouldContinue else { return }
+
+        let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+        let interceptedJSON = objectJSONBlock?(JSON) ?? JSON
+        try created.sync_fill(with: interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
+        }
+
+        for (JSON, updatedObject) in updated {
             let shouldContinue = shouldContinueBlock?() ?? true
             guard shouldContinue else { return }
 
-            let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-            let interceptedJSON = objectJSONBlock?(JSON) ?? JSON
-            created.sync_fill(with: interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
-        }) { JSON, updatedObject in
-            let shouldContinue = shouldContinueBlock?() ?? true
-            guard shouldContinue else { return }
-
-            updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
+            try updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
         }
 
         if context.hasChanges {

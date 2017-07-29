@@ -5,6 +5,7 @@ import CoreData
  Helps you filter insertions, deletions and updates by comparing your JSON dictionary with your Core Data local objects.
  It also provides uniquing for you locally stored objects and automatic removal of not found ones.
  */
+
 class DataFilter: NSObject {
     struct Operation: OptionSet {
         let rawValue: Int
@@ -23,10 +24,8 @@ class DataFilter: NSObject {
                        inEntityNamed entityName: String,
                        localPrimaryKey: String,
                        remotePrimaryKey: String,
-                       context: NSManagedObjectContext,
-                       inserted: (_ json: [String: Any]) -> Void,
-                       updated: (_ json: [String: Any], _ updatedObject: NSManagedObject) -> Void) {
-        self.changes(changes, inEntityNamed: entityName, predicate: nil, operations: .all, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context, inserted: inserted, updated: updated)
+                       context: NSManagedObjectContext) -> (inserted: [[String: Any]], updated: [([String: Any], NSManagedObject)]) {
+        return self.changes(changes, inEntityNamed: entityName, predicate: nil, operations: .all, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context)
     }
 
     class func changes(_ changes: [[String: Any]],
@@ -35,9 +34,7 @@ class DataFilter: NSObject {
                        operations: Operation,
                        localPrimaryKey: String,
                        remotePrimaryKey: String,
-                       context: NSManagedObjectContext,
-                       inserted: (_ json: [String: Any]) -> Void,
-                       updated: (_ json: [String: Any], _ updatedObject: NSManagedObject) -> Void) {
+                       context: NSManagedObjectContext) -> (inserted: [[String: Any]], updated: [([String: Any], NSManagedObject)]) {
         // `DataObjectIDs.objectIDsInEntityNamed` also deletes all objects that don't have a primary key or that have the same primary key already found in the context
         let primaryKeysAndObjectIDs = context.managedObjectIDs(in: entityName, usingAsKey: localPrimaryKey, predicate: predicate) as [NSObject: NSManagedObjectID]
         let localPrimaryKeys = Array(primaryKeysAndObjectIDs.keys)
@@ -62,6 +59,7 @@ class DataFilter: NSObject {
             }
         }
 
+        var inserted = [[String: Any]]()
         if operations.contains(.insert) {
             var insertedObjectIDs = remotePrimaryKeysWithoutNils
             insertedObjectIDs = insertedObjectIDs.filter { value in
@@ -70,10 +68,11 @@ class DataFilter: NSObject {
 
             for fetchedID in insertedObjectIDs {
                 let objectDictionary = remotePrimaryKeysAndChanges[fetchedID]!
-                inserted(objectDictionary)
+                inserted.append(objectDictionary)
             }
         }
 
+        var updated = [([String: Any], NSManagedObject)]()
         if operations.contains(.update) {
             var intersection = Set(remotePrimaryKeysWithoutNils)
             intersection.formIntersection(Set(localPrimaryKeys))
@@ -83,8 +82,10 @@ class DataFilter: NSObject {
                 let JSON = remotePrimaryKeysAndChanges[fetchedID]!
                 let objectID = primaryKeysAndObjectIDs[fetchedID]!
                 let object = context.object(with: objectID)
-                updated(JSON, object)
+                updated.append((JSON, object))
             }
         }
+
+        return (inserted, updated)
     }
 }
