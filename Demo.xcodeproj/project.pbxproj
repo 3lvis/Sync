@@ -629,6 +629,12 @@
 		CC9493FE1F3755AD002167B4 /* 375-toOne.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493FD1F3755AD002167B4 /* 375-toOne.json */; };
 		CC9493FF1F3755AD002167B4 /* 375-toOne.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493FD1F3755AD002167B4 /* 375-toOne.json */; };
 		CC9494001F3755AD002167B4 /* 375-toOne.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493FD1F3755AD002167B4 /* 375-toOne.json */; };
+		CC9494041F3784EB002167B4 /* 375-to-many-series.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494031F3784EB002167B4 /* 375-to-many-series.json */; };
+		CC9494051F3784EB002167B4 /* 375-to-many-series.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494031F3784EB002167B4 /* 375-to-many-series.json */; };
+		CC9494061F3784EB002167B4 /* 375-to-many-series.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494031F3784EB002167B4 /* 375-to-many-series.json */; };
+		CC9494101F37857F002167B4 /* 375-to-many-speeches.json in Resources */ = {isa = PBXBuildFile; fileRef = CC94940F1F37857F002167B4 /* 375-to-many-speeches.json */; };
+		CC9494111F37857F002167B4 /* 375-to-many-speeches.json in Resources */ = {isa = PBXBuildFile; fileRef = CC94940F1F37857F002167B4 /* 375-to-many-speeches.json */; };
+		CC9494121F37857F002167B4 /* 375-to-many-speeches.json in Resources */ = {isa = PBXBuildFile; fileRef = CC94940F1F37857F002167B4 /* 375-to-many-speeches.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -913,6 +919,8 @@
 		44CFE6861E87BC650068185B /* Inflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflections.m; sourceTree = "<group>"; };
 		CC9493F51F375517002167B4 /* 375-toOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "375-toOne.xcdatamodel"; sourceTree = "<group>"; };
 		CC9493FD1F3755AD002167B4 /* 375-toOne.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-toOne.json"; sourceTree = "<group>"; };
+		CC9494031F3784EB002167B4 /* 375-to-many-series.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-many-series.json"; sourceTree = "<group>"; };
+		CC94940F1F37857F002167B4 /* 375-to-many-speeches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-many-speeches.json"; sourceTree = "<group>"; };
 		E47FF6201F0002A3004A923A /* Sync+ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+ObjC.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1149,6 +1157,8 @@
 				14867D331E7AF4D2001D228A /* 320.json */,
 				149FF9ED1E808DFB00617A63 /* 375.json */,
 				CC9493FD1F3755AD002167B4 /* 375-toOne.json */,
+				CC9494031F3784EB002167B4 /* 375-to-many-series.json */,
+				CC94940F1F37857F002167B4 /* 375-to-many-speeches.json */,
 				14867D351E7AF4D2001D228A /* bug-113-comments-no-id.json */,
 				14867D361E7AF4D2001D228A /* bug-113-custom_relationship_key_to_one.json */,
 				14867D371E7AF4D2001D228A /* bug-113-stories-comments-no-ids.json */,
@@ -1785,6 +1795,7 @@
 			files = (
 				14867E961E7AF4D2001D228A /* numbers.json in Resources */,
 				14867E601E7AF4D2001D228A /* bug-179-places.json in Resources */,
+				CC9494041F3784EB002167B4 /* 375-to-many-series.json in Resources */,
 				14867E691E7AF4D2001D228A /* bug-202-b.json in Resources */,
 				14867EA81E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
 				14E6522A1E809A68000E7CC6 /* remote_key.json in Resources */,
@@ -1829,6 +1840,7 @@
 				14867EBA1E7AF4D2001D228A /* users_a.json in Resources */,
 				14867EAB1E7AF4D2001D228A /* story-summarize.json in Resources */,
 				14867E811E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
+				CC9494101F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
 				14867E9C1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E721E7AF4D2001D228A /* bug-257.json in Resources */,
 				14867E661E7AF4D2001D228A /* bug-202-a.json in Resources */,
@@ -1863,6 +1875,7 @@
 			files = (
 				14867E971E7AF4D2001D228A /* numbers.json in Resources */,
 				14867E611E7AF4D2001D228A /* bug-179-places.json in Resources */,
+				CC9494051F3784EB002167B4 /* 375-to-many-series.json in Resources */,
 				14867E6A1E7AF4D2001D228A /* bug-202-b.json in Resources */,
 				14867EA91E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
 				14E6522B1E809A68000E7CC6 /* remote_key.json in Resources */,
@@ -1907,6 +1920,7 @@
 				14867EBB1E7AF4D2001D228A /* users_a.json in Resources */,
 				14867EAC1E7AF4D2001D228A /* story-summarize.json in Resources */,
 				14867E821E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
+				CC9494111F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
 				14867E9D1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E731E7AF4D2001D228A /* bug-257.json in Resources */,
 				14867E671E7AF4D2001D228A /* bug-202-a.json in Resources */,
@@ -1941,6 +1955,7 @@
 			files = (
 				14867E981E7AF4D2001D228A /* numbers.json in Resources */,
 				14867E621E7AF4D2001D228A /* bug-179-places.json in Resources */,
+				CC9494061F3784EB002167B4 /* 375-to-many-series.json in Resources */,
 				14867E6B1E7AF4D2001D228A /* bug-202-b.json in Resources */,
 				14867EAA1E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
 				14E6522C1E809A68000E7CC6 /* remote_key.json in Resources */,
@@ -1985,6 +2000,7 @@
 				14867EBC1E7AF4D2001D228A /* users_a.json in Resources */,
 				14867EAD1E7AF4D2001D228A /* story-summarize.json in Resources */,
 				14867E831E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
+				CC9494121F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
 				14867E9E1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E741E7AF4D2001D228A /* bug-257.json in Resources */,
 				14867E681E7AF4D2001D228A /* bug-202-a.json in Resources */,

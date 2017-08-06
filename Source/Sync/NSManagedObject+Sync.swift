@@ -37,7 +37,21 @@ extension NSManagedObject {
             let keyName = relationship.customKey ?? constructedKeyName
 
             if relationship.isToMany {
-                if let localPrimaryKey = dictionary[keyName], localPrimaryKey is Array < String> || localPrimaryKey is Array < Int> || localPrimaryKey is NSNull {
+                var children: Any?
+                if keyName.contains(".") {
+                    if let deepMappingRootkey = keyName.components(separatedBy: ".").first {
+                        if let rootObject = dictionary[deepMappingRootkey] as? [String: Any] {
+                            if let deepMappingLeaveKey = keyName.components(separatedBy: ".").last {
+                                children = rootObject[deepMappingLeaveKey]
+                                children = rootObject[deepMappingLeaveKey]
+                            }
+                        }
+                    }
+                } else {
+                    children = dictionary[keyName]
+                }
+
+                if let localPrimaryKey = children, localPrimaryKey is Array < String> || localPrimaryKey is Array < Int> || localPrimaryKey is NSNull {
                     sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
                 } else {
                     try! sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
