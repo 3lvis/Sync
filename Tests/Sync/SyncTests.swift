@@ -1422,6 +1422,17 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
+    // https://github.com/3lvis/Sync/issues/375
+    func test375toOne() {
+        let speeches = Helper.objectsFromJSON("375-toOne.json") as! [[String: Any]]
+        let dataStack = Helper.dataStackWithModelName("375-toOne")
+        dataStack.sync(speeches, inEntityNamed: "Speech", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Speech", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 1)
+
+        dataStack.drop()
+    }
+
     // https://github.com/3lvis/Sync/pull/388
     func testRemoteKeyCompatibility() {
         let entititesJSON = Helper.objectsFromJSON("remote_key.json") as! [[String: Any]]
