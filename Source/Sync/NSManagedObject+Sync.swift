@@ -43,7 +43,6 @@ extension NSManagedObject {
                         if let rootObject = dictionary[deepMappingRootkey] as? [String: Any] {
                             if let deepMappingLeaveKey = keyName.components(separatedBy: ".").last {
                                 children = rootObject[deepMappingLeaveKey]
-                                children = rootObject[deepMappingLeaveKey]
                             }
                         }
                     }
@@ -69,13 +68,26 @@ extension NSManagedObject {
                     parentRelationshipIsTheSameAsCurrentRelationship = parentRelationship.inverseRelationship == relationship
                 }
 
+                var child: Any?
+                if keyName.contains(".") {
+                    if let deepMappingRootkey = keyName.components(separatedBy: ".").first {
+                        if let rootObject = dictionary[deepMappingRootkey] as? [String: Any] {
+                            if let deepMappingLeaveKey = keyName.components(separatedBy: ".").last {
+                                child = rootObject[deepMappingLeaveKey]
+                            }
+                        }
+                    }
+                } else {
+                    child = dictionary[keyName]
+                }
+
                 if let parent = parent, parentRelationshipIsTheSameAsCurrentRelationship || destinationIsParentSuperEntity {
                     let currentValueForRelationship = self.value(forKey: relationship.name)
                     let newParentIsDifferentThanCurrentValue = parent.isEqual(currentValueForRelationship) == false
                     if newParentIsDifferentThanCurrentValue {
                         self.setValue(parent, forKey: relationship.name)
                     }
-                } else if let localPrimaryKey = dictionary[keyName], localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
+                } else if let localPrimaryKey = child, localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
                     sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
                 } else {
                     sync_toOneRelationship(relationship, dictionary: dictionary, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)

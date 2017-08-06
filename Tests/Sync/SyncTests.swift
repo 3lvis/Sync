@@ -1424,8 +1424,8 @@ class SyncTests: XCTestCase {
 
     // https://github.com/3lvis/Sync/issues/375
     func test375toOne() {
-        let speeches = Helper.objectsFromJSON("375-toOne.json") as! [[String: Any]]
-        let dataStack = Helper.dataStackWithModelName("375-toOne")
+        let speeches = Helper.objectsFromJSON("375-to-one.json") as! [[String: Any]]
+        let dataStack = Helper.dataStackWithModelName("375-to-one")
         dataStack.sync(speeches, inEntityNamed: "Speech", completion: nil)
         XCTAssertEqual(Helper.countForEntity("Speech", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 1)
@@ -1446,6 +1446,24 @@ class SyncTests: XCTestCase {
         let speech = Helper.fetchEntity("Speech", predicate: NSPredicate(format: "id = 4865"), inContext: dataStack.mainContext).first
         let speechSeries = speech?.value(forKey: "series") as? Set<NSManagedObject>
         XCTAssertEqual(speechSeries?.count, 1)
+
+        dataStack.drop()
+    }
+
+    func test375toOneSimplified() {
+        let series = Helper.objectsFromJSON("375-to-many-series.json") as! [[String: Any]]
+        let speeches = Helper.objectsFromJSON("375-to-one-speeches.json") as! [[String: Any]]
+
+        let dataStack = Helper.dataStackWithModelName("375-to-one")
+        dataStack.sync(series, inEntityNamed: "Serie", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 1)
+
+        dataStack.sync(speeches, inEntityNamed: "Speech", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Speech", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 1)
+        let speech = Helper.fetchEntity("Speech", predicate: NSPredicate(format: "id = 4865"), inContext: dataStack.mainContext).first!
+        let serie = speech.value(forKey: "serie")!
+        XCTAssertEqual((serie as AnyObject).value(forKey: "id") as? Int, 123)
 
         dataStack.drop()
     }
