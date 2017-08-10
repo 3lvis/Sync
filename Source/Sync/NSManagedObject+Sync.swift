@@ -37,7 +37,20 @@ extension NSManagedObject {
             let keyName = relationship.customKey ?? constructedKeyName
 
             if relationship.isToMany {
-                if let localPrimaryKey = dictionary[keyName], localPrimaryKey is Array < String> || localPrimaryKey is Array < Int> || localPrimaryKey is NSNull {
+                var children: Any?
+                if keyName.contains(".") {
+                    if let deepMappingRootkey = keyName.components(separatedBy: ".").first {
+                        if let rootObject = dictionary[deepMappingRootkey] as? [String: Any] {
+                            if let deepMappingLeaveKey = keyName.components(separatedBy: ".").last {
+                                children = rootObject[deepMappingLeaveKey]
+                            }
+                        }
+                    }
+                } else {
+                    children = dictionary[keyName]
+                }
+
+                if let localPrimaryKey = children, localPrimaryKey is Array < String> || localPrimaryKey is Array < Int> || localPrimaryKey is NSNull {
                     sync_toManyRelationshipUsingIDsInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
                 } else {
                     try! sync_toManyRelationship(relationship, dictionary: dictionary, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
@@ -55,13 +68,26 @@ extension NSManagedObject {
                     parentRelationshipIsTheSameAsCurrentRelationship = parentRelationship.inverseRelationship == relationship
                 }
 
+                var child: Any?
+                if keyName.contains(".") {
+                    if let deepMappingRootkey = keyName.components(separatedBy: ".").first {
+                        if let rootObject = dictionary[deepMappingRootkey] as? [String: Any] {
+                            if let deepMappingLeaveKey = keyName.components(separatedBy: ".").last {
+                                child = rootObject[deepMappingLeaveKey]
+                            }
+                        }
+                    }
+                } else {
+                    child = dictionary[keyName]
+                }
+
                 if let parent = parent, parentRelationshipIsTheSameAsCurrentRelationship || destinationIsParentSuperEntity {
                     let currentValueForRelationship = self.value(forKey: relationship.name)
                     let newParentIsDifferentThanCurrentValue = parent.isEqual(currentValueForRelationship) == false
                     if newParentIsDifferentThanCurrentValue {
                         self.setValue(parent, forKey: relationship.name)
                     }
-                } else if let localPrimaryKey = dictionary[keyName], localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
+                } else if let localPrimaryKey = child, localPrimaryKey is NSString || localPrimaryKey is NSNumber || localPrimaryKey is NSNull {
                     sync_toOneRelationshipUsingIDInsteadOfDictionary(relationship, localPrimaryKey: localPrimaryKey)
                 } else {
                     sync_toOneRelationship(relationship, dictionary: dictionary, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
@@ -179,10 +205,10 @@ extension NSManagedObject {
         } else {
             if let customRelationshipName = relationship.customKey {
                 if customRelationshipName.contains(".") {
-                    if let deepMapingRootKey = customRelationshipName.components(separatedBy: ".").first {
-                        if let rootObject = dictionary[deepMapingRootKey] as? [String: Any] {
-                            if let deepMapingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
-                                children = rootObject[deepMapingLeaveKey] as? [[String: Any]]
+                    if let deepMappingRootKey = customRelationshipName.components(separatedBy: ".").first {
+                        if let rootObject = dictionary[deepMappingRootKey] as? [String: Any] {
+                            if let deepMappingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
+                                children = rootObject[deepMappingLeaveKey] as? [[String: Any]]
                             }
                         }
                     }
@@ -355,7 +381,17 @@ extension NSManagedObject {
         var filteredObjectDictionary: [String: Any]?
 
         if let customRelationshipName = relationship.customKey {
-            filteredObjectDictionary = dictionary[customRelationshipName] as? [String: Any]
+            if customRelationshipName.contains(".") {
+                if let deepMappingRootKey = customRelationshipName.components(separatedBy: ".").first {
+                    if let rootObject = dictionary[deepMappingRootKey] as? [String: Any] {
+                        if let deepMappingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
+                            filteredObjectDictionary = rootObject[deepMappingLeaveKey] as? [String: Any]
+                        }
+                    }
+                }
+            } else {
+                filteredObjectDictionary = dictionary[customRelationshipName] as? [String: Any]
+            }
         } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [String: Any] {
             filteredObjectDictionary = result
         } else if let result = dictionary[relationship.name] as? [String: Any] {
