@@ -729,7 +729,7 @@ class SyncTests: XCTestCase {
 
         let removeAll = Helper.objectsFromJSON("bug-202-b.json") as! [[String: Any]]
         dataStack.sync(removeAll, inEntityNamed: "User", completion: nil)
-        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 0)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
 
         dataStack.drop()
     }
@@ -1176,10 +1176,7 @@ class SyncTests: XCTestCase {
         let usersB = Helper.objectsFromJSON("225-a-empty.json") as! [[String: Any]]
         dataStack.sync(usersB, inEntityNamed: "User", completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-
-        // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
-        // object, but instead, it should just remove the reference.
-        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 0)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
 
         let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
         let predicate = NSPredicate(format: "ANY users IN %@", [user])
@@ -1197,12 +1194,10 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
 
-        // WARNING: Maybe this shouldn't be 0, but should be 1 instead, since it shouldn't delete the
-        // object, but instead, it should just remove the reference.
         let usersB = Helper.objectsFromJSON("225-a-null.json") as! [[String: Any]]
         dataStack.sync(usersB, inEntityNamed: "User", completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 0)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
 
         let user = Helper.fetchEntity("User", inContext: dataStack.mainContext).first!
         let predicate = NSPredicate(format: "ANY users IN %@", [user])
@@ -1479,6 +1474,38 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(entity.value(forKey: "id") as? Int, 1)
         XCTAssertEqual(entity.value(forKey: "old") as? String, "old")
         XCTAssertEqual(entity.value(forKey: "current") as? String, "current")
+
+        dataStack.drop()
+    }
+
+    // https://github.com/3lvis/Sync/issues/417
+    func test417() {
+        let dataStack = Helper.dataStackWithModelName("225")
+
+        let usersA = Helper.objectsFromJSON("417.json") as! [[String: Any]]
+        dataStack.sync(usersA, inEntityNamed: "User", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
+
+        dataStack.drop()
+    }
+
+    // https://github.com/3lvis/Sync/issues/373
+    func test373() {
+        let dataStack = Helper.dataStackWithModelName("225")
+
+        let usersA = Helper.objectsFromJSON("373.json") as! [[String: Any]]
+        dataStack.sync(usersA, inEntityNamed: "User", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 2)
+
+        let user3 = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = 3"), inContext: dataStack.mainContext).first
+        let user3Tags = user3?.value(forKey: "tags") as? Set<NSManagedObject>
+        XCTAssertEqual(user3Tags?.count, 2)
+
+        let user2 = Helper.fetchEntity("User", predicate: NSPredicate(format: "remoteID = 2"), inContext: dataStack.mainContext).first
+        let user2Tags = user2?.value(forKey: "tags") as? Set<NSManagedObject>
+        XCTAssertEqual(user2Tags?.count, 1)
 
         dataStack.drop()
     }
