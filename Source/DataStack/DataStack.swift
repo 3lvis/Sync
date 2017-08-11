@@ -469,9 +469,17 @@ extension NSPersistentStoreCoordinator {
 extension NSManagedObjectModel {
     convenience init(bundle: Bundle, name: String) {
         if let momdModelURL = bundle.url(forResource: name, withExtension: "momd") {
-            self.init(contentsOf: momdModelURL)!
+            #if swift(>=3.2)
+                self.init(contentsOf: momdModelURL)
+            #else
+                self.init(contentsOf: momdModelURL)!
+            #endif
         } else if let momModelURL = bundle.url(forResource: name, withExtension: "mom") {
-            self.init(contentsOf: momModelURL)!
+            #if swift(>=3.2)
+                self.init(contentsOf: momModelURL)
+            #else
+                self.init(contentsOf: momModelURL)!
+            #endif
         } else {
             self.init()
         }
