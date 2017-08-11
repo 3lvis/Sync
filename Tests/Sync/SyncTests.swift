@@ -1509,4 +1509,25 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // https://github.com/3lvis/Sync/issues/227
+    func test227() {
+        let dataStack = Helper.dataStackWithModelName("227")
+
+        // Here the user wants to get all tags with status 0
+        var tags = Helper.objectsFromJSON("227-status-0.json") as! [[String: Any]]
+        dataStack.sync(tags, inEntityNamed: "Tag", predicate: NSPredicate(format: "status = 0"), completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
+
+        // Now the user wants to get all tags with status 1, but meanwhile the status of Tag with id has changed to 1. 
+        // Currently this creates a second tag object with the same ID
+        tags = Helper.objectsFromJSON("227-status-1.json") as! [[String: Any]]
+        dataStack.sync(tags, inEntityNamed: "Tag", predicate: NSPredicate(format: "status = 1") ,completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
+        let tag = Helper.fetchEntity("Tag", predicate: NSPredicate(format: "id = 1"), inContext: dataStack.mainContext).first
+        let status = tag?.value(forKey: "status") as? Int
+        XCTAssertEqual(status, 1)
+
+        dataStack.drop()
+    }
 }
