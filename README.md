@@ -2,7 +2,7 @@
 
 <div align = "center">
   <a href="https://cocoapods.org/pods/Sync">
-    <img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
+    <a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/Sync/backers/badge.svg" /></a> <a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/Sync/sponsors/badge.svg" /></a> <img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
   </a>
   <a href="https://github.com/3lvis/Sync">
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
@@ -411,6 +411,36 @@ github "3lvis/Sync" ~> 3.0
 - OS X 10.10 or above
 - watchOS 2.0 or above
 - tvOS 9.0 or above
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
+<a href="graphs/contributors"><img src="https://opencollective.com/Sync/contributors.svg?width=890" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/Sync#backer)]
+
+<a href="https://opencollective.com/Sync#backers" target="_blank"><img src="https://opencollective.com/Sync/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/Sync#sponsor)]
+
+<a href="https://opencollective.com/Sync/sponsor/0/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/1/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/2/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/3/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/4/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/5/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/6/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/7/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/8/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/Sync/sponsor/9/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/9/avatar.svg"></a>
+
+
 
 ## License
 
