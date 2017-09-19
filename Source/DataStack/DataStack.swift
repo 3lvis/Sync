@@ -299,22 +299,9 @@ import CoreData
                 self.persistentStoreCoordinator.performAndWait {
                     for store in self.persistentStoreCoordinator.persistentStores {
                         guard let storeURL = store.url else { continue }
-
-                        do {
-                            if #available(iOS 9, OSX 10.11, tvOS 9, watchOS 2, *) {
-                                try self.persistentStoreCoordinator.destroyPersistentStore(at: storeURL, ofType: self.storeType.type, options: store.options)
-                                try! self.persistentStoreCoordinator.addPersistentStore(storeType: self.storeType, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
-                            } else {
-                                try! self.oldDrop(storeURL: storeURL)
-                            }
-
-                            DispatchQueue.main.async {
-                                completion?(nil)
-                            }
-                        } catch let error as NSError {
-                            DispatchQueue.main.async {
-                                completion?(NSError(info: "Failed dropping the data stack.", previousError: error))
-                            }
+                        try! self.oldDrop(storeURL: storeURL)
+                        DispatchQueue.main.async {
+                            completion?(nil)
                         }
                     }
                 }
