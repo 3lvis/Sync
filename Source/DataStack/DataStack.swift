@@ -357,7 +357,7 @@ import CoreData
     }
 
     // Can't be private, has to be internal in order to be used as a selector.
-    func mainContextDidSave(_ notification: Notification) {
+    @objc func mainContextDidSave(_ notification: Notification) {
         self.saveMainThread { error in
             if let error = error {
                 fatalError("Failed to save objects in main thread: \(error)")
@@ -366,14 +366,14 @@ import CoreData
     }
 
     // Can't be private, has to be internal in order to be used as a selector.
-    func newDisposableMainContextWillSave(_ notification: Notification) {
+    @objc func newDisposableMainContextWillSave(_ notification: Notification) {
         if let context = notification.object as? NSManagedObjectContext {
             context.reset()
         }
     }
 
     // Can't be private, has to be internal in order to be used as a selector.
-    func backgroundContextDidSave(_ notification: Notification) throws {
+    @objc func backgroundContextDidSave(_ notification: Notification) throws {
         if Thread.isMainThread && TestCheck.isTesting == false {
             throw NSError(info: "Background context saved in the main thread. Use context's `performBlock`", previousError: nil)
         } else {
@@ -456,17 +456,9 @@ extension NSPersistentStoreCoordinator {
 extension NSManagedObjectModel {
     convenience init(bundle: Bundle, name: String) {
         if let momdModelURL = bundle.url(forResource: name, withExtension: "momd") {
-            #if swift(>=3.2)
-                self.init(contentsOf: momdModelURL)
-            #else
-                self.init(contentsOf: momdModelURL)!
-            #endif
+            self.init(contentsOf: momdModelURL)!
         } else if let momModelURL = bundle.url(forResource: name, withExtension: "mom") {
-            #if swift(>=3.2)
-                self.init(contentsOf: momModelURL)
-            #else
-                self.init(contentsOf: momModelURL)!
-            #endif
+            self.init(contentsOf: momModelURL)!
         } else {
             self.init()
         }
