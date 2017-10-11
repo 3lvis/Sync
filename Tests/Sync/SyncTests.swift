@@ -1440,15 +1440,10 @@ class SyncTests: XCTestCase {
     func test412() {
         let entititesJSON = Helper.objectsFromJSON("412.json") as! [[String: Any]]
         let dataStack = Helper.dataStackWithModelName("412")
-        dataStack.sync(entititesJSON, inEntityNamed: "Parent", completion: nil)
-        XCTAssertEqual(Helper.countForEntity("Parent", inContext: dataStack.mainContext), 1)
-
-        guard let entity = Helper.fetchEntity("Parent", inContext: dataStack.mainContext).first else {
-            XCTFail()
-            return
+        dataStack.sync(entititesJSON, inEntityNamed: "Parent") { error in
+            XCTAssertNotNil(error)
         }
-
-        XCTAssertEqual(entity.value(forKey: "id") as? String, "4")
+        XCTAssertEqual(Helper.countForEntity("Parent", inContext: dataStack.mainContext), 0)
 
         dataStack.drop()
     }

@@ -149,22 +149,22 @@ public protocol SyncDelegate: class {
         let dataFilterOperations = DataFilter.Operation(rawValue: operations.rawValue)
         let (inserted, updated) = DataFilter.changes(changes, inEntityNamed: entityName, predicate: finalPredicate, operations: dataFilterOperations, localPrimaryKey: localPrimaryKey, remotePrimaryKey: remotePrimaryKey, context: context)
 
-        for JSON in inserted {
-        let shouldContinue = shouldContinueBlock?() ?? true
-        guard shouldContinue else { return }
-
-        let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
-        let interceptedJSON = objectJSONBlock?(JSON) ?? JSON
-        try created.sync_fill(with: interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
-        }
-
-        for (JSON, updatedObject) in updated {
+        for json in inserted {
             let shouldContinue = shouldContinueBlock?() ?? true
             guard shouldContinue else { return }
 
-            try updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
+            let created = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+            let interceptedJSON = objectJSONBlock?(json) ?? json
+            try created.sync_fill(with: interceptedJSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
         }
 
+        for (json, object) in updated {
+            let shouldContinue = shouldContinueBlock?() ?? true
+            guard shouldContinue else { return }
+
+            try object.sync_fill(with: json, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
+        }
+        
         if context.hasChanges {
             let shouldContinue = shouldContinueBlock?() ?? true
             if shouldContinue {

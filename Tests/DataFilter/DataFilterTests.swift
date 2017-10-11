@@ -270,7 +270,7 @@ class DataFilterTests: XCTestCase {
 
             let JSONObjects = try! JSON.from("note.json", bundle: Bundle(for: DataFilterTests.self)) as! [[String: Any]]
 
-            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "User", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
+            let (insertedObjects, updatedObjects) = DataFilter.changes(JSONObjects, inEntityNamed: "Note", localPrimaryKey: "remoteID", remotePrimaryKey: "id", context: backgroundContext)
 
             for _ in insertedObjects {
                 XCTAssertFalse(true)
