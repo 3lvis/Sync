@@ -26,7 +26,10 @@ public protocol SyncDelegate: class {
         public static let insert = OperationOptions(rawValue: 1 << 0)
         public static let update = OperationOptions(rawValue: 1 << 1)
         public static let delete = OperationOptions(rawValue: 1 << 2)
-        public static let all: OperationOptions = [.insert, .update, .delete]
+        public static let insertRelationships = OperationOptions(rawValue: 1 << 3)
+        public static let updateRelationships = OperationOptions(rawValue: 1 << 4)
+        public static let deleteRelationships = OperationOptions(rawValue: 1 << 5)
+        public static let all: OperationOptions = [.insert, .update, .delete, .insertRelationships, .updateRelationships, .deleteRelationships]
     }
 
     var downloadFinished = false
