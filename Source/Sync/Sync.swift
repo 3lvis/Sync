@@ -13,6 +13,7 @@ public protocol SyncDelegate: class {
     func sync(_ sync: Sync, willInsert json: [String: Any], in entityNamed: String, parent: NSManagedObject?) -> [String: Any]
 }
 
+@objcMembers
 @objc public class Sync: Operation {
     public weak var delegate: SyncDelegate?
 
