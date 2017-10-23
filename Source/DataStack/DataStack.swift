@@ -27,8 +27,6 @@ import CoreData
 
     private var containerURL = URL.directoryURL()
 
-    private var _mainContext: NSManagedObjectContext?
-
     /**
      The context for the main queue. Please do not use this to mutate data, use `performInNewBackgroundContext`
      instead.
