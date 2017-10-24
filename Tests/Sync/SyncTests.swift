@@ -1509,4 +1509,29 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // https://github.com/3lvis/Sync/issues/431
+    func test431() {
+        let dataStack = Helper.dataStackWithModelName("431")
+
+        let usersA = Helper.objectsFromJSON("431.json") as! [[String: Any]]
+        dataStack.sync(usersA, inEntityNamed: "EntityUser", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("EntityUser", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("EntityUserDetail", inContext: dataStack.mainContext), 4)
+
+        let userDetail1 = Helper.fetchEntity("EntityUserDetail", predicate: NSPredicate(format: "id = %@", "4C97444F-45C4-4C86-8F1F-80079E134CB4"), inContext: dataStack.mainContext).first
+        let parentUser1 = userDetail1?.value(forKey: "user") as? NSManagedObject
+        XCTAssertEqual(parentUser1?.value(forKey: "id") as? String, "307AC1FF-AC14-490C-A5D1-4E14674E4987")
+
+        dataStack.sync(usersA, inEntityNamed: "EntityUser", completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("EntityUser", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("EntityUserDetail", inContext: dataStack.mainContext), 4)
+
+        let userDetail2 = Helper.fetchEntity("EntityUserDetail", predicate: NSPredicate(format: "id = %@", "4C97444F-45C4-4C86-8F1F-80079E134CB4"), inContext: dataStack.mainContext).first
+        let parentUser2 = userDetail2?.value(forKey: "user") as? NSManagedObject
+        XCTAssertEqual(parentUser2?.value(forKey: "id") as? String, "307AC1FF-AC14-490C-A5D1-4E14674E4987")
+
+        dataStack.drop()
+    }
 }

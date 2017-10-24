@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13241" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="EntityUser" representedClassName="" syncable="YES">
+        <attribute name="createdon" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="modifiedon" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="details" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EntityUserDetail" inverseName="user" inverseEntity="EntityUserDetail" syncable="YES"/>
+    </entity>
+    <entity name="EntityUserDetail" representedClassName="" syncable="YES">
+        <attribute name="attrkey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attrval" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdon" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="modifiedon" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EntityUser" inverseName="details" inverseEntity="EntityUser" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="EntityUser" positionX="-146" positionY="167" width="128" height="103"/>
+        <element name="EntityUserDetail" positionX="-342" positionY="101" width="128" height="133"/>
+    </elements>
+</model>
