@@ -109,10 +109,10 @@ public protocol SyncDelegate: class {
             })
         } catch let error as NSError {
             print("Failed syncing changes \(error)")
-
-            self.updateExecuting(false)
-            self.updateFinished(true)
         }
+
+        self.updateExecuting(false)
+        self.updateFinished(true)
     }
 
     public override func cancel() {
