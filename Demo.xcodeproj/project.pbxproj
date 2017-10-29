@@ -615,6 +615,12 @@
 		44B548041DCF27FF009215FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B548021DCF27FF009215FA /* LaunchScreen.storyboard */; };
 		44B5481B1DCF3DED009215FA /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 44B5481A1DCF3DED009215FA /* sample.json */; };
 		44B5481E1DCF3E18009215FA /* iOSDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44B5481C1DCF3E18009215FA /* iOSDemo.xcdatamodeld */; };
+		44BBBC6E1F9F024E00590624 /* 412.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */; };
+		44BBBC6F1F9F024E00590624 /* 412.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */; };
+		44BBBC701F9F024E00590624 /* 412.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */; };
+		44BBBC721F9F026200590624 /* 412.json in Resources */ = {isa = PBXBuildFile; fileRef = 44BBBC711F9F026100590624 /* 412.json */; };
+		44BBBC731F9F026200590624 /* 412.json in Resources */ = {isa = PBXBuildFile; fileRef = 44BBBC711F9F026100590624 /* 412.json */; };
+		44BBBC741F9F026200590624 /* 412.json in Resources */ = {isa = PBXBuildFile; fileRef = 44BBBC711F9F026100590624 /* 412.json */; };
 		44CFE67E1E87BBE60068185B /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE67B1E87BBE60068185B /* PrimaryKeyTests.m */; };
 		44CFE67F1E87BBE70068185B /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE67B1E87BBE60068185B /* PrimaryKeyTests.m */; };
 		44CFE6801E87BBE70068185B /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE67B1E87BBE60068185B /* PrimaryKeyTests.m */; };
@@ -930,6 +936,8 @@
 		44B548051DCF27FF009215FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44B5481A1DCF3DED009215FA /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
 		44B5481D1DCF3E18009215FA /* iOSDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSDemo.xcdatamodel; sourceTree = "<group>"; };
+		44BBBC6D1F9F024E00590624 /* 412.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 412.xcdatamodel; sourceTree = "<group>"; };
+		44BBBC711F9F026100590624 /* 412.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 412.json; sourceTree = "<group>"; };
 		44CFE67B1E87BBE60068185B /* PrimaryKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryKeyTests.m; sourceTree = "<group>"; };
 		44CFE67D1E87BBE60068185B /* PrimaryKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrimaryKey.xcdatamodel; sourceTree = "<group>"; };
 		44CFE6851E87BC650068185B /* Inflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflections.h; sourceTree = "<group>"; };
@@ -1183,6 +1191,7 @@
 				149FF9ED1E808DFB00617A63 /* 375.json */,
 				CC9493F01F375251002167B4 /* 417.json */,
 				441D6D641F9EF58900A6BB77 /* 431.json */,
+				44BBBC711F9F026100590624 /* 412.json */,
 				14867D351E7AF4D2001D228A /* bug-113-comments-no-id.json */,
 				14867D361E7AF4D2001D228A /* bug-113-custom_relationship_key_to_one.json */,
 				14867D371E7AF4D2001D228A /* bug-113-stories-comments-no-ids.json */,
@@ -1254,7 +1263,8 @@
 				14867D821E7AF4D2001D228A /* 320.xcdatamodeld */,
 				CC9493F41F375517002167B4 /* 375-to-one.xcdatamodeld */,
 				149FF9E81E808C4400617A63 /* 375.xcdatamodeld */,
-				441D6D681F9EF5C200A6BB77 /* 431.xcdatamodeld */,
+                441D6D681F9EF5C200A6BB77 /* 431.xcdatamodeld */,
+                44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */,
 				14867D881E7AF4D2001D228A /* Camelcase.xcdatamodeld */,
 				14867D8A1E7AF4D2001D228A /* Contacts.xcdatamodeld */,
 				14867D8C1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld */,
@@ -1832,6 +1842,7 @@
 				441D6D651F9EF58900A6BB77 /* 431.json in Resources */,
 				14867E2A1E7AF4D2001D228A /* 157-locations.json in Resources */,
 				14867E241E7AF4D2001D228A /* 157-cities.json in Resources */,
+				44BBBC721F9F026200590624 /* 412.json in Resources */,
 				14867E451E7AF4D2001D228A /* 280.json in Resources */,
 				149FF9EE1E808DFB00617A63 /* 375.json in Resources */,
 				14867E391E7AF4D2001D228A /* 233.json in Resources */,
@@ -1916,6 +1927,7 @@
 				441D6D661F9EF58900A6BB77 /* 431.json in Resources */,
 				14867E2B1E7AF4D2001D228A /* 157-locations.json in Resources */,
 				14867E251E7AF4D2001D228A /* 157-cities.json in Resources */,
+				44BBBC731F9F026200590624 /* 412.json in Resources */,
 				14867E461E7AF4D2001D228A /* 280.json in Resources */,
 				149FF9EF1E808DFB00617A63 /* 375.json in Resources */,
 				14867E3A1E7AF4D2001D228A /* 233.json in Resources */,
@@ -2000,6 +2012,7 @@
 				441D6D671F9EF58900A6BB77 /* 431.json in Resources */,
 				14867E2C1E7AF4D2001D228A /* 157-locations.json in Resources */,
 				14867E261E7AF4D2001D228A /* 157-cities.json in Resources */,
+				44BBBC741F9F026200590624 /* 412.json in Resources */,
 				14867E471E7AF4D2001D228A /* 280.json in Resources */,
 				149FF9F01E808DFB00617A63 /* 375.json in Resources */,
 				14867E3B1E7AF4D2001D228A /* 233.json in Resources */,
@@ -2230,6 +2243,7 @@
 				445851E51E87BAF60025434E /* SyncFillWithDictionaryTests.m in Sources */,
 				14867DD31E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				445851C71E87BAF50025434E /* 112.xcdatamodeld in Sources */,
+				44BBBC6E1F9F024E00590624 /* 412.xcdatamodeld in Sources */,
 				14867F021E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
 				441D6D6A1F9EF5C200A6BB77 /* 431.xcdatamodeld in Sources */,
 				44CFE6811E87BBE70068185B /* PrimaryKey.xcdatamodeld in Sources */,
@@ -2321,6 +2335,7 @@
 				445851E61E87BAF60025434E /* SyncFillWithDictionaryTests.m in Sources */,
 				14867DD41E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				445851C81E87BAF50025434E /* 112.xcdatamodeld in Sources */,
+				44BBBC6F1F9F024E00590624 /* 412.xcdatamodeld in Sources */,
 				14867F031E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
 				441D6D6B1F9EF5C200A6BB77 /* 431.xcdatamodeld in Sources */,
 				44CFE6821E87BBE70068185B /* PrimaryKey.xcdatamodeld in Sources */,
@@ -2412,6 +2427,7 @@
 				445851E71E87BAF60025434E /* SyncFillWithDictionaryTests.m in Sources */,
 				14867DD51E7AF4D2001D228A /* DataFilter.xcdatamodeld in Sources */,
 				445851C91E87BAF50025434E /* 112.xcdatamodeld in Sources */,
+				44BBBC701F9F024E00590624 /* 412.xcdatamodeld in Sources */,
 				14867F041E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
 				441D6D6C1F9EF5C200A6BB77 /* 431.xcdatamodeld in Sources */,
 				44CFE6831E87BBE70068185B /* PrimaryKey.xcdatamodeld in Sources */,
@@ -3597,6 +3613,16 @@
 			);
 			currentVersion = 44B5481D1DCF3E18009215FA /* iOSDemo.xcdatamodel */;
 			path = iOSDemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44BBBC6D1F9F024E00590624 /* 412.xcdatamodel */,
+			);
+			currentVersion = 44BBBC6D1F9F024E00590624 /* 412.xcdatamodel */;
+			path = 412.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
