@@ -1521,4 +1521,21 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // https://github.com/3lvis/Sync/issues/422
+    func test422() {
+        let dataStack = Helper.dataStackWithModelName("422")
+
+        let initial = Helper.objectsFromJSON("422-1.json") as! [[String: Any]]
+        dataStack.sync(initial, inEntityNamed: "User", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
+
+        let updated = Helper.objectsFromJSON("422-2.json") as! [[String: Any]]
+        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .insertRelationships, .updateRelationships], completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 2)
+
+        dataStack.drop()
+    }
 }
