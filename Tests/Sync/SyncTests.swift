@@ -1541,9 +1541,9 @@ class SyncTests: XCTestCase {
 
         // Importing the second JSON to break relations in the first JSON import
         let usersB = Helper.objectsFromJSON("431-2.json") as! [[String: Any]]
-        dataStack.sync(usersB, inEntityNamed: "EntityUser", completion: nil)
-        XCTAssertEqual(Helper.countForEntity("EntityUser", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("EntityUserDetail", inContext: dataStack.mainContext), 2)
+        dataStack.sync(usersB, inEntityNamed: "EntityUser", operations: [.insert, .update], completion: nil)
+        XCTAssertEqual(Helper.countForEntity("EntityUser", inContext: dataStack.mainContext), 3)
+        XCTAssertEqual(Helper.countForEntity("EntityUserDetail", inContext: dataStack.mainContext), 6)
 
         dataStack.drop()
     }    
