@@ -1522,19 +1522,76 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
+    func json422UsingMessages(messages: [[String: Any]]) -> [[String: Any]] {
+        return [ [ "id": 1, "messages": messages ] ]
+    }
+
     // https://github.com/3lvis/Sync/issues/422
-    func test422() {
+    func test422OperationOptionsInsert() {
         let dataStack = Helper.dataStackWithModelName("422")
 
-        let initial = Helper.objectsFromJSON("422-1.json") as! [[String: Any]]
+        let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"] ])
         dataStack.sync(initial, inEntityNamed: "User", completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
 
-        let updated = Helper.objectsFromJSON("422-2.json") as! [[String: Any]]
-        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .insertRelationships, .updateRelationships], completion: nil)
+        let messages = [
+            ["id": 102, "text": "102"],
+            ["id": 101, "text": "updated-101"]
+        ]
+        let updated = self.json422UsingMessages(messages: messages)
+        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .insertRelationships], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 2)
+
+        let updatedMessage = Helper.fetchEntity("Message", predicate: NSPredicate(format: "id = 101"), inContext: dataStack.mainContext).first
+        XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "101")
+
+        dataStack.drop()
+    }
+
+    func test422OperationOptionsUpdateRelationships() {
+        let dataStack = Helper.dataStackWithModelName("422")
+
+        let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"] ])
+        dataStack.sync(initial, inEntityNamed: "User", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
+
+        let messages = [
+            ["id": 102, "text": "102"],
+            ["id": 101, "text": "updated-101"]
+        ]
+        let updated = self.json422UsingMessages(messages: messages)
+        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .updateRelationships], completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
+
+        let updatedMessage = Helper.fetchEntity("Message", predicate: NSPredicate(format: "id = 101"), inContext: dataStack.mainContext).first
+        XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "updated-101")
+
+        dataStack.drop()
+    }
+
+    func test422OperationOptionsDeleteRelationships() {
+        let dataStack = Helper.dataStackWithModelName("422")
+
+        let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"], ["id": 102, "text": "102"] ])
+        dataStack.sync(initial, inEntityNamed: "User", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 2)
+
+        let messages = [
+            ["id": 102, "text": "102-updated"],
+            ["id": 103, "text": "103"],
+        ]
+        let updated = self.json422UsingMessages(messages: messages)
+        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .deleteRelationships], completion: nil)
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
+
+        let updatedMessage = Helper.fetchEntity("Message", predicate: NSPredicate(format: "id = 102"), inContext: dataStack.mainContext).first
+        XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "102")
 
         dataStack.drop()
     }

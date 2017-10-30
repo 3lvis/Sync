@@ -194,6 +194,8 @@ extension NSManagedObject {
      - parameter dataStack: The DataStack instance.
      */
     func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) throws {
+        let updatedOperations = operations.relationshipOperations()
+
         var children: [[String: Any]]?
         let childrenIsNull = (relationship.customKey as Any?) is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
@@ -300,7 +302,7 @@ extension NSManagedObject {
 
             var childPredicate: NSPredicate?
             let manyToMany = inverseIsToMany && relationship.isToMany
-            var childOperations = operations
+            var childOperations = updatedOperations
             if manyToMany {
                 childOperations.remove(.delete)
                 if ((childIDs as Any) as AnyObject).count > 0 {

@@ -31,6 +31,24 @@ public protocol SyncDelegate: class {
         public static let updateRelationships = OperationOptions(rawValue: 1 << 4)
         public static let deleteRelationships = OperationOptions(rawValue: 1 << 5)
         public static let all: OperationOptions = [.insert, .update, .delete, .insertRelationships, .updateRelationships, .deleteRelationships]
+
+        func relationshipOperations() -> OperationOptions {
+            var options = OperationOptions.all
+
+            if !self.contains(.insertRelationships) {
+                options.remove(.insert)
+            }
+
+            if !self.contains(.updateRelationships) {
+                options.remove(.update)
+            }
+
+            if !self.contains(.deleteRelationships) {
+                options.remove(.delete)
+            }
+
+            return options
+        }
     }
 
     var downloadFinished = false
