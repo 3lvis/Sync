@@ -13,6 +13,7 @@ public protocol SyncDelegate: class {
     func sync(_ sync: Sync, willInsert json: [String: Any], in entityNamed: String, parent: NSManagedObject?) -> [String: Any]
 }
 
+@objcMembers
 @objc public class Sync: Operation {
     public weak var delegate: SyncDelegate?
 
@@ -111,10 +112,10 @@ public protocol SyncDelegate: class {
             })
         } catch let error as NSError {
             print("Failed syncing changes \(error)")
-
-            self.updateExecuting(false)
-            self.updateFinished(true)
         }
+
+        self.updateExecuting(false)
+        self.updateFinished(true)
     }
 
     public override func cancel() {

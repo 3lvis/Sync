@@ -18,6 +18,7 @@
     "age": 19
   },
   {
+    "first_name": "Morty"
   },
   {
     "id": 6,
@@ -30,5 +31,5 @@
     "first_name": "Lauren",
     "last_name": "Treacy",
     "age": 28
-  },
+  }
 ]
