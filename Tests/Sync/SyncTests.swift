@@ -1521,4 +1521,30 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // https://github.com/3lvis/Sync/issues/431
+    func test431() {
+        let dataStack = Helper.dataStackWithModelName("431")
+
+        let usersA = Helper.objectsFromJSON("431-1.json") as! [[String: Any]]
+        dataStack.sync(usersA, inEntityNamed: "EntityUser", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("EntityUser", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("EntityUserDetail", inContext: dataStack.mainContext), 4)
+
+        let userDetail1 = Helper.fetchEntity("EntityUserDetail", predicate: NSPredicate(format: "id = %@", "1"), inContext: dataStack.mainContext).first
+        let parentUser1 = userDetail1?.value(forKey: "user") as? NSManagedObject
+        XCTAssertEqual(parentUser1?.value(forKey: "id") as? String, "parent-1")
+
+        dataStack.sync(usersA, inEntityNamed: "EntityUser", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("EntityUser", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("EntityUserDetail", inContext: dataStack.mainContext), 4)
+
+        // Importing the second JSON to break relations in the first JSON import
+        let usersB = Helper.objectsFromJSON("431-2.json") as! [[String: Any]]
+        dataStack.sync(usersB, inEntityNamed: "EntityUser", operations: [.insert, .update], completion: nil)
+        XCTAssertEqual(Helper.countForEntity("EntityUser", inContext: dataStack.mainContext), 3)
+        XCTAssertEqual(Helper.countForEntity("EntityUserDetail", inContext: dataStack.mainContext), 6)
+
+        dataStack.drop()
+    }    
 }
