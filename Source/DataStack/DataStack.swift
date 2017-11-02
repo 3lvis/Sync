@@ -298,9 +298,10 @@ import CoreData
                     for store in self.persistentStoreCoordinator.persistentStores {
                         guard let storeURL = store.url else { continue }
                         try! self.oldDrop(storeURL: storeURL)
-                        DispatchQueue.main.async {
-                            completion?(nil)
-                        }
+                    }
+
+                    DispatchQueue.main.async {
+                        completion?(nil)
                     }
                 }
             }
