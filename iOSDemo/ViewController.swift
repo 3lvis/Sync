@@ -53,7 +53,7 @@ extension ViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))
         let data = self.items[indexPath.row]
-        cell?.textLabel?.text = data.value(forKey: "id") as? String
+        cell?.textLabel?.text = data.value(forKey: "email") as? String
 
         return cell!
     }

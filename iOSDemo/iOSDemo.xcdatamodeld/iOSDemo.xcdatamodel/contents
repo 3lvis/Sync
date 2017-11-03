@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clientID" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="sync.isPrimaryKey" value="yes"/>
+            </userInfo>
+        </attribute>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="sync.remoteKey" value="_id"/>
+            </userInfo>
+        </attribute>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>
