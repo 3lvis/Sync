@@ -41,7 +41,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 ## Table of Contents
 
 * [Basic example](#basic-example)
-* [More examples](#more-examples)
+* [Demo project](#demo-project)
 * [Getting Started](#getting-started)
   * [Core Data Stack](#core-data-stack)
   * [Primary Key](#primary-key)
