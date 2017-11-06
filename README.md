@@ -109,9 +109,7 @@ dataStack.sync(json, inEntityNamed: "User", predicate: predicate) { error in
 
 ## Demo Project
 
-There's a simple demo project of how to set up and use Sync to fetch data from the network and display it in a UITableView. The demo project features both [Networking](https://github.com/3lvis/networking) and [Alamofire](https://github.com/Alamofire/Alamofire) as the networking libraries.
-
-https://github.com/3lvis/SyncDemo
+[We have a simple demo project](/iOSDemo) of how to set up and use Sync to fetch data from the network and display it in a UITableView. The demo project features both [Networking](https://github.com/3lvis/networking) and [Alamofire](https://github.com/Alamofire/Alamofire) as the networking libraries.
 
 ### DataStack with Storyboards
 
