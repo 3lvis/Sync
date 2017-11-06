@@ -107,16 +107,17 @@ dataStack.sync(json, inEntityNamed: "User", predicate: predicate) { error in
 }
 ```
 
-## More Examples
+## Demo Project
 
-<a href="https://github.com/3lvis/AppNetDemo">
-  <img src="https://raw.githubusercontent.com/3lvis/Sync/master/Images/APPNET-v3.png" />
-</a>
+There's a simple demo project of how to set up and use Sync to fetch data from the network and display it in a UITableView. The demo project features both [Networking](https://github.com/3lvis/networking) and [Alamofire](https://github.com/Alamofire/Alamofire) as the networking libraries.
 
-<a href="https://github.com/3lvis/DesignerNewsDemo">
-  <img src="https://raw.githubusercontent.com/3lvis/Sync/master/Images/DN-v4.png" />
-</a>
+https://github.com/3lvis/SyncDemo
 
+### DataStack with Storyboards
+
+Configuring a DataStack with Storyboard is different than doing it via dependency injection here you'll find a sample project in how to achieve this setup.
+
+https://github.com/3lvis/StoryboardDemo
 
 ## Getting Started
 
