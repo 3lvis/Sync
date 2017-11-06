@@ -9,15 +9,15 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-               BuildableName = "Sync.framework"
-               BlueprintName = "Sync-tvOS"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               BlueprintIdentifier = "146D72AB1AB782920058798C"
+               BuildableName = "iOSTests.xctest"
+               BlueprintName = "iOSTests"
+               ReferencedContainer = "container:Project.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "146D72AB1AB782920058798C"
+               BuildableName = "iOSTests.xctest"
+               BlueprintName = "iOSTests"
+               ReferencedContainer = "container:Project.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -47,12 +57,19 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-            BuildableName = "Sync.framework"
-            BlueprintName = "Sync-tvOS"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "146D72AB1AB782920058798C"
+            BuildableName = "iOSTests.xctest"
+            BlueprintName = "iOSTests"
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -65,10 +82,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14241E8A1DBC39690042ED81"
-            BuildableName = "Sync.framework"
-            BlueprintName = "Sync-tvOS"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "146D72AB1AB782920058798C"
+            BuildableName = "iOSTests.xctest"
+            BlueprintName = "iOSTests"
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
