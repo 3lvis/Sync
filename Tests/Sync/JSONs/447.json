@@ -1,0 +1,18 @@
+[
+  {
+    "id" : 1,
+    "recent_tags" : [
+      {
+        "id" : 10
+      }
+    ],
+    "categories" : [
+      {
+        "id" : 100,
+        "defaultTag" : {
+          "id" : 10
+        }
+      }
+    ]
+  }
+]
