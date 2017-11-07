@@ -13,6 +13,7 @@
 		140B74B11FB1367A00FCDEF6 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 140B74AC1FB1367A00FCDEF6 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		140B74B21FB1367A00FCDEF6 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B74AD1FB1367A00FCDEF6 /* Sync.framework */; };
 		140B74B31FB1367A00FCDEF6 /* Sync.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 140B74AD1FB1367A00FCDEF6 /* Sync.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		140B74B51FB138E900FCDEF6 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 140B74B41FB138E900FCDEF6 /* users.json */; };
 		14425E591C97078A00F0FAD1 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14425E501C97078A00F0FAD1 /* Fetcher.swift */; };
 		146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E279F1BCD51F200959BBA /* LaunchScreen.xib */; };
 		146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146E27A11BCD51F200959BBA /* Images.xcassets */; };
@@ -41,6 +42,7 @@
 		140B74AB1FB1367A00FCDEF6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		140B74AC1FB1367A00FCDEF6 /* Networking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Networking.framework; path = Carthage/Build/iOS/Networking.framework; sourceTree = "<group>"; };
 		140B74AD1FB1367A00FCDEF6 /* Sync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sync.framework; path = Carthage/Build/iOS/Sync.framework; sourceTree = "<group>"; };
+		140B74B41FB138E900FCDEF6 /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		14425E501C97078A00F0FAD1 /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		146E27891BCD51C800959BBA /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146E27A01BCD51F200959BBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		146E279E1BCD51F200959BBA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				140B74B41FB138E900FCDEF6 /* users.json */,
 				146E279F1BCD51F200959BBA /* LaunchScreen.xib */,
 				146E27A11BCD51F200959BBA /* Images.xcassets */,
 				146E27A21BCD51F200959BBA /* Info.plist */,
@@ -204,6 +207,7 @@
 			files = (
 				146E27AA1BCD51F200959BBA /* Images.xcassets in Resources */,
 				146E27A91BCD51F200959BBA /* LaunchScreen.xib in Resources */,
+				140B74B51FB138E900FCDEF6 /* users.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
