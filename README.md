@@ -401,7 +401,7 @@ pod 'Sync', '~> 4'
 ### Carthage
 
 ```ruby
-github "3lvis/Sync" ~> 4.1
+github "3lvis/Sync" ~> 4.0
 ```
 
 ### Supported iOS, OS X, watchOS and tvOS Versions
