@@ -23,7 +23,7 @@ class Fetcher {
         return try! self.persistentContainer.viewContext.fetch(request)
     }
 
-    func networkingUsers(completion: @escaping (_ result: VoidResult) -> ()) {
+    func syncUsingNetworking(completion: @escaping (_ result: VoidResult) -> ()) {
         self.networking.get("/users") { result in
             switch result {
             case .success(let response):
@@ -37,7 +37,7 @@ class Fetcher {
         }
     }
 
-    func alamofireUsers(completion: @escaping (_ result: VoidResult) -> ()) {
+    func syncUsingAlamofire(completion: @escaping (_ result: VoidResult) -> ()) {
         Alamofire.request("https://jsonplaceholder.typicode.com/users").responseJSON { response in
             if let jsonObject = response.result.value, let usersJSON = jsonObject as? [[String: Any]] {
                 self.persistentContainer.sync(usersJSON, inEntityNamed: User.entity().name!) { error in
@@ -48,6 +48,18 @@ class Fetcher {
             } else {
                 fatalError("No error, no failure")
             }
+        }
+    }
+
+    func syncUsingLocalJSON(completion: @escaping (_ result: VoidResult) -> ()) {
+        let fileName = "users.json"
+        guard let url = URL(string: fileName) else { return }
+        guard let filePath = Bundle.main.path(forResource: url.deletingPathExtension().absoluteString, ofType: url.pathExtension) else { return }
+        guard let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) else { return }
+        guard let json = try! JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else { return }
+
+        self.persistentContainer.sync(json, inEntityNamed: User.entity().name!) { error in
+            completion(.success)
         }
     }
 }

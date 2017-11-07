@@ -40,7 +40,7 @@ class ItemsController: UITableViewController {
     }
 
     @objc func refresh() {
-        self.fetcher.networkingUsers { result in
+        self.fetcher.syncUsingNetworking { result in
             switch result {
             case .success:
                 self.users = self.fetcher.fetchLocalUsers()
