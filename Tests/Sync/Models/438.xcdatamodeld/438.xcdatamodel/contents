@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G29" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Atividad" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="sync.remoteKey" value="codigoAtividade"/>
+            </userInfo>
+        </attribute>
+        <relationship name="ficha" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ficha" inverseName="atividades" inverseEntity="Ficha" syncable="YES"/>
+        <relationship name="programa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Programa" inverseName="atividades" inverseEntity="Programa" syncable="YES"/>
+        <relationship name="series" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Serie" inverseName="actividad" inverseEntity="Serie" syncable="YES"/>
+    </entity>
+    <entity name="Ficha" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
+            <userInfo>
+                <entry key="sync.PrimaryKey" value="cod"/>
+            </userInfo>
+        </attribute>
+        <relationship name="atividades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Atividad" inverseName="ficha" inverseEntity="Atividad" syncable="YES"/>
+        <relationship name="programa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Programa" inverseName="fichas" inverseEntity="Programa" syncable="YES"/>
+    </entity>
+    <entity name="Programa" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
+            <userInfo>
+                <entry key="sync.remoteKey" value="cod"/>
+            </userInfo>
+        </attribute>
+        <relationship name="atividades" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Atividad" inverseName="programa" inverseEntity="Atividad" syncable="YES"/>
+        <relationship name="fichas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ficha" inverseName="programa" inverseEntity="Ficha" syncable="YES"/>
+    </entity>
+    <entity name="Serie" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES">
+            <userInfo>
+                <entry key="sync.remoteKey" value="codSerie"/>
+            </userInfo>
+        </attribute>
+        <relationship name="actividad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Atividad" inverseName="series" inverseEntity="Atividad" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Programa" positionX="-144" positionY="-18" width="128" height="88"/>
+        <element name="Ficha" positionX="27" positionY="-43" width="128" height="88"/>
+        <element name="Atividad" positionX="214" positionY="-27" width="128" height="103"/>
+        <element name="Serie" positionX="405" positionY="-36" width="128" height="73"/>
+    </elements>
+</model>
