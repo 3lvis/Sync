@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="defaultTag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="defaultCategories" inverseEntity="Tag" syncable="YES"/>
@@ -8,16 +8,16 @@
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="defaultCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="defaultTag" inverseEntity="Category" syncable="YES"/>
-        <relationship name="website" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Website" inverseName="recentTags" inverseEntity="Website" syncable="YES"/>
+        <relationship name="websites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Website" inverseName="recentTags" inverseEntity="Website" syncable="YES"/>
     </entity>
     <entity name="Website" representedClassName="Website" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="website" inverseEntity="Category" syncable="YES"/>
-        <relationship name="recentTags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="website" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="recentTags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="websites" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Website" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Tag" positionX="-54" positionY="-9" width="128" height="90"/>
-        <element name="Category" positionX="-36" positionY="9" width="128" height="90"/>
+        <element name="Category" positionX="-101" positionY="-162" width="128" height="90"/>
+        <element name="Tag" positionX="-81" positionY="-9" width="128" height="88"/>
+        <element name="Website" positionX="-360" positionY="-18" width="128" height="90"/>
     </elements>
 </model>
