@@ -9,15 +9,15 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "146D72AB1AB782920058798C"
-               BuildableName = "iOSTests.xctest"
-               BlueprintName = "iOSTests"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               BlueprintIdentifier = "14241E7D1DBC39600042ED81"
+               BuildableName = "Sync.framework"
+               BlueprintName = "Sync-watchOS"
+               ReferencedContainer = "container:Project.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,16 +29,6 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "146D72AB1AB782920058798C"
-               BuildableName = "iOSTests.xctest"
-               BlueprintName = "iOSTests"
-               ReferencedContainer = "container:Demo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -57,19 +47,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "146D72AB1AB782920058798C"
-            BuildableName = "iOSTests.xctest"
-            BlueprintName = "iOSTests"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "14241E7D1DBC39600042ED81"
+            BuildableName = "Sync.framework"
+            BlueprintName = "Sync-watchOS"
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -82,10 +65,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "146D72AB1AB782920058798C"
-            BuildableName = "iOSTests.xctest"
-            BlueprintName = "iOSTests"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "14241E7D1DBC39600042ED81"
+            BuildableName = "Sync.framework"
+            BlueprintName = "Sync-watchOS"
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

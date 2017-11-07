@@ -17,7 +17,7 @@
                BlueprintIdentifier = "14241E701DBC39520042ED81"
                BuildableName = "Sync.framework"
                BlueprintName = "Sync-iOS"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               ReferencedContainer = "container:Project.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,7 +50,7 @@
             BlueprintIdentifier = "14241E701DBC39520042ED81"
             BuildableName = "Sync.framework"
             BlueprintName = "Sync-iOS"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "14241E701DBC39520042ED81"
             BuildableName = "Sync.framework"
             BlueprintName = "Sync-iOS"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
