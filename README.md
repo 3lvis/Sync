@@ -411,11 +411,6 @@ github "3lvis/Sync" ~> 4.0
 - watchOS 2.0 or above
 - tvOS 9.0 or above
 
-## Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
-<a href="graphs/contributors"><img src="https://opencollective.com/Sync/contributors.svg?width=890" /></a>
-
 ## Backers
 
 Love Sync? Consider supporting further development and support by becoming a patron:
