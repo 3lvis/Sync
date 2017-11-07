@@ -1,7 +1,6 @@
 ![Sync](https://raw.githubusercontent.com/3lvis/Sync/master/Images/logo-v3.png)
 
-**Sync** eases your everyday job of parsing a JSON response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
-
+**Sync** eases your everyday job of parsing a JSON response and syncing it with Core Data. **Sync** is a lightweight Swift library that uses a convention-over-configuration paradigm to facilitate your workflow.
 
 <div align = "center">
   <a href="https://cocoapods.org/pods/Sync">
