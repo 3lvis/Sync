@@ -2,7 +2,7 @@
 
 <div align = "center">
   <a href="https://cocoapods.org/pods/Sync">
-    <a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/Sync/backers/badge.svg" /></a> <a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/Sync/sponsors/badge.svg" /></a> <img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
+<img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
   </a>
   <a href="https://github.com/3lvis/Sync">
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
