@@ -1,2 +1,2 @@
-<!-- Love Sync? Please consider supporting our collective:
-👉  https://opencollective.com/Sync/donate -->
+<!-- Love Sync? Consider supporting further development and support by becoming a patron:
+👉  https://www.patreon.com/3lvis -->

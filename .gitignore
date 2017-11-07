@@ -35,3 +35,8 @@ Carthage/Build/tvOS/Sync.framework*
 Carthage/Build/Mac/Sync.framework*
 Carthage/Build/iOS/Sync.framework*
 Sync.framework.zip
+
+iOSDemo/Carthage/Checkouts
+iOSDemo/Carthage/Build/watchOS
+iOSDemo/Carthage/Build/tvOS
+iOSDemo/Carthage/Build/Mac
