@@ -1531,7 +1531,7 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(Helper.countForEntity("Programa", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Ficha", inContext: dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("Atividad", inContext: dataStack.mainContext), 2)
-        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 0)
+        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 5)
 
         dataStack.drop()
     }
