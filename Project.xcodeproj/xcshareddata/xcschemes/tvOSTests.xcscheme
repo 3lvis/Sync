@@ -14,10 +14,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14975BF31DBC36960024901A"
-               BuildableName = "macOSTests.xctest"
-               BlueprintName = "macOSTests"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               BlueprintIdentifier = "14975BE71DBC368B0024901A"
+               BuildableName = "tvOSTests.xctest"
+               BlueprintName = "tvOSTests"
+               ReferencedContainer = "container:Project.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,13 +33,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14975BF31DBC36960024901A"
-               BuildableName = "macOSTests.xctest"
-               BlueprintName = "macOSTests"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               BlueprintIdentifier = "14975BE71DBC368B0024901A"
+               BuildableName = "tvOSTests.xctest"
+               BlueprintName = "tvOSTests"
+               ReferencedContainer = "container:Project.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "14975BE71DBC368B0024901A"
+            BuildableName = "tvOSTests.xctest"
+            BlueprintName = "tvOSTests"
+            ReferencedContainer = "container:Project.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -57,10 +66,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14975BF31DBC36960024901A"
-            BuildableName = "macOSTests.xctest"
-            BlueprintName = "macOSTests"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "14975BE71DBC368B0024901A"
+            BuildableName = "tvOSTests.xctest"
+            BlueprintName = "tvOSTests"
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -82,10 +91,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14975BF31DBC36960024901A"
-            BuildableName = "macOSTests.xctest"
-            BlueprintName = "macOSTests"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            BlueprintIdentifier = "14975BE71DBC368B0024901A"
+            BuildableName = "tvOSTests.xctest"
+            BlueprintName = "tvOSTests"
+            ReferencedContainer = "container:Project.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
