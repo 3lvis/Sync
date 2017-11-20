@@ -1521,4 +1521,18 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+    
+    // https://github.com/3lvis/Sync/issues/449
+    func test449() {
+        let dataStack = Helper.dataStackWithModelName("449")
+        
+        let forms = Helper.objectsFromJSON("449.json") as! [[String: Any]]
+        dataStack.sync(forms, inEntityNamed: "User", completion: nil)
+        
+        let user = Helper.fetchEntity("User", predicate: NSPredicate(format: "user = testuser"), inContext: dataStack.mainContext).first!
+
+        XCTAssertEqual(user.value(forKey: "fachperson") as? Bool, true)
+        dataStack.drop()
+    }
+
 }
