@@ -620,6 +620,8 @@
 		44CFE68C1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
 		44CFE68D1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
 		44CFE68E1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
+		506ABDF21FC33CA6000370AE /* 449.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 506ABDF01FC33CA6000370AE /* 449.xcdatamodeld */; };
+		506ABDF41FC33F48000370AE /* 449.json in Resources */ = {isa = PBXBuildFile; fileRef = 506ABDF31FC33F48000370AE /* 449.json */; };
 		CC9493F11F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F21F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F31F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
@@ -905,6 +907,8 @@
 		44CFE67D1E87BBE60068185B /* PrimaryKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrimaryKey.xcdatamodel; sourceTree = "<group>"; };
 		44CFE6851E87BC650068185B /* Inflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflections.h; sourceTree = "<group>"; };
 		44CFE6861E87BC650068185B /* Inflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflections.m; sourceTree = "<group>"; };
+		506ABDF11FC33CA6000370AE /* 449.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 449.xcdatamodel; sourceTree = "<group>"; };
+		506ABDF31FC33F48000370AE /* 449.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 449.json; sourceTree = "<group>"; };
 		CC9493F01F375251002167B4 /* 417.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 417.json; sourceTree = "<group>"; };
 		CC9493F51F375517002167B4 /* 375-to-one.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "375-to-one.xcdatamodel"; sourceTree = "<group>"; };
 		CC9493FD1F3755AD002167B4 /* 375-to-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-one.json"; sourceTree = "<group>"; };
@@ -1185,6 +1189,7 @@
 				14867D5A1E7AF4D2001D228A /* users_c.json */,
 				14867D5B1E7AF4D2001D228A /* users_company.json */,
 				14867D5C1E7AF4D2001D228A /* users_notes.json */,
+				506ABDF31FC33F48000370AE /* 449.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -1233,6 +1238,7 @@
 				14867DA21E7AF4D2001D228A /* Tests.xcdatamodeld */,
 				14867DA41E7AF4D2001D228A /* ToOne.xcdatamodeld */,
 				14867DA61E7AF4D2001D228A /* Unique.xcdatamodeld */,
+				506ABDF01FC33CA6000370AE /* 449.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1808,6 +1814,7 @@
 				CC9493F11F375251002167B4 /* 417.json in Resources */,
 				14867E181E7AF4D2001D228A /* 151-many-to-many-tags.json in Resources */,
 				14867DE21E7AF4D2001D228A /* users-with-null.json in Resources */,
+				506ABDF41FC33F48000370AE /* 449.json in Resources */,
 				14867E781E7AF4D2001D228A /* camelcase.json in Resources */,
 				14867E5D1E7AF4D2001D228A /* bug-125.json in Resources */,
 				14867E121E7AF4D2001D228A /* 151-many-to-many-notes-update.json in Resources */,
@@ -2159,6 +2166,7 @@
 				14867EEA1E7AF4D2001D228A /* 239.xcdatamodeld in Sources */,
 				14867EF61E7AF4D2001D228A /* 277.xcdatamodeld in Sources */,
 				14867ECF1E7AF4D2001D228A /* 151-many-to-many.xcdatamodeld in Sources */,
+				506ABDF21FC33CA6000370AE /* 449.xcdatamodeld in Sources */,
 				445851DF1E87BAF60025434E /* Ordered.xcdatamodeld in Sources */,
 				14867EC91E7AF4D2001D228A /* 113.xcdatamodeld in Sources */,
 				44B212EF1E87BCBD00C81949 /* InflectionsTests.m in Sources */,
@@ -3440,6 +3448,16 @@
 			);
 			currentVersion = 44CFE67D1E87BBE60068185B /* PrimaryKey.xcdatamodel */;
 			path = PrimaryKey.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		506ABDF01FC33CA6000370AE /* 449.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				506ABDF11FC33CA6000370AE /* 449.xcdatamodel */,
+			);
+			currentVersion = 506ABDF11FC33CA6000370AE /* 449.xcdatamodel */;
+			path = 449.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
