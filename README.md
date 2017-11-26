@@ -85,6 +85,16 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 ]
 ```
 
+### DataStack
+
+DataStack is a wrapper on top of the Core Data boilerplate, it encapsulates dealing with NSPersistentStoreCoordinator and NSManageObjectContexts.
+
+```swift
+self.dataStack = DataStack(modelName: "DataModel")
+```
+
+[You can find here more ways of initializing your DataStack](https://github.com/3lvis/Sync/blob/6723c1f9a07014024e0f8f2923d1930789cabb72/Source/DataStack/DataStack.swift#L77-L196).
+
 ### Sync
 
 ```swift
