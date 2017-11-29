@@ -1529,7 +1529,7 @@ class SyncTests: XCTestCase {
         let forms = Helper.objectsFromJSON("449.json") as! [[String: Any]]
         dataStack.sync(forms, inEntityNamed: "User", completion: nil)
         
-        let user = Helper.fetchEntity("User", predicate: NSPredicate(format: "user = testuser"), inContext: dataStack.mainContext).first!
+        let user = Helper.fetchEntity("User", predicate: NSPredicate(format: "user = %@", "testuser"), inContext: dataStack.mainContext).first!
 
         XCTAssertEqual(user.value(forKey: "fachperson") as? Bool, true)
         dataStack.drop()
