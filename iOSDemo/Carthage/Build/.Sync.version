@@ -1,0 +1,9 @@
+{
+  "commitish" : "4.0.3",
+  "iOS" : [
+    {
+      "name" : "Sync",
+      "hash" : "e38ddb444826f90a823d94710bd0fc4f5a9b6fed2093647118bd03cd5e18479e"
+    }
+  ]
+}

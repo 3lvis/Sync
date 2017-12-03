@@ -1,8 +1,10 @@
 ![Sync](https://raw.githubusercontent.com/3lvis/Sync/master/Images/logo-v3.png)
 
+**Sync** eases your everyday job of parsing a JSON response and syncing it with Core Data. **Sync** is a lightweight Swift library that uses a convention-over-configuration paradigm to facilitate your workflow.
+
 <div align = "center">
   <a href="https://cocoapods.org/pods/Sync">
-    <a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/Sync/backers/badge.svg" /></a> <a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/Sync/sponsors/badge.svg" /></a> <img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
+<img src="https://img.shields.io/cocoapods/v/Sync.svg?style=flat" />
   </a>
   <a href="https://github.com/3lvis/Sync">
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
@@ -26,8 +28,6 @@
   <br>
 </div>
 
-**Sync** eases your everyday job of parsing a JSON response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
-
 Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot of boilerplate code. Mapping attributes, mapping relationships, diffing for inserts, removals and updates are often tasks that don't change between apps. Taking this in account we took the challenge to abstract this into a library. **Sync** uses the knowledge of your Core Data model to infer all the mapping between your JSON and Core Data, once you use it, it feels so obvious that you'll wonder why you weren't doing this before.
 
 * Automatic mapping of camelCase or snake_case JSON into Core Data
@@ -41,7 +41,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 ## Table of Contents
 
 * [Basic example](#basic-example)
-* [More examples](#more-examples)
+* [Demo project](#demo-project)
 * [Getting Started](#getting-started)
   * [Core Data Stack](#core-data-stack)
   * [Primary Key](#primary-key)
@@ -85,6 +85,16 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 ]
 ```
 
+### DataStack
+
+DataStack is a wrapper on top of the Core Data boilerplate, it encapsulates dealing with NSPersistentStoreCoordinator and NSManageObjectContexts.
+
+```swift
+self.dataStack = DataStack(modelName: "DataModel")
+```
+
+[You can find here more ways of initializing your DataStack](https://github.com/3lvis/Sync/blob/6723c1f9a07014024e0f8f2923d1930789cabb72/Source/DataStack/DataStack.swift#L77-L196).
+
 ### Sync
 
 ```swift
@@ -107,16 +117,15 @@ dataStack.sync(json, inEntityNamed: "User", predicate: predicate) { error in
 }
 ```
 
-## More Examples
+## Demo Project
 
-<a href="https://github.com/3lvis/AppNetDemo">
-  <img src="https://raw.githubusercontent.com/3lvis/Sync/master/Images/APPNET-v3.png" />
-</a>
+[We have a simple demo project](/iOSDemo) of how to set up and use Sync to fetch data from the network and display it in a UITableView. The demo project features both [Networking](https://github.com/3lvis/networking) and [Alamofire](https://github.com/Alamofire/Alamofire) as the networking libraries.
 
-<a href="https://github.com/3lvis/DesignerNewsDemo">
-  <img src="https://raw.githubusercontent.com/3lvis/Sync/master/Images/DN-v4.png" />
-</a>
+### DataStack with Storyboards
 
+Configuring a DataStack with Storyboard is different than doing it via dependency injection here you'll find a sample project in how to achieve this setup.
+
+https://github.com/3lvis/StoryboardDemo
 
 ## Getting Started
 
@@ -412,35 +421,10 @@ github "3lvis/Sync" ~> 4.0
 - watchOS 2.0 or above
 - tvOS 9.0 or above
 
-## Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
-<a href="graphs/contributors"><img src="https://opencollective.com/Sync/contributors.svg?width=890" /></a>
-
-
 ## Backers
 
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/Sync#backer)]
-
-<a href="https://opencollective.com/Sync#backers" target="_blank"><img src="https://opencollective.com/Sync/backers.svg?width=890"></a>
-
-
-## Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/Sync#sponsor)]
-
-<a href="https://opencollective.com/Sync/sponsor/0/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/1/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/2/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/3/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/4/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/5/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/6/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/7/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/8/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/Sync/sponsor/9/website" target="_blank"><img src="https://opencollective.com/Sync/sponsor/9/avatar.svg"></a>
-
-
+Love Sync? Consider supporting further development and support by becoming a patron:
+👉  https://www.patreon.com/3lvis
 
 ## License
 
