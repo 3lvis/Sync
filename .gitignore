@@ -29,14 +29,14 @@ DerivedData
 *.gcda
 *.bcsymbolmap
 
-Carthage/Checkouts
-Carthage/Build/watchOS
+Carthage/Checkouts/*
+Carthage/Build/watchOS/*
 Carthage/Build/tvOS/Sync.framework*
 Carthage/Build/Mac/Sync.framework*
 Carthage/Build/iOS/Sync.framework*
 Sync.framework.zip
 
-iOSDemo/Carthage/Checkouts
-iOSDemo/Carthage/Build/watchOS
-iOSDemo/Carthage/Build/tvOS
-iOSDemo/Carthage/Build/Mac
+iOSDemo/Carthage/Checkouts/*
+iOSDemo/Carthage/Build/watchOS/*
+iOSDemo/Carthage/Build/tvOS/*
+iOSDemo/Carthage/Build/Mac/*
