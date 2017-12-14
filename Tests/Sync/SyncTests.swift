@@ -1521,4 +1521,26 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+    
+    // https://github.com/3lvis/Sync/issues/373
+    func testJimijon() {
+        let dataStack = Helper.dataStackWithModelName("jimijon")
+        let subcats = Helper.objectsFromJSON("jimijonSubcategories.json") as! [[String: Any]]
+        
+        
+        dataStack.sync(subcats, inEntityNamed: "Subcategory", completion: nil)
+        
+        XCTAssertEqual(Helper.countForEntity("Subcategory", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 2)
+        
+        let products = Helper.objectsFromJSON("jimijonProducts.json") as! [[String: Any]]
+        dataStack.sync(products, inEntityNamed: "Product", completion: nil)
+
+        let result = Helper.fetchEntity("Product", inContext: dataStack.mainContext)
+        XCTAssertEqual(result.count, 2)
+        let subcat = result.first?.value(forKey:"subcategory") as! NSManagedObject
+        XCTAssertNotNil(subcat.value(forKey: "category"))
+        
+        dataStack.drop()
+    }
 }
