@@ -594,6 +594,10 @@
 		4494AEA41FE5E1CE0064999E /* 457.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */; };
 		4494AEA51FE5E1CE0064999E /* 457.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */; };
 		4494AEA61FE5E1CE0064999E /* 457.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */; };
+		4494AEA71FE5E33D0064999E /* 457-subcategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */; };
+		4494AEA81FE5E33D0064999E /* 457-subcategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */; };
+		4494AEA91FE5E3400064999E /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
+		4494AEAA1FE5E3410064999E /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
 		44B212EF1E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
 		44B212F01E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
 		44B212F11E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
@@ -1873,6 +1877,7 @@
 				14867E161E7AF4D2001D228A /* 151-many-to-many-notes.json in Resources */,
 				14867E8E1E7AF4D2001D228A /* notes_for_user_a.json in Resources */,
 				14867EA01E7AF4D2001D228A /* operation-types-users-b.json in Resources */,
+				4494AEA91FE5E3400064999E /* 457-products.json in Resources */,
 				14867E371E7AF4D2001D228A /* 225-a.json in Resources */,
 				14867E701E7AF4D2001D228A /* bug-254.json in Resources */,
 				14867EC71E7AF4D2001D228A /* users_notes.json in Resources */,
@@ -1893,6 +1898,7 @@
 				14867E6D1E7AF4D2001D228A /* bug-239.json in Resources */,
 				14867E1F1E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC41E7AF4D2001D228A /* users_company.json in Resources */,
+				4494AEA71FE5E33D0064999E /* 457-subcategories.json in Resources */,
 				14867DDA1E7AF4D2001D228A /* note.json in Resources */,
 				14867DE01E7AF4D2001D228A /* users-with-nil.json in Resources */,
 				14867E4C1E7AF4D2001D228A /* 320.json in Resources */,
@@ -1957,6 +1963,7 @@
 				14867E171E7AF4D2001D228A /* 151-many-to-many-notes.json in Resources */,
 				14867E8F1E7AF4D2001D228A /* notes_for_user_a.json in Resources */,
 				14867EA11E7AF4D2001D228A /* operation-types-users-b.json in Resources */,
+				4494AEAA1FE5E3410064999E /* 457-products.json in Resources */,
 				14867E381E7AF4D2001D228A /* 225-a.json in Resources */,
 				14867E711E7AF4D2001D228A /* bug-254.json in Resources */,
 				14867EC81E7AF4D2001D228A /* users_notes.json in Resources */,
@@ -1977,6 +1984,7 @@
 				14867E6E1E7AF4D2001D228A /* bug-239.json in Resources */,
 				14867E201E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC51E7AF4D2001D228A /* users_company.json in Resources */,
+				4494AEA81FE5E33D0064999E /* 457-subcategories.json in Resources */,
 				14867DDB1E7AF4D2001D228A /* note.json in Resources */,
 				14867DE11E7AF4D2001D228A /* users-with-nil.json in Resources */,
 				14867E4D1E7AF4D2001D228A /* 320.json in Resources */,
