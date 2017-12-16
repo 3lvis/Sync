@@ -1,1 +1,7 @@
-[{"id":1,"custom_old":"old","custom_current":"current"}]
+[
+  {
+    "id": 1,
+    "custom_old": "old",
+    "custom_current": "current"
+  }
+]
