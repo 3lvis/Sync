@@ -4,11 +4,5 @@
     "category": {
       "nfCode": "0cat"
     }
-  },
-  {
-    "nfCode": "1subcat",
-    "category": {
-      "nfCode": "1cat"
-    }
   }
 ]

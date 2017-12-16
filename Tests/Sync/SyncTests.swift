@@ -1529,14 +1529,14 @@ class SyncTests: XCTestCase {
 
         dataStack.sync(subcats, inEntityNamed: "Subcategory", completion: nil)
         
-        XCTAssertEqual(Helper.countForEntity("Subcategory", inContext: dataStack.mainContext), 2)
-        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Subcategory", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 1)
         
         let products = Helper.objectsFromJSON("457-products.json") as! [[String: Any]]
         dataStack.sync(products, inEntityNamed: "Product", completion: nil)
 
         let result = Helper.fetchEntity("Product", inContext: dataStack.mainContext)
-        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.count, 1)
         let subcat = result.first?.value(forKey:"subcategory") as! NSManagedObject
         XCTAssertNotNil(subcat.value(forKey: "category"))
         
