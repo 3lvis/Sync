@@ -186,13 +186,18 @@ extension NSManagedObject {
         }
     }
 
-    /**
-     Syncs the entity's to-many relationship, it will also sync the childs of this relationship.
-     - parameter relationship: The relationship to be synced.
-     - parameter dictionary: The JSON with the changes to be applied to the entity.
-     - parameter parent: The parent of the entity, optional since many entities are orphans.
-     - parameter dataStack: The DataStack instance.
-     */
+    /// Syncs the entity's to-many relationship, it will also sync the childs of this relationship.
+    ///
+    /// - Parameters:
+    ///   - relationship: The relationship to be synced.
+    ///   - dictionary: The JSON with the changes to be applied to the entity.
+    ///   - parent: The parent of the entity, optional since many entities are orphans.
+    ///   - parentRelationship: The relationship from which the parent was referenced.
+    ///   - context: The NSManagedContext involving the current Core Data operation.
+    ///   - operations: The Sync.Operation options to be used for this operation.
+    ///   - shouldContinueBlock: A block that checks wheter the Sync process should continue to the next element or stop. This is used in conjunction to operations, if the operation is cancelled the Sync process will stop.
+    ///   - objectJSONBlock: A block that gives the oportunity to the called to act on the current processed JSON.
+    /// - Throws: An exception that will throw if any of the underlaying operations fail.
     func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) throws {
         var children: [[String: Any]]?
         let childrenIsNull = (relationship.customKey as Any?) is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
@@ -223,7 +228,6 @@ extension NSManagedObject {
         }
 
         let inverseIsToMany = relationship.inverseRelationship?.isToMany ?? false
-        guard let managedObjectContext = managedObjectContext else { abort() }
         guard let destinationEntity = relationship.destinationEntity else { abort() }
         guard let childEntityName = destinationEntity.name else { abort() }
 
@@ -254,7 +258,7 @@ extension NSManagedObject {
                     var safeLocalObjects: [NSManagedObject]?
 
                     if deletedItems.count > 0 {
-                        safeLocalObjects = try managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
+                        safeLocalObjects = try context.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
                         for safeObject in safeLocalObjects! {
                             let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
                             for deleted in deletedItems {
@@ -282,7 +286,7 @@ extension NSManagedObject {
                         if let safeLocalObjects = safeLocalObjects {
                             objects = safeLocalObjects
                         } else {
-                            objects = try managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
+                            objects = try context.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
                         }
                         for safeObject in objects {
                             let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
@@ -304,7 +308,7 @@ extension NSManagedObject {
             if manyToMany {
                 childOperations.remove(.delete)
                 if ((childIDs as Any) as AnyObject).count > 0 {
-                    guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: managedObjectContext) else { fatalError() }
+                    guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context) else { fatalError() }
                     guard let childIDsObject = childIDs as? NSObject else { fatalError() }
                     childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), childIDsObject)
                 }
@@ -313,7 +317,7 @@ extension NSManagedObject {
                 childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
             }
 
-            try Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, parentRelationship: relationship, inContext: managedObjectContext, operations: childOperations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
+            try Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, parentRelationship: relationship, inContext: context, operations: childOperations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
         } else {
             var destinationIsParentSuperEntity = false
             if let parent = parent, let destinationEntityName = relationship.destinationEntity?.name {
