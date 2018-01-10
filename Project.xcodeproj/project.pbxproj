@@ -623,6 +623,12 @@
 		44E38AE020059146003E896B /* 422OneToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */; };
 		44E38AE120059146003E896B /* 422OneToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */; };
 		44E38AE220059146003E896B /* 422OneToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */; };
+		44E38AE72005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38AE32005927E003E896B /* 422ManyToMany.xcdatamodeld */; };
+		44E38AE82005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38AE32005927E003E896B /* 422ManyToMany.xcdatamodeld */; };
+		44E38AE92005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38AE32005927E003E896B /* 422ManyToMany.xcdatamodeld */; };
+		44E38AEA2005927F003E896B /* 422OneToOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38AE52005927E003E896B /* 422OneToOne.xcdatamodeld */; };
+		44E38AEB2005927F003E896B /* 422OneToOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38AE52005927E003E896B /* 422OneToOne.xcdatamodeld */; };
+		44E38AEC2005927F003E896B /* 422OneToOne.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38AE52005927E003E896B /* 422OneToOne.xcdatamodeld */; };
 		CC9493F11F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F21F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F31F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
@@ -909,6 +915,8 @@
 		44CFE6851E87BC650068185B /* Inflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflections.h; sourceTree = "<group>"; };
 		44CFE6861E87BC650068185B /* Inflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflections.m; sourceTree = "<group>"; };
 		44E38ADF20059146003E896B /* 422OneToMany.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 422OneToMany.xcdatamodel; sourceTree = "<group>"; };
+		44E38AE42005927E003E896B /* 422ManyToMany.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 422ManyToMany.xcdatamodel; sourceTree = "<group>"; };
+		44E38AE62005927E003E896B /* 422OneToOne.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 422OneToOne.xcdatamodel; sourceTree = "<group>"; };
 		CC9493F01F375251002167B4 /* 417.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 417.json; sourceTree = "<group>"; };
 		CC9493F51F375517002167B4 /* 375-to-one.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "375-to-one.xcdatamodel"; sourceTree = "<group>"; };
 		CC9493FD1F3755AD002167B4 /* 375-to-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-one.json"; sourceTree = "<group>"; };
@@ -1220,7 +1228,9 @@
 				CC9493F41F375517002167B4 /* 375-to-one.xcdatamodeld */,
 				149FF9E81E808C4400617A63 /* 375.xcdatamodeld */,
 				44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */,
+				44E38AE32005927E003E896B /* 422ManyToMany.xcdatamodeld */,
 				44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */,
+				44E38AE52005927E003E896B /* 422OneToOne.xcdatamodeld */,
 				14867D881E7AF4D2001D228A /* Camelcase.xcdatamodeld */,
 				14867D8A1E7AF4D2001D228A /* Contacts.xcdatamodeld */,
 				14867D8C1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld */,
@@ -2178,10 +2188,12 @@
 				14867F0B1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
 				14867F3B1E7AF4D2001D228A /* NSEntityDescription+SyncTests.swift in Sources */,
 				445851C41E87BAF50025434E /* HelperTests.m in Sources */,
+				44E38AEA2005927F003E896B /* 422OneToOne.xcdatamodeld in Sources */,
 				445851D61E87BAF50025434E /* 140.xcdatamodeld in Sources */,
 				14867DD61E7AF4D2001D228A /* DataFilterTests.swift in Sources */,
 				14867F351E7AF4D2001D228A /* Unique.xcdatamodeld in Sources */,
 				14867ED81E7AF4D2001D228A /* 151-to-many.xcdatamodeld in Sources */,
+				44E38AE72005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
 				14867F141E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F441E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
 				44CFE67E1E87BBE60068185B /* PrimaryKeyTests.m in Sources */,
@@ -2270,10 +2282,12 @@
 				14867F0C1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
 				14867F3C1E7AF4D2001D228A /* NSEntityDescription+SyncTests.swift in Sources */,
 				445851C51E87BAF50025434E /* HelperTests.m in Sources */,
+				44E38AEB2005927F003E896B /* 422OneToOne.xcdatamodeld in Sources */,
 				445851D71E87BAF50025434E /* 140.xcdatamodeld in Sources */,
 				14867DD71E7AF4D2001D228A /* DataFilterTests.swift in Sources */,
 				14867F361E7AF4D2001D228A /* Unique.xcdatamodeld in Sources */,
 				14867ED91E7AF4D2001D228A /* 151-to-many.xcdatamodeld in Sources */,
+				44E38AE82005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
 				14867F151E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F451E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
 				44CFE67F1E87BBE70068185B /* PrimaryKeyTests.m in Sources */,
@@ -2362,10 +2376,12 @@
 				14867F0D1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
 				14867F3D1E7AF4D2001D228A /* NSEntityDescription+SyncTests.swift in Sources */,
 				445851C61E87BAF50025434E /* HelperTests.m in Sources */,
+				44E38AEC2005927F003E896B /* 422OneToOne.xcdatamodeld in Sources */,
 				445851D81E87BAF50025434E /* 140.xcdatamodeld in Sources */,
 				14867DD81E7AF4D2001D228A /* DataFilterTests.swift in Sources */,
 				14867F371E7AF4D2001D228A /* Unique.xcdatamodeld in Sources */,
 				14867EDA1E7AF4D2001D228A /* 151-to-many.xcdatamodeld in Sources */,
+				44E38AE92005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
 				14867F161E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F461E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
 				44CFE6801E87BBE70068185B /* PrimaryKeyTests.m in Sources */,
@@ -3458,6 +3474,26 @@
 			);
 			currentVersion = 44E38ADF20059146003E896B /* 422OneToMany.xcdatamodel */;
 			path = 422OneToMany.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44E38AE32005927E003E896B /* 422ManyToMany.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44E38AE42005927E003E896B /* 422ManyToMany.xcdatamodel */,
+			);
+			currentVersion = 44E38AE42005927E003E896B /* 422ManyToMany.xcdatamodel */;
+			path = 422ManyToMany.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44E38AE52005927E003E896B /* 422OneToOne.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44E38AE62005927E003E896B /* 422OneToOne.xcdatamodel */,
+			);
+			currentVersion = 44E38AE62005927E003E896B /* 422OneToOne.xcdatamodel */;
+			path = 422OneToOne.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
