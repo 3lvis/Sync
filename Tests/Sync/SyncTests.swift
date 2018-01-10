@@ -1524,6 +1524,10 @@ class SyncTests: XCTestCase {
 
     // https://github.com/3lvis/Sync/issues/422
 
+    // -----------
+    // One to many
+    // -----------
+
     func test422OneToManyOperationOptionsInsert() {
         let dataStack = Helper.dataStackWithModelName("422OneToMany")
         let initial = Helper.objectsFromJSON("422-one-to-many-insert-option-initial.json") as! [[String: Any]]
@@ -1581,6 +1585,10 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
+    // -----------
+    // Many to many
+    // -----------
+
     func test422ManyToManyOperationOptionsInsert() {
         let dataStack = Helper.dataStackWithModelName("422ManyToMany")
         let initial = Helper.objectsFromJSON("422-many-to-many-insert-option-initial.json") as! [[String: Any]]
@@ -1637,6 +1645,10 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // -----------
+    // One to one
+    // -----------
 
     func test422OneToOneOperationOptionsInsert() {
         let dataStack = Helper.dataStackWithModelName("422OneToOne")
