@@ -1527,8 +1527,8 @@ class SyncTests: XCTestCase {
     }
 
     // https://github.com/3lvis/Sync/issues/422
-    func test422OperationOptionsInsert() {
-        let dataStack = Helper.dataStackWithModelName("422")
+    func test422OneToManyOperationOptionsInsert() {
+        let dataStack = Helper.dataStackWithModelName("422OneToMany")
 
         let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"] ])
         dataStack.sync(initial, inEntityNamed: "User", completion: nil)
@@ -1550,8 +1550,8 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    func test422OperationOptionsUpdateRelationships() {
-        let dataStack = Helper.dataStackWithModelName("422")
+    func test422OneToManyOperationOptionsUpdateRelationships() {
+        let dataStack = Helper.dataStackWithModelName("422OneToMany")
 
         let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"] ])
         dataStack.sync(initial, inEntityNamed: "User", completion: nil)
@@ -1573,8 +1573,8 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    func test422OperationOptionsDeleteRelationships() {
-        let dataStack = Helper.dataStackWithModelName("422")
+    func test422OneToManyOperationOptionsDeleteRelationships() {
+        let dataStack = Helper.dataStackWithModelName("422OneToMany")
 
         let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"], ["id": 102, "text": "102"] ])
         dataStack.sync(initial, inEntityNamed: "User", completion: nil)
@@ -1594,5 +1594,23 @@ class SyncTests: XCTestCase {
         XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "102")
 
         dataStack.drop()
+    }
+
+    func test422ManyToManyOperationOptionsInsert() {
+    }
+
+    func test422ManyToManyOperationOptionsUpdateRelationships() {
+    }
+
+    func test422ManyToManyOperationOptionsDeleteRelationships() {
+    }
+
+    func test422OneToOneOperationOptionsInsert() {
+    }
+
+    func test422OneToOneOperationOptionsUpdateRelationships() {
+    }
+
+    func test422OneToOneOperationOptionsDeleteRelationships() {
     }
 }

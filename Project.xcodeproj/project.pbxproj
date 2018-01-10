@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		140E4D881FA7C84F00E916BE /* 422.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140E4D861FA7C84F00E916BE /* 422.xcdatamodeld */; };
-		140E4D891FA7C84F00E916BE /* 422.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140E4D861FA7C84F00E916BE /* 422.xcdatamodeld */; };
-		140E4D8A1FA7C84F00E916BE /* 422.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 140E4D861FA7C84F00E916BE /* 422.xcdatamodeld */; };
 		14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
 		14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; };
@@ -623,6 +620,9 @@
 		44CFE68C1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
 		44CFE68D1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
 		44CFE68E1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
+		44E38AE020059146003E896B /* 422OneToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */; };
+		44E38AE120059146003E896B /* 422OneToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */; };
+		44E38AE220059146003E896B /* 422OneToMany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */; };
 		CC9493F11F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F21F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F31F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
@@ -713,7 +713,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		140E4D871FA7C84F00E916BE /* 422.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 422.xcdatamodel; sourceTree = "<group>"; };
 		14241E711DBC39520042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E7E1DBC39600042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E8B1DBC39690042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -909,6 +908,7 @@
 		44CFE67D1E87BBE60068185B /* PrimaryKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrimaryKey.xcdatamodel; sourceTree = "<group>"; };
 		44CFE6851E87BC650068185B /* Inflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflections.h; sourceTree = "<group>"; };
 		44CFE6861E87BC650068185B /* Inflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflections.m; sourceTree = "<group>"; };
+		44E38ADF20059146003E896B /* 422OneToMany.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 422OneToMany.xcdatamodel; sourceTree = "<group>"; };
 		CC9493F01F375251002167B4 /* 417.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 417.json; sourceTree = "<group>"; };
 		CC9493F51F375517002167B4 /* 375-to-one.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "375-to-one.xcdatamodel"; sourceTree = "<group>"; };
 		CC9493FD1F3755AD002167B4 /* 375-to-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-one.json"; sourceTree = "<group>"; };
@@ -1220,7 +1220,7 @@
 				CC9493F41F375517002167B4 /* 375-to-one.xcdatamodeld */,
 				149FF9E81E808C4400617A63 /* 375.xcdatamodeld */,
 				44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */,
-				140E4D861FA7C84F00E916BE /* 422.xcdatamodeld */,
+				44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */,
 				14867D881E7AF4D2001D228A /* Camelcase.xcdatamodeld */,
 				14867D8A1E7AF4D2001D228A /* Contacts.xcdatamodeld */,
 				14867D8C1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld */,
@@ -2134,7 +2134,6 @@
 				14867F171E7AF4D2001D228A /* Markets.xcdatamodeld in Sources */,
 				445851CA1E87BAF50025434E /* 121.xcdatamodeld in Sources */,
 				445851C11E87BAF50025434E /* FillWithDictionaryTests.swift in Sources */,
-				140E4D881FA7C84F00E916BE /* 422.xcdatamodeld in Sources */,
 				445851E81E87BAF60025434E /* BadAPIValueTransformer.swift in Sources */,
 				14867E061E7AF4D2001D228A /* DeleteTests.swift in Sources */,
 				14867F2F1E7AF4D2001D228A /* Tests.xcdatamodeld in Sources */,
@@ -2154,6 +2153,7 @@
 				14867EF91E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F111E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				445851EB1E87BAF60025434E /* DateStringTransformer.m in Sources */,
+				44E38AE020059146003E896B /* 422OneToMany.xcdatamodeld in Sources */,
 				445851EE1E87BAF60025434E /* SyncTestValueTransformer.m in Sources */,
 				14867F411E7AF4D2001D228A /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				448BE4991E8764FB009677E0 /* RemoteKey.xcdatamodeld in Sources */,
@@ -2226,7 +2226,6 @@
 				14867F181E7AF4D2001D228A /* Markets.xcdatamodeld in Sources */,
 				445851CB1E87BAF50025434E /* 121.xcdatamodeld in Sources */,
 				445851C21E87BAF50025434E /* FillWithDictionaryTests.swift in Sources */,
-				140E4D891FA7C84F00E916BE /* 422.xcdatamodeld in Sources */,
 				445851E91E87BAF60025434E /* BadAPIValueTransformer.swift in Sources */,
 				14867E071E7AF4D2001D228A /* DeleteTests.swift in Sources */,
 				14867F301E7AF4D2001D228A /* Tests.xcdatamodeld in Sources */,
@@ -2246,6 +2245,7 @@
 				14867EFA1E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F121E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				445851EC1E87BAF60025434E /* DateStringTransformer.m in Sources */,
+				44E38AE120059146003E896B /* 422OneToMany.xcdatamodeld in Sources */,
 				445851EF1E87BAF60025434E /* SyncTestValueTransformer.m in Sources */,
 				14867F421E7AF4D2001D228A /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				448BE49A1E8764FB009677E0 /* RemoteKey.xcdatamodeld in Sources */,
@@ -2318,7 +2318,6 @@
 				14867F191E7AF4D2001D228A /* Markets.xcdatamodeld in Sources */,
 				445851CC1E87BAF50025434E /* 121.xcdatamodeld in Sources */,
 				445851C31E87BAF50025434E /* FillWithDictionaryTests.swift in Sources */,
-				140E4D8A1FA7C84F00E916BE /* 422.xcdatamodeld in Sources */,
 				445851EA1E87BAF60025434E /* BadAPIValueTransformer.swift in Sources */,
 				14867E081E7AF4D2001D228A /* DeleteTests.swift in Sources */,
 				14867F311E7AF4D2001D228A /* Tests.xcdatamodeld in Sources */,
@@ -2338,6 +2337,7 @@
 				14867EFB1E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F131E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				445851ED1E87BAF60025434E /* DateStringTransformer.m in Sources */,
+				44E38AE220059146003E896B /* 422OneToMany.xcdatamodeld in Sources */,
 				445851F01E87BAF60025434E /* SyncTestValueTransformer.m in Sources */,
 				14867F431E7AF4D2001D228A /* NSManagedObjectContext+SyncTests.swift in Sources */,
 				448BE49B1E8764FB009677E0 /* RemoteKey.xcdatamodeld in Sources */,
@@ -2931,16 +2931,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		140E4D861FA7C84F00E916BE /* 422.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				140E4D871FA7C84F00E916BE /* 422.xcdatamodel */,
-			);
-			currentVersion = 140E4D871FA7C84F00E916BE /* 422.xcdatamodel */;
-			path = 422.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		14867D011E7AF4D1001D228A /* DataFilter.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
@@ -3458,6 +3448,16 @@
 			);
 			currentVersion = 44CFE67D1E87BBE60068185B /* PrimaryKey.xcdatamodel */;
 			path = PrimaryKey.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44E38ADF20059146003E896B /* 422OneToMany.xcdatamodel */,
+			);
+			currentVersion = 44E38ADF20059146003E896B /* 422OneToMany.xcdatamodel */;
+			path = 422OneToMany.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
