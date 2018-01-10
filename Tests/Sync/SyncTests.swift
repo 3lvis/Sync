@@ -1522,24 +1522,17 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    func json422UsingMessages(messages: [[String: Any]]) -> [[String: Any]] {
-        return [ [ "id": 1, "messages": messages ] ]
-    }
-
     // https://github.com/3lvis/Sync/issues/422
+
     func test422OneToManyOperationOptionsInsert() {
         let dataStack = Helper.dataStackWithModelName("422OneToMany")
+        let initial = Helper.objectsFromJSON("422-one-to-many-insert-option-initial.json") as! [[String: Any]]
 
-        let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"] ])
         dataStack.sync(initial, inEntityNamed: "User", completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
 
-        let messages = [
-            ["id": 102, "text": "102"],
-            ["id": 101, "text": "updated-101"]
-        ]
-        let updated = self.json422UsingMessages(messages: messages)
+        let updated = Helper.objectsFromJSON("422-one-to-many-insert-option-update.json") as! [[String: Any]]
         dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .insertRelationships], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 2)
@@ -1553,16 +1546,12 @@ class SyncTests: XCTestCase {
     func test422OneToManyOperationOptionsUpdateRelationships() {
         let dataStack = Helper.dataStackWithModelName("422OneToMany")
 
-        let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"] ])
+        let initial = Helper.objectsFromJSON("422-one-to-many-update-option-initial.json") as! [[String: Any]]
         dataStack.sync(initial, inEntityNamed: "User", completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
 
-        let messages = [
-            ["id": 102, "text": "102"],
-            ["id": 101, "text": "updated-101"]
-        ]
-        let updated = self.json422UsingMessages(messages: messages)
+        let updated = Helper.objectsFromJSON("422-one-to-many-update-option-update.json") as! [[String: Any]]
         dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .updateRelationships], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
@@ -1576,16 +1565,12 @@ class SyncTests: XCTestCase {
     func test422OneToManyOperationOptionsDeleteRelationships() {
         let dataStack = Helper.dataStackWithModelName("422OneToMany")
 
-        let initial = self.json422UsingMessages(messages: [ ["id": 101, "text": "101"], ["id": 102, "text": "102"] ])
+        let initial = Helper.objectsFromJSON("422-one-to-many-delete-option-initial.json") as! [[String: Any]]
         dataStack.sync(initial, inEntityNamed: "User", completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 2)
 
-        let messages = [
-            ["id": 102, "text": "102-updated"],
-            ["id": 103, "text": "103"],
-        ]
-        let updated = self.json422UsingMessages(messages: messages)
+        let updated = Helper.objectsFromJSON("422-one-to-many-delete-option-update.json") as! [[String: Any]]
         dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .deleteRelationships], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
