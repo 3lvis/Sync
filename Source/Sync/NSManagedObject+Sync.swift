@@ -304,8 +304,7 @@ extension NSManagedObject {
             if manyToMany {
                 childOperations.remove(.delete)
             }
-
-            guard let inverseEntityName = relationship.inverseRelationship?.name else { fatalError() }
+            
             if ((childIDs as Any) as AnyObject).count > 0 {
                 guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: managedObjectContext) else { fatalError() }
                 guard let childIDsObject = childIDs as? NSObject else { fatalError() }
