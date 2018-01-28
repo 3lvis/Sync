@@ -641,6 +641,15 @@
 		CC9494181F379BE1002167B4 /* 373.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494171F379BE1002167B4 /* 373.json */; };
 		CC9494191F379BE1002167B4 /* 373.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494171F379BE1002167B4 /* 373.json */; };
 		CC94941A1F379BE1002167B4 /* 373.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494171F379BE1002167B4 /* 373.json */; };
+		CCCF49B6201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCCF49B4201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld */; };
+		CCCF49B7201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCCF49B4201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld */; };
+		CCCF49B8201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCCF49B4201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld */; };
+		CCCF49BB201DD0E100268189 /* primary-key-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = CCCF49B9201DD0E100268189 /* primary-key-organizations.json */; };
+		CCCF49BC201DD0E100268189 /* primary-key-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = CCCF49B9201DD0E100268189 /* primary-key-organizations.json */; };
+		CCCF49BD201DD0E100268189 /* primary-key-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = CCCF49B9201DD0E100268189 /* primary-key-organizations.json */; };
+		CCCF49BE201DD0E100268189 /* primary-key-users.json in Resources */ = {isa = PBXBuildFile; fileRef = CCCF49BA201DD0E100268189 /* primary-key-users.json */; };
+		CCCF49BF201DD0E100268189 /* primary-key-users.json in Resources */ = {isa = PBXBuildFile; fileRef = CCCF49BA201DD0E100268189 /* primary-key-users.json */; };
+		CCCF49C0201DD0E100268189 /* primary-key-users.json in Resources */ = {isa = PBXBuildFile; fileRef = CCCF49BA201DD0E100268189 /* primary-key-users.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -912,6 +921,9 @@
 		CC94940F1F37857F002167B4 /* 375-to-many-speeches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-many-speeches.json"; sourceTree = "<group>"; };
 		CC9494131F379401002167B4 /* 375-to-one-speeches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-one-speeches.json"; sourceTree = "<group>"; };
 		CC9494171F379BE1002167B4 /* 373.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 373.json; sourceTree = "<group>"; };
+		CCCF49B5201DCE4200268189 /* DoublePrimaryKeys.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoublePrimaryKeys.xcdatamodel; sourceTree = "<group>"; };
+		CCCF49B9201DD0E100268189 /* primary-key-organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "primary-key-organizations.json"; sourceTree = "<group>"; };
+		CCCF49BA201DD0E100268189 /* primary-key-users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "primary-key-users.json"; sourceTree = "<group>"; };
 		E47FF6201F0002A3004A923A /* Sync+ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+ObjC.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1185,6 +1197,8 @@
 				14867D5A1E7AF4D2001D228A /* users_c.json */,
 				14867D5B1E7AF4D2001D228A /* users_company.json */,
 				14867D5C1E7AF4D2001D228A /* users_notes.json */,
+				CCCF49B9201DD0E100268189 /* primary-key-organizations.json */,
+				CCCF49BA201DD0E100268189 /* primary-key-users.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -1233,6 +1247,7 @@
 				14867DA21E7AF4D2001D228A /* Tests.xcdatamodeld */,
 				14867DA41E7AF4D2001D228A /* ToOne.xcdatamodeld */,
 				14867DA61E7AF4D2001D228A /* Unique.xcdatamodeld */,
+				CCCF49B4201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1778,6 +1793,7 @@
 				14867E9F1E7AF4D2001D228A /* operation-types-users-b.json in Resources */,
 				14867E361E7AF4D2001D228A /* 225-a.json in Resources */,
 				14867E6F1E7AF4D2001D228A /* bug-254.json in Resources */,
+				CCCF49BB201DD0E100268189 /* primary-key-organizations.json in Resources */,
 				14867EC61E7AF4D2001D228A /* users_notes.json in Resources */,
 				14867EAE1E7AF4D2001D228A /* tagged_notes.json in Resources */,
 				14867E901E7AF4D2001D228A /* notes_with_user_id.json in Resources */,
@@ -1790,6 +1806,7 @@
 				CC9494181F379BE1002167B4 /* 373.json in Resources */,
 				14867E811E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
 				CC9494101F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
+				CCCF49BE201DD0E100268189 /* primary-key-users.json in Resources */,
 				14867E9C1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E721E7AF4D2001D228A /* bug-257.json in Resources */,
 				14867E661E7AF4D2001D228A /* bug-202-a.json in Resources */,
@@ -1862,6 +1879,7 @@
 				14867EA01E7AF4D2001D228A /* operation-types-users-b.json in Resources */,
 				14867E371E7AF4D2001D228A /* 225-a.json in Resources */,
 				14867E701E7AF4D2001D228A /* bug-254.json in Resources */,
+				CCCF49BC201DD0E100268189 /* primary-key-organizations.json in Resources */,
 				14867EC71E7AF4D2001D228A /* users_notes.json in Resources */,
 				14867EAF1E7AF4D2001D228A /* tagged_notes.json in Resources */,
 				14867E911E7AF4D2001D228A /* notes_with_user_id.json in Resources */,
@@ -1874,6 +1892,7 @@
 				CC9494191F379BE1002167B4 /* 373.json in Resources */,
 				14867E821E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
 				CC9494111F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
+				CCCF49BF201DD0E100268189 /* primary-key-users.json in Resources */,
 				14867E9D1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E731E7AF4D2001D228A /* bug-257.json in Resources */,
 				14867E671E7AF4D2001D228A /* bug-202-a.json in Resources */,
@@ -1946,6 +1965,7 @@
 				14867EA11E7AF4D2001D228A /* operation-types-users-b.json in Resources */,
 				14867E381E7AF4D2001D228A /* 225-a.json in Resources */,
 				14867E711E7AF4D2001D228A /* bug-254.json in Resources */,
+				CCCF49BD201DD0E100268189 /* primary-key-organizations.json in Resources */,
 				14867EC81E7AF4D2001D228A /* users_notes.json in Resources */,
 				14867EB01E7AF4D2001D228A /* tagged_notes.json in Resources */,
 				14867E921E7AF4D2001D228A /* notes_with_user_id.json in Resources */,
@@ -1958,6 +1978,7 @@
 				CC94941A1F379BE1002167B4 /* 373.json in Resources */,
 				14867E831E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
 				CC9494121F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
+				CCCF49C0201DD0E100268189 /* primary-key-users.json in Resources */,
 				14867E9E1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E741E7AF4D2001D228A /* bug-257.json in Resources */,
 				14867E681E7AF4D2001D228A /* bug-202-a.json in Resources */,
@@ -2183,6 +2204,7 @@
 				14867F201E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
 				14867EDE1E7AF4D2001D228A /* 179.xcdatamodeld in Sources */,
 				14867EE11E7AF4D2001D228A /* 202.xcdatamodeld in Sources */,
+				CCCF49B6201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				14867F261E7AF4D2001D228A /* Patients.xcdatamodeld in Sources */,
 				14867DEE1E7AF4D2001D228A /* LightweightMigrationModel.xcdatamodel in Sources */,
 				14867F1D1E7AF4D2001D228A /* NotesB.xcdatamodeld in Sources */,
@@ -2274,6 +2296,7 @@
 				14867F211E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
 				14867EDF1E7AF4D2001D228A /* 179.xcdatamodeld in Sources */,
 				14867EE21E7AF4D2001D228A /* 202.xcdatamodeld in Sources */,
+				CCCF49B7201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				14867F271E7AF4D2001D228A /* Patients.xcdatamodeld in Sources */,
 				14867DEF1E7AF4D2001D228A /* LightweightMigrationModel.xcdatamodel in Sources */,
 				14867F1E1E7AF4D2001D228A /* NotesB.xcdatamodeld in Sources */,
@@ -2365,6 +2388,7 @@
 				14867F221E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
 				14867EE01E7AF4D2001D228A /* 179.xcdatamodeld in Sources */,
 				14867EE31E7AF4D2001D228A /* 202.xcdatamodeld in Sources */,
+				CCCF49B8201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				14867F281E7AF4D2001D228A /* Patients.xcdatamodeld in Sources */,
 				14867DF01E7AF4D2001D228A /* LightweightMigrationModel.xcdatamodel in Sources */,
 				14867F1F1E7AF4D2001D228A /* NotesB.xcdatamodeld in Sources */,
@@ -3450,6 +3474,16 @@
 			);
 			currentVersion = CC9493F51F375517002167B4 /* 375-to-one.xcdatamodel */;
 			path = "375-to-one.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		CCCF49B4201DCE4200268189 /* DoublePrimaryKeys.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CCCF49B5201DCE4200268189 /* DoublePrimaryKeys.xcdatamodel */,
+			);
+			currentVersion = CCCF49B5201DCE4200268189 /* DoublePrimaryKeys.xcdatamodel */;
+			path = DoublePrimaryKeys.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
