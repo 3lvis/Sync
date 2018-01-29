@@ -311,6 +311,12 @@ extension NSManagedObject {
             } else {
                 guard let inverseEntityName = relationship.inverseRelationship?.name else { fatalError() }
                 childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
+
+                if ((childIDs as Any) as AnyObject).count > 0 {
+                    guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: managedObjectContext) else { fatalError() }
+                    guard let childIDsObject = childIDs as? NSObject else { fatalError() }
+                    childPredicate = NSPredicate(format: "ANY %K IN %@ OR %K = %@", entity.sync_localPrimaryKey(), childIDsObject, inverseEntityName, self)
+                }
             }
 
             try Sync.changes(children, inEntityNamed: childEntityName, predicate: childPredicate, parent: self, parentRelationship: relationship, inContext: managedObjectContext, operations: childOperations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)

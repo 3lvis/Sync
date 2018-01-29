@@ -363,7 +363,7 @@ class SyncTests: XCTestCase {
 
         XCTAssertEqual(Helper.countForEntity("SocialComment", inContext: dataStack.mainContext), 9)
         var comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format: "body = %@", "comment 1"), inContext: dataStack.mainContext)
-        XCTAssertEqual(comments.count, 3)
+        XCTAssertEqual(comments.count, 1)
 
         comments = Helper.fetchEntity("SocialComment", predicate: NSPredicate(format: "body = %@ AND story = %@", "comment 1", story), inContext: dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
@@ -528,7 +528,7 @@ class SyncTests: XCTestCase {
 
         XCTAssertEqual(Helper.countForEntity("AwesomeComment", inContext: dataStack.mainContext), 9)
         var comments = Helper.fetchEntity("AwesomeComment", predicate: NSPredicate(format: "body = %@", "comment 1"), inContext: dataStack.mainContext)
-        XCTAssertEqual(comments.count, 3)
+        XCTAssertEqual(comments.count, 1)
 
         comments = Helper.fetchEntity("AwesomeComment", predicate: NSPredicate(format: "body = %@ AND awesomeStory = %@", "comment 1", story), inContext: dataStack.mainContext)
         XCTAssertEqual(comments.count, 1)
@@ -1518,6 +1518,45 @@ class SyncTests: XCTestCase {
         dataStack.sync(forms, inEntityNamed: "Form", completion: nil)
         XCTAssertEqual(Helper.countForEntity("Form", inContext: dataStack.mainContext), 1)
         XCTAssertEqual(Helper.countForEntity("Field", inContext: dataStack.mainContext), 0)
+
+        dataStack.drop()
+    }
+
+    func testDoublePrimaryKeys() {
+        let dataStack = Helper.dataStackWithModelName("DoublePrimaryKeys")
+
+        let users = Helper.objectsFromJSON("primary-key-users.json") as! [[String: Any]]
+        dataStack.sync(users, inEntityNamed: "User", completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 1)
+
+        let organizations = Helper.objectsFromJSON("primary-key-organizations.json") as! [[String: Any]]
+        dataStack.sync(organizations, inEntityNamed: "Organization", completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 3)
+        XCTAssertEqual(Helper.countForEntity("Organization", inContext: dataStack.mainContext), 1)
+
+        let organizations2 = Helper.objectsFromJSON("primary-key-organizations-update.json") as! [[String: Any]]
+        dataStack.sync(organizations2, inEntityNamed: "Organization", completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Organization", inContext: dataStack.mainContext), 1)
+
+        dataStack.drop()
+    }
+
+    func test447() {
+        let dataStack = Helper.dataStackWithModelName("447")
+
+        let website = Helper.objectsFromJSON("447.json") as! [[String: Any]]
+        dataStack.sync(website, inEntityNamed: "Website", completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("Website", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Tag", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 1)
 
         dataStack.drop()
     }
