@@ -620,6 +620,9 @@
 		44CFE68C1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
 		44CFE68D1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
 		44CFE68E1E87BC650068185B /* Inflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CFE6861E87BC650068185B /* Inflections.m */; };
+		CC281260201EC11500408BF0 /* primary-key-organizations-update.json in Resources */ = {isa = PBXBuildFile; fileRef = CC28125F201EC11500408BF0 /* primary-key-organizations-update.json */; };
+		CC281261201EC11500408BF0 /* primary-key-organizations-update.json in Resources */ = {isa = PBXBuildFile; fileRef = CC28125F201EC11500408BF0 /* primary-key-organizations-update.json */; };
+		CC281262201EC11500408BF0 /* primary-key-organizations-update.json in Resources */ = {isa = PBXBuildFile; fileRef = CC28125F201EC11500408BF0 /* primary-key-organizations-update.json */; };
 		CC7A98731FB1EEFF00CBAC55 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC7A98711FB1EEFF00CBAC55 /* 447.xcdatamodeld */; };
 		CC7A98741FB1EEFF00CBAC55 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC7A98711FB1EEFF00CBAC55 /* 447.xcdatamodeld */; };
 		CC7A98751FB1EEFF00CBAC55 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC7A98711FB1EEFF00CBAC55 /* 447.xcdatamodeld */; };
@@ -920,6 +923,7 @@
 		44CFE67D1E87BBE60068185B /* PrimaryKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PrimaryKey.xcdatamodel; sourceTree = "<group>"; };
 		44CFE6851E87BC650068185B /* Inflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inflections.h; sourceTree = "<group>"; };
 		44CFE6861E87BC650068185B /* Inflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inflections.m; sourceTree = "<group>"; };
+		CC28125F201EC11500408BF0 /* primary-key-organizations-update.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "primary-key-organizations-update.json"; sourceTree = "<group>"; };
 		CC7A98721FB1EEFF00CBAC55 /* 413.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 413.xcdatamodel; sourceTree = "<group>"; };
 		CC7A98761FB1F18E00CBAC55 /* 447.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 447.json; sourceTree = "<group>"; };
 		CC9493F01F375251002167B4 /* 417.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 417.json; sourceTree = "<group>"; };
@@ -1207,6 +1211,7 @@
 				14867D5B1E7AF4D2001D228A /* users_company.json */,
 				14867D5C1E7AF4D2001D228A /* users_notes.json */,
 				CCCF49B9201DD0E100268189 /* primary-key-organizations.json */,
+				CC28125F201EC11500408BF0 /* primary-key-organizations-update.json */,
 				CCCF49BA201DD0E100268189 /* primary-key-users.json */,
 			);
 			path = JSONs;
@@ -1844,6 +1849,7 @@
 				14867E541E7AF4D2001D228A /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				14867E3C1E7AF4D2001D228A /* 237.json in Resources */,
 				14867E271E7AF4D2001D228A /* 157-locations-update.json in Resources */,
+				CC281260201EC11500408BF0 /* primary-key-organizations-update.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1931,6 +1937,7 @@
 				14867E551E7AF4D2001D228A /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				14867E3D1E7AF4D2001D228A /* 237.json in Resources */,
 				14867E281E7AF4D2001D228A /* 157-locations-update.json in Resources */,
+				CC281261201EC11500408BF0 /* primary-key-organizations-update.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2018,6 +2025,7 @@
 				14867E561E7AF4D2001D228A /* bug-113-custom_relationship_key_to_one.json in Resources */,
 				14867E3E1E7AF4D2001D228A /* 237.json in Resources */,
 				14867E291E7AF4D2001D228A /* 157-locations-update.json in Resources */,
+				CC281262201EC11500408BF0 /* primary-key-organizations-update.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

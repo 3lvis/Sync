@@ -4,7 +4,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="category" inverseEntity="Item" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="categories" inverseEntity="Organization" syncable="YES"/>
-        <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="defaultCategory" inverseEntity="User" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="defaultCategory" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>

@@ -1535,7 +1535,14 @@ class SyncTests: XCTestCase {
         dataStack.sync(organizations, inEntityNamed: "Organization", completion: nil)
 
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 3)
+        XCTAssertEqual(Helper.countForEntity("Organization", inContext: dataStack.mainContext), 1)
+
+        let organizations2 = Helper.objectsFromJSON("primary-key-organizations-update.json") as! [[String: Any]]
+        dataStack.sync(organizations2, inEntityNamed: "Organization", completion: nil)
+
+        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 2)
         XCTAssertEqual(Helper.countForEntity("Organization", inContext: dataStack.mainContext), 1)
 
         dataStack.drop()
