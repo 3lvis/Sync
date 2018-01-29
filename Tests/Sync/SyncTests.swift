@@ -1521,4 +1521,18 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
+
+    // https://github.com/3lvis/Sync/issues/438
+    func test438() {
+        let dataStack = Helper.dataStackWithModelName("438")
+
+        let data = Helper.objectsFromJSON("438.json") as! [[String: Any]]
+        dataStack.sync(data, inEntityNamed: "Programa", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Programa", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Ficha", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Atividad", inContext: dataStack.mainContext), 2)
+        XCTAssertEqual(Helper.countForEntity("Serie", inContext: dataStack.mainContext), 5)
+
+        dataStack.drop()
+    }
 }

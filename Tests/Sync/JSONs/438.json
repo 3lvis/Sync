@@ -1,0 +1,42 @@
+[
+  {
+    "cod": 577,
+    "fichas": [
+      {
+        "cod": 1075,
+        "atividades": [
+          {
+            "codigoAtividade": "7",
+            "series": [
+              {
+                "codSerie": 9443,
+              },
+              {
+                "codSerie": 9450,
+              }
+            ],
+          }
+        ],
+      },
+      {
+        "cod": 1079,
+        "atividades": [
+          {
+            "codigoAtividade": "38",
+            "series": [
+              {
+                "codSerie": 9487,
+              },
+              {
+                "codSerie": 9488,
+              },
+              {
+                "codSerie": 9489,
+              }
+            ],
+          }
+        ],
+      }
+    ]    
+  }
+]
