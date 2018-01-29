@@ -1,6 +1,8 @@
-[{
-		"id": 1,
-		"default_category": {
-			"id": 1
-		}
-	}]
+[
+  {
+    "id" : 1,
+    "default_category" : {
+      "id" : 1
+    }
+  }
+]
