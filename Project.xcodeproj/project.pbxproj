@@ -500,6 +500,8 @@
 		14F627781E7AE6B5001C2EA0 /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627791E7AE6CF001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F6277A1E7AE6E1001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AFF18CB1FE1F08900C4BC3D /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
+		1AFF18CC1FE1F08900C4BC3D /* 457-subcategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */; };
 		25A89F821F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
 		25A89F831F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
 		25A89F841F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
@@ -589,6 +591,13 @@
 		448BE4991E8764FB009677E0 /* RemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 448BE4971E8764FB009677E0 /* RemoteKey.xcdatamodeld */; };
 		448BE49A1E8764FB009677E0 /* RemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 448BE4971E8764FB009677E0 /* RemoteKey.xcdatamodeld */; };
 		448BE49B1E8764FB009677E0 /* RemoteKey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 448BE4971E8764FB009677E0 /* RemoteKey.xcdatamodeld */; };
+		4494AEA41FE5E1CE0064999E /* 457.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */; };
+		4494AEA51FE5E1CE0064999E /* 457.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */; };
+		4494AEA61FE5E1CE0064999E /* 457.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */; };
+		4494AEA71FE5E33D0064999E /* 457-subcategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */; };
+		4494AEA81FE5E33D0064999E /* 457-subcategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */; };
+		4494AEA91FE5E3400064999E /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
+		4494AEAA1FE5E3410064999E /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
 		44B212EF1E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
 		44B212F01E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
 		44B212F11E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
@@ -924,6 +933,8 @@
 		14E652291E809A68000E7CC6 /* remote_key.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = remote_key.json; sourceTree = "<group>"; };
 		14E6523C1E809E9C000E7CC6 /* NSPropertyDescription+SyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPropertyDescription+SyncTests.swift"; sourceTree = "<group>"; };
 		14E93C431DBCCD2800E3304E /* Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sync.h; sourceTree = "<group>"; };
+		1AFF18C91FE1F08800C4BC3D /* 457-products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "457-products.json"; sourceTree = "<group>"; };
+		1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "457-subcategories.json"; sourceTree = "<group>"; };
 		4458519C1E87BAF50025434E /* DictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTests.swift; sourceTree = "<group>"; };
 		4458519D1E87BAF50025434E /* ExportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportTests.swift; sourceTree = "<group>"; };
 		4458519E1E87BAF50025434E /* FillWithDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillWithDictionaryTests.swift; sourceTree = "<group>"; };
@@ -953,6 +964,7 @@
 		4474092C1E87BA4E0035B8DC /* PropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyMapper.h; sourceTree = "<group>"; };
 		4474092D1E87BA4E0035B8DC /* PropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyMapper.m; sourceTree = "<group>"; };
 		448BE4981E8764FB009677E0 /* RemoteKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RemoteKey.xcdatamodel; sourceTree = "<group>"; };
+		4494AEA31FE5E1CD0064999E /* 457.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 457.xcdatamodel; sourceTree = "<group>"; };
 		44968BF51DA0021300E71A53 /* NSArray+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSArray+Sync.swift"; sourceTree = "<group>"; };
 		44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+Sync.swift"; sourceTree = "<group>"; };
 		44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Sync.swift"; sourceTree = "<group>"; };
@@ -1228,6 +1240,8 @@
 				149FF9ED1E808DFB00617A63 /* 375.json */,
 				44BBBC711F9F026100590624 /* 412.json */,
 				CC9493F01F375251002167B4 /* 417.json */,
+				1AFF18C91FE1F08800C4BC3D /* 457-products.json */,
+				1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */,
 				44E38AEF2005E68C003E896B /* 422-one-to-many-delete-option-initial.json */,
 				44E38AEE2005E68C003E896B /* 422-one-to-many-delete-option-update.json */,
 				44E38AF02005E68D003E896B /* 422-one-to-many-insert-option-initial.json */,
@@ -1318,6 +1332,7 @@
 				CC9493F41F375517002167B4 /* 375-to-one.xcdatamodeld */,
 				149FF9E81E808C4400617A63 /* 375.xcdatamodeld */,
 				44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */,
+				4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */,
 				44E38AE32005927E003E896B /* 422ManyToMany.xcdatamodeld */,
 				44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */,
 				44E38AE52005927E003E896B /* 422OneToOne.xcdatamodeld */,
@@ -1855,6 +1870,7 @@
 				14867E751E7AF4D2001D228A /* bug-number-84.json in Resources */,
 				44E38AF92005E68D003E896B /* 422-one-to-many-delete-option-initial.json in Resources */,
 				14867E421E7AF4D2001D228A /* 277.json in Resources */,
+				1AFF18CC1FE1F08900C4BC3D /* 457-subcategories.json in Resources */,
 				44E38B0B2005EE70003E896B /* 422-many-to-many-insert-option-initial.json in Resources */,
 				14867E301E7AF4D2001D228A /* 225-a-null.json in Resources */,
 				14867E5A1E7AF4D2001D228A /* bug-125-light.json in Resources */,
@@ -1863,6 +1879,7 @@
 				44E38B142005EE70003E896B /* 422-many-to-many-delete-option-update.json in Resources */,
 				44E38B232005EEB2003E896B /* 422-one-to-one-update-option-initial.json in Resources */,
 				44BBBC721F9F026200590624 /* 412.json in Resources */,
+				1AFF18CB1FE1F08900C4BC3D /* 457-products.json in Resources */,
 				14867E451E7AF4D2001D228A /* 280.json in Resources */,
 				149FF9EE1E808DFB00617A63 /* 375.json in Resources */,
 				14867E391E7AF4D2001D228A /* 233.json in Resources */,
@@ -1992,6 +2009,7 @@
 				14867E161E7AF4D2001D228A /* 151-many-to-many-notes.json in Resources */,
 				14867E8E1E7AF4D2001D228A /* notes_for_user_a.json in Resources */,
 				14867EA01E7AF4D2001D228A /* operation-types-users-b.json in Resources */,
+				4494AEA91FE5E3400064999E /* 457-products.json in Resources */,
 				14867E371E7AF4D2001D228A /* 225-a.json in Resources */,
 				14867E701E7AF4D2001D228A /* bug-254.json in Resources */,
 				44E38B2D2005EEB2003E896B /* 422-one-to-one-delete-option-initial.json in Resources */,
@@ -2016,6 +2034,7 @@
 				14867E6D1E7AF4D2001D228A /* bug-239.json in Resources */,
 				14867E1F1E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC41E7AF4D2001D228A /* users_company.json in Resources */,
+				4494AEA71FE5E33D0064999E /* 457-subcategories.json in Resources */,
 				14867DDA1E7AF4D2001D228A /* note.json in Resources */,
 				14867DE01E7AF4D2001D228A /* users-with-nil.json in Resources */,
 				44E38B2A2005EEB2003E896B /* 422-one-to-one-insert-option-update.json in Resources */,
@@ -2094,6 +2113,7 @@
 				14867E171E7AF4D2001D228A /* 151-many-to-many-notes.json in Resources */,
 				14867E8F1E7AF4D2001D228A /* notes_for_user_a.json in Resources */,
 				14867EA11E7AF4D2001D228A /* operation-types-users-b.json in Resources */,
+				4494AEAA1FE5E3410064999E /* 457-products.json in Resources */,
 				14867E381E7AF4D2001D228A /* 225-a.json in Resources */,
 				14867E711E7AF4D2001D228A /* bug-254.json in Resources */,
 				44E38B2E2005EEB2003E896B /* 422-one-to-one-delete-option-initial.json in Resources */,
@@ -2118,6 +2138,7 @@
 				14867E6E1E7AF4D2001D228A /* bug-239.json in Resources */,
 				14867E201E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC51E7AF4D2001D228A /* users_company.json in Resources */,
+				4494AEA81FE5E33D0064999E /* 457-subcategories.json in Resources */,
 				14867DDB1E7AF4D2001D228A /* note.json in Resources */,
 				14867DE11E7AF4D2001D228A /* users-with-nil.json in Resources */,
 				44E38B2B2005EEB2003E896B /* 422-one-to-one-insert-option-update.json in Resources */,
@@ -2316,6 +2337,7 @@
 				14867EF01E7AF4D2001D228A /* 257.xcdatamodeld in Sources */,
 				14867DF11E7AF4D2001D228A /* ModelGroup.xcdatamodeld in Sources */,
 				14867F381E7AF4D2001D228A /* NSArray+SyncTests.swift in Sources */,
+				4494AEA41FE5E1CE0064999E /* 457.xcdatamodeld in Sources */,
 				14867EEA1E7AF4D2001D228A /* 239.xcdatamodeld in Sources */,
 				14867EF61E7AF4D2001D228A /* 277.xcdatamodeld in Sources */,
 				14867ECF1E7AF4D2001D228A /* 151-many-to-many.xcdatamodeld in Sources */,
@@ -2410,6 +2432,7 @@
 				14867EF11E7AF4D2001D228A /* 257.xcdatamodeld in Sources */,
 				14867DF21E7AF4D2001D228A /* ModelGroup.xcdatamodeld in Sources */,
 				14867F391E7AF4D2001D228A /* NSArray+SyncTests.swift in Sources */,
+				4494AEA51FE5E1CE0064999E /* 457.xcdatamodeld in Sources */,
 				14867EEB1E7AF4D2001D228A /* 239.xcdatamodeld in Sources */,
 				14867EF71E7AF4D2001D228A /* 277.xcdatamodeld in Sources */,
 				14867ED01E7AF4D2001D228A /* 151-many-to-many.xcdatamodeld in Sources */,
@@ -2504,6 +2527,7 @@
 				14867EF21E7AF4D2001D228A /* 257.xcdatamodeld in Sources */,
 				14867DF31E7AF4D2001D228A /* ModelGroup.xcdatamodeld in Sources */,
 				14867F3A1E7AF4D2001D228A /* NSArray+SyncTests.swift in Sources */,
+				4494AEA61FE5E1CE0064999E /* 457.xcdatamodeld in Sources */,
 				14867EEC1E7AF4D2001D228A /* 239.xcdatamodeld in Sources */,
 				14867EF81E7AF4D2001D228A /* 277.xcdatamodeld in Sources */,
 				14867ED11E7AF4D2001D228A /* 151-many-to-many.xcdatamodeld in Sources */,
@@ -3588,6 +3612,16 @@
 			);
 			currentVersion = 448BE4981E8764FB009677E0 /* RemoteKey.xcdatamodel */;
 			path = RemoteKey.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4494AEA31FE5E1CD0064999E /* 457.xcdatamodel */,
+			);
+			currentVersion = 4494AEA31FE5E1CD0064999E /* 457.xcdatamodel */;
+			path = 457.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

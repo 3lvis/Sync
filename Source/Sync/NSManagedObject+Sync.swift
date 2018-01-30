@@ -381,6 +381,7 @@ extension NSManagedObject {
      */
     func sync_toOneRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) {
         var filteredObjectDictionary: [String: Any]?
+        var jsonContainsRelationship = false
 
         if let customRelationshipName = relationship.customKey {
             if customRelationshipName.contains(".") {
@@ -388,16 +389,23 @@ extension NSManagedObject {
                     if let rootObject = dictionary[deepMappingRootKey] as? [String: Any] {
                         if let deepMappingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
                             filteredObjectDictionary = rootObject[deepMappingLeaveKey] as? [String: Any]
+                            jsonContainsRelationship = rootObject[deepMappingLeaveKey] != nil
                         }
                     }
                 }
             } else {
                 filteredObjectDictionary = dictionary[customRelationshipName] as? [String: Any]
+                jsonContainsRelationship = dictionary[customRelationshipName] != nil
             }
         } else if let result = dictionary[relationship.name.hyp_snakeCase()] as? [String: Any] {
             filteredObjectDictionary = result
         } else if let result = dictionary[relationship.name] as? [String: Any] {
             filteredObjectDictionary = result
+        }
+
+        // Check if the JSON contains key, so we know if we should delete null values
+        if !jsonContainsRelationship {
+            jsonContainsRelationship = dictionary[relationship.name.hyp_snakeCase()] != nil || dictionary[relationship.name] != nil
         }
 
         if let toOneObjectDictionary = filteredObjectDictionary {
@@ -415,7 +423,7 @@ extension NSManagedObject {
             if currentRelationship == nil || !(currentRelationship! as AnyObject).isEqual(object) {
                 setValue(object, forKey: relationship.name)
             }
-        } else {
+        } else if jsonContainsRelationship {
             let currentRelationship = self.value(forKey: relationship.name)
             if currentRelationship != nil {
                 setValue(nil, forKey: relationship.name)

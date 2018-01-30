@@ -1522,6 +1522,27 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
+    // https://github.com/3lvis/Sync/issues/457
+    func test457() {
+        let dataStack = Helper.dataStackWithModelName("457")
+        let subcats = Helper.objectsFromJSON("457-subcategories.json") as! [[String: Any]]
+
+        dataStack.sync(subcats, inEntityNamed: "Subcategory", completion: nil)
+        
+        XCTAssertEqual(Helper.countForEntity("Subcategory", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Category", inContext: dataStack.mainContext), 1)
+        
+        let products = Helper.objectsFromJSON("457-products.json") as! [[String: Any]]
+        dataStack.sync(products, inEntityNamed: "Product", completion: nil)
+
+        let result = Helper.fetchEntity("Product", inContext: dataStack.mainContext)
+        XCTAssertEqual(result.count, 1)
+        let subcat = result.first?.value(forKey:"subcategory") as! NSManagedObject
+        XCTAssertNotNil(subcat.value(forKey: "category"))
+        
+        dataStack.drop()
+    }
+  
     // https://github.com/3lvis/Sync/issues/422
 
     // -----------
@@ -1647,5 +1668,4 @@ class SyncTests: XCTestCase {
 
         dataStack.drop()
     }
-
 }
