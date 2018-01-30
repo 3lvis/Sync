@@ -1638,7 +1638,9 @@ class SyncTests: XCTestCase {
         let updated = Helper.objectsFromJSON("422-many-to-many-delete-option-update.json") as! [[String: Any]]
         dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .deleteRelationships], completion: nil)
         XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
+        // count the messages that user 1 has instead of counting all messages
+        let userMessageCount = Helper.countForEntity("Message", predicate: NSPredicate(format: "ANY users.id = 1"), inContext: dataStack.mainContext)
+        XCTAssertEqual(userMessageCount, 1)
 
         let updatedMessage = Helper.fetchEntity("Message", predicate: NSPredicate(format: "id = 102"), inContext: dataStack.mainContext).first
         XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "102")
@@ -1646,64 +1648,4 @@ class SyncTests: XCTestCase {
         dataStack.drop()
     }
 
-    // -----------
-    // One to one
-    // -----------
-
-    func test422OneToOneOperationOptionsInsert() {
-        let dataStack = Helper.dataStackWithModelName("422OneToOne")
-        let initial = Helper.objectsFromJSON("422-one-to-one-insert-option-initial.json") as! [[String: Any]]
-
-        dataStack.sync(initial, inEntityNamed: "User", completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
-
-        let updated = Helper.objectsFromJSON("422-one-to-one-insert-option-update.json") as! [[String: Any]]
-        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .insertRelationships], completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 2)
-
-        let updatedMessage = Helper.fetchEntity("Message", predicate: NSPredicate(format: "id = 101"), inContext: dataStack.mainContext).first
-        XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "101")
-
-        dataStack.drop()
-    }
-
-    func test422OneToOneOperationOptionsUpdateRelationships() {
-        let dataStack = Helper.dataStackWithModelName("422OneToOne")
-
-        let initial = Helper.objectsFromJSON("422-one-to-one-update-option-initial.json") as! [[String: Any]]
-        dataStack.sync(initial, inEntityNamed: "User", completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
-
-        let updated = Helper.objectsFromJSON("422-one-to-one-update-option-update.json") as! [[String: Any]]
-        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .updateRelationships], completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
-
-        let updatedMessage = Helper.fetchEntity("Message", predicate: NSPredicate(format: "id = 101"), inContext: dataStack.mainContext).first
-        XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "updated-101")
-
-        dataStack.drop()
-    }
-
-    func test422OneToOneOperationOptionsDeleteRelationships() {
-        let dataStack = Helper.dataStackWithModelName("422OneToOne")
-
-        let initial = Helper.objectsFromJSON("422-one-to-one-delete-option-initial.json") as! [[String: Any]]
-        dataStack.sync(initial, inEntityNamed: "User", completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 2)
-
-        let updated = Helper.objectsFromJSON("422-one-to-one-delete-option-update.json") as! [[String: Any]]
-        dataStack.sync(updated, inEntityNamed: "User", operations: [.insert, .update, .delete, .deleteRelationships], completion: nil)
-        XCTAssertEqual(Helper.countForEntity("User", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("Message", inContext: dataStack.mainContext), 1)
-
-        let updatedMessage = Helper.fetchEntity("Message", predicate: NSPredicate(format: "id = 102"), inContext: dataStack.mainContext).first
-        XCTAssertEqual(updatedMessage?.value(forKey: "text") as? String, "102")
-
-        dataStack.drop()
-    }
 }
