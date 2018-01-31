@@ -19,13 +19,13 @@
     "title":"story 2",
     "comments":[
       {
-        "body":"comment 1"
+        "body":"comment 4"
       },
       {
-        "body":"comment 2"
+        "body":"comment 5"
       },
       {
-        "body":"comment 3"
+        "body":"comment 6"
       }
     ]
   },
@@ -34,13 +34,13 @@
     "title":"story 3",
     "comments":[
       {
-        "body":"comment 1"
+        "body":"comment 7"
       },
       {
-        "body":"comment 2"
+        "body":"comment 8"
       },
       {
-        "body":"comment 3"
+        "body":"comment 9"
       }
     ]
   }
