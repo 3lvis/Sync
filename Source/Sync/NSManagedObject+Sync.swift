@@ -319,7 +319,7 @@ extension NSManagedObject {
                 childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
 
                 if ((childIDs as Any) as AnyObject).count > 0 {
-                    guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: managedObjectContext) else { fatalError() }
+                    guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context) else { fatalError() }
                     guard let childIDsObject = childIDs as? NSObject else { fatalError() }
                     childPredicate = NSPredicate(format: "ANY %K IN %@ OR %K = %@", entity.sync_localPrimaryKey(), childIDsObject, inverseEntityName, self)
                 }
