@@ -692,6 +692,24 @@
 		44E38B322005EEB2003E896B /* 422-one-to-one-insert-option-initial.json in Resources */ = {isa = PBXBuildFile; fileRef = 44E38B222005EEB2003E896B /* 422-one-to-one-insert-option-initial.json */; };
 		44E38B332005EEB2003E896B /* 422-one-to-one-insert-option-initial.json in Resources */ = {isa = PBXBuildFile; fileRef = 44E38B222005EEB2003E896B /* 422-one-to-one-insert-option-initial.json */; };
 		44E38B342005EEB2003E896B /* 422-one-to-one-insert-option-initial.json in Resources */ = {isa = PBXBuildFile; fileRef = 44E38B222005EEB2003E896B /* 422-one-to-one-insert-option-initial.json */; };
+		CC86E0A120216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
+		CC86E0A220216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
+		CC86E0A320216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
+		CC86E0A820216FF400AA0947 /* primary-key-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A420216FF300AA0947 /* primary-key-organizations.json */; };
+		CC86E0A920216FF400AA0947 /* primary-key-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A420216FF300AA0947 /* primary-key-organizations.json */; };
+		CC86E0AA20216FF400AA0947 /* primary-key-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A420216FF300AA0947 /* primary-key-organizations.json */; };
+		CC86E0AB20216FF400AA0947 /* 447.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A520216FF300AA0947 /* 447.json */; };
+		CC86E0AC20216FF400AA0947 /* 447.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A520216FF300AA0947 /* 447.json */; };
+		CC86E0AD20216FF400AA0947 /* 447.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A520216FF300AA0947 /* 447.json */; };
+		CC86E0AE20216FF400AA0947 /* primary-key-users.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A620216FF400AA0947 /* primary-key-users.json */; };
+		CC86E0AF20216FF400AA0947 /* primary-key-users.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A620216FF400AA0947 /* primary-key-users.json */; };
+		CC86E0B020216FF400AA0947 /* primary-key-users.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A620216FF400AA0947 /* primary-key-users.json */; };
+		CC86E0B120216FF400AA0947 /* primary-key-organizations-update.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A720216FF400AA0947 /* primary-key-organizations-update.json */; };
+		CC86E0B220216FF400AA0947 /* primary-key-organizations-update.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A720216FF400AA0947 /* primary-key-organizations-update.json */; };
+		CC86E0B320216FF400AA0947 /* primary-key-organizations-update.json in Resources */ = {isa = PBXBuildFile; fileRef = CC86E0A720216FF400AA0947 /* primary-key-organizations-update.json */; };
+		CC86E0B62021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E0B42021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld */; };
+		CC86E0B72021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E0B42021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld */; };
+		CC86E0B82021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E0B42021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld */; };
 		CC9493F11F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F21F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
 		CC9493F31F375251002167B4 /* 417.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9493F01F375251002167B4 /* 417.json */; };
@@ -1001,6 +1019,12 @@
 		44E38B202005EEB2003E896B /* 422-one-to-one-delete-option-initial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "422-one-to-one-delete-option-initial.json"; sourceTree = "<group>"; };
 		44E38B212005EEB2003E896B /* 422-one-to-one-delete-option-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "422-one-to-one-delete-option-update.json"; sourceTree = "<group>"; };
 		44E38B222005EEB2003E896B /* 422-one-to-one-insert-option-initial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "422-one-to-one-insert-option-initial.json"; sourceTree = "<group>"; };
+		CC86E0A020216FCC00AA0947 /* 413.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 413.xcdatamodel; sourceTree = "<group>"; };
+		CC86E0A420216FF300AA0947 /* primary-key-organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "primary-key-organizations.json"; sourceTree = "<group>"; };
+		CC86E0A520216FF300AA0947 /* 447.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 447.json; sourceTree = "<group>"; };
+		CC86E0A620216FF400AA0947 /* primary-key-users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "primary-key-users.json"; sourceTree = "<group>"; };
+		CC86E0A720216FF400AA0947 /* primary-key-organizations-update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "primary-key-organizations-update.json"; sourceTree = "<group>"; };
+		CC86E0B52021704E00AA0947 /* DoublePrimaryKeys.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoublePrimaryKeys.xcdatamodel; sourceTree = "<group>"; };
 		CC9493F01F375251002167B4 /* 417.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 417.json; sourceTree = "<group>"; };
 		CC9493F51F375517002167B4 /* 375-to-one.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "375-to-one.xcdatamodel"; sourceTree = "<group>"; };
 		CC9493FD1F3755AD002167B4 /* 375-to-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-one.json"; sourceTree = "<group>"; };
@@ -1240,26 +1264,27 @@
 				149FF9ED1E808DFB00617A63 /* 375.json */,
 				44BBBC711F9F026100590624 /* 412.json */,
 				CC9493F01F375251002167B4 /* 417.json */,
-				1AFF18C91FE1F08800C4BC3D /* 457-products.json */,
-				1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */,
-				44E38AEF2005E68C003E896B /* 422-one-to-many-delete-option-initial.json */,
-				44E38AEE2005E68C003E896B /* 422-one-to-many-delete-option-update.json */,
-				44E38AF02005E68D003E896B /* 422-one-to-many-insert-option-initial.json */,
-				44E38AF12005E68D003E896B /* 422-one-to-many-insert-option-update.json */,
-				44E38AF22005E68D003E896B /* 422-one-to-many-update-option-initial.json */,
-				44E38AED2005E68C003E896B /* 422-one-to-many-update-option-update.json */,
 				44E38B0A2005EE70003E896B /* 422-many-to-many-delete-option-initial.json */,
 				44E38B082005EE6F003E896B /* 422-many-to-many-delete-option-update.json */,
 				44E38B052005EE6F003E896B /* 422-many-to-many-insert-option-initial.json */,
 				44E38B062005EE6F003E896B /* 422-many-to-many-insert-option-update.json */,
 				44E38B072005EE6F003E896B /* 422-many-to-many-update-option-initial.json */,
 				44E38B092005EE70003E896B /* 422-many-to-many-update-option-update.json */,
+				44E38AEF2005E68C003E896B /* 422-one-to-many-delete-option-initial.json */,
+				44E38AEE2005E68C003E896B /* 422-one-to-many-delete-option-update.json */,
+				44E38AF02005E68D003E896B /* 422-one-to-many-insert-option-initial.json */,
+				44E38AF12005E68D003E896B /* 422-one-to-many-insert-option-update.json */,
+				44E38AF22005E68D003E896B /* 422-one-to-many-update-option-initial.json */,
+				44E38AED2005E68C003E896B /* 422-one-to-many-update-option-update.json */,
 				44E38B202005EEB2003E896B /* 422-one-to-one-delete-option-initial.json */,
 				44E38B212005EEB2003E896B /* 422-one-to-one-delete-option-update.json */,
 				44E38B222005EEB2003E896B /* 422-one-to-one-insert-option-initial.json */,
 				44E38B1F2005EEB1003E896B /* 422-one-to-one-insert-option-update.json */,
 				44E38B1D2005EEB1003E896B /* 422-one-to-one-update-option-initial.json */,
 				44E38B1E2005EEB1003E896B /* 422-one-to-one-update-option-update.json */,
+				CC86E0A520216FF300AA0947 /* 447.json */,
+				1AFF18C91FE1F08800C4BC3D /* 457-products.json */,
+				1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */,
 				14867D351E7AF4D2001D228A /* bug-113-comments-no-id.json */,
 				14867D361E7AF4D2001D228A /* bug-113-custom_relationship_key_to_one.json */,
 				14867D371E7AF4D2001D228A /* bug-113-stories-comments-no-ids.json */,
@@ -1289,6 +1314,9 @@
 				14867D4F1E7AF4D2001D228A /* operation-types-users-b.json */,
 				14867D501E7AF4D2001D228A /* organizations-tree.json */,
 				14867D511E7AF4D2001D228A /* patients.json */,
+				CC86E0A720216FF400AA0947 /* primary-key-organizations-update.json */,
+				CC86E0A420216FF300AA0947 /* primary-key-organizations.json */,
+				CC86E0A620216FF400AA0947 /* primary-key-users.json */,
 				14E652291E809A68000E7CC6 /* remote_key.json */,
 				14867D521E7AF4D2001D228A /* stories-comments-no-ids.json */,
 				14867D531E7AF4D2001D228A /* story-summarize.json */,
@@ -1332,13 +1360,15 @@
 				CC9493F41F375517002167B4 /* 375-to-one.xcdatamodeld */,
 				149FF9E81E808C4400617A63 /* 375.xcdatamodeld */,
 				44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */,
-				4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */,
 				44E38AE32005927E003E896B /* 422ManyToMany.xcdatamodeld */,
 				44E38ADE20059146003E896B /* 422OneToMany.xcdatamodeld */,
 				44E38AE52005927E003E896B /* 422OneToOne.xcdatamodeld */,
+				CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */,
+				4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */,
 				14867D881E7AF4D2001D228A /* Camelcase.xcdatamodeld */,
 				14867D8A1E7AF4D2001D228A /* Contacts.xcdatamodeld */,
 				14867D8C1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld */,
+				CC86E0B42021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld */,
 				14867D8E1E7AF4D2001D228A /* id.xcdatamodeld */,
 				14867D901E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld */,
 				14867D921E7AF4D2001D228A /* Markets.xcdatamodeld */,
@@ -1886,6 +1916,7 @@
 				14867E4E1E7AF4D2001D228A /* 3ca82a0.json in Resources */,
 				CC9494141F379401002167B4 /* 375-to-one-speeches.json in Resources */,
 				14867E1B1E7AF4D2001D228A /* 151-to-many-notes.json in Resources */,
+				CC86E0AB20216FF400AA0947 /* 447.json in Resources */,
 				14867EB41E7AF4D2001D228A /* to-one-snakecase.json in Resources */,
 				14867E511E7AF4D2001D228A /* bug-113-comments-no-id.json in Resources */,
 				14867E931E7AF4D2001D228A /* notes_with_user_id_custom.json in Resources */,
@@ -1928,6 +1959,7 @@
 				14867E721E7AF4D2001D228A /* bug-257.json in Resources */,
 				14867E661E7AF4D2001D228A /* bug-202-a.json in Resources */,
 				44E38B262005EEB2003E896B /* 422-one-to-one-update-option-update.json in Resources */,
+				CC86E0A820216FF400AA0947 /* primary-key-organizations.json in Resources */,
 				14867E6C1E7AF4D2001D228A /* bug-239.json in Resources */,
 				14867E1E1E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC31E7AF4D2001D228A /* users_company.json in Resources */,
@@ -1940,7 +1972,9 @@
 				14867DDC1E7AF4D2001D228A /* simple.json in Resources */,
 				14867E2D1E7AF4D2001D228A /* 225-a-empty.json in Resources */,
 				14867E571E7AF4D2001D228A /* bug-113-stories-comments-no-ids.json in Resources */,
+				CC86E0AE20216FF400AA0947 /* primary-key-users.json in Resources */,
 				14867E3F1E7AF4D2001D228A /* 265.json in Resources */,
+				CC86E0B120216FF400AA0947 /* primary-key-organizations-update.json in Resources */,
 				44E38B1A2005EE70003E896B /* 422-many-to-many-delete-option-initial.json in Resources */,
 				44E38B2F2005EEB2003E896B /* 422-one-to-one-delete-option-update.json in Resources */,
 				CC9493F11F375251002167B4 /* 417.json in Resources */,
@@ -1990,6 +2024,7 @@
 				14867E1C1E7AF4D2001D228A /* 151-to-many-notes.json in Resources */,
 				14867EB51E7AF4D2001D228A /* to-one-snakecase.json in Resources */,
 				14867E521E7AF4D2001D228A /* bug-113-comments-no-id.json in Resources */,
+				CC86E0AC20216FF400AA0947 /* 447.json in Resources */,
 				14867E941E7AF4D2001D228A /* notes_with_user_id_custom.json in Resources */,
 				14867DE61E7AF4D2001D228A /* users.json in Resources */,
 				14867EB21E7AF4D2001D228A /* to-one-camelcase.json in Resources */,
@@ -2032,6 +2067,7 @@
 				14867E671E7AF4D2001D228A /* bug-202-a.json in Resources */,
 				44E38B272005EEB2003E896B /* 422-one-to-one-update-option-update.json in Resources */,
 				14867E6D1E7AF4D2001D228A /* bug-239.json in Resources */,
+				CC86E0A920216FF400AA0947 /* primary-key-organizations.json in Resources */,
 				14867E1F1E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC41E7AF4D2001D228A /* users_company.json in Resources */,
 				4494AEA71FE5E33D0064999E /* 457-subcategories.json in Resources */,
@@ -2044,7 +2080,9 @@
 				14867DDD1E7AF4D2001D228A /* simple.json in Resources */,
 				14867E2E1E7AF4D2001D228A /* 225-a-empty.json in Resources */,
 				14867E581E7AF4D2001D228A /* bug-113-stories-comments-no-ids.json in Resources */,
+				CC86E0AF20216FF400AA0947 /* primary-key-users.json in Resources */,
 				14867E401E7AF4D2001D228A /* 265.json in Resources */,
+				CC86E0B220216FF400AA0947 /* primary-key-organizations-update.json in Resources */,
 				44E38B1B2005EE70003E896B /* 422-many-to-many-delete-option-initial.json in Resources */,
 				44E38B302005EEB2003E896B /* 422-one-to-one-delete-option-update.json in Resources */,
 				CC9493F21F375251002167B4 /* 417.json in Resources */,
@@ -2094,6 +2132,7 @@
 				14867E1D1E7AF4D2001D228A /* 151-to-many-notes.json in Resources */,
 				14867EB61E7AF4D2001D228A /* to-one-snakecase.json in Resources */,
 				14867E531E7AF4D2001D228A /* bug-113-comments-no-id.json in Resources */,
+				CC86E0AD20216FF400AA0947 /* 447.json in Resources */,
 				14867E951E7AF4D2001D228A /* notes_with_user_id_custom.json in Resources */,
 				14867DE71E7AF4D2001D228A /* users.json in Resources */,
 				14867EB31E7AF4D2001D228A /* to-one-camelcase.json in Resources */,
@@ -2136,6 +2175,7 @@
 				14867E681E7AF4D2001D228A /* bug-202-a.json in Resources */,
 				44E38B282005EEB2003E896B /* 422-one-to-one-update-option-update.json in Resources */,
 				14867E6E1E7AF4D2001D228A /* bug-239.json in Resources */,
+				CC86E0AA20216FF400AA0947 /* primary-key-organizations.json in Resources */,
 				14867E201E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC51E7AF4D2001D228A /* users_company.json in Resources */,
 				4494AEA81FE5E33D0064999E /* 457-subcategories.json in Resources */,
@@ -2148,7 +2188,9 @@
 				14867DDE1E7AF4D2001D228A /* simple.json in Resources */,
 				14867E2F1E7AF4D2001D228A /* 225-a-empty.json in Resources */,
 				14867E591E7AF4D2001D228A /* bug-113-stories-comments-no-ids.json in Resources */,
+				CC86E0B020216FF400AA0947 /* primary-key-users.json in Resources */,
 				14867E411E7AF4D2001D228A /* 265.json in Resources */,
+				CC86E0B320216FF400AA0947 /* primary-key-organizations-update.json in Resources */,
 				44E38B1C2005EE70003E896B /* 422-many-to-many-delete-option-initial.json in Resources */,
 				44E38B312005EEB2003E896B /* 422-one-to-one-delete-option-update.json in Resources */,
 				CC9493F31F375251002167B4 /* 417.json in Resources */,
@@ -2349,6 +2391,7 @@
 				14867F0E1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14867F471E7AF4D2001D228A /* SyncDelegateTests.swift in Sources */,
 				14867F1A1E7AF4D2001D228A /* Notes.xcdatamodeld in Sources */,
+				CC86E0A120216FCC00AA0947 /* 447.xcdatamodeld in Sources */,
 				14867EE71E7AF4D2001D228A /* 233.xcdatamodeld in Sources */,
 				445851DC1E87BAF60025434E /* Model.xcdatamodeld in Sources */,
 				14867F0B1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
@@ -2362,6 +2405,7 @@
 				44E38AE72005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
 				14867F141E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F441E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
+				CC86E0B62021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				44CFE67E1E87BBE60068185B /* PrimaryKeyTests.m in Sources */,
 				14867EDB1E7AF4D2001D228A /* 157.xcdatamodeld in Sources */,
 				14867F201E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
@@ -2444,6 +2488,7 @@
 				14867F0F1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14867F481E7AF4D2001D228A /* SyncDelegateTests.swift in Sources */,
 				14867F1B1E7AF4D2001D228A /* Notes.xcdatamodeld in Sources */,
+				CC86E0A220216FCC00AA0947 /* 447.xcdatamodeld in Sources */,
 				14867EE81E7AF4D2001D228A /* 233.xcdatamodeld in Sources */,
 				445851DD1E87BAF60025434E /* Model.xcdatamodeld in Sources */,
 				14867F0C1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
@@ -2457,6 +2502,7 @@
 				44E38AE82005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
 				14867F151E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F451E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
+				CC86E0B72021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				44CFE67F1E87BBE70068185B /* PrimaryKeyTests.m in Sources */,
 				14867EDC1E7AF4D2001D228A /* 157.xcdatamodeld in Sources */,
 				14867F211E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
@@ -2539,6 +2585,7 @@
 				14867F101E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
 				14867F491E7AF4D2001D228A /* SyncDelegateTests.swift in Sources */,
 				14867F1C1E7AF4D2001D228A /* Notes.xcdatamodeld in Sources */,
+				CC86E0A320216FCC00AA0947 /* 447.xcdatamodeld in Sources */,
 				14867EE91E7AF4D2001D228A /* 233.xcdatamodeld in Sources */,
 				445851DE1E87BAF60025434E /* Model.xcdatamodeld in Sources */,
 				14867F0D1E7AF4D2001D228A /* Contacts.xcdatamodeld in Sources */,
@@ -2552,6 +2599,7 @@
 				44E38AE92005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
 				14867F161E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F461E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
+				CC86E0B82021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				44CFE6801E87BBE70068185B /* PrimaryKeyTests.m in Sources */,
 				14867EDD1E7AF4D2001D228A /* 157.xcdatamodeld in Sources */,
 				14867F221E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
@@ -3672,6 +3720,26 @@
 			);
 			currentVersion = 44E38AE62005927E003E896B /* 422OneToOne.xcdatamodel */;
 			path = 422OneToOne.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC86E0A020216FCC00AA0947 /* 413.xcdatamodel */,
+			);
+			currentVersion = CC86E0A020216FCC00AA0947 /* 413.xcdatamodel */;
+			path = 447.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		CC86E0B42021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC86E0B52021704E00AA0947 /* DoublePrimaryKeys.xcdatamodel */,
+			);
+			currentVersion = CC86E0B52021704E00AA0947 /* DoublePrimaryKeys.xcdatamodel */;
+			path = DoublePrimaryKeys.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
