@@ -23,6 +23,8 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
             value = [NSNull null];
         } else if ([value isKindOfClass:[NSDate class]]) {
             value = [dateFormatter stringFromDate:value];
+        } else if ([value isKindOfClass:[NSUUID class]]) {
+            value = [value UUIDString];
         } else if (customTransformerName) {
             NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
             if (transformer) {
@@ -204,6 +206,9 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
 
     BOOL numberValueAndDateAttribute    = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSDate class]);
+    
+    BOOL stringValueAndUUIDAttribute    = ([remoteValue isKindOfClass:[NSString class]] &&
+                                           attributedClass == [NSUUID class]);
 
     BOOL dataAttribute                  = (attributedClass == [NSData class]);
 
@@ -225,6 +230,8 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
         value = [NSDate dateFromDateString:remoteValue];
     } else if (numberValueAndDateAttribute) {
         value = [NSDate dateFromUnixTimestampNumber:remoteValue];
+    } else if (stringValueAndUUIDAttribute) {
+        value = [[NSUUID alloc] initWithUUIDString:remoteValue];
     } else if (dataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
     } else if (numberValueAndDecimalAttribute) {
