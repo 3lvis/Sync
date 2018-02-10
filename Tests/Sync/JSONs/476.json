@@ -1,0 +1,35 @@
+[
+  {
+    "userWeight": [
+      {
+        "isDeleted": false,
+        "measuredAt": "2018-01-25T21:00:00.000Z",
+        "weightValue": 82.299999999999997
+      },
+      {
+        "isDeleted": true,
+        "measuredAt": "2018-02-01T21:00:00.000Z",
+        "weightValue": 63.299999999999997
+      },
+      {
+        "isDeleted": false,
+        "measuredAt": "2018-02-07T21:00:00.000Z",
+        "weightValue": 64.299999999999997
+      },
+      {
+        "isDeleted": false,
+        "measuredAt": "2018-02-05T21:00:00.000Z",
+        "weightValue": 65.299999999999997
+      },
+      {
+        "isDeleted": false,
+        "measuredAt": "2018-02-09T21:00:00.000Z",
+        "weightValue": 69.5
+      }
+    ],
+    "_id": "YMBG9ZoSw57Zd77XT",
+    "createdBy": "5PqJrXFLwQNLaYyeD",
+    "userLastWeight": 69.5,
+    "createdAt": "2018-02-09T12:22:39.573Z"
+  }
+]
