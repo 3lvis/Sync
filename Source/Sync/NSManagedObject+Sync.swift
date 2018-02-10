@@ -319,7 +319,6 @@ extension NSManagedObject {
                 } else {
                     guard let inverseEntityName = relationship.inverseRelationship?.name else { fatalError() }
                     let primaryKeyAttribute = entity.sync_primaryKeyAttribute()
-
                     let ids = childrenIDs.flatMap { value(forAttributeDescription: primaryKeyAttribute, usingRemoteValue: $0) }
                     childPredicate = NSPredicate(format: "ANY %K IN %@ OR %K = %@", entity.sync_localPrimaryKey(), ids, inverseEntityName, self)
                 }
