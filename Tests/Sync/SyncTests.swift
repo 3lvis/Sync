@@ -1718,7 +1718,7 @@ class SyncTests: XCTestCase {
         dataStack.sync(data, inEntityNamed: "FitnessProfile", completion: nil)
 
         XCTAssertEqual(Helper.countForEntity("FitnessProfile", inContext: dataStack.mainContext), 1)
-        XCTAssertEqual(Helper.countForEntity("UserWeight", inContext: dataStack.mainContext), 5)
+        XCTAssertEqual(Helper.countForEntity("UserWeight", inContext: dataStack.mainContext), 1)
 
         dataStack.drop()
     }
