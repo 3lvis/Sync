@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "14975BE71DBC368B0024901A"
+               BuildableName = "tvOSTests.xctest"
+               BlueprintName = "tvOSTests"
+               ReferencedContainer = "container:Project.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "14241E8A1DBC39690042ED81"
+            BuildableName = "Sync.framework"
+            BlueprintName = "Sync-tvOS"
+            ReferencedContainer = "container:Project.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
