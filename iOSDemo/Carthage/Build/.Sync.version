@@ -1,9 +1,27 @@
 {
-  "commitish" : "4.0.3",
+  "Mac" : [
+    {
+      "name" : "Sync",
+      "hash" : "2797183da7448fff5975a0d2b4894ff2c3c47f72f0759f941b2fc5e40dbfd2ce"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "Sync",
+      "hash" : "b52728199d34be073b8d34e7d7a5cb570b73b64d79afd3a7b05e99cf390f9261"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "Sync",
+      "hash" : "21295409eb17d8c8bb1b5ca037afcb337dad84f58b51e54a2c2f2c04a44cb8a4"
+    }
+  ],
+  "commitish" : "4.1.1",
   "iOS" : [
     {
       "name" : "Sync",
-      "hash" : "e38ddb444826f90a823d94710bd0fc4f5a9b6fed2093647118bd03cd5e18479e"
+      "hash" : "64d3d524ac7e11d4db22fd21e656e296f0289b69d41cbe5205ad70b1ac7156e2"
     }
   ]
 }
