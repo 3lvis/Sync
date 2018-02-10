@@ -321,7 +321,17 @@ extension NSManagedObject {
                 if ((childIDs as Any) as AnyObject).count > 0 {
                     guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context) else { fatalError() }
                     guard let childIDsObject = childIDs as? NSObject else { fatalError() }
-                    childPredicate = NSPredicate(format: "ANY %K IN %@ OR %K = %@", entity.sync_localPrimaryKey(), childIDsObject, inverseEntityName, self)
+                    let primaryKeyAttribute = entity.sync_primaryKeyAttribute()
+
+                    var ids = [Any]()
+                    let childrenIDs = (((childIDsObject as Any) as AnyObject) as? NSArray) ?? NSArray()
+                    for id in childrenIDs {
+                        if let newID = value(forAttributeDescription: primaryKeyAttribute, usingRemoteValue: id) {
+                            ids.append(newID)
+                        }
+                    }
+
+                    childPredicate = NSPredicate(format: "ANY %K IN %@ OR %K = %@", entity.sync_localPrimaryKey(), ids, inverseEntityName, self)
                 }
             }
 
