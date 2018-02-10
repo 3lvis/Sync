@@ -307,30 +307,20 @@ extension NSManagedObject {
             var childPredicate: NSPredicate?
             let manyToMany = inverseIsToMany && relationship.isToMany
             var childOperations = updatedOperations
+            let childrenIDs = (((childIDs as Any) as AnyObject) as? NSArray) ?? NSArray()
+
             if manyToMany {
                 childOperations.remove(.delete)
-                if ((childIDs as Any) as AnyObject).count > 0 {
-                    guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context) else { fatalError() }
-                    guard let childIDsObject = childIDs as? NSObject else { fatalError() }
-                    childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), childIDsObject)
-                }
-            } else {
-                guard let inverseEntityName = relationship.inverseRelationship?.name else { fatalError() }
-                childPredicate = NSPredicate(format: "%K = %@", inverseEntityName, self)
+            }
 
-                if ((childIDs as Any) as AnyObject).count > 0 {
-                    guard let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context) else { fatalError() }
-                    guard let childIDsObject = childIDs as? NSObject else { fatalError() }
+            if let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context), childrenIDs.count > 0 {
+                if manyToMany {
+                    childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), childrenIDs)
+                } else {
+                    guard let inverseEntityName = relationship.inverseRelationship?.name else { fatalError() }
                     let primaryKeyAttribute = entity.sync_primaryKeyAttribute()
 
-                    var ids = [Any]()
-                    let childrenIDs = (((childIDsObject as Any) as AnyObject) as? NSArray) ?? NSArray()
-                    for id in childrenIDs {
-                        if let newID = value(forAttributeDescription: primaryKeyAttribute, usingRemoteValue: id) {
-                            ids.append(newID)
-                        }
-                    }
-
+                    let ids = childrenIDs.flatMap { value(forAttributeDescription: primaryKeyAttribute, usingRemoteValue: $0) }
                     childPredicate = NSPredicate(format: "ANY %K IN %@ OR %K = %@", entity.sync_localPrimaryKey(), ids, inverseEntityName, self)
                 }
             }
