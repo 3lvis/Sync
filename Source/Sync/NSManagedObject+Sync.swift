@@ -313,7 +313,7 @@ extension NSManagedObject {
                 childOperations.remove(.delete)
             }
 
-            if let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context), childrenIDs.count > 0 {
+            if let entity = NSEntityDescription.entity(forEntityName: childEntityName, in: context) {
                 if manyToMany {
                     childPredicate = NSPredicate(format: "ANY %K IN %@", entity.sync_localPrimaryKey(), childrenIDs)
                 } else {
