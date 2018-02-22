@@ -134,6 +134,29 @@ static NSString * const PropertyMapperNestedAttributesKey = @"attributes";
                              andRelationshipType:relationshipType];
 }
 
+- (NSDictionary<NSString *, id> *)buildDbObjectWithFieldName:(NSString *)fieldName fieldValue:(id)fieldValue object:(NSMutableDictionary *)incoming {
+    
+    NSMutableDictionary *currentObj = incoming;
+    NSArray *split = [fieldName componentsSeparatedByString:@"."];
+    NSRange range = NSMakeRange(0, split.count - 1);
+    NSArray *components = [split subarrayWithRange:range];
+    
+    for(NSString *key in components) {
+        id currentValue = currentObj[key];
+        if(!currentValue) {
+            [currentObj setObject:[[NSMutableDictionary alloc] init] forKey: key];
+        }
+        if(currentObj[key]) {
+            currentObj = currentObj[key];
+        }
+    }
+    
+    NSString *lastKey = split.lastObject;
+    [currentObj setObject:fieldValue forKey:lastKey];
+    
+    return incoming;
+}
+
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
                                                            parent:( NSManagedObject * _Nullable )parent
                                               usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
@@ -150,7 +173,24 @@ static NSString * const PropertyMapperNestedAttributesKey = @"attributes";
                     NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription
                                                            usingRelationshipType:relationshipType
                                                                   inflectionType:inflectionType];
-                    managedObjectAttributes[remoteKey] = value;
+                    
+                    NSMutableDictionary *currentObj = managedObjectAttributes;
+                    NSArray *split = [remoteKey componentsSeparatedByString:@"."];
+                    NSRange range = NSMakeRange(0, split.count - 1);
+                    NSArray *components = [split subarrayWithRange:range];
+                    
+                    for(NSString *key in components) {
+                        id currentValue = currentObj[key];
+                        if(!currentValue) {
+                            [currentObj setObject:[[NSMutableDictionary alloc] init] forKey: key];
+                        }
+                        if(currentObj[key]) {
+                            currentObj = currentObj[key];
+                        }
+                    }
+                    
+                    NSString *lastKey = split.lastObject;
+                    [currentObj setObject:value forKey:lastKey];
                 }
             }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&

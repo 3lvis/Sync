@@ -698,6 +698,7 @@
 		44F3DC0C202ED40500A42022 /* 476.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F3DC0A202ED40500A42022 /* 476.xcdatamodeld */; };
 		44F3DC0D202ED40500A42022 /* 476.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F3DC0A202ED40500A42022 /* 476.xcdatamodeld */; };
 		44F3DC0E202ED40500A42022 /* 476.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F3DC0A202ED40500A42022 /* 476.xcdatamodeld */; };
+		5D289325203EB81800C8102C /* 482.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D289323203EB81800C8102C /* 482.xcdatamodeld */; };
 		CC86E0A120216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
 		CC86E0A220216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
 		CC86E0A320216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
@@ -1027,6 +1028,7 @@
 		44E38B222005EEB2003E896B /* 422-one-to-one-insert-option-initial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "422-one-to-one-insert-option-initial.json"; sourceTree = "<group>"; };
 		44F3DC06202ED3B600A42022 /* 476.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 476.json; sourceTree = "<group>"; };
 		44F3DC0B202ED40500A42022 /* 476.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 476.xcdatamodel; sourceTree = "<group>"; };
+		5D289324203EB81800C8102C /* 482.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 482.xcdatamodel; sourceTree = "<group>"; };
 		CC86E0A020216FCC00AA0947 /* 413.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 413.xcdatamodel; sourceTree = "<group>"; };
 		CC86E0A420216FF300AA0947 /* primary-key-organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "primary-key-organizations.json"; sourceTree = "<group>"; };
 		CC86E0A520216FF300AA0947 /* 447.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 447.json; sourceTree = "<group>"; };
@@ -1458,6 +1460,7 @@
 				445851A91E87BAF50025434E /* 137.xcdatamodeld */,
 				445851AB1E87BAF50025434E /* 140.xcdatamodeld */,
 				445851AD1E87BAF50025434E /* 142.xcdatamodeld */,
+				5D289323203EB81800C8102C /* 482.xcdatamodeld */,
 				445851AF1E87BAF50025434E /* Model.xcdatamodeld */,
 				445851B11E87BAF50025434E /* Ordered.xcdatamodeld */,
 			);
@@ -2383,6 +2386,7 @@
 				14867EF91E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F111E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				445851EB1E87BAF60025434E /* DateStringTransformer.m in Sources */,
+				5D289325203EB81800C8102C /* 482.xcdatamodeld in Sources */,
 				44F3DC0C202ED40500A42022 /* 476.xcdatamodeld in Sources */,
 				44E38AE020059146003E896B /* 422OneToMany.xcdatamodeld in Sources */,
 				445851EE1E87BAF60025434E /* SyncTestValueTransformer.m in Sources */,
@@ -3746,6 +3750,16 @@
 			);
 			currentVersion = 44F3DC0B202ED40500A42022 /* 476.xcdatamodel */;
 			path = 476.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		5D289323203EB81800C8102C /* 482.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5D289324203EB81800C8102C /* 482.xcdatamodel */,
+			);
+			currentVersion = 5D289324203EB81800C8102C /* 482.xcdatamodel */;
+			path = 482.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

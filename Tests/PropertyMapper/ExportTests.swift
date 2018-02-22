@@ -302,4 +302,25 @@ class ExportTests: XCTestCase {
         
         dataStack.drop()
     }
+    
+    func testBug482NestedKeys() {
+
+        let userJson: [String : Any] = ["id" : UUID().uuidString,
+                        "attributes": ["name": "John Smith",
+                                       "contact": ["email": "email@me.com",
+                                                   "phone": "555-5555"]
+                                      ]
+                        ]
+        
+        let dataStack = Helper.dataStackWithModelName("482")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "User", into: dataStack.mainContext)
+        user.fill(with: userJson)
+        try! dataStack.mainContext.save()
+        
+        let result = user.export()
+        
+        XCTAssertEqual(userJson as NSDictionary, result as NSDictionary)
+        
+        dataStack.drop()
+    }
 }
