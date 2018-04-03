@@ -323,7 +323,7 @@ extension NSManagedObject {
                     // Required in order to convert the JSON IDs into the same type as the ones Core Data expects. If the local primary key
                     // is of type Date, then we need to convert the array of strings in the JSON to be an array of dates.
                     // More info: https://github.com/3lvis/Sync/pull/477
-                    let ids = childrenIDs.flatMap { value(forAttributeDescription: primaryKeyAttribute, usingRemoteValue: $0) }
+                    let ids = childrenIDs.compactMap { value(forAttributeDescription: primaryKeyAttribute, usingRemoteValue: $0) }
                     childPredicate = NSPredicate(format: "ANY %K IN %@ OR %K = %@", entity.sync_localPrimaryKey(), ids, inverseEntityName, self)
                 }
             }
