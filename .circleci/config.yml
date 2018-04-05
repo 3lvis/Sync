@@ -2,7 +2,7 @@ version: 2
 jobs:
   build-and-test:
     macos:
-      xcode: "9.0"
+      xcode: "9.3.0"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
@@ -14,7 +14,7 @@ jobs:
           command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: WebTests
+            SCAN_SCHEME: iOSTests
 
       - store_test_results:
           path: output/scan
