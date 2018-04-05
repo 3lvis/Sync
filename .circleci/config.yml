@@ -2,7 +2,24 @@ version: 2
 jobs:
   build-and-test:
     macos:
-      xcode: "9.3.0"
+      xcode: "9.0"
+    working_directory: /Users/distiller/project
+    environment:
+      FL_OUTPUT_DIR: output
+
+    steps:
+      - checkout
+      - run:
+          name: Build and run tests
+          command: fastlane scan
+          environment:
+            SCAN_DEVICE: iPhone 8
+            SCAN_SCHEME: WebTests
+
+      - store_test_results:
+          path: output/scan
+      - store_artifacts:
+          path: output
 
 workflows:
   version: 2
