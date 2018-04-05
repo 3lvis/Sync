@@ -3,3 +3,9 @@ jobs:
   build-and-test:
     macos:
       xcode: "9.3.0"
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build-and-test
