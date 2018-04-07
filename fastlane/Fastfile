@@ -18,7 +18,6 @@ end
       :destination => destination,
       :code_coverage => true,
     }
-    opts[:output_types] = "junit" : ""
     scan(opts)
   end
 end
