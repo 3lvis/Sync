@@ -8,5 +8,4 @@ default_platform :ios
       project: "Project.xcodeproj",
       devices: ["iPhone X"]
     )
-  end
 end
