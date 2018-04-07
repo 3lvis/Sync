@@ -1,0 +1,24 @@
+fastlane_version "2.62.1"
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+   ENV['FL_BUILD_NUMBER_PROJECT'] = "Project.xcodeproj"
+   ensure_git_status_clean unless ENV['FL_NO_ENSURE_CLEAN']
+end
+
+  desc "Runs all the tests"
+  lane :test do
+    scheme = 'iOSTests'
+    destination = "platform=iOS Simulator,name=iPhone X,OS=latest"
+    opts = {
+      :scheme =>  scheme,
+      :workspace => 'Project.xcodeproj',
+      :destination => destination,
+      :code_coverage => true,
+    }
+    opts[:output_types] = "junit" : ""
+    scan(opts)
+  end
+end
