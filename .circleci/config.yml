@@ -4,7 +4,7 @@ jobs:
     macos:
       xcode: "9.3.0"
     steps:
-      - run: xcrun instruments -w "iPhone X (11.3)" || sleep 15
+      - run: xcrun instruments -w "iPhone X (11.3) [" || sleep 15
       - run: xcodebuild -project 'Project.xcodeproj' -scheme 'iOSTests' clean build test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=latest' | xcpretty --color
 
 workflows:
