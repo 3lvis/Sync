@@ -14,7 +14,7 @@ end
     destination = "platform=iOS Simulator,name=iPhone X,OS=latest"
     opts = {
       :scheme =>  scheme,
-      :workspace => 'Project.xcodeproj',
+      :project => 'Project.xcodeproj',
       :destination => destination,
       :code_coverage => true,
     }
