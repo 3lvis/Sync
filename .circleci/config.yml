@@ -5,7 +5,7 @@ jobs:
       xcode: "9.3.0"
     steps:
       - checkout
-      - run: xcodebuild -project 'Project.xcodeproj' -scheme 'iOSTests' clean build test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=latest' test
+      - run: xcodebuild -project 'Project.xcodeproj' -scheme 'iOSTests' clean build test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=latest' | xcpretty --color
 
 workflows:
   version: 2
