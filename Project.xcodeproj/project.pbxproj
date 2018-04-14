@@ -737,6 +737,12 @@
 		CC9494181F379BE1002167B4 /* 373.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494171F379BE1002167B4 /* 373.json */; };
 		CC9494191F379BE1002167B4 /* 373.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494171F379BE1002167B4 /* 373.json */; };
 		CC94941A1F379BE1002167B4 /* 373.json in Resources */ = {isa = PBXBuildFile; fileRef = CC9494171F379BE1002167B4 /* 373.json */; };
+		CCF94957203AE72700C64B80 /* 480.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCF94955203AE72700C64B80 /* 480.xcdatamodeld */; };
+		CCF94958203AE72700C64B80 /* 480.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCF94955203AE72700C64B80 /* 480.xcdatamodeld */; };
+		CCF94959203AE72700C64B80 /* 480.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCF94955203AE72700C64B80 /* 480.xcdatamodeld */; };
+		CCF9495B203AF4AF00C64B80 /* 480.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF9495A203AF4AF00C64B80 /* 480.json */; };
+		CCF9495C203AF4AF00C64B80 /* 480.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF9495A203AF4AF00C64B80 /* 480.json */; };
+		CCF9495D203AF4AF00C64B80 /* 480.json in Resources */ = {isa = PBXBuildFile; fileRef = CCF9495A203AF4AF00C64B80 /* 480.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1040,6 +1046,8 @@
 		CC94940F1F37857F002167B4 /* 375-to-many-speeches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-many-speeches.json"; sourceTree = "<group>"; };
 		CC9494131F379401002167B4 /* 375-to-one-speeches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "375-to-one-speeches.json"; sourceTree = "<group>"; };
 		CC9494171F379BE1002167B4 /* 373.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 373.json; sourceTree = "<group>"; };
+		CCF94956203AE72700C64B80 /* 480.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 480.xcdatamodel; sourceTree = "<group>"; };
+		CCF9495A203AF4AF00C64B80 /* 480.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 480.json; sourceTree = "<group>"; };
 		E47FF6201F0002A3004A923A /* Sync+ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+ObjC.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1338,6 +1346,7 @@
 				14867D5A1E7AF4D2001D228A /* users_c.json */,
 				14867D5B1E7AF4D2001D228A /* users_company.json */,
 				14867D5C1E7AF4D2001D228A /* users_notes.json */,
+				CCF9495A203AF4AF00C64B80 /* 480.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -1393,6 +1402,7 @@
 				14867DA21E7AF4D2001D228A /* Tests.xcdatamodeld */,
 				14867DA41E7AF4D2001D228A /* ToOne.xcdatamodeld */,
 				14867DA61E7AF4D2001D228A /* Unique.xcdatamodeld */,
+				CCF94955203AE72700C64B80 /* 480.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1802,7 +1812,7 @@
 			attributes = {
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					14241E701DBC39520042ED81 = {
@@ -1963,6 +1973,7 @@
 				44E38B112005EE70003E896B /* 422-many-to-many-update-option-initial.json in Resources */,
 				14867EAB1E7AF4D2001D228A /* story-summarize.json in Resources */,
 				CC9494181F379BE1002167B4 /* 373.json in Resources */,
+				CCF9495B203AF4AF00C64B80 /* 480.json in Resources */,
 				14867E811E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
 				CC9494101F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
 				14867E9C1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
@@ -2072,6 +2083,7 @@
 				14867EAC1E7AF4D2001D228A /* story-summarize.json in Resources */,
 				CC9494191F379BE1002167B4 /* 373.json in Resources */,
 				14867E821E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
+				CCF9495C203AF4AF00C64B80 /* 480.json in Resources */,
 				CC9494111F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
 				14867E9D1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E731E7AF4D2001D228A /* bug-257.json in Resources */,
@@ -2181,6 +2193,7 @@
 				14867EAD1E7AF4D2001D228A /* story-summarize.json in Resources */,
 				CC94941A1F379BE1002167B4 /* 373.json in Resources */,
 				14867E831E7AF4D2001D228A /* custom_relationship_key_to_one.json in Resources */,
+				CCF9495D203AF4AF00C64B80 /* 480.json in Resources */,
 				CC9494121F37857F002167B4 /* 375-to-many-speeches.json in Resources */,
 				14867E9E1E7AF4D2001D228A /* operation-types-users-a.json in Resources */,
 				14867E741E7AF4D2001D228A /* bug-257.json in Resources */,
@@ -2357,6 +2370,7 @@
 				445851D01E87BAF50025434E /* 129.xcdatamodeld in Sources */,
 				14867ED21E7AF4D2001D228A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				14867F4A1E7AF4D2001D228A /* SyncTests.swift in Sources */,
+				CCF94957203AE72700C64B80 /* 480.xcdatamodeld in Sources */,
 				14867EF31E7AF4D2001D228A /* 265.xcdatamodeld in Sources */,
 				14867EFC1E7AF4D2001D228A /* 283.xcdatamodeld in Sources */,
 				445851E21E87BAF60025434E /* SyncDictionaryTests.m in Sources */,
@@ -2455,6 +2469,7 @@
 				445851D11E87BAF50025434E /* 129.xcdatamodeld in Sources */,
 				14867ED31E7AF4D2001D228A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				14867F4B1E7AF4D2001D228A /* SyncTests.swift in Sources */,
+				CCF94958203AE72700C64B80 /* 480.xcdatamodeld in Sources */,
 				14867EF41E7AF4D2001D228A /* 265.xcdatamodeld in Sources */,
 				14867EFD1E7AF4D2001D228A /* 283.xcdatamodeld in Sources */,
 				445851E31E87BAF60025434E /* SyncDictionaryTests.m in Sources */,
@@ -2553,6 +2568,7 @@
 				445851D21E87BAF50025434E /* 129.xcdatamodeld in Sources */,
 				14867ED41E7AF4D2001D228A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				14867F4C1E7AF4D2001D228A /* SyncTests.swift in Sources */,
+				CCF94959203AE72700C64B80 /* 480.xcdatamodeld in Sources */,
 				14867EF51E7AF4D2001D228A /* 265.xcdatamodeld in Sources */,
 				14867EFE1E7AF4D2001D228A /* 283.xcdatamodeld in Sources */,
 				445851E41E87BAF60025434E /* SyncDictionaryTests.m in Sources */,
@@ -2884,12 +2900,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2936,12 +2954,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -3776,6 +3796,16 @@
 			);
 			currentVersion = CC9493F51F375517002167B4 /* 375-to-one.xcdatamodel */;
 			path = "375-to-one.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		CCF94955203AE72700C64B80 /* 480.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CCF94956203AE72700C64B80 /* 480.xcdatamodel */,
+			);
+			currentVersion = CCF94956203AE72700C64B80 /* 480.xcdatamodel */;
+			path = 480.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
