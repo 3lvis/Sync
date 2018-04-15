@@ -150,7 +150,24 @@ static NSString * const PropertyMapperNestedAttributesKey = @"attributes";
                     NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription
                                                            usingRelationshipType:relationshipType
                                                                   inflectionType:inflectionType];
-                    managedObjectAttributes[remoteKey] = value;
+                    
+                    NSMutableDictionary *currentObj = managedObjectAttributes;
+                    NSArray *split = [remoteKey componentsSeparatedByString:@"."];
+                    NSRange range = NSMakeRange(0, split.count - 1);
+                    NSArray *components = [split subarrayWithRange:range];
+                    
+                    for(NSString *key in components) {
+                        id currentValue = currentObj[key];
+                        if(!currentValue) {
+                            [currentObj setObject:[[NSMutableDictionary alloc] init] forKey: key];
+                        }
+                        if(currentObj[key]) {
+                            currentObj = currentObj[key];
+                        }
+                    }
+                    
+                    NSString *lastKey = split.lastObject;
+                    [currentObj setObject:value forKey:lastKey];
                 }
             }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&
