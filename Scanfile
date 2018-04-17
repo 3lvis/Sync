@@ -1,0 +1,5 @@
+scheme("iOSTests")
+project("Project.xcodeproj")
+devices(["iPhone X"])
+open_report(true)
+clean(true)
