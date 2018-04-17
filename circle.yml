@@ -1,2 +1,3 @@
-macos:
-  xcode: "9.3.0"
+machine:
+  xcode:
+    version: 9.3.0
