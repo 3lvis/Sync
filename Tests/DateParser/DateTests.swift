@@ -94,6 +94,16 @@ class DateTests: XCTestCase {
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
+    
+    func testDateM() {
+        let date = Date.dateWithHourAndMicrosecondString(dateString: "2015-08-23T09:29:30.007450Z")
+        let resultDate = NSDate(fromDateString: "2015-08-23T09:29:30.007450Z")! as Date
+        XCTAssertNotNil(resultDate)
+        
+        // Avoinding decimal in timerefernce while comparing dates since dateformatter rounds the date value after milliseconds
+        XCTAssertEqual(Int64(date.timeIntervalSince1970), Int64(resultDate.timeIntervalSince1970))
+    }
+
 }
 
 class TimestampDateTests: XCTestCase {
@@ -159,6 +169,15 @@ extension Date {
         formatter.timeZone = TimeZone(identifier: "UTC")
         let date = formatter.date(from: dateString)!
 
+        return date
+    }
+    
+    static func dateWithHourAndMicrosecondString(dateString: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        let date = formatter.date(from: dateString)!
+        
         return date
     }
 
