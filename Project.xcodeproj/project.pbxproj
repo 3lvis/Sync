@@ -530,9 +530,6 @@
 		445851D01E87BAF50025434E /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851A71E87BAF50025434E /* 129.xcdatamodeld */; };
 		445851D11E87BAF50025434E /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851A71E87BAF50025434E /* 129.xcdatamodeld */; };
 		445851D21E87BAF50025434E /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851A71E87BAF50025434E /* 129.xcdatamodeld */; };
-		445851D31E87BAF50025434E /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851A91E87BAF50025434E /* 137.xcdatamodeld */; };
-		445851D41E87BAF50025434E /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851A91E87BAF50025434E /* 137.xcdatamodeld */; };
-		445851D51E87BAF50025434E /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851A91E87BAF50025434E /* 137.xcdatamodeld */; };
 		445851D61E87BAF50025434E /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851AB1E87BAF50025434E /* 140.xcdatamodeld */; };
 		445851D71E87BAF50025434E /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851AB1E87BAF50025434E /* 140.xcdatamodeld */; };
 		445851D81E87BAF50025434E /* 140.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 445851AB1E87BAF50025434E /* 140.xcdatamodeld */; };
@@ -611,6 +608,9 @@
 		44B212F91E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212F31E87BD5D00C81949 /* NSPropertyDescription+Sync.m */; };
 		44B212FA1E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212F31E87BD5D00C81949 /* NSPropertyDescription+Sync.m */; };
 		44B212FB1E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212F31E87BD5D00C81949 /* NSPropertyDescription+Sync.m */; };
+		44BAF23020CC165800188021 /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BAF22E20CC165800188021 /* 137.xcdatamodeld */; };
+		44BAF23120CC165800188021 /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BAF22E20CC165800188021 /* 137.xcdatamodeld */; };
+		44BAF23220CC165800188021 /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BAF22E20CC165800188021 /* 137.xcdatamodeld */; };
 		44BBBC6E1F9F024E00590624 /* 412.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */; };
 		44BBBC6F1F9F024E00590624 /* 412.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */; };
 		44BBBC701F9F024E00590624 /* 412.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BBBC6C1F9F024E00590624 /* 412.xcdatamodeld */; };
@@ -976,7 +976,6 @@
 		445851A41E87BAF50025434E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		445851A61E87BAF50025434E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		445851A81E87BAF50025434E /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
-		445851AA1E87BAF50025434E /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
 		445851AC1E87BAF50025434E /* smartworkout.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = smartworkout.xcdatamodel; sourceTree = "<group>"; };
 		445851AE1E87BAF50025434E /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
 		445851B01E87BAF50025434E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -1007,6 +1006,7 @@
 		44B212EE1E87BCBD00C81949 /* InflectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InflectionsTests.m; sourceTree = "<group>"; };
 		44B212F21E87BD5D00C81949 /* NSPropertyDescription+Sync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPropertyDescription+Sync.h"; sourceTree = "<group>"; };
 		44B212F31E87BD5D00C81949 /* NSPropertyDescription+Sync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPropertyDescription+Sync.m"; sourceTree = "<group>"; };
+		44BAF22F20CC165800188021 /* 137.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 137.xcdatamodel; sourceTree = "<group>"; };
 		44BBBC6D1F9F024E00590624 /* 412.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 412.xcdatamodel; sourceTree = "<group>"; };
 		44BBBC711F9F026100590624 /* 412.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 412.json; sourceTree = "<group>"; };
 		44CFE67B1E87BBE60068185B /* PrimaryKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryKeyTests.m; sourceTree = "<group>"; };
@@ -1469,7 +1469,7 @@
 				445851A31E87BAF50025434E /* 121.xcdatamodeld */,
 				445851A51E87BAF50025434E /* 123.xcdatamodeld */,
 				445851A71E87BAF50025434E /* 129.xcdatamodeld */,
-				445851A91E87BAF50025434E /* 137.xcdatamodeld */,
+				44BAF22E20CC165800188021 /* 137.xcdatamodeld */,
 				445851AB1E87BAF50025434E /* 140.xcdatamodeld */,
 				445851AD1E87BAF50025434E /* 142.xcdatamodeld */,
 				5D289323203EB81800C8102C /* 482.xcdatamodeld */,
@@ -2398,7 +2398,6 @@
 				44BBBC6E1F9F024E00590624 /* 412.xcdatamodeld in Sources */,
 				14867F021E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
 				44CFE6811E87BBE70068185B /* PrimaryKey.xcdatamodeld in Sources */,
-				445851D31E87BAF50025434E /* 137.xcdatamodeld in Sources */,
 				14867EF91E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F111E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				445851EB1E87BAF60025434E /* DateStringTransformer.m in Sources */,
@@ -2442,6 +2441,7 @@
 				CC86E0B62021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				44CFE67E1E87BBE60068185B /* PrimaryKeyTests.m in Sources */,
 				14867EDB1E7AF4D2001D228A /* 157.xcdatamodeld in Sources */,
+				44BAF23020CC165800188021 /* 137.xcdatamodeld in Sources */,
 				14867F201E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
 				14867EDE1E7AF4D2001D228A /* 179.xcdatamodeld in Sources */,
 				14867EE11E7AF4D2001D228A /* 202.xcdatamodeld in Sources */,
@@ -2498,7 +2498,6 @@
 				44BBBC6F1F9F024E00590624 /* 412.xcdatamodeld in Sources */,
 				14867F031E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
 				44CFE6821E87BBE70068185B /* PrimaryKey.xcdatamodeld in Sources */,
-				445851D41E87BAF50025434E /* 137.xcdatamodeld in Sources */,
 				14867EFA1E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F121E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				445851EC1E87BAF60025434E /* DateStringTransformer.m in Sources */,
@@ -2542,6 +2541,7 @@
 				CC86E0B72021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				44CFE67F1E87BBE70068185B /* PrimaryKeyTests.m in Sources */,
 				14867EDC1E7AF4D2001D228A /* 157.xcdatamodeld in Sources */,
+				44BAF23120CC165800188021 /* 137.xcdatamodeld in Sources */,
 				14867F211E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
 				14867EDF1E7AF4D2001D228A /* 179.xcdatamodeld in Sources */,
 				14867EE21E7AF4D2001D228A /* 202.xcdatamodeld in Sources */,
@@ -2598,7 +2598,6 @@
 				44BBBC701F9F024E00590624 /* 412.xcdatamodeld in Sources */,
 				14867F041E7AF4D2001D228A /* 3ca82a0.xcdatamodeld in Sources */,
 				44CFE6831E87BBE70068185B /* PrimaryKey.xcdatamodeld in Sources */,
-				445851D51E87BAF50025434E /* 137.xcdatamodeld in Sources */,
 				14867EFB1E7AF4D2001D228A /* 280.xcdatamodeld in Sources */,
 				14867F131E7AF4D2001D228A /* id.xcdatamodeld in Sources */,
 				445851ED1E87BAF60025434E /* DateStringTransformer.m in Sources */,
@@ -2642,6 +2641,7 @@
 				CC86E0B82021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
 				44CFE6801E87BBE70068185B /* PrimaryKeyTests.m in Sources */,
 				14867EDD1E7AF4D2001D228A /* 157.xcdatamodeld in Sources */,
+				44BAF23220CC165800188021 /* 137.xcdatamodeld in Sources */,
 				14867F221E7AF4D2001D228A /* OrderedSocial.xcdatamodeld in Sources */,
 				14867EE01E7AF4D2001D228A /* 179.xcdatamodeld in Sources */,
 				14867EE31E7AF4D2001D228A /* 202.xcdatamodeld in Sources */,
@@ -3659,16 +3659,6 @@
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		445851A91E87BAF50025434E /* 137.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				445851AA1E87BAF50025434E /* hypbug.xcdatamodel */,
-			);
-			currentVersion = 445851AA1E87BAF50025434E /* hypbug.xcdatamodel */;
-			path = 137.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		445851AB1E87BAF50025434E /* 140.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
@@ -3726,6 +3716,16 @@
 			);
 			currentVersion = 4494AEA31FE5E1CD0064999E /* 457.xcdatamodel */;
 			path = 457.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44BAF22E20CC165800188021 /* 137.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44BAF22F20CC165800188021 /* 137.xcdatamodel */,
+			);
+			currentVersion = 44BAF22F20CC165800188021 /* 137.xcdatamodel */;
+			path = 137.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
