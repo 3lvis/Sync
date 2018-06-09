@@ -112,7 +112,9 @@
                              @"boolean" : @YES,
                              @"binary_data" : @"Data",
                              @"transformable" : @"Ignore me, too",
-                             @"custom_transformer_string" : @"Foo &amp; bar"};
+                             @"custom_transformer_string" : @"Foo &amp; bar",
+                             @"uuid": @"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
+                             };
     
     [NSValueTransformer setValueTransformer:[[SyncTestValueTransformer alloc] init] forName:@"SyncTestValueTransformer"];
     
@@ -142,6 +144,7 @@
     XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil([attributes valueForKey:@"transformable"]);
     XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
+    XCTAssertEqualObjects([attributes valueForKey:@"uuid"], [[NSUUID alloc] initWithUUIDString:@"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"]);
 }
 
 - (void)testAllAttributesInCamelCase {
@@ -159,7 +162,9 @@
                              @"boolean" : @YES,
                              @"binaryData" : @"Data",
                              @"transformable" : @"Ignore me, too",
-                             @"customTransformerString" : @"Foo &amp; bar"};
+                             @"customTransformerString" : @"Foo &amp; bar",
+                             @"uuid": @"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
+                             };
     
     [NSValueTransformer setValueTransformer:[[SyncTestValueTransformer alloc] init] forName:@"SyncTestValueTransformer"];
     
@@ -189,6 +194,7 @@
     XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil([attributes valueForKey:@"transformable"]);
     XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
+    XCTAssertEqualObjects([attributes valueForKey:@"uuid"], [[NSUUID alloc] initWithUUIDString:@"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"]);
 }
 
 - (void)testFillManagedObjectWithDictionary {
