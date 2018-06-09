@@ -83,6 +83,11 @@
     snakeCase = @"ordered_user";
 
     XCTAssertEqualObjects(snakeCase, [camelCase hyp_snakeCase]);
+
+    camelCase = @"iUUID";
+    snakeCase = @"i_uuid";
+
+    XCTAssertEqualObjects(snakeCase, [camelCase hyp_snakeCase]);
 }
 
 - (void)testCamelCase {
@@ -98,6 +103,11 @@
 
     snakeCase = @"pdf";
     camelCase = @"pdf";
+
+    XCTAssertEqualObjects(camelCase, [snakeCase hyp_camelCase]);
+
+    snakeCase = @"uuid";
+    camelCase = @"uuid";
 
     XCTAssertEqualObjects(camelCase, [snakeCase hyp_camelCase]);
 
@@ -118,6 +128,11 @@
 
     snakeCase = @"updated_at";
     camelCase = @"updatedAt";
+
+    XCTAssertEqualObjects(camelCase, [snakeCase hyp_camelCase]);
+
+    snakeCase = @"updated_uuid";
+    camelCase = @"updatedUUID";
 
     XCTAssertEqualObjects(camelCase, [snakeCase hyp_camelCase]);
 

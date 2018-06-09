@@ -202,7 +202,7 @@ typedef void (^InflectionsStringStorageBlock)(void);
 }
 
 + (nonnull NSArray *)acronyms {
-    return @[@"id", @"pdf", @"url", @"png", @"jpg", @"uri", @"json", @"xml", @"uuid"];
+    return @[@"uuid", @"id", @"pdf", @"url", @"png", @"jpg", @"uri", @"json", @"xml"];
 }
 
 @end
