@@ -3,12 +3,12 @@ jobs:
   build-and-test:
     macos:
       xcode: "9.4.0"
-    shell: /bin/bash --login -o pipefail | xcpretty
+    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
-      - run: xcodebuild -project Project.xcodeproj -scheme "macOSTests" -sdk macosx -enableCodeCoverage YES clean test
-      - run: xcodebuild -project Project.xcodeproj -scheme "iOSTests" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=11.4,name=iPhone X' -enableCodeCoverage YES clean test
-      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.4' -enableCodeCoverage YES clean test
+      - run: xcodebuild -project Project.xcodeproj -scheme "macOSTests" -sdk macosx -enableCodeCoverage YES clean test | xcpretty
+      - run: xcodebuild -project Project.xcodeproj -scheme "iOSTests" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=11.4,name=iPhone X' -enableCodeCoverage YES clean test | xcpretty
+      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.4' -enableCodeCoverage YES clean test | xcpretty
 
 workflows:
   version: 2
