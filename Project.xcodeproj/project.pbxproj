@@ -598,6 +598,8 @@
 		4494AEA81FE5E33D0064999E /* 457-subcategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */; };
 		4494AEA91FE5E3400064999E /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
 		4494AEAA1FE5E3410064999E /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
+		449E266B20CBDDBE00972130 /* 482.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D289323203EB81800C8102C /* 482.xcdatamodeld */; };
+		449E266C20CBDDBE00972130 /* 482.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D289323203EB81800C8102C /* 482.xcdatamodeld */; };
 		44B212EF1E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
 		44B212F01E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
 		44B212F11E87BCBD00C81949 /* InflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B212EE1E87BCBD00C81949 /* InflectionsTests.m */; };
@@ -2534,6 +2536,7 @@
 				14867F361E7AF4D2001D228A /* Unique.xcdatamodeld in Sources */,
 				14867ED91E7AF4D2001D228A /* 151-to-many.xcdatamodeld in Sources */,
 				44E38AE82005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
+				449E266B20CBDDBE00972130 /* 482.xcdatamodeld in Sources */,
 				14867F151E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F451E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
 				CC86E0B72021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
@@ -2633,6 +2636,7 @@
 				14867F371E7AF4D2001D228A /* Unique.xcdatamodeld in Sources */,
 				14867EDA1E7AF4D2001D228A /* 151-to-many.xcdatamodeld in Sources */,
 				44E38AE92005927F003E896B /* 422ManyToMany.xcdatamodeld in Sources */,
+				449E266C20CBDDBE00972130 /* 482.xcdatamodeld in Sources */,
 				14867F161E7AF4D2001D228A /* InsertObjectsInParent.xcdatamodeld in Sources */,
 				14867F461E7AF4D2001D228A /* NSPersistentContainerTests.swift in Sources */,
 				CC86E0B82021704E00AA0947 /* DoublePrimaryKeys.xcdatamodeld in Sources */,
