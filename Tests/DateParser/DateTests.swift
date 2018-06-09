@@ -99,32 +99,32 @@ class DateTests: XCTestCase {
 class TimestampDateTests: XCTestCase {
 
     func testTimestampA() {
-        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.123")
-        let resultDate = NSDate(fromDateString: "1441843200")! as Date
+        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.000")
+        let resultDate = NSDate(fromDateString: "1441888808")! as Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
     func testTimestampB() {
-        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.123")
-        let resultDate = NSDate(fromDateString: "1441843200000000")! as Date
+        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.000")
+        let resultDate = NSDate(fromDateString: "1441888808000000")! as Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
     func testTimestampC() {
-        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.123")
-        let resultDate = NSDate(fromUnixTimestampNumber: 1441843200)! as Date
+        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.000")
+        let resultDate = NSDate(fromUnixTimestampNumber: 1441888808)! as Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
     func testTimestampD() {
-        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.123")
-        let resultDate = NSDate(fromUnixTimestampNumber: NSNumber(value: 1441843200000000.0))! as Date
+        let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.000")
+        let resultDate = NSDate(fromUnixTimestampNumber: NSNumber(value: 1441888808000000.0))! as Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
