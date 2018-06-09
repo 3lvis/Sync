@@ -113,7 +113,8 @@
                              @"binary_data" : @"Data",
                              @"transformable" : @"Ignore me, too",
                              @"custom_transformer_string" : @"Foo &amp; bar",
-                             @"uuid": @"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
+                             @"uuid": @"E621E1F8-C36C-495A-93FC-0C247A3E6E5F",
+                             @"uri": @"https://www.apple.com/"
                              };
     
     [NSValueTransformer setValueTransformer:[[SyncTestValueTransformer alloc] init] forName:@"SyncTestValueTransformer"];
@@ -145,6 +146,7 @@
     XCTAssertNil([attributes valueForKey:@"transformable"]);
     XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
     XCTAssertEqualObjects([attributes valueForKey:@"uuid"], [[NSUUID alloc] initWithUUIDString:@"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"]);
+    XCTAssertEqualObjects([attributes valueForKey:@"uri"], [[NSURL alloc] initWithString:@"https://www.apple.com/"]);
 }
 
 - (void)testAllAttributesInCamelCase {
@@ -163,7 +165,8 @@
                              @"binaryData" : @"Data",
                              @"transformable" : @"Ignore me, too",
                              @"customTransformerString" : @"Foo &amp; bar",
-                             @"uuid": @"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
+                             @"uuid": @"E621E1F8-C36C-495A-93FC-0C247A3E6E5F",
+                             @"uri": @"https://www.apple.com/"
                              };
     
     [NSValueTransformer setValueTransformer:[[SyncTestValueTransformer alloc] init] forName:@"SyncTestValueTransformer"];
@@ -195,6 +198,7 @@
     XCTAssertNil([attributes valueForKey:@"transformable"]);
     XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
     XCTAssertEqualObjects([attributes valueForKey:@"uuid"], [[NSUUID alloc] initWithUUIDString:@"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"]);
+    XCTAssertEqualObjects([attributes valueForKey:@"uri"], [[NSURL alloc] initWithString:@"https://www.apple.com/"]);
 }
 
 - (void)testFillManagedObjectWithDictionary {
