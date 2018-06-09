@@ -9,9 +9,9 @@ jobs:
       - run: xcodebuild -project Project.xcodeproj -scheme "macOSTests" -sdk macosx clean
       - run: xcodebuild -project Project.xcodeproj -scheme "macOSTests" -sdk macosx -enableCodeCoverage YES test
       - run: xcodebuild -project Project.xcodeproj -scheme "iOSTests" -sdk iphonesimulator clean
-      - run: xcodebuild -project Project.xcodeproj -scheme "iOSTests" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=11.3,name=iPhone X' -enableCodeCoverage YES test
-      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.3' clean
-      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.3' -enableCodeCoverage YES test
+      - run: xcodebuild -project Project.xcodeproj -scheme "iOSTests" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=11.4,name=iPhone X' -enableCodeCoverage YES test
+      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.4' clean
+      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.4' -enableCodeCoverage YES test
 
 workflows:
   version: 2
