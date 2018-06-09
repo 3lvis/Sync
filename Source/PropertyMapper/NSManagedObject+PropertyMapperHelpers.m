@@ -15,6 +15,7 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
                   relationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
     id value;
     if (attributeDescription.attributeType != NSTransformableAttributeType) {
+        NSString *name = attributeDescription.name;
         value = [self valueForKey:attributeDescription.name];
         BOOL nilOrNullValue = (!value ||
                                [value isKindOfClass:[NSNull class]]);
