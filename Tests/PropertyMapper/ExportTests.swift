@@ -149,7 +149,7 @@ class ExportTests: XCTestCase {
 
 
         let result = user.export(using: .camelCase)
-        XCTAssertNotEqual(compared as NSDictionary, result as NSDictionary)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
 
         dataStack.drop()
     }
