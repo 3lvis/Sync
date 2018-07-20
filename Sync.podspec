@@ -17,7 +17,7 @@ s.homepage         = "https://github.com/3lvis/Sync"
 s.license          = 'MIT'
 s.author           = { "Elvis Nuñez" => "elvisnunez@me.com" }
 s.source           = { :git => "https://github.com/3lvis/Sync.git", :tag => s.version.to_s }
-s.social_media_url = 'https://twitter.com/Sync_DB'
+s.social_media_url = 'https://twitter.com/3lvis'
 
 s.ios.deployment_target = '8.0'
 s.osx.deployment_target = '10.10'
