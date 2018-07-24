@@ -492,7 +492,8 @@ extension NSError {
 }
 
 extension URL {
-    fileprivate static func directoryURL() -> URL {
+    /// The directory URL for the sqlite file.
+    public static func directoryURL() -> URL {
         #if os(tvOS)
             return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
         #else
