@@ -25,7 +25,7 @@ import CoreData
 
     private var model: NSManagedObjectModel
 
-    private var containerURL = URL.directoryURL()
+    private var containerURL = FileManager.sqliteDirectoryURL
 
     private let backgroundContextName = "DataStack.backgroundContextName"
 
@@ -491,11 +491,11 @@ extension NSError {
     }
 }
 
-extension URL {
+extension FileManager {
     /// The directory URL for the sqlite file.
-    public static func directoryURL() -> URL {
+    public static var sqliteDirectoryURL: URL {
         #if os(tvOS)
-            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
         #else
         if TestCheck.isTesting {
             return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
