@@ -1,3 +1,3 @@
-github "3lvis/Sync" ~> 4.0
-github "3lvis/Networking" ~> 4.1
-github "Alamofire/Alamofire" ~> 4.5
+github "3lvis/Sync" ~> 4.2
+github "3lvis/Networking" ~> 4.2
+github "Alamofire/Alamofire" ~> 4.7

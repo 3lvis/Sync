@@ -2,26 +2,26 @@
   "Mac" : [
     {
       "name" : "Networking",
-      "hash" : "80f1e9435992856e60a0b45e47cf2586e21ea661744babe389b8c332d6a1504e"
+      "hash" : "b5858ff1389f1c5c64b5ad275b9bb48603780cdaa82b8dfdcf547a9dbf8749a8"
     }
   ],
   "watchOS" : [
     {
       "name" : "Networking",
-      "hash" : "617dc58efad4ac03a9a4fd9ddedb817d8dcb61c9a070fbafbd7010fd59feaa09"
+      "hash" : "90f2bcec89303eb47ea2f69ab518b7bd203f8534229bd67e4e26a9fa9f1332fb"
     }
   ],
   "tvOS" : [
     {
       "name" : "Networking",
-      "hash" : "06eac35f21c5db103bfcad3e008166b506674047ed5d8a6add1714c802903644"
+      "hash" : "1b63be1e8a8e7bd7bf32415689439c0fa7eac7aa29966423f2e650d270ee2fe8"
     }
   ],
   "commitish" : "4.2.0",
   "iOS" : [
     {
       "name" : "Networking",
-      "hash" : "cc80f9927ef6576a0cddc8929e2ce9ec8819ad45139c5876d9cf023dca4e61cd"
+      "hash" : "64efe9322c4ce45beed8f602c033c75662dafca2d6774a0c8a7d93c7e337066b"
     }
   ]
 }
