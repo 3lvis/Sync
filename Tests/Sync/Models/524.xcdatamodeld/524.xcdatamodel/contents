@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RawCake" representedClassName="RawCake" syncable="YES" codeGenerationType="class">
+        <attribute name="cakeEmailPhoto" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="cakeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="emailInstructionalPhoto" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="flavourId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="flavourSurcharge" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fondant" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="inscription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="magicCakeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="magicSurcharge" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onCakeImageNeeded" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="printedImageSurcharge" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servingId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="shapeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="specialInstruction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tiers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vaughanLocation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="rawOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawOrder" inverseName="cakeOrders" inverseEntity="RawOrder" syncable="YES"/>
+    </entity>
+    <entity name="RawOrder" representedClassName="RawOrder" syncable="YES" codeGenerationType="class">
+        <attribute name="customerId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="deliveryDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deliveryTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deliveryType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deliveryZoneId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="deliveryZoneSurcharge" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSynced" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="managerId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="matrixPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderStateId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="overridenPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pickupLocationId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="storeLocationId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="cakeOrders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RawCake" inverseName="rawOrder" inverseEntity="RawCake" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="RawOrder" positionX="-63" positionY="-18" width="128" height="313"/>
+        <element name="RawCake" positionX="169" positionY="15" width="128" height="313"/>
+    </elements>
+</model>

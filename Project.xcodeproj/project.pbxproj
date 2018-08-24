@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1416CD43211D75DA00C32394 /* 524.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1416CD41211D75DA00C32394 /* 524.xcdatamodeld */; };
+		1416CD44211D75DA00C32394 /* 524.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1416CD41211D75DA00C32394 /* 524.xcdatamodeld */; };
+		1416CD45211D75DA00C32394 /* 524.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1416CD41211D75DA00C32394 /* 524.xcdatamodeld */; };
+		1416CD47211D7CA000C32394 /* 524.json in Resources */ = {isa = PBXBuildFile; fileRef = 1416CD46211D7C9F00C32394 /* 524.json */; };
+		1416CD48211D7CA000C32394 /* 524.json in Resources */ = {isa = PBXBuildFile; fileRef = 1416CD46211D7C9F00C32394 /* 524.json */; };
+		1416CD49211D7CA000C32394 /* 524.json in Resources */ = {isa = PBXBuildFile; fileRef = 1416CD46211D7C9F00C32394 /* 524.json */; };
 		14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF51DA0021300E71A53 /* NSArray+Sync.swift */; };
 		14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; };
 		14241EA21DBC3A6F0042ED81 /* NSManagedObject+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; };
@@ -815,6 +821,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1416CD42211D75DA00C32394 /* 524.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 524.xcdatamodel; sourceTree = "<group>"; };
+		1416CD46211D7C9F00C32394 /* 524.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 524.json; sourceTree = "<group>"; };
 		14241E711DBC39520042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E7E1DBC39600042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14241E8B1DBC39690042ED81 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1306,6 +1314,8 @@
 				1AFF18C91FE1F08800C4BC3D /* 457-products.json */,
 				1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */,
 				44F3DC06202ED3B600A42022 /* 476.json */,
+				CCF9495A203AF4AF00C64B80 /* 480.json */,
+				1416CD46211D7C9F00C32394 /* 524.json */,
 				14867D351E7AF4D2001D228A /* bug-113-comments-no-id.json */,
 				14867D361E7AF4D2001D228A /* bug-113-custom_relationship_key_to_one.json */,
 				14867D371E7AF4D2001D228A /* bug-113-stories-comments-no-ids.json */,
@@ -1350,7 +1360,6 @@
 				14867D5A1E7AF4D2001D228A /* users_c.json */,
 				14867D5B1E7AF4D2001D228A /* users_company.json */,
 				14867D5C1E7AF4D2001D228A /* users_notes.json */,
-				CCF9495A203AF4AF00C64B80 /* 480.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -1389,6 +1398,7 @@
 				4494AEA21FE5E1CD0064999E /* 457.xcdatamodeld */,
 				44F3DC0A202ED40500A42022 /* 476.xcdatamodeld */,
 				CCF94955203AE72700C64B80 /* 480.xcdatamodeld */,
+				1416CD41211D75DA00C32394 /* 524.xcdatamodeld */,
 				14867D881E7AF4D2001D228A /* Camelcase.xcdatamodeld */,
 				14867D8A1E7AF4D2001D228A /* Contacts.xcdatamodeld */,
 				14867D8C1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld */,
@@ -1989,6 +1999,7 @@
 				14867E6C1E7AF4D2001D228A /* bug-239.json in Resources */,
 				14867E1E1E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC31E7AF4D2001D228A /* users_company.json in Resources */,
+				1416CD47211D7CA000C32394 /* 524.json in Resources */,
 				14867DD91E7AF4D2001D228A /* note.json in Resources */,
 				14867DDF1E7AF4D2001D228A /* users-with-nil.json in Resources */,
 				44E38B292005EEB2003E896B /* 422-one-to-one-insert-option-update.json in Resources */,
@@ -2099,6 +2110,7 @@
 				14867E1F1E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC41E7AF4D2001D228A /* users_company.json in Resources */,
 				4494AEA71FE5E33D0064999E /* 457-subcategories.json in Resources */,
+				1416CD48211D7CA000C32394 /* 524.json in Resources */,
 				14867DDA1E7AF4D2001D228A /* note.json in Resources */,
 				14867DE01E7AF4D2001D228A /* users-with-nil.json in Resources */,
 				44E38B2A2005EEB2003E896B /* 422-one-to-one-insert-option-update.json in Resources */,
@@ -2209,6 +2221,7 @@
 				14867E201E7AF4D2001D228A /* 151-to-many-users-update.json in Resources */,
 				14867EC51E7AF4D2001D228A /* users_company.json in Resources */,
 				4494AEA81FE5E33D0064999E /* 457-subcategories.json in Resources */,
+				1416CD49211D7CA000C32394 /* 524.json in Resources */,
 				14867DDB1E7AF4D2001D228A /* note.json in Resources */,
 				14867DE11E7AF4D2001D228A /* users-with-nil.json in Resources */,
 				44E38B2B2005EEB2003E896B /* 422-one-to-one-insert-option-update.json in Resources */,
@@ -2418,6 +2431,7 @@
 				14867ECF1E7AF4D2001D228A /* 151-many-to-many.xcdatamodeld in Sources */,
 				445851DF1E87BAF60025434E /* Ordered.xcdatamodeld in Sources */,
 				14867EC91E7AF4D2001D228A /* 113.xcdatamodeld in Sources */,
+				1416CD43211D75DA00C32394 /* 524.xcdatamodeld in Sources */,
 				44B212EF1E87BCBD00C81949 /* InflectionsTests.m in Sources */,
 				CC9493F61F375517002167B4 /* 375-to-one.xcdatamodeld in Sources */,
 				14867E0C1E7AF4D2001D228A /* Helper.swift in Sources */,
@@ -2518,6 +2532,7 @@
 				445851E01E87BAF60025434E /* Ordered.xcdatamodeld in Sources */,
 				14867ECA1E7AF4D2001D228A /* 113.xcdatamodeld in Sources */,
 				44B212F01E87BCBD00C81949 /* InflectionsTests.m in Sources */,
+				1416CD44211D75DA00C32394 /* 524.xcdatamodeld in Sources */,
 				CC9493F71F375517002167B4 /* 375-to-one.xcdatamodeld in Sources */,
 				14867E0D1E7AF4D2001D228A /* Helper.swift in Sources */,
 				14867F0F1E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
@@ -2618,6 +2633,7 @@
 				445851E11E87BAF60025434E /* Ordered.xcdatamodeld in Sources */,
 				14867ECB1E7AF4D2001D228A /* 113.xcdatamodeld in Sources */,
 				44B212F11E87BCBD00C81949 /* InflectionsTests.m in Sources */,
+				1416CD45211D75DA00C32394 /* 524.xcdatamodeld in Sources */,
 				CC9493F81F375517002167B4 /* 375-to-one.xcdatamodeld in Sources */,
 				14867E0E1E7AF4D2001D228A /* Helper.swift in Sources */,
 				14867F101E7AF4D2001D228A /* CustomRelationshipKey.xcdatamodeld in Sources */,
@@ -3219,6 +3235,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		1416CD41211D75DA00C32394 /* 524.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1416CD42211D75DA00C32394 /* 524.xcdatamodel */,
+			);
+			currentVersion = 1416CD42211D75DA00C32394 /* 524.xcdatamodel */;
+			path = 524.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		14867D011E7AF4D1001D228A /* DataFilter.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
