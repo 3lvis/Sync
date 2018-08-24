@@ -11,12 +11,12 @@ extension Sync {
     public class func fetch<ResultType: NSManagedObject>(_ id: Any, inEntityNamed entityName: String, using context: NSManagedObjectContext) throws -> ResultType? {
         Sync.verifyContextSafety(context: context)
 
-guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
-let localPrimaryKey = entity.sync_localPrimaryKey()
-let fetchRequest = NSFetchRequest<ResultType>(entityName: entityName)
-fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else { abort() }
+        let localPrimaryKey = entity.sync_localPrimaryKey()
+        let fetchRequest = NSFetchRequest<ResultType>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "%K = %@", localPrimaryKey, id as! NSObject)
 
-let objects = try context.fetch(fetchRequest)
+        let objects = try context.fetch(fetchRequest)
 
         return objects.first
     }
