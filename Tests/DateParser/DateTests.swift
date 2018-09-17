@@ -101,6 +101,13 @@ class DateTests: XCTestCase {
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
+
+    func testDateN() {
+        let date = Date.dateWithHourAndTimeZoneString(dateString: "2017-11-02T17:27:52.200")
+        let resultDate = NSDate(fromDateString: "2017-11-02T17:27:52.2Z")! as Date
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
+    }
 }
 
 class TimestampDateTests: XCTestCase {
