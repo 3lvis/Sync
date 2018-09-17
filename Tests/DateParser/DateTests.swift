@@ -3,6 +3,7 @@ import Sync
 
 class DateTests: XCTestCase {
 
+    // YYYY-MM-DDTHH:MM:SS.MMM+ZZ:ZZ
     func testDateA() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-06-23T12:40:08.123")
         let resultDate = NSDate(fromDateString: "2015-06-23T14:40:08.123+02:00")! as Date
@@ -11,6 +12,7 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date.timeIntervalSince1970, resultDate.timeIntervalSince1970)
     }
 
+    // YYYY-MM-DDTHH:MM:SS+ZZ:ZZ
     func testDateB() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2014-01-01T12:40:08.000")
         let resultDate = NSDate(fromDateString: "2014-01-01T12:40:08+00:00")! as Date
@@ -19,6 +21,7 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date, resultDate)
     }
 
+    // YYYY-MM-DD
     func testDateC() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2014-01-02T00:00:00.000")
         let resultDate = NSDate(fromDateString: "2014-01-02")! as Date
@@ -27,6 +30,7 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date, resultDate)
     }
 
+    // YYYY-MM-DDTHH:MM:SS.MMMMMM+ZZ:ZZ
     func testDateD() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2014-01-02T12:40:08.123")
         let resultDate = NSDate(fromDateString: "2014-01-02T12:40:08.123000+00:00")! as Date
@@ -35,6 +39,7 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date, resultDate)
     }
 
+    // YYYY-MM-DDTHH:MM:SS.MMM+ZZZZ
     func testDateE() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.123")
         let resultDate = NSDate(fromDateString: "2015-09-10T12:40:08.123+0000")! as Date
@@ -43,6 +48,7 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date, resultDate)
     }
 
+    // YYYY-MM-DDTHH:MM:SS.ZZZZZZ'Z'
     func testDateF() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-09-10T12:40:08.123")
         let resultDate = NSDate(fromDateString: "2015-09-10T12:40:08.123456Z")! as Date
