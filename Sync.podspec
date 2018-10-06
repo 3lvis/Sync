@@ -25,6 +25,6 @@ s.watchos.deployment_target = '2.0'
 s.tvos.deployment_target = '9.0'
 s.requires_arc = true
 s.source_files = 'Source/**/*'
-
+s.swift_version = '4.2'
 s.frameworks = 'Foundation', 'CoreData'
 end
