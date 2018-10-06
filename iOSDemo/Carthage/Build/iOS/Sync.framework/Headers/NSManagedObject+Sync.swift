@@ -199,6 +199,8 @@ extension NSManagedObject {
     ///   - objectJSONBlock: A block that gives the oportunity to the called to act on the current processed JSON.
     /// - Throws: An exception that will throw if any of the underlaying operations fail.
     func sync_toManyRelationship(_ relationship: NSRelationshipDescription, dictionary: [String: Any], parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, context: NSManagedObjectContext, operations: Sync.OperationOptions, shouldContinueBlock: (() -> Bool)?, objectJSONBlock: ((_ objectJSON: [String: Any]) -> [String: Any])?) throws {
+        let updatedOperations = operations.relationshipOperations()
+
         var children: [[String: Any]]?
         let childrenIsNull = (relationship.customKey as Any?) is NSNull || dictionary[relationship.name.hyp_snakeCase()] is NSNull || dictionary[relationship.name] is NSNull
         if childrenIsNull {
@@ -304,7 +306,7 @@ extension NSManagedObject {
 
             var childPredicate: NSPredicate?
             let manyToMany = inverseIsToMany && relationship.isToMany
-            var childOperations = operations
+            var childOperations = updatedOperations
             let childrenIDs = (((childIDs as Any) as AnyObject) as? NSArray) ?? NSArray()
 
             if manyToMany {
