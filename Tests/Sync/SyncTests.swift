@@ -11,8 +11,15 @@ class SyncTests: XCTestCase {
         dataStack.sync(objects, inEntityNamed: "NormalUser") { _ in
             synchronous = true
         }
-        XCTAssertTrue(synchronous)
-        dataStack.drop()
+
+		let c = Helper.countForEntity("NormalUser", predicate: nil, inContext: dataStack.mainContext)
+		
+		
+		XCTAssertTrue(synchronous)
+		XCTAssertTrue(c == 1)
+
+		
+		dataStack.drop()
     }
 
     // MARK: - Camelcase
