@@ -51,6 +51,7 @@
 
         char currentString[25] = "";
         BOOL hasTimezone = NO;
+        BOOL hasDeciseconds = NO;
         BOOL hasCentiseconds = NO;
         BOOL hasMiliseconds = NO;
         BOOL hasMicroseconds = NO;
@@ -97,6 +98,24 @@
             hasMiliseconds = YES;
         }
 
+        // Copy all the date excluding the miliseconds and the Z.
+        // Current date: 2017-12-22T18:10:14.07Z
+        // Will become:  2014-03-30T09:13:00
+        // Unit test M
+        else if (originalLength == 23 && originalString[originalLength - 1] == 'Z') {
+            strncpy(currentString, originalString, 19);
+            hasCentiseconds = YES;
+        }
+
+        // Copy all the date excluding the miliseconds and the Z.
+        // Current date: 2017-11-02T17:27:52.2Z
+        // Will become:  2014-03-30T09:13:00
+        // Unit test N
+        else if (originalLength == 22 && originalString[originalLength - 1] == 'Z') {
+            strncpy(currentString, originalString, 19);
+            hasDeciseconds = YES;
+        }
+
         // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
         // Current date: 2015-06-23T12:40:08.000+02:00
         // Will become:  2015-06-23T12:40:08
@@ -123,6 +142,7 @@
         // Unit test E
         else if (originalLength == 28 && originalString[23] == '+') {
             strncpy(currentString, originalString, 19);
+            hasMiliseconds = YES;
         }
 
         // Copy all the date excluding the microseconds and the Z.
@@ -131,6 +151,7 @@
         // Unit test F
         else if (originalString[19] == '.' && originalString[originalLength - 1] == 'Z') {
             strncpy(currentString, originalString, 19);
+            hasMicroseconds = YES;
         }
 
         // Copy all the date excluding the miliseconds.
@@ -184,8 +205,14 @@
         time_t timeStruct = mktime(&tm);
         double time = (double)timeStruct;
 
-        if (hasCentiseconds || hasMiliseconds || hasMicroseconds) {
+        if (hasDeciseconds || hasCentiseconds || hasMiliseconds || hasMicroseconds) {
             NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
+
+            if (hasDeciseconds) {
+                NSString *centisecondsString = [trimmedDate substringToIndex:@"0".length];
+                double centiseconds = centisecondsString.doubleValue / 10.0;
+                time += centiseconds;
+            }
 
             if (hasCentiseconds) {
                 NSString *centisecondsString = [trimmedDate substringToIndex:@"00".length];
@@ -200,9 +227,16 @@
             }
 
             if (hasMicroseconds) {
+                // Converts microseconds to miliseconds to keep consistency with NSDateFormatter
+                // since it doesn't handle microseconds
                 NSString *microsecondsString = [trimmedDate substringToIndex:@"000000".length];
-                double microseconds = microsecondsString.doubleValue / 1000000.0;
-                time += microseconds;
+                double reducedHundreds = microsecondsString.doubleValue / 1000.0;
+                int hundredsInt = reducedHundreds;
+                double microsecondsWithoutHundreds = reducedHundreds - hundredsInt;
+                double removedMicroseconds = microsecondsWithoutHundreds * 1000;
+                double convertedMicroseconds = microsecondsString.doubleValue - removedMicroseconds;
+                double miliseconds = convertedMicroseconds / 1000000.0;
+                time += miliseconds;
             }
         }
 

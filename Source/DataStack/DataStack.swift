@@ -25,7 +25,7 @@ import CoreData
 
     private var model: NSManagedObjectModel
 
-    private var containerURL = URL.directoryURL()
+    private var containerURL = FileManager.sqliteDirectoryURL
 
     private let backgroundContextName = "DataStack.backgroundContextName"
 
@@ -430,7 +430,7 @@ extension NSPersistentStoreCoordinator {
                 }
             }
 
-            let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+            let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true, NSSQLitePragmasOption: ["journal_mode": "DELETE"]] as [AnyHashable : Any]
             do {
                 try self.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: options)
             } catch {
@@ -491,12 +491,17 @@ extension NSError {
     }
 }
 
-extension URL {
-    fileprivate static func directoryURL() -> URL {
+extension FileManager {
+    /// The directory URL for the sqlite file.
+    public static var sqliteDirectoryURL: URL {
         #if os(tvOS)
-            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
         #else
+        if TestCheck.isTesting {
+            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!
+        } else {
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+        }
         #endif
     }
 }

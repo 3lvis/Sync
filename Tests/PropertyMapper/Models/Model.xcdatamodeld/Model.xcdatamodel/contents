@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Apartment" representedClassName="Apartment" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="apartments" inverseEntity="Building" syncable="YES"/>
@@ -26,6 +26,8 @@
         <attribute name="integerString" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transformable" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="uri" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="Building" representedClassName="Building" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -135,9 +137,10 @@
     </entity>
     <elements>
         <element name="Apartment" positionX="-18" positionY="27" width="128" height="90"/>
-        <element name="Attribute" positionX="45" positionY="189" width="128" height="285"/>
+        <element name="Attribute" positionX="45" positionY="189" width="128" height="315"/>
         <element name="Building" positionX="0" positionY="45" width="128" height="90"/>
         <element name="Company" positionX="18" positionY="63" width="128" height="90"/>
+        <element name="Compatibility" positionX="9" positionY="153" width="128" height="75"/>
         <element name="KeyPath" positionX="9" positionY="153" width="128" height="105"/>
         <element name="Market" positionX="-45" positionY="0" width="128" height="75"/>
         <element name="Note" positionX="9" positionY="54" width="128" height="105"/>
@@ -145,6 +148,5 @@
         <element name="Recursive" positionX="45" positionY="90" width="128" height="90"/>
         <element name="Room" positionX="27" positionY="72" width="128" height="75"/>
         <element name="User" positionX="9" positionY="54" width="128" height="345"/>
-        <element name="Compatibility" positionX="9" positionY="153" width="128" height="75"/>
     </elements>
 </model>
