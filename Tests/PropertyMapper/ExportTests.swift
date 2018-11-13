@@ -288,13 +288,13 @@ class ExportTests: XCTestCase {
 
         let result = workout.export(using: .camelCase)
 
-        let rootKeys = Array(result.keys)
+        let rootKeys = Array(result.keys).sorted()
         XCTAssertEqual(rootKeys.count, 5)
-        XCTAssertEqual(rootKeys[0], "plannedToIDs")
-        XCTAssertEqual(rootKeys[1], "workoutName")
-        XCTAssertEqual(rootKeys[2], "_id")
+        XCTAssertEqual(rootKeys[0], "_id")
+        XCTAssertEqual(rootKeys[1], "plannedToIDs")
+        XCTAssertEqual(rootKeys[2], "workoutDesc")
         XCTAssertEqual(rootKeys[3], "workoutExercises")
-        XCTAssertEqual(rootKeys[4], "workoutDesc")
+        XCTAssertEqual(rootKeys[4], "workoutName")
 
         dataStack.drop()
     }
@@ -306,13 +306,13 @@ class ExportTests: XCTestCase {
 
         let result = workout.export()
 
-        let rootKeys = Array(result.keys)
+        let rootKeys = Array(result.keys).sorted()
         XCTAssertEqual(rootKeys.count, 5)
-        XCTAssertEqual(rootKeys[0], "planned_to_ids")
-        XCTAssertEqual(rootKeys[1], "_id")
+        XCTAssertEqual(rootKeys[0], "_id")
+        XCTAssertEqual(rootKeys[1], "planned_to_ids")
         XCTAssertEqual(rootKeys[2], "workout_desc")
-        XCTAssertEqual(rootKeys[3], "workout_name")
-        XCTAssertEqual(rootKeys[4], "workout_exercises")
+        XCTAssertEqual(rootKeys[3], "workout_exercises")
+        XCTAssertEqual(rootKeys[4], "workout_name")
         
         dataStack.drop()
     }

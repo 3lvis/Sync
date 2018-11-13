@@ -51,6 +51,7 @@
 
         char currentString[25] = "";
         BOOL hasTimezone = NO;
+        BOOL hasDeciseconds = NO;
         BOOL hasCentiseconds = NO;
         BOOL hasMiliseconds = NO;
         BOOL hasMicroseconds = NO;
@@ -95,6 +96,24 @@
         else if (originalLength == 24 && originalString[originalLength - 1] == 'Z') {
             strncpy(currentString, originalString, 19);
             hasMiliseconds = YES;
+        }
+
+        // Copy all the date excluding the miliseconds and the Z.
+        // Current date: 2017-12-22T18:10:14.07Z
+        // Will become:  2014-03-30T09:13:00
+        // Unit test M
+        else if (originalLength == 23 && originalString[originalLength - 1] == 'Z') {
+            strncpy(currentString, originalString, 19);
+            hasCentiseconds = YES;
+        }
+
+        // Copy all the date excluding the miliseconds and the Z.
+        // Current date: 2017-11-02T17:27:52.2Z
+        // Will become:  2014-03-30T09:13:00
+        // Unit test N
+        else if (originalLength == 22 && originalString[originalLength - 1] == 'Z') {
+            strncpy(currentString, originalString, 19);
+            hasDeciseconds = YES;
         }
 
         // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
@@ -186,8 +205,14 @@
         time_t timeStruct = mktime(&tm);
         double time = (double)timeStruct;
 
-        if (hasCentiseconds || hasMiliseconds || hasMicroseconds) {
+        if (hasDeciseconds || hasCentiseconds || hasMiliseconds || hasMicroseconds) {
             NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
+
+            if (hasDeciseconds) {
+                NSString *centisecondsString = [trimmedDate substringToIndex:@"0".length];
+                double centiseconds = centisecondsString.doubleValue / 10.0;
+                time += centiseconds;
+            }
 
             if (hasCentiseconds) {
                 NSString *centisecondsString = [trimmedDate substringToIndex:@"00".length];
