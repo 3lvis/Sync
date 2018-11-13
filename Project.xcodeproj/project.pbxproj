@@ -703,6 +703,10 @@
 		5D289325203EB81800C8102C /* 482.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D289323203EB81800C8102C /* 482.xcdatamodeld */; };
 		5D96F24F219AD98200F88770 /* 519.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D96F24D219AD98200F88770 /* 519.xcdatamodeld */; };
 		5D96F251219ADAFB00F88770 /* 519.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D96F250219ADAFB00F88770 /* 519.json */; };
+		5DB9E017219AE3EB00D6F869 /* 519.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D96F24D219AD98200F88770 /* 519.xcdatamodeld */; };
+		5DB9E018219AE3EC00D6F869 /* 519.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D96F24D219AD98200F88770 /* 519.xcdatamodeld */; };
+		5DB9E019219AE3F100D6F869 /* 519.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D96F250219ADAFB00F88770 /* 519.json */; };
+		5DB9E01A219AE3F100D6F869 /* 519.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D96F250219ADAFB00F88770 /* 519.json */; };
 		CC86E0A120216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
 		CC86E0A220216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
 		CC86E0A320216FCC00AA0947 /* 447.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC86E09F20216FCC00AA0947 /* 447.xcdatamodeld */; };
@@ -2038,6 +2042,7 @@
 				14867EA91E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
 				44E38B332005EEB2003E896B /* 422-one-to-one-insert-option-initial.json in Resources */,
 				14E6522B1E809A68000E7CC6 /* remote_key.json in Resources */,
+				5DB9E019219AE3F100D6F869 /* 519.json in Resources */,
 				14867EC11E7AF4D2001D228A /* users_c.json in Resources */,
 				14867E761E7AF4D2001D228A /* bug-number-84.json in Resources */,
 				44E38AFA2005E68D003E896B /* 422-one-to-many-delete-option-initial.json in Resources */,
@@ -2148,6 +2153,7 @@
 				14867EAA1E7AF4D2001D228A /* stories-comments-no-ids.json in Resources */,
 				44E38B342005EEB2003E896B /* 422-one-to-one-insert-option-initial.json in Resources */,
 				14E6522C1E809A68000E7CC6 /* remote_key.json in Resources */,
+				5DB9E01A219AE3F100D6F869 /* 519.json in Resources */,
 				14867EC21E7AF4D2001D228A /* users_c.json in Resources */,
 				14867E771E7AF4D2001D228A /* bug-number-84.json in Resources */,
 				44E38AFB2005E68D003E896B /* 422-one-to-many-delete-option-initial.json in Resources */,
@@ -2484,6 +2490,7 @@
 				14867ED31E7AF4D2001D228A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				14867F4B1E7AF4D2001D228A /* SyncTests.swift in Sources */,
 				CCF94958203AE72700C64B80 /* 480.xcdatamodeld in Sources */,
+				5DB9E018219AE3EC00D6F869 /* 519.xcdatamodeld in Sources */,
 				14867EF41E7AF4D2001D228A /* 265.xcdatamodeld in Sources */,
 				14867EFD1E7AF4D2001D228A /* 283.xcdatamodeld in Sources */,
 				445851E31E87BAF60025434E /* SyncDictionaryTests.m in Sources */,
@@ -2584,6 +2591,7 @@
 				14867ED41E7AF4D2001D228A /* 151-ordered-many-to-many.xcdatamodeld in Sources */,
 				14867F4C1E7AF4D2001D228A /* SyncTests.swift in Sources */,
 				CCF94959203AE72700C64B80 /* 480.xcdatamodeld in Sources */,
+				5DB9E017219AE3EB00D6F869 /* 519.xcdatamodeld in Sources */,
 				14867EF51E7AF4D2001D228A /* 265.xcdatamodeld in Sources */,
 				14867EFE1E7AF4D2001D228A /* 283.xcdatamodeld in Sources */,
 				445851E41E87BAF60025434E /* SyncDictionaryTests.m in Sources */,
