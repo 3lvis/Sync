@@ -130,12 +130,14 @@ typedef NS_ENUM(NSInteger, SyncPropertyMapperInflectionType) {
  @param dateFormatter    A custom date formatter that turns @c NSDate objects into @c NSString objects. Do not pass nil, instead use the 'hyp_dictionary' method.
  @param inflectionType The type used to export the dictionary, can be camelCase or snakeCase.
  @param relationshipType It indicates wheter the result dictionary should include no relationships, nested attributes or normal attributes.
+ @param omitNullValues Boolean indicates whether null values should be skipped from result dictionary.
 
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
                                               usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
-                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType;
+                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
+                                                   omitNullValues:(BOOL)omitNullValues;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.

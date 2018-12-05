@@ -118,11 +118,13 @@ static NSString * const PropertyMapperNestedAttributesKey = @"attributes";
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
                                               usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
-                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
+                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
+                                                   omitNullValues:(BOOL)omitNullValues {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter
                                           parent:nil
                              usingInflectionType:inflectionType
-                             andRelationshipType:relationshipType];
+                             andRelationshipType:relationshipType
+                                  omitNullValues:omitNullValues];
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
@@ -138,6 +140,18 @@ static NSString * const PropertyMapperNestedAttributesKey = @"attributes";
                                                            parent:( NSManagedObject * _Nullable )parent
                                               usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
                                               andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType {
+    return [self hyp_dictionaryWithDateFormatter:dateFormatter
+                                          parent:parent
+                             usingInflectionType:inflectionType
+                             andRelationshipType:relationshipType
+                                  omitNullValues:false];
+}
+
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
+                                                           parent:( NSManagedObject * _Nullable )parent
+                                              usingInflectionType:(SyncPropertyMapperInflectionType)inflectionType
+                                              andRelationshipType:(SyncPropertyMapperRelationshipType)relationshipType
+                                                   omitNullValues:(BOOL)omitNullValues {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
@@ -147,6 +161,10 @@ static NSString * const PropertyMapperNestedAttributesKey = @"attributes";
                                                 dateFormatter:dateFormatter
                                              relationshipType:relationshipType];
                 if (value) {
+                    if (omitNullValues && value == [NSNull null]) {
+                        continue;
+                    }
+                    
                     NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription
                                                            usingRelationshipType:relationshipType
                                                                   inflectionType:inflectionType];
