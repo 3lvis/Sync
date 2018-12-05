@@ -24,11 +24,13 @@ public struct ExportOptions {
     public var inflectionType: InflectionType
     public var relationshipType: RelationshipType
     public var dateFormatter: DateFormatter
+    public var omitNullValues: Bool
 
     public init() {
         self.inflectionType = .snakeCase
         self.relationshipType = .array
         self.dateFormatter = .default()
+        self.omitNullValues = false
     }
 
 
@@ -81,7 +83,7 @@ public extension NSManagedObject {
             relationshipType = .none
         }
 
-        return hyp_dictionary(with: options.dateFormatter, using: inflectionType, andRelationshipType: relationshipType)
+        return hyp_dictionary(with: options.dateFormatter, using: inflectionType, andRelationshipType: relationshipType, omitNullValues: options.omitNullValues)
     }
 }
 
