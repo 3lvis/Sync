@@ -1747,4 +1747,40 @@ class SyncTests: XCTestCase {
         
         dataStack.drop()
     }
+    
+    // Syncing two sets of objects eg. lists and items individually. Then adding the items to the list in an order, loses the order.
+    func testUpdateManytoManyRelationship() {
+        let dataStack = Helper.dataStackWithModelName("ordered-many-to-many-update")
+        
+        let initialItems = Helper.objectsFromJSON("inital-ordered-many-to-many-update.json") as! [[String: Any]]
+        dataStack.sync(initialItems, inEntityNamed:"Item", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("Item", inContext: dataStack.mainContext), 5)
+
+        let initialList = Helper.objectsFromJSON("ordered-many-to-many-update-inital.json") as! [[String: Any]]
+        dataStack.sync(initialList, inEntityNamed:"List", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("List", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Item", inContext: dataStack.mainContext), 5)
+        
+        let unpopulatedList = Helper.fetchEntity("List", predicate:nil, inContext: dataStack.mainContext).first
+        let unpopulatedListItems = unpopulatedList?.value(forKey:"items") as! NSOrderedSet
+        XCTAssertEqual(unpopulatedListItems.count,  0)
+        
+        let updated = Helper.objectsFromJSON("ordered-many-to-many-update-update.json") as! [[String: Any]]
+        dataStack.sync(updated, inEntityNamed:"List", completion: nil)
+        XCTAssertEqual(Helper.countForEntity("List", inContext: dataStack.mainContext), 1)
+        XCTAssertEqual(Helper.countForEntity("Item", inContext: dataStack.mainContext), 5)
+        
+        let list = Helper.fetchEntity("List", predicate:nil, inContext: dataStack.mainContext).first
+        let items = list?.value(forKey:"items") as! NSOrderedSet
+        XCTAssertEqual(items.count,  5)
+        
+        // 1,3,2,5,4
+        XCTAssertEqual((items.firstObject as! NSManagedObject).value(forKey:"id") as? Int16, 1)
+        XCTAssertEqual((items.object(at: 1) as! NSManagedObject).value(forKey:"id") as? Int16, 3)
+        XCTAssertEqual((items.object(at: 2) as! NSManagedObject).value(forKey:"id") as? Int16, 2)
+        XCTAssertEqual((items.object(at: 3) as! NSManagedObject).value(forKey:"id") as? Int16, 5)
+        XCTAssertEqual((items.lastObject as! NSManagedObject).value(forKey:"id") as? Int16, 4)
+        
+        dataStack.drop()
+    }
 }
