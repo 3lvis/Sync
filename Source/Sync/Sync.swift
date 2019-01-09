@@ -180,6 +180,22 @@ public protocol SyncDelegate: class {
 
             updatedObject.sync_fill(with: JSON, parent: parent, parentRelationship: parentRelationship, context: context, operations: operations, shouldContinueBlock: shouldContinueBlock, objectJSONBlock: objectJSONBlock)
         }
+        
+        // We have inserted, updated, and deleted objects. Now lets put them in the correct order if appropriate.
+        if let parentRelationship = parentRelationship, parentRelationship.isOrdered, let parent = parent, let objects = parent.value(forKey: parentRelationship.name) as? NSOrderedSet {
+            let changeIDs = (changes as NSArray).value(forKey: parentRelationship.destinationEntity!.sync_remotePrimaryKey()) as! NSArray
+            
+            for case let safeObject as NSManagedObject in objects.array {
+                let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
+                let remoteIndex = changeIDs.index(of: currentID)
+                let relatedObjects = parent.mutableOrderedSetValue(forKey: parentRelationship.name)
+                
+                let currentIndex = relatedObjects.index(of: safeObject)
+                if currentIndex != remoteIndex && currentIndex != NSNotFound && currentIndex < relatedObjects.count && remoteIndex < relatedObjects.count {
+                    relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
+                }
+            }
+        }
 
         if context.hasChanges {
             let shouldContinue = shouldContinueBlock?() ?? true
