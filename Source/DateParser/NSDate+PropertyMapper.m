@@ -107,6 +107,15 @@
             hasCentiseconds = YES;
         }
 
+        // Copy all the date excluding the miliseconds.
+        // Current date: 2017-12-22T18:10:14.070
+        // Will become:  2017-12-22T18:10:14
+        // Unit test O
+        else if (originalLength == 23 && originalString[originalLength - 1] != 'Z') {
+            strncpy(currentString, originalString, 19);
+            hasMiliseconds = YES;
+        }
+
         // Copy all the date excluding the miliseconds and the Z.
         // Current date: 2017-11-02T17:27:52.2Z
         // Will become:  2014-03-30T09:13:00
