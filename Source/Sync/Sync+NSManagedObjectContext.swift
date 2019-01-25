@@ -113,9 +113,10 @@ extension Sync {
     ///   - changes: The array of dictionaries used in the sync process.
     ///   - entityName: The name of the entity to be synced.
     ///   - context: The Core Data context to be used.
+    ///   - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
     ///   - completion: The completion block, it returns an error if something in the Sync process goes wrong.
-    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, inContext context: NSManagedObjectContext, completion: ((_ error: NSError?) -> Void)?) {
-        self.changes(changes, inEntityNamed: entityName, predicate: nil, parent: nil, parentRelationship: nil, inContext: context, operations: .all, completion: completion)
+    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions = .all, completion: ((_ error: NSError?) -> Void)?) {
+        self.changes(changes, inEntityNamed: entityName, predicate: nil, parent: nil, parentRelationship: nil, inContext: context, operations: operations, completion: completion)
     }
 
     public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, parent: NSManagedObject?, parentRelationship: NSRelationshipDescription?, inContext context: NSManagedObjectContext, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
