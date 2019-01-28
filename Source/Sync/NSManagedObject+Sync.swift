@@ -186,7 +186,7 @@ extension NSManagedObject {
                     let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
 
                     let currentIndex = relatedObjects.index(of: safeObject)
-                    if currentIndex != remoteIndex {
+                    if currentIndex != remoteIndex && currentIndex != NSNotFound && currentIndex < relatedObjects.count && remoteIndex < relatedObjects.count {
                         relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
                     }
                 }
@@ -291,25 +291,6 @@ extension NSManagedObject {
                                         }
                                     }
                                 }
-                            }
-                        }
-                    }
-
-                    if relationship.isOrdered {
-                        let objects: [NSManagedObject]
-                        if let safeLocalObjects = safeLocalObjects {
-                            objects = safeLocalObjects
-                        } else {
-                            objects = try context.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
-                        }
-                        for safeObject in objects {
-                            let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
-                            let remoteIndex = remoteItems.index(of: currentID)
-                            let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
-
-                            let currentIndex = relatedObjects.index(of: safeObject)
-                            if currentIndex != remoteIndex && currentIndex != NSNotFound {
-                                relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
                             }
                         }
                     }
