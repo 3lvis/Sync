@@ -30,7 +30,7 @@ public extension Data {
      Converts NSData to a JSON object.
      - returns: A JSON object, it can be either a Dictionary or an Array.
      */
-    public func toJSON() throws -> Any? {
+    func toJSON() throws -> Any? {
         var JSON: Any?
         do {
             JSON = try JSONSerialization.jsonObject(with: self, options: []) as Any

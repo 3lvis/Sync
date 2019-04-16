@@ -54,7 +54,7 @@ public extension NSManagedObject {
     /// Fills the `NSManagedObject` with the contents of the dictionary using a convention-over-configuration paradigm mapping the Core Data attributes to their conterparts in JSON using snake_case.
     ///
     /// - Returns: The JSON dictionary to be used to fill the values of your `NSManagedObject`.
-    public func export() -> [String: Any] {
+    func export() -> [String: Any] {
         return hyp_dictionary(using: .array)
     }
 
@@ -62,7 +62,7 @@ public extension NSManagedObject {
     ///
     /// - Parameter options: The options used to export the JSON, such as inflection type, relationship type and date formatting.
     /// - Returns: The JSON dictionary to be used to fill the values of your `NSManagedObject`.
-    public func export(using options: ExportOptions) -> [String: Any] {
+    func export(using options: ExportOptions) -> [String: Any] {
         let inflectionType: SyncPropertyMapperInflectionType
         switch options.inflectionType {
         case .camelCase:
