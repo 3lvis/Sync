@@ -54,11 +54,11 @@
     NSData *hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                     @"Soccer",
                                                                     @"Code",
-                                                                    @"More code"]];
+                                                                    @"More code"] requiringSecureCoding:false error:nil];
     [user setValue:hobbies forKey:@"hobbies"];
 
     NSData *expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                     @"juice" : @0.50}];
+                                                                     @"juice" : @0.50} requiringSecureCoding:false error:nil];
     [user setValue:expenses forKey:@"expenses"];
 
     NSManagedObject *note = [self noteWithID:@1 inContext:dataStack.mainContext];
@@ -121,12 +121,12 @@
     comparedDictionary[@"description"] = @"John Description";
     comparedDictionary[@"driver_identifier_str"] = @"ABC8283";
     comparedDictionary[@"expenses"] = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                                    @"juice" : @0.50}];
+                                                                                    @"juice" : @0.50} requiringSecureCoding:false error:nil];
     comparedDictionary[@"first_name"] = @"John";
     comparedDictionary[@"hobbies"] = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                                    @"Soccer",
                                                                                    @"Code",
-                                                                                   @"More code"]];
+                                                                                   @"More code"] requiringSecureCoding:false error:nil];
     comparedDictionary[@"id"] = @111;
     comparedDictionary[@"ignored_parameter"] = [NSNull null];
     comparedDictionary[@"last_name"] = @"Sid";
@@ -200,11 +200,11 @@
     NSData *hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                     @"Soccer",
                                                                     @"Code",
-                                                                    @"More code"]];
+                                                                    @"More code"] requiringSecureCoding:false error:nil];
     [user setValue:hobbies forKey:@"hobbies"];
 
     NSData *expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                     @"juice" : @0.50}];
+                                                                     @"juice" : @0.50} requiringSecureCoding:false error:nil];
     [user setValue:expenses forKey:@"expenses"];
 
     NSManagedObject *note = [self orderedNoteWithID:@1 inContext:dataStack.mainContext];
