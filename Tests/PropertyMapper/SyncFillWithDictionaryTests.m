@@ -53,11 +53,11 @@
     NSData *hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                     @"Soccer",
                                                                     @"Code",
-                                                                    @"More code"]];
+                                                                    @"More code"] requiringSecureCoding:false error:nil];
     [user setValue:hobbies forKey:@"hobbies"];
 
     NSData *expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                     @"juice" : @0.50}];
+                                                                     @"juice" : @0.50} requiringSecureCoding:false error:nil];
     [user setValue:expenses forKey:@"expenses"];
 
     NSManagedObject *note = [self noteWithID:@1 inContext:dataStack.mainContext];
@@ -142,7 +142,7 @@
     XCTAssertEqualWithAccuracy([[attributes valueForKey:@"floatValue"] longValue], [@12 longValue], 1.0);
     XCTAssertEqualObjects([attributes valueForKey:@"string"], @"string");
     XCTAssertEqualObjects([attributes valueForKey:@"boolean"], @YES);
-    XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
+    XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data" requiringSecureCoding:false error:nil]);
     XCTAssertNil([attributes valueForKey:@"transformable"]);
     XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
     XCTAssertEqualObjects([attributes valueForKey:@"uuid"], [[NSUUID alloc] initWithUUIDString:@"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"]);
@@ -194,7 +194,7 @@
     XCTAssertEqualWithAccuracy([[attributes valueForKey:@"floatValue"] longValue], [@12 longValue], 1.0);
     XCTAssertEqualObjects([attributes valueForKey:@"string"], @"string");
     XCTAssertEqualObjects([attributes valueForKey:@"boolean"], @YES);
-    XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
+    XCTAssertEqualObjects([attributes valueForKey:@"binaryData"], [NSKeyedArchiver archivedDataWithRootObject:@"Data" requiringSecureCoding:false error:nil]);    
     XCTAssertNil([attributes valueForKey:@"transformable"]);
     XCTAssertEqualObjects([attributes valueForKey:@"customTransformerString"], @"Foo & bar");
     XCTAssertEqualObjects([attributes valueForKey:@"uuid"], [[NSUUID alloc] initWithUUIDString:@"E621E1F8-C36C-495A-93FC-0C247A3E6E5F"]);
