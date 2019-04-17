@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
   </a>
   <a href="https://github.com/3lvis/Sync#installation">
-    <img src="https://img.shields.io/badge/compatible-swift%204.0-orange.svg" />
+    <img src="https://img.shields.io/badge/compatible-swift%205.0-orange.svg" />
   </a>
 </div>
 
