@@ -1,0 +1,10 @@
+[
+  {
+    "id" : "employee1",
+    "courses" : [
+      {
+        "id" : "course1"
+      }
+    ]
+  }
+]
