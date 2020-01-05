@@ -39,12 +39,16 @@ extension NSManagedObject {
             if relationship.isToMany {
                 var children: Any?
                 if keyName.contains(".") {
-                    if let deepMappingRootkey = keyName.components(separatedBy: ".").first {
-                        if let rootObject = dictionary[deepMappingRootkey] as? [String: Any] {
-                            if let deepMappingLeaveKey = keyName.components(separatedBy: ".").last {
-                                children = rootObject[deepMappingLeaveKey]
-                            }
-                        }
+                    var rootObject: [String: Any]? = dictionary
+                    let deepMappingKeys = keyName.split(separator: ".").map { String($0)}
+                    let keyComponents = deepMappingKeys[0...deepMappingKeys.count - 2]
+                    
+                    for key in keyComponents {
+                        rootObject = rootObject?[key] as? [String: Any]
+                    }
+                    
+                    if let innerObject = rootObject, let deepMappingLeaveKey = deepMappingKeys.last {
+                        children = innerObject[deepMappingLeaveKey]
                     }
                 } else {
                     children = dictionary[keyName]
@@ -70,12 +74,16 @@ extension NSManagedObject {
 
                 var child: Any?
                 if keyName.contains(".") {
-                    if let deepMappingRootkey = keyName.components(separatedBy: ".").first {
-                        if let rootObject = dictionary[deepMappingRootkey] as? [String: Any] {
-                            if let deepMappingLeaveKey = keyName.components(separatedBy: ".").last {
-                                child = rootObject[deepMappingLeaveKey]
-                            }
-                        }
+                    var rootObject: [String: Any]? = dictionary
+                    let deepMappingKeys = keyName.split(separator: ".").map { String($0)}
+                    let keyComponents = deepMappingKeys[0...(deepMappingKeys.count - 2)]
+                    
+                    for key in keyComponents {
+                        rootObject = rootObject?[key] as? [String: Any]
+                    }
+                    
+                    if let innerObject = rootObject, let deepMappingLeaveKey = deepMappingKeys.last {
+                        child = innerObject[deepMappingLeaveKey]
                     }
                 } else {
                     child = dictionary[keyName]
@@ -178,7 +186,7 @@ extension NSManagedObject {
                     let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
 
                     let currentIndex = relatedObjects.index(of: safeObject)
-                    if currentIndex != remoteIndex {
+                    if currentIndex != remoteIndex && currentIndex != NSNotFound && currentIndex < relatedObjects.count && remoteIndex < relatedObjects.count {
                         relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
                     }
                 }
@@ -212,12 +220,16 @@ extension NSManagedObject {
         } else {
             if let customRelationshipName = relationship.customKey {
                 if customRelationshipName.contains(".") {
-                    if let deepMappingRootKey = customRelationshipName.components(separatedBy: ".").first {
-                        if let rootObject = dictionary[deepMappingRootKey] as? [String: Any] {
-                            if let deepMappingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
-                                children = rootObject[deepMappingLeaveKey] as? [[String: Any]]
-                            }
-                        }
+                    var rootObject: [String: Any]? = dictionary
+                    let deepMappingKeys = customRelationshipName.split(separator: ".").map { String($0)}
+                    let keyComponents = deepMappingKeys[0...deepMappingKeys.count - 2]
+    
+                    for key in keyComponents {
+                        rootObject = rootObject?[key] as? [String: Any]
+                    }
+                    
+                    if let innerObject = rootObject, let deepMappingLeaveKey = deepMappingKeys.last {
+                        children = innerObject[deepMappingLeaveKey] as? [[String: Any]]
                     }
                 } else {
                     children = dictionary[customRelationshipName] as? [[String: Any]]
@@ -279,25 +291,6 @@ extension NSManagedObject {
                                         }
                                     }
                                 }
-                            }
-                        }
-                    }
-
-                    if relationship.isOrdered {
-                        let objects: [NSManagedObject]
-                        if let safeLocalObjects = safeLocalObjects {
-                            objects = safeLocalObjects
-                        } else {
-                            objects = try context.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
-                        }
-                        for safeObject in objects {
-                            let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
-                            let remoteIndex = remoteItems.index(of: currentID)
-                            let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
-
-                            let currentIndex = relatedObjects.index(of: safeObject)
-                            if currentIndex != remoteIndex && currentIndex != NSNotFound {
-                                relatedObjects.moveObjects(at: IndexSet(integer: currentIndex), to: remoteIndex)
                             }
                         }
                     }
@@ -398,13 +391,17 @@ extension NSManagedObject {
 
         if let customRelationshipName = relationship.customKey {
             if customRelationshipName.contains(".") {
-                if let deepMappingRootKey = customRelationshipName.components(separatedBy: ".").first {
-                    if let rootObject = dictionary[deepMappingRootKey] as? [String: Any] {
-                        if let deepMappingLeaveKey = customRelationshipName.components(separatedBy: ".").last {
-                            filteredObjectDictionary = rootObject[deepMappingLeaveKey] as? [String: Any]
-                            jsonContainsRelationship = rootObject[deepMappingLeaveKey] != nil
-                        }
-                    }
+                var rootObject: [String: Any]? = dictionary
+                let deepMappingKeys = customRelationshipName.split(separator: ".").map { String($0)}
+                let keyComponents = deepMappingKeys[0...deepMappingKeys.count - 2]
+                
+                for key in keyComponents {
+                    rootObject = rootObject?[key] as? [String: Any]
+                }
+                
+                if let innerObject = rootObject, let deepMappingLeaveKey = deepMappingKeys.last {
+                    filteredObjectDictionary = innerObject[deepMappingLeaveKey] as? [String: Any]
+                    jsonContainsRelationship = innerObject[deepMappingLeaveKey] != nil
                 }
             } else {
                 filteredObjectDictionary = dictionary[customRelationshipName] as? [String: Any]

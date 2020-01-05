@@ -8,7 +8,7 @@ public extension DataStack {
     ///   - changes: The array of dictionaries used in the sync process.
     ///   - entityName: The name of the entity to be synced.
     ///   - completion: The completion block, it returns an error if something in the Sync process goes wrong.
-    public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, completion: ((_ error: NSError?) -> Void)?) {
+    func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, completion: ((_ error: NSError?) -> Void)?) {
         Sync.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: self, operations: .all, completion: completion)
     }
 
@@ -22,7 +22,7 @@ public extension DataStack {
     ///   - entityName: The name of the entity to be synced.
     ///   - operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
     ///   - completion: The completion block, it returns an error if something in the Sync process goes wrong.
-    public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         Sync.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: self, operations: operations, completion: completion)
     }
 
@@ -36,7 +36,7 @@ public extension DataStack {
     ///   - entityName: The name of the entity to be synced.
     ///   - predicate: The predicate used to filter out changes, if you want to exclude some local items to be taken in account in the Sync process, you just need to provide this predicate.
     ///   - completion: The completion block, it returns an error if something in the Sync process goes wrong.
-    public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, completion: ((_ error: NSError?) -> Void)?) {
+    func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, completion: ((_ error: NSError?) -> Void)?) {
         self.performInNewBackgroundContext { backgroundContext in
             Sync.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: .all, completion: completion)
         }
@@ -53,7 +53,7 @@ public extension DataStack {
     ///   - predicate: The predicate used to filter out changes, if you want to exclude some local items to be taken in account in the Sync process, you just need to provide this predicate.
     ///   - operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
     ///   - completion: The completion block, it returns an error if something in the Sync process goes wrong.
-    public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         self.performInNewBackgroundContext { backgroundContext in
             Sync.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: operations, completion: completion)
         }
@@ -71,7 +71,7 @@ public extension DataStack {
     /// an Album has many photos, if this photos don't incldue the album's JSON object, syncing the photos JSON requires
     /// you to send the parent album to do the proper mapping.
     ///   - completion: The completion block, it returns an error if something in the Sync process goes wrong.
-    public func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, parent: NSManagedObject, completion: ((_ error: NSError?) -> Void)?) {
+    func sync(_ changes: [[String: Any]], inEntityNamed entityName: String, parent: NSManagedObject, completion: ((_ error: NSError?) -> Void)?) {
         self.performInNewBackgroundContext { backgroundContext in
             let safeParent = parent.sync_copyInContext(backgroundContext)
             guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: backgroundContext) else { fatalError("Couldn't find entity named: \(entityName)") }
@@ -94,7 +94,7 @@ public extension DataStack {
     /// - Returns: A managed object for a provided primary key in an specific entity.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public func fetch<ResultType: NSManagedObject>(_ id: Any, inEntityNamed entityName: String) throws -> ResultType? {
+    func fetch<ResultType: NSManagedObject>(_ id: Any, inEntityNamed entityName: String) throws -> ResultType? {
         Sync.verifyContextSafety(context: self.mainContext)
 
         return try Sync.fetch(id, inEntityNamed: entityName, using: self.mainContext)
@@ -108,7 +108,7 @@ public extension DataStack {
     /// - Returns: The inserted or updated object. If you call this method from a background context, make sure to not use this on the main thread.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public func insertOrUpdate<ResultType: NSManagedObject>(_ changes: [String: Any], inEntityNamed entityName: String) throws -> ResultType {
+    func insertOrUpdate<ResultType: NSManagedObject>(_ changes: [String: Any], inEntityNamed entityName: String) throws -> ResultType {
         Sync.verifyContextSafety(context: self.mainContext)
 
         return try Sync.insertOrUpdate(changes, inEntityNamed: entityName, using: self.mainContext)
@@ -123,7 +123,7 @@ public extension DataStack {
     /// - Returns: The updated object, if not found it returns nil. If you call this method from a background context, make sure to not use this on the main thread.
     /// - Throws: Core Data related issues.
     @discardableResult
-    public func update<ResultType: NSManagedObject>(_ id: Any, with changes: [String: Any], inEntityNamed entityName: String) throws -> ResultType? {
+    func update<ResultType: NSManagedObject>(_ id: Any, with changes: [String: Any], inEntityNamed entityName: String) throws -> ResultType? {
         Sync.verifyContextSafety(context: self.mainContext)
 
         return try Sync.update(id, with: changes, inEntityNamed: entityName, using: self.mainContext)
@@ -135,7 +135,7 @@ public extension DataStack {
     ///   - id: The primary key.
     ///   - entityName: The name of the entity.
     /// - Throws: Core Data related issues.
-    public func delete(_ id: Any, inEntityNamed entityName: String) throws {
+    func delete(_ id: Any, inEntityNamed entityName: String) throws {
         Sync.verifyContextSafety(context: self.mainContext)
 
         return try Sync.delete(id, inEntityNamed: entityName, using: self.mainContext)
@@ -153,7 +153,7 @@ public extension Sync {
      - parameter dataStack: The DataStack instance.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, dataStack: DataStack, completion: ((_ error: NSError?) -> Void)?) {
+    class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, dataStack: DataStack, completion: ((_ error: NSError?) -> Void)?) {
         self.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: dataStack, operations: .all, completion: completion)
     }
 
@@ -168,7 +168,7 @@ public extension Sync {
      - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, dataStack: DataStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, dataStack: DataStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         self.changes(changes, inEntityNamed: entityName, predicate: nil, dataStack: dataStack, operations: operations, completion: completion)
     }
 
@@ -184,7 +184,7 @@ public extension Sync {
      - parameter dataStack: The DataStack instance.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DataStack, completion: ((_ error: NSError?) -> Void)?) {
+    class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DataStack, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: .all, completion: completion)
         }
@@ -203,7 +203,7 @@ public extension Sync {
      - parameter operations: The type of operations to be applied to the data, Insert, Update, Delete or any possible combination.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DataStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
+    class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, predicate: NSPredicate?, dataStack: DataStack, operations: Sync.OperationOptions, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             self.changes(changes, inEntityNamed: entityName, predicate: predicate, parent: nil, parentRelationship: nil, inContext: backgroundContext, operations: operations, completion: completion)
         }
@@ -222,7 +222,7 @@ public extension Sync {
      - parameter dataStack: The DataStack instance.
      - parameter completion: The completion block, it returns an error if something in the Sync process goes wrong.
      */
-    public class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, parent: NSManagedObject, dataStack: DataStack, completion: ((_ error: NSError?) -> Void)?) {
+    class func changes(_ changes: [[String: Any]], inEntityNamed entityName: String, parent: NSManagedObject, dataStack: DataStack, completion: ((_ error: NSError?) -> Void)?) {
         dataStack.performInNewBackgroundContext { backgroundContext in
             let safeParent = parent.sync_copyInContext(backgroundContext)
             guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: backgroundContext) else { fatalError("Couldn't find entity named: \(entityName)") }
