@@ -405,13 +405,13 @@ let dictionary = user.export(using: exportOptions)
 ### CocoaPods
 
 ```ruby
-pod 'Sync', '~> 5'
+pod 'Sync', '~> 6'
 ```
 
 ### Carthage
 
 ```ruby
-github "3lvis/Sync" ~> 5.0
+github "3lvis/Sync" ~> 6.0
 ```
 
 ### Supported iOS, OS X, watchOS and tvOS Versions
