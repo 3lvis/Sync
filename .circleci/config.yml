@@ -2,13 +2,13 @@ version: 2
 jobs:
   build-and-test:
     macos:
-      xcode: "10.2.0"
+      xcode: "11.5.0"
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
       - run: xcodebuild -project Project.xcodeproj -scheme "macOSTests" -sdk macosx test | xcpretty
-      - run: xcodebuild -project Project.xcodeproj -scheme "iOSTests" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=12.2,name=iPhone X' test | xcpretty
-      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=12.2' test | xcpretty
+      - run: xcodebuild -project Project.xcodeproj -scheme "iOSTests" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11' test | xcpretty
+      - run: xcodebuild -project Project.xcodeproj -scheme "tvOSTests" -destination 'platform=tvOS Simulator,name=Apple TV,OS=13.4' test | xcpretty
 
 workflows:
   version: 2
