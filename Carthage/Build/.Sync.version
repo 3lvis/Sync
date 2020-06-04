@@ -1,0 +1,31 @@
+{
+  "Mac" : [
+    {
+      "name" : "Sync",
+      "hash" : "8d4347345743c0f715c8bb07fdb4236096ee23dab2a9d188e03a36d574fa4b60",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "Sync",
+      "hash" : "b80d78be62d6295d47f81d6069561c9afaef0e9cc29b24ec0f3c05e45931c72e",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "Sync",
+      "hash" : "f1b0a0a8de9437a38a2d3b5ab6f5e36de66ac7c2160b70f6b9fea16aa8acefb7",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ],
+  "commitish" : "05c46a1d6da0fba7ba86fec0079e0058cb97dc87",
+  "iOS" : [
+    {
+      "name" : "Sync",
+      "hash" : "d5f1aa2a256cc0806ae2d3625e06c18abdb0aa670431bd2fef7784accda9c48e",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ]
+}
