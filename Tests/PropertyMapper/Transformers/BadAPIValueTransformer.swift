@@ -2,7 +2,7 @@ import Foundation
 
 class BadAPIValueTransformer : ValueTransformer {
     override class func transformedValueClass() -> AnyClass {
-        return String.self as! AnyClass
+        return NSString.self as AnyClass
     }
 
     override class func allowsReverseTransformation() -> Bool {
