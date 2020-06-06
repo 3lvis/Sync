@@ -442,11 +442,11 @@
 		14A84E991E4E70B900701B8A /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A84E9A1E4E70B900701B8A /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A84E9B1E4E70B900701B8A /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14A84E9C1E4E70B900701B8A /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14AF6AFE1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
-		14AF6AFF1DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
-		14AF6B001DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
-		14AF6B011DFC3D88009E5BC4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; };
+		14A84E9C1E4E70B900701B8A /* SyncResult.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		14AF6AFE1DFC3D88009E5BC4 /* SyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; };
+		14AF6AFF1DFC3D88009E5BC4 /* SyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; };
+		14AF6B001DFC3D88009E5BC4 /* SyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; };
+		14AF6B011DFC3D88009E5BC4 /* SyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; };
 		14D5255F1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */; };
 		14D525601E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */; };
 		14D525611E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */; };
@@ -464,7 +464,7 @@
 		14D93C4C1E4E67A200DED595 /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C4D1E4E67A200DED595 /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D93C4E1E4E67A200DED595 /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14D93C4F1E4E67A200DED595 /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		14D93C4F1E4E67A200DED595 /* SyncResult.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E2F0A11E7ADE0E00DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E981DBC39730042ED81 /* Sync.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		14E2F0A21E7ADE1400DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E8B1DBC39690042ED81 /* Sync.framework */; };
 		14E2F0F31E7AE12200DF1776 /* Sync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14241E711DBC39520042ED81 /* Sync.framework */; };
@@ -486,7 +486,7 @@
 		14F627661E7AE6B2001C2EA0 /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627671E7AE6B2001C2EA0 /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627681E7AE6B2001C2EA0 /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14F627691E7AE6B2001C2EA0 /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		14F627691E7AE6B2001C2EA0 /* SyncResult.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F6276A1E7AE6B5001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F6276B1E7AE6B5001C2EA0 /* NSDate+PropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D93BFE1E4E65C700DED595 /* NSDate+PropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627701E7AE6B5001C2EA0 /* Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E93C431DBCCD2800E3304E /* Sync.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -497,7 +497,7 @@
 		14F627751E7AE6B5001C2EA0 /* NSEntityDescription+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF61DA0021300E71A53 /* NSEntityDescription+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627761E7AE6B5001C2EA0 /* NSManagedObject+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF71DA0021300E71A53 /* NSManagedObject+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627771E7AE6B5001C2EA0 /* NSManagedObjectContext+Sync.swift in Headers */ = {isa = PBXBuildFile; fileRef = 44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		14F627781E7AE6B5001C2EA0 /* Result.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* Result.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		14F627781E7AE6B5001C2EA0 /* SyncResult.swift in Headers */ = {isa = PBXBuildFile; fileRef = 14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F627791E7AE6CF001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F6277A1E7AE6E1001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AFF18CB1FE1F08900C4BC3D /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
@@ -986,7 +986,7 @@
 		14975BF41DBC36960024901A /* macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		149FF9E91E808C4400617A63 /* 113.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 113.xcdatamodel; sourceTree = "<group>"; };
 		149FF9ED1E808DFB00617A63 /* 375.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 375.json; sourceTree = "<group>"; };
-		14AF6AFA1DFC3D88009E5BC4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncResult.swift; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1579,7 +1579,7 @@
 				44968BF81DA0021300E71A53 /* NSManagedObjectContext+Sync.swift */,
 				44B212F21E87BD5D00C81949 /* NSPropertyDescription+Sync.h */,
 				44B212F31E87BD5D00C81949 /* NSPropertyDescription+Sync.m */,
-				14AF6AFA1DFC3D88009E5BC4 /* Result.swift */,
+				14AF6AFA1DFC3D88009E5BC4 /* SyncResult.swift */,
 				44968BF91DA0021300E71A53 /* Sync.swift */,
 				142CD2A31DEF39AE002FDABE /* Sync+DataStack.swift */,
 				14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */,
@@ -1649,7 +1649,7 @@
 				4474093B1E87BA4E0035B8DC /* PropertyMapper.h in Headers */,
 				447409331E87BA4E0035B8DC /* NSManagedObject+PropertyMapperHelpers.h in Headers */,
 				14D93C4E1E4E67A200DED595 /* NSManagedObjectContext+Sync.swift in Headers */,
-				14D93C4F1E4E67A200DED595 /* Result.swift in Headers */,
+				14D93C4F1E4E67A200DED595 /* SyncResult.swift in Headers */,
 				44CFE6871E87BC650068185B /* Inflections.h in Headers */,
 				445851F41E87BB590025434E /* NSEntityDescription+PrimaryKey.h in Headers */,
 				44B212F41E87BD5D00C81949 /* NSPropertyDescription+Sync.h in Headers */,
@@ -1676,7 +1676,7 @@
 				44CFE68A1E87BC650068185B /* Inflections.h in Headers */,
 				445851F71E87BB590025434E /* NSEntityDescription+PrimaryKey.h in Headers */,
 				44B212F71E87BD5D00C81949 /* NSPropertyDescription+Sync.h in Headers */,
-				14F627781E7AE6B5001C2EA0 /* Result.swift in Headers */,
+				14F627781E7AE6B5001C2EA0 /* SyncResult.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1696,7 +1696,7 @@
 				4474093C1E87BA4E0035B8DC /* PropertyMapper.h in Headers */,
 				44CFE6881E87BC650068185B /* Inflections.h in Headers */,
 				447409341E87BA4E0035B8DC /* NSManagedObject+PropertyMapperHelpers.h in Headers */,
-				14A84E9C1E4E70B900701B8A /* Result.swift in Headers */,
+				14A84E9C1E4E70B900701B8A /* SyncResult.swift in Headers */,
 				445851F51E87BB590025434E /* NSEntityDescription+PrimaryKey.h in Headers */,
 				44B212F51E87BD5D00C81949 /* NSPropertyDescription+Sync.h in Headers */,
 				14F6277A1E7AE6E1001C2EA0 /* DataStack.swift in Headers */,
@@ -1722,7 +1722,7 @@
 				44CFE6891E87BC650068185B /* Inflections.h in Headers */,
 				445851F61E87BB590025434E /* NSEntityDescription+PrimaryKey.h in Headers */,
 				44B212F61E87BD5D00C81949 /* NSPropertyDescription+Sync.h in Headers */,
-				14F627691E7AE6B2001C2EA0 /* Result.swift in Headers */,
+				14F627691E7AE6B2001C2EA0 /* SyncResult.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2333,7 +2333,7 @@
 				14241EA41DBC3A6F0042ED81 /* Sync.swift in Sources */,
 				142CD2B11DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				44CFE68B1E87BC650068185B /* Inflections.m in Sources */,
-				14AF6AFE1DFC3D88009E5BC4 /* Result.swift in Sources */,
+				14AF6AFE1DFC3D88009E5BC4 /* SyncResult.swift in Sources */,
 				14D5255F1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift in Sources */,
 				14241EA51DBC3A6F0042ED81 /* DataFilter.swift in Sources */,
 				14241EA71DBC3A6F0042ED81 /* TestCheck.swift in Sources */,
@@ -2364,7 +2364,7 @@
 				142CD2B21DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				1467388F1E7ADBA700913C8E /* DataStack.swift in Sources */,
 				447409421E87BA4E0035B8DC /* PropertyMapper.m in Sources */,
-				14AF6AFF1DFC3D88009E5BC4 /* Result.swift in Sources */,
+				14AF6AFF1DFC3D88009E5BC4 /* SyncResult.swift in Sources */,
 				14D93C141E4E65C700DED595 /* NSDate+PropertyMapper.m in Sources */,
 				14241EAD1DBC3A770042ED81 /* DataFilter.swift in Sources */,
 				14241EAF1DBC3A770042ED81 /* TestCheck.swift in Sources */,
@@ -2392,7 +2392,7 @@
 				142CD2B31DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				1467388D1E7ADBA700913C8E /* DataStack.swift in Sources */,
 				447409401E87BA4E0035B8DC /* PropertyMapper.m in Sources */,
-				14AF6B001DFC3D88009E5BC4 /* Result.swift in Sources */,
+				14AF6B001DFC3D88009E5BC4 /* SyncResult.swift in Sources */,
 				14D93C151E4E65C700DED595 /* NSDate+PropertyMapper.m in Sources */,
 				14241EB51DBC3A7F0042ED81 /* DataFilter.swift in Sources */,
 				14241EB71DBC3A7F0042ED81 /* TestCheck.swift in Sources */,
@@ -2420,7 +2420,7 @@
 				142CD2B41DEF3A01002FDABE /* Sync+NSPersistentContainer.swift in Sources */,
 				1467388E1E7ADBA700913C8E /* DataStack.swift in Sources */,
 				447409411E87BA4E0035B8DC /* PropertyMapper.m in Sources */,
-				14AF6B011DFC3D88009E5BC4 /* Result.swift in Sources */,
+				14AF6B011DFC3D88009E5BC4 /* SyncResult.swift in Sources */,
 				14D93C161E4E65C700DED595 /* NSDate+PropertyMapper.m in Sources */,
 				14241EBD1DBC3A880042ED81 /* DataFilter.swift in Sources */,
 				14241EBF1DBC3A880042ED81 /* TestCheck.swift in Sources */,
