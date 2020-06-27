@@ -423,8 +423,9 @@ github "3lvis/Sync" ~> 6.0
 
 ## Backers
 
-Love Sync? Consider supporting further development and support by becoming a patron:
-👉  https://www.patreon.com/3lvis
+Finding Sync helpful? Consider supporting further development and support by becoming a sponsor:
+👉  https://github.com/sponsors/3lvis
+
 
 ## License
 
