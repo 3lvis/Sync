@@ -1,6 +1,6 @@
 ---
 name: General issue
-about: Template for general issues
+about: General issues
 title: ''
 labels: ''
 assignees: ''
