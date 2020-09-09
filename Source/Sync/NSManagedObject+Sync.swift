@@ -141,7 +141,11 @@ extension NSManagedObject {
             let fetchedObjects = try? managedObjectContext.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
             guard let objects = fetchedObjects else { return }
             for safeObject in objects {
-                let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
+                let key = safeObject.entity.sync_localPrimaryKey()
+                guard let currentID = safeObject.value(forKey: key) else {
+                    print("error: Failed to get value for key \(key)")
+                    continue
+                }
                 for inserted in insertedItems {
                     if (currentID as AnyObject).isEqual(inserted) {
                         if relationship.isOrdered {
@@ -181,7 +185,11 @@ extension NSManagedObject {
 
             if relationship.isOrdered {
                 for safeObject in objects {
-                    let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
+                    let key = safeObject.entity.sync_localPrimaryKey()
+                    guard let currentID = safeObject.value(forKey: key) else {
+                        print("error: Failed to get value for key \(key)")
+                        continue
+                    }
                     let remoteIndex = remoteItems.index(of: currentID)
                     let relatedObjects = self.mutableOrderedSetValue(forKey: relationship.name)
 
@@ -274,7 +282,12 @@ extension NSManagedObject {
                     if deletedItems.count > 0 {
                         safeLocalObjects = try context.fetch(request) as? [NSManagedObject] ?? [NSManagedObject]()
                         for safeObject in safeLocalObjects! {
-                            let currentID = safeObject.value(forKey: safeObject.entity.sync_localPrimaryKey())!
+                            let key = safeObject.entity.sync_localPrimaryKey()
+                            guard let currentID = safeObject.value(forKey: key) else {
+                                print("error: Failed to get value for key \(key)")
+                                continue
+                            }
+                            
                             for deleted in deletedItems {
                                 if (currentID as AnyObject).isEqual(deleted) {
                                     if relationship.isOrdered {
