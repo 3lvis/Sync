@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "Sync"
-s.version          = "6.0.3"
+s.version          = "6.5.0"
 s.summary          = "Modern Swift JSON synchronization to Core Data"
 s.description      = <<-DESC
 **Sync** eases your everyday job of parsing a `JSON` response and getting it into Core Data. It uses a convention-over-configuration paradigm to facilitate your workflow.
@@ -19,10 +19,10 @@ s.author           = { "Elvis Nuñez" => "elvisnunez@me.com" }
 s.source           = { :git => "https://github.com/3lvis/Sync.git", :tag => s.version.to_s }
 s.social_media_url = "https://twitter.com/3lvis"
 
-s.ios.deployment_target = '9.0'
-s.osx.deployment_target = '10.13'
-s.watchos.deployment_target = '2.0'
-s.tvos.deployment_target = '9.0'
+s.ios.deployment_target = '11.0'
+s.osx.deployment_target = '10.15'
+s.watchos.deployment_target = '5.0'
+s.tvos.deployment_target = '11.0'
 s.requires_arc = true
 s.source_files = 'Source/**/*'
 s.swift_version = '5.0'
