@@ -1,6 +1,6 @@
 @import CoreData;
 
-#import "PropertyMapper.h"
+#import <Sync/PropertyMapper.h>
 
 /**
  Internal helpers, not meant to be included in the public APIs.
