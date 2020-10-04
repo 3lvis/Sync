@@ -240,11 +240,7 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
     } else if (stringValueAndURIAttribute) {
         value = [[NSURL alloc] initWithString:remoteValue];
     } else if (dataAttribute) {
-        if (@available(iOS 11.0, tvOS 11.0, watchOS 4.0, *)) {
-            value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue requiringSecureCoding:false error:nil];
-        } else {
-            value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
-        }
+        value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue requiringSecureCoding:false error:nil];
     } else if (numberValueAndDecimalAttribute) {
         NSNumber *number = (NSNumber *)remoteValue;
         value = [NSDecimalNumber decimalNumberWithDecimal:[number decimalValue]];

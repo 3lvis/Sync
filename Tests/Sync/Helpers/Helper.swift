@@ -17,7 +17,6 @@ import Sync
         return dataStack
     }
 
-    @available(iOS 10, watchOS 3, tvOS 10, OSX 10.12, *)
     class func persistentStoreWithModelName(_ modelName: String) -> NSPersistentContainer {
         let momdModelURL = Bundle(for: NSPersistentContainerTests.self).url(forResource: modelName, withExtension: "momd")!
         let model = NSManagedObjectModel(contentsOf: momdModelURL)!
