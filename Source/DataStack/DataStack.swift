@@ -107,7 +107,7 @@ import CoreData
      */
     @objc public init?(modelName: String) {
         
-        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: modelName) else { return nil }
         
         self.modelName = modelName
         self.model = model
@@ -123,7 +123,7 @@ import CoreData
      */
     @objc public init?(modelName: String, storeType: DataStackStoreType) {
         
-        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: modelName) else { return nil }
         
         self.modelName = modelName
         self.storeType = storeType
@@ -143,7 +143,7 @@ import CoreData
      */
     @objc public init?(modelName: String, bundle: Bundle, storeType: DataStackStoreType) {
         
-        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        guard let model = NSManagedObjectModel(bundle: bundle, name: modelName) else { return nil }
         
         self.modelName = modelName
         self.modelBundle = bundle
@@ -167,7 +167,7 @@ import CoreData
      */
     @objc public init?(modelName: String, bundle: Bundle, storeType: DataStackStoreType, storeName: String) {
         
-        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        guard let model = NSManagedObjectModel(bundle: bundle, name: modelName) else { return nil }
         
         self.modelName = modelName
         self.modelBundle = bundle
@@ -192,7 +192,7 @@ import CoreData
      - parameter containerURL: The container URL for the sqlite file when a store type of SQLite is used.
      */
     @objc public init?(modelName: String, bundle: Bundle, storeType: DataStackStoreType, storeName: String, containerURL: URL) {
-        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        guard let model = NSManagedObjectModel(bundle: bundle, name: modelName) else { return nil }
         self.modelName = modelName
         self.modelBundle = bundle
         self.storeType = storeType
