@@ -63,32 +63,41 @@ import CoreData
         return context
     }()
 
-    @objc public private(set) lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+    @objc public private(set) lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-        try! persistentStoreCoordinator.addPersistentStore(storeType: self.storeType, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
-
+        do {
+            try persistentStoreCoordinator.addPersistentStore(storeType: self.storeType, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
+        } catch {
+            return nil
+        }
         return persistentStoreCoordinator
     }()
 
-    private lazy var disposablePersistentStoreCoordinator: NSPersistentStoreCoordinator = {
-        let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)
+    private lazy var disposablePersistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        try! persistentStoreCoordinator.addPersistentStore(storeType: .inMemory, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
-
+        do {
+            try persistentStoreCoordinator.addPersistentStore(storeType: .inMemory, bundle: self.modelBundle, modelName: self.modelName, storeName: self.storeName, containerURL: self.containerURL)
+        } catch {
+            return nil
+        }
         return persistentStoreCoordinator
     }()
 
     /**
      Initializes a DataStack using the bundle name as the model name, so if your target is called ModernApp,
      it will look for a ModernApp.xcdatamodeld.
+     
+     Note: this initializer force-unwraps the managed object model resulting in a possible crash if the
+     model cannot be initialized! If possible, use another initializer.
+     
      */
     @objc public override init() {
         let bundle = Bundle.main
         if let bundleName = bundle.infoDictionary?["CFBundleName"] as? String {
             self.modelName = bundleName
         }
-        self.model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)
-
+        self.model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)!
         super.init()
     }
 
@@ -96,9 +105,12 @@ import CoreData
      Initializes a DataStack using the provided model name.
      - parameter modelName: The name of your Core Data model (xcdatamodeld).
      */
-    @objc public init(modelName: String) {
+    @objc public init?(modelName: String) {
+        
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        
         self.modelName = modelName
-        self.model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)
+        self.model = model
 
         super.init()
     }
@@ -109,10 +121,13 @@ import CoreData
      - parameter storeType: The store type to be used, you have .InMemory and .SQLite, the first one is memory
      based and doesn't save to disk, while the second one creates a .sqlite file and stores things there.
      */
-    @objc public init(modelName: String, storeType: DataStackStoreType) {
+    @objc public init?(modelName: String, storeType: DataStackStoreType) {
+        
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        
         self.modelName = modelName
         self.storeType = storeType
-        self.model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)
+        self.model = model
 
         super.init()
     }
@@ -126,11 +141,14 @@ import CoreData
      - parameter storeType: The store type to be used, you have .InMemory and .SQLite, the first one is memory
      based and doesn't save to disk, while the second one creates a .sqlite file and stores things there.
      */
-    @objc public init(modelName: String, bundle: Bundle, storeType: DataStackStoreType) {
+    @objc public init?(modelName: String, bundle: Bundle, storeType: DataStackStoreType) {
+        
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        
         self.modelName = modelName
         self.modelBundle = bundle
         self.storeType = storeType
-        self.model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)
+        self.model = model
 
         super.init()
     }
@@ -147,12 +165,15 @@ import CoreData
      name is AwesomeApp then the .sqlite file will be named AwesomeApp.sqlite, this attribute allows your to
      change that.
      */
-    @objc public init(modelName: String, bundle: Bundle, storeType: DataStackStoreType, storeName: String) {
+    @objc public init?(modelName: String, bundle: Bundle, storeType: DataStackStoreType, storeName: String) {
+        
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
+        
         self.modelName = modelName
         self.modelBundle = bundle
         self.storeType = storeType
         self.storeName = storeName
-        self.model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)
+        self.model = model
 
         super.init()
     }
@@ -170,13 +191,14 @@ import CoreData
      change that.
      - parameter containerURL: The container URL for the sqlite file when a store type of SQLite is used.
      */
-    @objc public init(modelName: String, bundle: Bundle, storeType: DataStackStoreType, storeName: String, containerURL: URL) {
+    @objc public init?(modelName: String, bundle: Bundle, storeType: DataStackStoreType, storeName: String, containerURL: URL) {
+        guard let model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName) else { return nil }
         self.modelName = modelName
         self.modelBundle = bundle
         self.storeType = storeType
         self.storeName = storeName
         self.containerURL = containerURL
-        self.model = NSManagedObjectModel(bundle: self.modelBundle, name: self.modelName)
+        self.model = model
 
         super.init()
     }
@@ -294,21 +316,29 @@ import CoreData
 
     // Drops the database.
     @objc public func drop(completion: ((_ error: NSError?) -> Void)? = nil) {
+        
+        let completeWithNil = {
+            DispatchQueue.main.async {
+                completion?(nil)
+            }
+        }
+        
         self.writerContext.performAndWait {
             self.writerContext.reset()
 
             self.mainContext.performAndWait {
                 self.mainContext.reset()
-
-                self.persistentStoreCoordinator.performAndWait {
-                    for store in self.persistentStoreCoordinator.persistentStores {
-                        guard let storeURL = store.url else { continue }
-                        try! self.oldDrop(storeURL: storeURL)
+                
+                if let coordinator = self.persistentStoreCoordinator {
+                    coordinator.performAndWait {
+                        for store in coordinator.persistentStores {
+                            guard let storeURL = store.url else { continue }
+                            try? self.oldDrop(storeURL: storeURL)
+                        }
+                        completeWithNil()
                     }
-
-                    DispatchQueue.main.async {
-                        completion?(nil)
-                    }
+                } else {
+                    completeWithNil()
                 }
             }
         }
@@ -357,8 +387,8 @@ import CoreData
     ///   - context: The context against which request should be executed.
     /// - Returns: An array containing managed objects, managed object IDs, or dictionaries as appropriate for a fetch request; an empty array if request is a save request, or nil if an error occurred.
     /// - Throws: If an error occurs, upon return contains an NSError object that describes the problem.
-    @objc public func execute(_ request: NSPersistentStoreRequest, with context: NSManagedObjectContext) throws -> Any {
-        return try self.persistentStoreCoordinator.execute(request, with: context)
+    @objc public func execute(_ request: NSPersistentStoreRequest, with context: NSManagedObjectContext) -> Any? {
+        return try? self.persistentStoreCoordinator?.execute(request, with: context)
     }
 
     // Can't be private, has to be internal in order to be used as a selector.
@@ -467,11 +497,11 @@ extension NSPersistentStoreCoordinator {
 }
 
 extension NSManagedObjectModel {
-    convenience init(bundle: Bundle, name: String) {
+    convenience init?(bundle: Bundle, name: String) {
         if let momdModelURL = bundle.url(forResource: name, withExtension: "momd") {
-            self.init(contentsOf: momdModelURL)!
+            self.init(contentsOf: momdModelURL)
         } else if let momModelURL = bundle.url(forResource: name, withExtension: "mom") {
-            self.init(contentsOf: momModelURL)!
+            self.init(contentsOf: momModelURL)
         } else {
             self.init()
         }
