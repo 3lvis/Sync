@@ -5,6 +5,31 @@
 #import "PropertyMapper.h"
 #import "SyncTestValueTransformer.h"
 
+@interface NSKeyedUnarchiver (Sync)
++ (nullable id)unarchiveArrayFromData:(NSData *)data;
++ (nullable id)unarchiveDictionaryFromData:(NSData *)data;
+@end
+
+@implementation NSKeyedUnarchiver (Sync)
++ (nullable id)unarchiveArrayFromData:(NSData *)data {
+    NSError *unarchivingError = nil;
+    NSArray *array = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSArray class] fromData:data error:&unarchivingError];
+    if (unarchivingError != nil) {
+        NSLog(@"NSKeyedUnarchiver (Sync) unarchivingError %@", [unarchivingError localizedDescription]);
+    }
+    return array;
+}
+
++ (nullable id)unarchiveDictionaryFromData:(NSData *)data {
+    NSError *unarchivingError = nil;
+    NSDictionary *dictionary = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class] fromData:data error:&unarchivingError];
+    if (unarchivingError != nil) {
+        NSLog(@"NSKeyedUnarchiver (Sync) unarchivingError %@", [unarchivingError localizedDescription]);
+    }
+    return dictionary;
+}
+@end
+
 @interface SyncFillWithDictionaryTests : XCTestCase
 
 @property (nonatomic) NSDate *testDate;
@@ -322,12 +347,10 @@
     DataStack *dataStack = [self dataStack];
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
-
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"hobbies"]][0], @"football");
-
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"hobbies"]][1], @"soccer");
-
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"hobbies"]][2], @"code");
+    
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveArrayFromData:[user valueForKey:@"hobbies"]][0], @"football");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveArrayFromData:[user valueForKey:@"hobbies"]][1], @"soccer");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveArrayFromData:[user valueForKey:@"hobbies"]][2], @"code");
 }
 
 - (void)testDictionaryStorage {
@@ -338,9 +361,8 @@
     NSManagedObject *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"expenses"]][@"cake"], @12.50);
-
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:[user valueForKey:@"expenses"]][@"juice"], @0.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveDictionaryFromData:[user valueForKey:@"expenses"]][@"cake"], @12.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveDictionaryFromData:[user valueForKey:@"expenses"]][@"juice"], @0.50);
 }
 
 - (void)testReservedWords {
