@@ -143,7 +143,7 @@
                              };
     
     [NSValueTransformer setValueTransformer:[[SyncTestValueTransformer alloc] init] forName:@"SyncTestValueTransformer"];
-    
+
     DataStack *dataStack = [self dataStack];
     NSManagedObject *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
