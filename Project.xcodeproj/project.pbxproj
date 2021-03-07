@@ -502,10 +502,6 @@
 		14F6277A1E7AE6E1001C2EA0 /* DataStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1467388B1E7ADBA700913C8E /* DataStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AFF18CB1FE1F08900C4BC3D /* 457-products.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18C91FE1F08800C4BC3D /* 457-products.json */; };
 		1AFF18CC1FE1F08900C4BC3D /* 457-subcategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFF18CA1FE1F08800C4BC3D /* 457-subcategories.json */; };
-		25A89F821F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
-		25A89F831F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
-		25A89F841F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
-		25A89F851F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6201F0002A3004A923A /* Sync+ObjC.swift */; };
 		445851BB1E87BAF50025434E /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458519C1E87BAF50025434E /* DictionaryTests.swift */; };
 		445851BC1E87BAF50025434E /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458519C1E87BAF50025434E /* DictionaryTests.swift */; };
 		445851BD1E87BAF50025434E /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4458519C1E87BAF50025434E /* DictionaryTests.swift */; };
@@ -1092,7 +1088,6 @@
 		CC9494171F379BE1002167B4 /* 373.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 373.json; sourceTree = "<group>"; };
 		CCF94956203AE72700C64B80 /* 480.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 480.xcdatamodel; sourceTree = "<group>"; };
 		CCF9495A203AF4AF00C64B80 /* 480.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 480.json; sourceTree = "<group>"; };
-		E47FF6201F0002A3004A923A /* Sync+ObjC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sync+ObjC.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1585,7 +1580,6 @@
 				14549A0A1E7C2E1000A77F2E /* Sync+Helpers.swift */,
 				14D5255E1E7C1EC30063909F /* Sync+NSManagedObjectContext.swift */,
 				142CD2AC1DEF3A01002FDABE /* Sync+NSPersistentContainer.swift */,
-				E47FF6201F0002A3004A923A /* Sync+ObjC.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -2321,7 +2315,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25A89F821F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EA01DBC3A6F0042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212F81E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EA11DBC3A6F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
@@ -2349,7 +2342,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25A89F851F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EA81DBC3A770042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212FB1E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EA91DBC3A770042ED81 /* NSEntityDescription+Sync.swift in Sources */,
@@ -2377,7 +2369,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25A89F831F00ED7E008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EB01DBC3A7F0042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212F91E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EB11DBC3A7F0042ED81 /* NSEntityDescription+Sync.swift in Sources */,
@@ -2405,7 +2396,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25A89F841F00ED7F008ADD4B /* Sync+ObjC.swift in Sources */,
 				14241EB81DBC3A880042ED81 /* NSArray+Sync.swift in Sources */,
 				44B212FA1E87BD5D00C81949 /* NSPropertyDescription+Sync.m in Sources */,
 				14241EB91DBC3A880042ED81 /* NSEntityDescription+Sync.swift in Sources */,
