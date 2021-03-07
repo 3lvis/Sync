@@ -249,20 +249,9 @@ static NSString * const PropertyMapperDestroyKey = @"destroy";
     } else if (transformableAttribute) {
         NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:[attributeDescription valueTransformerName]];
         if (transformer) {
-            // NSSecureUnarchiveFromDataTransformer requires the value to be
-            // of NSData class, anything else would result in a crash.
-            if ([transformer isKindOfClass:[NSSecureUnarchiveFromDataTransformer class]]) {
-                if ([remoteValue isKindOfClass:[NSData class]]) {
-                    id newValue = [transformer transformedValue:remoteValue];
-                    if (newValue) {
-                        value = newValue;
-                    }
-                }
-            } else {
-                id newValue = [transformer transformedValue:remoteValue];
-                if (newValue) {
-                    value = newValue;
-                }
+            id newValue = [transformer transformedValue:remoteValue];
+            if (newValue) {
+                value = newValue;
             }
         }
     }
