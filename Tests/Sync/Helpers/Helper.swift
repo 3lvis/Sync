@@ -12,7 +12,7 @@ import Sync
 
     class func dataStackWithModelName(_ modelName: String) -> DataStack {
         let bundle = Bundle(for: Helper.self)
-        let dataStack = DataStack(modelName: modelName, bundle: bundle, storeType: .sqLite)!
+        let dataStack = DataStack(modelName: modelName, bundle: bundle, storeType: .sqLite)
 
         return dataStack
     }
@@ -61,7 +61,7 @@ import Sync
 
     class func dataStackWithModelName(_ modelName: String, storeType: DataStackStoreType = .sqLite) -> DataStack {
         let bundle = Bundle(for: Helper.self)
-        let dataStack = DataStack(modelName: modelName, bundle: bundle, storeType: storeType)!
+        let dataStack = DataStack(modelName: modelName, bundle: bundle, storeType: storeType)
         return dataStack
     }
 
