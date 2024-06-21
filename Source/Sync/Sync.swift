@@ -114,8 +114,31 @@ public protocol SyncDelegate: class {
                     self.perform(using: context)
                 }
             } else {
-                self.dataStack.performInNewBackgroundContext { backgroundContext in
-                    self.perform(using: backgroundContext)
+                // Error handling inside NSOperations is rather difficult,
+                // if you have any suggestions on how to handle this
+                // please let me know.
+                do {
+                    try self.dataStack.performInNewBackgroundContext { backgroundContext in
+                        self.perform(using: backgroundContext)
+                    }
+                } catch DataStackError.persistentStoreCoordinatorCreationErrorForInMemoryStore(let error) {
+                    print("Failed DataStackError.persistentStoreCoordinatorCreationErrorForInMemoryStore \(error)")
+                    cancel()
+                } catch DataStackError.couldNotCopyPreloadedData(let error) {
+                    print("Failed DataStackError.couldNotCopyPreloadedData \(error)")
+                    cancel()
+                } catch DataStackError.persistentStoreCoordinatorCreationErrorForSQLite(let error) {
+                    print("Failed DataStackError.persistentStoreCoordinatorCreationErrorForSQLite \(error)")
+                    cancel()
+                } catch DataStackError.persistentStoreCoordinatorRemovalError(let error) {
+                    print("Failed DataStackError.persistentStoreCoordinatorRemovalError \(error)")
+                    cancel()
+                } catch DataStackError.excludingSQLiteFromBackgroundError(let error) {
+                    print("Failed DataStackError.excludingSQLiteFromBackgroundError \(error)")
+                    cancel()
+                } catch let otherError as NSError {
+                    print("Failed with another error \(otherError)")
+                    cancel()
                 }
             }
         }

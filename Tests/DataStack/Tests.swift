@@ -4,7 +4,7 @@ import CoreData
 
 extension XCTestCase {
     func createDataStack(_ storeType: DataStackStoreType = .inMemory) -> DataStack {
-        let dataStack = DataStack(modelName: "ModelGroup", bundle: Bundle(for: Tests.self), storeType: storeType)
+        let dataStack = try! DataStack(modelName: "ModelGroup", bundle: Bundle(for: Tests.self), storeType: storeType)
 
         return dataStack
     }
@@ -29,7 +29,7 @@ extension XCTestCase {
 
 class InitializerTests: XCTestCase {
     func testInitializeUsingXCDataModel() {
-        let dataStack = DataStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .inMemory)
+        let dataStack = try! DataStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .inMemory)
 
         self.insertUser(in: dataStack.mainContext)
         let objects = self.fetch(in: dataStack.mainContext)
@@ -48,7 +48,7 @@ class InitializerTests: XCTestCase {
 
     func testInitializingUsingNSManagedObjectModel() {
         let model = NSManagedObjectModel(bundle: Bundle(for: Tests.self), name: "ModelGroup")
-        let dataStack = DataStack(model: model, storeType: .inMemory)
+        let dataStack = try! DataStack(model: model, storeType: .inMemory)
 
         self.insertUser(in: dataStack.mainContext)
         let objects = self.fetch(in: dataStack.mainContext)
@@ -61,7 +61,7 @@ class Tests: XCTestCase {
         let dataStack = self.createDataStack()
 
         var synchronous = false
-        dataStack.performInNewBackgroundContext { _ in
+        try! dataStack.performInNewBackgroundContext { _ in
             synchronous = true
         }
 
@@ -71,7 +71,7 @@ class Tests: XCTestCase {
     func testBackgroundContextSave() {
         let dataStack = self.createDataStack()
 
-        dataStack.performInNewBackgroundContext { backgroundContext in
+        try! dataStack.performInNewBackgroundContext { backgroundContext in
             self.insertUser(in: backgroundContext)
 
             let objects = self.fetch(in: backgroundContext)
@@ -85,7 +85,7 @@ class Tests: XCTestCase {
     func testNewBackgroundContextSave() {
         var synchronous = false
         let dataStack = self.createDataStack()
-        let backgroundContext = dataStack.newBackgroundContext()
+        let backgroundContext = try! dataStack.newBackgroundContext()
         backgroundContext.performAndWait {
             synchronous = true
             self.insertUser(in: backgroundContext)
@@ -132,7 +132,7 @@ class Tests: XCTestCase {
     func testDrop() {
         let dataStack = self.createDataStack(.sqLite)
 
-        dataStack.performInNewBackgroundContext { backgroundContext in
+        try! dataStack.performInNewBackgroundContext { backgroundContext in
             self.insertUser(in: backgroundContext)
         }
 
@@ -144,7 +144,7 @@ class Tests: XCTestCase {
         let objects = self.fetch(in: dataStack.mainContext)
         XCTAssertEqual(objects.count, 0)
 
-        dataStack.performInNewBackgroundContext { backgroundContext in
+        try! dataStack.performInNewBackgroundContext { backgroundContext in
             self.insertUser(in: backgroundContext)
         }
 
@@ -155,13 +155,13 @@ class Tests: XCTestCase {
     }
 
     func testAutomaticMigration() {
-        let firstDataStack = DataStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
+        let firstDataStack = try! DataStack(modelName: "SimpleModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
         self.insertUser(in: firstDataStack.mainContext)
         let objects = self.fetch(in: firstDataStack.mainContext)
         XCTAssertEqual(objects.count, 1)
 
         // LightweightMigrationModel is a copy of DataModel with the main difference that adds the updatedDate attribute.
-        let secondDataStack = DataStack(modelName: "LightweightMigrationModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
+        let secondDataStack = try! DataStack(modelName: "LightweightMigrationModel", bundle: Bundle(for: Tests.self), storeType: .sqLite, storeName: "Shared")
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         fetchRequest.predicate = NSPredicate(format: "remoteID = %@", NSNumber(value: 1))
         let user = try! secondDataStack.mainContext.fetch(fetchRequest).first

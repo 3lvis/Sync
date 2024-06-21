@@ -98,7 +98,7 @@ Syncing JSON to Core Data is a repetitive tasks that often demands adding a lot 
 DataStack is a wrapper on top of the Core Data boilerplate, it encapsulates dealing with NSPersistentStoreCoordinator and NSManageObjectContexts.
 
 ```swift
-self.dataStack = DataStack(modelName: "DataModel")
+self.dataStack = try! DataStack(modelName: "DataModel")
 ```
 
 [You can find here more ways of initializing your DataStack](https://github.com/3lvis/Sync/blob/6723c1f9a07014024e0f8f2923d1930789cabb72/Source/DataStack/DataStack.swift#L77-L196).
@@ -142,7 +142,7 @@ https://github.com/3lvis/StoryboardDemo
 Replace your Core Data stack with an instance of [DataStack](https://github.com/3lvis/Sync/blob/master/docs/DataStack.md).
 
 ```swift
-self.dataStack = DataStack(modelName: "Demo")
+self.dataStack = try! DataStack(modelName: "Demo")
 ```
 
 ### Primary key
